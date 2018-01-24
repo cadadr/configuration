@@ -1,0 +1,13 @@
+Package: goktug
+Standards-Version: 3.6.2
+Version: __VERSION__
+Section: misc
+Priority: standard
+Architecture: all
+Maintainer: __MAINT__
+Description: My base system.
+ Install all the packages that I use.
+ .
+ Excludes GNU Emacs which is to be built manually.
+Depends: __DEPS__
+

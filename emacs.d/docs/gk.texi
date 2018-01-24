@@ -1,0 +1,95 @@
+\input texinfo   @c -*-texinfo-*-
+@c gk.texi -- Local documentation for my emacs configuration
+
+@c %**start of header
+@setfilename gk.info
+@settitle Göktuğ's Emacs Configuration
+@c %**end of header
+@copying
+Documentation for my Emacs user configuration.
+
+@quotation
+I use emacs, which might be thought of as a thermonuclear word processor.
+
+@author Neal Stephenson
+@end quotation
+
+@quotation
+Almost all of the really smart people I know use Emacs.
+
+@author Paul Johnson
+@end quotation
+
+@quotation
+People sometimes ask me if it is a sin in the Church of Emacs to use
+vi.  Using a free version of vi is not a sin; it is a penance.  So
+happy hacking.
+
+@author Richard Stallman
+@end quotation
+
+Copyright @copyright{} 2017  Göktuğ Kayaalp
+
+The document was typeset with
+@uref{http://www.texinfo.org/, GNU Texinfo}.
+
+@end copying
+
+@titlepage
+@title Göktuğ's Emacs Configuration
+@subtitle Documentation for my Emacs user configuration
+@author Göktuğ Kayaalp @email{<self|@|gkayaalp.com>}
+@page
+@vskip 0pt plus 1filll
+@insertcopying
+@end titlepage
+
+@c Output the table of the contents at the beginning.
+@contents
+
+@ifnottex
+@node Top, Introduction, (dir), (dir)
+@top Göktuğ's Emacs Configuration
+
+@insertcopying
+@end ifnottex
+
+@c Generate the nodes for this menu with `C-c C-u C-m'.
+@menu
+* Introduction::
+* Index::
+@end menu
+
+@node Introduction, Index, Top, Top
+@chapter Introduction
+
+Göktuğ's Emacs configuration is a combination of an Elisp package (gk
+in the directory @file{gk/}), a bunch of external modules (in the
+@file{site/} directory) and packages (in the @file{packages/}
+directory), some modules loosely-coupled with my config (in the
+@file{lisp/} directory), some non-elisp configuration files (in the
+@file{etc/} directory), some auxiliary files (in the @file{extras/}
+directory), some themes (in the @file{themes/} directory), some
+patches for GNU Emacs and related packages (in the @file{patches/}
+directory), and local documentation (in the @file{docs/} directory).
+
+Partial paths refer to files under a checkout of this configuration if
+not denoted otherwise.  For files outside a checkout of this
+configuration, absolute paths are used.
+
+Throughout this document, expressions like @dfn{my config}, @dfn{my
+configuration}, @dfn{this config} and @dfn{this configuration} refer
+to @dfn{Göktuğ's configuration}, as documented by this documentation.
+
+@node Index,  , Introduction, Top
+@unnumbered Index
+
+@printindex cp
+
+@bye
+
+@c Local Variables:
+@c compile-command: "makeinfo --fill-column=70 gk.texi"
+@c End:
+
+@c gk.texi ends here

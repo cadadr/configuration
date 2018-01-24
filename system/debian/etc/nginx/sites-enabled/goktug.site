@@ -1,0 +1,39 @@
+# nginx websites config.
+## Docs:
+# http://wiki.nginx.org/Pitfalls
+# http://wiki.nginx.org/QuickStart
+# http://wiki.nginx.org/Configuration
+# /usr/share/doc/nginx-doc/examples/
+##
+
+# Default server configuration
+
+server {
+	listen 3991 default_server;
+	listen [::]:3991 default_server;
+
+	set $root_dir /igk/www;
+	rewrite ^(/~[^/]+)$ $1/ redirect;
+	rewrite ^/~(?<user>[^/]+)(.+) $2;
+	if ($user) {
+	   set $root_dir /home/$user/public_html;
+	}
+	root $root_dir;
+
+	# Add index.php to the list if you are using PHP
+	index index.html README;
+
+	server_name goktug;
+
+	location / {
+		# First attempt to serve request as file, then
+		# as directory, then fall back to displaying a 404.
+		try_files $uri $uri/ =404;
+	}
+
+	# deny access to .htaccess files, if Apache's document root
+	# concurs with nginx's one
+	location ~ /\.ht {
+		deny all;
+	}
+}

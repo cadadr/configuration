@@ -1,0 +1,162 @@
+#!/usr/bin/env perl
+
+use v5.20;
+
+use strict;
+use warnings;
+
+use File::Basename qw(dirname);
+use Getopt::Long;
+use File::Path qw(make_path);
+use File::Spec::Functions qw(catfile);
+use Cwd qw(getcwd);
+
+my $curdir = getcwd;
+
+my $mapfile = "invasion";
+my $bkpsffix = ",invaded~";
+my $linkdir;
+my $verbose = 0;
+
+GetOptions ("mapfile|m=s" => \$mapfile,
+	    "verbose|v" => \$verbose)
+    or die "Command line error: $!";
+
+$linkdir = shift @ARGV;
+
+die "Target directory is not set!" if not $linkdir;
+
+sub annoy { say @_ if $verbose; }
+
+my @lines;
+
+open(my $mapfh, "<", $mapfile) or die "open `$mapfile': $!";
+
+while(<$mapfh>) {
+    chomp;
+    next if /^(#.*)?$/;
+    push @lines, $_;
+}
+
+# The key is the linkname, the value is the link target.
+my %map = map { split /\t+/; } @lines;
+
+foreach my $linkname (keys %map) {
+    my $target = catfile ($curdir, $map{$linkname});
+    my $symlink = catfile ($linkdir, $linkname);
+
+    # if symlink exists and is identical to what we're going to
+    # create, skip; otherwise, invade the symlink.
+    if (-l $symlink) {
+	my $contents = readlink $symlink or die "Could not read symlink at `$symlink'";
+	if ($contents eq $target) {
+	    annoy "Skipped already-invaded `$symlink'"; next;
+	}
+    }
+
+    # check if sth exists at symlink
+    if (-l $symlink or -e $symlink) {
+	my $bkpname = "$symlink$bkpsffix";
+	rename $symlink, $bkpname
+	    or die "Could not backup `$symlink': $!";
+	annoy "Moved file '$symlink' -> '$bkpname'";
+    }
+
+    # ensure link directory
+    my $linkpath = dirname $symlink;
+    if (! -d $linkpath) {
+	make_path $linkpath;
+	annoy "Created tree `$linkpath'";
+    }
+
+    if (symlink $target, $symlink) {
+	annoy "Symbolically linked '$symlink' -> '$target'";
+    } else {
+	say "Could not create symbolic link at `$symlink': $!";
+    }
+}
+
+__END__
+
+=pod
+
+=encoding utf8
+
+=head1 Invade --- automation for symlink creation
+
+=head2 Synopsis:
+
+=over
+
+    invade  [-v|--verbose] [-m|--mapfile MAPFILE] LINKDIR
+
+=back
+
+=head2 Options
+
+=over
+
+    -m|--mapfile MAPFILE
+
+=over
+
+    Defaults to ‘invasion’; the file that maps symlink names to target
+    file names.
+
+=back
+
+=back
+
+=head2 Flags
+
+=over
+
+    -v|--verbose
+
+=over
+
+    Log actions taken to standard error.
+
+=back
+
+=back
+
+=head2 Arguments
+
+=over
+
+    LINKDIR
+
+=over
+
+    The directory under which links are going to be created.
+
+=back
+
+=back
+
+=head2 The invasion file
+
+The invasion file, defaulting to a file named ‘invasion’, is a table
+that specifies the link mappings.  Lines starting with ‘#’, empty
+lines, and those composed of only whitespace are ignored.  Each line
+is trimmed at both ends for whitespace, and contains a tab separated
+list of two items:  the name of the symlink relative to LINKDIR, and
+the target for the symlink to be created relative to the directory of
+the invasion file.
+
+As the columns in this table tab-delimited, they can be aligned with
+multiple tabs separating them, but if there are spaces intermixed with
+these tabs, silly things may occur.  Do not use tabs in filenames.
+
+=head2 Operation
+
+When the programme is invoked, it creates symlinks as per the invasion
+file under the LINKDIR.  If the symbolik link files coincide with
+identical ones, they are left untouched.  If these files coincide with
+otherwise already-existent files, the programme tries to get them out
+of its way, renaming them with a newly sythesised name appending the
+string ‘,invaded~’.  See source code in order to modify this.  Failed
+entries are skipped.
+
+=cut

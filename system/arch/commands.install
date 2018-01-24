@@ -1,0 +1,16 @@
+loadkeys /usr/share/kbd/keymaps/i386/qwerty/uk.map.gz
+export TZ=Europe/Istanbul
+timedatectl set-ntp true
+wifi-menu
+systemctl start gpm.service
+mount /dev/sda5 /mnt
+rm -rf /mnt/*
+mkdir /mnt/boot
+mount /dev/sda1 /mnt/boot
+rm -rf /mnt/boot/*
+swapon /dev/sda6
+pacman -Sy
+pacstrap /mnt base base-devel wpa_supplicant
+genfstab -U /mnt >> /mnt/etc/fstab
+cp /etc/netctl/wlp2s0-feriha /mnt/etc/netctl/feriha
+arch-chroot /mnt

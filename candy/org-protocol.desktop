@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=org-protocol
+Exec=/home/g/local/bin/emacsclient %u
+Type=Application
+Terminal=false
+Categories=System;
+MimeType=x-scheme-handler/org-protocol;

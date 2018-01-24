@@ -1,0 +1,3763 @@
+#+title: Göktuğ's Emacs Configuration
+#+latex_class: gk-article
+
+* Prelude
+#+BEGIN_SRC elisp  :tangle yes
+;; -*- lexical-binding: t -*-
+#+END_SRC
+
+#+BEGIN_SRC elisp :tangle yes :comments both
+;; Use elisp directory listing program.  This needs to be set before
+;; loading ls-lisp.el.
+(defvar ls-lisp-use-insert-directory-program nil)
+#+END_SRC
+
+** Requires
+#+BEGIN_SRC elisp :tangle yes :comments both
+(eval-when-compile (require 'cl))
+(require 'ace-jump-mode)
+(require 'apropos)
+(require 'auth-source)
+(require 'autoinsert)
+(require 'bbdb)
+(require 'bbdb-vcard)
+(require 'bibliothek)
+(require 'bookmark)
+(require 'boxquote)
+(require 'browse-url)
+(require 'calendar)
+(require 'cc-mode)
+(require 'comint)
+(require 'compile)
+(require 'copyright)
+(require 'dash)
+(require 'debug)
+(require 'desktop)
+(require 'diff)
+(require 'diminish)
+(require 'dired)
+(require 'dired-subtree)
+(require 'dired-x)
+(require 'doc-view)
+(require 'eimp)
+(require 'eldoc)
+(require 'elfeed)
+(require 'epa)
+(require 'epa-mail)
+(require 'epg)
+(require 'etags)
+(require 'eval-sexp-fu)
+(require 'eww)
+(require 'f)
+(require 'face-remap) ; buffer-face-mode
+(require 'files)
+(require 'flyspell)
+(require 'forecast)
+(require 'gnus-sum)
+(require 'goto-addr)
+(require 'goto-last-change)
+(require 'highlight-parentheses)
+(require 'ibuffer)
+(require 'ibuffer-vc)
+(require 'ido)
+(require 'image)
+(require 'image-dired)
+(require 'inf-lisp)
+(require 'inf-ruby)
+(require 'ispell)
+(require 'js)
+(require 'log-edit)
+(require 'lorem-ipsum)
+(require 'ls-lisp)
+(require 'mail-source)
+(require 'message)
+(require 'mm-url)
+(require 'multiple-cursors)
+(require 'netrc)
+(require 'nsm)
+(require 'olivetti)
+(require 'org)
+(require 'org-caldav)
+(require 'org-capture)
+(require 'org-eww)
+(require 'org-mobile)
+(require 'org-protocol)
+(require 'outline)
+(require 'ox)
+(require 'ox-beamer)
+(require 'ox-groff)
+(require 'ox-latex)
+(require 'ox-odt)
+(require 'ox-publish)
+(require 'paredit)
+(require 'paren-face)
+(require 'pass-listing)
+(require 'pdf-cache)
+(require 'pdf-isearch)
+(require 'pdf-misc)
+(require 'pdf-outline)
+(require 'pdf-sync)
+(require 'pdf-tools)
+(require 'perl-mode)
+(require 'persistent-scratch)
+(require 'pixel-scroll)
+(require 'pp)
+(require 'python-django)
+(require 'quail)
+(require 'rect)
+(require 'ruby-mode)
+(require 'rx)
+(require 's)
+(require 'saveplace)
+(require 'scheme)
+(require 'seq)
+(require 'shell)
+(require 'shr)
+(require 'simple)
+(require 'slime)
+(require 'smtpmail)
+(require 'spam)
+(require 'subr-x)
+(require 'thingatpt)
+(require 'thinks)
+(require 'time)
+(require 'tramp)
+(require 'tramp-cache)
+(require 'uniquify)
+(require 'url)
+(require 'vc)
+(require 'vc-cvs)
+(require 'vc-rcs)
+(require 'wdired)
+(require 'whitespace)
+(require 'whole-line-or-region)
+(require 'windmove)
+(require 'winner)
+(require 'zencoding-mode)
+#+END_SRC
+
+* Files and directories
+#+BEGIN_SRC elisp :tangle yes :comments both
+
+(defconst gk-dropbox-dir
+  (expand-file-name "~/fil")
+  "Directory of Dropbox.")
+
+(defun dropbox (path)
+  "Return ~/Dropbox + PATH."
+  (expand-file-name path gk-dropbox-dir))
+
+(setf image-dired-dir (locate-user-emacs-file "etc/image-dired")
+      url-configuration-directory (locate-user-emacs-file "etc/url")
+      auto-save-list-file-prefix (locate-user-emacs-file
+                                  "etc/auto-save-list/saves-")
+      bookmark-default-file (dropbox "bookmarks.el")
+      bbdb-file (expand-file-name "~/Documents/bbdb")
+      savehist-file (locate-user-emacs-file "etc/history")
+      eww-bookmarks-directory (dropbox "/")
+      save-place-file (locate-user-emacs-file "etc/places")
+      tramp-persistency-file-name (locate-user-emacs-file "etc/tramp")
+      custom-file (locate-user-emacs-file "etc/custom.el")
+      nsm-settings-file (locate-user-emacs-file "etc/network-security.data")
+      mc/list-file (locate-user-emacs-file "etc/mc-lists.el"))
+
+(defvar gk-website-settings
+  (expand-file-name "~/Documents/not/www/publish")
+  "Settings for publishing http://www.gkayaaalp.com.")
+#+END_SRC
+
+* Utility libraries
+** Utility functions
+#+BEGIN_SRC elisp :tangle yes :comments both
+
+(defgroup GK nil
+  "Group for my configuration."
+  :group 'emacs
+  :prefix "gk-")
+
+(defun gk-backup-file-name (directory extension)
+  (let ((filename (concat directory
+                          (format-time-string "%d-%m-%Y" (current-time))))
+        (extension (concat "." extension)))
+    (while (file-exists-p (concat filename extension))
+      (setq filename (concat filename "+")))
+    (concat filename extension)))
+
+(defun gk-apropos-at-point-or-region ()
+  (interactive)
+  (let ((default (if (region-active-p)
+		     (buffer-substring (region-beginning) (region-end))
+		   (thing-at-point 'word))))
+    (apropos (read-string "Search for command or function (word list or regexp): "
+			  default nil default))))
+
+(defun gk-indent-defun ()
+  (interactive)
+  (save-excursion
+    (mark-defun)
+    (indent-region (region-beginning) (region-end))))
+
+(defun gk-which-mode (buffer)
+  (interactive "bShow major mode for buffer")
+  (with-current-buffer (get-buffer buffer)
+    (set-register ?M (symbol-name major-mode))
+    (message "Major mode for buffer '%s' is '%s'.  C-x r i M to insert it."
+	     buffer
+	     major-mode)))
+
+;; Testing init file.
+(defconst gk-emacs-executable
+  (executable-find "emacs"))
+
+(defvar gk-load-test-file
+  (expand-file-name (locate-user-emacs-file "etc/load-test.el")))
+
+(defvar gk-load-test-output-buffer-name
+  "*Startup File Test*")
+
+(defvar gk-load-test-process-name
+  "*Startup Test Process*")
+
+(defun gk-test-init ()
+  (interactive)
+  (let ((out-buf (get-buffer-create gk-load-test-output-buffer-name)))
+    (switch-to-buffer-other-window out-buf)
+    (insert "Testing emacs initialisation...\n\n")
+    (start-process
+     gk-load-test-process-name
+     out-buf
+     gk-emacs-executable
+     "-Q" "--batch" "-l" gk-load-test-file)))
+
+(defvar gk-user-files
+  nil
+  "Config files.")
+
+(defun gk-recompile (&optional force)
+  "Recompile my files.
+If FORCE is non-nil, force compilation, i.e. compile even if
+up-to-date."
+  (interactive "p")
+  (byte-recompile-directory (locate-user-emacs-file "packages") 0)
+  (byte-recompile-directory (locate-user-emacs-file "site") 0)
+  (byte-recompile-directory (locate-user-emacs-file "gk") 0 (> force 1))
+  (byte-recompile-directory (dropbox "") 0 (> force 1))
+  (byte-recompile-file (concat gk-website-settings ".el") (> force 1) 0)
+  (when custom-file
+    (byte-recompile-file custom-file (> force 1) 0)))
+
+(defun gk-command-from-proc (proc)
+  `(lambda nil (interactive) (,proc)))
+
+(defun gk-serve-directory (&optional dir port)
+  (interactive (list (read-directory-name "Directory to serve: "
+                                          default-directory)
+                     (read-number "Port: " 8000)))
+  (let ((default-directory dir))
+    (async-shell-command (format "python2 -m SimpleHTTPServer %d"
+                                 port))))
+
+;; Adapted from http://www.emacswiki.org/emacs/HexColour
+(defvar gk-hexcolour-keywords
+  '(("#[abcdefABCDEF[:digit:]]\\{3,6\\}"
+     (0 (let ((colour (match-string-no-properties 0)))
+          (if (or (= (length colour) 4)
+                  (= (length colour) 7))
+              (put-text-property
+               (match-beginning 0)
+               (match-end 0)
+               'face (list :background (match-string-no-properties 0)
+                           :foreground
+                           (if (>= (apply
+                                    '+ (x-color-values
+                                        (match-string-no-properties 0)))
+                                   (* (apply '+ (x-color-values "white")) .6))
+                               "black" ; light bg, dark text
+                             "white"   ; dark bg, light text
+                             )))))
+        append))))
+
+(defun gk-hexcolour-add-to-font-lock ()
+  (interactive)
+  (font-lock-add-keywords nil gk-hexcolour-keywords t))
+
+(defun gk-comment-dwim (arg)
+  "If region is active, or at the end of the line, call ‘comment-dwim’.
+Pass ARG to ‘comment-dwim’ in that case.
+Otherwise comment-out the whole line, or ARG lines."
+  (interactive "*P")
+  (cond
+   ((save-excursion
+      (beginning-of-line)
+      (looking-at (concat "[[:blank:]]*" comment-start)))
+    (uncomment-region (point-at-bol) (point-at-eol)))
+   ((or (looking-at "[[:blank:]]*$")
+        (region-active-p))
+    (comment-dwim arg))
+   (t (save-excursion (comment-line arg)))))
+
+(defun gk-reformat-date (format date)
+  "Parse DATE, then apply FORMAT to it.
+
+For the format, see `format-time-string'."
+  (format-time-string format (date-to-time date)))
+
+(defun gk-tar-dotfiles ()
+  "Create an encrypted tarball of dotfiles.
+
+Take files from ~/RCS, find  corresponding files under $HOME, put
+all into a tar  file, call it dotfiles-YYYY-MM-DD-HH:MM.tar, then
+encrypt it using GPG."
+  (interactive)
+  (let* ((default-directory (expand-file-name "~"))
+         (dir (expand-file-name "~/RCS"))
+         (regex directory-files-no-dot-files-regexp)
+         (vfiles (directory-files dir nil regex))
+         (delv (lambda (x) (replace-regexp-in-string ",v$" "" x)))
+         (files (mapcar delv vfiles))
+         (addrcsdir (lambda (x) (format "./%s/%s" "RCS" x)))
+         (adddot (lambda (x) (format "./%s" x)))
+         (flist (append (mapcar addrcsdir vfiles)
+                        (mapcar adddot files)))
+         (tarfile (expand-file-name "~/dotfiles.tar"))
+         (tarcmd (format "cd %s; tar cf \\\n %s %s"
+                         default-directory
+                         tarfile
+                         (mapconcat 'identity flist " \\\n")))
+         (gpgfile (concat tarfile ".gpg"))
+         (backupfile (expand-file-name
+                      (file-name-nondirectory gpgfile)
+                      (dropbox "Backups/Dotfiles"))))
+    (when (shell-command tarcmd)
+      (when (epa-encrypt-file
+             tarfile
+             (epa-select-keys
+              (epg-make-context)
+              "Select key(s): "))
+        (delete-file tarfile)
+        (rename-file gpgfile backupfile t)))))
+
+(defun gk-targpg-directory (dir outdir)
+  "Tar up DIR, encrypt, put that into OUTDIR."
+  (interactive (list (expand-file-name (read-directory-name "Directory: "))
+                     (expand-file-name (read-directory-name "Output directory: "))))
+  (let* ((default-directory (expand-file-name ".." dir))
+         (dirname (format
+                   "./%s"
+                   (car (last (split-string-and-unquote dir "/")))))
+         (tarfile (format "/tmp/%s.tar" (make-temp-name "gktargpg")))
+         (gpgfile (format "%s.gpg" tarfile))
+         (outfile (expand-file-name (replace-regexp-in-string
+                                     "^\\.*\\(/\\.*\\)?" ""
+                                     (format "%s.tar.gpg" dirname))
+                                    outdir))
+         (tarcmd (format "cd %s && tar cf %s %s"
+                         default-directory tarfile dirname)))
+    (when (shell-command tarcmd)
+      (when (epa-encrypt-file
+             tarfile
+             (epa-select-keys
+              (epg-make-context)
+              "Select key(s): "))
+        (delete-file tarfile)
+        (rename-file gpgfile outfile t)))))
+
+(define-error 'gk-program-absent-error "Program is absent")
+
+(defun gk-executable-ensure (command)
+  "Err-out if COMMAND is not found."
+  (or (executable-find command)
+      (signal 'gk-program-absent-error command)))
+
+(defun gk-get-file-contents (file)
+  "Get the contents of FILE as a string."
+  (with-temp-buffer
+    (insert-file-contents file)
+    (buffer-substring (point-min) (point-max))))
+
+(defun gk-deadvice (sym)
+  "Remove all the advice functions from the function named SYM."
+  (interactive "aRemove advices from function: ")
+  (advice-mapc
+   (lambda (x y)
+     (ignore y)
+     (remove-function (symbol-function sym) x))
+   sym))
+
+;; gk-diff-region-* - Diff two regions
+
+;; Adapted from: <https://gist.github.com/zdavkeos/1279865>
+
+;; To  compare   two  regions,  select   the  first  region   and  run
+;; ‘gk-diff-region’.  The region is now  copied to a seperate diff-ing
+;; buffer.  Next,  navigate to  the next region  in question  (even in
+;; another file).   Mark the region and  run ‘gk-diff-region-now’, the
+;; diff of the two regions will be displayed by ediff.
+
+;; You  can re-select  the  first  region at  any  time by  re-calling
+;; ‘gk-diff-region’.
+
+(defun gk-diff-region ()
+  "Select a region to compare"
+  (interactive)
+  (when (use-region-p)  ; there is a region
+    (let ((buf (get-buffer-create "*Diff-region A*")))
+      (with-current-buffer buf
+        (erase-buffer))
+      (append-to-buffer buf (region-beginning) (region-end))))
+  (message "Now select other region to compare and run `diff-region-now`"))
+
+(defun gk-diff-region-now ()
+  "Compare current region with region already selected by `diff-region`"
+  (interactive)
+  (when (use-region-p)
+    (let ((bufa (get-buffer-create "*Diff-region A*"))
+          (bufb (get-buffer-create "*Diff-region B*")))
+      (with-current-buffer bufb
+        (erase-buffer))
+      (append-to-buffer bufb (region-beginning) (region-end))
+      (ediff-buffers bufa bufb))))
+
+(defun gk-sudo (cmd)
+  "Run CMD as superuser."
+  (interactive (list (read-shell-command "Shell command (sudo): ")))
+  (with-temp-buffer
+    (cd (concat "/sudo::" (expand-file-name default-directory)))
+    (prog1
+        (shell-command cmd (current-buffer))
+      (cd default-directory)
+      (when (called-interactively-p 'any)
+        ;; The command output can include ‘%’ which may cause message
+        ;; to signal error.
+        (message "%s" (buffer-string))))))
+
+;; Mount helpers.
+(defvar gk-mtp-dir "/mnt/mtp/"
+  "Mount point for MTP devices.")
+
+(defvar gk-ukey-dir "/mnt/ukey/"
+  "Mount point for MTP devices.")
+
+(defun gk-mount-mtp ()
+  (interactive)
+  (let ((ret (gk-sudo (format
+                       "simple-mtpfs -oallow_other,enable-move %s" gk-mtp-dir))))
+    (cond ((stringp ret) (error ret))
+          ((zerop ret) (find-file gk-mtp-dir))
+          (t (error "simple-mtpfs(1) returned %d" ret)))))
+
+(defun gk-unmount-mtp ()
+  (interactive)
+  (let ((ret (gk-sudo (format "umount %s" gk-mtp-dir))))
+    (cond ((stringp ret) (error ret))
+          ((zerop ret) (message "Unmounted %s" gk-mtp-dir))
+          (t (error "unmount(1) returned %d" ret)))))
+
+(defun gk-mount-ukey (fs)
+  (interactive
+   (list (completing-read "Choose filesystem for ukey: " '(ufs msdos) nil t)))
+  (cond
+   ((string= fs "ufs") (gk-ukey-mount-ufs))
+   ((string= fs "msdos") (gk-ukey-mount-msdos))))
+
+(defun gk-ukey-mount-msdos ()
+  (interactive)
+  (let ((ret (gk-sudo (format "mount %s" gk-ukey-dir))))
+    (cond ((stringp ret) (error ret))
+          ((zerop ret) (find-file gk-ukey-dir))
+          (t (error "mount(1) returned %d" ret)))))
+
+(defun gk-ukey-mount-ufs ()
+  (interactive)
+  (let ((ret (gk-sudo (format "mount -t ext2fs /dev/da0p1 %s" gk-ukey-dir))))
+    (cond ((stringp ret) (error ret))
+          ((zerop ret) (find-file gk-ukey-dir))
+          (t (error "mount(1) returned %d" ret)))))
+
+(defun gk-unmount-ukey ()
+  (interactive)
+  (gk-sudo "sync")
+  (let ((ret (gk-sudo (format "umount %s" gk-ukey-dir))))
+    (cond ((stringp ret) (error ret))
+          ((zerop ret) (message "Unmounted %s" gk-ukey-dir))
+          (t (error "unmount(1) returned %d" ret)))))
+
+
+(defun gk-gui-p ()
+  (or window-system (daemonp)))
+
+(defun gk-find-text-footnote-definition ()
+  (interactive)
+  (when (looking-at "[[(]?\\([0-9*]+\\)[\])]?")
+    (push-mark (point))
+    (goto-char (point-max))
+    (re-search-backward (concat "^" (match-string 1) "[^1234567890]"))))
+
+(defun gk-find-text-footnote-definition--mouse (&optional event)
+  "Find footnote definition according to plain text conventions."
+  (interactive "@e")
+  (when event (goto-char (cadadr event)))
+  (gk-find-text-footnote-definition))
+
+;; Adapted from https://crowding.github.io/blog/2014/08/16/replace-less-with-emacs/
+(defun gk-less (fifo)
+  "Companion function for ‘extras/eless.sh’."
+  (let* ((buf (generate-new-buffer "*pager*"))
+         (proc (start-process "gk-pager" buf "cat" fifo)))
+    (view-buffer buf 'kill-buffer)
+    ;; make sure point stays at top of window while process output accumulates
+    (set-process-filter
+     proc
+     (lambda (proc string)
+       (let ((buf (process-buffer proc))
+             (mark (process-mark proc)))
+         (with-current-buffer buf
+           (let ((buffer-read-only nil))
+             (save-excursion
+               (goto-char mark)
+               (insert string)
+               (ansi-color-apply-on-region mark (point))
+               (set-marker mark (point))))))))))
+;; Make sure that emacs itself uses ‘more’,  necessary for ‘man’ command.
+(setenv "PAGER" "more")
+
+(defun gk-swap-windows (&optional arg)
+  "Swap the buffer of the selected window with that of the next one.
+When ARG is a positive number, repeat that many times."
+  (interactive "p")
+  (dotimes (i (or arg 1))
+    (ignore i)
+    (let ((next (window-buffer (next-window)))
+          (this (current-buffer)))
+      (unless (equal this next)
+        (switch-to-buffer next nil t)
+        (switch-to-buffer-other-window this)))))
+
+(defun gk-count-my-lisp ()
+  "Count the lines of Lisp in ‘user-emacs-directory’.
+Returns a plist where :files is the number of files and :lines is
+the number of lines."
+  (interactive)
+  (let ((lisp-files
+         (append
+          (directory-files (locate-user-emacs-file ".") t
+                           "^\\(init\\|load\\).*el$")
+          (directory-files (locate-user-emacs-file "gk") t "el$")
+          (directory-files (locate-user-emacs-file "lisp") t "el$")
+          (directory-files (locate-user-emacs-file "extras") t "el$")
+          (directory-files (locate-user-emacs-file "themes") t "el$")))
+        (sum 0)
+        buf files)
+    (setf files (length lisp-files))
+    (dolist (el lisp-files sum)
+      (setf buf (find-file-noselect el))
+      (with-current-buffer buf
+        (incf sum (count-lines (point-min) (point-max))))
+      (kill-buffer buf))
+    (when (called-interactively-p 'any)
+      (message "%d lines of Elisp in %d files." sum files))
+    (list :files files :lines sum)))
+
+(defun gk-kill-buffer-file-name ()
+  "Push the buffer's file name to the ‘kill-ring’."
+  (interactive)
+  (if-let* ((fil (buffer-file-name)))
+      (with-temp-buffer
+        (insert fil)
+        (kill-region (point-min) (point-max)))
+    (error "Buffer not visiting a file.")))
+
+(defun gk-get-last-message ()
+  "Copy-as-kill the last echoed message."
+  (interactive)
+  (with-current-buffer (messages-buffer)
+    (save-excursion
+      (goto-char (point-max))
+      (forward-line -1)
+      (clipboard-kill-ring-save
+       (line-beginning-position) (line-end-position)))))
+
+(defalias 'dmesg
+  (defun gk-dmesg (&optional lines)
+    (interactive "P")
+    (async-shell-command (format "dmesg | tail -n %d" (or lines 10)))))
+
+(defun gk-dired-visit-default-directory ()
+  (interactive)
+  (dired default-directory))
+
+(defun gk-home ()
+  "Take me to the home view."
+  (interactive)
+  (delete-other-windows)
+  (find-file (gk-org-dir-file "start.org")))
+
+(defun gk-maybe-expand-abbrev-or-space ()
+  (interactive)
+  (when (null (expand-abbrev))
+    (insert " ")))
+
+(defun gk-numeronym (name)
+  "Generate a numeronym of NAME, an arbitrary string.
+A numeronym is the initial letter, the length of the name in
+characters, and the last letter,
+i.e. i18n -> internationalisation."
+  (interactive (list (read-string "Enter the name to be numeronymified: ")))
+  (let ((len (length name)))
+    (unless (>= len 2) (user-error "The name must be at least three characters long"))
+    (message (format "%c%d%c" (aref name 0) (- len 2) (aref name (1- len))))))
+
+(defun gk-unbind-key (keyseq)
+    "Unset the KEYSEQ in ‘gk-minor-mode-map’."
+    (interactive "kKey sequence to unset: ")
+    (define-key gk-minor-mode-map keyseq nil)
+    (message "Done."))
+
+(defun gk-delete-buffer-file ()
+  (interactive)
+  (delete-file (buffer-file-name) delete-by-moving-to-trash))
+
+(defun gk-truncate-and-fill-string (len s)
+  (let ((slen (length s)))
+    (if (> slen len)
+        (s-truncate len s)
+      (concat s (make-string (- len slen) ?\ )))))
+#+END_SRC
+
+** Utility macros
+#+BEGIN_SRC elisp :tangle yes :comments both
+
+(defmacro when-fbound (proc &rest args)
+  "Run proc if bound.
+\(when-fbound PROC ARGS...)"
+  `(when (fboundp (quote ,proc))
+     (,proc ,@args)))
+
+(defmacro gk-interactively (&rest body)
+  "Wrap the BODY in an interactive lambda form.
+Return the lambda."
+  `(lambda nil (interactive) ,@body))
+
+(defun $-find-args (seq)
+  (seq-sort
+   (lambda (sym1 sym2)
+     (< (string-to-number (substring (symbol-name sym1) 1))
+        (string-to-number (substring (symbol-name sym2) 1))))
+   (seq-filter
+    (lambda (x)
+      (and (symbolp x) (equal 0 (string-match "\\$[0-9]+" (symbol-name x)))))
+    (seq-uniq (-flatten seq)))))
+
+(defmacro $ (&rest body)
+  "Shortcut for lambdas.
+
+Inside this form symbols in the form $N where N is a positive
+integer are to stand for positional arguments to the generated
+lambda.
+
+If the car of the BODY is a vector though, that vector becomes
+the argument list of the new lambda."
+  (let ((head (car body))
+        (tail (cdr body))
+        args the-body)
+    (if (vectorp head)
+        ;; Convert it to a list.
+        (setf args (seq-into head 'list)
+              the-body tail)
+      (setf args ($-find-args body)
+            the-body body))
+    `(lambda ,args ,@the-body)))
+
+(defmacro gk-with-new-frame (parameters &rest body)
+  "Create a new frame and run BODY in it.
+PARAMETERS are passed into ‘make-frame’."
+  (declare (indent defun))
+  (let ((frame (gensym)))
+    `(let ((,frame (make-frame ,parameters)))
+       (raise-frame ,frame)
+       (select-frame-set-input-focus ,frame)
+       (progn ,@body))))
+
+(defmacro setc (variable value)
+  "Exactly like setq, but handles custom."
+  `(funcall (or (get ',variable 'custom-set) 'set-default) ',variable ,value))
+#+END_SRC
+
+** Association lists
+#+BEGIN_SRC elisp :tangle yes :comments both
+(defun dissoc (key list &optional arg)
+  "Delete pairs whose car is `equal' to KEY from LIST.
+
+ARG is an internal argument."
+  (let ((p (car list))
+        (r (cdr list)))
+    (if list
+        (if (equal (car p) key)
+            (dissoc key r arg)
+          (dissoc key r (append arg (list p))))
+      arg)))
+
+(defun assoca (keyseq list)
+  "Arbitrary depth multi-level alist query.
+
+KEYSEQ is the list of keys to look up in the LIST.  The first key
+from KEYSEQ is looked up in the LIST, then the next key from
+KEYSEQ is looked up in the CDR of the return value of that
+operation, and so on until all the KEYSEQ is exhausted.  The
+resultant value is returned, or nil, in case one or more keys are
+not found in the LIST.
+
+Examples:
+\(forecast--assoca '(a b c)
+ '((a . ((b . ((c . e)
+               (k . g)))
+         (z . q)))
+   (r . s)))
+ => e
+
+\(forecast--assoca '(a t)
+ '((a . ((b . ((c . e)
+               (k . g)))
+         (z . q)))
+   (r . s)))
+ => nil
+
+\(forecast--assoca '(a o t)
+ '((a . ((b . ((c . e)
+               (k . g)))
+         (z . q)))
+   (r . s)))
+ => nil
+
+\(forecast--assoca nil
+ '((a . ((b . ((c . e)
+               (k . g)))
+         (z . q)))
+   (r . s)))
+ => ((a (b (c . e) (k . g)) (z . q)) (r . s))."
+  (let ((ks (if (listp keyseq) keyseq (list keyseq)))
+        (ret list))
+    (dolist (k ks ret)
+      (setq ret (cdr (assoc k ret))))))
+#+END_SRC
+
+** File utilities
+#+BEGIN_SRC elisp :tangle yes :comments both
+(defun gk-existing-file-name-or-nil (filename)
+  (when (file-exists-p filename)
+    filename))
+
+(defun gk-sanitise-dir-files (dir &optional recurse)
+  "Remove problematic chars from filenames in DIR.
+
+If RECURSE non-nil, or called interactively with a universal
+prefix, recurse in the directories.
+
+The following things are changed:
+
+- Transform \"ı\" to \"i\".  Files with this character in name
+  cannot be synced to Dropbox.
+
+If, after tranformations, the new file name is not unique, prompt
+the user for taking action."
+  (interactive "DDirectory to sanitise: \nP")
+  ;; If non-nil, set to t, as numeric values would result in
+  ;; complications when debugging.
+  (when recurse (setq recurse t))
+  (let* ((items (directory-files dir t "[^/\\.+$]" t))
+         (subdirs)
+         (rename (lambda (f)
+                   (let* ((ı (replace-regexp-in-string "ı" "i" f t))
+                          (İ (replace-regexp-in-string "İ" "I" ı t))
+                          (name İ))
+                     (unless (string= f name)
+                       (while (file-exists-p name)
+                         (let ((new-name
+                                (read-file-name
+                                 (format
+                                  "File `%s' exists.  Please provide new name: " name)
+                                 (file-name-directory f))))
+                           (setq name new-name))))
+                     name))))
+    (dolist (f items)
+      (let ((n (funcall rename f)))
+        (when (file-directory-p n)
+          (push subdirs n))
+        (when (and
+               (not (string= f n))
+               (y-or-n-p
+                (format "Rename as following?\nOld: %s\nNew: %s" f n)))
+          (rename-file f n 1993))))
+    (when recurse
+      (dolist (subdir subdirs)
+        (gk-sanitise-dir-files subdir recurse)))))
+#+END_SRC
+
+* The GK minor mode
+#+BEGIN_SRC elisp :tangle yes :comments both
+(defvar gk-minor-mode-map
+  (make-sparse-keymap)
+  "Where to put all my bindings.")
+
+(defvar gk-minor-mode-prefix-map
+  (make-sparse-keymap)
+  "Prefix map for my bindings.")
+
+(fset 'gk-minor-mode-prefix-map gk-minor-mode-prefix-map)
+
+(defvar gk-minor-mode-prefix "\C-c"
+  "Keymap prefix for `gk-minor-mode'.")
+
+(define-minor-mode gk-minor-mode
+  "Global minor mode for customisations.
+\\{gk-minor-mode-map}"
+  nil "" gk-minor-mode-map
+  (let ((map gk-minor-mode-map))
+    (define-key map gk-minor-mode-prefix #'gk-minor-mode-prefix-map)))
+
+(define-globalized-minor-mode global-gk-minor-mode gk-minor-mode
+  gk-minor-mode)
+#+END_SRC
+
+* Customisations
+** Fonts
+#+BEGIN_SRC elisp :tangle yes :comments both
+(defconst gk-default-fonts-plist
+  (list :serif "DejaVu Serif"
+        :sans "DejaVu Sans"
+        :mono "DejaVu Sans Mono"
+        :forecast-moon-phase "Quivira")
+  "A plist, default fonts.")
+
+;; Set up so that there's 75-80 chars width for half-sized horizontal
+;; windows.
+(defconst gk-font-default-height 105)
+(defconst gk-font-variable-pitch-height 110)
+(defalias 'gk-font-org-variable-pitch-height
+  'gk-font-variable-pitch-height)
+
+(defun gk-font (type)
+  "Get default font for TYPE, a keyword.
+
+nil if absent."
+  (plist-get gk-default-fonts-plist type))
+#+END_SRC
+
+** Outline
+#+BEGIN_SRC elisp :tangle yes :comments both
+
+(defun gk-turn-on-outline-minor-mode (headline-begin headline-end prefix)
+  "Turn on the `outline-minor-mode'.
+
+Set locally the variable `outline-regexp' to HEADLINE-BEGIN.
+Set locally the variable `outline-heading-end-regexp' to HEADLINE-END.
+Set locally the variable `outline-minor-mode-prefix' to PREFIX."
+  (setq-local outline-regexp headline-begin)
+  (setq-local outline-heading-end-regexp headline-end)
+  (setq-local outline-minor-mode-prefix (kbd prefix))
+  (outline-minor-mode)
+  (local-set-key outline-minor-mode-prefix outline-mode-prefix-map))
+#+END_SRC
+
+** Things
+#+BEGIN_SRC elisp :tangle yes :comments both
+
+(defmacro gk-make-thing-marker (thing)
+  (let ((thingname (symbol-name thing)))
+    `(defun ,(intern (concat "gk-mark-" thingname)) ()
+       ,(concat "Mark the " thingname " under cursor.")
+       (interactive)
+       (let ((b (bounds-of-thing-at-point (quote ,thing))))
+         (set-mark (point))
+         (goto-char (car b))
+         (push-mark (cdr b) t t)))))
+
+(defvar gk-things '(list sexp defun filename url email word paragraph
+                         sentence whitespace line page symbol)
+  "A list of known things")
+
+(dolist (thing gk-things)
+  (eval `(gk-make-thing-marker ,thing)))
+
+(defun gk-mark-thing ()
+  "Interactively find some THING to mark."
+  (interactive)
+  (funcall
+   (intern
+    (concat
+     "gk-mark-"
+     (completing-read
+      "What to mark (hit TAB to complete): "
+      (mapcar #'symbol-name gk-things)
+      nil t)))))
+#+END_SRC
+
+** Backups
+Save all backups to a designated place (see =backup-directory-alist=),
+be generous in keepbing backups.
+
+#+BEGIN_SRC elisp :tangle yes :comments both
+
+(setf
+ ;; Make a backup of a file the first time it is saved.
+ make-backup-files t
+ ;; Make backup first, then copy to the original.
+ backup-by-copying nil
+ ;; Version-numbered backups.
+ version-control t
+ ;; Keep a lot of copies.  Only not version-controlled files (see
+ ;; ‘vc-make-backup-files’.
+ kept-old-versions 10000
+ kept-new-versions kept-old-versions
+ backup-directory-alist `(("." . ,(expand-file-name "~/.emacs-backups"))))
+#+END_SRC
+
+** Comint
+*** Common
+#+BEGIN_SRC elisp :tangle yes :comments both
+
+(defun gk-toggle-comint-process-echoes ()
+  "Toggle ‘comint-process-echoes’ variable."
+  (interactive)
+  (message
+   (if (setq-local comint-process-echoes (not comint-process-echoes))
+       "Turned *on* comint echo filter."
+     "Turned *off* comint echo filter.")))
+
+(define-key comint-mode-map "\C-c\C-e" 'gk-toggle-comint-process-echoes)
+(define-key comint-mode-map (kbd "C-c DEL") 'comint-clear-buffer)
+#+END_SRC
+
+*** Shell mode
+#+BEGIN_SRC elisp :tangle yes :comments both
+
+(add-hook 'shell-mode-hook 'gk-shell-mode-hook)
+
+(defun gk-shell-mode-hook ()
+  "Hook for `shell-mode'."
+  ;; BSD /bin/sh echoes.
+  (when (and (not (memq system-type '(gnu gnu/linux gnu/kfreebsd)))
+             (string-match "/k?sh$" (getenv "SHELL")))
+    (setq-local comint-process-echoes t)))
+#+END_SRC
+
+** Dired
+*** The hook
+#+BEGIN_SRC elisp :tangle yes :comments both
+(defun gk-dired-hook ()
+  "Main hook for `dired-mode'."
+  ;; C-x M-o -> toggle omitting
+  ;; * O -> mark omitted
+  (dired-omit-mode 1)
+  (dired-hide-details-mode 1))
+
+(add-hook 'dired-mode-hook #'gk-dired-hook)
+#+END_SRC
+
+*** Customisations
+#+BEGIN_SRC elisp :tangle yes :comments both
+(setf
+ ;; Omit ., .., #*, *~, ~,v.
+ dired-omit-files "^\\(\\.\\|#\\)\\(.+\\|.+\\(~\\|,v\\)\\)?$"
+ ;; Show symlinks' targets: it's useful, and dired-subtree is stupid
+ ;; otherwise.
+ dired-hide-details-hide-symlink-targets nil
+ ;; No need to specially treat symlinks.
+ dired-symlink-face nil)
+
+(setf ls-lisp-dirs-first t)
+
+(setf
+ ;; Ask for confirmation
+ wdired-confirm-overwrite t
+ ;; Human readable size.
+ dired-listing-switches "-alh")
+#+END_SRC
+
+*** Keymappings
+#+BEGIN_SRC elisp :tangle yes :comments both
+(define-key dired-mode-map (kbd "W") 'wdired-change-to-wdired-mode)
+#+END_SRC
+
+*** Subtrees
+#+BEGIN_SRC elisp :tangle yes :comments both
+
+(define-key dired-mode-map "i" 'dired-subtree-toggle)
+
+(setf dired-subtree-use-backgrounds nil)
+
+(defun gk-dired-subtree-hook ()
+  ;; Reset omissions when necessary.  Subtrees do not initially apply
+  ;; omissions.
+  (when dired-omit-mode
+    (dired-omit-mode +1)))
+
+(add-hook 'dired-subtree-after-insert-hook 'gk-dired-subtree-hook t)
+#+END_SRC
+
+** Documents
+*** PDF-tools
+#+BEGIN_SRC elisp :tangle yes :comments both
+(setf
+ pdf-info-epdfinfo-program
+ (gk-executable-ensure "~/co/External/emacs-pdf-tools/server/epdfinfo")
+ pdf-tools-enabled-modes
+ '(pdf-isearch-minor-mode
+   pdf-links-minor-mode
+   pdf-misc-minor-mode
+   pdf-outline-minor-mode
+   pdf-misc-size-indication-minor-mode
+   pdf-misc-menu-bar-minor-mode
+   pdf-sync-minor-mode
+   pdf-misc-context-menu-minor-mode
+   pdf-cache-prefetch-minor-mode)
+ ;; Manually change the page.
+ pdf-view-continuous nil)
+
+(pdf-tools-install)
+
+(define-key pdf-view-mode-map (kbd "M-w") #'pdf-view-kill-ring-save)
+(define-key pdf-view-mode-map (kbd "C-w") #'pdf-view-kill-ring-save)
+#+END_SRC
+
+*** PDF utilites
+#+BEGIN_SRC elisp :tangle yes :comments both
+(setf bibliothek-path
+      (nconc
+       (list "~/fil/PDFs" "~/Desktop/papers" "~/Desktop/leggi" "~/Desktop/print"
+             "~/Desktop")
+       (directory-files "~/Desktop/rsc" t "[a-z]" t)))
+
+(defalias 'library 'bibliothek)
+#+END_SRC
+** Global modes
+This module provides utilities for global modes, like turning them on
+and off collectively with a single command, registering and
+unregistering them, disabling default modes etc.
+
+All the modes listed in =gk-global-modes= are toggled on with an
+=after-init-hook=, so modifications to this variable that happen up
+until the execution of the named hook will actually determine which
+modes are turned on.
+
+=gk-disabled-modes= is a list of modes to disable.
+
+Each of this lists contain symbols, actually =*-mode= functions.  The
+ones in the former will be called with =+1= as the argument, and ones
+in the latter with =-1=.
+
+Do not use this as a hook, add to =after-init-hook= instead.
+
+#+BEGIN_SRC elisp :tangle yes :comments both
+(defvar gk-global-modes nil "List of global modes to be enabled.")
+(defvar gk-disabled-modes nil "List of disabled global modes.")
+
+(defun gk-toggle-global-modes (&optional disable)
+  "Enable or disable the modes listed in `gk-global-modes'.
+
+If DISABLE is  non-nil, call each of those modes  with a negative
+integer argument, otherwise positive."
+  (interactive "P")
+  (let (errors)
+    ;; Enable global modes
+    (dolist (mode gk-global-modes)
+      (condition-case e
+          (funcall mode (if disable -1 1))
+        (error (push `(,mode ,e) errors))))
+    ;; Disable modes in gk-disabled-modes
+    (dolist (mode gk-disabled-modes)
+      (condition-case e
+          (funcall mode -1)
+        (error (push `(,mode ,e) errors))))
+    (when errors
+      (warn "Following errors occurred when activating global modes:\n%S"
+            errors))))
+
+(add-hook 'after-init-hook 'gk-toggle-global-modes)
+#+END_SRC
+
+** Input methods
+#+BEGIN_SRC elisp :tangle yes :comments both
+(require 'gk-greek)
+(require 'gk-unilat)
+#+END_SRC
+
+*** Armenian
+#+BEGIN_SRC elisp :tangle yes :comments both
+(quail-define-package
+ "armenian-translit" "Armenian" "Հ" nil
+ "A transliteration scheme for Armenian characters.")
+
+(quail-define-rules
+ ("a" ?ա) ("b" ?բ) ("g" ?գ) ("d" ?դ) ("e" ?ե) ("ye" ?ե) ("z" ?զ)
+ ("ee" ?է) ("e'" ?ը) ("t'" ?թ) ("zh" ?ժ) ("i" ?ի) ("l" ?լ) ("x" ?խ)
+ ("c" ?ծ) ("k" ?կ) ("h" ?հ) ("j" ?ձ) ("g." ?ղ) ("ch." ?ճ) ("m" ?մ)
+ ("y" ?յ) ("n" ?ն) ("sh" ?շ) ("o" ?ո) ("vo" ?ո) ("ch" ?չ) ("p" ?պ)
+ ("jh" ?ջ) ("r." ?ռ) ("s" ?ս) ("v" ?վ) ("t" ?տ) ("r" ?ր) ("c'" ?ց)
+ ("w" ?ւ) ("p'" ?փ) ("k'" ?ք) ("o'" ?օ) ("f" ?ֆ) ("u" ["ու"]) ("ev" ?և)
+ ("?" ?՞) ("." ?։) (".'" ?՝) (";" ?՟) (";'" ?՛) ("!" ?՜)
+ ("A" ?Ա) ("B" ?Բ) ("G" ?Գ) ("D" ?Դ) ("E" ?Ե) ("YE" ?Ե)
+ ("Ye" ?Ե) ("Z" ?Զ) ("EE" ?Է) ("E'" ?Ը) ("T'" ?Թ) ("ZH" ?Ժ) ("I" ?Ի)
+ ("L" ?Լ) ("X" ?Խ) ("C" ?Ծ) ("K" ?Կ) ("H" ?Հ) ("J" ?Ձ) ("G." ?Ղ)
+ ("CH." ?Ճ) ("M" ?Մ) ("Y" ?Յ) ("N" ?Ն) ("SH" ?Շ) ("O" ?Ո) ("VO" ?Ո)
+ ("Vo" ?Ո) ("CH" ?Չ) ("P" ?Պ) ("JH" ?Ջ) ("R." ?Ռ) ("S" ?Ս) ("V." ?Վ)
+ ("T" ?Տ) ("R" ?Ր) ("C'" ?Ց) ("W" ?Ւ) ("P'" ?Փ) ("K'" ?Ք) ("O" ?Օ)
+ ("F" ?Ֆ) ("U" ["Սւ"]))
+#+END_SRC
+
+*** Syriac
+#+BEGIN_SRC elisp :tangle yes :comments both
+(quail-define-package
+ "syriac-translit" "Syriac transliteration" "ܣܪ" nil
+ "A transliteration scheme for Syriac characters.")
+(quail-define-rules
+ ;; Letters.
+ ("a"	?ܐ)	("b"	?ܒ)	("g"	?ܓ)	("d"	?ܕ)
+ ("h"	?ܗ)	("w"	?ܘ)	("z"	?ܙ)	("k"	?ܚ)
+ ("t"	?ܛ)	("i"	?ܝ)	("c"	?ܟ)	("l"	?ܠ)
+ ("m"	?ܡ)	("n"	?ܢ)	("s"	?ܣ)	("'"	?ܥ)
+ ("p"	?ܦ)	("S"	?ܨ)	("q"	?ܩ)	("r"	?ܪ)
+ ("sh"	?ܫ)	("T"	?ܬ)
+ ;; Punctuation.
+ ("."	?܁)	(":"	?܃))
+#+END_SRC
+
+** Text editing
+*** UTF-8 input minor mode :obsolete:
+#+BEGIN_SRC elisp :tangle yes :comments both
+(defvar gk-utf8-entry-mode-map
+  (make-sparse-keymap))
+
+(define-minor-mode gk-utf8-entry-mode
+  "Minor mode for definition of some shortcuts for UTF8 characters."
+  nil " u8"
+  gk-utf8-entry-mode-map)
+
+(defvar gk-utf8-combining-diacritic-keybindings-alist nil)
+(defvar gk-utf8-combining-diacritic-keybindings-prefix nil)
+(defvar gk-utf8-character-shortcuts-alist nil)
+(defvar gk-utf8-character-shortcuts-prefix nil)
+
+(defun gk-utf8-set-bindings (prefix binding-alist)
+  "Set utf-8bindings.
+Use PREFIX as prefix key.
+Bindings come from BINDING-ALIST."
+  (dolist (i binding-alist)
+    (let* ((key (car i))
+           (char (cdr i))
+           (binding (concat prefix " " key))
+           (fun `(lambda ()
+                   (interactive)
+                   (insert-char ,char))))
+      (define-key gk-utf8-entry-mode-map
+        (kbd binding) (eval fun)))))
+
+(defun gk-utf8--update-hook ()
+  "Hook for updating utf8 binding definitions."
+  (gk-utf8-set-bindings
+   gk-utf8-character-shortcuts-prefix
+   gk-utf8-character-shortcuts-alist)
+  (gk-utf8-set-bindings
+   gk-utf8-combining-diacritic-keybindings-prefix
+   gk-utf8-combining-diacritic-keybindings-alist))
+
+(add-hook 'gk-utf8-entry-mode-hook #'gk-utf8--update-hook)
+#+END_SRC
+
+*** Utilites
+#+BEGIN_SRC elisp :tangle yes :comments both
+
+(defun gk-empty-kill-ring ()
+  "Empty the kill ring."
+  (interactive)
+  (when kill-ring
+    (setq kill-ring nil)
+    (garbage-collect)))
+
+(defun gk-bol ()
+  "Alternate between the first and the indentation on a line."
+  (interactive)
+  (let ((bolf (if visual-line-mode #'beginning-of-visual-line
+                #'beginning-of-line))
+        (p  (point)))
+    ;; We do this to prevent any flicker happening between
+    ;; ‘back-to-indentation’ and ‘bolf‘ when going to
+    ;; ‘beginning-of-line’.
+    (goto-char
+     (save-excursion
+       ;; If visual-line-mode is on and we're on a continuation line,
+       ;; go to the beginning of the continuation line.
+       ;;
+       ;; XXX: sometimes this goes to the previous line because of
+       ;; word-wrapping
+       (if (and visual-line-mode
+                (>= (- p (line-beginning-position))
+                    (window-width)))
+           (funcall bolf)
+         ;; Else, do the toggling.
+         (progn
+           ;; Go back to indentation.
+           (back-to-indentation)
+           ;; If we didn't move, we were already at the indentation.
+           ;; Go to the beginning of the line.
+           (when (= p (point))
+             (funcall bolf))))
+       ;; Return the point.
+       (point)))))
+
+(defun gk-join-nl ()
+  "Join the line under point with the next line."
+  (interactive)
+  (forward-line 1)
+  (join-line))
+
+(defun gk-eat-spaces-to-the-right ()
+  (interactive)
+  (save-excursion
+    (when (re-search-forward "[ \t]+" nil t)
+      (replace-match "" nil nil))))
+
+(defun gk-reverse-rectangle (&optional start end)
+  "Reverse each line of a rectangle.
+
+START and END are corners of the rectangle, ignored if the region
+is active."
+  (interactive)
+  (if (region-active-p)
+      (setq start (region-beginning)
+            end   (region-end))
+    (error "Region not active and no corners specified."))
+  (let ((rect (delete-extract-rectangle start end)))
+    (save-excursion
+      (goto-char start)
+      (insert-rectangle (mapcar #'reverse rect)))))
+
+(defun gk-lowercase-this-or-previous-word ()
+  (interactive)
+  (save-excursion
+    (backward-word)
+    (mark-word)
+    (downcase-word 1)))
+
+(defun gk-upcase-this-or-previous-word ()
+  (interactive)
+  (save-excursion
+    (backward-word)
+    (mark-word)
+    (upcase-word 1)))
+
+(defun gk-end-sentence (punctuation)
+  "Finish a sentence with a punctuation and two spaces.
+
+PUNCTUATION is the punctuation to use"
+  (interactive (list (read-char "Punctuation: ")))
+  (insert (format "%c  " punctuation)))
+
+
+(defun asterism ()
+  "Insert an asterism, centered in the line."
+  (interactive)
+  (insert "⁂")
+  (center-line))
+#+END_SRC
+
+*** Common
+#+BEGIN_SRC elisp :tangle yes :comments both
+(diminish 'visual-line-mode "¬")
+(diminish 'gk-utf8-entry-mode)
+(diminish 'olivetti-mode "𝍌")
+
+(setq-default olivetti-body-width 85)
+
+(defun gk-text-editing-modes-hook ()
+  "Hook for `text-mode'."
+  (setq-local truncate-lines nil)
+  (visual-line-mode 1)
+  (gk-utf8-entry-mode 1)
+  (toggle-input-method)
+  (olivetti-mode 1))
+
+(add-hook 'text-mode-hook 'gk-text-editing-modes-hook)
+
+(add-to-list 'gk-global-modes 'electric-quote-mode)
+#+END_SRC
+
+*** Automated editing
+This section contains various hooks that automate some editing tasks.
+
+#+BEGIN_SRC elisp :tangle yes :comments both
+(add-hook 'before-save-hook #'copyright-update)
+#+END_SRC
+*** Configuration
+#+BEGIN_SRC elisp :tangle yes :comments both
+(setf
+ ;; Sentence.  Other sentence.
+ sentence-end-double-space t
+ ;; Words:  other words.
+ colon-double-space t
+ ;; Guillemets
+ electric-quote-chars '(?‘ ?’ ?« ?»))
+
+;; Justify.
+(setq-default default-justification 'left)
+#+END_SRC
+
+*** Quail
+#+BEGIN_SRC elisp :tangle yes :comments both
+(setf
+ quail-keyboard-layout
+ (concat
+  "                              "
+  " 1!2\"3£4$5%6^7&8*9(0)[{]}    "
+  "  ’@,<.>pPyYfFgGcCrRlL/?=+   "
+  "   aAoOeEuUiIdDhHtTnNsS-_#~   "
+  "  \\|;:qQjJkKxXbBmMwWvVzZ      "
+  "                                "))
+
+(defvar gk-input-methods
+  '("unilat-gk"
+    "greek-translit-gk"
+    "greek-ibycus4" ; ancient greek
+    "ipa-x-sampa"
+    "arabic"
+    "hebrew"
+    "armenian-translit"))
+
+(defun gk-cycle-input-methods (arg)
+  "Activate the next input method from `gk-input-methods'.
+
+If ARG is non-nil or called with a universal argument, cycle
+backwards."
+  (interactive "^p")
+  (cond ((and (eq arg 1) (not current-input-method))
+         (set-input-method (car gk-input-methods)))
+        ((and (eq arg 1) current-input-method)
+         (set-input-method
+          (or (cadr (member current-input-method gk-input-methods))
+              (car gk-input-methods))))
+        ((and (eq arg 4) (not current-input-method))
+         (set-input-method (car (last gk-input-methods))))
+        ((and (eq arg 4) (equal current-input-method (car gk-input-methods)))
+         (set-input-method (car (last gk-input-methods))))
+        ((and (eq arg 4) current-input-method)
+         (set-input-method
+          (nth (or (1- (position current-input-method
+                                    gk-input-methods
+                                    :test #'equal))
+                   (1- (length gk-input-methods)))
+               gk-input-methods)))))
+#+END_SRC
+
+*** Language environments
+#+BEGIN_SRC elisp :tangle yes :comments both
+;; Use `unilat-gk' whenever possible.
+(dolist (lang gk-unilat-languages)
+  (let* ((env (assoc lang language-info-alist))
+         (im (assoc 'input-method env)))
+    ;; Some language environments may  not have an input-method field,
+    ;; namely English.
+    (when im
+      (setcdr im "unilat-gk"))))
+#+END_SRC
+
+*** UTF-8
+#+BEGIN_SRC elisp :tangle yes :comments both
+(setf gk-utf8-combining-diacritic-keybindings-alist
+      '(("," . 807) ; COMBINING CEDILLA
+        ("p" . 801) ; COMBINING PALATALIZED HOOK BELOW
+        ("-" . 772) ; COMBINING MACRON
+        (":" . 776) ; COMBINING DIAERESIS
+        ))
+
+(setf gk-utf8-character-shortcuts-alist
+      '(("s" . ?ʃ) ; IPA Voiceless palato-alveolar sibilan fricative
+        ("z" . ?ʒ) ; IPA Voiced palato-alveolar sibilan fricative
+        ("!" . ?ʔ) ; IPA Glottal stop
+        ("v" . ?✓)
+        ("x" . ?❌)
+        ("n" . ?№)
+        ("h" . ?♥)
+        ("t" . ?₺)
+        ("+" . ?±)
+        ("S" . ?§)
+        ("P" . ?¶)
+        ))
+
+(setf gk-utf8-character-shortcuts-prefix
+      "C-c 8")
+(setf gk-utf8-combining-diacritic-keybindings-prefix
+      gk-utf8-character-shortcuts-prefix)
+
+(add-hook 'gk-minor-mode-hook #'gk-utf8-entry-mode)
+#+END_SRC
+
+*** HTML
+#+BEGIN_SRC elisp :tangle yes :comments both
+
+(defun gk-html-mode-hook ()
+  "Hook for `html-mode'."
+  (setf indent-tabs-mode nil))
+
+(add-hook 'sgml-mode-hook 'zencoding-mode)
+(add-hook 'html-mode-hook 'zencoding-mode)
+(add-hook 'html-mode-hook 'gk-html-mode-hook)
+(setq zencoding-preview-default nil)
+#+END_SRC
+
+*** Editing macroes
+#+BEGIN_SRC elisp :tangle yes :comments both
+(setf
+ ;; Don't show annoying register previews that mess up my macro
+ ;; recordings.  Hit C-h to bring it up if necessary.
+ register-preview-delay nil)
+#+END_SRC
+
+*** Troff editing
+#+BEGIN_SRC elisp :tangle yes :comments both
+(defvar gk-nroff-compile-command-template
+  "< %s tbl | troff -Tps -me | dpost | ps2pdf - %s.pdf"
+  "Template for use in producing the ‘compile-command’ for
+‘nroff-mode’ buffers.  The first ‘%s’ will be replaced with the
+name of the current buffer, the second with same but without the
+file extension.")
+
+(defun gk-nroff-mode-hook ()
+  (let* ((bufnam (buffer-name))
+         (bufnam2 (file-name-sans-extension bufnam)))
+    (setq-local
+     compile-command
+     (format gk-nroff-compile-command-template bufnam bufnam2))))
+
+(add-hook 'nroff-mode-hook 'gk-nroff-mode-hook)
+#+END_SRC
+
+*** Dictionary
+#+BEGIN_SRC elisp :tangle yes :comments both
+(setq-default ispell-program-name "aspell")
+
+(defun gk-ispell-hook ()
+  "Hook to start spell-check in buffers."
+  )
+
+(add-hook 'text-mode-hook 'gk-ispell-hook)
+#+END_SRC
+
+*** Evil
+#+BEGIN_SRC elisp :tangle yes :comments both
+
+(defvar-local gk-evil-default-cursor nil
+  "The value of ‘cursor-type’ before ‘gk-toggle-evil-mode’ was
+run.")
+
+(defun gk-toggle-evil-mode ()
+  "Toggle ‘evil-mode’, trying to deal with how it interacts with
+my configurations."
+  (interactive)
+  (if evil-mode
+      (setq-local cursor-type gk-evil-default-cursor)
+    (setq-local gk-evil-default-cursor cursor-type))
+  (evil-mode (if evil-mode -1 +1)))
+#+END_SRC
+
+** Global settings
+#+BEGIN_SRC elisp :tangle yes :comments both
+;;(require 'pixel-scroll)
+#+END_SRC
+
+*** Calendar
+#+BEGIN_SRC elisp :tangle yes :comments both
+
+(calendar-set-date-style 'iso)
+#+END_SRC
+
+*** forecast.el
+#+BEGIN_SRC elisp :tangle yes :comments both
+
+(setq forecast-language 'en
+      forecast-units 'si
+      forecast-time-format "%I:%M:%S%p, %F"
+      forecast-rain-symbol "☔")
+#+END_SRC
+
+*** Global modes
+#+BEGIN_SRC elisp :tangle yes :comments both
+(mapc ($ (pushnew $1 gk-global-modes))
+      '(auto-image-file-mode
+        show-paren-mode
+        transient-mark-mode
+        whole-line-or-region-mode
+        global-gk-minor-mode
+        winner-mode
+        global-paren-face-mode
+        auto-insert-mode
+        url-handler-mode))
+
+(mapc ($ (pushnew $1 gk-disabled-modes))
+      '(electric-indent-mode
+        pixel-scroll-mode))
+
+;; Diminish global modes that are always on.
+(diminish 'gk-utf8-entry-mode)
+(diminish 'whole-line-or-region-mode)
+(diminish 'buffer-face-mode "☺")
+#+END_SRC
+
+*** Disabled/enabled commands
+#+BEGIN_SRC elisp :tangle yes :comments both
+(put 'not-modified 'disabled t)
+(put 'upcase-region 'disabled nil)
+(put 'downcase-region 'disabled nil)
+(put 'narrow-to-region 'disabled nil)
+(put 'erase-buffer 'disabled nil)
+(put 'timer-list 'disabled nil)
+#+END_SRC
+
+*** Secrets
+#+BEGIN_SRC elisp :tangle yes :comments both
+(load (dropbox "secrets") t)
+#+END_SRC
+
+** Version control
+*** Common
+#+BEGIN_SRC elisp :tangle yes :comments both
+(setf
+ log-edit-diff-function 'vc-diff
+ ;; STFU and follow them links.
+ vc-follow-symlinks t)
+
+(defun gk-log-edit-mode-hook ()
+  "Hook for `log-edit-mode', used for vc checkins."
+  (toggle-input-method))
+
+(add-hook 'log-edit-mode-hook #'gk-log-edit-mode-hook)
+
+(setf vc-cvs-diff-switches "-quNp"
+      vc-rcs-diff-switches "-u")
+
+(defun log-edit-insert-message-template ()
+  "Disable log template.
+Creates problems.
+The default implementation of this function is in `log-edit.el'."
+  (interactive))
+#+END_SRC
+
+*** Diff
+#+BEGIN_SRC elisp :tangle yes :comments both
+(defun gk-diff-mode-hook ()
+  "Diffs."
+  )
+
+(setf
+ vc-cvs-diff-switches "-uNp"
+ vc-diff-switches "-uNp"
+ diff-switches "-uNp")
+
+(add-hook 'diff-mode-hook 'gk-diff-mode-hook)
+#+END_SRC
+
+*** RCS
+#+BEGIN_SRC elisp :tangle yes :comments both
+
+(defun gk-rcs-maybe-unlock (file)
+  "Check to see if FILE is controlled by RCS and is
+unlocked, offer to lock it before pasting."
+  (when (stringp file)
+    (let ((default-directory (file-name-directory file)))
+      (when
+          (and
+           (fboundp 'vc-backend)
+           (eq 'RCS (vc-backend file))
+           (eq 'up-to-date (vc-rcs-state file))
+           (y-or-n-p
+            "File is controlled by RCS and not locked by you, lock?"))
+        (with-current-buffer (find-file-noselect file)
+          (vc-next-action nil))))))
+#+END_SRC
+
+*** Mercurial
+#+BEGIN_SRC elisp :tangle yes :comments both
+(setf
+ ;; Show file version rather than repository version.
+ vc-hg-use-file-version-for-mode-line-version t
+ ;; Show the revision number in the mode line.
+ vc-hg-symbolic-revision-styles '("{rev}"))
+#+END_SRC
+
+** Programming
+*** Common
+#+BEGIN_SRC elisp :tangle yes :comments both
+(diminish 'highlight-parentheses-mode)
+(diminish 'eldoc-mode)
+(diminish 'paredit-mode "㉀")
+(diminish 'outline-minor-mode "*")
+
+(defun gk-algol-like-hook ()
+  "Hook for Algol-like programming languages editing."
+  (electric-pair-local-mode +1))
+#+END_SRC
+
+*** Lisps
+**** Common
+#+BEGIN_SRC elisp :tangle yes :comments both
+(defun gk-lisp-mode-hook ()
+  "Standard Lisp mode hook.
+Usable for Repl buffers."
+  (paredit-mode 1)
+  (highlight-parentheses-mode 1)
+  (setq indent-tabs-mode nil)
+  (gk-lisp-editing-mode-hook))
+
+(defun gk-lisp-editing-mode-hook ()
+  "Specific hook for files visiting Lisp buffers."
+  (gk-turn-on-outline-minor-mode ";;;;* " ":$" "C-'"))
+
+(add-hook 'lisp-mode-hook 'gk-lisp-mode-hook)
+(add-hook 'lisp-mode-hook 'gk-lisp-editing-mode-hook)
+
+;; Let gk-minor-mode do this.
+(define-key paredit-mode-map "\M-;" nil)
+
+(setf eval-sexp-fu-flash-face 'region)
+#+END_SRC
+
+**** Emacs Lisp
+#+BEGIN_SRC elisp :tangle yes :comments both
+(add-hook 'emacs-lisp-mode-hook 'gk-lisp-mode-hook)
+(add-hook 'lisp-interaction-mode-hook 'gk-lisp-mode-hook)
+
+(defun gk-lisp-interaction-mode-hook ()
+  (setq-local lexical-binding t))
+
+(add-hook 'lisp-interaction-mode-hook 'gk-lisp-interaction-mode-hook)
+
+(defun gk-minibuf-eval-hook ()
+  "Better editing for /M-:/."
+  (when (eq this-command  'eval-expression)
+    (paredit-mode 1)
+    (highlight-parentheses-mode 1)))
+
+(add-hook 'minibuffer-setup-hook #'gk-minibuf-eval-hook)
+;; Elisp template.
+(defvar gk-elisp-template-file (locate-user-emacs-file "lisp/elisp-template"))
+(defvar gk-elisp-file-template nil)
+
+(defun gk-elisp-load-template ()
+  "Load the Elisp file template."
+  (setq gk-elisp-file-template
+        (with-current-buffer
+            (find-file-noselect gk-elisp-template-file)
+          (prog2
+              (font-lock-defontify)
+              (buffer-string)
+            (kill-buffer (current-buffer))))))
+
+(defun gk-elisp-file-from-template (name description keywords)
+  "Create an Elisp file NAME from the template.
+Template is the file named in the variable `gk-elisp-template-file'.
+DESCRIPTION is the short description added to the first line.
+KEYWORDS are the keywords for the file."
+  (interactive
+   (list (read-file-name "Lisp file name: "
+                         (locate-user-emacs-file "lisp"))
+         (read-string "File description: ")
+         (read-string "Keywords (comma separated): ")))
+  (let ((template (or gk-elisp-file-template (gk-elisp-load-template)))
+        (name-sans-dir (file-name-nondirectory name))
+        (str))
+    (setq str
+          (format template name-sans-dir description
+                  (format-time-string
+                   "%Y"
+                   (current-time))  ; Copyright year
+                  user-full-name    ; Copyright author
+                  (format
+                   "%s <%s>"        ; Package author
+                   user-full-name user-mail-address)
+                  keywords
+                  (file-name-sans-extension ; Package name, provide form
+                   name-sans-dir)
+                  name-sans-dir))   ; .. ends here
+    (find-file name)
+    (insert str)))
+
+;; Pretty-printing:
+(define-key emacs-lisp-mode-map (kbd "C-c C-M-x") 'pp-macroexpand-expression)
+(define-key emacs-lisp-mode-map (kbd "C-c C-x C-e") 'pp-eval-last-sexp)
+(define-key emacs-lisp-mode-map (kbd "C-c C-c C-x C-e") 'pp-macroexpand-last-sexp)
+#+END_SRC
+
+***** Debugger
+#+BEGIN_SRC elisp :tangle yes :comments both
+;; From https://www.reddit.com/r/emacs/comments/7htdzk/show_reddit_prettyprint_debugger_frames/
+
+(defun gk-debugger-pp-frame ()
+  (interactive)
+  (let ((inhibit-read-only t)
+        (frame (backtrace-frame (debugger-frame-number))))
+    (set-buffer (pop-to-buffer "*BT: Frame*"))
+    (destructuring-bind (special fn &rest args) frame
+      (erase-buffer)
+      (progn
+        (insert "(" (pp-to-string fn))
+        (dolist (arg args)
+          (insert "\n" (pp-to-string arg)))
+        (insert ")"))
+      (goto-char (point-min))
+      (indent-pp-sexp))))
+
+(define-key debugger-mode-map "r" 'gk-debugger-pp-frame)
+#+END_SRC
+
+**** Common Lisp
+#+BEGIN_SRC elisp :tangle yes :comments both
+
+(defvar gk-slime-image
+  (let ((core (expand-file-name
+               (locate-user-emacs-file "extras/slime.fasl"))))
+    (when (file-exists-p core) core))
+  "Common Lisp image to start a swank session for SLIME.")
+
+(defvar gk-lisp-program (or (executable-find "ccl")
+                            (executable-find "sbcl"))
+  "Full path to the default Common Lisp implementation.")
+
+(setf
+ ;; Set default Lisp interpreter.
+ inferior-lisp-program
+ (cond
+  ((not gk-lisp-program)
+   (prog1 nil (warn "No Common Lisp interpreter found!")))
+  ;; If a FASL for slime was found, set up to use it.
+  (gk-slime-image (concat gk-lisp-program " "
+                          (cond
+                           ((string-match "sbcl$" gk-lisp-program)
+                            "--core")
+                           ((string-match "ccl$" gk-lisp-program)
+                            "-I"))
+                          " " gk-slime-image))
+  (t gk-lisp-program))
+ ;; Extra slime features to load.
+ slime-contribs '(slime-fancy slime-mrepl slime-asdf slime-banner
+                              slime-tramp slime-xref-browser slime-quicklisp))
+
+(slime-setup)
+
+;; Hyperspec location
+(setf common-lisp-hyperspec-root
+      (concat "file://" (expand-file-name "~/co/lisp/doc/HyperSpec/")))
+#+END_SRC
+
+**** Scheme
+#+BEGIN_SRC elisp :tangle yes :comments both
+(setf scheme-program-name "guile")
+
+(add-hook 'scheme-mode-hook 'gk-lisp-mode-hook)
+(add-hook 'inferior-scheme-mode-hook 'gk-lisp-mode-hook)
+#+END_SRC
+
+*** C family
+#+BEGIN_SRC elisp :tangle yes :comments both
+
+(setf
+ ;; Default C style.
+ c-default-style "gnu")
+
+(add-hook 'c-mode-hook 'gk-algol-like-hook)
+#+END_SRC
+
+*** Javascript
+#+BEGIN_SRC elisp :tangle yes :comments both
+
+(defun gk-javascript-hook ()
+  "Standard JS hook."
+  (highlight-parentheses-mode 1)
+  (setq indent-tabs-mode nil
+        js-indent-level 2))
+
+(add-hook 'js-mode-hook 'gk-javascript-hook)
+(add-hook 'js-mode-hook 'gk-algol-like-hook)
+#+END_SRC
+
+*** Ruby
+#+BEGIN_SRC elisp :tangle yes :comments both
+
+(defun gk-ruby-send-line ()
+  "Send current-line to inferior Ruby."
+  (interactive)
+  (ruby-send-region (line-beginning-position) (line-end-position)))
+
+(defun gk-ruby-send-toplevel ()
+  "Send toplevel block to inferior Ruby."
+  (interactive)
+  (save-excursion
+    (ruby-send-region
+     (re-search-backward "^\\(%[qw]\\|class\\|def\\|if\\|begin\\|module\\)")
+     (re-search-forward "^end"))))
+
+(define-key ruby-mode-map "\C-\M-x" 'ruby-send-definition)
+(define-key ruby-mode-map "\C-x\C-e" 'ruby-send-last-sexp)
+(define-key ruby-mode-map "\C-c\C-b" 'ruby-send-block)
+(define-key ruby-mode-map "\C-x\C-r" 'ruby-send-region)
+(define-key ruby-mode-map "\C-c\C-l" 'gk-ruby-send-line)
+(define-key ruby-mode-map "\C-c\C-t" 'gk-ruby-send-toplevel)
+
+(add-hook 'ruby-mode-hook 'gk-algol-like-hook)
+#+END_SRC
+
+*** Perl
+#+BEGIN_SRC elisp :tangle yes :comments both
+
+(defalias 'perldoc 'cperl-perldoc)
+
+(add-hook 'perl-mode-hook 'gk-algol-like-hook)
+#+END_SRC
+
+*** Python
+#+BEGIN_SRC elisp :tangle yes :comments both
+
+(setf python-shell-interpreter "python3"
+      ;; Please don't annoy me, and fuck you.
+      python-indent-guess-indent-offset nil)
+
+(defalias 'django 'python-django-open-project)
+
+(add-hook 'python-mode-hook 'gk-algol-like-hook)
+
+(defun gk-python-send-line ()
+  "Send current-line to inferior Python."
+  (interactive)
+  (message
+   "=> %s"
+   (python-shell-send-string-no-output
+    ;; Hackish, but it seems to me to be the only way to get what one
+    ;; would expect from an inferior interpreter process in Emacs.
+    (concat "print(" (buffer-substring
+                      (line-beginning-position)
+                      (line-end-position))
+            ")"))))
+
+(define-key python-mode-map "\C-c\C-l" #'gk-python-send-line)
+#+END_SRC
+** Ibuffer
+#+BEGIN_SRC elisp :tangle yes :comments both
+
+;; Use human readable Size column instead of original one
+(define-ibuffer-column size-h
+  (:name "Size" :inline t)
+  (let ((bs (buffer-size)))
+    (cond ((> bs 1e6) (format "%7.1fmB" (/ bs 1e6)))
+          ((> bs 1e3) (format "%7.1fkB" (/ bs 1e3)))
+          (t          (format "%7d  " bs)))))
+
+(setf ibuffer-formats
+      '((mark modified read-only vc-status-mini " "
+              (name 18 18 :left :elide)
+              " "
+              (size-h 9 -1 :right)
+              " "
+              (mode 16 16 :left :elide)
+              " "
+              (vc-status 16 16 :left)
+              " "
+              filename-and-process))
+      ibuffer-show-empty-filter-groups nil)
+
+(define-ibuffer-filter name-not
+    "Negated buffer name match."
+  (:description "buffer name not"
+   :reader (read-from-minibuffer "Exclude buffers (regexp): "))
+  (not (string-match qualifier (buffer-name buf))))
+
+(defvar gk-ibuffer-filters
+  '(("Emacs"
+     (name . "^\\*\\(scratch\\|Messages\\)\\*$"))
+    ("VC"
+     (name . "^\\*\\(vc\\|log\\)-?"))
+    ("Documentation"
+     (name . "^\\*\\(Help\\|info\\|Man [0-9]?\\)"))
+    ("Special buffers"
+     (name-not . "compilation")
+     (name . "^\\*.*\\*$"))
+    ("EWW Reading"
+     (mode . eww-mode)))
+  "Fixed filter definitions for ibuffer.")
+
+(defun gk-ibuffer-generate-filter-groups-by-dir ()
+  "Create a set of ibuffer filter groups based on the dirs of buffers."
+  (let* ((func (lambda (buf)
+                 (when-let* ((bufnam (buffer-file-name buf)))
+                   (if-let* ((linknam (file-symlink-p bufnam)))
+                       (file-name-directory (expand-file-name linknam))
+                     (file-name-directory (expand-file-name bufnam))))))
+         (dirs (ibuffer-remove-duplicates (delq nil (mapcar func (buffer-list))))))
+    (mapcar (lambda (dir) (cons (concat "Directory: " dir) `((dir . ,dir)))) dirs)))
+
+(define-ibuffer-filter dir
+    "Toggle current view to buffers with dir QUALIFIER."
+  (:description "directory" :reader (read-from-minibuffer "Filter by dir (regexp): "))
+  (ibuffer-awhen (buffer-file-name buf)
+    (string= qualifier (file-name-directory it))))
+
+(define-advice ibuffer-update (:before (&rest args) autogroups)
+  "Group related buffers together using ‘ibuffer-vc’ and ‘dir’,
+and special ones sepatarely."
+  (ignore args)
+  (setf ibuffer-filter-groups
+        (append
+         gk-ibuffer-filters
+         (ibuffer-vc-generate-filter-groups-by-vc-root)
+         (gk-ibuffer-generate-filter-groups-by-dir))))
+
+;; Hide these buffers by default.
+(defvar gk-ibuffer-collapsed-groups (list "Special buffers" "Emacs" "Documentation"
+                                          "VC"))
+
+(define-advice ibuffer (:after (&rest args) gk-hidden-groups)
+  "Hide groups in ‘gk-ibuffer-collapsed-groups’."
+  (ignore args)
+  (save-excursion
+    (dolist (group gk-ibuffer-collapsed-groups)
+      (ignore-errors
+        (ibuffer-jump-to-filter-group group)
+        (ibuffer-toggle-filter-group)))))
+
+(defun gk-ibuffer-hook ()
+  (unless (eq ibuffer-sorting-mode 'alphabetic)
+    (ibuffer-do-sort-by-filename/process))
+  (ibuffer-update nil t))
+
+(add-hook 'ibuffer-hook 'gk-ibuffer-hook)
+
+(define-key ibuffer-mode-map [?q] 'kill-this-buffer)
+#+END_SRC
+
+** Mail
+*** Authentication
+#+BEGIN_SRC elisp :tangle yes :comments both
+(setf netrc-file (dropbox "authinfo.gpg")
+      auth-sources (list netrc-file))
+#+END_SRC
+
+*** User agent
+#+BEGIN_SRC elisp :tangle yes :comments both
+(setf message-mail-user-agent nil
+      read-mail-command 'gnus)
+#+END_SRC
+
+*** Posting styles
+#+BEGIN_SRC elisp :tangle yes :comments both
+(setf
+ ;; Gmail does not like parens.
+ message-from-style 'angles)
+#+END_SRC
+
+*** Utilities
+#+BEGIN_SRC elisp :tangle yes :comments both
+(defun posta (&optional arg)
+  "Start the selected mail application.
+If arg is non-nil, or universal argument given fetch new mail.
+Otherwise start mail program in offline mode."
+  (interactive "P")
+  (gk-with-new-frame ()
+    (if arg
+        (gnus)
+      (gnus-unplugged))))
+#+END_SRC
+
+*** Fetch mail
+#+BEGIN_SRC elisp :tangle yes :comments both
+(setf mail-source-movemail-program (gk-executable-ensure "movemail"))
+#+END_SRC
+
+**** Mail sources
+#+BEGIN_SRC elisp :tangle yes :comments both
+(load (dropbox "mail-sources") t)
+#+END_SRC
+
+**** Spam-checking and splitting mail
+#+BEGIN_SRC elisp :tangle yes :comments both
+
+(spam-initialize)
+#+END_SRC
+
+***** Spam
+#+BEGIN_SRC elisp :tangle yes :comments both
+(setf
+ spam-use-BBDB t
+ spam-use-spamassassin t
+ spam-assassin-program (gk-executable-ensure "spamc")
+ gnus-spam-newsgroup-contents '(("spam" gnus-group-spam-classification-spam)))
+#+END_SRC
+
+***** Split mail
+#+BEGIN_SRC elisp :tangle yes :comments both
+(setf
+ nnmail-split-methods 'nnmail-split-fancy
+ ;; FUCK THIS.  GODAWFUCK THIS.  The docstring reads:
+ ;;
+ ;; > Normally, regexes given in ‘nnmail-split-fancy’ are implicitly
+ ;; > surrounded by "\<...\>".  If this variable is true, they are not
+ ;; > implicitly surrounded by anything.
+ ;;
+ ;; My god.
+ nnmail-split-fancy-match-partial-words t)
+(load (dropbox "split-mail") t)
+#+END_SRC
+
+**** Sending mail
+#+BEGIN_SRC elisp :tangle yes :comments both
+(setf
+ message-send-mail-function 'smtpmail-send-it
+ send-mail-function 'smtpmail-send-it ; mail-mode
+ smtpmail-local-domain (system-name)
+ smtpmail-sendto-domain (system-name)
+ smtpmail-stream-type 'ssl
+ smtpmail-smtp-service 465)
+
+(load (dropbox "smtp") t)
+
+;; Spammers are everywhere.
+(setf user-mail-address (concat "self" "@" "gkayaalp" "." "com")
+      user-full-name "Göktuğ Kayaalp")
+
+(add-hook 'message-setup-hook 'bbdb-mail-aliases)
+
+;; Message mode config.
+(setf
+ message-citation-line-function 'message-insert-formatted-citation-line
+ message-citation-line-format "On %Y-%m-%d %R %Z, %f wrote:")
+
+;; Save a copy to an mbox.
+(setf
+ message-default-headers "Fcc: ~/Mail/Outbox")
+
+(defun gk-message-mode-hook ()
+  "Set up the message buffer."
+  ;; EasyPG assistant's mailing helper.
+  (epa-mail-mode 1))
+
+(add-hook 'message-mode-hook 'gk-message-mode-hook)
+#+END_SRC
+
+**** Gnus
+***** Methods
+#+BEGIN_SRC elisp :tangle yes :comments both
+(setf
+ gnus-select-method '(nnml "")
+ gnus-secondary-select-methods
+ '((nntp "gmane"
+         (nntp-address "news.gmane.org"))
+   ;; (nntp "eternal-september"
+   ;;       (nntp-address "news.eternal-september.org"))
+   ))
+
+#+END_SRC
+
+***** Mime
+#+BEGIN_SRC elisp :tangle yes :comments both
+(setf
+ mm-enable-external 'ask
+ mm-discouraged-alternatives '("text/richtext" "text/html")
+ ;; Resize images to fit the view.
+ mm-inline-large-images 'resize
+ gnus-buttonized-mime-types
+ '("multipart/signed" "multipart/alternative" "text/html" "text/x-diff"
+   "text/x-patch" "text/vcard" "text/x-org"))
+#+END_SRC
+
+***** Keys
+#+BEGIN_SRC elisp :tangle yes :comments both
+(define-key gnus-article-mode-map "\C-cw" 'gnus-article-browse-html-article)
+#+END_SRC
+
+***** User interface
+#+BEGIN_SRC elisp :tangle yes :comments both
+
+(setf
+ ;; U: read status
+ ;; R: A if replied to,‘ ’ if not
+ ;; z: zscore (char)
+ ;; B: trn-style indentation based on thread level
+ ;; f: contents of the from or to headers.
+ ;; s: subject or empty str if not thread root
+ gnus-summary-line-format "%U%R%z %B%(%-23,23f%) %s \n"
+ ;; Don't mess up my window configuration.
+ gnus-use-full-window nil)
+
+(define-advice gnus-summary-exit
+    (:before (&rest args) delete-article-window)
+  "Before exiting summary mode, delete the related Article buffer's window."
+  (let* ((w (next-window))
+         (nwb (window-buffer w))
+         (nwm (with-current-buffer nwb major-mode)))
+    (when (equal 'gnus-article-mode nwm)
+      (delete-window w))))
+
+(setf gnus-thread-sort-functions
+      '(gnus-thread-sort-by-date))
+
+(add-hook 'gnus-group-mode-hook 'gnus-topic-mode)
+(add-hook 'gnus-summary-prepared-hook 'gnus-summary-hide-all-threads)
+
+(define-key gnus-group-mode-map [?_] 'delete-other-windows-vertically)
+(define-key gnus-summary-mode-map [?_] 'delete-other-windows-vertically)
+#+END_SRC
+
+** Org mode
+*** Citations
+Citation link for org-mode, based on
+http://bastibe.de/2014-09-23-org-cite.html.
+
+For use with =gk-article= Latex class.  See =org-latex-classes=.  Uses
+biblatex.
+
+Used like =[[cite:<citation-name>]]=.  Exports to
+=\cite{<citation-name>}=.  Add this line to be able to follow these
+links:
+
+:  #+LaTeX_HEADER: \gkbib{<bibfile>}{<style>}{<bibsectname>}
+
+
+#+BEGIN_SRC elisp :tangle yes :comments both
+
+(defun gk-org-cite-follow (name)
+  "Open bibliography and jump to appropriate entry.
+NAME is the citation name."
+  (let (citfile)
+    (setf
+     citfile
+     (save-excursion
+       (goto-char (point-min))
+       (save-match-data
+         (re-search-forward
+          "^#\\+LATEX_HEADER: \\\\gkbib{\\([^}]+\\)}" nil t)
+         (match-string 1))))
+    (unless citfile
+      (user-error
+       "No citation file specified"))
+    (find-file-other-window citfile)
+    (goto-char (point-min))
+    (search-forward name)))
+
+(defun gk-org-cite-export (path desc format)
+  "Export a citation link.
+
+For   LaTeX,    export   a   link   like    [[cite:cohen93]]   as
+\cite{cohen93}.   For other  formats,  this function  returns
+nil, telling Org to do what it defaults to.
+
+For PATH, DESC and FORMAT see `org-add-link-type'."
+  (case format
+    ((quote latex)
+     (if (or (not desc) (equal 0 (search "cite:" desc)))
+         (format "\\cite{%s}" path)
+       (format "\\cite[%s]{%s}" desc path)))))
+
+(org-add-link-type "cite" #'gk-org-cite-follow #'gk-org-cite-export)
+#+END_SRC
+
+*** Utilities
+#+BEGIN_SRC elisp :tangle yes :comments both
+(defun gk-org-babel-load-this-file ()
+  "Load current `org-babel' file."
+  (interactive)
+  (org-babel-load-file (buffer-file-name)))
+
+(defun gk-org-dir-file (path)
+  "Get file PATH in `org-directory'."
+  (expand-file-name
+   (concat org-directory "/"
+           (replace-regexp-in-string "^/+" "" path))))
+
+(defun gk-org-dir-files (&rest paths)
+  "Get a list of file PATHs in `org-directory'."
+  (mapcar #'gk-org-dir-file paths))
+
+(defun gk-org-dir-find-file ()
+  "Find a file from the `org-directory'."
+  (interactive)
+  (let ((default-directory (concat org-directory "/")))
+    (call-interactively #'find-file)))
+
+(defun gk-org-confirm-elisp-link-function (prompt)
+  "Skip confirmation PROMPT in `org-directory'."
+  (if (not (equal
+            (file-truename
+             (file-name-directory
+              (expand-file-name "bob" org-directory)))
+            (file-truename
+             (file-name-directory (expand-file-name (buffer-file-name))))))
+      (yes-or-no-p prompt)
+    t))
+
+(setq org-confirm-elisp-link-function
+      #'gk-org-confirm-elisp-link-function)
+
+(defun gk-org-decrypt-element ()
+  "Decrypt the element under point, show in a new buffer."
+  (interactive)
+  (save-excursion
+    (let ((transient-mark-mode t))
+      (org-mark-element)
+      (epa-decrypt-region
+       (region-beginning) (region-end)
+       (lambda ()
+         (let ((decrypted-elem (org-get-heading t t))
+               (bufnam (buffer-name)))
+           (prog1
+               (switch-to-buffer (get-buffer-create "*Org Secret*"))
+             (read-only-mode -1)
+             (fundamental-mode)
+             (erase-buffer)
+             (insert ">>> " decrypted-elem " (" bufnam ")")
+             (newline)
+             (insert ">>> Hit `Q' in order to *kill* this buffer.")
+             (newline 2)
+             (special-mode)
+             (local-set-key [?Q] 'kill-this-buffer))))))))
+#+END_SRC
+
+*** Variables
+#+BEGIN_SRC elisp :tangle yes :comments both
+(setf
+ ;; Let emacs show the pdf files.
+ org-file-apps (dissoc "\\.pdf\\'" org-file-apps)
+ ;; Place tags right after the title.
+ org-tags-column 0
+ ;; If an #+attr_*: :width xxx available, use xxx, else, car of this
+ ;; value.
+ org-image-actual-width (list 300))
+
+(setf
+ ;; Week starts on Monday
+ calendar-week-start-day 1)
+
+;; Enforce subtasks are done before the parent.
+(setf
+ org-enforce-todo-checkbox-dependencies t
+ org-enforce-todo-dependencies t)
+#+END_SRC
+
+*** Org files and directories
+#+BEGIN_SRC elisp :tangle yes :comments both
+(setq org-export-coding-system 'utf-8
+      org-directory (expand-file-name "~/Documents/not/org")
+      org-caldav-save-directory (locate-user-emacs-file "etc/")
+      org-default-notes-file (gk-org-dir-file "start.org")
+      org-agenda-files (gk-org-dir-files "ajanda.org" "caldav.org")
+      org-id-locations-file (locate-user-emacs-file "etc/org-id-locations.el"))
+#+END_SRC
+
+*** Mobile
+#+BEGIN_SRC elisp :tangle yes :comments both
+(setf
+ ;; Files to sync.
+ org-mobile-files '("listeler.org")
+ ;; Remote for org-mobile
+ org-mobile-directory (gk-org-dir-file "mobile")
+ ;; Buffer file for Android app
+ org-mobile-inbox-for-pull (gk-org-dir-file "buffer.org"))
+#+END_SRC
+
+*** Agenda
+#+BEGIN_SRC elisp :tangle yes :comments both
+(setf
+ ;; Don't show done items.
+ org-agenda-skip-deadline-if-done t
+ org-agenda-skip-scheduled-if-done t
+ org-agenda-skip-timestamp-if-done t)
+
+(setf
+ org-agenda-custom-commands
+ '(("g" "Agenda for today and all agenda TODOs"
+     ((agenda "" ((org-agenda-span 'day)
+                  (org-agenda-compact-blocks t)))
+      (alltodo "")
+      (alltodo "" ((org-agenda-files (list (gk-org-dir-file "listeler.org")))))))))
+#+END_SRC
+
+*** Export
+**** Common
+Defaults for exporting from org mode.
+#+BEGIN_SRC elisp :tangle yes :comments both
+(setq org-export-with-smart-quotes t
+      org-export-with-sub-superscripts t
+      org-export-dispatch-use-expert-ui t)
+#+END_SRC
+
+**** LaTeX->PDF
+#+BEGIN_SRC elisp :tangle yes :comments both
+(defconst gk-org-latex-classes-default-value
+  (copy-list org-latex-classes)
+  "Default value of `org-latex-classes'.")
+
+(setf org-latex-toc-command "\\newpage\\gktoc\n\n")
+
+(defun gk-org-latex-set-classes (backend)
+  (when (equal backend 'latex)
+    (let ((sect '(("\\section{%s}" . "\\section*{%s}")
+                  ("\\subsection{%s}" . "\\subsection*{%s}")
+                  ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+                  ("\\paragraph{%s}" . "\\paragraph*{%s}")
+                  ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))))
+      (setf org-latex-classes
+            `(,@gk-org-latex-classes-default-value
+              ;; From not/tex/*.tex.
+              ,@(mapcar
+                 (lambda (x)
+                   (let ((snam (symbol-name x)))
+                     `(,(concat "gk-" snam)
+                       ,(gk-get-file-contents
+                         (gk-org-dir-file (format "../tex/%s.tex" snam)))
+                       ,@sect)))
+                 '(article beamer cv)))))))
+
+(add-hook 'org-export-before-parsing-hook 'gk-org-latex-set-classes)
+
+(setf org-latex-pdf-process (list "latexmk -xelatex -bibtex %f"))
+
+(defun gk-org-pdf-subtree (arg)
+  "Export subtree under point to pdf, show the output.
+
+If called with  a universal prefix, org ARG is  ~'(1)~, output to
+LaTeX buffer.  If region is active, narrows to region and exports
+its contents."
+  (interactive "p")
+  (save-restriction
+    (when (region-active-p)
+      (narrow-to-region (region-beginning) (region-end)))
+    (if (equal arg 1)
+        (find-file (org-latex-export-to-pdf nil t))
+      (org-latex-export-as-latex nil t))))
+
+(setf org-latex-inactive-timestamp-format "%s")
+
+(defun gk-ox-latex-format-inactive-timestamp (text backend info)
+  (ignore info)
+  (when (org-export-derived-backend-p backend 'latex)
+    ;;; XXX  Doesn't work  as expected,  gives "30  November -001"  as
+    ;;; result.
+    ;; (org-timestamp-format text "%d %B %Y")
+    (format-time-string
+     ;; "%d \\monthname{%B} %Y"
+     "\\formatdate{%d}{%m}{%Y}"
+     (apply #'encode-time
+            (org-parse-time-string
+             text)))))
+
+(add-to-list 'org-export-filter-timestamp-functions
+             'gk-ox-latex-format-inactive-timestamp)
+#+END_SRC
+
+**** Groff->PDF
+#+BEGIN_SRC elisp :tangle yes :comments both
+
+(defconst gk-org-pristine-groff-process (copy-tree org-groff-pdf-process))
+
+(let ((process "< %f preconv -e utf8 | pic | tbl | eqn | groff -mm -Tpdf > %b.pdf"))
+  (setf org-groff-pdf-process (list process)))
+#+END_SRC
+
+*** Refile
+#+BEGIN_SRC elisp :tangle yes :comments both
+(setf
+ org-refile-targets
+ `((,(gk-org-dir-file "ajanda.org") . (:level . 1))
+   (,(gk-org-dir-file "listeler.org") . (:level . 1)))
+ org-refile-use-outline-path t
+ org-refile-allow-creating-parent-nodes t
+ org-log-refile 'time
+ ;; New notes to the beginning of the file.
+ org-reverse-note-order t)
+
+(defun gk-org-after-refile-insert-hook ()
+  "Save target if user agrees."
+  (ignore-errors
+    (when (y-or-n-p
+           (format "Save %s?"
+                   (buffer-file-name
+                    (current-buffer))))
+      (save-buffer))))
+
+(add-hook 'org-after-refile-insert-hook 'gk-org-after-refile-insert-hook)
+#+END_SRC
+
+*** Version control
+These following advices help keep Org files locked in RCS and edit via
+agenda or other Org commands I frequently use seamlessly, so that they
+don't pollute the vc buffer with unnecessary ‘edited’ bits.  Because
+otherwise I have to keep them’t locked all the time.
+
+#+BEGIN_SRC elisp :tangle yes :comments both
+(define-advice org-paste-subtree (:before (&rest args) check-rcs-lock)
+  "Check to see if this file is controlled by RCS and is
+unlocked, offer to lock it before pasting."
+  (ignore args)
+  (let ((f (buffer-file-name)))
+    (gk-rcs-maybe-unlock f)))
+
+;; Like above but for capturing.
+
+(define-advice org-capture-fill-template (:before (&rest args) check-rcs-lock)
+  "Check to see if this file is controlled by RCS and is
+unlocked, offer to lock it before pasting."
+  (ignore args)
+  (let* ((buffer (org-capture-get :buffer))
+         (file (buffer-file-name buffer)))
+    (gk-rcs-maybe-unlock file)))
+
+;; Like above but for ‘org-todo’.
+
+(define-advice org-todo (:before (&rest args) check-rcs-lock)
+  "Check to see if this file is controlled by RCS and is
+unlocked, offer to lock it before pasting."
+  (ignore args)
+  (let ((f (buffer-file-name)))
+    (gk-rcs-maybe-unlock f)))
+#+END_SRC
+
+*** Structure
+#+BEGIN_SRC elisp :tangle yes :comments both
+(setf org-adapt-indentation nil)
+#+END_SRC
+
+*** Visuals
+#+BEGIN_SRC elisp :tangle yes :comments both
+;; Show sub/superscript notation with ^ _ w/ UTF8 characters by
+;; default. C-c C-x \ toggles.
+(setq-default org-pretty-entities t)
+
+(when (gk-gui-p)
+  (setf
+   ;; If non-nil, Do not show emphasis markers //, __ etc.
+   org-hide-emphasis-markers nil
+   ;; Fontify all the heading line.
+   org-fontify-whole-heading-line t))
+
+;; Make today stand out more.
+(set-face-attribute 'org-agenda-date-today nil :inverse-video t)
+#+END_SRC
+
+**** Variable pitch
+#+BEGIN_SRC elisp :tangle yes :comments both
+(defface gk-org-initial-space-and-list-stuff-face
+  `((t . (:family ,(gk-font :mono))))
+  "Face for initial space and list item bullets.
+This face is used to keep them in monospace even when
+variable-pitch mode is used in the org buffer."
+  :group 'GK)
+
+(defvar gk-org-font-lock-keywords
+  `(;; Initial list stuff must be monospace for balance.
+    (,(rx bol (or (one-or-more blank)
+                  (and (zero-or-more blank)
+                       (or (and (one-or-more digit) (any ".)"))
+                           (and (any "-+") (optional
+                                            (and " [" (any "-X ") "]"))))
+                       (one-or-more " "))))
+     (0 (put-text-property
+         (match-beginning 0)
+         (match-end 0)
+         'face 'gk-org-initial-space-and-list-stuff-face)))))
+
+(defvar gk-org-mono-faces
+  '(org-table
+    org-code
+    org-special-keyword
+    org-verbatim
+    org-meta-line
+    org-block
+    org-block-begin-line
+    org-block-end-line
+    org-done))
+
+(defun gk-org-variable-pitch ()
+  "Set up the buffer to be partially in variable pitch.
+Keeps some elements in fixed pitch in order to keep layout."
+  (interactive)
+  (variable-pitch-mode 1)
+  (set-face-attribute 'variable-pitch nil
+                      :font (gk-font :serif)
+                      :height gk-font-variable-pitch-height)
+  (set-face-attribute 'org-todo nil :font (gk-font :mono))
+  (dolist (face gk-org-mono-faces)
+    (set-face-attribute face nil :font (gk-font :mono)))
+  (dolist (face org-level-faces)
+    (set-face-attribute
+     face nil
+     :family (gk-font :sans)))
+  (setq-local line-spacing nil)
+  (font-lock-add-keywords nil gk-org-font-lock-keywords)
+  (font-lock-ensure))
+
+(defvar gk-org-variable-pitch nil
+  "When non-nil, use variable-pitch in Org-mode.
+Run `org-mode' in the buffer for this to take effect after
+setting it to t.")
+#+END_SRC
+
+**** The hook
+#+BEGIN_SRC elisp :tangle yes :comments both
+(defun gk-org-visuals-hook ()
+  "Set up how an Org buffer look."
+  (when gk-org-variable-pitch
+    (gk-org-variable-pitch))
+  (set-face-attribute 'org-footnote nil :underline nil)
+  (dotimes (n 7)
+    (set-face-attribute
+     (intern (concat "org-level-" (number-to-string (1+ n))))
+     nil :family (gk-font :sans) :weight 'normal :width 'condensed
+     :height (+ 40 gk-font-default-height))))
+
+(add-hook 'org-mode-hook 'gk-org-visuals-hook)
+#+END_SRC
+
+*** Custom links
+**** Annotations
+#+BEGIN_SRC elisp :tangle yes :comments both
+(org-add-link-type
+ "comment"
+ (lambda (linkstring)
+   (ignore linkstring)
+   (let ((elm (org-element-context))
+         (use-dialog-box nil))
+     (when (y-or-n-p "Delete comment? ")
+       (setf (buffer-substring
+	      (org-element-property :begin elm)
+	      (org-element-property :end elm))
+	     (cond
+	      ((org-element-property :contents-begin elm)
+	       (buffer-substring
+		(org-element-property :contents-begin elm)
+		(org-element-property :contents-end elm)))
+	      (t
+	       ""))))))
+ (lambda (keyword desc format)
+   (cond
+    ((eq format 'html)
+     (format
+      "<abbr title=\"%s\" color=\"red\">%s</abbr>"
+      keyword
+      (or desc "COMMENT")))
+    ((eq format 'latex)
+     (format "\\todo{%s}{%s}" keyword (or desc ""))))))
+
+(defun gk-org-add-comment (begin end)
+  "Add a comment link.
+
+BEGIN and END are bounds of the region."
+  (interactive "r")
+  (if (region-active-p)
+      (let ((selected-text (buffer-substring begin end)))
+	(setf (buffer-substring begin end)
+	      (format "[[comment:%s][%s]]"
+		      (read-string "Comment: ") selected-text)))
+  (insert (format  "[[comment:%s]]" (read-string "Comment: ")))))
+#+END_SRC
+
+**** OLP
+#+BEGIN_SRC elisp :tangle yes :comments both
+;; Follow the OLP on click.
+(org-add-link-type
+ "olp"
+ (lambda (path)
+   (let ((pathlist (split-string path "/" t)))
+     (condition-case msg
+         (progn
+           (push-mark (point) t nil)
+           (goto-char (org-find-olp pathlist t))
+           (org-show-context))
+       (error (nth 1 msg))))))
+#+END_SRC
+
+**** Mairix
+#+BEGIN_SRC elisp :tangle yes :comments both
+(defun gk-org-mail-open (path)
+  (mairix-search path nil))
+
+(org-add-link-type "mairix" 'gk-org-mail-open)
+#+END_SRC
+
+**** Man page
+#+BEGIN_SRC elisp :tangle yes :comments both
+(org-add-link-type
+ "man"
+ (lambda (path)
+   (man (substring-no-properties path))))
+#+END_SRC
+
+*** Source code
+#+BEGIN_SRC elisp :tangle yes :comments both
+(setf
+ ;; Normally, org indents the src block after editing source code with
+ ;; C-c ', disable that behaviour.
+ org-src-preserve-indentation t)
+#+END_SRC
+
+*** Babel
+#+BEGIN_SRC elisp :tangle yes :comments both
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((emacs-lisp . t)
+   (shell . t)))
+#+END_SRC
+
+*** Auto-insert
+#+BEGIN_SRC elisp :tangle yes :comments both
+(push
+ '((org-mode . "Org-mode document")
+   nil
+   "# $Id$\n#+title: " - n
+   "#+date: \\today\n#+options: toc:nil\n#+latex_class: gk-article")
+ auto-insert-alist)
+#+END_SRC
+
+*** Capture
+#+BEGIN_SRC elisp :tangle yes :comments both
+
+(defun gk-org-capture-book ()
+  "Capture template for a book in to-read list."
+  (let ((kitap (read-string "Kitabın ismi: "))
+        (yazar (read-string "yazarı: "))
+        (yayınevi (read-string "yayınevi: "))
+        (yılı (read-string "yayın yılı: ")))
+    (when (string-empty-p kitap)
+      (user-error "Kitap ismi girilmedi"))
+    (concat "- [ ] " kitap
+            (unless (string-empty-p yazar) (concat "; " yazar))
+            (unless (string-empty-p yayınevi) (concat ".  " yayınevi))
+            (unless (string-empty-p yılı) (concat " (" yılı ")"))
+            ".")))
+
+(defun gk-org-capture-microblog (key descr file)
+  "Generate a microblog capture template.
+FILE is the microblog file.  KEY is the capture key.  DESCR is
+the template description."
+  (let ((sym (intern (symbol-name (gensym "gk-org-capture-microblog--")))))
+    (defalias sym
+      (lambda ()
+        (let* ((id (with-temp-buffer
+                     (insert-file-contents file)
+                     (org-mode)
+                     (org-next-visible-heading 1)
+                     (number-to-string
+                      (if (= (point) (point-max)) 1 ; First entry if the file is empty.
+                        (1+ (string-to-number (org-entry-get (point) "CUSTOM_ID")))))))
+               (title (read-string "Title: "))
+               (time (current-time))
+               (date (format-time-string "%F" time))
+               (day (format-time-string "%a" time))
+               (template
+                (concat "* " title " [[#" id "][∞]]\n"
+                        ":PROPERTIES:\n"
+                        ":X-LINK:   #" id "\n"
+                        ":X-DATE:   " date "\n"
+                        ":X-TITLE:  " title "\n"
+                        ":CUSTOM_ID: " id "\n"
+                        ":END:\n"
+                        "[" date " " day "]\n\n%?")))
+          template)))
+    ;; The actual template
+    `(,key ,descr entry (file ,file) (function ,sym)
+           :prepend t :immediate-finish nil :empty-lines-after 1)))
+#+END_SRC
+
+*** Publish
+#+BEGIN_SRC elisp :tangle yes :comments both
+
+(load gk-website-settings t)
+
+(setf
+ org-publish-project-alist
+ `(,@gk-website-publish-settings))
+#+END_SRC
+
+*** Caldav
+#+BEGIN_SRC elisp :tangle yes :comments both
+
+(setf org-caldav-inbox (gk-org-dir-file "caldav.org")
+      org-caldav-files org-agenda-files
+      ;; TODO: maybe don't sync anything at all.  Just sync outbound?
+      org-caldav-sync-changes-to-org 'title-and-timestamp)
+
+;; Do not sync deadlines and schedules.
+(setf org-icalendar-use-scheduled nil
+      org-icalendar-use-deadline  nil)
+#+END_SRC
+
+*** Keys
+#+BEGIN_SRC elisp :tangle yes :comments both
+(org-defkey org-mode-map (kbd "C-M-<return>") 'org-insert-subheading)
+;; Heading navigation
+(org-defkey org-mode-map (kbd "M-p") 'outline-previous-visible-heading)
+(org-defkey org-mode-map (kbd "M-n") 'outline-next-visible-heading)
+#+END_SRC
+
+*** Hook
+#+BEGIN_SRC elisp :tangle yes :comments both
+(defun gk-org-hook ()
+  "Default hook for `org-mode' buffers."
+  (setq-local default-justification 'left)
+  (auto-fill-mode 1)
+  ;; Disable in org mode
+  (when (boundp goto-address-mode)
+    (goto-address-mode -1)))
+
+(add-hook 'org-mode-hook 'gk-org-hook)
+#+END_SRC
+
+*** Private settings
+#+BEGIN_SRC elisp :tangle yes :comments both
+(load (gk-org-dir-file "settings") t)
+#+END_SRC
+* Language environments
+** Turkish
+#+BEGIN_SRC elisp :tangle yes :comments both
+(set-language-info-alist
+ "turco"
+ '((coding-system utf-8)
+   (coding-priority utf-8)
+   (nonascii-translation . utf-8)
+   (input-method . "gk-unilat")
+   (sample-text . "Turkish (Türkçe)	Merhaba")
+   (setup-function . turkish-case-conversion-enable)
+   (exit-function . turkish-case-conversion-disable)
+   (documentation . "Support for Turkish.
+A UTF-8 Turkish language environment using the `gk-unilat' input
+method and applying Turkish case rules for the characters i, I,
+ı, İ."))
+ '("European"))
+#+END_SRC
+
+* Lingua :obsolete:
+** Keymap
+#+BEGIN_SRC elisp :tangle yes :comments both
+(defvar gk-lingua-kbd-prefix "\C-xd"
+  "Prefix for dictionary bindings.
+It defaults to  C-x d, replacing `dired', because  C-x Cf already
+opens directories in dired.")
+
+(defvar gk-lingua-prefix-map (make-sparse-keymap "Dictionary"))
+#+END_SRC
+
+** Utilities
+#+BEGIN_SRC elisp :tangle yes :comments both
+(defvar gk-lingua-lookup-history nil
+  "Ephemeral history for gk-lingua lookups.")
+
+(defun gk-lingua-get-thing (&optional word)
+  "Find the thing to search for in the dictionary.
+If WORD is a string, use it, otherwise try alternatives."
+  (let ((thing
+         (cond ((stringp word)
+                word)
+               ((region-active-p)
+                (buffer-substring (region-beginning)
+                                  (region-end)))
+               (t
+                (or (thing-at-point 'word t)
+                    (read-string "Word/phrase/sentence to look up: "
+                                 nil 'gk-lingua-lookup-history t))))))
+    (car (push thing gk-lingua-lookup-history))))
+
+(defmacro gk-lingua-define (sym key url)
+  "Define a dictionary.
+SYM is the symbol to name it.
+KEY is the key to use for the prefix map.
+URL is the URL to the dictionary, %s where the word should be put."
+  (let ((dfunc (intern (format "gk-lingua-%s" sym))))
+    (define-key gk-lingua-prefix-map `[,key] dfunc)
+    `(defun ,dfunc ()
+       (interactive)
+       (browse-url (url-encode-url (format ,url (gk-lingua-get-thing)))))))
+#+END_SRC
+
+** Dictionaries
+#+BEGIN_SRC elisp :tangle yes :comments both
+(gk-lingua-define greek ?g "http://el.thefreedictionary.com/%s")
+(gk-lingua-define italian ?i "http://www.wordreference.com/definizione/%s")
+(gk-lingua-define english ?e
+                  "http://www.collinsdictionary.com/dictionary/english/%s")
+#+END_SRC
+
+* Multimedia
+** Images
+#+BEGIN_SRC elisp :tangle yes :comments both
+
+(add-hook 'image-mode-hook 'eimp-mode)
+(define-key image-mode-map [?q] 'kill-this-buffer)
+#+END_SRC
+* OS-specific settings
+** Guix
+#+BEGIN_SRC elisp :tangle yes :comments both
+(defconst gk-guix-site-lisp-path
+  (expand-file-name "~/.guix-profile/share/emacs/site-lisp/")
+  "Path to where Guix Elisp files are found.")
+
+(defun gk-guix-p ()
+  "Whether or not this is a Guix system."
+  (and (file-exists-p "~/.guix-profile")
+       ;; Make sure  this exists, or  else the existence of  guix path
+       ;; does not mean anything with regards to its use thru Emacs.
+       (file-exists-p gk-guix-site-lisp-path)
+       (executable-find "guix")))
+
+(when (gk-guix-p)
+  (let ((guix-load-path gk-guix-site-lisp-path))
+    (add-to-list 'load-path guix-load-path)
+    (require 'guix)
+    (require 'guix-init)
+    ;; Commit the load path.
+    (setf guix-load-path guix-load-path)))
+#+END_SRC
+
+** POSIX
+#+BEGIN_SRC elisp :tangle yes :comments both
+(when (executable-find "man")
+  (require 'man)
+  (setf
+   ;; Make man page current buffer in current window of current frame.
+   ;; Or, show the fucking man page where I want it.
+   Man-notify-method 'pushy))
+#+END_SRC
+
+* User interface
+** GUI
+#+BEGIN_SRC elisp :tangle yes :comments both
+(when (gk-gui-p)
+  (add-to-list 'gk-disabled-modes 'tool-bar-mode)
+  (add-to-list 'gk-disabled-modes 'scroll-bar-mode)
+
+  (setf frame-background-mode 'light)
+  ;; Update all the existing frames.
+  (mapc 'frame-set-background-mode (frame-list))
+  (load-theme 'paper t)
+
+  (set-face-attribute 'default nil
+                      :height gk-font-default-height
+                      :family (gk-font :mono)
+                      :weight 'light)
+
+  (set-face-attribute 'variable-pitch nil
+                      :height gk-font-variable-pitch-height
+                      :family (gk-font :serif))
+
+  (setf x-underline-at-descent-line t)
+
+  ;; A wee bit smaller mode line.
+  (loop for attr in '(mode-line mode-line-inactive) do
+        (set-face-attribute attr nil
+                            :height (- gk-font-default-height 20)
+                            :family (gk-font :sans)
+                            :weight 'normal))
+
+  ;; This inherits from mode-line, so we need to fix it for its proper
+  ;; display.
+  (set-face-attribute 'header-line nil
+                      :family (gk-font :mono)
+                      :height gk-font-default-height)
+
+  (setf frame-title-format '("%b - " invocation-name "@" system-name))
+
+  ;; Special font for moon phase visualisation in forecast.el.
+  (set-face-attribute 'forecast-moon-phase nil
+                      :font (gk-font :forecast-moon-phase))
+
+  ;; Have a bit more line-spacing.
+  (setq-default line-spacing 0.2))
+#+END_SRC
+
+** Lines
+#+BEGIN_SRC elisp :tangle yes :comments both
+;; Truncate lines by default.
+(setq-default truncate-lines t)
+
+(setf
+ ;; Behave according to `truncate-lines'.
+ truncate-partial-width-windows nil
+ ;; Use default fringe indicators for ‘visual-line-mode’ too.
+ visual-line-fringe-indicators
+ (assoca '(continuation) fringe-indicator-alist))
+#+END_SRC
+
+** UI Semantics
+#+BEGIN_SRC elisp :tangle yes :comments both
+(setf
+ find-file-suppress-same-file-warnings t
+ visible-bell t
+ uniquify-buffer-name-style 'forward
+ save-interprogram-paste-before-kill t
+ ;; Don't make seperate popup frames.
+ pop-up-frames nil
+ ;; Display buffers in current window.
+ display-buffer-alist
+ '(("\*.*Completions\*" . (display-buffer-pop-up-window))
+   ("\*Help\*" . (display-buffer-reuse-window))
+   (".*" . (display-buffer-same-window)))
+ ;; With C-v and M-v, scroll to beginning or end of buffer if at top
+ ;; or bottom respectively, or if at beginning or end of buffer,
+ ;; error.
+ scroll-error-top-bottom t
+ ;; Search help more extensively.
+ apropos-do-all t
+ ;; Always open a new buffer if default is occupied.
+ async-shell-command-buffer 'new-buffer
+ ;; Swift and smarter completion.
+ read-file-name-completion-ignore-case t
+ read-buffer-completion-ignore-case t
+ completion-ignore-case t
+ completion-styles '(basic substring partial-completion)
+ ;; Do not  ring the bell  when killing  in r/o buffers,  put the
+ ;; kill in the kill ring but do not modify the buffer.
+ kill-read-only-ok t
+ ;; Save bookmarks after each bookmark command.
+ bookmark-save-flag t
+ ;; Search modes default to regexps.
+ search-default-mode t
+ ;; Move to trash instead of unlinking.
+ delete-by-moving-to-trash t
+ ;; Save abbrevs silently
+ save-abbrevs 'silently)
+
+(setq-default save-place t)
+#+END_SRC
+
+** Startup
+#+BEGIN_SRC elisp :tangle yes :comments both
+;; No start screens.
+(setf
+ inhibit-startup-screen t
+ inhibit-startup-echo-area-message (eval-when-compile (user-login-name)))
+#+END_SRC
+
+** Winner and windmove
+#+BEGIN_SRC elisp :tangle yes :comments both
+
+(setq winner-dont-bind-my-keys t)
+
+(add-to-list 'gk-global-modes 'winner-mode)
+#+END_SRC
+
+** Minibuffer
+#+BEGIN_SRC elisp :tangle yes :comments both
+(setf enable-recursive-minibuffers t)
+
+(defun gk-minibuf-hook ()
+  "Do not fiddle with minibuffer keys."
+  (gk-minor-mode -1))
+
+(add-hook 'minibuffer-setup-hook 'gk-minibuf-hook)
+#+END_SRC
+
+** Ido
+#+BEGIN_SRC elisp :tangle yes :comments both
+
+(setf
+ ido-use-filename-at-point nil
+ ido-show-dot-for-dired t
+ ;; Don't show dotfiles if the prefix of the search string is not ‘.’
+ ido-enable-dot-prefix t
+ ido-confirm-unique-completion t)
+
+;;(push 'ido-mode gk-global-modes)
+;;(push 'ido-everywhere gk-global-modes)
+
+(setf ido-enable-flex-matching t)
+
+;; Display completions vertically:
+(setf ido-decorations
+      '("\n-> " "" "\n   " "\n   ..." "[" "]" " [No match]" " [Matched]"
+        " [Not readable]" " [Too big]" " [Confirm]"))
+
+(add-hook
+ 'ido-minibuffer-setup-hook
+ (defun gk-ido-disable-line-truncation ()
+   (set (make-local-variable 'truncate-lines) nil)))
+
+(add-hook
+ 'ido-setup-hook
+ (defun gk-ido-define-keys () ;; C-n/p is more intuitive in vertical layout
+   (define-key ido-completion-map (kbd "C-n") 'ido-next-match)
+   (define-key ido-completion-map (kbd "C-p") 'ido-prev-match)))
+#+END_SRC
+
+** Mode line
+#+BEGIN_SRC elisp :tangle yes :comments both
+(defconst gk-mode-line-pristine-format
+  (copy-list mode-line-format)
+  "Modeline before my modifications.")
+
+(defconst gk-mode-line-base
+  ;; Remove the infinite-spaces, the last item of the list.
+  (butlast gk-mode-line-pristine-format 1)
+  "The base for constructing a custom mode line.")
+
+(setq-default
+ mode-line-format
+ (append gk-mode-line-base
+         '(" "
+           ;; Buffer's file if visiting one, the default directory otherwise.
+           (:eval (or (buffer-file-name) default-directory)))))
+#+END_SRC
+
+** Cursor
+#+BEGIN_SRC elisp :tangle yes :comments both
+(setq-default cursor-type 'bar)
+(setq-default cursor-in-non-selected-windows 'hollow)
+
+;; Box cursor in special-mode and some other modes.
+(let ((modes '(special-mode-hook term-mode-hook forecast-mode-hook))
+      (hook (defun gk-special-mode-box-cursor ()
+              (setq-local cursor-type 'box)))
+      gnus-modes hookies)
+  ;; Find all gnus modes.
+  (dolist (cns (custom-group-members 'gnus nil))
+    (let* ((sym (car cns))
+           (symnam (symbol-name sym))
+           (hooknam (intern (concat symnam "-mode-hook"))))
+      (when (and (string-prefix-p "gnus-" symnam)
+                 (boundp hooknam))
+        (pushnew hooknam gnus-modes))))
+  ;; Add the hook to all modes.
+  (dolist (hookvar `(,@modes ,@gnus-modes) hookies)
+    (add-hook hookvar hook)
+    (push hookvar hookies)))
+#+END_SRC
+
+** Goto-address mode
+#+BEGIN_SRC elisp :tangle yes :comments both
+(defun gk-start-global-address-mode ()
+  (goto-address-mode +1))
+
+(dolist (m '(text-mode-hook prog-mode-hook comint-mode-hook))
+  (add-hook m 'gk-start-global-address-mode))
+
+(diminish 'goto-address-mode "⚓")
+#+END_SRC
+
+** Scrolling
+#+BEGIN_SRC elisp :tangle yes :comments both
+(define-advice scroll-up-command (:after (arg) gk-flash)
+  "Go ‘next-screen-context-lines’ forward after scrolling down.\n
+So that the reader knows where to continue reading."
+  (ignore arg)
+  (ignore-errors
+    (forward-line next-screen-context-lines)))
+#+END_SRC
+
+** Time
+#+BEGIN_SRC elisp :tangle yes :comments both
+(setf display-time-format " {%d %a %Y %H:%M}"
+      ;; Don't show load average.
+      display-time-default-load-average nil)
+;;(add-to-list 'gk-global-modes 'display-time-mode)
+#+END_SRC
+
+** Sessions
+#+BEGIN_SRC elisp :tangle yes :comments both
+
+(let ((desktop-dir (expand-file-name (locate-user-emacs-file "etc/"))))
+  (setf
+   ;; Always save desktops.
+   desktop-save t
+   ;; Load all buffers.
+   desktop-restore-eager t
+   ;; Make sure there's only one place to look for desktops.
+   desktop-path (list desktop-dir)
+   desktop-dirname desktop-dir
+   desktop-base-file-name "desktop"
+   desktop-base-lock-name "desktop.lock"
+   ;; Don't save these.
+   desktop-buffers-not-to-save
+   "^\\*"
+   desktop-restore-frames t
+   desktop-globals-to-save nil))
+
+(add-to-list 'desktop-modes-not-to-save 'dired-mode)
+(add-to-list 'desktop-modes-not-to-save 'Info-mode)
+(add-to-list 'desktop-modes-not-to-save 'info-lookup-mode)
+(add-to-list 'desktop-modes-not-to-save 'fundamental-mode)
+
+;; Enable desktop:
+;; (add-to-list 'gk-global-modes 'desktop-save-mode)
+;; (add-hook 'after-init-hook 'desktop-revert)
+#+END_SRC
+
+** Mouse
+#+BEGIN_SRC elisp :tangle yes :comments both
+
+(pushnew 'pixel-scroll-mode gk-global-modes)
+
+(setq
+ ;; Scroll smoother, no hurries.
+ mouse-wheel-scroll-amount '(1 ((shift) . 5) ((control) . nil))
+ mouse-wheel-progressive-speed nil)
+#+END_SRC
+
+** TRAMP
+#+BEGIN_SRC elisp :tangle yes :comments both
+
+(setf
+ ;; Errors and warnings only.
+ tramp-verbose 1)
+#+END_SRC
+
+** Whitespace
+#+BEGIN_SRC elisp :tangle yes :comments both
+(setf whitespace-style '(face trailing tabs)
+      ;; When nil uses ‘fill-column’.
+      whitespace-line-column nil)
+
+(setcdr (assoc 'tab-mark whitespace-display-mappings) '(9 [?> 9]))
+
+(pushnew 'global-whitespace-mode gk-global-modes)
+(diminish 'global-whitespace-mode "¶")
+#+END_SRC
+
+** Persistent scratch
+#+BEGIN_SRC elisp :tangle yes :comments both
+(setf
+ ;; Save all that's possible.
+ persistent-scratch-what-to-save '(major-mode point narrowing text-properties)
+ persistent-scratch-save-file (locate-user-emacs-file "etc/+scratch+"))
+(persistent-scratch-setup-default)
+#+END_SRC
+
+** Coding system
+#+BEGIN_SRC elisp :tangle yes :comments both
+;; We're all utf-8.
+(set-language-environment "UTF-8")
+(prefer-coding-system 'utf-8)
+(set-default-coding-systems 'utf-8)
+(setq x-select-request-type '(UTF8_STRING COMPOUND_TEXT TEXT STRING))
+#+END_SRC
+
+* URLs
+#+BEGIN_SRC elisp :tangle yes :comments both
+
+;; Zero this out first.
+(setf browse-url-browser-function nil)
+#+END_SRC
+
+** Common
+#+BEGIN_SRC elisp :tangle yes :comments both
+(defconst gk-ytl-format
+  "http://localhost:3991/ytl.html?v=%s"
+  "The url for lite youtube player, %s for where to insert video id.")
+
+(defalias 'gk-urls-external-browser 'browse-url-xdg-open)
+
+;; TODO Check if still relevant when switch to Emacs 25.
+;; Replacement for odd standard implementation.
+;; See: http://emacshorrors.com/posts/computer-says-no.html
+(defun browse-url-can-use-xdg-open ()
+  "Return non-nil if the \"xdg-open\" program can be used.
+xdg-open is a desktop utility that calls your preferred web browser."
+  (and window-system (executable-find "xdg-open")))
+#+END_SRC
+
+** Firefox
+#+BEGIN_SRC elisp :tangle yes :comments both
+(setf browse-url-firefox-program
+      ;; (gk-executable-ensure "/igk/apps/ff-dev/firefox")
+      (gk-executable-ensure "firefox"))
+#+END_SRC
+
+** Browser functions
+#+BEGIN_SRC elisp :tangle yes :comments both
+(defun gk-urls-browse-github-commit (url &rest args)
+  "Browse a github URL.
+Append .diff to the url.  Pass ARGS on to ‘gk-browse-url’."
+  (browse-url (concat url ".diff")))
+
+(defun gk-urls-browse-github-file (url &rest args)
+  "Browse a file on github.
+
+Redirect to the raw file url."
+  (let* ((rawprefix "https://raw.githubusercontent.com/")
+         (bits (split-string
+                (car (url-path-and-query (url-generic-parse-url url))) "/"))
+         (rawurl
+          (s-join "/" (cons (cadr bits) (cons (caddr bits) (cddddr bits))))))
+    (browse-url (concat rawprefix rawurl))))
+
+(defun gk-urls-browse-youtube (url &rest args)
+  "Browse a youtube URL.
+Pass ARGS to `gk-urls-external-browser'."
+  (let* ((ytid (when
+                   (string-match
+                    "\\(youtu.be/\\|v=\\)\\(.\\{11\\}\\)"
+                    url)
+                 (match-string 2 url)))
+         (ytlurl (when ytid
+                   (format gk-ytl-format ytid))))
+    (if ytlurl
+        (gk-urls-external-browser ytlurl args)
+      (user-error "Not a YouTube url: '%s'" url))))
+
+(defun gk-urls-browse-cornucopia (url &rest args)
+  "Browse a cornucopia URL."
+  (apply #'gk-browse-url
+         (replace-regexp-in-string "\.local" ".net" url)
+         args))
+
+(defun gk-browse-url (&rest args)
+  "Prompt for whether or not to browse with EWW, if no browse
+with external browser."
+  (apply
+   (if (y-or-n-p "Browse with EWW? ")
+       #'eww-browse-url
+     #'gk-urls-external-browser)
+   args))
+#+END_SRC
+
+** Download and open files with Emacs
+This mechanism here allows for downloading and opening files with
+emacs where that makes sense.  See the section [[File adapters]] for the
+adapters.
+
+To add a new adapter, simply: =(gk-urls-make-file-adapter "ext")=
+where =ext= is the filename extension.
+
+#+BEGIN_SRC elisp :tangle yes :comments both
+(defun gk-urls-browse-file (url ext &optional cb)
+  "Browse a file with the given extension.
+URL is the URL to browse.
+EXT is the extension, omit the leading dot.
+CB is the optional callback, run after downloading the file,
+given the path as the only argument.
+Writes the data to a temporary file."
+  (url-retrieve
+   url (lambda (status &optional cbargs)
+         (ignore cbargs)
+         (unless (plist-get status :error)
+           (let ((fil  (make-temp-file
+                        (concat "gkbrowse" ext) nil (concat "." ext))))
+             (write-region
+              ;; Two consequtive newlines delimit the headers section.
+              (save-excursion
+                (goto-char (point-min))
+                (re-search-forward "\n\n") (point))
+              (point-max) fil)
+             (kill-buffer)
+             (when cb (funcall cb fil))
+             (find-file fil))))))
+
+(defmacro gk-urls-make-file-adapter (ext &optional arg &rest body)
+  "Create adapters for `gk-urls-browse-file'.
+ARG and BODY are used to make a callback to that function, if both
+provided."
+  (declare (indent defun))
+  (when (string= ext "file")
+    ;; It would override `gk-urls-browse-file'.
+    (error
+     "`file' can't be an extension for `gk-urls-make-file-adapter'"))
+  (let ((funsym (intern (concat "gk-urls-browse-file--" ext)))
+        ;; Make case insensitive match for extension.
+        (reg (concat
+              "\\."
+              (let* (ret
+                     (bits (reverse
+                            (dolist (ch (string-to-list ext) ret)
+                              (push
+                               (let* ((ch1 (char-to-string ch))
+                                      (ch2 (upcase ch1)))
+                                 (concat "[" ch2 ch1 "]"))
+                               ret)))))
+                (mapconcat 'identity bits ""))
+              "/?$")))
+    `(progn
+       (pushnew
+        '(,reg . ,funsym)
+        browse-url-browser-function
+        :test 'equal)
+       (defun ,funsym (url &rest args)
+         (ignore args)
+         ,(concat (upcase ext) " adapter for `gk-urls-browse-file'.")
+         (gk-urls-browse-file
+          url ,ext ,(when (and arg body)
+                      `(lambda (,arg) ,@body)))))))
+#+END_SRC
+
+** File adapters
+#+BEGIN_SRC elisp :tangle yes :comments both
+(gk-urls-make-file-adapter "pdf")
+(gk-urls-make-file-adapter "jpeg")
+(gk-urls-make-file-adapter "jpg")
+(gk-urls-make-file-adapter "png")
+(gk-urls-make-file-adapter "gif")
+(gk-urls-make-file-adapter "patch")
+(gk-urls-make-file-adapter "diff")
+(gk-urls-make-file-adapter "txt")
+(gk-urls-make-file-adapter "md")
+(gk-urls-make-file-adapter "tex")
+;;(gk-urls-make-file-adapter "c\\(c\\|pp\\|++\\|xx\\)?")
+;;(gk-urls-make-file-adapter "h\\(h\\|pp\\|++\\|xx\\)?")
+(gk-urls-make-file-adapter "el")
+(gk-urls-make-file-adapter "scm")
+(gk-urls-make-file-adapter "lisp")
+(gk-urls-make-file-adapter "py")
+(gk-urls-make-file-adapter "rb")
+;;(gk-urls-make-file-adapter "p[lm]?6?")
+#+END_SRC
+
+** Set the browse-url functions
+#+BEGIN_SRC elisp :tangle yes :comments both
+(setf browse-url-generic-program
+      (executable-find "firefox")
+      browse-url-browser-function
+      `(("\\(youtube\\.com\\|youtu\\.be\\)/" . gk-urls-browse-youtube)
+        ("^https?://github.com/.*?/.*?/\\(commit\\|compare\\)/[a-z0-9]+$" .
+         gk-urls-browse-github-commit)
+        ("^https?://github.com/.*?/.*?/blob/" . gk-urls-browse-github-file)
+        ("^http://www.cornucopia\\.local/" . gk-urls-browse-cornucopia)
+        ("file:///home/.+/co/lisp/doc/HyperSpec/" . gk-browse-url)
+        ,@browse-url-browser-function
+        (".*" . gk-browse-url)))
+#+END_SRC
+
+* WWW
+** EWW
+#+BEGIN_SRC elisp :tangle yes :comments both
+;; Load feeds from external source.
+
+(defun gk-feeds-youtube (hash)
+  "Return the feed URL for the channel with HASH."
+  (concat "http://www.youtube.com/feeds/videos.xml?channel_id=" hash))
+
+(load (dropbox "feeds") t)
+
+(setf eww-search-prefix "https://duckduckgo.com/html/?q=")
+
+(defun gk-eww-download ()
+  "Download URL under point."
+  (interactive)
+  (let ((url (get-text-property (point) 'shr-url))
+        (filename))
+    (if (not url)
+        (message "No URL under point")
+      (setq filename
+            (read-file-name "Download to: "
+                            eww-download-directory
+                            nil nil
+                            (url-file-nondirectory url)))
+      (url-retrieve url
+                    'gk-eww-download-callback
+                    `(,url ,filename)))))
+
+(defun gk-eww-download-callback (status url filename)
+  (ignore url)
+  (unless (plist-get status :error)
+    (let* ((file (eww-make-unique-file-name filename "")))
+      (write-file file)
+      (message "Saved %s" file))))
+
+;; Use my version of /eww-download/ for allowing the user to set the
+;; target file.
+(defalias 'eww-download #'gk-eww-download)
+
+(defun gk-eww-save-link-as-kill (point)
+  (interactive "d")
+  (if-let* ((uri (get-text-property point 'shr-url)))
+      (prog1 (kill-new uri)
+        (message "Saved ‘%s’ to kill-ring" uri))
+    (user-error "No URL under point")))
+
+(defun gk-eww-up ()
+  "Remove last directory or file part from the URI, go there."
+  (interactive)
+  (eww (replace-regexp-in-string "^\\([a-z]+:/+.+\\)/[^/]+/?$" "\\1/"
+                                 (eww-current-url))))
+
+(define-key eww-mode-map "^" 'gk-eww-up)
+(define-key eww-mode-map "k" 'gk-eww-save-link-as-kill)
+
+(defun gk-eww-mode-hook ()
+  "Set up `eww' for easier reading.")
+
+(add-hook 'eww-mode-hook 'gk-eww-mode-hook)
+#+END_SRC
+
+** Elfeed
+*** Variables
+#+BEGIN_SRC elisp :tangle yes :comments both
+;; Set the default filter.
+(setq-default elfeed-search-filter "+unread ")
+
+;; Set up the url-queue variables for swift and complete operation. The
+;; defaults are too bad. Especially /url-queue-timeout/ is way too short
+;; for loading feeds.
+(setf url-queue-parallel-processes 20
+      url-queue-timeout 10)
+#+END_SRC
+
+*** Print entry function
+#+BEGIN_SRC elisp :tangle yes :comments both
+(setf elfeed-search-print-entry-function 'gk-elfeed-print-entry)
+(defun gk-elfeed-print-entry (entry)
+  "Print ENTRY to the buffer.
+Custom version of `elfeed-search-print-entry--default'."
+  (let* ((date (format-time-string
+                "%d %B, %R" (seconds-to-time (elfeed-entry-date entry))))
+         (title (or (elfeed-meta entry :title) (elfeed-entry-title entry) ""))
+         (title-faces (elfeed-search--faces (elfeed-entry-tags entry)))
+         (feed (elfeed-entry-feed entry))
+         (window-width (- (window-width) 2))
+         (feed-name (elfeed-feed-title feed))
+         (feed-column
+          (gk-truncate-and-fill-string
+           (/ window-width 3) feed-name))
+         (title-column
+          (gk-truncate-and-fill-string
+           (* (/ window-width 3) 2) title)))
+    (insert (propertize title-column 'face title-faces
+                        'help-echo (format "%s (%s)" title date)))
+    (insert " ")
+    (insert (propertize feed-column 'face 'elfeed-search-feed-face
+                        'help-echo feed-name))))
+#+END_SRC
+
+*** Some utility functions
+#+BEGIN_SRC elisp :tangle yes :comments both
+;; Some utility functions.
+(defun gk-elfeed-browse-article ()
+  "View elfeed article with EWW."
+  (interactive)
+  (let ((link (elfeed-entry-link elfeed-show-entry)))
+    (message "elfeed: Opened in browser: %s" link)
+    (eww link)))
+
+(defun gk-elfeed-catch-up ()
+  "C-x h, r, g in *elfeed-search* buffer."
+  (interactive)
+  (when (y-or-n-p "Catch-up on visible entries?")
+    (mark-whole-buffer)
+    (elfeed-search-untag-all-unread)
+    (elfeed-search-update--force)))
+
+(defun gk-elfeed-backup ()
+  (interactive)
+  (let ((name (gk-backup-file-name (dropbox "Backups/OPML/") "opml")))
+    (elfeed-export-opml name)
+    (message "Wrote %s." name)))
+
+(defun gk-elfeed-filter (filter)
+  "Set search filter, do not update live.
+It is rather slow to do so."
+  (interactive (list (read-string "Filter: " elfeed-search-filter)))
+  (setq elfeed-search-filter filter)
+  (elfeed-search-update :force))
+
+(defalias 'gk-elfeed-next 'next-logical-line)
+(defalias 'gk-elfeed-prev 'previous-logical-line)
+
+(defun gk-elfeed-search-mode-hook ()
+  )
+
+(add-hook 'elfeed-show-mode-hook 'gk-eww-mode-hook)
+(add-hook 'elfeed-search-mode-hook 'gk-elfeed-search-mode-hook)
+#+END_SRC
+
+*** Keys
+#+BEGIN_SRC elisp :tangle yes :comments both
+(define-key elfeed-show-mode-map (kbd "v") #'gk-elfeed-browse-article)
+(define-key elfeed-show-mode-map (kbd "!") #'gk-eww-download)
+(define-key elfeed-search-mode-map (kbd "c") #'gk-elfeed-catch-up)
+(define-key elfeed-search-mode-map (kbd "e") #'gk-elfeed-backup)
+(define-key elfeed-search-mode-map (kbd "s") #'gk-elfeed-filter)
+(define-key elfeed-search-mode-map (kbd "S") (gk-interactively (elfeed-db-save)))
+(define-key elfeed-search-mode-map (kbd "J") #'elfeed-unjam)
+(define-key elfeed-search-mode-map (kbd "n") #'gk-elfeed-next)
+(define-key elfeed-search-mode-map (kbd "p") #'gk-elfeed-prev)
+#+END_SRC
+
+*** Quicksearch
+#+BEGIN_SRC elisp :tangle yes :comments both
+(defun gk-elfeed-quicksearch (keys &optional search)
+  "Define an elfeed quicksearch activated by «t» + the KEYS string
+
+Define an ‘elfeed-serch-mode’ keybinding prepending the letter
+«t» to the KEYS.  If SEARCH is nil, the search becomes
+«+unread +KEYS», otherwise «+unread SEARCH»."
+  (define-key elfeed-search-mode-map
+    (concat "t" keys)
+    (if search (gk-interactively
+                (gk-elfeed-filter
+                 (concat "+unread " search)))
+      (gk-interactively
+       (gk-elfeed-filter
+        (concat "+unread +" keys))))))
+
+(gk-elfeed-quicksearch "iu")
+(gk-elfeed-quicksearch "yt")
+(gk-elfeed-quicksearch "hn")
+(gk-elfeed-quicksearch "ist")
+(gk-elfeed-quicksearch "edu")
+(gk-elfeed-quicksearch "mag")
+(gk-elfeed-quicksearch "u" "")
+(gk-elfeed-quicksearch "log" "+blog")
+(gk-elfeed-quicksearch "eatro" "+teatro")
+#+END_SRC
+
+*** Search ring
+#+BEGIN_SRC elisp :tangle yes :comments both
+;; Go cycling a list of tags in the search mode.
+
+(defvar gk-elfeed-search-ring-tags
+  '("" "+iu" "+edu" "+yt" "+hn" "+ist" "+mag" "+blog" "+teatro"
+    "+commits"))
+
+(defvar-local gk-elfeed-search-ring-current-search nil)
+
+(defun gk-elfeed-search-ring-next ()
+  (interactive)
+  (let ((search (or (cadr (member gk-elfeed-search-ring-current-search
+                                  gk-elfeed-search-ring-tags))
+                    (car gk-elfeed-search-ring-tags))))
+    (gk-elfeed-filter
+     (concat "+unread "
+             (setf gk-elfeed-search-ring-current-search search)))))
+
+(defun gk-elfeed-search-ring-previous ()
+  (interactive)
+  (gk-elfeed-filter
+   (concat "+unread "
+           (setf
+            gk-elfeed-search-ring-current-search
+            (if (not gk-elfeed-search-ring-current-search)
+                (last gk-elfeed-search-ring-tags)
+              (nth (1- (or (position
+                            gk-elfeed-search-ring-current-search
+                            gk-elfeed-search-ring-tags
+                            :test #'equal)
+                           (length gk-elfeed-search-ring-tags)))
+                   gk-elfeed-search-ring-tags))))))
+
+(define-key elfeed-search-mode-map [?k] 'gk-elfeed-search-ring-previous)
+(define-key elfeed-search-mode-map [?j] 'gk-elfeed-search-ring-next)
+#+END_SRC
+
+*** Faces
+#+BEGIN_SRC elisp :tangle yes :comments both
+(mapc
+ (lambda (x) (apply #'set-face-attribute x))
+ `((elfeed-search-title-face nil :foreground "normal")
+   (elfeed-search-unread-title-face nil :foreground "normal" :weight bold)
+   (elfeed-search-tag-face nil :foreground "normal")
+   (elfeed-search-date-face nil :foreground "normal")
+   (elfeed-search-feed-face nil :foreground "normal" :slant italic)))
+#+END_SRC
+
+*** Scoring
+#+BEGIN_SRC elisp :tangle yes :comments both
+;; Adapted from http://kitchingroup.cheme.cmu.edu/blog/2017/01/05/Scoring-elfeed-articles/
+
+(defface gk-relevant-elfeed-entry
+  `((t :background "orange1"))
+  "Marks a relevant Elfeed entry.")
+
+(defface gk-important-elfeed-entry
+  `((t :background "hotpink"))
+  "Marks an important Elfeed entry.")
+
+(push '(relevant gk-relevant-elfeed-entry)
+      elfeed-search-face-alist)
+
+(push '(important gk-important-elfeed-entry)
+      elfeed-search-face-alist)
+
+(defvar gk-elfeed-scoring-patterns
+  nil
+  "Patterns for scoring Elfeed entries.
+
+An association list where car is a regexp to match the title or
+the body of the entry, and the cdr is the score, an integer.")
+
+(defun gk-score-elfeed-entry (entry)
+  (let ((title (elfeed-entry-title entry))
+        (content (elfeed-deref (elfeed-entry-content entry)))
+        (score 0))
+    (let ((case-fold-search t))
+      (loop for (pattern . n) in gk-elfeed-scoring-patterns
+            if (string-match pattern title)
+            do (incf score n)
+            if (string-match pattern content)
+            do (incf score n)))
+
+    ;; store score for later in case I ever integrate machine learning
+    (setf (elfeed-meta entry :my/score) score)
+
+    (cond
+     ((= score 1)
+      (elfeed-tag entry 'relevant))
+     ((> score 1)
+      (elfeed-tag entry 'important)))
+    entry))
+
+(add-hook 'elfeed-new-entry-hook 'gk-score-elfeed-entry)
+#+END_SRC
+
+* Additional modules
+#+BEGIN_SRC elisp :tangle yes :comments both
+;;(require 'bsdpkg)
+(autoload 'twit "twittering-mode" "Emacs twitter client." t)
+#+END_SRC
+
+* Keybindings
+** Utilities
+#+BEGIN_SRC elisp :tangle yes :comments both
+(defmacro gk-global-binding (&rest args)
+  (declare (indent defun))
+  `(define-key gk-minor-mode-map ,@args))
+
+(defmacro gk-prefix-binding (&rest args)
+  (declare (indent defun))
+  `(define-key gk-minor-mode-prefix-map ,@args))
+
+(gk-prefix-binding "\M-u" 'gk-unbind-key)
+#+END_SRC
+
+** Global overrides
+#+BEGIN_SRC elisp :tangle yes :comments both
+(gk-global-binding "\C-a" 'gk-bol)
+(gk-global-binding "\M-j" 'gk-join-nl)
+(gk-global-binding "\M-%" 'query-replace-regexp)
+(gk-global-binding "\C-x\C-b" 'ibuffer)
+(gk-global-binding "\M-;" 'gk-comment-dwim)
+(gk-global-binding "\C-\M-q" 'gk-indent-defun)
+(gk-global-binding "\C-xd" 'gk-dired-visit-default-directory)
+;; So that it doesnt override special-mode and the like.
+(global-set-key [? ] 'gk-maybe-expand-abbrev-or-space)
+
+;; Unset unused keys.
+(global-unset-key (kbd "C-M-%"))  ; Now same as M-%
+(global-unset-key (kbd "C-z"))    ; Has no utility
+(global-unset-key (kbd "<menu>")) ; Like M-x, but I often hit accidentally.
+(global-unset-key (kbd "<insert>"))
+(global-unset-key (kbd "M-r"))
+(global-unset-key (kbd "<up>"))
+(global-unset-key (kbd "<down>"))
+(global-unset-key (kbd "<right>"))
+(global-unset-key (kbd "<left>"))
+
+;; Function keys.
+(loop for i from 1 to 12 do
+         (global-unset-key (kbd (format "<f%d>" i))))
+#+END_SRC
+
+** Navigation
+#+BEGIN_SRC elisp :tangle yes :comments both
+(gk-prefix-binding "j" 'ace-jump-mode)
+(gk-prefix-binding "p" 'pop-to-mark-command)
+
+(gk-prefix-binding (kbd "C-,") 'winner-undo)
+(gk-prefix-binding (kbd "C-.") 'winner-redo)
+(gk-prefix-binding (kbd "w p") 'windmove-up)
+(gk-prefix-binding (kbd "w n") 'windmove-down)
+(gk-prefix-binding (kbd "w f") 'windmove-right)
+(gk-prefix-binding (kbd "w b") 'windmove-left)
+(gk-prefix-binding "ws" 'gk-swap-windows)
+(gk-global-binding (kbd "C-.") 'other-window)
+(gk-global-binding (kbd "C-,") (gk-interactively (other-window -1)))
+(gk-global-binding (kbd "M-.") 'other-frame)
+(gk-global-binding (kbd "M-,") (gk-interactively (other-frame -1)))
+(gk-prefix-binding (kbd "+") 'enlarge-window)
+(gk-prefix-binding (kbd "-") 'shrink-window)
+(gk-prefix-binding (kbd "C-;") 'goto-last-change)
+
+(gk-prefix-binding "f" 'gk-find-text-footnote-definition)
+(gk-prefix-binding (kbd "<mouse-1>")
+  'gk-find-text-footnote-definition--mouse)
+#+END_SRC
+
+** Editing
+#+BEGIN_SRC elisp :tangle yes :comments both
+(gk-prefix-binding "\C-\ " 'gk-eat-spaces-to-the-right)
+(gk-prefix-binding "i" 'gk-cycle-input-methods)
+(gk-prefix-binding "u" 'gk-upcase-this-or-previous-word)
+(gk-prefix-binding "l" 'gk-lowercase-this-or-previous-word)
+(gk-global-binding "\C-z" 'gk-cycle-input-methods)
+
+(gk-prefix-binding (kbd "L") gk-lingua-prefix-map)
+(gk-global-binding (kbd "\M-\ ") (gk-interactively (insert " ")))
+
+;; Transpose
+(gk-prefix-binding "\M-p" 'transpose-paragraphs)
+(gk-prefix-binding "\M-l" 'transpose-lines)
+(gk-prefix-binding "\M-s" 'transpose-sentences)
+
+;; Comparison
+(gk-prefix-binding (kbd "C-=") 'diff-buffer-with-file)
+#+END_SRC
+
+** Programming
+#+BEGIN_SRC elisp :tangle yes :comments both
+(gk-prefix-binding "d" 'xref-find-definitions)
+(gk-prefix-binding "\C-d" 'xref-find-definitions)
+#+END_SRC
+
+** Shortcuts
+#+BEGIN_SRC elisp :tangle yes :comments both
+(gk-prefix-binding "k" 'recompile)
+(gk-prefix-binding "\M-d" (gk-interactively (toggle-debug-on-error)
+                                            (toggle-debug-on-quit)))
+(gk-prefix-binding "r" 'rename-buffer)
+(gk-prefix-binding "n" 'other-frame)
+(gk-prefix-binding "\M-k" 'gk-kill-buffer-file-name)
+(gk-prefix-binding "\M-k" 'gk-kill-buffer-file-name)
+(gk-global-binding [home] 'gk-home)
+(gk-prefix-binding "h" (gk-interactively
+                        (when-let* ((b (get-buffer "*Help*")))
+                          (switch-to-buffer b nil t))))
+(gk-prefix-binding (kbd "C-#") 'display-line-numbers-mode)
+(gk-prefix-binding "_" 'delete-other-windows-vertically)
+#+END_SRC
+
+** Multiple cursors
+#+BEGIN_SRC elisp :tangle yes :comments both
+
+(gk-prefix-binding "mm" 'mc/edit-lines)
+(gk-prefix-binding "mn" 'mc/mark-next-like-this-symbol)
+(gk-prefix-binding "mp" 'mc/mark-previous-like-this-symbol)
+(gk-prefix-binding "m*" 'mc/mark-all-dwim)
+(gk-prefix-binding "ma" 'mc/edit-beginnings-of-lines)
+(gk-prefix-binding "me" 'mc/edit-ends-of-lines)
+#+END_SRC
+
+** Org-mode related bindings
+#+BEGIN_SRC elisp :tangle yes :comments both
+(gk-prefix-binding "of" 'gk-org-dir-find-file)
+(gk-prefix-binding "os" 'org-store-link)
+(gk-prefix-binding "oe" 'gk-org-pdf-subtree)
+(gk-prefix-binding "od" 'gk-org-decrypt-element)
+(gk-prefix-binding "oa" 'org-agenda)
+(gk-prefix-binding "c" 'org-capture)
+(gk-prefix-binding "oo" (gk-interactively (org-agenda nil "g")))
+#+END_SRC
+
+** Text editing
+#+BEGIN_SRC elisp :tangle yes :comments both
+(gk-global-binding (kbd "C-<return>") 'gk-mark-thing)
+#+END_SRC
+
+** Mail
+#+BEGIN_SRC elisp :tangle yes :comments both
+(gk-prefix-binding "\C-m" 'posta)
+#+END_SRC
+
+** Spelling
+#+BEGIN_SRC elisp :tangle yes :comments both
+(gk-prefix-binding "ss" 'flyspell-mode)
+(gk-prefix-binding "sw" 'ispell-word)
+(gk-prefix-binding "sb" 'ispell-buffer)
+(gk-prefix-binding "sr" 'ispell-region)
+#+END_SRC
+
+* Set up
+#+BEGIN_SRC elisp :tangle yes :comments both
+(unless noninteractive
+  ;; Start the server.
+  (server-start)
+  (add-hook 'server-switch-hook 'raise-frame))
+(load (file-name-sans-extension custom-file))
+#+END_SRC

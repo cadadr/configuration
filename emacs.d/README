@@ -1,0 +1,45 @@
+My Emacs Setup
+==============
+
+This is my emacs setup.
+
+The basic structure is as follows:
+
+~/.emacs.d
+├ init.el
+│   The init file.
+├ site/
+│   Third-party little elisp files that provide additional
+│   functionality.
+├ gk/
+│   My setup, can be loaded by simply (require 'gk).
+│ lisp/
+│   Various programs that are not loaded unless needed. Not in
+│   loadpath.
+├ extras/
+│   Various non-elisp programmes that are used by my emacs
+│   setup.
+├ packages/
+│   Third-party packages.
+├ eshell/
+│   Eshell config.
+├ themes/
+│   Custom themes
+└ etc
+  ├ custom.el
+  │   M-x Customize settings.
+  └ load-test.el
+      Used by gk-test-init, test whether emacs loads successfully.
+
+
+Licence
+=======
+
+Unless stated otherwise within the file or the directory, all the code
+in this repository is released in the public domain.
+
+Directories  `packages', and  `site' contain  third-party code.   Code
+there is subject to the terms stated therewithin.
+
+The `themes'  directory may contain  third party code.  Code  there is
+subject to the terms stated therewithin, if stated.

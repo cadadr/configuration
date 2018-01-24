@@ -1,0 +1,5 @@
+# CVS configuration.
+
+diff -uNp
+update -P
+checkout -P

@@ -1,0 +1,27 @@
+! X keyboard settings.
+
+! Swap Caps_Lock and Control_L
+remove Lock = Caps_Lock
+remove Control = Control_L
+keysym Control_L = Caps_Lock
+keysym Caps_Lock = Control_L
+add Lock = Caps_Lock
+add Control = Control_L
+
+! Swap brackets with parentheses
+! keycode  18 = 9 bracketleft 9 bracketleft bracketright plusminus bracketright
+! keycode  19 = 0 bracketright 0 bracketright braceright degree braceright
+! keycode  34 = parenleft braceleft parenleft braceleft dead_diaeresis dead_abovering dead_diaeresis
+! keycode  35 = parenright braceright parenright braceright dead_tilde dead_macron dead_tilde
+
+! original
+! keycode  18 = 9 parenleft 9 parenleft bracketright plusminus bracketright
+! keycode  19 = 0 parenright 0 parenright braceright degree braceright
+! keycode  34 = bracketleft braceleft bracketleft braceleft dead_diaeresis dead_abovering dead_diaeresis
+! keycode  35 = bracketright braceright bracketright braceright dead_tilde dead_macron dead_tilde
+
+! Mouse
+
+! Natural scrolling
+! pointer = 1 2 3 5 4 7 6 8 9 10
+

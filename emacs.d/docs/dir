@@ -1,0 +1,18 @@
+
+File: dir,	Node: Top
+
+* Menu:
+
+Emacs editing modes
+* Org Mode: (org).              Outline-based notes management and organizer
+
+User Emacs packages
+* BBDB: (bbdb).		     The Big Brother DataBase
+* SLIME: (slime).            The Superior Lisp Mode for Emacs
+
+User documentation
+* Göktuğ's Config: (gk).     The Big Brother DataBase
+
+Books
+* On Lisp: (onlisp).          Paul Graham's essay on Lisp
+* SICP: (sicp).               Structure and Implementation of Computer Programs

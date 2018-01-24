@@ -1,0 +1,19 @@
+# This file describes the network interfaces available on your system
+# and how to activate them. For more information, see interfaces(5).
+
+source /etc/network/interfaces.d/*
+
+# The loopback network interface
+auto lo
+iface lo inet loopback
+
+auto wlp2s0
+iface wlp2s0 inet static
+	address __ALPHAIP__/24
+	gateway __GATEWAY__
+	dns-nameservers __DNS1__ __DNS2__
+	wpa-ssid __SSID__
+	wpa-psk __WPAKEY__
+
+iface enp0s20u2 inet dhcp
+	dns-nameservers __DNS1__ __DNS2__

@@ -1,0 +1,8 @@
+divert(-1)
+define(`__SSID__', `')
+define(`__WPAKEY__', `')
+define(`__DNS1__', `')
+define(`__DNS2__', `')
+define(`__ALPHAIP__', `')
+define(`__GATEWAY__', `')
+divert

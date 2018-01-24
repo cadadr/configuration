@@ -1,0 +1,99 @@
+This patch is for switching from ox-latex to ox-groff, to be fully
+implemented later.
+
+--- gk/gk-org.el.~1.27.~	2016-08-14 22:58:24.955737000 +0300
++++ gk/gk-org.el	2016-08-23 01:15:31.875606000 +0300
+@@ -15,6 +15,7 @@
+ (require 'org-mobile)
+ (require 'ox)
+ (require 'ox-beamer)
++(require 'ox-groff)
+ (require 'ox-latex)
+ (require 'ox-odt)
+ (require 'subr-x)
+@@ -106,70 +107,21 @@
+       org-export-dispatch-use-expert-ui t)
+ 
+ ;;; PDF export:
+-(defconst gk-org-latex-classes-default-value
+-  (cl-copy-list org-latex-classes)
+-  "Default value of `org-latex-classes'.")
+-
+-(setf org-latex-toc-command "\\newpage\\gktoc\n\n")
+-
+-(let ((sect '(("\\section{%s}" . "\\section*{%s}")
+-              ("\\subsection{%s}" . "\\subsection*{%s}")
+-              ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+-              ("\\paragraph{%s}" . "\\paragraph*{%s}")
+-              ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))))
+-  (setf org-latex-classes
+-        `(,@gk-org-latex-classes-default-value
+-          ("gk-article"
+-           ,(gk-get-file-contents
+-             (locate-user-emacs-file "extras/article.tex"))
+-           ,@sect)
+-          ("gk-beamer"
+-           ,(gk-get-file-contents
+-             (locate-user-emacs-file "extras/beamer.tex"))
+-           ,@sect)
+-          ("gk-cv"
+-           ,(gk-get-file-contents
+-             (locate-user-emacs-file "extras/cv.tex"))
+-           ,@sect))))
+-
+-;; See: https://lists.gnu.org/archive/html/emacs-orgmode/2014-05/msg00198.html
+-(let
+- ((xelatex "xelatex -shell-escape -interaction nonstopmode -output-directory %o %f")
+-  (biber "biber -u %b"))
+- (setf org-latex-pdf-process
+-       (list xelatex biber xelatex biber xelatex)))
+-
+-(defun gk-org-pdf-subtree (arg)
+-  "Export subtree under point to pdf, show the output.
+-
+-If called with  a universal prefix, org ARG is  ~'(1)~, output to
+-LaTeX buffer.  If region is active, narrows to region and exports
+-its contents."
+-  (interactive "p")
+-  (save-restriction
+-    (when (region-active-p)
+-      (narrow-to-region (region-beginning) (region-end)))
+-    (if (equal arg 1)
+-        (find-file (org-latex-export-to-pdf nil t))
+-      (org-latex-export-as-latex nil t))))
+-
+-(setf org-latex-inactive-timestamp-format "%s")
+-
+-(defun gk-ox-latex-format-inactive-timestamp (text backend info)
+-  (ignore info)
+-  (when (org-export-derived-backend-p backend 'latex)
+-    ;;; XXX  Doesn't work  as expected,  gives "30  November -001"  as
+-    ;;; result.
+-    ;; (org-timestamp-format text "%d %B %Y")
+-    (format-time-string
+-     ;; "%d \\monthname{%B} %Y"
+-     "\\formatdate{%d}{%m}{%Y}"
+-     (apply #'encode-time
+-            (org-parse-time-string
+-             text)))))
+-
+-(add-to-list 'org-export-filter-timestamp-functions
+-             'gk-ox-latex-format-inactive-timestamp)
++;; Done via groff.
++(setf
++ ;; The pipeline needed for exporting to PDF through GROFF.
++ org-groff-pdf-process 
++ (list
++  ;; preconv(1) is necessary for proper representation of UTF8 encoded
++  ;; stuff.  It defaults to UTF8, but better make sure.
++  "preconv -eutf8 %f | pic | tbl | eqn | groff -mm | ps2pdf - > %b.pdf")
++ org-groff-organization "")
++
++(cl-pushnew
++ '("articolo" ""
++   (:heading 'default :type "custom"))
++ org-groff-classes)
++ 
+ 
+ ;;; Refile:
+ (setf org-refile-use-outline-path 'file

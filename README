@@ -1,0 +1,39 @@
+# -*- org -*-
+#+title: Göktuğ's Configuraition
+#+options: toc:nil
+
+* Introduction
+
+This repo contains the following:
+
+- My GNU Emacs configuration tree (~emacs.d/~)
+- My dotfiles (~dotfiles/~)
+- A debian package for my Debian/Ubuntu desktop (~deb/~), which helps
+  install all the programs I use; and relevant configuration files
+  (~system/debian~, ~system/ubuntu~)
+- My configuration for Raspberry Pi (~rpi/~, ~system/rpi~)
+- My userscripts (~www/~)
+- My (incomplete) configuration for Guix(SD) (~guix/~)
+- My setup for XFCE and other Xubuntu apps (~xdg-config/~); and also
+  i3 desktop (~xdg-config/i3*~)
+- And some other stuff.
+
+I've re-created this Mercurial repository from scratch, removing some
+secrets for publishing.  If you want to use any part of my
+configurations, you're free to do so, but *do not* try to use it as
+is, it's complex and personal, and some additional secret stuff is not
+included, so it won't work reliably.  Just cherry-pick what you want.
+
+* Installation
+** System setup
+*** Ubuntu/Xubuntu
+Run the following commands:
+
+#+BEGIN_SRC sh
+sh scripts/ubuntu-init.sh
+./bin/invade -v $HOME
+cd emacs.d; make all; cd ..
+make build
+#+END_SRC
+
+*** TODO Instructions for other systems

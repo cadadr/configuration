@@ -1,0 +1,223 @@
+# TWM window manager configuration.
+
+NoGrabServer
+RestartPreviousState
+DecorateTransients
+NoSqueezeTitle
+NoMenuShadows
+StayUpMenus
+BorderWidth 1
+FramePadding 3
+MoveDelta 3
+
+SortIconManager
+IconManagerDontShow { "xclock" "VTWM *" "xstatus" }
+IconRegion "1150x200-260-0" South East 45 15
+VirtualDesktop  "125x125-130-0" 30
+
+MenuFont        "-*-helvetica-medium-r-*-*-*-100-*-*-*-*-*-*"
+MenuTitleFont   "-*-helvetica-medium-r-*-*-*-100-*-*-*-*-*-*"
+TitleFont       "-*-helvetica-medium-r-*-*-*-100-*-*-*-*-*-*"
+ResizeFont      "-*-helvetica-medium-r-*-*-*-100-*-*-*-*-*-*"
+IconFont        "-*-helvetica-medium-r-*-*-*-100-*-*-*-*-*-*"
+IconManagerFont "-*-helvetica-medium-r-*-*-*-100-*-*-*-*-*-*"
+
+Function "move-or-lower" { f.move f.deltastop f.lower }
+Function "move-or-raise" { f.move f.deltastop f.raise }
+Function "move-or-iconify" { f.move f.deltastop f.iconify }
+
+Notitle { "xclock" "VTWM Desktop" "xstatus" }
+NailedDown { "VTWM *" "xclock" "xstatus" }
+
+Button1 =   : title : f.function "move-or-raise"
+Button2 =   : title : f.fullzoom
+Button2 = c : title : f.delete
+Button2 = m : title : f.lower
+Button3 =   : title : f.menu "win"
+Button3 = m : title : f.iconify
+
+Button1 = : icon    : f.function "move-or-iconify"
+Button1 = : iconmgr : f.raise
+
+Button1 = c      : all : f.menu "defops"
+Button1 = m      : all : f.menu "TwmWindows"
+Button1 = mod4   : all : f.menu "super"
+Button1 = c | m  : all : f.menu "apps"
+Button1 = c | m4 : all : f.menu "scr"
+Button1 = m | m4 : all : f.menu "bsdvol"
+
+Function "next-window" { f.downiconmgr  }
+Function "prev-window" { f.upiconmgr }
+"n" = mod4 : all : f.function "next-window"
+"p" = mod4 : all : f.function "prev-window"
+"l" = mod4 : all : f.vlzoom
+"r" = mod4 : all : f.vrzoom
+"Up"    = m4 : all : f.panup    "100"
+"Right" = m4 : all : f.panright "100"
+"Left"  = m4 : all : f.panleft  "100"
+"Down"  = m4 : all : f.pandown  "100"
+
+# dmenu
+"p" = c | mod4 : all : !"passmenu.sh&"
+"r" = c | mod4 : all : !"dmenu_run -p prog:&"
+
+menu "defops"
+{
+"TWM"        f.title
+"Run..."     f.menu "apps"
+"Windows"    f.menu "TwmWindows"
+"Winops"     f.menu "win"
+"Volume"     f.menu "bsdvol"
+"Super"      f.menu "super"
+"Screenshot" f.menu "scr"
+""           f.nop
+"Day"        !"sct 12000"
+"Night"      !"sct 4000"
+"Lock Scr"   !"i3lock -d -c 000000 -e&"
+}
+
+menu "super"
+{
+"Super"      f.title
+"Refresh"    f.refresh
+"Read twmrc" f.twmrc
+""           f.nop
+#"Network"    !"wicd-gtk"
+#""           f.nop
+"Volume"     f.menu "linuxvol"
+"Keyboard"   f.menu "kbd"
+"Session"    f.menu "session"
+}
+
+menu "apps"
+{
+"Apps"               f.title
+"Emacs"              !"emacs&"
+"Emacs (debug-init)" !"emacs --debug-init&"
+"Plain Emacs"        !"emacs -Q&"
+"XTerm"              !"xterm&"
+"Web browser"        !"firefox&"
+"Private browser"    !"firefox --private&"
+"Music player"       !"quodlibet&"
+"Office suite"       !"libreoffice&"
+"Video player"       !"vlc&"
+"Torrent client"     !"transmission-gtk&"
+"Gimp"               !"gimp&"
+}
+
+menu "bsdvol"
+{
+"Volume" f.title
+"Mute"	!"notify-send \"$(mixer vol 0   )\""
+"20%"	!"notify-send \"$(mixer vol 20  )\""
+"40%"	!"notify-send \"$(mixer vol 40  )\""
+"60%"	!"notify-send \"$(mixer vol 60  )\""
+"80%"	!"notify-send \"$(mixer vol 80  )\""
+"Full"	!"notify-send \"$(mixer vol 100 )\""
+}
+
+menu "linuxvol"
+{
+"TODO" f.title
+"Mute"	!"notify-send \"$(amixer -c 0 set Master 0%  )\""
+"20%"	!"notify-send \"$(amixer -c 0 set Master 20% )\""
+"40%"	!"notify-send \"$(amixer -c 0 set Master 40% )\""
+"60%"	!"notify-send \"$(amixer -c 0 set Master 60% )\""
+"80%"	!"notify-send \"$(amixer -c 0 set Master 80% )\""
+"Full"	!"notify-send \"$(amixer -c 0 set Master 100% )\""
+}
+
+menu "kbd"
+{
+"Keyboard layout" f.title
+"gb" !"setxkbmap gb ; xmodmap ~/co/userdir2/xmodmap.txt"
+"gr" !"setxkbmap gr ; xmodmap ~/co/userdir2/xmodmap.txt"
+"tr" !"setxkbmap tr alt ; xmodmap ~/co/userdir2/xmodmap.txt"
+}
+
+menu "session"
+{
+"Session"    f.title
+"Quit"       f.quit
+"Restart"    f.restart
+""           f.nop
+"Hibernate"  !"hibernate.sh&"
+}
+
+menu "win"
+{
+"Window"  f.title
+"Expand"  f.fullzoom
+"Left"    f.leftzoom
+"Right"   f.rightzoom
+"Resize"  f.resize
+"Delete"  f.delete
+}
+
+menu "scr"
+{
+"Screenshot"   f.title
+"Whole screen" !"import -window root ~/scr.png&"
+"Selection"    !"import ~/scr.png&"
+}
+
+# Theme.
+	
+# Color
+# {
+# BorderColor         "#000000"
+# DefaultBackground   "#E6E6E6"
+# DefaultForeground   "#000000"
+
+# TitleBackground     "#5E7297"
+# TitleForeground     "White"
+
+# MenuTitleBackground "#443F5F"
+# MenuTitleForeground "White"
+
+# MenuBackground      "#C0C0C0"
+# MenuForeground      "#414D5B"
+
+# MenuShadowColor     "#000000"
+# MenuBorderColor     "#000000"
+# }
+
+# Color
+# {
+# BorderColor         "Black"
+# DefaultBackground   "#CDD2BD"
+# DefaultForeground   "Black"
+
+# TitleBackground     "#9CAAC5"
+# TitleForeground     "White"
+
+# MenuTitleBackground "#9CAAC5"
+# MenuTitleForeground "Black"
+
+# MenuBackground      "#B4B6B4"
+# MenuForeground      "Black"
+
+# MenuShadowColor     "Black"
+# MenuBorderColor     "Black"
+# }
+
+Color
+{
+BorderColor         "#303639"
+DefaultBackground   "White"
+DefaultForeground   "Black"
+
+TitleBackground     "Firebrick"
+TitleForeground     "White"
+
+MenuTitleBackground "Firebrick"
+MenuTitleForeground "White"
+
+MenuBackground      "#FFFFFF"
+MenuForeground      "#303639"
+
+MenuShadowColor     "#303639"
+MenuBorderColor     "#303639"
+}
+
+# End of twmrc

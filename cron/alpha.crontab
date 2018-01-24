@@ -1,0 +1,9 @@
+# crontab -- repeating background tasks.
+MAILTO=g
+PATH=/home/igk/bin:/usr/bin:/usr/sbin:/usr/local/bin:/sbin:/bin
+GKCRON=yes
+
+# min	hour	d/month	month	d/week	command
+59	*	*	*	*	cd /igk; sh rsync.sh
+*/5	*	*	*	*	dconf dump / > $HOME/.config/dconf/user.dump
+# end
