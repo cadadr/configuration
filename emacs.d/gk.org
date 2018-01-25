@@ -2881,10 +2881,8 @@ URL is the URL to the dictionary, %s where the word should be put."
 
   (setf x-underline-at-descent-line t)
 
-  ;; A wee bit smaller mode line.
   (loop for attr in '(mode-line mode-line-inactive) do
         (set-face-attribute attr nil
-                            :height (- gk-font-default-height 20)
                             :family (gk-font :sans)
                             :weight 'normal))
 
