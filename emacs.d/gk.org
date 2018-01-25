@@ -161,6 +161,7 @@ Happy hacking!
 (require 'vc-cvs)
 (require 'vc-rcs)
 (require 'wdired)
+(require 'which-key)
 (require 'whitespace)
 (require 'whole-line-or-region)
 (require 'windmove)
@@ -1522,7 +1523,8 @@ my configurations."
         winner-mode
         global-paren-face-mode
         auto-insert-mode
-        url-handler-mode))
+        url-handler-mode
+        which-key-mode))
 
 (mapc ($ (pushnew $1 gk-disabled-modes))
       '(electric-indent-mode
