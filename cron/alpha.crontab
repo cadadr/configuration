@@ -5,5 +5,5 @@ GKCRON=yes
 
 # min	hour	d/month	month	d/week	command
 59	*	*	*	*	cd /igk; sh rsync.sh
-*/5	*	*	*	*	dconf dump / > $HOME/.config/dconf/user.dump
+#*/5	*	*	*	*	dconf dump / > $HOME/.config/dconf/user.dump
 # end
