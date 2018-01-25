@@ -1,21 +1,31 @@
 # -*- org -*-
-#+title: Göktuğ's Configuraition
+#+title: Göktuğ's Configuration
 #+options: toc:nil
 
 * Introduction
+#+BEGIN_QUOTE
+Sic transit gloria mundi.
+#+END_QUOTE
+
+Welcome to Göktuğ's Configuration, a work of artisanal love and care
+aimed at making the personal computer use a joyful activity, instead
+of endless agony and trade-offs in the era of inconfigurable apps
+designed with biblical unquestionable dogmas imposed on the users by
+the people that go by the D-word as their job title.  My computer is
+my atelier, not an exhibition, so I demand that I'm able to touch,
+move and modify anything in any way.
 
 This repo contains the following:
 
 - My GNU Emacs configuration tree (~emacs.d/~)
-- My dotfiles (~dotfiles/~)
+- My dotfiles (~dotfiles/~,  ~xdg-config/i3*~)
 - A debian package for my Debian/Ubuntu desktop (~deb/~), which helps
   install all the programs I use; and relevant configuration files
   (~system/debian~, ~system/ubuntu~)
 - My configuration for Raspberry Pi (~rpi/~, ~system/rpi~)
-- My userscripts (~www/~)
+- My (incomplete) configuration for Arch Linux (~arch/~, ~system/arch~)
 - My (incomplete) configuration for Guix(SD) (~guix/~)
-- My setup for XFCE and other Xubuntu apps (~xdg-config/~); and also
-  i3 desktop (~xdg-config/i3*~)
+- My userscripts (~www/~)
 - And some other stuff.
 
 I've re-created this Mercurial repository from scratch, removing some
@@ -24,8 +34,23 @@ configurations, you're free to do so, but *do not* try to use it as
 is, it's complex and personal, and some additional secret stuff is not
 included, so it won't work reliably.  Just cherry-pick what you want.
 
+Lots of files created by other people are included in this repository,
+most of the time verbatim.  Any file that does not include a statement
+for its licence terms is probably written by me, and I hereby put all
+of them in public domain.
+
 * Installation
 ** System setup
+*** Debian
+Run the following commands:
+
+#+BEGIN_SRC sh
+sh scripts/debian-init.sh
+./bin/invade -v $HOME
+cd emacs.d; make all; cd ..
+make build
+#+END_SRC
+
 *** Ubuntu/Xubuntu
 Run the following commands:
 
@@ -35,5 +60,3 @@ sh scripts/ubuntu-init.sh
 cd emacs.d; make all; cd ..
 make build
 #+END_SRC
-
-*** TODO Instructions for other systems

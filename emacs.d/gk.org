@@ -1,5 +1,37 @@
-#+title: Göktuğ's Emacs Configuration
+#+title: Göktuğ's GNU Emacs Initialisation File
 #+latex_class: gk-article
+
+* Intro
+This is Göktuğ's GNU Emacs Initialisation File.  It's written in the
+Literate Programming™ style for it's more easily searchable and
+editable.  It was initially a bunch of Elisp files then recently (as
+of 18 years into the third millennium, that is) converted into this
+style, thus even though the file is a ‘literate’ source file,
+essentially it's not all that literate.  But it's learning.
+
+To see how this file is processed in order to be loaded, see the
+‘Load gk’ section in the [[./init.el]] file, which also sets up the load
+paths for Elisp and Info.
+
+This configuration tree contains nearly all the files this Emacs set
+up needs to run, though it depends on some Elisp modules from [[https://github.com/cadadr/elisp][Göktuğ's
+Elisp Stuff]] repo, and some external programs, among which the most
+significant one is the [[https://tug.org/texlive/][TeX Live]] distribution.  Also, some other files
+that contain stuff private to me are loaded from various parts of the
+filesystem.  Their absence should not cause this file to fail to load
+(though it may as I don't try to maintain such promise), but may cause
+this configuration to malfunction.
+
+I encourage anybody to take all the bits they'd like from this file
+(or any other file in this whole configuration tree, for that matter),
+but I strongly *discourage* it's use as a whole package of software,
+as it's tailored for my workflow and my general computing environment,
+so it probably won't work for you.  Still, you can totally do that if
+you want, as this whole tree contains all the required scripts and
+configuration files to instantiante a working environment nearly
+identical to mine.
+
+Happy hacking!
 
 * Prelude
 #+BEGIN_SRC elisp  :tangle yes

@@ -1,7 +1,7 @@
 My Emacs Setup
 ==============
 
-This is my emacs setup.
+This is my GNU Emacs setup.
 
 The basic structure is as follows:
 
@@ -11,8 +11,8 @@ The basic structure is as follows:
 ├ site/
 │   Third-party little elisp files that provide additional
 │   functionality.
-├ gk/
-│   My setup, can be loaded by simply (require 'gk).
+├ gk.org
+│   My setup, loaded by init.el.  The Star of the Show.
 │ lisp/
 │   Various programs that are not loaded unless needed. Not in
 │   loadpath.
@@ -21,8 +21,6 @@ The basic structure is as follows:
 │   setup.
 ├ packages/
 │   Third-party packages.
-├ eshell/
-│   Eshell config.
 ├ themes/
 │   Custom themes
 └ etc
@@ -36,7 +34,8 @@ Licence
 =======
 
 Unless stated otherwise within the file or the directory, all the code
-in this repository is released in the public domain.
+in this repository is released in the public domain.  Make use of it
+as you like.
 
 Directories  `packages', and  `site' contain  third-party code.   Code
 there is subject to the terms stated therewithin.
