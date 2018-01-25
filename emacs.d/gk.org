@@ -1299,6 +1299,8 @@ PUNCTUATION is the punctuation to use"
 (diminish 'visual-line-mode "¬")
 (diminish 'gk-utf8-entry-mode)
 (diminish 'olivetti-mode "𝍌")
+;; i.e. ‘auto-fill-mode’, but diminish does not like that.
+(diminish 'auto-fill-function "㊟")
 
 (setq-default olivetti-body-width 85)
 
@@ -1534,6 +1536,7 @@ my configurations."
 (diminish 'gk-utf8-entry-mode)
 (diminish 'whole-line-or-region-mode)
 (diminish 'buffer-face-mode "☺")
+(diminish 'which-key-mode "⁈")
 #+END_SRC
 
 *** Disabled/enabled commands
