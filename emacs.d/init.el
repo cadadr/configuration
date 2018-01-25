@@ -41,20 +41,16 @@
 ;; Load the source file if it's newer than its byte-compiled
 ;; counterpart.
 (setf load-prefer-newer t)
-;; Use this variable to suppress GK initialisation.  Useful for using
-;; GK in batch mode for scripts.
-(unless (boundp 'gk-skip-init)
-  ;;(require 'gk)
-  ;;(gk-set-up)
-  (require 'org)
-  (let ((init-file (locate-user-emacs-file "gk.org")))
-    (with-current-buffer
-        (find-file-noselect init-file)
-      (org-babel-tangle nil nil "elisp")
-      (org-babel-load-file init-file)))
-  )
+
+(require 'org)
+(let ((init-file (locate-user-emacs-file "gk.org")))
+  (with-current-buffer
+      (find-file-noselect init-file)
+    (org-babel-tangle nil nil "elisp")
+    (org-babel-load-file init-file)))
+
 
-;;; Postamble:
+;;; Footer:
 (provide 'init)
 ;;; init.el ends here
 
