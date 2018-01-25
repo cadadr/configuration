@@ -9,7 +9,4 @@
 #xclock -geometry 125x125-0-0&
 #xterm -geometry 120x1-0+0 -T xstatus -e $MEINE/../scripts/sys-status.sh&
 
-# Set the background.
-feh --no-fehbg --bg-fill ~/Pictures/Wallpapers/415656-2048x1365.jpg
-
 exec i3 #vtwm -f $MEINE/twmrc

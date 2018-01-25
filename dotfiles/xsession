@@ -12,17 +12,17 @@ fi
 echo Merge X resources...
 xrdb -merge $MEINE/Xdefaults
 
-echo Set keyboard map layout to gb...
-setxkbmap gb
-echo Load keyboard settings...
+echo Keyboard settings...
+setxkbmap gb basic ctrl:nocaps
 xmodmap $MEINE/xmodmap.txt
+
+echo Set the background.
+feh --no-fehbg --bg-fill ~/Pictures/Wallpapers/415656-2048x1365.jpg
 
 echo xinput settings
 xinput --set-prop 'ETPS/2 Elantech Touchpad' 286 1 # natural scrolling
 # click method: no areas, two finger is right click, three finger middle
 xinput --set-prop 'ETPS/2 Elantech Touchpad' 294 0 1
-
-xsetroot -grey&
 
 echo 'Start the desktop session...'
 exec dbus-launch --exit-with-session $MEINE/x.sh
