@@ -5,5 +5,5 @@
    "Startup took %f seconds..."
    (car (benchmark-run 1
           (progn
-            (load (expand-file-name "~/.emacs"))
+            (load (expand-file-name "~/.emacs.d/init.el"))
             (message "-OK-"))))))
