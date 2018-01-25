@@ -70,6 +70,7 @@
 
 # Emacs stuff
 (.core|.elc|~)$
+\#
 
 ^emacs\.d/gk\.el
 \.emacs\.desktop
