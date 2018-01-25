@@ -864,7 +864,7 @@ the user for taking action."
 
 ;; Set up so that there's 75-80 chars width for half-sized horizontal
 ;; windows.
-(defconst gk-font-default-height 105)
+(defconst gk-font-default-height 110)
 (defconst gk-font-variable-pitch-height 110)
 (defalias 'gk-font-org-variable-pitch-height
   'gk-font-variable-pitch-height)
@@ -2868,7 +2868,6 @@ URL is the URL to the dictionary, %s where the word should be put."
   (setf frame-background-mode 'light)
   ;; Update all the existing frames.
   (mapc 'frame-set-background-mode (frame-list))
-  (load-theme 'paper t)
 
   (set-face-attribute 'default nil
                       :height gk-font-default-height
