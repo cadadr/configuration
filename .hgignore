@@ -76,7 +76,6 @@
 ido\.last
 ^emacs.d/org-caldav-.*$
 
-^emacs.d/docs/.*info(-\d+)?$
 ^emacs.d/etc/backups/
 ^emacs.d/etc/\+scratch\+
 ^emacs.d/etc/auto-save-list/
