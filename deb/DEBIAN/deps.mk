@@ -22,7 +22,8 @@ DEPS+=fonts-freefont-ttf fonts-liberation fonts-dejavu
 DEPS+=firefox libreoffice libreoffice-help-en-gb			\
 	libreoffice-help-en-us xclip gimp gimp-help-en gparted		\
 	gnuplot gnuplot-doc feedgnuplot gv cheese pavucontrol x11-apps	\
-	vtwm i3-wm i3status suckless-tools i3lock mpv quodlibet
+	vtwm i3-wm i3status suckless-tools i3lock mpv quodlibet		\
+	eog eog-plugins
 ### Misc:
 #DEPS+=gnome-session		# On Ubuntu, for normal Gnome 3 session
 #### Libraries:
