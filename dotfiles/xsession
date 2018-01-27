@@ -27,5 +27,10 @@ xinput --set-prop 'ETPS/2 Elantech Touchpad' 294 0 1
 echo Start initial apps
 volti & #sound applet
 
+# Set up the desktop.
+# -geometry args: wxh+x+y
+#xclock -geometry 125x125-0-0&
+#xterm -geometry 120x1-0+0 -T xstatus -e $MEINE/../scripts/sys-status.sh&
+
 echo 'Start the desktop session...'
 exec dbus-launch --exit-with-session $MEINE/x.sh
