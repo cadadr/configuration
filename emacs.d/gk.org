@@ -2526,25 +2526,19 @@ Keeps some elements in fixed pitch in order to keep layout."
   (setq-local line-spacing nil)
   (font-lock-add-keywords nil gk-org-font-lock-keywords)
   (font-lock-ensure))
-
-(defvar gk-org-variable-pitch nil
-  "When non-nil, use variable-pitch in Org-mode.
-Run `org-mode' in the buffer for this to take effect after
-setting it to t.")
 #+END_SRC
 
 **** The hook
 #+BEGIN_SRC elisp :tangle yes :comments both
 (defun gk-org-visuals-hook ()
   "Set up how an Org buffer look."
-  (when gk-org-variable-pitch
-    (gk-org-variable-pitch))
+  (gk-org-variable-pitch)
   (set-face-attribute 'org-footnote nil :underline nil)
   (dotimes (n 7)
     (set-face-attribute
      (intern (concat "org-level-" (number-to-string (1+ n))))
      nil :family (gk-font :sans) :weight 'normal :width 'condensed
-     :height (+ 40 gk-font-default-height))))
+     :height (+ 10 gk-font-default-height))))
 
 (add-hook 'org-mode-hook 'gk-org-visuals-hook)
 #+END_SRC
