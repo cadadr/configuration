@@ -16,3 +16,5 @@ User documentation
 Books
 * On Lisp: (onlisp).          Paul Graham's essay on Lisp
 * SICP: (sicp).               Structure and Implementation of Computer Programs
+* Debbugs: (debbugs).           A library for communication with Debbugs.
+* Debbugs UG: (debbugs-ug).     Debbugs User Interface in Emacs.
