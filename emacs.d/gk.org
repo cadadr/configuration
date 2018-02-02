@@ -155,6 +155,7 @@ Happy hacking!
 (require 'thingatpt)
 (require 'thinks)
 (require 'time)
+(require 'tls)
 (require 'tramp)
 (require 'tramp-cache)
 (require 'uniquify)
@@ -3272,6 +3273,19 @@ provided."
 #+END_SRC
 
 * WWW
+** TLS
+#+BEGIN_SRC elisp :tangle yes :comments both
+(setf
+ ;; Enable checking the certificates against root certificates.
+ tls-checktrust t
+ tls-program
+ (mapcar
+  ($ (format $1 (getenv "SSL_CERT_FILE")))
+  (list
+   "gnutls-cli --x509cafile %s -p %%p %%h"
+   "gnutls-cli --x509cafile %s -p %%p %%h --protocols ssl3")))
+#+END_SRC
+
 ** EWW
 #+BEGIN_SRC elisp :tangle yes :comments both
 ;; Load feeds from external source.
