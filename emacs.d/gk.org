@@ -3088,14 +3088,28 @@ So that the reader knows where to continue reading."
 (setq x-select-request-type '(UTF8_STRING COMPOUND_TEXT TEXT STRING))
 #+END_SRC
 
-* URLs
+* Internet
+** TLS
+#+BEGIN_SRC elisp :tangle yes :comments both
+(setf
+ ;; Enable checking the certificates against root certificates.
+ tls-checktrust t
+ tls-program
+ (mapcar
+  ($ (format $1 (getenv "SSL_CERT_FILE")))
+  (list
+   "gnutls-cli --x509cafile %s -p %%p %%h"
+   "gnutls-cli --x509cafile %s -p %%p %%h --protocols ssl3")))
+#+END_SRC
+
+** URLs
 #+BEGIN_SRC elisp :tangle yes :comments both
 
 ;; Zero this out first.
 (setf browse-url-browser-function nil)
 #+END_SRC
 
-** Common
+*** Common
 #+BEGIN_SRC elisp :tangle yes :comments both
 (defconst gk-ytl-format
   "http://localhost:3991/ytl.html?v=%s"
@@ -3112,14 +3126,14 @@ xdg-open is a desktop utility that calls your preferred web browser."
   (and window-system (executable-find "xdg-open")))
 #+END_SRC
 
-** Firefox
+*** Firefox
 #+BEGIN_SRC elisp :tangle yes :comments both
 (setf browse-url-firefox-program
       ;; (gk-executable-ensure "/igk/apps/ff-dev/firefox")
       (gk-executable-ensure "firefox"))
 #+END_SRC
 
-** Browser functions
+*** Browser functions
 #+BEGIN_SRC elisp :tangle yes :comments both
 (defun gk-urls-browse-github-commit (url &rest args)
   "Browse a github URL.
@@ -3167,7 +3181,7 @@ with external browser."
    args))
 #+END_SRC
 
-** Download and open files with Emacs
+*** Download and open files with Emacs
 This mechanism here allows for downloading and opening files with
 emacs where that makes sense.  See the section [[File adapters]] for the
 adapters.
@@ -3235,7 +3249,7 @@ provided."
                       `(lambda (,arg) ,@body)))))))
 #+END_SRC
 
-** File adapters
+*** File adapters
 #+BEGIN_SRC elisp :tangle yes :comments both
 (gk-urls-make-file-adapter "pdf")
 (gk-urls-make-file-adapter "jpeg")
@@ -3257,7 +3271,7 @@ provided."
 ;;(gk-urls-make-file-adapter "p[lm]?6?")
 #+END_SRC
 
-** Set the browse-url functions
+*** Set the browse-url functions
 #+BEGIN_SRC elisp :tangle yes :comments both
 (setf browse-url-generic-program
       (executable-find "firefox")
@@ -3270,20 +3284,6 @@ provided."
         ("file:///home/.+/co/lisp/doc/HyperSpec/" . gk-browse-url)
         ,@browse-url-browser-function
         (".*" . gk-browse-url)))
-#+END_SRC
-
-* WWW
-** TLS
-#+BEGIN_SRC elisp :tangle yes :comments both
-(setf
- ;; Enable checking the certificates against root certificates.
- tls-checktrust t
- tls-program
- (mapcar
-  ($ (format $1 (getenv "SSL_CERT_FILE")))
-  (list
-   "gnutls-cli --x509cafile %s -p %%p %%h"
-   "gnutls-cli --x509cafile %s -p %%p %%h --protocols ssl3")))
 #+END_SRC
 
 ** EWW
