@@ -3090,6 +3090,13 @@ So that the reader knows where to continue reading."
 
 * Internet
 ** TLS
+This section contains some settings adapted from [[https://glyph.twistedmatrix.com/2015/11/editor-malware.html][this]] blog post for
+making sure that ~tls.el~ always checks certificates.  If I'm not
+mistaken this is not necessary for normal usage as actually ~nsm.el~
+handles the certificate checking and other network security (see
+[[info:emacs#Network%20Security][info:emacs#Network Security]]) and that's what most if not all internet
+connections go through.
+
 #+BEGIN_SRC elisp :tangle yes :comments both
 (setf
  ;; Enable checking the certificates against root certificates.
