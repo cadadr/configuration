@@ -71,6 +71,7 @@ Happy hacking!
 (require 'dired-subtree)
 (require 'dired-x)
 (require 'doc-view)
+(require 'dollar)
 (require 'eimp)
 (require 'eldoc)
 (require 'elfeed)
@@ -114,6 +115,7 @@ Happy hacking!
 (require 'org-eww)
 (require 'org-mobile)
 (require 'org-protocol)
+(require 'org-variable-pitch)
 (require 'outline)
 (require 'ox)
 (require 'ox-beamer)
@@ -670,36 +672,6 @@ i.e. i18n -> internationalisation."
   "Wrap the BODY in an interactive lambda form.
 Return the lambda."
   `(lambda nil (interactive) ,@body))
-
-(defun $-find-args (seq)
-  (seq-sort
-   (lambda (sym1 sym2)
-     (< (string-to-number (substring (symbol-name sym1) 1))
-        (string-to-number (substring (symbol-name sym2) 1))))
-   (seq-filter
-    (lambda (x)
-      (and (symbolp x) (equal 0 (string-match "\\$[0-9]+" (symbol-name x)))))
-    (seq-uniq (-flatten seq)))))
-
-(defmacro $ (&rest body)
-  "Shortcut for lambdas.
-
-Inside this form symbols in the form $N where N is a positive
-integer are to stand for positional arguments to the generated
-lambda.
-
-If the car of the BODY is a vector though, that vector becomes
-the argument list of the new lambda."
-  (let ((head (car body))
-        (tail (cdr body))
-        args the-body)
-    (if (vectorp head)
-        ;; Convert it to a list.
-        (setf args (seq-into head 'list)
-              the-body tail)
-      (setf args ($-find-args body)
-            the-body body))
-    `(lambda ,args ,@the-body)))
 
 (defmacro gk-with-new-frame (parameters &rest body)
   "Create a new frame and run BODY in it.
@@ -2477,8 +2449,6 @@ unlocked, offer to lock it before pasting."
 
 **** Variable pitch
 #+BEGIN_SRC elisp :tangle yes :comments both
-(require 'org-variable-pitch)
-
 (setf ovp-mono-font (gk-font :mono))
 
 (diminish 'org-variable-pitch-minor-mode "~")
