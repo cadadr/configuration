@@ -67,6 +67,8 @@
 ^xdg-config/xfce4/xfconf/xfce-perchannel-xml/thunar.xml
 ^xdg-config/gtk-2.0/gtkfilechooser.ini
 ^xdg-config/dconf/user.dump
+^xdg-config/pavucontrol.ini
+^xdg-config/volti/config
 
 # Emacs stuff
 (.core|.elc|~)$
