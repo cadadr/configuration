@@ -56,3 +56,4 @@
 
 ;;; Auto-generated stuff:
 
+(put 'scroll-left 'disabled nil)
