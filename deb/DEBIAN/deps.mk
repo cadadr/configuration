@@ -11,6 +11,8 @@ DEPS=build-essential bmake pass automake autoconf autoconf-archive	\
 	apt-listchanges groff-base reportbug lsof bash-completion	\
 	liblockfile-bin ncurses-term file mime-support libpam-systemd	\
 	telnet pulseaudio
+### Devtools:
+DEPS+=strace
 ### Laptop:
 DEPS+=laptop-mode-tools hdparm
 ### Desktop & Xorg:
