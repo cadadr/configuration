@@ -1,18 +1,19 @@
 # deps.mk --- Authoritative list of dependencies
-### Base:
-DEPS=build-essential bmake pass automake autoconf autoconf-archive	\
-	texinfo nginx syncthing gnutls-bin gawk openssh-server vim	\
-	tmux ctags units debian-goodies alsa-utils avahi-daemon		\
-	avahi-autoipd bzip2 cups cups-browsed cups-bsd cups-client	\
-	cups-filters less debian-archive-keyring gdb gnupg2 lshw man-db	\
-	manpages memtest86+ openssh-client pciutils sqlite3 zip unzip	\
-	sudo vrms xz-utils libclass-isa-perl python3-reportbug bzip2	\
-	libswitch-perl netcat-traditional bind9-host host krb5-locales	\
-	apt-listchanges groff-base reportbug lsof bash-completion	\
-	liblockfile-bin ncurses-term file mime-support libpam-systemd	\
-	telnet pulseaudio
+### Prelude:
+DEPS=
+### Libraries:
+DEPS+=libclass-isa-perl libswitch-perl liblockfile-bin libpam-systemd
+### Utils:
+DEPS+=pass telnet file reportbug lsof gawk vim tmux units		\
+	debian-goodies sudo vrms xz-utils alsa-utils bzip2 less		\
+	sqlite3 zip unzip python3-reportbug apt-listchanges		\
+	groff-base gnupg2 lshw openssh-client bzip2 host texinfo	\
+	cups-bsd cups-client bind9-host
+### Services:
+DEPS+=nginx syncthing openssh-server avahi-daemon avahi-autoipd
 ### Devtools:
-DEPS+=strace
+DEPS+=automake autoconf autoconf-archive strace build-essential bmake	\
+	ctags gdb
 ### Laptop:
 DEPS+=laptop-mode-tools hdparm
 ### Desktop & Xorg:
@@ -28,7 +29,11 @@ DEPS+=firefox libreoffice libreoffice-help-en-gb			\
 	eog eog-plugins volti simple-scan
 ### Misc:
 #DEPS+=gnome-session		# On Ubuntu, for normal Gnome 3 session
-#### Libraries:
+DEPS+=gnutls-bin cups cups-browsed cups-filters				\
+	debian-archive-keyring memtest86+ pciutils netcat-traditional	\
+	krb5-locales bash-completion ncurses-term mime-support		\
+	pulseaudio
+### Libraries:
 DEPS+=libxrandr-dev
 ### Documentation:
 DEPS+=autoconf-doc ffmpeg-doc mailutils-doc nginx-doc perl-doc		\
@@ -50,15 +55,17 @@ DEPS+=vorbisgain youtube-dl vorbis-tools
 ### TeX:
 DEPS+=biber texlive-xetex texlive-full texlive-publishers 		\
 	texlive-bibtex-extra
-### Lisp:
+### Programming languages:
+#### Lisp:
 DEPS+=guile-2.0 guile-2.0-doc guile-json guile-library sbcl
-### Python:
+#### Python:
 DEPS+=python-minimal python python3 python3-pip virtualenv python3-venv	\
 	python-flup python3-tk python3-matplotlib
-### Perl:
+#### Perl:
 DEPS+=perl perl-modules-5.24 perlbrew cpanminus liblocal-lib-perl
-### Ruby:
+#### Ruby:
 DEPS+=bundler ri ruby
 
+### Rules:
 list-deps:
 	@echo $(DEPS)
