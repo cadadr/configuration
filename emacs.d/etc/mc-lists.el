@@ -3,11 +3,7 @@
 
 (setq mc/cmds-to-run-for-all
       '(
-        eval-last-sexp
-        gk-maybe-expand-abbrev-or-space
-        insert-parentheses
-        paredit-splice-sexp-killing-backward
-        paredit-wrap-round
+        paredit-kill
         ))
 
 (setq mc/cmds-to-run-once
