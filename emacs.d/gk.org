@@ -1627,7 +1627,9 @@ Usable for Repl buffers."
 ;; Let gk-minor-mode do this.
 (define-key paredit-mode-map "\M-;" nil)
 
-(setf eval-sexp-fu-flash-face 'region)
+(setf
+ eval-sexp-fu-flash-face 'region
+ eldoc-idle-delay 0)
 #+END_SRC
 
 **** Emacs Lisp
