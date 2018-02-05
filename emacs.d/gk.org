@@ -2820,8 +2820,6 @@ URL is the URL to the dictionary, %s where the word should be put."
                       :height gk-font-variable-pitch-height
                       :family (gk-font :serif))
 
-  (setf x-underline-at-descent-line t)
-
   (loop for attr in '(mode-line mode-line-inactive) do
         (set-face-attribute attr nil
                             :family (gk-font :sans)
