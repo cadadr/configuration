@@ -1850,6 +1850,24 @@ KEYWORDS are the keywords for the file."
 
 (define-key python-mode-map "\C-c\C-l" #'gk-python-send-line)
 #+END_SRC
+*** Makefiles
+#+BEGIN_SRC elisp :tangle yes :comments both
+(defun gk-makefile-hook ()
+  "Generic hook for makefile modes."
+  (gk-turn-on-outline-minor-mode "####* " ":$" "C-'"))
+
+(add-hook 'makefile-mode-hook 'gk-makefile-hook)
+#+END_SRC
+
+*** Shell scripts
+#+BEGIN_SRC elisp :tangle yes :comments both
+(defun gk-shell-script-hook ()
+  "Generic hook for shell script modes."
+  (gk-turn-on-outline-minor-mode "####* " ":$" "C-'"))
+
+(add-hook 'shell-script-mode 'gk-shell-script-hook)
+#+END_SRC
+
 ** Ibuffer
 #+BEGIN_SRC elisp :tangle yes :comments both
 
