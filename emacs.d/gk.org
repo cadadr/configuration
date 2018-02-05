@@ -1467,6 +1467,12 @@ my configurations."
   (evil-mode (if evil-mode -1 +1)))
 #+END_SRC
 
+*** Multiple cursors
+#+BEGIN_SRC elisp :tangle yes :comments both
+;; Just fucking run the commands.
+(setf mc/always-run-for-all t)
+#+END_SRC
+
 ** Global settings
 #+BEGIN_SRC elisp :tangle yes :comments both
 ;;(require 'pixel-scroll)
