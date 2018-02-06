@@ -1282,7 +1282,7 @@ PUNCTUATION is the punctuation to use"
   (setq-local truncate-lines nil)
   (visual-line-mode 1)
   (gk-utf8-entry-mode 1)
-  (toggle-input-method)
+  (set-input-method default-input-method)
   (olivetti-mode 1))
 
 (add-hook 'text-mode-hook 'gk-text-editing-modes-hook)
@@ -1543,7 +1543,7 @@ my configurations."
 
 (defun gk-log-edit-mode-hook ()
   "Hook for `log-edit-mode', used for vc checkins."
-  (toggle-input-method))
+  (gk-text-editing-modes-hook))
 
 (add-hook 'log-edit-mode-hook #'gk-log-edit-mode-hook)
 
