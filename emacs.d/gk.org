@@ -2649,12 +2649,7 @@ the template description."
 
 *** Publish
 #+BEGIN_SRC elisp :tangle yes :comments both
-
 (load gk-website-settings t)
-
-(setf
- org-publish-project-alist
- `(,@gk-website-publish-settings))
 #+END_SRC
 
 *** Caldav
