@@ -8,8 +8,9 @@ bin				bin
 .xinitrc			dotfiles/xsession
 .Xdefaults			dotfiles/Xdefaults
 .Xmodmap			dotfiles/xmodmap.txt
-.local/share/applications/emacs.desktop			candy/emacs.desktop
-.local/share/applications/org-protocol.desktop		candy/org-protocol.desktop
-.local/share/applications/ff-dev.desktop		candy/ff-dev.desktop
+.local/share/applications/emacs.desktop		candy/emacs.desktop
+.local/share/applications/emacsclient.desktop	candy/emacsclient.desktop
+.local/share/applications/org-protocol.desktop	candy/org-protocol.desktop
+.local/share/applications/ff-dev.desktop	candy/ff-dev.desktop
 .config				xdg-config
 .emacs.d			emacs.d

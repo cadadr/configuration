@@ -19,6 +19,7 @@ image/jpeg=firefox.desktop
 image/png=firefox.desktop
 video/webm=firefox.desktop
 application/x-xpinstall=firefox.desktop
+x-scheme-handler/org-protocol=emacsclient.desktop
 
 [Added Associations]
 x-scheme-handler/http=firefox.desktop;
