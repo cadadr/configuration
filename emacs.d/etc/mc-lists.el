@@ -3,9 +3,16 @@
 
 (setq mc/cmds-to-run-for-all
       '(
-        paredit-kill
+        gk-bol
+        gk-maybe-expand-abbrev-or-space
+        org-end-of-line
+        org-force-self-insert
+        org-kill-line
+        org-yank
         ))
 
 (setq mc/cmds-to-run-once
       '(
+        org-cycle
+        org-self-insert-command
         ))
