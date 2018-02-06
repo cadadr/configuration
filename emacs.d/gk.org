@@ -2768,10 +2768,10 @@ URL is the URL to the dictionary, %s where the word should be put."
 * Multimedia
 ** Images
 #+BEGIN_SRC elisp :tangle yes :comments both
-
 (add-hook 'image-mode-hook 'eimp-mode)
 (define-key image-mode-map [?q] 'kill-this-buffer)
 #+END_SRC
+
 * OS-specific settings
 ** Guix
 #+BEGIN_SRC elisp :tangle yes :comments both
