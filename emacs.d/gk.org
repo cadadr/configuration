@@ -2116,7 +2116,7 @@ Otherwise start mail program in offline mode."
  ;; B: trn-style indentation based on thread level
  ;; f: contents of the from or to headers.
  ;; s: subject or empty str if not thread root
- gnus-summary-line-format "%U%R%z %B%(%-23,23f%) %s \n"
+ gnus-summary-line-format "[ %U%R%z ] %B[ %(%-23,23f%) ] %s \n"
  ;; Don't mess up my window configuration.
  gnus-use-full-window nil)
 
