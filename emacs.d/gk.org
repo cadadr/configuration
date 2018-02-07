@@ -3519,8 +3519,10 @@ Define an ‘elfeed-serch-mode’ keybinding prepending the letter
    (concat "+unread "
            (setf
             gk-elfeed-search-ring-current-search
-            (if (not gk-elfeed-search-ring-current-search)
-                (last gk-elfeed-search-ring-tags)
+            (if (or (not gk-elfeed-search-ring-current-search)
+                    (string= gk-elfeed-search-ring-current-search
+                             (car gk-elfeed-search-ring-tags)))
+                (car (last gk-elfeed-search-ring-tags))
               (nth (1- (or (position
                             gk-elfeed-search-ring-current-search
                             gk-elfeed-search-ring-tags
