@@ -13,7 +13,7 @@ DEPS+=pass telnet file reportbug lsof gawk vim tmux units		\
 DEPS+=nginx syncthing openssh-server avahi-daemon avahi-autoipd
 ### Devtools:
 DEPS+=automake autoconf autoconf-archive strace build-essential bmake	\
-	ctags gdb debmake
+	ctags gdb
 ### Laptop:
 DEPS+=laptop-mode-tools hdparm
 ### Desktop & Xorg:
@@ -38,7 +38,7 @@ DEPS+=libxrandr-dev
 ### Documentation:
 DEPS+=autoconf-doc ffmpeg-doc mailutils-doc nginx-doc perl-doc		\
 	python3-doc sbcl-doc gimp-help git-doc gnutls-doc doc-debian	\
-	manpages man-db debian-faq gnuplot-doc debmake-doc
+	manpages man-db debian-faq gnuplot-doc
 ### Emacs:
 DEPS+=libjansson-dev		# Jansson is for faster JSON.
 DEPS+=gnutls-dev
