@@ -13,7 +13,7 @@ DEPS+=pass telnet file reportbug lsof gawk vim tmux units		\
 DEPS+=nginx syncthing openssh-server avahi-daemon avahi-autoipd
 ### Devtools:
 DEPS+=automake autoconf autoconf-archive strace build-essential bmake	\
-	ctags gdb
+	ctags gdb debmake
 ### Laptop:
 DEPS+=laptop-mode-tools hdparm
 ### Desktop & Xorg:
@@ -24,9 +24,9 @@ DEPS+=fonts-freefont-ttf fonts-liberation fonts-dejavu
 ### Apps:
 DEPS+=firefox libreoffice libreoffice-help-en-gb			\
 	libreoffice-help-en-us xclip gimp gimp-help-en gparted		\
-	gnuplot gnuplot-doc feedgnuplot gv cheese pavucontrol x11-apps	\
-	vtwm i3-wm i3status suckless-tools i3lock mpv quodlibet		\
-	eog eog-plugins volti simple-scan
+	gnuplot feedgnuplot gv cheese pavucontrol x11-apps vtwm i3-wm	\
+	i3status suckless-tools i3lock mpv quodlibet eog eog-plugins	\
+	volti simple-scan evince
 ### Misc:
 #DEPS+=gnome-session		# On Ubuntu, for normal Gnome 3 session
 DEPS+=gnutls-bin cups cups-browsed cups-filters				\
@@ -38,7 +38,7 @@ DEPS+=libxrandr-dev
 ### Documentation:
 DEPS+=autoconf-doc ffmpeg-doc mailutils-doc nginx-doc perl-doc		\
 	python3-doc sbcl-doc gimp-help git-doc gnutls-doc doc-debian	\
-	manpages man-db debian-faq
+	manpages man-db debian-faq gnuplot-doc debmake-doc
 ### Emacs:
 DEPS+=libjansson-dev		# Jansson is for faster JSON.
 DEPS+=gnutls-dev
