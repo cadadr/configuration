@@ -34,6 +34,10 @@ identical to mine.
 Happy hacking!
 
 * Prelude
+Enable lexical binding before everything.  =:comments= option is
+purposefully exlcuded: this bit must become the very first line in the
+exported Elisp file.
+
 #+BEGIN_SRC elisp  :tangle yes
 ;; -*- lexical-binding: t -*-
 #+END_SRC
