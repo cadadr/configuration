@@ -12,6 +12,7 @@
 
 ^system/debian/etc/network/interfaces$
 ^system/debian/etc/resolv.conf$
+^system/debian/etc/NetworkManager/system-connections/feriha$
 ^system/rpi/etc/network/interfaces$
 ^system/rpi/etc/wpa_supplicant/wpa_supplicant.conf$
 

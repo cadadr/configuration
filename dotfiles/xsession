@@ -25,7 +25,8 @@ xinput --set-prop 'ETPS/2 Elantech Touchpad' 286 1 # natural scrolling
 xinput --set-prop 'ETPS/2 Elantech Touchpad' 294 0 1
 
 echo Start initial apps
-volti & #sound applet
+volti &	#sound applet
+nm-applet & # NetworkManager applet
 
 # Set up the desktop.
 # -geometry args: wxh+x+y
