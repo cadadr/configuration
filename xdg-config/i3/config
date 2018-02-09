@@ -36,26 +36,26 @@ bindsym $mod+u focus parent
 bindsym $mod+c focus child
 
 # switch to workspace
-bindsym $mod+Ctrl+1 workspace 1
-bindsym $mod+Ctrl+2 workspace 2
-bindsym $mod+Ctrl+3 workspace 3
-bindsym $mod+Ctrl+4 workspace 4
-bindsym $mod+Ctrl+5 workspace 5
-bindsym $mod+Ctrl+6 workspace 6
-bindsym $mod+Ctrl+7 workspace 7
-bindsym $mod+Ctrl+8 workspace 8
-bindsym $mod+Ctrl+9 workspace 9
+bindsym F1 workspace 1
+bindsym F2 workspace 2
+bindsym F3 workspace 3
+bindsym F4 workspace 4
+bindsym F5 workspace 5
+bindsym F6 workspace 6
+bindsym F7 workspace 7
+bindsym F8 workspace 8
+bindsym F9 workspace 9
 
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace 1
-bindsym $mod+Shift+2 move container to workspace 2
-bindsym $mod+Shift+3 move container to workspace 3
-bindsym $mod+Shift+4 move container to workspace 4
-bindsym $mod+Shift+5 move container to workspace 5
-bindsym $mod+Shift+6 move container to workspace 6
-bindsym $mod+Shift+7 move container to workspace 7
-bindsym $mod+Shift+8 move container to workspace 8
-bindsym $mod+Shift+9 move container to workspace 9
+bindsym Shift+F1 move container to workspace 1
+bindsym Shift+F2 move container to workspace 2
+bindsym Shift+F3 move container to workspace 3
+bindsym Shift+F4 move container to workspace 4
+bindsym Shift+F5 move container to workspace 5
+bindsym Shift+F6 move container to workspace 6
+bindsym Shift+F7 move container to workspace 7
+bindsym Shift+F8 move container to workspace 8
+bindsym Shift+F9 move container to workspace 9
 
 bindsym $mod+g reload
 bindsym $mod+Shift+g restart
