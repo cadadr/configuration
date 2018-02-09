@@ -174,7 +174,6 @@ Happy hacking!
 
 * Files and directories
 #+BEGIN_SRC elisp :tangle yes :comments both
-
 (defconst gk-dropbox-dir
   (expand-file-name "~/fil")
   "Directory of Dropbox.")
@@ -205,7 +204,6 @@ Happy hacking!
 * Utility libraries
 ** Utility functions
 #+BEGIN_SRC elisp :tangle yes :comments both
-
 (defgroup GK nil
   "Group for my configuration."
   :group 'emacs
@@ -662,7 +660,6 @@ i.e. i18n -> internationalisation."
 
 ** Utility macros
 #+BEGIN_SRC elisp :tangle yes :comments both
-
 (defmacro when-fbound (proc &rest args)
   "Run proc if bound.
 \(when-fbound PROC ARGS...)"
@@ -851,7 +848,6 @@ nil if absent."
 
 ** Outline
 #+BEGIN_SRC elisp :tangle yes :comments both
-
 (defun gk-turn-on-outline-minor-mode (headline-begin headline-end prefix)
   "Turn on the `outline-minor-mode'.
 
@@ -867,7 +863,6 @@ Set locally the variable `outline-minor-mode-prefix' to PREFIX."
 
 ** Things
 #+BEGIN_SRC elisp :tangle yes :comments both
-
 (defmacro gk-make-thing-marker (thing)
   (let ((thingname (symbol-name thing)))
     `(defun ,(intern (concat "gk-mark-" thingname)) ()
@@ -903,7 +898,6 @@ Save all backups to a designated place (see =backup-directory-alist=),
 be generous in keepbing backups.
 
 #+BEGIN_SRC elisp :tangle yes :comments both
-
 (setf
  ;; Make a backup of a file the first time it is saved.
  make-backup-files t
@@ -921,7 +915,6 @@ be generous in keepbing backups.
 ** Comint
 *** Common
 #+BEGIN_SRC elisp :tangle yes :comments both
-
 (defun gk-toggle-comint-process-echoes ()
   "Toggle ‘comint-process-echoes’ variable."
   (interactive)
@@ -936,7 +929,6 @@ be generous in keepbing backups.
 
 *** Shell mode
 #+BEGIN_SRC elisp :tangle yes :comments both
-
 (add-hook 'shell-mode-hook 'gk-shell-mode-hook)
 
 (defun gk-shell-mode-hook ()
@@ -987,7 +979,6 @@ be generous in keepbing backups.
 
 *** Subtrees
 #+BEGIN_SRC elisp :tangle yes :comments both
-
 (define-key dired-mode-map "i" 'dired-subtree-toggle)
 
 (setf dired-subtree-use-backgrounds nil)
@@ -1036,6 +1027,7 @@ be generous in keepbing backups.
 
 (defalias 'library 'bibliothek)
 #+END_SRC
+
 ** Global modes
 This module provides utilities for global modes, like turning them on
 and off collectively with a single command, registering and
@@ -1172,7 +1164,6 @@ Bindings come from BINDING-ALIST."
 
 *** Utilites
 #+BEGIN_SRC elisp :tangle yes :comments both
-
 (defun gk-empty-kill-ring ()
   "Empty the kill ring."
   (interactive)
@@ -1296,6 +1287,7 @@ This section contains various hooks that automate some editing tasks.
 #+BEGIN_SRC elisp :tangle yes :comments both
 (add-hook 'before-save-hook #'copyright-update)
 #+END_SRC
+
 *** Configuration
 #+BEGIN_SRC elisp :tangle yes :comments both
 (setf
@@ -1401,7 +1393,6 @@ backwards."
 
 *** HTML
 #+BEGIN_SRC elisp :tangle yes :comments both
-
 (defun gk-html-mode-hook ()
   "Hook for `html-mode'."
   (setf indent-tabs-mode nil))
@@ -1452,7 +1443,6 @@ file extension.")
 
 *** Evil
 #+BEGIN_SRC elisp :tangle yes :comments both
-
 (defvar-local gk-evil-default-cursor nil
   "The value of ‘cursor-type’ before ‘gk-toggle-evil-mode’ was
 run.")
@@ -1480,13 +1470,11 @@ my configurations."
 
 *** Calendar
 #+BEGIN_SRC elisp :tangle yes :comments both
-
 (calendar-set-date-style 'iso)
 #+END_SRC
 
 *** forecast.el
 #+BEGIN_SRC elisp :tangle yes :comments both
-
 (setq forecast-language 'en
       forecast-units 'si
       forecast-time-format "%I:%M:%S%p, %F"
@@ -1573,7 +1561,6 @@ The default implementation of this function is in `log-edit.el'."
 
 *** RCS
 #+BEGIN_SRC elisp :tangle yes :comments both
-
 (defun gk-rcs-maybe-unlock (file)
   "Check to see if FILE is controlled by RCS and is
 unlocked, offer to lock it before pasting."
@@ -1728,7 +1715,6 @@ KEYWORDS are the keywords for the file."
 
 **** Common Lisp
 #+BEGIN_SRC elisp :tangle yes :comments both
-
 (defvar gk-slime-image
   (let ((core (expand-file-name
                (locate-user-emacs-file "extras/slime.fasl"))))
@@ -1775,7 +1761,6 @@ KEYWORDS are the keywords for the file."
 
 *** C family
 #+BEGIN_SRC elisp :tangle yes :comments both
-
 (setf
  ;; Default C style.
  c-default-style "gnu")
@@ -1785,7 +1770,6 @@ KEYWORDS are the keywords for the file."
 
 *** Javascript
 #+BEGIN_SRC elisp :tangle yes :comments both
-
 (defun gk-javascript-hook ()
   "Standard JS hook."
   (highlight-parentheses-mode 1)
@@ -1798,7 +1782,6 @@ KEYWORDS are the keywords for the file."
 
 *** Ruby
 #+BEGIN_SRC elisp :tangle yes :comments both
-
 (defun gk-ruby-send-line ()
   "Send current-line to inferior Ruby."
   (interactive)
@@ -1824,7 +1807,6 @@ KEYWORDS are the keywords for the file."
 
 *** Perl
 #+BEGIN_SRC elisp :tangle yes :comments both
-
 (defalias 'perldoc 'cperl-perldoc)
 
 (add-hook 'perl-mode-hook 'gk-algol-like-hook)
@@ -1832,7 +1814,6 @@ KEYWORDS are the keywords for the file."
 
 *** Python
 #+BEGIN_SRC elisp :tangle yes :comments both
-
 (setf python-shell-interpreter "python3"
       ;; Please don't annoy me, and fuck you.
       python-indent-guess-indent-offset nil)
@@ -1856,6 +1837,7 @@ KEYWORDS are the keywords for the file."
 
 (define-key python-mode-map "\C-c\C-l" #'gk-python-send-line)
 #+END_SRC
+
 *** Makefiles
 #+BEGIN_SRC elisp :tangle yes :comments both
 (defun gk-makefile-hook ()
@@ -1876,7 +1858,6 @@ KEYWORDS are the keywords for the file."
 
 ** Ibuffer
 #+BEGIN_SRC elisp :tangle yes :comments both
-
 ;; Use human readable Size column instead of original one
 (define-ibuffer-column size-h
   (:name "Size" :inline t)
@@ -2012,7 +1993,6 @@ Otherwise start mail program in offline mode."
 
 **** Spam-checking and splitting mail
 #+BEGIN_SRC elisp :tangle yes :comments both
-
 (spam-initialize)
 #+END_SRC
 
@@ -2108,7 +2088,6 @@ Otherwise start mail program in offline mode."
 
 ***** User interface
 #+BEGIN_SRC elisp :tangle yes :comments both
-
 (setf
  ;; U: read status
  ;; R: A if replied to,‘ ’ if not
@@ -2155,7 +2134,6 @@ links:
 
 
 #+BEGIN_SRC elisp :tangle yes :comments both
-
 (defun gk-org-cite-follow (name)
   "Open bibliography and jump to appropriate entry.
 NAME is the citation name."
@@ -2387,7 +2365,6 @@ its contents."
 
 **** Groff->PDF
 #+BEGIN_SRC elisp :tangle yes :comments both
-
 (defconst gk-org-pristine-groff-process (copy-tree org-groff-pdf-process))
 
 (let ((process "< %f preconv -e utf8 | pic | tbl | eqn | groff -mm -Tpdf > %b.pdf"))
@@ -2599,7 +2576,6 @@ BEGIN and END are bounds of the region."
 
 *** Capture
 #+BEGIN_SRC elisp :tangle yes :comments both
-
 (defun gk-org-capture-book ()
   "Capture template for a book in to-read list."
   (let ((kitap (read-string "Kitabın ismi: "))
@@ -2654,7 +2630,6 @@ the template description."
 
 *** Caldav
 #+BEGIN_SRC elisp :tangle yes :comments both
-
 (setf org-caldav-inbox (gk-org-dir-file "caldav.org")
       org-caldav-files org-agenda-files
       ;; TODO: maybe don't sync anything at all.  Just sync outbound?
@@ -2690,6 +2665,7 @@ the template description."
 #+BEGIN_SRC elisp :tangle yes :comments both
 (load (gk-org-dir-file "settings") t)
 #+END_SRC
+
 * Language environments
 ** Turkish
 #+BEGIN_SRC elisp :tangle yes :comments both
@@ -2907,7 +2883,6 @@ URL is the URL to the dictionary, %s where the word should be put."
 
 ** Winner and windmove
 #+BEGIN_SRC elisp :tangle yes :comments both
-
 (setq winner-dont-bind-my-keys t)
 
 (add-to-list 'gk-global-modes 'winner-mode)
@@ -2926,7 +2901,6 @@ URL is the URL to the dictionary, %s where the word should be put."
 
 ** Ido
 #+BEGIN_SRC elisp :tangle yes :comments both
-
 (setf
  ido-use-filename-at-point nil
  ido-show-dot-for-dired t
@@ -3030,7 +3004,6 @@ So that the reader knows where to continue reading."
 
 ** Sessions
 #+BEGIN_SRC elisp :tangle yes :comments both
-
 (let ((desktop-dir (expand-file-name (locate-user-emacs-file "etc/"))))
   (setf
    ;; Always save desktops.
@@ -3060,7 +3033,6 @@ So that the reader knows where to continue reading."
 
 ** Mouse
 #+BEGIN_SRC elisp :tangle yes :comments both
-
 (pushnew 'pixel-scroll-mode gk-global-modes)
 
 (setq
@@ -3071,7 +3043,6 @@ So that the reader knows where to continue reading."
 
 ** TRAMP
 #+BEGIN_SRC elisp :tangle yes :comments both
-
 (setf
  ;; Errors and warnings only.
  tramp-verbose 1)
@@ -3130,7 +3101,6 @@ connections go through.
 
 ** URLs
 #+BEGIN_SRC elisp :tangle yes :comments both
-
 ;; Zero this out first.
 (setf browse-url-browser-function nil)
 #+END_SRC
@@ -3712,7 +3682,6 @@ the body of the entry, and the cdr is the score, an integer.")
 
 ** Multiple cursors
 #+BEGIN_SRC elisp :tangle yes :comments both
-
 (gk-prefix-binding "mm" 'mc/edit-lines)
 (gk-prefix-binding "mn" 'mc/mark-next-like-this-symbol)
 (gk-prefix-binding "mp" 'mc/mark-previous-like-this-symbol)
