@@ -208,11 +208,6 @@ exported Elisp file.
 * Utility libraries
 ** Utility functions
 #+BEGIN_SRC elisp :tangle yes :comments both
-(defgroup GK nil
-  "Group for my configuration."
-  :group 'emacs
-  :prefix "gk-")
-
 (defun gk-backup-file-name (directory extension)
   (let ((filename (concat directory
                           (format-time-string "%d-%m-%Y" (current-time))))
@@ -243,34 +238,6 @@ exported Elisp file.
 	     buffer
 	     major-mode)))
 
-;; Testing init file.
-(defconst gk-emacs-executable
-  (executable-find "emacs"))
-
-(defvar gk-load-test-file
-  (expand-file-name (locate-user-emacs-file "etc/load-test.el")))
-
-(defvar gk-load-test-output-buffer-name
-  "*Startup File Test*")
-
-(defvar gk-load-test-process-name
-  "*Startup Test Process*")
-
-(defun gk-test-init ()
-  (interactive)
-  (let ((out-buf (get-buffer-create gk-load-test-output-buffer-name)))
-    (switch-to-buffer-other-window out-buf)
-    (insert "Testing emacs initialisation...\n\n")
-    (start-process
-     gk-load-test-process-name
-     out-buf
-     gk-emacs-executable
-     "-Q" "--batch" "-l" gk-load-test-file)))
-
-(defvar gk-user-files
-  nil
-  "Config files.")
-
 (defun gk-recompile (&optional force)
   "Recompile my files.
 If FORCE is non-nil, force compilation, i.e. compile even if
@@ -278,46 +245,10 @@ up-to-date."
   (interactive "p")
   (byte-recompile-directory (locate-user-emacs-file "packages") 0)
   (byte-recompile-directory (locate-user-emacs-file "site") 0)
-  (byte-recompile-directory (locate-user-emacs-file "gk") 0 (> force 1))
   (byte-recompile-directory (dropbox "") 0 (> force 1))
   (byte-recompile-file (concat gk-website-settings ".el") (> force 1) 0)
   (when custom-file
     (byte-recompile-file custom-file (> force 1) 0)))
-
-(defun gk-command-from-proc (proc)
-  `(lambda nil (interactive) (,proc)))
-
-(defun gk-serve-directory (&optional dir port)
-  (interactive (list (read-directory-name "Directory to serve: "
-                                          default-directory)
-                     (read-number "Port: " 8000)))
-  (let ((default-directory dir))
-    (async-shell-command (format "python2 -m SimpleHTTPServer %d"
-                                 port))))
-
-;; Adapted from http://www.emacswiki.org/emacs/HexColour
-(defvar gk-hexcolour-keywords
-  '(("#[abcdefABCDEF[:digit:]]\\{3,6\\}"
-     (0 (let ((colour (match-string-no-properties 0)))
-          (if (or (= (length colour) 4)
-                  (= (length colour) 7))
-              (put-text-property
-               (match-beginning 0)
-               (match-end 0)
-               'face (list :background (match-string-no-properties 0)
-                           :foreground
-                           (if (>= (apply
-                                    '+ (x-color-values
-                                        (match-string-no-properties 0)))
-                                   (* (apply '+ (x-color-values "white")) .6))
-                               "black" ; light bg, dark text
-                             "white"   ; dark bg, light text
-                             )))))
-        append))))
-
-(defun gk-hexcolour-add-to-font-lock ()
-  (interactive)
-  (font-lock-add-keywords nil gk-hexcolour-keywords t))
 
 (defun gk-comment-dwim (arg)
   "If region is active, or at the end of the line, call ‘comment-dwim’.
@@ -339,66 +270,6 @@ Otherwise comment-out the whole line, or ARG lines."
 
 For the format, see `format-time-string'."
   (format-time-string format (date-to-time date)))
-
-(defun gk-tar-dotfiles ()
-  "Create an encrypted tarball of dotfiles.
-
-Take files from ~/RCS, find  corresponding files under $HOME, put
-all into a tar  file, call it dotfiles-YYYY-MM-DD-HH:MM.tar, then
-encrypt it using GPG."
-  (interactive)
-  (let* ((default-directory (expand-file-name "~"))
-         (dir (expand-file-name "~/RCS"))
-         (regex directory-files-no-dot-files-regexp)
-         (vfiles (directory-files dir nil regex))
-         (delv (lambda (x) (replace-regexp-in-string ",v$" "" x)))
-         (files (mapcar delv vfiles))
-         (addrcsdir (lambda (x) (format "./%s/%s" "RCS" x)))
-         (adddot (lambda (x) (format "./%s" x)))
-         (flist (append (mapcar addrcsdir vfiles)
-                        (mapcar adddot files)))
-         (tarfile (expand-file-name "~/dotfiles.tar"))
-         (tarcmd (format "cd %s; tar cf \\\n %s %s"
-                         default-directory
-                         tarfile
-                         (mapconcat 'identity flist " \\\n")))
-         (gpgfile (concat tarfile ".gpg"))
-         (backupfile (expand-file-name
-                      (file-name-nondirectory gpgfile)
-                      (dropbox "Backups/Dotfiles"))))
-    (when (shell-command tarcmd)
-      (when (epa-encrypt-file
-             tarfile
-             (epa-select-keys
-              (epg-make-context)
-              "Select key(s): "))
-        (delete-file tarfile)
-        (rename-file gpgfile backupfile t)))))
-
-(defun gk-targpg-directory (dir outdir)
-  "Tar up DIR, encrypt, put that into OUTDIR."
-  (interactive (list (expand-file-name (read-directory-name "Directory: "))
-                     (expand-file-name (read-directory-name "Output directory: "))))
-  (let* ((default-directory (expand-file-name ".." dir))
-         (dirname (format
-                   "./%s"
-                   (car (last (split-string-and-unquote dir "/")))))
-         (tarfile (format "/tmp/%s.tar" (make-temp-name "gktargpg")))
-         (gpgfile (format "%s.gpg" tarfile))
-         (outfile (expand-file-name (replace-regexp-in-string
-                                     "^\\.*\\(/\\.*\\)?" ""
-                                     (format "%s.tar.gpg" dirname))
-                                    outdir))
-         (tarcmd (format "cd %s && tar cf %s %s"
-                         default-directory tarfile dirname)))
-    (when (shell-command tarcmd)
-      (when (epa-encrypt-file
-             tarfile
-             (epa-select-keys
-              (epg-make-context)
-              "Select key(s): "))
-        (delete-file tarfile)
-        (rename-file gpgfile outfile t)))))
 
 (define-error 'gk-program-absent-error "Program is absent")
 
@@ -422,142 +293,8 @@ encrypt it using GPG."
      (remove-function (symbol-function sym) x))
    sym))
 
-;; gk-diff-region-* - Diff two regions
-
-;; Adapted from: <https://gist.github.com/zdavkeos/1279865>
-
-;; To  compare   two  regions,  select   the  first  region   and  run
-;; ‘gk-diff-region’.  The region is now  copied to a seperate diff-ing
-;; buffer.  Next,  navigate to  the next region  in question  (even in
-;; another file).   Mark the region and  run ‘gk-diff-region-now’, the
-;; diff of the two regions will be displayed by ediff.
-
-;; You  can re-select  the  first  region at  any  time by  re-calling
-;; ‘gk-diff-region’.
-
-(defun gk-diff-region ()
-  "Select a region to compare"
-  (interactive)
-  (when (use-region-p)  ; there is a region
-    (let ((buf (get-buffer-create "*Diff-region A*")))
-      (with-current-buffer buf
-        (erase-buffer))
-      (append-to-buffer buf (region-beginning) (region-end))))
-  (message "Now select other region to compare and run `diff-region-now`"))
-
-(defun gk-diff-region-now ()
-  "Compare current region with region already selected by `diff-region`"
-  (interactive)
-  (when (use-region-p)
-    (let ((bufa (get-buffer-create "*Diff-region A*"))
-          (bufb (get-buffer-create "*Diff-region B*")))
-      (with-current-buffer bufb
-        (erase-buffer))
-      (append-to-buffer bufb (region-beginning) (region-end))
-      (ediff-buffers bufa bufb))))
-
-(defun gk-sudo (cmd)
-  "Run CMD as superuser."
-  (interactive (list (read-shell-command "Shell command (sudo): ")))
-  (with-temp-buffer
-    (cd (concat "/sudo::" (expand-file-name default-directory)))
-    (prog1
-        (shell-command cmd (current-buffer))
-      (cd default-directory)
-      (when (called-interactively-p 'any)
-        ;; The command output can include ‘%’ which may cause message
-        ;; to signal error.
-        (message "%s" (buffer-string))))))
-
-;; Mount helpers.
-(defvar gk-mtp-dir "/mnt/mtp/"
-  "Mount point for MTP devices.")
-
-(defvar gk-ukey-dir "/mnt/ukey/"
-  "Mount point for MTP devices.")
-
-(defun gk-mount-mtp ()
-  (interactive)
-  (let ((ret (gk-sudo (format
-                       "simple-mtpfs -oallow_other,enable-move %s" gk-mtp-dir))))
-    (cond ((stringp ret) (error ret))
-          ((zerop ret) (find-file gk-mtp-dir))
-          (t (error "simple-mtpfs(1) returned %d" ret)))))
-
-(defun gk-unmount-mtp ()
-  (interactive)
-  (let ((ret (gk-sudo (format "umount %s" gk-mtp-dir))))
-    (cond ((stringp ret) (error ret))
-          ((zerop ret) (message "Unmounted %s" gk-mtp-dir))
-          (t (error "unmount(1) returned %d" ret)))))
-
-(defun gk-mount-ukey (fs)
-  (interactive
-   (list (completing-read "Choose filesystem for ukey: " '(ufs msdos) nil t)))
-  (cond
-   ((string= fs "ufs") (gk-ukey-mount-ufs))
-   ((string= fs "msdos") (gk-ukey-mount-msdos))))
-
-(defun gk-ukey-mount-msdos ()
-  (interactive)
-  (let ((ret (gk-sudo (format "mount %s" gk-ukey-dir))))
-    (cond ((stringp ret) (error ret))
-          ((zerop ret) (find-file gk-ukey-dir))
-          (t (error "mount(1) returned %d" ret)))))
-
-(defun gk-ukey-mount-ufs ()
-  (interactive)
-  (let ((ret (gk-sudo (format "mount -t ext2fs /dev/da0p1 %s" gk-ukey-dir))))
-    (cond ((stringp ret) (error ret))
-          ((zerop ret) (find-file gk-ukey-dir))
-          (t (error "mount(1) returned %d" ret)))))
-
-(defun gk-unmount-ukey ()
-  (interactive)
-  (gk-sudo "sync")
-  (let ((ret (gk-sudo (format "umount %s" gk-ukey-dir))))
-    (cond ((stringp ret) (error ret))
-          ((zerop ret) (message "Unmounted %s" gk-ukey-dir))
-          (t (error "unmount(1) returned %d" ret)))))
-
-
 (defun gk-gui-p ()
   (or window-system (daemonp)))
-
-(defun gk-find-text-footnote-definition ()
-  (interactive)
-  (when (looking-at "[[(]?\\([0-9*]+\\)[\])]?")
-    (push-mark (point))
-    (goto-char (point-max))
-    (re-search-backward (concat "^" (match-string 1) "[^1234567890]"))))
-
-(defun gk-find-text-footnote-definition--mouse (&optional event)
-  "Find footnote definition according to plain text conventions."
-  (interactive "@e")
-  (when event (goto-char (cadadr event)))
-  (gk-find-text-footnote-definition))
-
-;; Adapted from https://crowding.github.io/blog/2014/08/16/replace-less-with-emacs/
-(defun gk-less (fifo)
-  "Companion function for ‘extras/eless.sh’."
-  (let* ((buf (generate-new-buffer "*pager*"))
-         (proc (start-process "gk-pager" buf "cat" fifo)))
-    (view-buffer buf 'kill-buffer)
-    ;; make sure point stays at top of window while process output accumulates
-    (set-process-filter
-     proc
-     (lambda (proc string)
-       (let ((buf (process-buffer proc))
-             (mark (process-mark proc)))
-         (with-current-buffer buf
-           (let ((buffer-read-only nil))
-             (save-excursion
-               (goto-char mark)
-               (insert string)
-               (ansi-color-apply-on-region mark (point))
-               (set-marker mark (point))))))))))
-;; Make sure that emacs itself uses ‘more’,  necessary for ‘man’ command.
-(setenv "PAGER" "more")
 
 (defun gk-swap-windows (&optional arg)
   "Swap the buffer of the selected window with that of the next one.
@@ -571,41 +308,16 @@ When ARG is a positive number, repeat that many times."
         (switch-to-buffer next nil t)
         (switch-to-buffer-other-window this)))))
 
-(defun gk-count-my-lisp ()
-  "Count the lines of Lisp in ‘user-emacs-directory’.
-Returns a plist where :files is the number of files and :lines is
-the number of lines."
-  (interactive)
-  (let ((lisp-files
-         (append
-          (directory-files (locate-user-emacs-file ".") t
-                           "^\\(init\\|load\\).*el$")
-          (directory-files (locate-user-emacs-file "gk") t "el$")
-          (directory-files (locate-user-emacs-file "lisp") t "el$")
-          (directory-files (locate-user-emacs-file "extras") t "el$")
-          (directory-files (locate-user-emacs-file "themes") t "el$")))
-        (sum 0)
-        buf files)
-    (setf files (length lisp-files))
-    (dolist (el lisp-files sum)
-      (setf buf (find-file-noselect el))
-      (with-current-buffer buf
-        (incf sum (count-lines (point-min) (point-max))))
-      (kill-buffer buf))
-    (when (called-interactively-p 'any)
-      (message "%d lines of Elisp in %d files." sum files))
-    (list :files files :lines sum)))
-
-(defun gk-kill-buffer-file-name ()
+(defun gk-copy-buffer-file-name ()
   "Push the buffer's file name to the ‘kill-ring’."
   (interactive)
   (if-let* ((fil (buffer-file-name)))
       (with-temp-buffer
         (insert fil)
-        (kill-region (point-min) (point-max)))
+        (clipboard-kill-ring-save (point-min) (point-max)))
     (error "Buffer not visiting a file.")))
 
-(defun gk-get-last-message ()
+(defun gk-copy-last-message ()
   "Copy-as-kill the last echoed message."
   (interactive)
   (with-current-buffer (messages-buffer)
@@ -614,15 +326,6 @@ the number of lines."
       (forward-line -1)
       (clipboard-kill-ring-save
        (line-beginning-position) (line-end-position)))))
-
-(defalias 'dmesg
-  (defun gk-dmesg (&optional lines)
-    (interactive "P")
-    (async-shell-command (format "dmesg | tail -n %d" (or lines 10)))))
-
-(defun gk-dired-visit-default-directory ()
-  (interactive)
-  (dired default-directory))
 
 (defun gk-home ()
   "Take me to the home view."
@@ -660,6 +363,167 @@ i.e. i18n -> internationalisation."
     (if (> slen len)
         (s-truncate len s)
       (concat s (make-string (- len slen) ?\ )))))
+#+END_SRC
+
+** Footnotes
+Interact with plain-text footnotes.  See [[olp:Keybindings/Navigation][Keybindings/Navigation]] for
+how these are bound.
+
+#+BEGIN_SRC elisp :tangle yes :comments both
+(defun gk-find-text-footnote-definition ()
+  (interactive)
+  (when (looking-at "[[(]?\\([0-9*]+\\)[\])]?")
+    (push-mark (point))
+    (goto-char (point-max))
+    (re-search-backward (concat "^" (match-string 1) "[^1234567890]"))))
+
+(defun gk-find-text-footnote-definition--mouse (&optional event)
+  "Find footnote definition according to plain text conventions."
+  (interactive "@e")
+  (when event (goto-char (cadadr event)))
+  (gk-find-text-footnote-definition))
+#+END_SRC
+
+** Scripts
+#+BEGIN_SRC elisp :tangle yes :comments both
+(defun gk-serve-directory (&optional dir port)
+  (interactive (list (read-directory-name "Directory to serve: "
+                                          default-directory)
+                     (read-number "Port: " 8000)))
+  (let ((default-directory dir))
+    (async-shell-command (format "python2 -m SimpleHTTPServer %d"
+                                 port))))
+
+(defun gk-sudo (cmd)
+  "Run CMD as superuser."
+  (interactive (list (read-shell-command "Shell command (sudo): ")))
+  (with-temp-buffer
+    (cd (concat "/sudo::" (expand-file-name default-directory)))
+    (prog1
+        (shell-command cmd (current-buffer))
+      (cd default-directory)
+      (when (called-interactively-p 'any)
+        ;; The command output can include ‘%’ which may cause message
+        ;; to signal error.
+        (message "%s" (buffer-string))))))
+
+;; Adapted from https://crowding.github.io/blog/2014/08/16/replace-less-with-emacs/
+(defun gk-less (fifo)
+  "Companion function for ‘extras/eless.sh’."
+  (let* ((buf (generate-new-buffer "*pager*"))
+         (proc (start-process "gk-pager" buf "cat" fifo)))
+    (view-buffer buf 'kill-buffer)
+    ;; make sure point stays at top of window while process output accumulates
+    (set-process-filter
+     proc
+     (lambda (proc string)
+       (let ((buf (process-buffer proc))
+             (mark (process-mark proc)))
+         (with-current-buffer buf
+           (let ((buffer-read-only nil))
+             (save-excursion
+               (goto-char mark)
+               (insert string)
+               (ansi-color-apply-on-region mark (point))
+               (set-marker mark (point))))))))))
+;; Make sure that emacs itself uses ‘more’,  necessary for ‘man’ command.
+(setenv "PAGER" "more")
+
+(defalias 'dmesg
+  (defun gk-dmesg (&optional lines)
+    (interactive "P")
+    (async-shell-command (format "dmesg | tail -n %d" (or lines 10)))))
+#+END_SRC
+
+** Diff regions
+Diffing two regions.
+
+Adapted from: https://gist.github.com/zdavkeos/1279865.
+
+To compare two regions, select the first region and run
+=gk-diff-region=.  The region is now copied to a seperate diff-ing
+buffer.  Next, navigate to the next region in question (even in
+another file).  Mark the region and run =gk-diff-region-now=, the diff
+of the two regions will be displayed by ediff.
+
+You can re-select the first region at any time by re-calling
+=gk-diff-region=.
+
+#+BEGIN_SRC elisp :tangle yes :comments both
+(defun gk-diff-region ()
+  "Select a region to compare"
+  (interactive)
+  (when (use-region-p)  ; there is a region
+    (let ((buf (get-buffer-create "*Diff-region A*")))
+      (with-current-buffer buf
+        (erase-buffer))
+      (append-to-buffer buf (region-beginning) (region-end))))
+  (message "Now select other region to compare and run `diff-region-now`"))
+
+(defun gk-diff-region-now ()
+  "Compare current region with region already selected by `diff-region`"
+  (interactive)
+  (when (use-region-p)
+    (let ((bufa (get-buffer-create "*Diff-region A*"))
+          (bufb (get-buffer-create "*Diff-region B*")))
+      (with-current-buffer bufb
+        (erase-buffer))
+      (append-to-buffer bufb (region-beginning) (region-end))
+      (ediff-buffers bufa bufb))))
+#+END_SRC
+
+** Illustrative Hex Colour Codes
+Adapted from http://www.emacswiki.org/emacs/HexColour.
+
+#+BEGIN_SRC elisp :tangle yes :comments both
+(defvar gk-hexcolour-keywords
+  '(("#[abcdefABCDEF[:digit:]]\\{3,6\\}"
+     (0 (let ((colour (match-string-no-properties 0)))
+          (if (or (= (length colour) 4)
+                  (= (length colour) 7))
+              (put-text-property
+               (match-beginning 0)
+               (match-end 0)
+               'face (list :background (match-string-no-properties 0)
+                           :foreground
+                           (if (>= (apply
+                                    '+ (x-color-values
+                                        (match-string-no-properties 0)))
+                                   (* (apply '+ (x-color-values "white")) .6))
+                               "black" ; light bg, dark text
+                             "white"   ; dark bg, light text
+                             )))))
+        append))))
+
+(defun gk-hexcolour-add-to-font-lock ()
+  (interactive)
+  (font-lock-add-keywords nil gk-hexcolour-keywords t))
+#+END_SRC
+
+** Testing init file
+#+BEGIN_SRC elisp :tangle yes :comments both
+(defconst gk-emacs-executable
+  (executable-find "emacs"))
+
+(defvar gk-load-test-file
+  (expand-file-name (locate-user-emacs-file "etc/load-test.el")))
+
+(defvar gk-load-test-output-buffer-name
+  "*Startup File Test*")
+
+(defvar gk-load-test-process-name
+  "*Startup Test Process*")
+
+(defun gk-test-init ()
+  (interactive)
+  (let ((out-buf (get-buffer-create gk-load-test-output-buffer-name)))
+    (switch-to-buffer-other-window out-buf)
+    (insert "Testing emacs initialisation...\n\n")
+    (start-process
+     gk-load-test-process-name
+     out-buf
+     gk-emacs-executable
+     "-Q" "--batch" "-l" gk-load-test-file)))
 #+END_SRC
 
 ** Utility macros
@@ -802,6 +666,11 @@ the user for taking action."
 
 * The GK minor mode
 #+BEGIN_SRC elisp :tangle yes :comments both
+(defgroup GK nil
+  "Group for my configuration."
+  :group 'emacs
+  :prefix "gk-")
+
 (defvar gk-minor-mode-map
   (make-sparse-keymap)
   "Where to put all my bindings.")
@@ -3596,7 +3465,7 @@ the body of the entry, and the cdr is the score, an integer.")
 (gk-global-binding "\C-x\C-b" 'ibuffer)
 (gk-global-binding "\M-;" 'gk-comment-dwim)
 (gk-global-binding "\C-\M-q" 'gk-indent-defun)
-(gk-global-binding "\C-xd" 'gk-dired-visit-default-directory)
+(gk-global-binding "\C-xd" (gk-interactively (dired default-directory)))
 ;; So that it doesnt override special-mode and the like.
 (global-set-key [? ] 'gk-maybe-expand-abbrev-or-space)
 
