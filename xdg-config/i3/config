@@ -62,6 +62,6 @@ bindsym $mod+Shift+g restart
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Bye?' -b 'Yes' 'i3-msg exit'"
 
 bar {
-	position top
+	position bottom
         status_command i3status
 }
