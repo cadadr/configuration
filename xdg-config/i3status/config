@@ -5,8 +5,6 @@ general {
         interval = 5
 }
 
-order += "wireless _first_"
-order += "ethernet _first_"
 order += "battery all"
 order += "load"
 order += "tztime local"
@@ -26,7 +24,7 @@ battery all {
 }
 
 tztime local {
-        format = "%Y-%m-%d %H:%M:%S"
+        format = "%d %B %Y %A; %I:%M %P"
 }
 
 load {
