@@ -13,7 +13,7 @@ The basic structure is as follows:
 │   functionality.
 ├ gk.org
 │   My setup, loaded by init.el.  The Star of the Show.
-│ lisp/
+├ lisp/
 │   Various programs that are not loaded unless needed. Not in
 │   loadpath.
 ├ extras/
