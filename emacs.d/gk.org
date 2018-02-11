@@ -882,7 +882,9 @@ be generous in keepbing backups.
    pdf-misc-context-menu-minor-mode
    pdf-cache-prefetch-minor-mode)
  ;; Manually change the page.
- pdf-view-continuous nil)
+ pdf-view-continuous nil
+ ;; Resize more granularly.
+ pdf-view-resize-factor 1.01)
 
 (pdf-tools-install)
 
