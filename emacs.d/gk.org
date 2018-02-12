@@ -2337,7 +2337,7 @@ unlocked, offer to lock it before pasting."
 #+BEGIN_SRC elisp :tangle yes :comments both
 (defun gk-org-visuals-hook ()
   "Set up how an Org buffer look."
-  (org-variable-pitch-minor-mode +1)
+  ;; (org-variable-pitch-minor-mode +1)
   (set-face-attribute 'org-footnote nil :underline nil)
   (dolist (face org-level-faces)
     (set-face-attribute
@@ -2662,6 +2662,7 @@ URL is the URL to the dictionary, %s where the word should be put."
   (setf frame-background-mode 'light)
   ;; Update all the existing frames.
   (mapc 'frame-set-background-mode (frame-list))
+  (load-theme 'mono t)
 
   (set-face-attribute 'default nil
                       :height gk-font-default-height
