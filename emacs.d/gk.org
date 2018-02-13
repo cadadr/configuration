@@ -3160,14 +3160,6 @@ provided."
 
 ** EWW
 #+BEGIN_SRC elisp :tangle yes :comments both
-;; Load feeds from external source.
-
-(defun gk-feeds-youtube (hash)
-  "Return the feed URL for the channel with HASH."
-  (concat "http://www.youtube.com/feeds/videos.xml?channel_id=" hash))
-
-(load (dropbox "feeds") t)
-
 (setf eww-search-prefix "https://duckduckgo.com/html/?q=")
 
 (defun gk-eww-download ()
@@ -3260,7 +3252,16 @@ Custom version of `elfeed-search-print-entry--default'."
 
 *** Some utility functions
 #+BEGIN_SRC elisp :tangle yes :comments both
-;; Some utility functions.
+(defun gk-feeds-youtube (hash)
+  "Return the feed URL for the channel with HASH."
+  (concat "http://www.youtube.com/feeds/videos.xml?channel_id=" hash))
+
+(defun gk-feeds-youtube-pl (playlist-id)
+  "Return the feed URL for the playlist with PLAYLIST-ID."
+  (concat
+   "https://www.youtube.com/feeds/videos.xml?playlist_id="
+   playlist-id))
+
 (defun gk-elfeed-browse-article ()
   "View elfeed article with EWW."
   (interactive)
@@ -3297,6 +3298,13 @@ It is rather slow to do so."
 
 (add-hook 'elfeed-show-mode-hook 'gk-eww-mode-hook)
 (add-hook 'elfeed-search-mode-hook 'gk-elfeed-search-mode-hook)
+#+END_SRC
+
+*** Feeds
+Load feeds from external source.
+
+#+BEGIN_SRC elisp :tangle yes :comments both
+(load (dropbox "feeds") t)
 #+END_SRC
 
 *** Keys
