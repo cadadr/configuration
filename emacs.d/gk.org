@@ -2659,10 +2659,10 @@ URL is the URL to the dictionary, %s where the word should be put."
   (add-to-list 'gk-disabled-modes 'tool-bar-mode)
   (add-to-list 'gk-disabled-modes 'scroll-bar-mode)
 
-  (setf frame-background-mode 'light)
+  (setf frame-background-mode 'dark)
   ;; Update all the existing frames.
   (mapc 'frame-set-background-mode (frame-list))
-  (load-theme 'mono t)
+  (load-theme 'wombat t)
 
   (set-face-attribute 'default nil
                       :height gk-font-default-height
