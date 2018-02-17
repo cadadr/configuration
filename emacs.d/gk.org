@@ -111,6 +111,7 @@ exported Elisp file.
 (require 'mm-url)
 (require 'multiple-cursors)
 (require 'netrc)
+(require 'nnfolder)
 (require 'nsm)
 (require 'olivetti)
 (require 'org)
@@ -191,7 +192,7 @@ exported Elisp file.
       auto-save-list-file-prefix (locate-user-emacs-file
                                   "etc/auto-save-list/saves-")
       bookmark-default-file (dropbox "bookmarks.el")
-      bbdb-file (expand-file-name "~/Documents/bbdb")
+      bbdb-file (expand-file-name "~/doc/bbdb")
       savehist-file (locate-user-emacs-file "etc/history")
       eww-bookmarks-directory (dropbox "/")
       save-place-file (locate-user-emacs-file "etc/places")
@@ -201,7 +202,7 @@ exported Elisp file.
       mc/list-file (locate-user-emacs-file "etc/mc-lists.el"))
 
 (defvar gk-website-settings
-  (expand-file-name "~/Documents/not/www/publish")
+  (expand-file-name "~/doc/not/www/publish")
   "Settings for publishing http://www.gkayaaalp.com.")
 #+END_SRC
 
@@ -896,9 +897,9 @@ be generous in keepbing backups.
 #+BEGIN_SRC elisp :tangle yes :comments both
 (setf bibliothek-path
       (nconc
-       (list "~/fil/PDFs" "~/Desktop/papers" "~/Desktop/leggi" "~/Desktop/print"
-             "~/Desktop")
-       (directory-files "~/Desktop/rsc" t "[a-z]" t)))
+       (list "~/fil/PDFs" "~/wrk/papers" "~/wrk/leggi" "~/wrk/print"
+             "~/wrk")
+       (directory-files "~/wrk/rsc" t "[a-z]" t)))
 
 (defalias 'library 'bibliothek)
 #+END_SRC
@@ -1931,6 +1932,24 @@ Otherwise start mail program in offline mode."
 #+END_SRC
 
 **** Gnus
+***** Files and directories
+#+BEGIN_SRC elisp :tangle yes :comments both
+(setf gnus-default-directory (expand-file-name "~/posta"))
+
+(defun gnus-file (file)
+  "Locate FILE in ‘gnus-default-directory’."
+  (expand-file-name file gnus-default-directory))
+
+(setf
+ gnus-home-directory gnus-default-directory
+ gnus-directory (gnus-file "news")
+ message-directory (gnus-file "mail") ; nnml-directory is set from this.
+ gnus-startup-file (gnus-file "newsrc")
+ nnmail-message-id-cache-file (gnus-file "nnmail-cache")
+ nnfolder-directory (gnus-file "mail/archive")
+ gnus-init-file (gnus-file "gnus-init"))
+#+END_SRC
+
 ***** Methods
 #+BEGIN_SRC elisp :tangle yes :comments both
 (setf
@@ -2132,7 +2151,7 @@ For PATH, DESC and FORMAT see `org-add-link-type'."
 *** Org files and directories
 #+BEGIN_SRC elisp :tangle yes :comments both
 (setq org-export-coding-system 'utf-8
-      org-directory (expand-file-name "~/Documents/not/org")
+      org-directory (expand-file-name "~/doc/not/org")
       org-caldav-save-directory (locate-user-emacs-file "etc/")
       org-default-notes-file (gk-org-dir-file "start.org")
       org-agenda-files (gk-org-dir-files "ajanda.org" "caldav.org")
