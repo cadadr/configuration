@@ -2661,10 +2661,11 @@ URL is the URL to the dictionary, %s where the word should be put."
   (add-to-list 'gk-disabled-modes 'tool-bar-mode)
   (add-to-list 'gk-disabled-modes 'scroll-bar-mode)
 
-  (setf frame-background-mode 'dark)
+  ;; This needs to be set manually for solarized.
+  (setf frame-background-mode nil)
   ;; Update all the existing frames.
   (mapc 'frame-set-background-mode (frame-list))
-  (load-theme 'wombat t)
+  (load-theme 'paper t)
 
   (set-face-attribute 'default nil
                       :height gk-font-default-height
