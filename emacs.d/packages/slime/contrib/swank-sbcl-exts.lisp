@@ -31,10 +31,15 @@
         (destructuring-bind (instruction &rest args) argument-forms
           (declare (ignore args))
           (let* ((instr-name
-                  (if (arglist-dummy-p instruction)
-                      (string-upcase (arglist-dummy.string-representation instruction))
-                      (string-downcase (symbol-name instruction))))
+                   (typecase instruction
+                     (arglist-dummy
+                      (string-upcase (arglist-dummy.string-representation instruction)))
+                     (symbol
+                      (string-downcase instruction))))
                  (instr-fn
+                   #+#.(swank/backend:with-symbol 'op-encoder-name 'sb-assem)
+                   (or (sb-assem::op-encoder-name instr-name)
+                       (sb-assem::op-encoder-name (string-upcase instr-name)))
                    #+#.(swank/backend:with-symbol 'inst-emitter-symbol 'sb-assem)
                    (sb-assem::inst-emitter-symbol instr-name)
                    #+(and
