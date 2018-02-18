@@ -106,6 +106,7 @@ exported Elisp file.
 (require 'js)
 (require 'log-edit)
 (require 'lorem-ipsum)
+(require 'lua-mode)
 (require 'ls-lisp)
 (require 'mail-source)
 (require 'message)
@@ -1735,6 +1736,14 @@ KEYWORDS are the keywords for the file."
   (gk-turn-on-outline-minor-mode "####* " ":$" "C-'"))
 
 (add-hook 'shell-script-mode 'gk-shell-script-hook)
+#+END_SRC
+
+*** Lua
+#+BEGIN_SRC elisp :tangle yes :comments both
+(defun gk-lua-mode-hook ()
+  (imenu-add-to-menubar "Definitions"))
+
+(add-hook 'lua-mode-hook #'gk-lua-mode-hook)
 #+END_SRC
 
 ** Ibuffer
