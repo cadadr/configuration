@@ -99,6 +99,7 @@ exported Elisp file.
 (require 'ido)
 (require 'image)
 (require 'image-dired)
+(require 'imenu)
 (require 'inf-lisp)
 (require 'inf-ruby)
 (require 'ispell)
@@ -1503,7 +1504,11 @@ Usable for Repl buffers."
 
 **** Emacs Lisp
 #+BEGIN_SRC elisp :tangle yes :comments both
+(defun gk-emacs-lisp-mode-hook ()
+  (imenu-add-to-menubar "Definitions")) 
+
 (add-hook 'emacs-lisp-mode-hook 'gk-lisp-mode-hook)
+(add-hook 'emacs-lisp-mode-hook 'gk-emacs-lisp-mode-hook)
 (add-hook 'lisp-interaction-mode-hook 'gk-lisp-mode-hook)
 
 (defun gk-lisp-interaction-mode-hook ()
@@ -2552,7 +2557,8 @@ the template description."
   (auto-fill-mode 1)
   ;; Disable in org mode
   (when (boundp goto-address-mode)
-    (goto-address-mode -1)))
+    (goto-address-mode -1))
+  (imenu-add-to-menubar "Entries"))
 
 (add-hook 'org-mode-hook 'gk-org-hook)
 #+END_SRC
