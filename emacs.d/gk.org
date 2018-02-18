@@ -1958,6 +1958,7 @@ Otherwise start mail program in offline mode."
  gnus-home-directory gnus-default-directory
  gnus-directory (gnus-file "news")
  message-directory (gnus-file "mail") ; nnml-directory is set from this.
+ mail-source-directory (gnus-file "mail")
  gnus-startup-file (gnus-file "newsrc")
  nnmail-message-id-cache-file (gnus-file "nnmail-cache")
  nnfolder-directory (gnus-file "mail/archive")
