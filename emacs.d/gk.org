@@ -1677,12 +1677,22 @@ KEYWORDS are the keywords for the file."
      (re-search-backward "^\\(%[qw]\\|class\\|def\\|if\\|begin\\|module\\)")
      (re-search-forward "^end"))))
 
+(defun gk-ri (what)
+  "Interface to ri(1) documentation browser."
+  (interactive (list (read-string "Search in Ruby documentation: ")))
+  (let ((buf (get-buffer-create "*ri*")))
+    (with-current-buffer buf
+      (erase-buffer)
+      (shell-command (format "ri -f ansi '%s'" what) buf)
+      (ansi-color-filter-region (goto-char (point-min)) (point-max)))))
+
 (define-key ruby-mode-map "\C-\M-x" 'ruby-send-definition)
 (define-key ruby-mode-map "\C-x\C-e" 'ruby-send-last-sexp)
 (define-key ruby-mode-map "\C-c\C-b" 'ruby-send-block)
-(define-key ruby-mode-map "\C-x\C-r" 'ruby-send-region)
+(define-key ruby-mode-map "\C-c\C-r" 'ruby-send-region)
 (define-key ruby-mode-map "\C-c\C-l" 'gk-ruby-send-line)
 (define-key ruby-mode-map "\C-c\C-t" 'gk-ruby-send-toplevel)
+(define-key ruby-mode-map "\C-c\C-h" 'gk-ri)
 
 (add-hook 'ruby-mode-hook 'gk-algol-like-hook)
 #+END_SRC
