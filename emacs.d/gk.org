@@ -1697,7 +1697,11 @@ KEYWORDS are the keywords for the file."
 (defun gk-ruby-mode-hook ()
   (imenu-add-to-menubar "Definitions"))
 
+(defun gk-inf-ruby-mode-hook ()
+  (setf truncate-lines nil word-wrap t))
+
 (add-hook 'ruby-mode-hook 'gk-ruby-mode-hook)
+(add-hook 'inf-ruby-mode-hook 'gk-inf-ruby-mode-hook)
 (add-hook 'ruby-mode-hook 'gk-algol-like-hook)
 #+END_SRC
 
