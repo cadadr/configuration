@@ -64,7 +64,7 @@ DEPS+=python-minimal python python3 python3-pip virtualenv python3-venv	\
 #### Perl:
 DEPS+=perl perl-modules-5.24 perlbrew cpanminus liblocal-lib-perl
 #### Ruby:
-DEPS+=bundler ri ruby
+DEPS+=bundler ri ruby ruby-redcloth
 
 ### Rules:
 list-deps:
