@@ -2,6 +2,7 @@ bin				bin
 .cvsrc				dotfiles/cvsrc
 .gitconfig			dotfiles/gitconfig.ini
 .hgrc				dotfiles/hgrc.ini
+.irbrc				dotfiles/irbrc.rb
 .profile			dotfiles/profile.sh
 .bashrc				dotfiles/shrc.sh
 .signature			dotfiles/signature
