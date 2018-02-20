@@ -710,8 +710,8 @@ the user for taking action."
 
 ;; Set up so that there's 75-80 chars width for half-sized horizontal
 ;; windows.
-(defconst gk-font-default-height 110)
-(defconst gk-font-variable-pitch-height 110)
+(defconst gk-font-default-height 90)
+(defconst gk-font-variable-pitch-height 90)
 (defalias 'gk-font-org-variable-pitch-height
   'gk-font-variable-pitch-height)
 
