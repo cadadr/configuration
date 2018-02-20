@@ -1281,6 +1281,13 @@ backwards."
 (setq zencoding-preview-default nil)
 #+END_SRC
 
+*** Textile
+Instead of using a Textile mode, I just use =text-mode=.
+
+#+BEGIN_SRC elisp :tangle yes :comments both
+(add-to-list 'auto-mode-alist '("\\.textile" . text-mode))
+#+END_SRC
+
 *** Editing macroes
 #+BEGIN_SRC elisp :tangle yes :comments both
 (setf
