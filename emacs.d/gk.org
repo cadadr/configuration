@@ -1694,6 +1694,10 @@ KEYWORDS are the keywords for the file."
 (define-key ruby-mode-map "\C-c\C-t" 'gk-ruby-send-toplevel)
 (define-key ruby-mode-map "\C-c\C-h" 'gk-ri)
 
+(defun gk-ruby-mode-hook ()
+  (imenu-add-to-menubar "Definitions"))
+
+(add-hook 'ruby-mode-hook 'gk-ruby-mode-hook)
 (add-hook 'ruby-mode-hook 'gk-algol-like-hook)
 #+END_SRC
 
