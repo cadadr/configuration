@@ -38,7 +38,7 @@ DEPS+=libxrandr-dev
 ### Documentation:
 DEPS+=autoconf-doc ffmpeg-doc mailutils-doc nginx-doc perl-doc		\
 	python3-doc sbcl-doc gimp-help git-doc gnutls-doc doc-debian	\
-	manpages man-db debian-faq gnuplot-doc
+	manpages man-db debian-faq gnuplot-doc bash-doc
 ### Emacs:
 DEPS+=libjansson-dev		# Jansson is for faster JSON.
 DEPS+=gnutls-dev
