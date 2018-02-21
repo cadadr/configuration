@@ -52,6 +52,7 @@ exported Elisp file.
 #+BEGIN_SRC elisp :tangle yes :comments both
 (eval-when-compile (require 'cl))
 (require 'ace-jump-mode)
+(require 'ansi-color)
 (require 'apropos)
 (require 'auth-source)
 (require 'autoinsert)
