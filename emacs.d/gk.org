@@ -3569,6 +3569,7 @@ the body of the entry, and the cdr is the score, an integer.")
 (gk-prefix-binding "oe" 'gk-org-pdf-subtree)
 (gk-prefix-binding "od" 'gk-org-decrypt-element)
 (gk-prefix-binding "oa" 'org-agenda)
+(gk-prefix-binding "a" 'org-agenda)
 (gk-prefix-binding "c" 'org-capture)
 (gk-prefix-binding "oo" (gk-interactively (org-agenda nil "g")))
 #+END_SRC
