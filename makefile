@@ -43,11 +43,7 @@ DEBIANDIR=system/debian
 $(DEBIANDIR)/etc/resolv.conf: $(DEBIANDIR)/etc/resolv.conf.in
 	$(M4) $< > $@
 
-$(DEBIANDIR)/etc/NetworkManager/system-connections/feriha: $(DEBIANDIR)/etc/NetworkManager/system-connections/feriha.in
-	$(M4) $< > $@
-
 DEBIANCONFFILS=$(DEBIANDIR)/etc/resolv.conf
-DEBIANCONFFILS+=$(DEBIANDIR)/etc/NetworkManager/system-connections/feriha
 debian-config-files: $(DEBIANCONFFILS)
 
 export GLOBIGNORE=*.in
