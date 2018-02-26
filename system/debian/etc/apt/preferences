@@ -9,8 +9,20 @@ Package: *
 Pin: release a=unstable
 Pin-Priority: 2
 
-# Install firefox from unstable instead.
+# Install apt from unstable.
+Package: apt
+Pin: release a=unstable
+Pin-Priority: 1001
 
+Package: apt-*
+Pin: release a=unstable
+Pin-Priority: 1001
+
+Package: libapt-*
+Pin: release a=unstable
+Pin-Priority: 1001
+
+# Install firefox from unstable.
 Package: firefox
 Pin: release a=unstable
 Pin-Priority: 1001
