@@ -65,3 +65,4 @@
 ;;; Auto-generated stuff:
 
 (put 'scroll-left 'disabled nil)
+(put 'list-timers 'disabled nil)
