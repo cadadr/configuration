@@ -156,8 +156,7 @@ current repl's (as per slime-output-buffer) window."
 
 (defun slime-repl-insert-banner ()
   (when (zerop (buffer-size))
-    (let ((welcome (concat "; SLIME " (or (slime-changelog-date)
-                                          "- ChangeLog file not found"))))
+    (let ((welcome (concat "; SLIME " slime-version)))
       (insert welcome))))
 
 (defun slime-init-output-buffer (connection)
@@ -1197,6 +1196,7 @@ The handler will use qeuery to ask the use if the error should be ingored."
   (let ((map (make-sparse-keymap)))
     (define-key map "\C-m" 'slime-repl-return)
     (define-key map [return] 'slime-repl-return)
+    (define-key map (kbd "TAB") 'self-insert-command)
     (define-key map "\C-c\C-b" 'slime-repl-read-break)
     (define-key map "\C-c\C-c" 'slime-repl-read-break)
     (define-key map [remap slime-indent-and-complete-symbol] 'ignore)

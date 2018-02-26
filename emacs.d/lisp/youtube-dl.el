@@ -11,7 +11,6 @@
 
 ;;; Code:
 (require 'cl-lib)
-(require 'gk-utils)
 
 (defvar youdl-git-repo
   (expand-file-name "~/co/External/youtube-dl")
@@ -22,7 +21,9 @@
   "The location of the youtube-dl script within ‘youdl-git-repo’")
 
 (defun youdl-update ()
-  "Update youtube-dl via git.")
+  "Update youtube-dl via git."
+  (let ((default-directory youdl-git-repo))
+    (async-shell-command "git pull")))
 
 (defun youdl-run (callback &rest args)
   "Run youtube-dl script as an asynchronous subprocess.

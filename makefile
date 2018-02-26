@@ -43,14 +43,14 @@ DEBIANDIR=system/debian
 $(DEBIANDIR)/etc/resolv.conf: $(DEBIANDIR)/etc/resolv.conf.in
 	$(M4) $< > $@
 
-$(DEBIANDIR)/etc/network/interfaces: $(DEBIANDIR)/etc/network/interfaces.in
-	$(M4) $< > $@
-
-DEBIANCONFFILS=$(DEBIANDIR)/etc/resolv.conf $(DEBIANDIR)/etc/network/interfaces
+DEBIANCONFFILS=$(DEBIANDIR)/etc/resolv.conf
 debian-config-files: $(DEBIANCONFFILS)
 
+export GLOBIGNORE=*.in
+
 debian-config: debian-config-files
-	cp -RPvu --preserve=mode --backup=numbered $(DEBIANDIR)/* / && locale-gen
+	cp -RPvu --preserve=mode --backup=numbered $(DEBIANDIR)/* /\
+		&& locale-gen && update-grub
 
 ubuntu-init: deb-inst ubuntu-config
 

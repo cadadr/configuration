@@ -1,14 +1,15 @@
 # i3 configuration
 
 set $mod Mod4
-font pango:DejaVu Sans Mono 8
+font pango:DejaVu Sans 10
 floating_modifier $mod
-bindsym $mod+Shift+k kill
 
-bindsym $mod+x exec --no-startup-id i3-dmenu-desktop
-bindsym $mod+Shift+x exec dmenu_run
-bindsym $mod+Shift+Return exec i3-sensible-terminal
-bindsym $mod+l exec i3lock -fec 444444
+bindsym F12 exec --no-startup-id i3-dmenu-desktop
+bindsym Shift+F12 exec dmenu_run
+bindsym $mod+Return exec i3-sensible-terminal
+
+set $Locker i3lock -fec 000000 && sleep 1
+bindsym $mod+l exec --no-startup-id $Locker, mode "default"
 
 bindsym $mod+b focus left
 bindsym $mod+n focus down
@@ -20,13 +21,13 @@ bindsym $mod+Shift+n move down
 bindsym $mod+Shift+p move up
 bindsym $mod+Shift+f move right
 
-bindsym $mod+1 fullscreen toggle
+bindsym F11 fullscreen toggle
 bindsym $mod+2 split v
 bindsym $mod+3 split h
 
 bindsym $mod+s layout stacking
 bindsym $mod+t layout tabbed
-bindsym $mod+0 layout toggle split
+bindsym $mod+1 layout toggle split
 bindsym $mod+semicolon floating toggle
 
 # change focus between tiling / floating windows
@@ -36,32 +37,49 @@ bindsym $mod+u focus parent
 bindsym $mod+c focus child
 
 # switch to workspace
-bindsym $mod+Ctrl+1 workspace 1
-bindsym $mod+Ctrl+2 workspace 2
-bindsym $mod+Ctrl+3 workspace 3
-bindsym $mod+Ctrl+4 workspace 4
-bindsym $mod+Ctrl+5 workspace 5
-bindsym $mod+Ctrl+6 workspace 6
-bindsym $mod+Ctrl+7 workspace 7
-bindsym $mod+Ctrl+8 workspace 8
-bindsym $mod+Ctrl+9 workspace 9
+bindsym F1 workspace 1
+bindsym F2 workspace 2
+bindsym F3 workspace 3
+bindsym F4 workspace 4
+bindsym F5 workspace 5
+bindsym F6 workspace 6
+bindsym F7 workspace 7
+bindsym F8 workspace 8
+bindsym F9 workspace 9
 
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace 1
-bindsym $mod+Shift+2 move container to workspace 2
-bindsym $mod+Shift+3 move container to workspace 3
-bindsym $mod+Shift+4 move container to workspace 4
-bindsym $mod+Shift+5 move container to workspace 5
-bindsym $mod+Shift+6 move container to workspace 6
-bindsym $mod+Shift+7 move container to workspace 7
-bindsym $mod+Shift+8 move container to workspace 8
-bindsym $mod+Shift+9 move container to workspace 9
+bindsym Shift+F1 move container to workspace 1
+bindsym Shift+F2 move container to workspace 2
+bindsym Shift+F3 move container to workspace 3
+bindsym Shift+F4 move container to workspace 4
+bindsym Shift+F5 move container to workspace 5
+bindsym Shift+F6 move container to workspace 6
+bindsym Shift+F7 move container to workspace 7
+bindsym Shift+F8 move container to workspace 8
+bindsym Shift+F9 move container to workspace 9
 
 bindsym $mod+g reload
 bindsym $mod+Shift+g restart
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Bye?' -b 'Yes' 'i3-msg exit'"
+bindsym $mod+e exec "i3-nagbar -t warning -m 'Bye?' -b 'Yes' 'i3-msg exit'"
+bindsym $mod+k kill
+
+# color theme:
+client.focused		#000000	#dddddd	#000000	#000000
+client.focused_inactive	#000000	#0087af	#000000	#000000
+client.unfocused	#000000	#000000	#ffffff	#ffffff
+client.urgent		#000000	#C20000	#ffffff	#ffffff
 
 bar {
-	position top
-        status_command i3status
+	font pango:DejaVu Sans 12
+	position bottom
+	status_command i3status
+	colors {
+		separator		#C20000
+		background		#dddddd
+		statusline		#000000
+		focused_workspace	#000000	#dddddd	#000000
+		active_workspace	#000000	#dddddd	#000000
+		inactive_workspace	#dddddd	#dddddd	#000000
+		urgent_workspace	#C20000	#dddddd	#000000
+	}
 }

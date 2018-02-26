@@ -43,11 +43,19 @@
 (setf load-prefer-newer t)
 
 (require 'org)
-(let ((init-file (locate-user-emacs-file "gk.org")))
-  (with-current-buffer
-      (find-file-noselect init-file)
-    (org-babel-tangle nil nil "elisp")
-    (org-babel-load-file init-file)))
+(let* ((init-org (locate-user-emacs-file "gk.org"))
+       (init-org-modtime
+        (time-to-seconds
+         (file-attribute-modification-time (file-attributes init-org))))
+       (init-org-buf (find-file-noselect init-org))
+       (init-el (locate-user-emacs-file "gk.el"))
+       (init-el-modtime
+        (time-to-seconds
+         (file-attribute-modification-time (file-attributes init-el)))))
+  (when (> init-org-modtime init-el-modtime)
+    (with-current-buffer init-org-buf
+      (org-babel-tangle nil nil "elisp")))
+  (load (file-name-sans-extension init-el)))
 
 
 ;;; Footer:
@@ -56,3 +64,5 @@
 
 ;;; Auto-generated stuff:
 
+(put 'scroll-left 'disabled nil)
+(put 'list-timers 'disabled nil)

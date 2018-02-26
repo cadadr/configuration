@@ -17,7 +17,7 @@ setxkbmap gb basic ctrl:nocaps
 xmodmap $MEINE/xmodmap.txt
 
 echo Set the background.
-feh --no-fehbg --bg-fill ~/Pictures/Wallpapers/415656-2048x1365.jpg
+feh --no-fehbg --bg-fill ~/pic/Wallpapers/415656-2048x1365.jpg
 
 echo xinput settings
 xinput --set-prop 'ETPS/2 Elantech Touchpad' 286 1 # natural scrolling
@@ -25,7 +25,8 @@ xinput --set-prop 'ETPS/2 Elantech Touchpad' 286 1 # natural scrolling
 xinput --set-prop 'ETPS/2 Elantech Touchpad' 294 0 1
 
 echo Start initial apps
-volti & #sound applet
+volti &	#sound applet
+nm-applet & # NetworkManager applet
 
 # Set up the desktop.
 # -geometry args: wxh+x+y
