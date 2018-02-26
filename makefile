@@ -50,7 +50,7 @@ export GLOBIGNORE=*.in
 
 debian-config: debian-config-files
 	cp -RPvu --preserve=mode --backup=numbered $(DEBIANDIR)/* /\
-		&& locale-gen
+		&& locale-gen && update-grub
 
 ubuntu-init: deb-inst ubuntu-config
 
