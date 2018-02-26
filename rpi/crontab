@@ -3,5 +3,5 @@ PATH=/home/pi/bin:/usr/bin:/usr/sbin:/usr/local/bin:/sbin:/bin
 GKCRON=yes
 
 # min	hour		d/month	month	d/week	command
-0	10,15,20	*	*	1-5	cd $HOME/scrapeiu && sh run.sh> $HOME/scrape.log/ 2> $HOME/scrape.log/
+0	10,15,20	*	*	1-5	cd $HOME/scrapeiu && sh run.sh>> $HOME/scrape.log 2>> $HOME/scrape.log
 # end
