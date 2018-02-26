@@ -428,7 +428,7 @@ how these are bound.
              (save-excursion
                (goto-char mark)
                (insert string)
-               (ansi-color-apply-on-region mark (point))
+               (ansi-color-filter-region mark (point))
                (set-marker mark (point))))))))))
 ;; Make sure that emacs itself uses ‘more’,  necessary for ‘man’ command.
 (setenv "PAGER" "more")
@@ -1897,22 +1897,27 @@ Otherwise start mail program in offline mode."
       (gnus-unplugged))))
 #+END_SRC
 
-*** Fetch mail
+*** Movemail program
+Ensure that a safe movemail is used.  I configure Emacs to use system
+movemail at build time, but if somehow it doesn't, try to ensure it
+does here.
+
 #+BEGIN_SRC elisp :tangle yes :comments both
-(setf mail-source-movemail-program (gk-executable-ensure "movemail"))
+(unless (string-match "with-mailutils" system-configuration-options)
+ (setf mail-source-movemail-program (gk-executable-ensure "movemail")))
 #+END_SRC
 
-**** Mail sources
+*** Mail sources
 #+BEGIN_SRC elisp :tangle yes :comments both
 (load (dropbox "mail-sources") t)
 #+END_SRC
 
-**** Spam-checking and splitting mail
+*** Spam-checking and splitting mail
 #+BEGIN_SRC elisp :tangle yes :comments both
 (spam-initialize)
 #+END_SRC
 
-***** Spam
+**** Spam
 #+BEGIN_SRC elisp :tangle yes :comments both
 (setf
  spam-use-BBDB t
@@ -1921,7 +1926,7 @@ Otherwise start mail program in offline mode."
  gnus-spam-newsgroup-contents '(("spam" gnus-group-spam-classification-spam)))
 #+END_SRC
 
-***** Split mail
+**** Split mail
 #+BEGIN_SRC elisp :tangle yes :comments both
 (setf
  nnmail-split-methods 'nnmail-split-fancy
@@ -1936,7 +1941,7 @@ Otherwise start mail program in offline mode."
 (load (dropbox "split-mail") t)
 #+END_SRC
 
-**** Sending mail
+*** Sending mail
 #+BEGIN_SRC elisp :tangle yes :comments both
 (setf
  message-send-mail-function 'smtpmail-send-it
@@ -1951,10 +1956,12 @@ Otherwise start mail program in offline mode."
 ;; Spammers are everywhere.
 (setf user-mail-address (concat "self" "@" "gkayaalp" "." "com")
       user-full-name "Göktuğ Kayaalp")
+#+END_SRC
 
+*** Message mode
+#+BEGIN_SRC elisp :tangle yes :comments both
 (add-hook 'message-setup-hook 'bbdb-mail-aliases)
 
-;; Message mode config.
 (setf
  message-citation-line-function 'message-insert-formatted-citation-line
  message-citation-line-format "On %Y-%m-%d %R %Z, %f wrote:")
@@ -1969,10 +1976,11 @@ Otherwise start mail program in offline mode."
   (epa-mail-mode 1))
 
 (add-hook 'message-mode-hook 'gk-message-mode-hook)
+(define-key message-mode-map (kbd "C-c C-c") 'message-send)
 #+END_SRC
 
-**** Gnus
-***** Files and directories
+*** Gnus
+**** Files and directories
 #+BEGIN_SRC elisp :tangle yes :comments both
 (setf gnus-default-directory (expand-file-name "~/posta"))
 
@@ -1991,7 +1999,7 @@ Otherwise start mail program in offline mode."
  gnus-init-file (gnus-file "gnus-init"))
 #+END_SRC
 
-***** Methods
+**** Methods
 #+BEGIN_SRC elisp :tangle yes :comments both
 (setf
  gnus-select-method '(nnml "")
@@ -2004,7 +2012,7 @@ Otherwise start mail program in offline mode."
 
 #+END_SRC
 
-***** Mime
+**** Mime
 #+BEGIN_SRC elisp :tangle yes :comments both
 (setf
  mm-enable-external 'ask
@@ -2016,12 +2024,12 @@ Otherwise start mail program in offline mode."
    "text/x-patch" "text/vcard" "text/x-org"))
 #+END_SRC
 
-***** Keys
+**** Keys
 #+BEGIN_SRC elisp :tangle yes :comments both
 (define-key gnus-article-mode-map "\C-cw" 'gnus-article-browse-html-article)
 #+END_SRC
 
-***** User interface
+**** User interface
 #+BEGIN_SRC elisp :tangle yes :comments both
 (setf
  ;; U: read status
