@@ -2224,7 +2224,9 @@ For PATH, DESC and FORMAT see `org-add-link-type'."
  ;; Don't show done items.
  org-agenda-skip-deadline-if-done t
  org-agenda-skip-scheduled-if-done t
- org-agenda-skip-timestamp-if-done t)
+ org-agenda-skip-timestamp-if-done t
+ ;; Don't mess with my window setup.
+ org-agenda-window-setup 'current-window)
 
 (setf
  org-agenda-custom-commands
