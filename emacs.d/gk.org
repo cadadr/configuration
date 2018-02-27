@@ -2664,7 +2664,7 @@ the template description."
   (setf frame-background-mode nil)
   ;; Update all the existing frames.
   (mapc 'frame-set-background-mode (frame-list))
-  (load-theme 'paper t)
+  (load-theme 'wombat t)
 
   (set-face-attribute 'default nil
                       :height gk-font-default-height
