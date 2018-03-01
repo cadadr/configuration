@@ -242,18 +242,6 @@ exported Elisp file.
 	     buffer
 	     major-mode)))
 
-(defun gk-recompile (&optional force)
-  "Recompile my files.
-If FORCE is non-nil, force compilation, i.e. compile even if
-up-to-date."
-  (interactive "p")
-  (byte-recompile-directory (locate-user-emacs-file "packages") 0)
-  (byte-recompile-directory (locate-user-emacs-file "site") 0)
-  (byte-recompile-directory (dropbox "") 0 (> force 1))
-  (byte-recompile-file (concat gk-website-settings ".el") (> force 1) 0)
-  (when custom-file
-    (byte-recompile-file custom-file (> force 1) 0)))
-
 (defun gk-comment-dwim (arg)
   "If region is active, or at the end of the line, call ‘comment-dwim’.
 Pass ARG to ‘comment-dwim’ in that case.
@@ -374,6 +362,47 @@ i.e. i18n -> internationalisation."
     (if (> slen len)
         (s-truncate len s)
       (concat s (make-string (- len slen) ?\ )))))
+#+END_SRC
+
+** Recompilation
+This bit of code helps with recompilation.  Various files external to
+the configuration tree are loaded during the initialisation process.
+Here we define a function called =gk-load= which makes note of each
+file it loads in the variable =gk-loaded-files=, which is then used by
+=gk-recompile= to determine which files need to be compiled to boost
+the load speed next time.  This way, =gk-recompile= does not need a
+manually curated list of files to be compiled, like it did up until
+now.
+
+#+BEGIN_SRC elisp :tangle yes :comments both
+(defvar gk-loaded-files nil)
+
+(defun gk-load (&rest args)
+  "Identical to ‘load’, but makes note of files.
+This function passes its arguments untouched to ‘load’, but
+conses the car of ARGS to ‘gk-loaded-files’.  The contents of
+that variable is then to be used to byte compile all the files
+explicitly loaded in this config without manually listing their
+names."
+  (when (apply #'load args)
+    (pushnew (expand-file-name (car args)) gk-loaded-files)))
+
+(defun gk-recompile (&optional force)
+  "Recompile my configuration.
+If FORCE is non-nil, force compilation, i.e. compile even if
+up-to-date."
+  (interactive "p")
+  (mapcar ($ (byte-recompile-file $1 (> force 1) 0))
+          (remove-if-not
+           #'file-exists-p
+           (concatenate 'list
+                        (list custom-file user-init-file
+                              (locate-user-emacs-file "gk.el"))
+                        gk-loaded-files)))
+  (byte-recompile-directory (locate-user-emacs-file "packages") 0 (> force 4))
+  (byte-recompile-directory (locate-user-emacs-file "site") 0 (> force 4))
+  (when custom-file
+    (byte-recompile-file custom-file (> force 1) 0)))
 #+END_SRC
 
 ** Footnotes
@@ -1411,7 +1440,7 @@ my configurations."
 
 *** Secrets
 #+BEGIN_SRC elisp :tangle yes :comments both
-(load (dropbox "secrets") t)
+(gk-load (dropbox "secrets") t)
 #+END_SRC
 
 ** Version control
@@ -1916,7 +1945,7 @@ does here.
 
 *** Mail sources
 #+BEGIN_SRC elisp :tangle yes :comments both
-(load (dropbox "mail-sources") t)
+(gk-load (dropbox "mail-sources") t)
 #+END_SRC
 
 *** Spam-checking and splitting mail
@@ -1945,7 +1974,7 @@ does here.
  ;;
  ;; My god.
  nnmail-split-fancy-match-partial-words t)
-(load (dropbox "split-mail") t)
+(gk-load (dropbox "split-mail") t)
 #+END_SRC
 
 *** Sending mail
@@ -1958,7 +1987,7 @@ does here.
  smtpmail-stream-type 'ssl
  smtpmail-smtp-service 465)
 
-(load (dropbox "smtp") t)
+(gk-load (dropbox "smtp") t)
 
 ;; Spammers are everywhere.
 (setf user-mail-address (concat "self" "@" "gkayaalp" "." "com")
@@ -2580,7 +2609,7 @@ the template description."
 
 *** Publish
 #+BEGIN_SRC elisp :tangle yes :comments both
-(load gk-website-settings t)
+(gk-load gk-website-settings t)
 #+END_SRC
 
 *** Caldav
@@ -2619,7 +2648,7 @@ the template description."
 
 *** Private settings
 #+BEGIN_SRC elisp :tangle yes :comments both
-(load (gk-org-dir-file "settings") t)
+(gk-load (gk-org-dir-file "settings") t)
 #+END_SRC
 
 ** Multimedia
@@ -3331,7 +3360,7 @@ It is rather slow to do so."
 Load feeds from external source.
 
 #+BEGIN_SRC elisp :tangle yes :comments both
-(load (dropbox "feeds") t)
+(gk-load (dropbox "feeds") t)
 #+END_SRC
 
 **** Keys
@@ -3733,5 +3762,5 @@ URL is the URL to the dictionary, %s where the word should be put."
   ;; Start the server.
   (server-start)
   (add-hook 'server-switch-hook 'raise-frame))
-(load (file-name-sans-extension custom-file))
+(gk-load (file-name-sans-extension custom-file))
 #+END_SRC
