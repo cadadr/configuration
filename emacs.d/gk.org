@@ -2666,6 +2666,11 @@ the template description."
 ** User interface
 *** GUI
 #+BEGIN_SRC elisp :tangle yes :comments both
+(defvar gk-gui-theme nil
+  "The default theme's name to load at startup.")
+
+(setf gk-gui-theme 'wombat)
+
 (when (gk-gui-p)
   (add-to-list 'gk-disabled-modes 'tool-bar-mode)
   (add-to-list 'gk-disabled-modes 'scroll-bar-mode)
@@ -2674,7 +2679,15 @@ the template description."
   (setf frame-background-mode nil)
   ;; Update all the existing frames.
   (mapc 'frame-set-background-mode (frame-list))
-  (load-theme 'wombat t)
+
+  (when gk-gui-theme
+    (load-theme gk-gui-theme t))
+
+  ;; With wombat the active window is hard to tell.
+  (when (eq gk-gui-theme 'wombat)
+    (set-face-attribute 'mode-line nil
+                        :background "khaki"
+                        :foreground "black"))
 
   (set-face-attribute 'default nil
                       :height gk-font-default-height
