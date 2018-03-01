@@ -2852,26 +2852,28 @@ the template description."
 
 *** Cursor
 #+BEGIN_SRC elisp :tangle yes :comments both
-(setq-default cursor-type 'bar)
+(setq-default cursor-type 'box)
 (setq-default cursor-in-non-selected-windows 'hollow)
 
-;; Box cursor in special-mode and some other modes.
-(let ((modes '(special-mode-hook term-mode-hook forecast-mode-hook))
-      (hook (defun gk-special-mode-box-cursor ()
-              (setq-local cursor-type 'box)))
-      gnus-modes hookies)
-  ;; Find all gnus modes.
-  (dolist (cns (custom-group-members 'gnus nil))
-    (let* ((sym (car cns))
-           (symnam (symbol-name sym))
-           (hooknam (intern (concat symnam "-mode-hook"))))
-      (when (and (string-prefix-p "gnus-" symnam)
-                 (boundp hooknam))
-        (pushnew hooknam gnus-modes))))
-  ;; Add the hook to all modes.
-  (dolist (hookvar `(,@modes ,@gnus-modes) hookies)
-    (add-hook hookvar hook)
-    (push hookvar hookies)))
+;; Box cursor in special-mode and some other modes when the default
+;; cursor type is 'bar.
+(when (eq cursor-type 'bar)
+ (let ((modes '(special-mode-hook term-mode-hook forecast-mode-hook))
+       (hook (defun gk-special-mode-box-cursor ()
+               (setq-local cursor-type 'box)))
+       gnus-modes hookies)
+   ;; Find all gnus modes.
+   (dolist (cns (custom-group-members 'gnus nil))
+     (let* ((sym (car cns))
+            (symnam (symbol-name sym))
+            (hooknam (intern (concat symnam "-mode-hook"))))
+       (when (and (string-prefix-p "gnus-" symnam)
+                  (boundp hooknam))
+         (pushnew hooknam gnus-modes))))
+   ;; Add the hook to all modes.
+   (dolist (hookvar `(,@modes ,@gnus-modes) hookies)
+     (add-hook hookvar hook)
+     (push hookvar hookies))))
 #+END_SRC
 
 *** Goto-address mode
