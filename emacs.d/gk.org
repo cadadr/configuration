@@ -335,7 +335,14 @@ When ARG is a positive number, repeat that many times."
   "Take me to the home view."
   (interactive)
   (delete-other-windows)
-  (find-file (gk-org-dir-file "start.org")))
+  (find-file (gk-org-dir-file "start.org"))
+  (split-window-horizontally 75)
+  (other-window 1)
+  (org-agenda nil "g")
+  (split-window-horizontally 70)
+  (other-window 1)
+  (dired "~/wrk")
+  (other-window 1))
 
 (defun gk-maybe-expand-abbrev-or-space ()
   (interactive)
