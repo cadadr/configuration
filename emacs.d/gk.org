@@ -2211,6 +2211,7 @@ For PATH, DESC and FORMAT see `org-add-link-type'."
       org-caldav-save-directory (locate-user-emacs-file "etc/")
       org-default-notes-file (gk-org-dir-file "start.org")
       org-agenda-files (gk-org-dir-files "ajanda.org" "caldav.org")
+      org-icalendar-combined-agenda-file (gk-org-dir-file "ajanda.ics")
       org-id-locations-file (locate-user-emacs-file "etc/org-id-locations.el"))
 #+END_SRC
 
