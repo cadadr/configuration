@@ -64,10 +64,11 @@ bindsym $mod+e exec "i3-nagbar -t warning -m 'Bye?' -b 'Yes' 'i3-msg exit'"
 bindsym $mod+k kill
 
 # color theme:
-client.focused		#000000	#dddddd	#000000	#000000
-client.focused_inactive	#000000	#0087af	#000000	#000000
-client.unfocused	#000000	#000000	#ffffff	#ffffff
-client.urgent		#000000	#C20000	#ffffff	#ffffff
+# colorclass		border	background	text 	indicator	child_border
+client.focused		#dedede	#dedede		#000000	#000000		#dedede
+client.focused_inactive	#dedede	#dedede		#000000	#000000		#dedede
+client.unfocused	#dedede	#000000		#ffffff	#ffffff		#dedede
+client.urgent		#dedede	#C20000		#ffffff	#ffffff		#dedede
 
 bar {
 	font pango:DejaVu Sans 12
