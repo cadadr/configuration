@@ -2583,7 +2583,10 @@ BEGIN and END are bounds of the region."
 (setf
  ;; Normally, org indents the src block after editing source code with
  ;; C-c ', disable that behaviour.
- org-src-preserve-indentation t)
+ org-src-preserve-indentation t
+ ;; Don't change the window layout when editing source blocks, open
+ ;; them instead in the current window.
+ org-src-window-setup 'current-window)
 #+END_SRC
 
 *** Babel
