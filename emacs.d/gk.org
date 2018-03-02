@@ -1,5 +1,6 @@
 #+title: Göktuğ's GNU Emacs Initialisation File
 #+latex_class: gk-article
+#+CATEGORY: emacs.d
 
 * Intro
 This is Göktuğ's GNU Emacs Initialisation File.  It's written in the
