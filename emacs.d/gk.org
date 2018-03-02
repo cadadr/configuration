@@ -2269,11 +2269,28 @@ For PATH, DESC and FORMAT see `org-add-link-type'."
 (setf
  org-agenda-custom-commands
  '(("g" "Agenda for today and all agenda TODOs"
-     ((agenda "" ((org-agenda-span 'day)
-                  (org-agenda-compact-blocks t)))
-      (alltodo "")
-      (alltodo "" ((org-agenda-files (list (gk-org-dir-file "listeler.org")))))))))
+    ((agenda "" ((org-agenda-span 'day)
+                 (org-agenda-compact-blocks t)))
+     (alltodo "" ((org-agenda-files
+                   (cons
+                    (locate-user-emacs-file "gk.org")
+                    (cons (expand-file-name "~/doc/not/www2/Readme.org")
+                          ;; Find Readme.org files.
+                          (seq-filter
+                           ($ (string= (file-name-nondirectory $1) "Readme.org"))
+                           (let ((re directory-files-no-dot-files-regexp))
+                             (apply #'append
+                                    (mapcar
+                                     ($ (when (file-directory-p $1)
+                                          (directory-files $1 t re)))
+                                     (directory-files "~/co" t re))))))))))
+     (tags-todo "+mtd")                ;ajanda.org/Master Todo List.
+     (alltodo "" ((org-agenda-files
+                   (list
+                    (gk-org-dir-file "listeler.org")))))))))
 #+END_SRC
+
+**** DONE Agenda should include todo items from co/**/Readme.org
 
 *** Export
 **** Common
