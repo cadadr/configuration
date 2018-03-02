@@ -2429,7 +2429,35 @@ unlocked, offer to lock it before pasting."
   (ignore args)
   (let ((f (buffer-file-name)))
     (gk-rcs-maybe-unlock f)))
+
+;; For clocking.
+
+(define-advice org-clock-in (:before (&rest args) check-rcs-lock)
+  "Check to see if this file is controlled by RCS and is
+unlocked, offer to lock it before pasting."
+  (ignore args)
+  (let ((f (buffer-file-name)))
+    (message f)
+    (gk-rcs-maybe-unlock f)))
+
+(define-advice org-clock-out (:before (&rest args) check-rcs-lock)
+  "Check to see if this file is controlled by RCS and is
+unlocked, offer to lock it before pasting."
+  (ignore args)
+  (let ((f (buffer-file-name)))
+    (message f)
+    (gk-rcs-maybe-unlock f)))
 #+END_SRC
+
+**** TODO Fix repetition in Org RCS advices
+Maybe add a macro/function =(gk-rcs-advice-for-unlock FUNCTION)= so
+that:
+
+#+BEGIN_SRC elisp
+(gk-rcs-advice-for-unlock #'org-todo)
+#+END_SRC
+
+adds a predefined advice.
 
 *** Structure
 #+BEGIN_SRC elisp :tangle yes :comments both
