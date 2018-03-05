@@ -130,8 +130,7 @@ mkemacsbdir () {
 
 ###
 
-# The apt is stupid.
-alias apt=apt-get
+alias apt-dependencies='apt-cache depends --no-recommends --no-breaks --no-suggests --no-conflicts --no-enhances --no-replaces --recurse'
 alias j=jobs
 alias ls='ls -F'
 alias mo=pg
