@@ -3813,3 +3813,18 @@ URL is the URL to the dictionary, %s where the word should be put."
   (add-hook 'server-switch-hook 'raise-frame))
 (gk-load (file-name-sans-extension custom-file))
 #+END_SRC
+* Issues
+This part is the minimal issue tracker for this config.  For the most
+part, adding TODO entries close to where the problem is is alright,
+but when an ‘issue’ does not belong to any particular place, it can be
+added here.
+
+** TODO make C-h f et al. find definitions in this file.
+Make it so that when definitions of symbols defined in this file are
+looked up (i.e. via xref), they're found in this file, rather than the
+tangled source.  That is,
+
+: (xref-find-definitions sym)
+
+brings me to this file.  Guess this may be a complex thing to do
+though.
