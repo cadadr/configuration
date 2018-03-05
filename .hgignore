@@ -80,22 +80,22 @@
 ido\.last
 ^emacs.d/org-caldav-.*$
 
-^emacs.d/etc/backups/
-^emacs.d/etc/\+scratch\+
-^emacs.d/etc/auto-save-list/
-^emacs.d/etc/tramp/?
-^emacs.d/etc/url/
-^emacs.d/url/cache
-^emacs.d/etc/image-dired/
-^emacs.d/etc/desktop
-^emacs.d/etc/history
-^emacs.d/etc/org-id-locations\.el
-^emacs.d/etc/network-security\.data
-^emacs.d/etc/org-caldav-
+^emacs\.d/etc/backups/
+^emacs\.d/etc/\+scratch\+
+^emacs\.d/etc/auto-save-list/
+^emacs\.d/etc/tramp/?
+^emacs\.d/etc/url/
+^emacs\.d/url/cache
+^emacs\.d/etc/image-dired/
+^emacs\.d/etc/desktop
+^emacs\.d/etc/history
+^emacs\.d/etc/org-id-locations\.el
+^emacs\.d/etc/network-security\.data
+^emacs\.d/etc/org-caldav-
 
-^emacs.d/eshell/(history|lastdir)
+^emacs\.d/eshell/(history|lastdir)
 
-^emacs.d/extras/.*\.el$
-^emacs.d/.trash_emacs/
+^emacs\.d/extras/.*\.el$
+^emacs\.d/.trash_emacs/
 
 \.fasl$
