@@ -15,7 +15,7 @@
 
   ;; Add custom paths.
   (add-to-list 'load-path (expand-file-name  "~/co/elisp"))
-  (dolist (p '("gk" "site" "lisp" "themes" "ext"))
+  (dolist (p '("site" "lisp" "themes" "ext"))
     (add-to-list 'load-path
                  (expand-file-name
                   (locate-user-emacs-file p))))
@@ -52,7 +52,9 @@
        (init-el-modtime
         (time-to-seconds
          (file-attribute-modification-time (file-attributes init-el)))))
-  (when (> init-org-modtime init-el-modtime)
+  (when (or
+	 (not (file-exists-p init-el))
+	 (> init-org-modtime init-el-modtime))
     (with-current-buffer init-org-buf
       (org-babel-tangle nil nil "elisp")))
   (load (file-name-sans-extension init-el)))
