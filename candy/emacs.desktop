@@ -1,9 +1,8 @@
-#!/usr/bin/env xdg-open
 [Desktop Entry]
 Name=GNU Emacs (gk)
 GenericName=Mother of all programs
 Comment=Conquer the world
-Exec=~/local/bin/emacs
+Exec=emacs
 Icon=/home/g/local/share/icons/hicolor/128x128/apps/emacs.png
 Type=Application
 Terminal=false

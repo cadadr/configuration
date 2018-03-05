@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Exec=/bin/sh /home/g/cf/scripts/gsettings.sh
+Hidden=false
+X-GNOME-Autostart-enabled=true
+Name=my gsettings
+Comment=apply my gsettings script
