@@ -28,7 +28,7 @@ DEPS+=firefox libreoffice libreoffice-help-en-gb			\
 	libreoffice-help-en-us xclip gimp gimp-help-en gparted		\
 	gnuplot feedgnuplot gv cheese pavucontrol mpv quodlibet		\
 	eog-plugins simple-scan evince network-manager-gnome sane	\
-	sane-utils
+	sane-utils gnome-maps
 ### Misc:
 #DEPS+=gnome-session		# On Ubuntu, for normal Gnome 3 session
 DEPS+=gnutls-bin cups cups-browsed cups-filters				\
