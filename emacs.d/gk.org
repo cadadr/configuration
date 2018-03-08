@@ -3320,7 +3320,8 @@ provided."
 **** Variables
 #+BEGIN_SRC elisp :tangle yes :comments both
 ;; Set the default filter.
-(setq-default elfeed-search-filter "+unread ")
+(defvar gk-elfeed-default-filter "@1-week-old +unread ")
+(setq-default elfeed-search-filter gk-elfeed-default-filter)
 
 ;; Set up the url-queue variables for swift and complete operation. The
 ;; defaults are too bad. Especially /url-queue-timeout/ is way too short
@@ -3469,13 +3470,13 @@ Define an ‘elfeed-serch-mode’ keybinding prepending the letter
                                   gk-elfeed-search-ring-tags))
                     (car gk-elfeed-search-ring-tags))))
     (gk-elfeed-filter
-     (concat "+unread "
+     (concat gk-elfeed-default-filter
              (setf gk-elfeed-search-ring-current-search search)))))
 
 (defun gk-elfeed-search-ring-previous ()
   (interactive)
   (gk-elfeed-filter
-   (concat "+unread "
+   (concat gk-elfeed-default-filter
            (setf
             gk-elfeed-search-ring-current-search
             (if (or (not gk-elfeed-search-ring-current-search)
