@@ -363,6 +363,15 @@ i.e. i18n -> internationalisation."
     (if (> slen len)
         (s-truncate len s)
       (concat s (make-string (- len slen) ?\ )))))
+
+(defun gk-find-file ()
+  "Like ‘find-file’ but if a path is under point, offer that first."
+  (interactive)
+  (unless
+      (when-let* ((file-name (ffap-file-at-point)))
+        (when (y-or-n-p (format "Visit file under point (%s)?" file-name))
+          (find-file file-name)))
+    (call-interactively #'find-file)))
 #+END_SRC
 
 ** Recompilation
@@ -3603,6 +3612,7 @@ Does various tasks after saving a file, see it's definition."
 (gk-global-binding "\M-;" 'gk-comment-dwim)
 (gk-global-binding "\C-\M-q" 'gk-indent-defun)
 (gk-global-binding "\C-xd" (gk-interactively (dired default-directory)))
+(gk-global-binding "\C-x\C-f" #'gk-find-file)
 ;; So that it doesnt override special-mode and the like.
 (global-set-key [? ] 'gk-maybe-expand-abbrev-or-space)
 
