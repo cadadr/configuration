@@ -89,6 +89,7 @@ exported Elisp file.
 (require 'eww)
 (require 'f)
 (require 'face-remap) ; buffer-face-mode
+(require 'ffap)
 (require 'files)
 (require 'flyspell)
 (require 'forecast)
