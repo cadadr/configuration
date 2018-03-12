@@ -2712,9 +2712,50 @@ the template description."
 
 ** Multimedia
 *** Images
+**** EIMP mode
+EIMP allows for modifying images in some ways, and saving the end
+result in a new file.
+
 #+BEGIN_SRC elisp :tangle yes :comments both
 (add-hook 'image-mode-hook 'eimp-mode)
+#+END_SRC
+
+**** Scaling images
+The following set of key rebindings and the ‘gk-fit-image-to-window’
+function help with viewing images bigger than the window they are in.
+By default, the images overflow in such a situation.  With these
+modifications, the images are rescaled to fit the window as ‘n’ and
+‘p’ keys are pressed to navigate them. ‘=’ manually fits the image to
+the window, and ‘N’ and ‘P’ navigates images wihout resizing.
+
+#+BEGIN_SRC elisp :tangle yes :comments both
+(defun gk-fit-image-to-window ()
+  "Ensure all of the current image is visible in the current window."
+  (interactive)
+  (image-transform-set-scale nil))
+
+(define-key image-mode-map "=" #'gk-fit-image-to-window)
+(define-key image-mode-map "n" (gk-interactively
+                                (image-next-file)
+                                (gk-fit-image-to-window)))
+(define-key image-mode-map "p" (gk-interactively
+                                (image-previous-file 1)
+                                (gk-fit-image-to-window)))
+(define-key image-mode-map "N" #'image-next-file)
+(define-key image-mode-map "P" #'image-previous-file)
+#+END_SRC
+
+**** Keybindings
+By default animated images in Emacs don't loop when played.  We set up
+so that when animated with RET, they play once; and when animated with
+SPC, they loop.  Also, when hit ‘q‘, kill the image buffer, don't bury
+it.  This'd presumably save some memory.
+
+#+BEGIN_SRC elisp :tangle yes :comments both
 (define-key image-mode-map [?q] 'kill-this-buffer)
+(define-key image-mode-map [?\ ] (gk-interactively
+                                   (let ((image-animate-loop t))
+                                     (image-toggle-animation))))
 #+END_SRC
 
 ** OS-specific settings
