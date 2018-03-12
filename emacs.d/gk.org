@@ -1435,7 +1435,9 @@ my configurations."
         global-paren-face-mode
         auto-insert-mode
         url-handler-mode
-        which-key-mode))
+        which-key-mode
+        line-number-mode
+        column-number-mode))
 
 (mapc ($ (pushnew $1 gk-disabled-modes))
       '(electric-indent-mode
@@ -2807,7 +2809,7 @@ it.  This'd presumably save some memory.
 (defvar gk-gui-theme nil
   "The default theme's name to load at startup.")
 
-(setf gk-gui-theme 'wombat)
+(setf gk-gui-theme nil)
 
 (when (gk-gui-p)
   (add-to-list 'gk-disabled-modes 'tool-bar-mode)
