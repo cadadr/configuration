@@ -308,7 +308,8 @@ When ARG is a positive number, repeat that many times."
   (if-let* ((fil (buffer-file-name)))
       (with-temp-buffer
         (insert fil)
-        (clipboard-kill-ring-save (point-min) (point-max)))
+        (clipboard-kill-ring-save (point-min) (point-max))
+        (message fil))
     (error "Buffer not visiting a file.")))
 
 (defun gk-copy-last-message ()
@@ -356,8 +357,16 @@ i.e. i18n -> internationalisation."
     (message "Done."))
 
 (defun gk-delete-buffer-file ()
+  "Delete the file visited in the current buffer."
   (interactive)
   (delete-file (buffer-file-name) delete-by-moving-to-trash))
+
+(defun gk-copy-buffer-file (file dest)
+  "Copy the file visited in the current buffer."
+  (interactive
+    (list (buffer-file-name)
+          (read-file-name (format "Copy %s to: " (buffer-file-name)))))
+  (copy-file file dest nil t t t))
 
 (defun gk-truncate-and-fill-string (len s)
   (let ((slen (length s)))
@@ -3717,6 +3726,15 @@ Does various tasks after saving a file, see it's definition."
 
 ;; Comparison
 (gk-prefix-binding (kbd "C-=") 'diff-buffer-with-file)
+#+END_SRC
+
+*** Current buffer
+Do things with the current buffer.
+
+#+BEGIN_SRC elisp :tangle yes :comments both
+(gk-prefix-binding "bc" #'gk-copy-buffer-file)
+(gk-prefix-binding "bn" #'gk-copy-buffer-file-name)
+(gk-prefix-binding "bD" #'gk-delete-buffer-file)
 #+END_SRC
 
 *** Programming
