@@ -14,22 +14,22 @@ help:
 all: extras docs
 
 ext:
-	cd ext; $(MAKE) $(MAKEFLAGS)
+	cd ext; $(MAKE) -$(MAKEFLAGS); cd ..
 
 extras:
-	cd extras; $(MAKE) $(MAKEFLAGS)
+	cd extras; $(MAKE) -$(MAKEFLAGS); cd ..
 
 docs:
-	cd docs; $(MAKE) $(MAKEFLAGS)
+	cd docs; $(MAKE) -$(MAKEFLAGS); cd ..
 
 clean-ext:
-	cd ext; $(MAKE) $(MAKEFLAGS) clean
+	cd ext; $(MAKE) -$(MAKEFLAGS) clean; cd ..
 
 clean-extras:
-	cd extras; $(MAKE) $(MAKEFLAGS) clean
+	cd extras; $(MAKE) -$(MAKEFLAGS) clean; cd ..
 
 clean-docs:
-	cd docs; $(MAKE) $(MAKEFLAGS) clean
+	cd docs; $(MAKE) -$(MAKEFLAGS) clean; cd ..
 
 clean: clean-extras clean-docs
 
