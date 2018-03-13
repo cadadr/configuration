@@ -325,6 +325,7 @@ When ARG is a positive number, repeat that many times."
 (defun gk-home ()
   "Take me to the home view."
   (interactive)
+  (set-frame-parameter nil 'fullscreen 'maximized)
   (delete-other-windows)
   (find-file (gk-org-dir-file "start.org"))
   (split-window-horizontally 75)
