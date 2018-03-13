@@ -142,6 +142,7 @@ alias logs='cat *.bz2 | bunzip2 - | cat *_log *.old - | goaccess --log-format=CO
 # Recursively download a website at a given url.
 alias wgetall='wget -r -p -E -k -np -w 1'
 alias stracemacs='strace -p $(pgrep emacs) 2>~/stracemacs.log 1>~/stracemacs.log'
+alias free='free -h'
 
 ###
 
