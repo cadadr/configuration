@@ -48,6 +48,8 @@ DEPS+=gnutls-dev
 ### Internet tools:
 DEPS+=bind9utils net-tools curl phantomjs corebird dnsutils w3m w3m-el	\
 	webalizer wget rsync traceroute finger
+# VPN
+DEPS+=openvpn network-manager-openvpn-gnome resolvconf
 ### VCS:
 DEPS+=mercurial cvs git subversion rcs python-hglib python3-hglib	\
 	python-dulwich python-fastimport git-cvs gitk
