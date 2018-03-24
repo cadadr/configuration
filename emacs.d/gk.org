@@ -383,6 +383,20 @@ i.e. i18n -> internationalisation."
         (when (y-or-n-p (format "Visit file under point (%s)?" file-name))
           (find-file file-name)))
     (call-interactively #'find-file)))
+
+(defun // (&rest args)
+  (apply #'/ (mapcar #'float args)))
+
+(defun gk-wikipedia-link-to-wikizero (url)
+  "Convert a Wikipedia URL to a WikiZero one, and browse it.
+WikiZero is a mirror of wikipedia."
+  (interactive
+   (list (read-string "Wikipedia URL: ")))
+  (browse-url
+   (concat
+    "http://www.wiki-zero.com/index.php?q="
+    (base64-encode-string
+     (url-unhex-string url)))))
 #+END_SRC
 
 ** Recompilation
