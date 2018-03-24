@@ -2320,10 +2320,11 @@ For PATH, DESC and FORMAT see `org-add-link-type'."
                                      ($ (when (file-directory-p $1)
                                           (directory-files $1 t re)))
                                      (directory-files "~/co" t re))))))))))
-     (tags-todo "+mtd")                ;ajanda.org/Master Todo List.
      (alltodo "" ((org-agenda-files
                    (list
-                    (gk-org-dir-file "listeler.org")))))))))
+                    (gk-org-dir-file "listeler.org")
+                    "~/doc/not/rsc/Recherche.org"))))
+     (tags-todo "+mtd")))))                ;ajanda.org/Master Todo List.
 #+END_SRC
 
 **** DONE Agenda should include todo items from co/**/Readme.org
