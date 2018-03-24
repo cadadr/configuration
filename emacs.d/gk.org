@@ -2825,7 +2825,7 @@ it.  This'd presumably save some memory.
 (defvar gk-gui-theme nil
   "The default theme's name to load at startup.")
 
-(setf gk-gui-theme nil)
+(setf gk-gui-theme 'paper)
 
 (when (gk-gui-p)
   (add-to-list 'gk-disabled-modes 'tool-bar-mode)
