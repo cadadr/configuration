@@ -15,6 +15,7 @@ case $V in
 	./configure \
 	    --prefix=$HOME/local \
 	    --with-x-toolkit=$TK \
+	    --with-imagemagick \
 	    --with-modules \
 	    --with-file-notification=yes \
 	    --without-threads \
