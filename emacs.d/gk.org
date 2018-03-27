@@ -979,7 +979,9 @@ be generous in keepbing backups.
       (nconc
        (list "~/fil/PDFs" "~/wrk/papers" "~/wrk/leggi" "~/wrk/print"
              "~/wrk")
-       (directory-files "~/wrk/rsc" t "[a-z]" t)))
+       (remove-if-not
+        #'file-directory-p
+        (directory-files "~/wrk/rsc" t "[a-z]" t))))
 
 (defalias 'library 'bibliothek)
 #+END_SRC
