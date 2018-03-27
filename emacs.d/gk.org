@@ -3805,6 +3805,7 @@ Do things with the current buffer.
 (gk-prefix-binding "a" 'org-agenda)
 (gk-prefix-binding "c" 'org-capture)
 (gk-prefix-binding "oo" (gk-interactively (org-agenda nil "g")))
+(gk-prefix-binding "\C-j" #'org-babel-tangle-jump-to-org)
 #+END_SRC
 
 *** Text editing
