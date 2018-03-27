@@ -1,6 +1,6 @@
 ;;; mono-theme.el --- A monochromatic Emacs colour theme. -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2015, 2017 Göktuğ Kayaalp
+;; Copyright (C) 2015, 2017, 2018 Göktuğ Kayaalp
 
 ;; Author: Göktuğ Kayaalp
 ;; Keywords: theme scratch
@@ -38,8 +38,8 @@
       (blue "#0087af")
       (grey "#dee")
       (green "#004953")                 ; midnight green
-      (khaki "#efe")
-      )
+      (khaki "khaki")
+      (beige "beige"))
   (custom-theme-set-faces
    'mono
    ;; === Frame ===
@@ -97,6 +97,8 @@
    `(org-document-title ((t (:foreground ,black :weight bold))))
    `(org-code ((t (:foreground ,green))))
    `(org-block ((t (:foreground ,black))))
+   `(org-block-begin-line ((t (:background ,khaki))))
+   `(org-block ((t (:background ,beige))))
 
    ;; === RMAIL ===
    `(rmail-highlight
