@@ -501,7 +501,12 @@ how these are bound.
                (goto-char mark)
                (insert string)
                (ansi-color-filter-region mark (point))
-               (set-marker mark (point))))))))))
+               (set-marker mark (point)))
+             ;; If the process is done and the output seems to be
+             ;; destined for man, render it as such.
+             (when (process-live-p proc)
+               (when (save-excursion (search-forward "" nil t))
+                 (Man-fontify-manpage))))))))))
 ;; Make sure that emacs itself uses ‘more’,  necessary for ‘man’ command.
 (setenv "PAGER" "more")
 
