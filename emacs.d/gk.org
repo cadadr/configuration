@@ -1,3 +1,4 @@
+# -*- lexical-binding: t -*-
 #+title: Göktuğ's GNU Emacs Initialisation File
 #+latex_class: gk-article
 #+CATEGORY: emacs.d
