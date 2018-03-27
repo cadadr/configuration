@@ -2909,6 +2909,7 @@ it.  This'd presumably save some memory.
  display-buffer-alist
  '(("\*.*Completions\*" . (display-buffer-pop-up-window))
    ("\*Help\*" . (display-buffer-reuse-window))
+   ("Checkdoc" . (display-buffer-pop-up-window))
    (".*" . (display-buffer-same-window)))
  ;; With C-v and M-v, scroll to beginning or end of buffer if at top
  ;; or bottom respectively, or if at beginning or end of buffer,
@@ -3903,6 +3904,7 @@ URL is the URL to the dictionary, %s where the word should be put."
 #+END_SRC
 
 * Set up
+
 #+BEGIN_SRC elisp :tangle yes :comments both
 (unless noninteractive
   ;; Start the server.
@@ -3910,6 +3912,7 @@ URL is the URL to the dictionary, %s where the word should be put."
   (add-hook 'server-switch-hook 'raise-frame))
 (gk-load (file-name-sans-extension custom-file))
 #+END_SRC
+
 * Issues
 This part is the minimal issue tracker for this config.  For the most
 part, adding TODO entries close to where the problem is is alright,
