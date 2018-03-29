@@ -2316,6 +2316,10 @@ For PATH, DESC and FORMAT see `org-add-link-type'."
     ((agenda "" ((org-agenda-span 'day)
                  (org-agenda-compact-blocks t)))
      (alltodo "" ((org-agenda-files
+                   (list
+                    (gk-org-dir-file "listeler.org")
+                    "~/doc/not/rsc/Recherche.org"))))
+     (alltodo "" ((org-agenda-files
                    (cons
                     (locate-user-emacs-file "gk.org")
                     (cons (expand-file-name "~/doc/not/www2/Readme.org")
@@ -2328,10 +2332,6 @@ For PATH, DESC and FORMAT see `org-add-link-type'."
                                      ($ (when (file-directory-p $1)
                                           (directory-files $1 t re)))
                                      (directory-files "~/co" t re))))))))))
-     (alltodo "" ((org-agenda-files
-                   (list
-                    (gk-org-dir-file "listeler.org")
-                    "~/doc/not/rsc/Recherche.org"))))
      (tags-todo "+mtd")))))                ;ajanda.org/Master Todo List.
 #+END_SRC
 
@@ -2524,6 +2524,10 @@ adds a predefined advice.
 
 ;; Make today stand out more.
 (set-face-attribute 'org-agenda-date-today nil :inverse-video t)
+
+;; Make blocked todo items legible.
+(set-face-attribute 'org-agenda-dimmed-todo-face nil
+                    :foreground nil :slant 'italic)
 #+END_SRC
 
 **** Variable pitch
