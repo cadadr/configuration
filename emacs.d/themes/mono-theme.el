@@ -35,7 +35,7 @@
 
 (let ((a "black")
       (b "white")
-      (c "#0087af")
+      (c "mediumblue")
       (d "#dee")
       (e "violetred4")
       (f "khaki")
@@ -99,7 +99,7 @@
    `(org-level-8 ((t (:foreground ,e))))
    `(org-block ((t (:foreground ,a :background ,g))))
    `(org-block-begin-line ((t (:background ,f))))
-   `(org-code ((t (:foreground ,e))))
+   `(org-code ((t (:foreground ,a :background ,f :box t))))
    `(org-document-title ((t (:foreground ,a :weight bold))))
 
    ;; === RMAIL ===
