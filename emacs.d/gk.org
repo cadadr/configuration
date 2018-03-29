@@ -659,34 +659,8 @@ operation, and so on until all the KEYSEQ is exhausted.  The
 resultant value is returned, or nil, in case one or more keys are
 not found in the LIST.
 
-Examples:
-\(forecast--assoca '(a b c)
- '((a . ((b . ((c . e)
-               (k . g)))
-         (z . q)))
-   (r . s)))
- => e
-
-\(forecast--assoca '(a t)
- '((a . ((b . ((c . e)
-               (k . g)))
-         (z . q)))
-   (r . s)))
- => nil
-
-\(forecast--assoca '(a o t)
- '((a . ((b . ((c . e)
-               (k . g)))
-         (z . q)))
-   (r . s)))
- => nil
-
-\(forecast--assoca nil
- '((a . ((b . ((c . e)
-               (k . g)))
-         (z . q)))
-   (r . s)))
- => ((a (b (c . e) (k . g)) (z . q)) (r . s))."
+If KEYSEQ is a symbol, then it's treated as if it were a
+singleton list."
   (let ((ks (if (listp keyseq) keyseq (list keyseq)))
         (ret list))
     (dolist (k ks ret)
