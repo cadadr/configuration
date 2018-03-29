@@ -2532,7 +2532,7 @@ adds a predefined advice.
 
 **** Variable pitch
 #+BEGIN_SRC elisp :tangle yes :comments both
-(setf ovp-mono-font (gk-font :mono))
+(setf ovp-font (gk-font :mono))
 
 (diminish 'org-variable-pitch-minor-mode "~")
 #+END_SRC
