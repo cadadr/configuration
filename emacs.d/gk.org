@@ -3824,57 +3824,6 @@ method and applying Turkish case rules for the characters i, I,
  '("European"))
 #+END_SRC
 
-* Lingua :obsolete:
-** Keymap
-#+BEGIN_SRC elisp :tangle yes :comments both
-(defvar gk-lingua-kbd-prefix "\C-xd"
-  "Prefix for dictionary bindings.
-It defaults to  C-x d, replacing `dired', because  C-x Cf already
-opens directories in dired.")
-
-(defvar gk-lingua-prefix-map (make-sparse-keymap "Dictionary"))
-#+END_SRC
-
-** Utilities
-#+BEGIN_SRC elisp :tangle yes :comments both
-(defvar gk-lingua-lookup-history nil
-  "Ephemeral history for gk-lingua lookups.")
-
-(defun gk-lingua-get-thing (&optional word)
-  "Find the thing to search for in the dictionary.
-If WORD is a string, use it, otherwise try alternatives."
-  (let ((thing
-         (cond ((stringp word)
-                word)
-               ((region-active-p)
-                (buffer-substring (region-beginning)
-                                  (region-end)))
-               (t
-                (or (thing-at-point 'word t)
-                    (read-string "Word/phrase/sentence to look up: "
-                                 nil 'gk-lingua-lookup-history t))))))
-    (car (push thing gk-lingua-lookup-history))))
-
-(defmacro gk-lingua-define (sym key url)
-  "Define a dictionary.
-SYM is the symbol to name it.
-KEY is the key to use for the prefix map.
-URL is the URL to the dictionary, %s where the word should be put."
-  (let ((dfunc (intern (format "gk-lingua-%s" sym))))
-    (define-key gk-lingua-prefix-map `[,key] dfunc)
-    `(defun ,dfunc ()
-       (interactive)
-       (browse-url (url-encode-url (format ,url (gk-lingua-get-thing)))))))
-#+END_SRC
-
-** Dictionaries
-#+BEGIN_SRC elisp :tangle yes :comments both
-(gk-lingua-define greek ?g "http://el.thefreedictionary.com/%s")
-(gk-lingua-define italian ?i "http://www.wordreference.com/definizione/%s")
-(gk-lingua-define english ?e
-                  "http://www.collinsdictionary.com/dictionary/english/%s")
-#+END_SRC
-
 * Additional modules
 #+BEGIN_SRC elisp :tangle yes :comments both
 ;;(require 'bsdpkg)
