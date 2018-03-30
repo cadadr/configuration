@@ -2505,8 +2505,21 @@ adds a predefined advice.
 #+END_SRC
 
 **** Variable pitch
+OVP minor mode allows to effectively use variable pitch fonts to
+represent text in Org mode, while retaining monospace where necessary,
+i.e. for source code, verbatim text, and structure and indentation.
+
 #+BEGIN_SRC elisp :tangle yes :comments both
 (setf ovp-font (gk-font :mono))
+
+(set-face-attribute 'ovp-face nil :inherit 'org-level-1
+                                  :weight 'bold)
+
+(defun gk-ovp-hook ()
+  "Hook for ‘org-variable-pitch-minor-mode’."
+  (setq-local cursor-type 'bar))
+
+(add-hook 'org-variable-pitch-minor-mode-hook #'gk-ovp-hook)
 
 (diminish 'org-variable-pitch-minor-mode "~")
 #+END_SRC
