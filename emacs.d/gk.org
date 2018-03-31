@@ -2891,7 +2891,10 @@ it.  This'd presumably save some memory.
 #+BEGIN_SRC elisp :tangle yes :comments both
 (setf
  find-file-suppress-same-file-warnings t
- visible-bell t
+ ;; The following two setting silence the bell mechanism altogether,
+ ;; both visually and audible ones.
+ visible-bell nil
+ ring-bell-function ($)
  uniquify-buffer-name-style 'forward
  save-interprogram-paste-before-kill t
  ;; Don't make seperate popup frames.
