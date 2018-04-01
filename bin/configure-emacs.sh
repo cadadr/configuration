@@ -11,6 +11,20 @@ fi
 #   . --with-cairo
 #   . Threads' development, enable when stable
 case $V in
+    pdmp)
+	./configure \
+	    --prefix=$HOME/local \
+	    --with-x-toolkit=$TK \
+	    --with-imagemagick \
+	    --with-modules \
+	    --with-file-notification=yes \
+	    --without-threads \
+	    --with-gameuser=no \
+	    --with-mailutils \
+	    \
+	    --with-pdumper=yes \
+	    --with-unexec=yes \
+	    --with-dumping=pdumper ;;
     head)
 	./configure \
 	    --prefix=$HOME/local \
