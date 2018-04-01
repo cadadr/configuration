@@ -2515,6 +2515,9 @@ i.e. for source code, verbatim text, and structure and indentation.
 (set-face-attribute 'ovp-face nil :inherit 'org-level-1
                                   :weight 'bold)
 
+;; Links in tables mess with alignment.
+(pushnew 'org-link ovp-mono-faces)
+
 (defun gk-ovp-hook ()
   "Hook for ‘org-variable-pitch-minor-mode’."
   (setq-local cursor-type 'bar))
