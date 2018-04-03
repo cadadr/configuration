@@ -8,7 +8,7 @@ DEPS+=pass telnet file reportbug lsof gawk vim tmux units		\
 	debian-goodies sudo vrms xz-utils alsa-utils bzip2 less		\
 	sqlite3 zip unzip python3-reportbug apt-listchanges		\
 	groff-base gnupg2 lshw openssh-client bzip2 host texinfo	\
-	cups-bsd cups-client bind9-host
+	cups-bsd cups-client bind9-host sloccount
 ### Services:
 DEPS+=nginx syncthing openssh-server avahi-daemon avahi-autoipd
 ### Devtools:
@@ -41,7 +41,7 @@ DEPS+=libxrandr-dev
 DEPS+=autoconf-doc ffmpeg-doc mailutils-doc nginx-doc perl-doc		\
 	python3-doc sbcl-doc gimp-help git-doc gnutls-doc doc-debian	\
 	manpages man-db debian-faq gnuplot-doc bash-doc linux-doc	\
-	glibc-doc glibc-doc-reference manpages-dev hyperspec
+	glibc-doc glibc-doc-reference manpages-dev hyperspec doc-base
 ### Emacs:
 DEPS+=libjansson-dev		# Jansson is for faster JSON.
 DEPS+=gnutls-dev
