@@ -46,7 +46,7 @@
    ;; === Frame ===
    `(default ((t (:foreground ,a :background ,b))))
    `(mode-line ((t (:foreground ,b :background ,a :box nil))))
-   `(mode-line-inactive ((t (:background ,b :box t))))
+   `(mode-line-inactive ((t (:background ,g :box nil))))
    `(mode-line-highlight ((t (:foreground ,a
                                           :background ,h
                                           :box nil))))
