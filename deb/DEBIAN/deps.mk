@@ -47,7 +47,7 @@ DEPS+=libjansson-dev		# Jansson is for faster JSON.
 DEPS+=gnutls-dev
 ### Internet tools:
 DEPS+=bind9utils net-tools curl phantomjs corebird dnsutils w3m w3m-el	\
-	webalizer wget rsync traceroute finger
+	webalizer wget rsync traceroute finger whois
 # VPN
 DEPS+=openvpn network-manager-openvpn-gnome resolvconf
 ### VCS:
