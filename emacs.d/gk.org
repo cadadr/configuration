@@ -2258,9 +2258,32 @@ For PATH, DESC and FORMAT see `org-add-link-type'."
       org-directory (expand-file-name "~/doc/not/org")
       org-caldav-save-directory (locate-user-emacs-file "etc/")
       org-default-notes-file (gk-org-dir-file "start.org")
-      org-agenda-files (gk-org-dir-files "ajanda.org" "caldav.org")
       org-icalendar-combined-agenda-file (gk-org-dir-file "ajanda.ics")
       org-id-locations-file (locate-user-emacs-file "etc/org-id-locations.el"))
+
+(defvar gk-org-agenda-files nil
+  "My agenda files.")
+
+(defvar gk-org-project-agenda-files nil
+  "List of files that contain per-project TODO items.")
+
+(setf
+ gk-org-agenda-files (gk-org-dir-files "ajanda.org" "caldav.org")
+ org-agenda-files gk-org-agenda-files
+ ;; Find all the relevant Readme.org files.
+ gk-org-project-agenda-files
+ (cons
+  (locate-user-emacs-file "gk.org")
+  (cons (expand-file-name "~/doc/not/www2/Readme.org")
+        ;; Find Readme.org files.
+        (seq-filter
+         ($ (string= (file-name-nondirectory $1) "Readme.org"))
+         (let ((re directory-files-no-dot-files-regexp))
+           (apply #'append
+                  (mapcar
+                   ($ (when (file-directory-p $1)
+                        (directory-files $1 t re)))
+                   (directory-files "~/co" t re))))))))
 #+END_SRC
 
 *** Mobile
@@ -2287,25 +2310,17 @@ For PATH, DESC and FORMAT see `org-add-link-type'."
 (setf
  org-agenda-custom-commands
  '(("g" "Agenda for today and all agenda TODOs"
-    ((agenda "" ((org-agenda-span 'day)
+    ((agenda "" ((org-agenda-files (concatenate
+                                    'list
+                                    gk-org-agenda-files
+                                    gk-org-project-agenda-files))
+                 (org-agenda-span 'day)
                  (org-agenda-compact-blocks t)))
      (alltodo "" ((org-agenda-files
                    (list
                     (gk-org-dir-file "listeler.org")
                     "~/doc/not/rsc/Recherche.org"))))
-     (alltodo "" ((org-agenda-files
-                   (cons
-                    (locate-user-emacs-file "gk.org")
-                    (cons (expand-file-name "~/doc/not/www2/Readme.org")
-                          ;; Find Readme.org files.
-                          (seq-filter
-                           ($ (string= (file-name-nondirectory $1) "Readme.org"))
-                           (let ((re directory-files-no-dot-files-regexp))
-                             (apply #'append
-                                    (mapcar
-                                     ($ (when (file-directory-p $1)
-                                          (directory-files $1 t re)))
-                                     (directory-files "~/co" t re))))))))))
+     (alltodo "" ((org-agenda-files gk-org-project-agenda-files)))
      (tags-todo "+mtd")))))                ;ajanda.org/Master Todo List.
 #+END_SRC
 
