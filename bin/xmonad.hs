@@ -18,5 +18,6 @@ myKeys = [((myModMask, xK_q), (spawn "start-qutebrowser.sh")),
           ((myModMask, xK_n), (spawn "sct 4000")),
           ((myModMask, xK_d), (spawn "sct 12000")),
           ((myModMask, xK_p), (spawn "dmenu-desktop.pl")),
-          ((modShiftMask, xK_p), (spawn "dmenu_run"))]
+          ((modShiftMask, xK_p), (spawn "dmenu_run")),
+          ((myModMask, xK_s), (spawn "status.sh"))]
 
