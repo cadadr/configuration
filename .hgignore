@@ -8,6 +8,7 @@
 ^deb/DEBIAN/control$
 ^bin/sct$
 ^bin/of$
+^bin/xmonad(\.hi)?$
 ^config.m4$
 
 ^system/debian/etc/network/interfaces$

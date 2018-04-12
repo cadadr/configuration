@@ -1,0 +1,36 @@
+#!/bin/sh
+# X session initialisation file.
+
+set -e
+
+# If shell settings are not loaded yet, load them.
+# if [ "x$SHRC_VERSION" == "x" ]; then
+# 	echo Source user profile...
+# 	. $HOME/.profile
+# fi
+
+echo Merge X resources...
+xrdb -merge $MEINE/Xdefaults
+
+echo Keyboard settings...
+setxkbmap gb basic ctrl:nocaps
+
+echo Set the background.
+feh --no-fehbg --bg-fill ~/pic/wlp/415656-2048x1365.jpg
+
+echo xinput settings
+xinput --set-prop 'ETPS/2 Elantech Touchpad' 286 1 # natural scrolling
+# click method: no areas, two finger is right click, three finger middle
+xinput --set-prop 'ETPS/2 Elantech Touchpad' 294 0 1
+
+echo Start initial apps
+volti &		#sound applet
+nm-applet &	# NetworkManager applet
+
+# Set up the desktop.
+# -geometry args: wxh+x+y
+#xclock -geometry 125x125-0-0&
+#xterm -geometry 120x1-0+0 -T xstatus -e $MEINE/../scripts/sys-status.sh&
+
+echo 'Start the desktop session...'
+exec dbus-launch --exit-with-session sh $MEINE/x.sh

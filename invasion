@@ -1,4 +1,4 @@
-bin				bin
+bin				bin
 .cvsrc				dotfiles/cvsrc
 .gitconfig			dotfiles/gitconfig.ini
 .hgrc				dotfiles/hgrc.ini
@@ -6,6 +6,8 @@ bin				bin
 .profile			dotfiles/profile.sh
 .bashrc				dotfiles/shrc.sh
 .signature			dotfiles/signature
+.xinitrc			dotfiles/xsession
+.Xdefaults			dotfiles/Xdefaults
 .local/share/applications/emacs.desktop		candy/emacs.desktop
 .local/share/applications/emacsclient.desktop	candy/emacsclient.desktop
 .local/share/applications/org-protocol.desktop	candy/org-protocol.desktop

@@ -17,18 +17,22 @@ DEPS+=automake autoconf autoconf-archive strace build-essential bmake	\
 ### Laptop:
 DEPS+=laptop-mode-tools hdparm
 ### Desktop & Xorg:
-#### Gnome:
-DEPS+=gnome-core desktop-base
+#### Base:
+DEPS+=sane sane-utils dbus-x11 feh dunst suckless-tools i3lock	\
+	notify-osd
+#### XMonad:
+DEPS+=libghc-xmonad-dev libghc-xmonad-contrib-dev libghc-xmonad-doc \
+	libghc-xmonad-contrib-doc
 #### Xorg:
-DEPS+=xorg xserver-xorg-input-all xserver-xorg-video-all xinput
+DEPS+=xorg xserver-xorg-input-all xserver-xorg-video-all xinput	\
+	x11-apps
 ### Fonts:
 DEPS+=fonts-freefont-ttf fonts-liberation fonts-dejavu
 ### Apps:
-DEPS+=firefox libreoffice libreoffice-help-en-gb			\
-	libreoffice-help-en-us xclip gimp gimp-help-en gparted		\
-	gnuplot feedgnuplot gv cheese pavucontrol mpv quodlibet		\
-	eog-plugins simple-scan evince network-manager-gnome sane	\
-	sane-utils gnome-maps vokoscreen qutebrowser
+DEPS+=firefox libreoffice libreoffice-help-en-gb		\
+	libreoffice-help-en-us xclip gimp gimp-help-en gparted	\
+	gnuplot feedgnuplot gv cheese pavucontrol mpv quodlibet	\
+	simple-scan evince vokoscreen qutebrowser
 ### Misc:
 #DEPS+=gnome-session		# On Ubuntu, for normal Gnome 3 session
 DEPS+=gnutls-bin cups cups-browsed cups-filters				\
@@ -49,7 +53,7 @@ DEPS+=gnutls-dev
 DEPS+=bind9utils net-tools curl phantomjs corebird dnsutils w3m w3m-el	\
 	webalizer wget rsync traceroute finger whois
 # VPN
-DEPS+=openvpn network-manager-openvpn-gnome resolvconf
+DEPS+=openvpn resolvconf
 ### VCS:
 DEPS+=mercurial cvs git subversion rcs python-hglib python3-hglib	\
 	python-dulwich python-fastimport git-cvs gitk
