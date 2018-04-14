@@ -1206,7 +1206,8 @@ PUNCTUATION is the punctuation to use"
   (visual-line-mode 1)
   (gk-utf8-entry-mode 1)
   (set-input-method default-input-method)
-  (olivetti-mode 1))
+  (olivetti-mode 1)
+  (setq indent-tabs-mode nil))
 
 (add-hook 'text-mode-hook 'gk-text-editing-modes-hook)
 
@@ -2744,7 +2745,8 @@ the template description."
   ;; Disable in org mode
   (when (boundp goto-address-mode)
     (goto-address-mode -1))
-  (imenu-add-to-menubar "Entries"))
+  (imenu-add-to-menubar "Entries")
+  (setq indent-tabs-mode nil))
 
 (add-hook 'org-mode-hook 'gk-org-hook)
 #+END_SRC
