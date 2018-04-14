@@ -90,8 +90,11 @@ DEBIANCONFFILS+=$(DEBIANDIR)/etc/network/interfaces
 
 export GLOBIGNORE:=*.in
 
-debian-config: $(DEBIANCONFFILS)
-	cp -RPvu --preserve=mode --backup=numbered $(DEBIANDIR)/* /\
+debian-config: debian-install-configs debian-regen
+
+debian-install-configs: $(DEBIANCONFFILS)
+	sudo cp -RPvu --preserve=mode --backup=numbered \
+		$(DEBIANDIR)/* /\
 
 debian-regen:
 	locale-gen && update-grub
@@ -125,8 +128,9 @@ clean-configs:
 
 ### Postamble:
 .PHONY: all build bins deb deb-config deb-check deb-inst deb-touch
-.PHONY: clean clean-bin clean-deb debian-config debian-init rpi-init
-.PHONY: rpi-setup rpi-config rpi-config-files clean-configs
+.PHONY: clean clean-bin clean-deb debian-config debian-init
+.PHONY: debian-regen debian-install-configs rpi-init rpi-setup
+.PHONY: rpi-config rpi-config-files clean-configs
 
 # Local variables:
 # truncate-lines: t
