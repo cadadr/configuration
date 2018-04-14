@@ -3681,7 +3681,7 @@ Does various tasks after saving a file, see it's definition."
 (add-hook 'after-save-hook 'gk-after-save-hook)
 #+END_SRC
 
-** Keybindings
+** Global Keybindings
 *** Utilities
 #+BEGIN_SRC elisp :tangle yes :comments both
 (defmacro gk-global-binding (&rest args)
