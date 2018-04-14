@@ -53,7 +53,7 @@ DEPS+=gnutls-dev
 ### Internet tools:
 DEPS+=bind9utils net-tools curl phantomjs corebird dnsutils w3m	\
 	w3m-el webalizer wget rsync traceroute finger whois
-#### VPN
+#### VPN:
 DEPS+=openvpn resolvconf
 ### VCS:
 DEPS+=mercurial cvs git subversion rcs python-hglib python3-hglib \
