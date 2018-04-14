@@ -1,4 +1,4 @@
-bin				bin
+bin				bin
 .cvsrc				dotfiles/cvsrc
 .gitconfig			dotfiles/gitconfig.ini
 .hgrc				dotfiles/hgrc.ini
