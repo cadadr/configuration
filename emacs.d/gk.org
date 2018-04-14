@@ -266,12 +266,10 @@ Otherwise comment-out the whole line, or ARG lines."
 For the format, see `format-time-string'."
   (format-time-string format (date-to-time date)))
 
-(define-error 'gk-program-absent-error "Program is absent")
-
 (defun gk-executable-ensure (command)
   "Err-out if COMMAND is not found."
   (or (executable-find command)
-      (signal 'gk-program-absent-error command)))
+      (warn "Program is absent: %s" command)))
 
 (defun gk-get-file-contents (file)
   "Get the contents of FILE as a string."
