@@ -9,6 +9,7 @@ export LC_MESSAGES=C
 
 configdir=/igk/config
 username=g
+userno=1993
 
 say () {
     echo === $@
@@ -44,9 +45,9 @@ if id $username 2>/dev/null >/dev/null; then
 else
     say Adding user $username...
     useradd -c 'Goktug Kayaalp' -d /home/$username \
-	 -G sudo,adm,cdrom,dip,plugdev -m -s /bin/bash -U -u 1993 $username \
+	 -G sudo,adm,cdrom,dip,plugdev -m -s /bin/bash -U -u $userno $username \
 	|| echo Failed adding user $username && exit 1;
-    groupmod -g 1993 $username || echo Failed setting GID for $username && exit 1;
+    groupmod -g $userno $username || echo Failed setting GID for $username && exit 1;
 fi
 
 ### Start system services:
