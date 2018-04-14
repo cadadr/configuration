@@ -74,8 +74,6 @@ clean-deb:
 	cd $(HERE)
 
 ### System configurations:
-all-config-files: rpi-config-files debian-config-files
-
 #### Debian/Ubuntu:
 debian-init: deb-inst debian-config
 
@@ -84,14 +82,19 @@ DEBIANDIR=system/debian
 $(DEBIANDIR)/etc/resolv.conf: $(DEBIANDIR)/etc/resolv.conf.in
 	$(M4) $< > $@
 
+$(DEBIANDIR)/etc/network/interfaces: $(DEBIANDIR)/etc/network/interfaces.in
+	$(M4) $< > $@
+
 DEBIANCONFFILS=$(DEBIANDIR)/etc/resolv.conf
-debian-config-files: $(DEBIANCONFFILS)
+DEBIANCONFFILS+=$(DEBIANDIR)/etc/network/interfaces
 
-export GLOBIGNORE=*.in
+export GLOBIGNORE:=*.in
 
-debian-config: debian-config-files
+debian-config: $(DEBIANCONFFILS)
 	cp -RPvu --preserve=mode --backup=numbered $(DEBIANDIR)/* /\
-		&& locale-gen && update-grub
+
+debian-regen:
+	locale-gen && update-grub
 
 ubuntu-init: deb-inst ubuntu-config
 
@@ -110,9 +113,8 @@ $(RPIDIR)/etc/wpa_supplicant/wpa_supplicant.conf: $(RPIDIR)/etc/wpa_supplicant/w
 
 RPICONFFILS=$(RPIDIR)/etc/network/interfaces
 RPICONFFILS+=$(RPIDIR)/etc/wpa_supplicant/wpa_supplicant.conf
-rpi-config-files: $(RPICONFFILS)
 
-rpi-config: rpi-config-files
+rpi-config: $(RPICONFFILS)
 	cp -RPv --preserve=mode --backup=numbered $(RPIDIR)/* /
 
 ### Clean:
@@ -122,10 +124,9 @@ clean-configs:
 	rm -rf $(DEBIANCONFFILS) $(RPICONFFILS)
 
 ### Postamble:
-.PHONY: all build bins deb deb-config deb-check deb-inst deb-touch clean
-.PHONY: clean-bin clean-deb debian-config debian-init debian-config-files
-.PHONY: rpi-init rpi-setup rpi-config rpi-config-files all-config-files
-.PHONY: clean-configs
+.PHONY: all build bins deb deb-config deb-check deb-inst deb-touch
+.PHONY: clean clean-bin clean-deb debian-config debian-init rpi-init
+.PHONY: rpi-setup rpi-config rpi-config-files clean-configs
 
 # Local variables:
 # truncate-lines: t
