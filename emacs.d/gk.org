@@ -3781,6 +3781,7 @@ Do things with the current buffer.
 *** Programming
 #+BEGIN_SRC elisp :tangle yes :comments both
 (gk-prefix-binding "d" 'xref-find-definitions)
+(gk-prefix-binding [?\r] 'compile)
 #+END_SRC
 
 *** Shortcuts
