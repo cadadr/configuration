@@ -1,53 +1,5 @@
 # preferences
 
-# Prioritize stable.
 Package: *
 Pin: release a=stable
-Pin-Priority: 1000
-
-Package: *
-Pin: release a=unstable
-Pin-Priority: 2
-
-# Install apt from unstable.
-Package: apt
-Pin: release a=unstable
-Pin-Priority: 1001
-
-Package: apt-*
-Pin: release a=unstable
-Pin-Priority: 1001
-
-Package: libapt-*
-Pin: release a=unstable
-Pin-Priority: 1001
-
-# Install firefox from unstable.
-Package: firefox
-Pin: release a=unstable
-Pin-Priority: 1001
-
-Package: libfontconfig1
-Pin: release a=unstable
-Pin-Priority: 1001
-
-Package: fontconfig-config
-Pin: release a=unstable
-Pin-Priority: 1001
-
-Package: libnss3
-Pin: release a=unstable
-Pin-Priority: 1001
-
-# Dependencies of emacs-pdf-tools that depend on libfontconfig1-dev
-Package: libcairo
-Pin: release a=unstable
-Pin-Priority: 1001
-
-Package: libcairo2
-Pin: release a=unstable
-Pin-Priority: 1001
-
-Package: libfontconfig1-dev
-Pin: release a=unstable
 Pin-Priority: 1001
