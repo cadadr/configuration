@@ -63,8 +63,44 @@ DEPS+=clamav mailutils spamassassin spamc
 ### Multimedia:
 DEPS+=vorbisgain youtube-dl vorbis-tools
 ### TeX:
-DEPS+=biber texlive-xetex texlive-full texlive-publishers	\
-	texlive-bibtex-extra
+# TeX is huge.  That's mostly because of the idiotically stupid
+# documentation that it comes with: docs in PDF files.  Here we take
+# the dependencies of texlive-full, remove the docs, and give
+# languages a separate place, for easier editing.  And that's not
+# enough, also, ‘apt-get install’ should be run with the
+# --no-install-recommends flag; because most TeX packages recommend
+# the related -doc packages.
+
+#  I do not only wonder what kind of braindead has decided to publish
+# docs in PDF, but also the braindead who made it a hard dependency of
+# texlive-full.  Crazy waste of space and bandwidth...
+
+#### Specifically installed packages:
+DEPS+=
+
+#### Stripped texlive-full:
+DEPS+=asymptote biber chktex cm-super context dvidvi dvipng feynmf \
+	fragmaster info lacheck latex-cjk-all latexdiff latexmk	   \
+	lcdf-typetools lmodern prerex prosper psutils purifyeps	   \
+	t1utils tex-gyre texinfo texlive-base texlive-bibtex-extra \
+	texlive-binaries texlive-extra-utils texlive-font-utils	   \
+	texlive-fonts-extra texlive-fonts-recommended		   \
+	texlive-formats-extra texlive-games texlive-generic-extra  \
+	texlive-generic-recommended texlive-htmlxml		   \
+	texlive-humanities texlive-latex-base texlive-latex-extra  \
+	texlive-latex-recommended texlive-luatex texlive-metapost  \
+	texlive-music texlive-omega texlive-pictures		   \
+	texlive-plain-extra texlive-pstricks texlive-publishers	   \
+	texlive-science texlive-xetex tipa
+
+#### Languages:
+DEPS+=texlive-lang-arabic texlive-lang-cyrillic			      \
+	texlive-lang-czechslovak texlive-lang-english		      \
+	texlive-lang-european texlive-lang-french texlive-lang-german \
+	texlive-lang-greek texlive-lang-italian texlive-lang-other    \
+	texlive-lang-polish texlive-lang-portuguese		      \
+	texlive-lang-spanish
+
 ### Programming languages:
 #### Lisp:
 DEPS+=guile-2.0 guile-2.0-doc guile-json guile-library sbcl

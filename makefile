@@ -67,7 +67,7 @@ deb-check:
 	lintian $(DEB)
 
 deb-inst: deb
-	apt-get install ./$(DEB) && apt-get autoremove
+	apt-get install --no-install-recommends ./$(DEB) && apt-get autoremove
 
 clean-deb:
 	rm -rf *.deb; cd deb/DEBIAN; $(MAKE) $(MAKEFLAGS) clean;\
