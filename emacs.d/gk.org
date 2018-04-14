@@ -1520,10 +1520,8 @@ unlocked, offer to lock it before pasting."
 *** Mercurial
 #+BEGIN_SRC elisp :tangle yes :comments both
 (setf
- ;; Show file version rather than repository version.
- vc-hg-use-file-version-for-mode-line-version t
  ;; Show the revision number in the mode line.
- vc-hg-symbolic-revision-styles '("{rev}"))
+ vc-hg-symbolic-revision-styles '("{rev}/{branch}"))
 
 ;; Always prompt for editing the push command before pushing.
 ;; Requires prefix arg ortherwise.
