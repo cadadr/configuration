@@ -7,4 +7,6 @@ Xft.hinting: 1
 Xft.antialias: 1
 Xft.rgba: rgb
 
-XTerm*selectToClipboard: true
+xterm*selectToClipboard: true
+xterm*metaSendsEscape: true
+
