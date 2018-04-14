@@ -23,7 +23,7 @@ myKeys = [((myModMask, xK_q), (spawn "start-qutebrowser.sh")),
           ((myModMask, xK_l), (spawn "i3lock -c dddeee"))]
 
 
-;; Local Variables:
-;; indent-tabs-mode: nil
-;; compile-command: "make xmonad && xmonad --restart"
-;; End:
+-- Local Variables:
+-- indent-tabs-mode: nil
+-- compile-command: "make xmonad && xmonad --restart"
+-- End:
