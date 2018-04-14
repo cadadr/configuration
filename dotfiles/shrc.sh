@@ -7,7 +7,7 @@ export SHRC_VERSION=bobby
 export SHELL
 
 if [ x$FROMLOGINPROFILE = xyes ]; then
-    echo .profile is loading shell setup...
+    echo Login profile script is loading shell setup...
 fi
 
 ###
@@ -64,7 +64,7 @@ if [ ! x$BASH = x ]; then
         [ $xit -ne 0 ] && echo "		*** It exited $xit! ***"
     }
     PROMPT_COMMAND=lastcmdexit
-    PS1='[\#] \u@\H (\j)\$ '
+    PS1='[\#] \u@\H:\w (\j)\$ '
     HISTTIMEFORMAT='%s'
 fi
 
