@@ -2322,6 +2322,7 @@ For PATH, DESC and FORMAT see `org-add-link-type'."
                     (gk-org-dir-file "listeler.org")
                     "~/doc/not/rsc/Recherche.org"))))
      (alltodo "" ((org-agenda-files gk-org-project-agenda-files)))
+     (alltodo "" ((org-agenda-files (list (gk-org-dir-file "../yazi/defter.org")))))
      (tags-todo "+mtd")))))                ;ajanda.org/Master Todo List.
 #+END_SRC
 
