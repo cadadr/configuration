@@ -2915,6 +2915,8 @@ it.  This'd presumably save some memory.
  ring-bell-function ($)
  uniquify-buffer-name-style 'post-forward-angle-brackets
  save-interprogram-paste-before-kill t
+ ;; The default 80 is too much.
+ split-height-threshold 75
  ;; Don't make seperate popup frames.
  pop-up-frames nil
  ;; Display buffers in current window.
