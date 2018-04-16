@@ -1189,7 +1189,7 @@ PUNCTUATION is the punctuation to use"
 (diminish 'gk-utf8-entry-mode)
 (diminish 'olivetti-mode "𝍌")
 ;; i.e. ‘auto-fill-mode’, but diminish does not like that.
-(diminish 'auto-fill-function "㊟")
+(diminish 'auto-fill-function "=")
 
 (setq-default olivetti-body-width 85)
 
