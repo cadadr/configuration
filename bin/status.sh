@@ -13,4 +13,4 @@ if [ ! x$TERM = xdumb ]; then
     clear
 fi
 
-exec notify-send "System status, $(date)" "$user\n\nBattery: $power"
+exec notify-send "$(date)" "$user\nBattery: $power"
