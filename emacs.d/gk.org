@@ -2977,6 +2977,19 @@ it.  This'd presumably save some memory.
   (gk-minor-mode -1))
 
 (add-hook 'minibuffer-setup-hook 'gk-minibuf-hook)
+
+(define-key minibuffer-local-map (kbd "\C-v") #'switch-to-completions)
+
+;; Use M-1 through 9 to choose a completion.
+(dotimes (i 9)
+  (when (> i 0)
+    (define-key
+      minibuffer-local-map (kbd (format "M-%d" i))
+      (gk-interactively
+       (switch-to-completions)
+       (goto-char (point-min))
+       (next-completion i)
+       (choose-completion)))))
 #+END_SRC
 
 *** Ido
