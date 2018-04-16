@@ -13,10 +13,17 @@ main = xmonad $ desktopConfig {
 myModMask = mod4Mask
 modShiftMask = myModMask .|. shiftMask
 
+notify sub msg = spawn ("notify-send '" ++ sub ++ "' '" ++ msg ++ "'")
+
+spawnAndNotify cmd sub msg = do spawn cmd
+                                notify cmd msg
+
 myKeys = [((myModMask, xK_q), (spawn "start-qutebrowser.sh")),
           -- Use the sct program to set screen redness.
-          ((myModMask, xK_n), (spawn "sct 4000")),
-          ((myModMask, xK_d), (spawn "sct 12000")),
+          ((myModMask, xK_n),
+           (spawnAndNotify "sct 4000" "Night mode" "Turned on.")),
+          ((myModMask, xK_d),
+           (spawnAndNotify "sct 12000" "Night mode" "Turned off.")),
           ((myModMask, xK_p), (spawn "dmenu-desktop.pl")),
           ((modShiftMask, xK_p), (spawn "dmenu_run")),
           ((myModMask, xK_s), (spawn "status.sh")),
