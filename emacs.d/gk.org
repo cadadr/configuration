@@ -760,10 +760,8 @@ the user for taking action."
 
 ;; Set up so that there's 75-80 chars width for half-sized horizontal
 ;; windows.
-(defconst gk-font-default-height 90)
-(defconst gk-font-variable-pitch-height 90)
-(defalias 'gk-font-org-variable-pitch-height
-  'gk-font-variable-pitch-height)
+(defconst gk-font-default-height 100)
+(defconst gk-font-variable-pitch-height 100)
 
 (defun gk-font (type)
   "Get default font for TYPE, a keyword.
@@ -2556,7 +2554,7 @@ i.e. for source code, verbatim text, and structure and indentation.
      face nil
      :family (gk-font :sans)
      :weight 'normal :width 'condensed
-     :height (+ 10 gk-font-default-height))))
+     :height (+ 20 gk-font-default-height))))
 
 (add-hook 'org-mode-hook 'gk-org-visuals-hook)
 #+END_SRC
