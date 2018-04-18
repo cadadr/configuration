@@ -951,6 +951,7 @@ be generous in keepbing backups.
         (directory-files "~/wrk/rsc" t "[a-z]" t))))
 
 (defalias 'library 'bibliothek)
+(defalias 'bib 'bibliothek)
 #+END_SRC
 
 ** Global modes
