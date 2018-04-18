@@ -3857,7 +3857,7 @@ Do things with the current buffer.
 
 *** Text editing
 #+BEGIN_SRC elisp :tangle yes :comments both
-(gk-global-binding (kbd "C-<return>") 'gk-mark-thing)
+(gk-prefix-binding [? ] 'gk-mark-thing)
 #+END_SRC
 
 *** Mail
