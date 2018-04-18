@@ -3675,6 +3675,9 @@ This is /the/ after save hook.  It's the one hook added to
 done after when a file is saved.
 
 #+BEGIN_SRC elisp :tangle yes :comments both
+(defvar gk-after-save-org-timer nil)
+(defvar gk-after-save-org-idle-seconds 2)
+
 (defun gk-after-save-hook ()
   "Göktuğ's After Save™, a man's best companion.
 Does various tasks after saving a file, see it's definition."
@@ -3682,15 +3685,29 @@ Does various tasks after saving a file, see it's definition."
   (when-let* ((file (ignore-errors      ;expand-file-name signals if
                                         ;its first argument is nil.
                       (expand-file-name (buffer-file-name)))))
-    (when
-        (and
-         (eq major-mode 'org-mode)
-         (member file (mapcar #'expand-file-name org-agenda-files))
-         (y-or-n-p
-          "Just wrote an Org agenda file, regenerate ICS files now?"))
-      (if (file-exists-p org-icalendar-combined-agenda-file)
-          (org-icalendar-combine-agenda-files)
-        (org-icalendar-export-agenda-files)))))
+    (when (and (not gk-after-save-org-timer) ;check if there is an
+                                             ;active timer, the timer
+                                             ;callback nulls this
+                                             ;variable
+               (eq major-mode 'org-mode)
+               (member file (mapcar #'expand-file-name org-agenda-files)))
+      (message "Wrote an agenda file and there were no active\
+ timers, will query for export when Emacs is idle for %d seconds"
+               gk-after-save-org-idle-seconds)
+      ;; Do not rush, query only if Emacs is idle.
+      (setf
+       gk-after-save-org-timer
+       (run-with-idle-timer
+        gk-after-save-org-idle-seconds nil
+        (lambda ()
+          (when (y-or-n-p
+                 "You just wrote an Org agenda file, regenerate ICS files now?")
+            (if (file-exists-p org-icalendar-combined-agenda-file)
+                (org-icalendar-combine-agenda-files)
+              (org-icalendar-export-agenda-files))
+            (message "Regenerated!")
+            ;; Reset the timer.
+            (setf gk-after-save-org-timer nil))))))))
 
 (add-hook 'after-save-hook 'gk-after-save-hook)
 #+END_SRC
