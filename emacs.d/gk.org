@@ -3686,9 +3686,9 @@ Does various tasks after saving a file, see it's definition."
                                         ;its first argument is nil.
                       (expand-file-name (buffer-file-name)))))
     (when (and (not gk-after-save-org-timer) ;check if there is an
-                                             ;active timer, the timer
-                                             ;callback nulls this
-                                             ;variable
+                                        ;active timer, the timer
+                                        ;callback nulls this
+                                        ;variable
                (eq major-mode 'org-mode)
                (member file (mapcar #'expand-file-name org-agenda-files)))
       (message "Wrote an agenda file and there were no active\
@@ -3705,9 +3705,9 @@ Does various tasks after saving a file, see it's definition."
             (if (file-exists-p org-icalendar-combined-agenda-file)
                 (org-icalendar-combine-agenda-files)
               (org-icalendar-export-agenda-files))
-            (message "Regenerated!")
-            ;; Reset the timer.
-            (setf gk-after-save-org-timer nil))))))))
+            (message "Regenerated!"))
+          ;; Reset the timer.
+          (setf gk-after-save-org-timer nil)))))))
 
 (add-hook 'after-save-hook 'gk-after-save-hook)
 #+END_SRC
