@@ -2746,6 +2746,7 @@ the template description."
   (when (boundp goto-address-mode)
     (goto-address-mode -1))
   (imenu-add-to-menubar "Entries")
+  (setq truncate-lines t)
   (setq indent-tabs-mode nil))
 
 (add-hook 'org-mode-hook 'gk-org-hook)
