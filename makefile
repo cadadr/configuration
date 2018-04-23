@@ -67,7 +67,7 @@ deb-check:
 	lintian $(DEB)
 
 deb-inst: deb
-	apt-get install --no-install-recommends ./$(DEB) && apt-get autoremove
+	sudo apt-get install --no-install-recommends ./$(DEB)
 
 clean-deb:
 	rm -rf *.deb; cd deb/DEBIAN; $(MAKE) $(MAKEFLAGS) clean;\
@@ -97,7 +97,7 @@ debian-install-configs: $(DEBIANCONFFILS)
 		$(DEBIANDIR)/* /\
 
 debian-regen:
-	locale-gen && update-grub
+	sudo locale-gen && sudo update-grub
 
 ubuntu-init: deb-inst ubuntu-config
 
