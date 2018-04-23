@@ -3,12 +3,18 @@
 import XMonad
 import XMonad.Config.Desktop (desktopConfig)
 import XMonad.Util.EZConfig (additionalKeys)
+import XMonad.Layout.Spacing (spacing)
 
-main = xmonad $ desktopConfig {
+baseConfig = desktopConfig
+
+main = xmonad $ baseConfig {
     modMask = myModMask,
     -- First two workspaces are the most frequent ones.
-    workspaces = ["home", "other"] ++ (map show $ takeWhile (<=9) [3..])
+    workspaces = ["home", "other"] ++ (map show $ takeWhile (<=9) [3..]),
+    layoutHook = myLayoutHook
   } `additionalKeys` myKeys
+
+myLayoutHook = spacing 2 $ layoutHook baseConfig
 
 myModMask = mod4Mask
 modShiftMask = myModMask .|. shiftMask
