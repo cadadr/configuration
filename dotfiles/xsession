@@ -16,7 +16,7 @@ echo Keyboard settings...
 setxkbmap gb basic ctrl:nocaps
 
 echo Set the background.
-feh --no-fehbg --bg-fill /home/g/pic/wlp/627721-2048x1361.jpg
+xsetroot -gray
 
 echo xinput settings
 xinput --set-prop 'ETPS/2 Elantech Touchpad' 286 1 # natural scrolling
