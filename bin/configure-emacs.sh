@@ -1,7 +1,7 @@
 #!/bin/sh
 
 V=${1-head}
-TK=${2-yes}
+TK=${TK-yes}
 
 if [ ! -f configure ]; then
     ./autogen.sh all
