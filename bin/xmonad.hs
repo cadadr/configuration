@@ -11,7 +11,10 @@ main = xmonad $ baseConfig {
     modMask = myModMask,
     -- First two workspaces are the most frequent ones.
     workspaces = ["home", "other"] ++ (map show $ takeWhile (<=9) [3..]),
-    layoutHook = myLayoutHook
+    layoutHook = myLayoutHook,
+    borderWidth = 3,
+    focusedBorderColor = "#000000",
+    normalBorderColor = "#ffffff"
   } `additionalKeys` myKeys
 
 myLayoutHook = spacing 2 $ layoutHook baseConfig
