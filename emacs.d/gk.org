@@ -2537,13 +2537,14 @@ represent text in Org mode, while retaining monospace where necessary,
 i.e. for source code, verbatim text, and structure and indentation.
 
 #+BEGIN_SRC elisp :tangle yes :comments both
-(setf ovp-font (gk-font :mono))
+(setf org-variable-pitch-fixed-font (gk-font :mono))
 
-(set-face-attribute 'ovp-face nil :inherit 'org-level-1
-                                  :weight 'bold)
+(set-face-attribute 'org-variable-pitch-face
+                     nil :inherit 'org-level-1
+                     :weight 'bold)
 
 ;; Links in tables mess with alignment.
-(pushnew 'org-link ovp-mono-faces)
+(pushnew 'org-link org-variable-pitch-fixed-faces)
 
 (defun gk-ovp-hook ()
   "Hook for ‘org-variable-pitch-minor-mode’."
