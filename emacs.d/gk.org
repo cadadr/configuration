@@ -356,7 +356,13 @@ i.e. i18n -> internationalisation."
 (defun gk-delete-buffer-file ()
   "Delete the file visited in the current buffer."
   (interactive)
-  (delete-file (buffer-file-name) delete-by-moving-to-trash))
+  (if-let* ((f (buffer-file-name)))
+      (when (yes-or-no-p
+             (format
+              "Delete file ‘%s’, visited by buffer ‘%s’" f (buffer-name)))
+        (delete-file f delete-by-moving-to-trash)
+        (message "Deleted %s." f))
+    (user-error "Buffer ‘%s’ is not visiting a file" (buffer-name))))
 
 (defun gk-copy-buffer-file (file dest)
   "Copy the file visited in the current buffer."
@@ -364,6 +370,13 @@ i.e. i18n -> internationalisation."
     (list (buffer-file-name)
           (read-file-name (format "Copy %s to: " (buffer-file-name)))))
   (copy-file file dest nil t t t))
+
+(defun gk-rename-buffer-file (dest)
+  "Rename the file visited in the current buffer."
+  (interactive
+    (list (read-file-name (format "Rename %s to: " (buffer-file-name)))))
+  (rename-file (buffer-file-name) dest)
+  (find-alternate-file dest))
 
 (defun gk-truncate-and-fill-string (len s)
   (let ((slen (length s)))
@@ -3809,6 +3822,7 @@ Do things with the current buffer.
 (gk-prefix-binding "bc" #'gk-copy-buffer-file)
 (gk-prefix-binding "bn" #'gk-copy-buffer-file-name)
 (gk-prefix-binding "bD" #'gk-delete-buffer-file)
+(gk-prefix-binding "br" #'gk-rename-buffer-file)
 #+END_SRC
 
 *** Programming
