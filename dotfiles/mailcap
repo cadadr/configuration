@@ -1,0 +1,5 @@
+# mailcap
+
+# Stuff that Emacs opens.
+text/*; emacsclient %s
+application/pdf; emacsclient %s
