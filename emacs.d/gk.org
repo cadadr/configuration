@@ -384,14 +384,12 @@ i.e. i18n -> internationalisation."
         (s-truncate len s)
       (concat s (make-string (- len slen) ?\ )))))
 
-(defun gk-find-file ()
-  "Like ‘find-file’ but if a path is under point, offer that first."
-  (interactive)
-  (unless
-      (when-let* ((file-name (ffap-file-at-point)))
-        (when (y-or-n-p (format "Visit file under point (%s)?" file-name))
-          (find-file file-name)))
-    (call-interactively #'find-file)))
+(defun gk-find-file (arg)
+  "Like ‘find-file’ but find file at point if ARG is non-nil."
+  (interactive "P")
+  ;; See http://lists.gnu.org/archive/html/help-gnu-emacs/2018-04/msg00280.html
+  (let ((current-prefix-arg nil))
+    (call-interactively (if arg #'ffap #'find-file))))
 
 (defun // (&rest args)
   (apply #'/ (mapcar #'float args)))
