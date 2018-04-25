@@ -8,7 +8,7 @@ DEPS+=pass telnet file reportbug lsof gawk vim tmux units	    \
 	debian-goodies sudo vrms xz-utils alsa-utils bzip2 less	    \
 	sqlite3 zip unzip python3-reportbug groff-base gnupg2 lshw  \
 	openssh-client host texinfo cups-bsd cups-client bind9-host \
-	sloccount pandoc
+	sloccount pandoc qemu
 ### Services:
 DEPS+=nginx syncthing openssh-server avahi-daemon avahi-autoipd
 ### Devtools:
@@ -32,7 +32,7 @@ DEPS+=fonts-freefont-ttf fonts-liberation fonts-dejavu
 DEPS+=libreoffice libreoffice-help-en-gb		      \
 	libreoffice-help-en-us xclip gimp gparted gnuplot feedgnuplot \
 	gv cheese pavucontrol mpv quodlibet simple-scan evince	      \
-	vokoscreen qutebrowser chromium
+	vokoscreen qutebrowser chromium transmission
 ### Misc:
 #DEPS+=gnome-session		# On Ubuntu, for normal Gnome 3 session
 DEPS+=gnutls-bin cups cups-browsed cups-filters			      \
