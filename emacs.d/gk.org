@@ -2092,6 +2092,10 @@ does here.
 **** Keys
 #+BEGIN_SRC elisp :tangle yes :comments both
 (define-key gnus-article-mode-map "\C-cw" 'gnus-article-browse-html-article)
+(define-key gnus-summary-mode-map "BS" (gk-interactively
+                                        (gnus-summary-move-article nil "spam")))
+(define-key gnus-summary-mode-map "B@" (gk-interactively
+                                        (gnus-summary-move-article nil "self")))
 #+END_SRC
 
 **** User interface
