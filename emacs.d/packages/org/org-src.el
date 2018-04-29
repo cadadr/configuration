@@ -196,6 +196,14 @@ For example, there is no ocaml-mode in Emacs, but the mode to use is
 	   (string "Language name")
 	   (symbol "Major mode"))))
 
+(defcustom org-src-inherited-local-variables '()
+  "Local variables to be copied into source code editing buffers.
+This variable contains a list of symbols, whose values in the Org
+mode buffer that contains the source block are to be interited by
+the source code editing buffer."
+  :group 'org-edit-structure
+  :type '(repeat symbol))
+
 (defcustom org-src-block-faces nil
   "Alist of faces to be used for source-block.
 Each element is a cell of the format
@@ -951,9 +959,13 @@ name of the sub-editing buffer."
     (unless (and (memq type '(example-block src-block))
 		 (org-src--on-datum-p element))
       (user-error "Not in a source or example block"))
-    (let* ((lang
+    (let* ((org-buffer (current-buffer))
+           (lang
 	    (if (eq type 'src-block) (org-element-property :language element)
 	      "example"))
+           (buffer-name (or edit-buffer-name
+	                    (org-src--construct-edit-buffer-name
+                             (buffer-name) lang)))
 	   (lang-f (and (eq type 'src-block) (org-src--get-lang-mode lang)))
 	   (babel-info (and (eq type 'src-block)
 			    (org-babel-get-src-block-info 'light)))
@@ -961,10 +973,7 @@ name of the sub-editing buffer."
       (when (and (eq type 'src-block) (not (functionp lang-f)))
 	(error "No such language mode: %s" lang-f))
       (org-src--edit-element
-       element
-       (or edit-buffer-name
-	   (org-src--construct-edit-buffer-name (buffer-name) lang))
-       lang-f
+       element buffer-name lang-f
        (and (null code)
 	    (lambda () (org-escape-code-in-region (point-min) (point-max))))
        (and code (org-unescape-code-in-string code)))
@@ -977,6 +986,9 @@ name of the sub-editing buffer."
 	(let ((edit-prep-func (intern (concat "org-babel-edit-prep:" lang))))
 	  (when (fboundp edit-prep-func)
 	    (funcall edit-prep-func babel-info))))
+      (dolist (localvar org-src-inherited-local-variables)
+        (set (make-local-variable localvar)
+             (with-current-buffer org-buffer (eval localvar))))
       t)))
 
 (defun org-edit-inline-src-code ()
