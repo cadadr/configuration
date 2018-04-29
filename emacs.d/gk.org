@@ -490,29 +490,49 @@ how these are bound.
         (message "%s" (buffer-string))))))
 
 ;; Adapted from https://crowding.github.io/blog/2014/08/16/replace-less-with-emacs/
+(defun gk-less--proc-sentinel (proc string)
+  (ignore proc string))
+
+(defun gk-less--postprocess (proc)
+  (goto-char (point-min))
+  (cond
+   ;; Man pages:
+   ((save-excursion (search-forward "" nil t))
+    (Man-fontify-manpage))
+   ;; Diffs:
+   ((save-excursion
+      (and (looking-at "^diff")
+           (re-search-forward "^---" nil t)
+           (re-search-forward "^@@" nil t)))
+    (diff-mode))
+   (:else
+    (special-mode))))
+
+(defun gk-less--proc-filter (proc string)
+  (let ((buf (process-buffer proc))
+        (mark (process-mark proc)))
+    (with-current-buffer buf
+      (let ((buffer-read-only nil))
+        ;; make sure point stays at top of window while process output
+        ;; accumulates
+        (save-excursion
+          (goto-char mark)
+          (insert string)
+          (ansi-color-filter-region mark (point))
+          (set-marker mark (point)))
+        ;; Post-processing the buffer:
+        (unless (process-live-p proc)
+          (gk-less--postprocess proc))))))
+
 (defun gk-less (fifo)
   "Companion function for ‘extras/eless.sh’."
-  (let* ((buf (generate-new-buffer "*pager*"))
-         (proc (start-process "gk-pager" buf "cat" fifo)))
-    (view-buffer buf 'kill-buffer)
-    ;; make sure point stays at top of window while process output accumulates
-    (set-process-filter
-     proc
-     (lambda (proc string)
-       (let ((buf (process-buffer proc))
-             (mark (process-mark proc)))
-         (with-current-buffer buf
-           (let ((buffer-read-only nil))
-             (save-excursion
-               (goto-char mark)
-               (insert string)
-               (ansi-color-filter-region mark (point))
-               (set-marker mark (point)))
-             ;; If the process is done and the output seems to be
-             ;; destined for man, render it as such.
-             (when (process-live-p proc)
-               (when (save-excursion (search-forward "" nil t))
-                 (Man-fontify-manpage))))))))))
+  (let ((buf (generate-new-buffer "*pager*")))
+    (make-process
+     :name "gk-pager" :buffer buf :command `("cat" ,fifo)
+     :sentinel #'gk-less--proc-sentinel
+     :filter #'gk-less--proc-filter)
+    (view-buffer buf 'kill-buffer)))
+
 ;; Make sure that emacs itself uses ‘more’,  necessary for ‘man’ command.
 (setenv "PAGER" "more")
 
