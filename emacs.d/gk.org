@@ -123,6 +123,7 @@ exported Elisp file.
 (require 'org)
 (require 'org-caldav)
 (require 'org-capture)
+(require 'org-checklist)
 (require 'org-eww)
 (require 'org-mobile)
 (require 'org-protocol)
