@@ -7,3 +7,7 @@ Pin-Priority: 1001
 Package: qutebrowser
 Pin: release a=unstable
 Pin-Priority: 1002
+
+Package: hugo
+Pin: release a=unstable
+Pin-Priority: 1002

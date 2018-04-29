@@ -132,6 +132,7 @@ exported Elisp file.
 (require 'ox)
 (require 'ox-beamer)
 (require 'ox-groff)
+(require 'ox-hugo)
 (require 'ox-latex)
 (require 'ox-odt)
 (require 'ox-publish)
