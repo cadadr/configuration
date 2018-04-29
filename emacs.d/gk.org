@@ -2678,7 +2678,9 @@ BEGIN and END are bounds of the region."
  org-src-preserve-indentation t
  ;; Don't change the window layout when editing source blocks, open
  ;; them instead in the current window.
- org-src-window-setup 'current-window)
+ org-src-window-setup 'current-window
+ org-src-inherited-local-variables
+ '(lexical-binding truncate-lines))
 #+END_SRC
 
 *** Babel
