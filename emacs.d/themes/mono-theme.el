@@ -40,17 +40,19 @@
       (e "violetred4")
       (f "khaki")
       (g "beige")
-      (h "hotpink"))
+      (h "hotpink")
+      (j "gainsboro"))
   (custom-theme-set-faces
    'mono
    ;; === Frame ===
    `(default ((t (:foreground ,a :background ,b))))
-   `(mode-line ((t (:foreground ,b :background ,a :box nil))))
-   `(mode-line-inactive ((t (:background ,g :box nil))))
+   `(mode-line ((t (:foreground ,b :background ,a :box ,a))))
+   `(mode-line-inactive ((t (:background ,b :box t))))
    `(mode-line-highlight ((t (:foreground ,a
                                           :background ,h
                                           :box nil))))
    `(region ((t (:background ,h))))
+   `(fringe ((t (:background ,j))))
 
    ;; === General ===
    `(link
