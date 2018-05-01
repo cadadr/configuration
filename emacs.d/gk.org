@@ -2120,6 +2120,16 @@ does here.
                                         (gnus-summary-move-article nil "self")))
 #+END_SRC
 
+**** Settings
+Modifications to how Gnus behaves.
+
+#+BEGIN_SRC elisp :tangle yes :comments both
+(setf
+ ;; «Number of seconds to wait before an nntp connection times out.»
+ ;; Gmane hangs indefinitely at times.
+ nntp-connection-timeout 5)
+#+END_SRC
+
 **** User interface
 #+BEGIN_SRC elisp :tangle yes :comments both
 (setf
