@@ -12,7 +12,7 @@ main = xmonad $ baseConfig {
     -- First two workspaces are the most frequent ones.
     workspaces = ["home", "other"] ++ (map show $ takeWhile (<=9) [3..]),
     layoutHook = myLayoutHook,
-    borderWidth = 3,
+    borderWidth = 5,
     focusedBorderColor = "#000000",
     normalBorderColor = "#ffffff"
   } `additionalKeys` myKeys
