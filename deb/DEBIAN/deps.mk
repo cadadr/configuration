@@ -8,7 +8,7 @@ DEPS+=pass telnet file reportbug lsof gawk vim tmux units	    \
 	debian-goodies sudo vrms xz-utils alsa-utils bzip2 less	    \
 	sqlite3 zip unzip python3-reportbug groff-base gnupg2 lshw  \
 	openssh-client host texinfo cups-bsd cups-client bind9-host \
-	sloccount pandoc qemu hugo
+	sloccount pandoc qemu hugo dirmngr
 ### Services:
 DEPS+=nginx syncthing openssh-server avahi-daemon avahi-autoipd
 ### Devtools:
