@@ -123,8 +123,8 @@ export QUILT_PAGER="tee"	# Fuck pagination.  I know how to pipe to less.
 
 # Spamd
 export SPAMD_PORT=2338
-export SPAMD_PID=$HOME/.spamd.pid
-export SPAMD_LOG=$HOME/.spamd.log
+export SPAMD_PID=$HOME/var/spamd.pid
+export SPAMD_LOG=$HOME/log/spamd.log
 
 # Golang
 export GOPATH=$HOME/co/Go
