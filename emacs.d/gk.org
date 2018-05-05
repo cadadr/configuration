@@ -82,6 +82,7 @@ exported Elisp file.
 (require 'eimp)
 (require 'eldoc)
 (require 'elfeed)
+(require 'emms-setup)
 (require 'epa)
 (require 'epa-mail)
 (require 'epg)
@@ -207,7 +208,8 @@ exported Elisp file.
       tramp-persistency-file-name (locate-user-emacs-file "etc/tramp")
       custom-file (locate-user-emacs-file "etc/custom.el")
       nsm-settings-file (locate-user-emacs-file "etc/network-security.data")
-      mc/list-file (locate-user-emacs-file "etc/mc-lists.el"))
+      mc/list-file (locate-user-emacs-file "etc/mc-lists.el")
+      emms-directory (locate-user-emacs-file "etc/emms"))
 
 (defvar gk-website-settings
   (expand-file-name "~/doc/not/www/publish")
@@ -406,6 +408,20 @@ WikiZero is a mirror of wikipedia."
     "http://www.wiki-zero.com/index.php?q="
     (base64-encode-string
      (url-unhex-string url)))))
+
+(defun gk-update-package-load-paths ()
+  "Clean up the ‘load-path’, find and add new packages."
+  (interactive)
+  (setf load-path (seq-uniq load-path #'string=))
+  (let ((packages (directory-files (locate-user-emacs-file "packages")
+                                   directory-files-no-dot-files-regexp))
+        new)
+    (if (dolist (package packages new)
+          (let ((l (length load-path)))
+            (unless (= l (length (pushnew package load-path :test #'string=)))
+              (push package new))))
+        (message "New package(s): %S" new)
+      (message "No new packages were found"))))
 #+END_SRC
 
 ** Recompilation
@@ -2853,6 +2869,12 @@ it.  This'd presumably save some memory.
 (define-key image-mode-map [?\ ] (gk-interactively
                                    (let ((image-animate-loop t))
                                      (image-toggle-animation))))
+#+END_SRC
+
+*** EMMS
+#+BEGIN_SRC elisp :tangle yes :comments both
+(emms-standard)
+(emms-default-players)
 #+END_SRC
 
 ** OS-specific settings

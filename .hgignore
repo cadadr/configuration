@@ -94,6 +94,7 @@ ido\.last
 ^emacs\.d/etc/org-id-locations\.el
 ^emacs\.d/etc/network-security\.data
 ^emacs\.d/etc/org-caldav-
+^emacs\.d/etc/emms
 
 ^emacs\.d/eshell/(history|lastdir)
 
