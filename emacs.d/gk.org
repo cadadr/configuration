@@ -1977,6 +1977,11 @@ and special ones sepatarely."
 #+END_SRC
 
 ** Mail
+*** Paths
+#+BEGIN_SRC elisp :tangle yes :comments both
+(defvar gk-mail-home (expand-file-name "~/posta"))
+#+END_SRC
+
 *** Authentication
 #+BEGIN_SRC elisp :tangle yes :comments both
 (setf netrc-file (dropbox "authinfo.gpg")
