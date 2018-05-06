@@ -422,6 +422,15 @@ WikiZero is a mirror of wikipedia."
               (push package new))))
         (message "New package(s): %S" new)
       (message "No new packages were found"))))
+
+(defun gk-send-desktop-notification (summary message)
+  "Show a notification on the desktop."
+  (unless (gk-gui-p)
+    (error "Cannot send desktop notification in non-GUI session"))
+  (make-process
+   :name "gk-desktop-notification"
+   :buffer (get-buffer-create " *Desktop Notifications*")
+   :command (list "notify-send" (concat "[Emacs] " summary) message)))
 #+END_SRC
 
 ** Recompilation
