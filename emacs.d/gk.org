@@ -1979,7 +1979,13 @@ and special ones sepatarely."
 ** Mail
 *** Paths
 #+BEGIN_SRC elisp :tangle yes :comments both
-(defvar gk-mail-home (expand-file-name "~/posta"))
+(defvar gk-mail-home (expand-file-name "~/posta")
+  "Where all mailboxes etc. are.")
+
+(defvar gk-mail-inboxes
+  (list (expand-file-name "inbox" gk-mail-home)
+        (getenv "MAIL"))
+  "Where to look for mail.")
 #+END_SRC
 
 *** Authentication
@@ -2012,6 +2018,25 @@ Otherwise start mail program in offline mode."
     (if arg
         (gnus)
       (gnus-unplugged))))
+
+(defun gk-fetch-mail ()
+  "Run mail retrieval scripts."
+  (interactive)
+  (make-process
+   :name "gk-fetch-mail" :buffer (get-buffer-create "*Fetch Mail*")
+   :command (list "do-netrc.sh" "mpop" "-a")
+   :sentinel
+   (lambda (process event)
+     (let ((msg ""))
+       (unless (process-live-p process)
+         (when (zerop (process-exit-status process))
+           (dolist (f gk-mail-inboxes)
+             (when (> (file-attribute-size (file-attributes f))
+                      0)
+               (setf msg "You have unread mail! ")))
+           (when (and (gk-gui-p) (not (string-empty-p msg)))
+               (gk-send-desktop-notification "New mail" msg)))
+         (message "%sFetch mail process %s" msg (string-trim event)))))))
 #+END_SRC
 
 *** Movemail program
@@ -2026,7 +2051,9 @@ does here.
 
 *** Mail sources
 #+BEGIN_SRC elisp :tangle yes :comments both
-(gk-load (dropbox "mail-sources") t)
+(setf
+ mail-sources
+ `(,@(mapcar ($ (list 'file :path $1)) gk-mail-inboxes)))
 #+END_SRC
 
 *** Spam-checking and splitting mail
