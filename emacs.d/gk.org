@@ -114,6 +114,7 @@ exported Elisp file.
 (require 'lua-mode)
 (require 'ls-lisp)
 (require 'mail-source)
+(require 'mairix)
 (require 'message)
 (require 'mm-url)
 (require 'multiple-cursors)
@@ -2139,6 +2140,23 @@ does here.
   (rmail-expunge-and-save))
 
 (define-key rmail-mode-map "S" 'gk-rmail-force-expunge-and-save)
+#+END_SRC
+
+*** Mairix
+Mairix is the mail search tool.  =mairix.el= seems to come with Emacs.
+
+#+BEGIN_SRC elisp
+(setf
+ mairix-file-path gk-mail-home
+ mairix-search-file "mairix-search")
+
+(defalias 'search-mail 'mairix-widget-search)
+
+(define-advice mairix-widget-search
+    (:after (&rest args) enable-widget-minor-mode)
+  "Activate ‘widget-minor-mode’ in the ‘mairix-widget-search’ buffer.
+Wonder why this is not the default."
+  (widget-minor-mode +1))
 #+END_SRC
 
 *** Gnus
