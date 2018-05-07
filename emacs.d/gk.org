@@ -2112,7 +2112,7 @@ does here.
 
 ;; Save a copy to an mbox.
 (setf
- message-default-headers "Fcc: ~/posta/mail/Outbox")
+ message-default-headers (format "Fcc: %s/outbox" gk-mail-home))
 
 (defun gk-message-mode-hook ()
   "Set up the message buffer."
