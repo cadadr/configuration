@@ -2099,7 +2099,7 @@ does here.
 *** Gnus
 **** Files and directories
 #+BEGIN_SRC elisp :tangle yes :comments both
-(setf gnus-default-directory (expand-file-name "~/posta"))
+(setf gnus-default-directory gk-mail-home)
 
 (defun gnus-file (file)
   "Locate FILE in ‘gnus-default-directory’."
