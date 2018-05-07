@@ -128,6 +128,22 @@ mkemacsbdir () {
     git clone ~/co/External/emacs -b gk "$f" && echo "$f"
 }
 
+# This function uses pushd and popd to make a better cd.  It imitates
+# cd, but maintains a full history of navigation.  Luckily, pushd and
+# popd uses CDPATH too, so this can seamlessly replace cd.
+cd () {
+    if [ x$1 = x- ]; then
+	popd
+    elif [ $# = 0 ]; then
+	if [ ! $PWD = $HOME ]; then
+	    pushd $HOME		# pushd w/ no args does not behave
+				# like cd
+	fi
+    else
+	pushd $@
+    fi
+}
+
 ###
 
 alias apt-dependencies='apt-cache depends --no-recommends --no-breaks --no-suggests --no-conflicts --no-enhances --no-replaces --recurse'

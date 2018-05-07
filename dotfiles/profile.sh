@@ -44,6 +44,8 @@ export SYSTEM=$(uname)
 
 ### Paths:
 
+export CDPATH=.:$HOME:$HOME/co
+
 PROFILE_PATH="$HOME/bin:$HOME/local/bin"
 
 # Guix.
