@@ -17,6 +17,7 @@ help:
 	echo "	build		build utilites and emacs.d";\
 	echo "			use \`bins' and \`emacs' rules to build these";\
 	echo "			separately";\
+	echo "	dotfiles	build dotfiles";\
 	echo ;\
 	echo "	deb		build the Debian package ($(DEB))";\
 	echo "	deb-inst	install $(DEB), generating it if necessary";\
@@ -48,8 +49,14 @@ clean-bin:
 	rm -rf $(DEB); cd bin; $(MAKE) $(MAKEFLAGS) clean;\
 	cd $(HERE)
 
-invade:
+invade: dotfiles
 	./bin/invade -v $(HOME)
+
+dotfiles:
+	cd dotfiles; $(MAKE) $(MAKEFLAGS); cd $(HERE)
+
+clean-dotfiles:
+	cd dotfiles; $(MAKE) $(MAKEFLAGS) clean; cd $(HERE)
 
 ### The Debian package:
 deb: $(DEB)
@@ -128,9 +135,9 @@ clean-configs:
 
 ### Postamble:
 .PHONY: all build bins deb deb-config deb-check deb-inst deb-touch
-.PHONY: clean clean-bin clean-deb debian-config debian-init
+.PHONY: dotfiles clean clean-bin clean-deb debian-config debian-init
 .PHONY: debian-regen debian-install-configs rpi-init rpi-setup
-.PHONY: rpi-config rpi-config-files clean-configs
+.PHONY: rpi-config rpi-config-files clean-configs clean-dotfiles
 
 # Local variables:
 # truncate-lines: t

@@ -1,0 +1,29 @@
+# msmtprc --- Send mail.
+
+# Set default values for all following accounts.
+defaults
+auth on
+tls on
+tls_trust_file /etc/ssl/certs/ca-certificates.crt
+tls_starttls off
+logfile ~/log/msmtp.log
+protocol smtp
+# Leave ↓ blank for check netrc
+password
+
+# self@gkayaalp.com
+account self
+host __MAIL_HOST__
+port 465
+from self@gkayaalp.com
+user self@gkayaalp.com
+
+# IU ogrenci mail
+account iumail
+host __IU_SMTP_HOST__
+port 465
+from __IU_MAIL_ADDR__
+user __IU_MAIL_ADDR__
+
+# Set a default account
+account default : self

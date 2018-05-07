@@ -1,0 +1,43 @@
+# procmailrc --- Deliver mail.
+
+### PROCMAIL RULES ###
+SHELL=/bin/sh
+MAILDIR=$HOME/posta
+SENDMAIL=/usr/bin/msmtp
+LOGFILE=$HOME/log/procmail.log
+VERBOSE=yes
+LOGABSTRACT=yes
+DROPPRIVS=yes
+
+### CLAMAV ###
+AV_REPORT=`/usr/bin/clamscan --stdout --no-summary - |sed 's/^stream: //'`
+VIRUS=`echo $AV_REPORT|sed '/FOUND/ { s/.*/Yes/; q  };  /FOUND/  !s/.*/No/'`
+:0fw
+| /usr/local/bin/formail -i "X-Virus: $VIRUS"
+
+# Discard virus messages.
+:0fw
+* ^X-Virus: Yes
+/dev/null
+# | formail -i "X-Virus-Report: $AV_REPORT" -i "Subject: [Virus] $AV_REPORT"
+
+### Spamassassin:
+:0fw
+| /usr/bin/spamc
+
+# Discard if spam-score ≥ 10 stars.
+:0
+* ^X-Spam-Level: \*\*\*\*\*\*\*\*\*\*
+/dev/null
+
+# Put into spam mailbox otherwise.
+:0:
+* ^X-Spam-Status: Yes
+spam
+
+### Delivery:
+
+# Catch all the remaining.
+:0:
+inbox
+

@@ -59,7 +59,7 @@ DEPS+=openvpn resolvconf
 DEPS+=mercurial cvs git subversion rcs python-hglib python3-hglib \
 	python-dulwich python-fastimport git-cvs gitk quilt
 ### Mail:
-DEPS+=clamav mailutils spamassassin spamc
+DEPS+=clamav mailutils spamassassin spamc mpop msmtp mairix procmail
 ### Multimedia:
 DEPS+=vorbisgain youtube-dl vorbis-tools
 ### TeX:

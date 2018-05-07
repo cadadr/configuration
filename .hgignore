@@ -3,6 +3,7 @@
 \.o$
 \.xz$
 %gconf\.xml$
+tmp\.patch$
 
 ^arch/(pkg|src)$
 ^deb/DEBIAN/control$
@@ -10,6 +11,8 @@
 ^bin/of$
 ^bin/xmonad(\.hi)?$
 ^config.m4$
+
+^dotfiles/m(pop|smtp)rc$
 
 ^system/debian/etc/network/interfaces$
 ^system/debian/etc/resolv.conf$

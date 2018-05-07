@@ -12,6 +12,10 @@
 .local/share/applications/org-protocol.desktop	candy/org-protocol.desktop
 .local/share/applications/qute.desktop		candy/qute.desktop
 .mailcap			dotfiles/mailcap
+.mairixrc			dotfiles/mairixrc
+.mpoprc				dotfiles/mpoprc
+.msmtprc			dotfiles/msmtprc
+.procmailrc			dotfiles/procmailrc
 .profile			dotfiles/profile.sh
 .signature			dotfiles/signature
 .xinitrc			dotfiles/xsession
