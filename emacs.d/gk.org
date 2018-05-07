@@ -2123,10 +2123,28 @@ does here.
 (define-key message-mode-map (kbd "C-c C-c") 'message-send)
 #+END_SRC
 
+*** Rmail
+#+BEGIN_SRC elisp :tangle yes :comments both
+(require 'rmail)
+
+(setf
+ rmail-primary-inbox-list gk-mail-inboxes
+ rmail-secondary-file-directory gk-mail-home
+ rmail-file-name (expand-file-name "current" gk-mail-home))
+
+(defun gk-rmail-force-expunge-and-save ()
+  "Force save the mail box, even if it seems to not be modified."
+  (interactive)
+  (set-buffer-modified-p t)
+  (rmail-expunge-and-save))
+
+(define-key rmail-mode-map "S" 'gk-rmail-force-expunge-and-save)
+#+END_SRC
+
 *** Gnus
 **** Files and directories
 #+BEGIN_SRC elisp :tangle yes :comments both
-(setf gnus-default-directory gk-mail-home)
+(setf gnus-default-directory (expand-file-name "old-gnus" gk-mail-home))
 
 (defun gnus-file (file)
   "Locate FILE in ‘gnus-default-directory’."
@@ -2182,6 +2200,8 @@ Modifications to how Gnus behaves.
 
 #+BEGIN_SRC elisp :tangle yes :comments both
 (setf
+ ;; Start out unplugged.
+ gnus-plugged nil
  ;; «Number of seconds to wait before an nntp connection times out.»
  ;; Gmane hangs indefinitely at times.
  nntp-connection-timeout 5)
