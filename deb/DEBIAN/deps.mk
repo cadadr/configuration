@@ -29,10 +29,9 @@ DEPS+=xorg xserver-xorg-input-all xserver-xorg-video-all xinput	\
 ### Fonts:
 DEPS+=fonts-freefont-ttf fonts-liberation fonts-dejavu
 ### Apps:
-DEPS+=libreoffice libreoffice-help-en-gb		      \
-	libreoffice-help-en-us xclip gimp gparted gnuplot feedgnuplot \
-	gv cheese pavucontrol mpv quodlibet simple-scan evince	      \
-	vokoscreen qutebrowser chromium transmission
+DEPS+=calligra xclip gimp gparted gnuplot feedgnuplot gv cheese	\
+	pavucontrol mpv quodlibet simple-scan evince vokoscreen	\
+	qutebrowser chromium transmission
 ### Misc:
 #DEPS+=gnome-session		# On Ubuntu, for normal Gnome 3 session
 DEPS+=gnutls-bin cups cups-browsed cups-filters			      \
