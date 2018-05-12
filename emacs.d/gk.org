@@ -938,9 +938,10 @@ be generous in keepbing backups.
  dired-omit-files "^\\(\\.\\|#\\)\\(.+\\|.+\\(~\\|,v\\)\\)?$"
  ;; Show symlinks' targets: it's useful, and dired-subtree is stupid
  ;; otherwise.
- dired-hide-details-hide-symlink-targets nil
- ;; No need to specially treat symlinks.
- dired-symlink-face nil)
+ dired-hide-details-hide-symlink-targets nil)
+
+(set-face-attribute dired-symlink-face nil
+                    :foreground "blue")
 
 (setf ls-lisp-dirs-first t)
 
