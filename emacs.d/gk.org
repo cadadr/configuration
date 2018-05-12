@@ -404,11 +404,10 @@ i.e. i18n -> internationalisation."
 WikiZero is a mirror of wikipedia."
   (interactive
    (list (read-string "Wikipedia URL: ")))
-  (browse-url
-   (concat
-    "http://www.wiki-zero.com/index.php?q="
-    (base64-encode-string
-     (url-unhex-string url)))))
+  (let* ((baseurl "http://www.wiki-zero.com/index.php?q=")
+         (wiki64 (base64-encode-string (url-unhex-string url) t))
+         (0url (concat baseurl wiki64)))
+    (browse-url 0url)))
 
 (defun gk-update-package-load-paths ()
   "Clean up the ‘load-path’, find and add new packages."
