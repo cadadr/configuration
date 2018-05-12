@@ -23,6 +23,8 @@ DEPS+=sane sane-utils dbus-x11 feh dunst suckless-tools i3lock	\
 #### XMonad:
 DEPS+=libghc-xmonad-dev libghc-xmonad-contrib-dev libghc-xmonad-doc \
 	libghc-xmonad-contrib-doc
+#### XFCE4:
+DEPS+=xfce4 xfce4-goodies xfce4-power-manager
 #### Xorg:
 DEPS+=xorg xserver-xorg-input-all xserver-xorg-video-all xinput	\
 	x11-apps
