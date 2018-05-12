@@ -10,9 +10,9 @@ clean:
 	rm -f $(FILES)
 
 mpoprc: mpoprc.in
-	$(M4) $< > $@
+	$(M4) $< > $@ && chmod 600 $@
 
 msmtprc: msmtprc.in
-	$(M4) $< > $@
+	$(M4) $< > $@ && chmod 600 $@
 
 .PHONY: all clean
