@@ -8,7 +8,7 @@ DEPS+=pass telnet file reportbug lsof gawk vim tmux units	    \
 	debian-goodies sudo vrms xz-utils alsa-utils bzip2 less	    \
 	sqlite3 zip unzip python3-reportbug groff-base gnupg2 lshw  \
 	openssh-client host texinfo cups-bsd cups-client bind9-host \
-	sloccount pandoc qemu hugo dirmngr
+	sloccount pandoc qemu hugo dirmngr pm-utils moreutils
 ### Services:
 DEPS+=nginx syncthing openssh-server avahi-daemon avahi-autoipd
 ### Devtools:
@@ -53,7 +53,8 @@ DEPS+=libjansson-dev		# Jansson is for faster JSON.
 DEPS+=gnutls-dev
 ### Internet tools:
 DEPS+=bind9utils net-tools curl phantomjs corebird dnsutils w3m	\
-	w3m-el webalizer wget rsync traceroute finger whois
+	w3m-el webalizer wget rsync traceroute finger whois	\
+	wireless-tools net-tools
 #### VPN:
 DEPS+=openvpn resolvconf
 ### VCS:
