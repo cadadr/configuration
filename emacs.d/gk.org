@@ -3854,7 +3854,7 @@ done after when a file is saved.
 
 #+BEGIN_SRC elisp :tangle yes :comments both
 (defvar gk-after-save-org-timer nil)
-(defvar gk-after-save-org-idle-seconds 2)
+(defvar gk-after-save-org-idle-seconds 5)
 
 (defun gk-after-save-hook ()
   "Göktuğ's After Save™, a man's best companion.
@@ -3870,7 +3870,7 @@ Does various tasks after saving a file, see it's definition."
                (eq major-mode 'org-mode)
                (member file (mapcar #'expand-file-name org-agenda-files)))
       (message "Wrote an agenda file and there were no active\
- timers, will query for export when Emacs is idle for %d seconds"
+ timers, will export ICS files when Emacs is idle for %d seconds"
                gk-after-save-org-idle-seconds)
       ;; Do not rush, query only if Emacs is idle.
       (setf
@@ -3878,12 +3878,11 @@ Does various tasks after saving a file, see it's definition."
        (run-with-idle-timer
         gk-after-save-org-idle-seconds nil
         (lambda ()
-          (when (y-or-n-p
-                 "You just wrote an Org agenda file, regenerate ICS files now?")
-            (if (file-exists-p org-icalendar-combined-agenda-file)
-                (org-icalendar-combine-agenda-files)
-              (org-icalendar-export-agenda-files))
-            (message "Regenerated!"))
+          (message "Regenerating ICS files...")
+          (if (file-exists-p org-icalendar-combined-agenda-file)
+              (org-icalendar-combine-agenda-files)
+            (org-icalendar-export-agenda-files))
+          (message "Done!")
           ;; Reset the timer.
           (setf gk-after-save-org-timer nil)))))))
 
