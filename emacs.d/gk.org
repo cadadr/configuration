@@ -3256,11 +3256,16 @@ it.  This'd presumably save some memory.
 *** Scrolling
 #+BEGIN_SRC elisp :tangle yes :comments both
 (define-advice scroll-up-command (:after (arg) gk-flash)
-  "Go ‘next-screen-context-lines’ forward after scrolling down.\n
+  "Scroll up, go ‘next-screen-context-lines’ more, and flash.\n
 So that the reader knows where to continue reading."
   (ignore arg)
   (ignore-errors
-    (forward-line next-screen-context-lines)))
+    (forward-line next-screen-context-lines)
+    ;; Flash if ‘hl-line-mode’ is inactive.  If it's active, the
+    ;; cursor is on the line to continue anyways.
+    (unless hl-line-mode
+      (hl-line-mode +1)
+      (run-with-idle-timer 1 nil ($ (hl-line-mode -1))))))
 #+END_SRC
 
 *** Time
