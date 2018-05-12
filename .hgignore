@@ -75,6 +75,7 @@ tmp\.patch$
 ^xdg-config/pavucontrol.ini
 ^xdg-config/volti/config
 ^xdg-config/spotify
+^xdg-config/Trolltech\.conf$
 
 # Emacs stuff
 (.core|.elc|~)$
