@@ -3965,6 +3965,7 @@ Does various tasks after saving a file, see it's definition."
 (gk-prefix-binding "u" 'gk-upcase-this-or-previous-word)
 (gk-prefix-binding "l" 'gk-lowercase-this-or-previous-word)
 (gk-global-binding "\C-z" 'gk-cycle-input-methods)
+(gk-prefix-binding "e" "\C-xe")
 
 ;;(gk-prefix-binding (kbd "L") gk-lingua-prefix-map)
 (gk-global-binding (kbd "\M-\ ") (gk-interactively (insert " ")))
