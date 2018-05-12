@@ -1456,6 +1456,14 @@ my configurations."
 (setf mc/always-run-for-all t)
 #+END_SRC
 
+*** Keybindings
+These are keybindings specific to =text-mode= and descendants.
+
+#+BEGIN_SRC elisp :tangle yes :comments both
+(define-key text-mode-map (kbd "C-M-a") #'backward-paragraph)
+(define-key text-mode-map (kbd "C-M-e") #'forward-paragraph)
+#+END_SRC
+
 ** Global settings
 #+BEGIN_SRC elisp :tangle yes :comments both
 ;;(require 'pixel-scroll)
@@ -2879,6 +2887,11 @@ the template description."
 ;; Heading navigation
 (org-defkey org-mode-map (kbd "M-p") 'outline-previous-visible-heading)
 (org-defkey org-mode-map (kbd "M-n") 'outline-next-visible-heading)
+;; Paragraphs
+
+;; This is how you undo a [remap <fn>] style keybinding. 
+(define-key org-mode-map [remap backward-paragraph] nil)
+(define-key org-mode-map [remap forward-paragraph] nil)
 #+END_SRC
 
 *** Hook
