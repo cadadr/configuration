@@ -2803,6 +2803,13 @@ BEGIN and END are bounds of the region."
  'org-babel-load-languages
  '((emacs-lisp . t)
    (shell . t)))
+
+(defun gk-org-confirm-babel-evaluate (&rest ignore)
+  "Evaluate code blocks straight away if they are in the ‘org-directory’.
+Ask otherwise."
+  (not (file-in-directory-p (buffer-file-name) org-directory)))
+
+(setf org-confirm-babel-evaluate #'gk-org-confirm-babel-evaluate)
 #+END_SRC
 
 *** Auto-insert
