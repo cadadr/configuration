@@ -2,6 +2,7 @@
 #+title: Göktuğ's GNU Emacs Initialisation File
 #+latex_class: gk-article
 #+CATEGORY: emacs.d
+#+PROPERTY: header-args:elisp :edit-bindings '((lexical-binding t))
 
 * Intro
 This is Göktuğ's GNU Emacs Initialisation File.  It's written in the
@@ -2810,6 +2811,45 @@ Ask otherwise."
   (not (file-in-directory-p (buffer-file-name) org-directory)))
 
 (setf org-confirm-babel-evaluate #'gk-org-confirm-babel-evaluate)
+#+END_SRC
+
+#+BEGIN_SRC elisp :tangle yes :comments both
+(define-advice org-src--edit-element
+    (:around
+     (fn datum &rest args)
+     attr-edit&edit-bindings)
+  "Apply edit-special bindings."
+  (let ((attr-edit (org-element-property :attr_edit datum))
+        (edit-bindings
+         (assoc :edit-bindings (caddr (org-babel-get-src-block-info nil datum))))
+        (source-buffer (current-buffer))
+        (sub (lambda (varlist source-buffer)
+               (let (var val)
+                 (dolist (form varlist)
+                   ;; If it's a symbol, inherit from the Org mode buffer.
+                   (if (symbolp form)
+                       (setq var form
+                             val (with-current-buffer source-buffer (eval var)))
+                     ;; Else, apply the specified value.
+                     (setq var (car form) val (cadr form)))
+                   (unless (symbolp var)
+                     ;; XXX: maybe tell where it is?
+                     (user-error "Bad varlist at ATTR_EDIT"))
+                   (set (make-local-variable var) val))))))
+
+    ;; Apply function
+    (apply fn datum args)
+
+    ;; Apply edit attributes (ATTR_EDIT).
+    (dolist (attr attr-edit)
+      (let ((varlist (car (read-from-string attr))))
+        (unless (listp varlist)
+          (user-error "Value of ATTR_EDIT must be a varlist."))
+        (funcall sub varlist source-buffer)))
+    ;; Apply edit bindings (:edit-bindings header argument).
+    ;; These override attr-edit values.
+    (when edit-bindings
+      (funcall sub (cdr edit-bindings) source-buffer))))
 #+END_SRC
 
 *** Auto-insert
