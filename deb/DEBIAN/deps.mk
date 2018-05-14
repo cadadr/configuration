@@ -19,7 +19,7 @@ DEPS+=laptop-mode-tools hdparm
 ### Desktop & Xorg:
 #### Base:
 DEPS+=sane sane-utils dbus-x11 feh dunst suckless-tools i3lock	\
-	notify-osd libnotify-bin pinentry-gtk2
+	notify-osd libnotify-bin pinentry-gtk2 ssh-askpass
 #### XMonad:
 DEPS+=libghc-xmonad-dev libghc-xmonad-contrib-dev libghc-xmonad-doc \
 	libghc-xmonad-contrib-doc
