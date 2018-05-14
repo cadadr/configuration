@@ -1,0 +1,23 @@
+#!/bin/sh
+# XFCE session initialisation file.
+
+set -e
+
+. $HOME/.profile
+
+echo Merge X resources...
+xrdb -merge $MEINE/Xdefaults
+
+echo Keyboard settings...
+setxkbmap gb basic ctrl:swapcaps
+
+echo xinput settings
+xinput set-prop 'ETPS/2 Elantech Touchpad' 287 1 # natural scrolling
+# click method: no areas, two finger is right click, three finger middle
+xinput set-prop 'ETPS/2 Elantech Touchpad' 295 0 1
+
+echo 'personal xinitrc is done'
+
+echo 'run XFCE4 xinitrc...'
+. /etc/xdg/xfce4/xinitrc
+
