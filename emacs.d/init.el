@@ -7,9 +7,6 @@
 
 ;;; Loadpath:
 (progn
-  ;; Remove Emacs' Org mode for it to not mix with the local install.
-  (setf load-path (cl-remove-if (lambda (p) (string-match "/org$" p)) load-path))
-
   ;; Sanitise.
   (add-to-list 'load-path "/usr/local/share/emacs/site-lisp/")
 
