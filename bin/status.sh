@@ -9,8 +9,12 @@ ip=$(hostname -I | cut -d\  -f 1)
 host=$(hostname -f)
 user="$USER@$host ($ip)"
 
-if [ ! x$TERM = xdumb ]; then
-    clear
+msg="$user\nBattery: $power"
+
+if [ -n "$DISPLAY" ]; then
+        exec notify-send "$(date)" "$msg"
+else
+	date
+	echo $msg
 fi
 
-exec notify-send "$(date)" "$user\nBattery: $power"
