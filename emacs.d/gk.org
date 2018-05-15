@@ -1599,7 +1599,7 @@ unlocked, offer to lock it before pasting."
 #+BEGIN_SRC elisp :tangle yes :comments both
 (diminish 'highlight-parentheses-mode)
 (diminish 'eldoc-mode)
-(diminish 'paredit-mode "㉀")
+(diminish 'paredit-mode "☮")
 (diminish 'outline-minor-mode "*")
 
 (defun gk-algol-like-hook ()
