@@ -12,112 +12,11 @@
 
 ;; Notice: Before stamping a new release the following places need to
 ;; be updated:
+;; * NEWS.md
 ;; * elfeed.el (`elfeed-version')
 ;; * elfeed-pkg.el
 ;; * web/elfeed-web-pkg.el
 ;; * Makefile (VERSION)
-
-;;; History:
-
-;; Version 2.2.0:
-;;   * Support for org links (elfeed-link.el)
-;;   * Added `elfeed-db-unload'
-;;   * New `elfeed-curl-retrieve' interface (breaking changes)
-;;   * New hooks `elfeed-tag-hooks' and `elfeed-untag-hooks'
-;; Version 2.1.1: fixes and some features
-;;   * Added `elfeed-show-entry-author' customization variable.
-;;   * Added `elfeed-search-unparse-filter'.
-;; Version 2.1.0: features and new database format
-;;   * New entry ID based only on domain, not whole feed
-;;   * Byte-compiled search filters (`elfeed-search-compile-filter')
-;;   * Improved metadata persistence on entry updates
-;;   * Gather :author from entries
-;;   * Gather :categories from entries
-;;   * New `elfeed-add-feed' interface (thanks Mark Oteiza)
-;;   * New xml-query macros for faster feed parsing
-;; Version 2.0.1: features and fixes
-;;   * Added `elfeed-curl-extra-arguments' customization
-;;   * Use `x-get-selection' instead of `x-get-selection-value'
-;;   * More flexible date handling (including Atom 0.3 support)
-;;   * Various elfeed-web fixes
-;; Version 2.0.0: new cURL fetching backend
-;;   * Elfeed now uses cURL when available (`elfeed-use-curl')
-;;   * Windows OS now supported when using cURL
-;;   * Conditional GET (ETag, If-Modified-Since) when using cURL
-;;   * Support for xml:base in Atom feeds
-;;   * New options: `elfeed-set-max-connections', `elfeed-set-timeout'
-;;   * New feed metadata: :canonical-url, :etag, :last-modified
-;;   * New variable: `elfeed-log-level'
-;;   * New database export option: `elfeed-csv-export'
-;;   * Additional validation for `elfeed-feeds'
-;; Version 1.4.1: features and fixes
-;;   * Major bug fix: disable local variables when loading the index
-;;   * New command `elfeed-show-play-enclosure' (requires emms)
-;;   * Yank now works on regions in the search buffer
-;;   * Feed structs now have author field filled out
-;;   * New command `elfeed-search-set-feed-title'
-;;   * New command `elfeed-search-set-entry-title'
-;;   * Smarter handling of invalid timestamps
-;;   * Following links in show mode (`elfeed-show-visit') takes a prefix arg
-;; Version 1.4.0: features and fixes
-;;   * New header built on Emacs' built-in buffer headers
-;;   * New hook: `elfeed-new-entry-parse-hook'
-;;   * Emacs' bookmark support (`bookmark-set', `bookmark-jump')
-;;   * Emacs' desktop support (save/restore windows)
-;;   * Custom faces in search listing via `elfeed-search-face-alist'
-;;   * Dedicated log buffer, *elfeed-log*
-;;   * Scoped updates with prefix argument to `elfeed-search-fetch'
-;;   * Various bug fixes
-;;   * Fixes to feed Unicode decoding
-;; Version 1.3.0: features and fixes
-;;   * `elfeed-search-face-alist' for custom entry faces
-;;   * `display-local-help' (C-h .) support in search
-;;   * Fixes to #n count filter
-;; Version 1.2.0: features and fixes
-;;   * Switched to url-queue (see `url-queue-timeout')
-;;   * New #n filter for limiting results to first n entries
-;;   * Faster live filtering
-;;   * `elfeed-version'
-;;   * Enclosure downloading
-;;   * Database size optimizations
-;;   * Search listing is more responsive to updates
-;;   * `elfeed-http-error-hooks', `elfeed-parse-error-hooks'
-;;   * Various bug fixes
-;; Version 1.1.2: fixes
-;;   * Fixed support for non-HTTP protocols
-;;   * Add ! search syntax
-;;   * Add elfeed-unjam
-;;   * Combine regexp search terms by AND instead of OR
-;;   * Link navigation keybindings (tab)
-;;   * Add elfeed-show-truncate-long-urls
-;;   * Add elfeed-search-filter customization
-;;   * Various bug fixes
-;; Version 1.1.1: fixes
-;;   * Fix database corruption issue
-;;   * Properly handle URLs from XML
-;;   * Slightly better RSS date guessing
-;;   * User interface tweaks
-;;   * Add `elfeed-sort-order'
-;;   * Use tab and backtab to move between links
-;; Version 1.1.0: features and fixes
-;;   * Autotagging support
-;;   * Better database performance
-;;   * Database packing
-;;   * Arbitrary struct metadata
-;;   * Added `elfeed-search-clipboard-type'
-;;   * Update to cl-lib from cl
-;;   * Lots of bug fixes
-;; Version 1.0.1: features and fixes
-;;   * Live filter editing
-;;   * Support for RSS 1.0
-;;   * OPML import/export
-;;   * Fix multibyte support (thanks cellscape)
-;;   * Fix date-change database corruption
-;;   * Add n and p bindings to elfeed-search, like notmuch
-;;   * Friendlier intro header
-;;   * Automated builds
-;;   * Lots of small bug fixes
-;; Version 1.0.0: initial public release
 
 ;;; Code:
 
@@ -140,7 +39,7 @@
   "An Emacs web feed reader."
   :group 'comm)
 
-(defconst elfeed-version "2.2.0")
+(defconst elfeed-version "3.0.0")
 
 (defcustom elfeed-feeds ()
   "List of all feeds that Elfeed should follow.
@@ -337,9 +236,17 @@ Take three arguments: the feed TYPE, the XML structure for the
 entry, and the Elfeed ENTRY object. Return value is ignored, and
 is called for side-effects on the ENTRY object.")
 
+(defsubst elfeed--fixup-protocol (protocol url)
+  "Prepend PROTOCOL to URL if it is protocol-relative.
+If PROTOCOL is nil, returns URL."
+  (if (and protocol url (string-match-p "^//[^/]" url))
+      (concat protocol ":" url)
+    url))
+
 (defun elfeed-entries-from-atom (url xml)
   "Turn parsed Atom content into a list of elfeed-entry structs."
   (let* ((feed-id url)
+         (protocol (url-type (url-generic-parse-url url)))
          (namespace (elfeed-url-to-namespace url))
          (feed (elfeed-db-get-feed feed-id))
          (title (elfeed-cleanup (xml-query* (feed title *) xml)))
@@ -355,8 +262,10 @@ is called for side-effects on the ENTRY object.")
                                xml-base (xml-query* (:base) (list entry))))
                     (anylink (xml-query* (link :href) entry))
                     (altlink (xml-query* (link [rel "alternate"] :href) entry))
-                    (link (elfeed-update-location
-                           xml-base (or altlink anylink)))
+                    (link (elfeed--fixup-protocol
+                           protocol
+                           (elfeed-update-location xml-base
+                                                   (or altlink anylink))))
                     (date (or (xml-query* (published *) entry)
                               (xml-query* (updated *) entry)
                               (xml-query* (date *) entry)
@@ -407,6 +316,7 @@ is called for side-effects on the ENTRY object.")
 (defun elfeed-entries-from-rss (url xml)
   "Turn parsed RSS content into a list of elfeed-entry structs."
   (let* ((feed-id url)
+         (protocol (url-type (url-generic-parse-url url)))
          (namespace (elfeed-url-to-namespace url))
          (feed (elfeed-db-get-feed feed-id))
          (title (elfeed-cleanup (xml-query* (rss channel title *) xml)))
@@ -416,7 +326,9 @@ is called for side-effects on the ENTRY object.")
     (cl-loop for item in (xml-query-all* (rss channel item) xml) collect
              (let* ((title (or (xml-query* (title *) item) ""))
                     (guid (xml-query* (guid *) item))
-                    (link (or (xml-query* (link *) item) guid))
+                    (link (elfeed--fixup-protocol
+                           protocol
+                           (or (xml-query* (link *) item) guid)))
                     (date (or (xml-query* (pubDate *) item)
                               (xml-query* (date *) item)))
                     (author (or (xml-query* (author *) item)
@@ -584,8 +496,10 @@ Only a list of strings will be returned."
        nil))
     (nreverse res)))
 
-(defun elfeed-add-feed (url)
-  "Manually add a feed to the database."
+(cl-defun elfeed-add-feed (url &key save)
+  "Manually add a feed to the database.
+If SAVE is non-nil the new value of ‘elfeed-feeds’ is saved.  When
+called interactively, SAVE is set to t."
   (interactive
    (list
     (let* ((feeds (elfeed-candidate-feeds))
@@ -595,9 +509,10 @@ Only a list of strings will be returned."
            (result (elfeed-cleanup input)))
       (cond ((not (zerop (length result))) result)
             (feeds (car feeds))
-            ((user-error "No feed to add"))))))
-  (cl-pushnew url elfeed-feeds)
-  (when (called-interactively-p 'any)
+            ((user-error "No feed to add"))))
+    :save t))
+  (cl-pushnew url elfeed-feeds :test #'equal)
+  (when save
     (customize-save-variable 'elfeed-feeds elfeed-feeds))
   (elfeed-update-feed url))
 
@@ -718,8 +633,10 @@ saved to your customization file."
 (provide 'elfeed)
 
 (cl-eval-when (load eval)
-  (require 'elfeed-csv)
-  (require 'elfeed-show)
-  (require 'elfeed-search))
+  ;; run-time only, so don't load when compiling other files
+  (unless byte-compile-root-dir
+    (require 'elfeed-csv)
+    (require 'elfeed-show)
+    (require 'elfeed-search)))
 
 ;;; elfeed.el ends here

@@ -25,6 +25,9 @@
 (defvar elfeed-search-last-update 0
   "The last time the buffer was redrawn in epoch seconds.")
 
+(defvar elfeed-search-update-hook ()
+  "List of functions to run immediately following a search buffer update.")
+
 (defcustom elfeed-search-filter "@6-months-ago +unread"
   "Query string filtering shown entries."
   :group 'elfeed
@@ -98,11 +101,17 @@ When live editing the filter, it is bound to :live.")
   (elfeed-expose #'elfeed-search-update :force)
   "Force refresh view of the feed listing.")
 
+(defun elfeed-search-quit-window ()
+  "Save the database, then `quit-window'."
+  (interactive)
+  (elfeed-db-save)
+  (quit-window))
+
 (defvar elfeed-search-mode-map
   (let ((map (make-sparse-keymap)))
     (prog1 map
       (suppress-keymap map)
-      (define-key map "q" 'quit-window)
+      (define-key map "q" 'elfeed-search-quit-window)
       (define-key map "g" 'elfeed-search-update--force)
       (define-key map "G" 'elfeed-search-fetch)
       (define-key map (kbd "RET") 'elfeed-search-show-entry)
@@ -207,11 +216,19 @@ When live editing the filter, it is bound to :live.")
   (add-hook 'elfeed-update-hooks #'elfeed-search-update)
   (add-hook 'elfeed-update-init-hooks #'elfeed-search-update--force)
   (add-hook 'kill-buffer-hook #'elfeed-db-save t t)
+  (add-hook 'elfeed-db-unload-hook #'elfeed-search--unload)
   (elfeed-search-update :force)
   (run-mode-hooks 'elfeed-search-mode-hook))
 
 (defun elfeed-search-buffer ()
   (get-buffer-create "*elfeed-search*"))
+
+(defun elfeed-search--unload ()
+  "Hook function for `elfeed-db-unload-hook'."
+  (with-current-buffer (elfeed-search-buffer)
+    ;; don't try to save the database in this case
+    (remove-hook 'kill-buffer-hook #'elfeed-db-save t)
+    (kill-buffer )))
 
 (defun elfeed-search-format-date (date)
   "Format a date for printing in `elfeed-search-mode'.
@@ -616,18 +633,19 @@ expression, matching against entry link, title, and feed title."
 When FORCE is non-nil, redraw even when the database hasn't changed."
   (interactive)
   (with-current-buffer (elfeed-search-buffer)
-    (if (or force (and (not elfeed-search-filter-active)
-                       (< elfeed-search-last-update (elfeed-db-last-update))))
-        (elfeed-save-excursion
-          (let ((inhibit-read-only t)
-                (standard-output (current-buffer)))
-            (erase-buffer)
-            (elfeed-search--update-list)
-            (dolist (entry elfeed-search-entries)
-              (funcall elfeed-search-print-entry-function entry)
-              (insert "\n"))
-            (insert "End of entries.\n")
-            (setf elfeed-search-last-update (float-time)))))))
+    (when (or force (and (not elfeed-search-filter-active)
+                         (< elfeed-search-last-update (elfeed-db-last-update))))
+      (elfeed-save-excursion
+        (let ((inhibit-read-only t)
+              (standard-output (current-buffer)))
+          (erase-buffer)
+          (elfeed-search--update-list)
+          (dolist (entry elfeed-search-entries)
+            (funcall elfeed-search-print-entry-function entry)
+            (insert "\n"))
+          (insert "End of entries.\n")
+          (setf elfeed-search-last-update (float-time))))
+      (run-hooks 'elfeed-search-update-hook))))
 
 (defun elfeed-search-fetch (prefix)
   "Update all feeds via `elfeed-update', or only visible feeds with PREFIX.
@@ -778,6 +796,7 @@ Sets the :title key of the feed's metadata. See `elfeed-meta'."
     (prog1 table
       (modify-syntax-entry ?+ "w" table)
       (modify-syntax-entry ?- "w" table)
+      (modify-syntax-entry ?= "w" table)
       (modify-syntax-entry ?@ "w" table)))
   "Syntax table active when editing the filter in the minibuffer.")
 
