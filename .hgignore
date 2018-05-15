@@ -76,6 +76,7 @@ tmp\.patch$
 ^xdg-config/volti/config
 ^xdg-config/spotify
 ^xdg-config/Trolltech\.conf$
+^xdg-config/qutebrowser/
 
 # Emacs stuff
 (.core|.elc|~)$
