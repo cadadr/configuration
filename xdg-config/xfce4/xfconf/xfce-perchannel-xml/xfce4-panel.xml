@@ -21,6 +21,7 @@
         <value type="int" value="10"/>
         <value type="int" value="3"/>
         <value type="int" value="4"/>
+        <value type="int" value="11"/>
         <value type="int" value="15"/>
         <value type="int" value="19"/>
         <value type="int" value="26"/>
@@ -132,5 +133,6 @@
         <property name="never-confirm-history-clear" type="bool" value="true"/>
       </property>
     </property>
+    <property name="plugin-11" type="string" value="xfce4-verve-plugin"/>
   </property>
 </channel>
