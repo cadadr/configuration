@@ -1281,7 +1281,7 @@ with a period, insert two spaces afterwards instead of one."
                 (get-text-property (point) 'justification)
               ;; Else, see if the right edge is justified.
               (let ((right-edge-justified
-                     (cl-reduce (lambda (x y) (= x y fill-column))
+                     (cl-reduce (lambda (x y) (and x y (= x y fill-column)))
                                 (mapcar #'length (butlast lines)))))
                 (cond
                  ;; If the left edge is not justified, then the text
