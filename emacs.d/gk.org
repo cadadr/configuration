@@ -2472,7 +2472,9 @@ For PATH, DESC and FORMAT see `org-add-link-type'."
  org-tags-column 0
  ;; If an #+attr_*: :width xxx available, use xxx, else, car of this
  ;; value.
- org-image-actual-width (list 300))
+ org-image-actual-width (list 300)
+ ;; The minibuffer prompt is enough.
+ org-popup-calendar-for-date-prompt nil)
 
 (setf
  ;; Week starts on Monday
