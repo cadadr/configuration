@@ -1782,6 +1782,7 @@ KEYWORDS are the keywords for the file."
 (define-key emacs-lisp-mode-map (kbd "C-c C-M-x") 'pp-macroexpand-expression)
 (define-key emacs-lisp-mode-map (kbd "C-c C-x C-e") 'pp-eval-last-sexp)
 (define-key emacs-lisp-mode-map (kbd "C-c C-c C-x C-e") 'pp-macroexpand-last-sexp)
+(define-key emacs-lisp-mode-map (kbd "C-c !") #'ert-run-tests-interactively)
 #+END_SRC
 
 ***** Debugger
