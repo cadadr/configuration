@@ -22,7 +22,7 @@
         <value type="int" value="3"/>
         <value type="int" value="4"/>
         <value type="int" value="11"/>
-        <value type="int" value="15"/>
+        <value type="int" value="12"/>
         <value type="int" value="19"/>
         <value type="int" value="26"/>
         <value type="int" value="21"/>
@@ -52,10 +52,6 @@
   <property name="plugins" type="empty">
     <property name="plugin-1" type="string" value="applicationsmenu"/>
     <property name="plugin-2" type="string" value="actions"/>
-    <property name="plugin-15" type="string" value="separator">
-      <property name="expand" type="bool" value="true"/>
-      <property name="style" type="uint" value="0"/>
-    </property>
     <property name="plugin-5" type="string" value="clock">
       <property name="mode" type="uint" value="2"/>
       <property name="digital-format" type="string" value="%R / %F %A"/>
@@ -134,5 +130,9 @@
       </property>
     </property>
     <property name="plugin-11" type="string" value="xfce4-verve-plugin"/>
+    <property name="plugin-12" type="string" value="separator">
+      <property name="style" type="uint" value="0"/>
+      <property name="expand" type="bool" value="true"/>
+    </property>
   </property>
 </channel>
