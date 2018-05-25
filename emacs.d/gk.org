@@ -401,14 +401,15 @@ i.e. i18n -> internationalisation."
   (apply #'/ (mapcar #'float args)))
 
 (defun gk-wikipedia-link-to-wikizero (url)
-  "Convert a Wikipedia URL to a WikiZero one, and browse it.
+  "Convert a Wikipedia URL to a WikiZero one.
 WikiZero is a mirror of wikipedia."
   (interactive
    (list (read-string "Wikipedia URL: ")))
-  (let* ((baseurl "http://www.wiki-zero.com/index.php?q=")
-         (wiki64 (base64-encode-string (url-unhex-string url) t))
-         (0url (concat baseurl wiki64)))
-    (browse-url 0url)))
+  (let* ((baseurl "http://www.wiki-zero.net/index.php?q=")
+         (wiki64 (replace-regexp-in-string
+                  "=+$" ""
+                  (base64-encode-string (url-unhex-string url) t))))
+     (concat baseurl wiki64)))
 
 (defun gk-update-package-load-paths ()
   "Clean up the ‘load-path’, find and add new packages."
@@ -3524,6 +3525,12 @@ Redirect to the raw file url."
          (replace-regexp-in-string "\.local" ".net" url)
          args))
 
+(defun gk-urls-browse-wikipedia (url &rest args)
+  "Browse a wikipedia URL."
+  (apply #'gk-browse-url
+         (gk-wikipedia-link-to-wikizero url)
+         args))
+
 (defun gk-browse-url (&rest args)
   "Prompt for whether or not to browse with EWW, if no browse
 with external browser."
@@ -3634,6 +3641,7 @@ provided."
          gk-urls-browse-github-commit)
         ("^https?://github.com/.*?/.*?/blob/" . gk-urls-browse-github-file)
         ("^http://www.cornucopia\\.local/" . gk-urls-browse-cornucopia)
+        ("^https?://\\w+\\.wikipedia\\.org/" . gk-urls-browse-wikipedia)
         ("file:///home/.+/co/lisp/doc/HyperSpec/" . gk-browse-url)
         ,@browse-url-browser-function
         (".*" . gk-browse-url)))
