@@ -2677,18 +2677,16 @@ For PATH, DESC and FORMAT see `org-add-link-type'."
  org-agenda-files gk-org-agenda-files
  ;; Find all the relevant Readme.org files.
  gk-org-project-agenda-files
- (cons
-  (locate-user-emacs-file "gk.org")
-  (cons (expand-file-name "~/doc/not/www2/Readme.org")
-        ;; Find Readme.org files.
-        (seq-filter
-         ($ (string= (file-name-nondirectory $1) "Readme.org"))
-         (let ((re directory-files-no-dot-files-regexp))
-           (apply #'append
-                  (mapcar
-                   ($ (when (file-directory-p $1)
-                        (directory-files $1 t re)))
-                   (directory-files "~/co" t re))))))))
+ (cons (expand-file-name "~/doc/not/www2/Readme.org")
+       ;; Find Readme.org files.
+       (seq-filter
+        ($ (string= (file-name-nondirectory $1) "Readme.org"))
+        (let ((re directory-files-no-dot-files-regexp))
+          (apply #'append
+                 (mapcar
+                  ($ (when (file-directory-p $1)
+                       (directory-files $1 t re)))
+                  (directory-files "~/co" t re)))))))
 
 
 
