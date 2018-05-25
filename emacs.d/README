@@ -11,8 +11,6 @@ The basic structure is as follows:
 ├ site/
 │   Third-party little elisp files that provide additional
 │   functionality.
-├ gk.org
-│   My setup, loaded by init.el.  The Star of the Show.
 ├ lisp/
 │   Various programs that are not loaded unless needed. Not in
 │   loadpath.

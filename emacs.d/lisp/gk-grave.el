@@ -169,5 +169,93 @@ the number of lines."
 
 
 
+(defun gk-sanitise-dir-files (dir &optional recurse)
+  "Remove problematic chars from filenames in DIR.
+
+If RECURSE non-nil, or called interactively with a universal
+prefix, recurse in the directories.
+
+The following things are changed:
+
+- Transform \"ı\" to \"i\".  Files with this character in name
+  cannot be synced to Dropbox.
+
+If, after tranformations, the new file name is not unique, prompt
+the user for taking action."
+  (interactive "DDirectory to sanitise: \nP")
+  ;; If non-nil, set to t, as numeric values would result in
+  ;; complications when debugging.
+  (when recurse (setq recurse t))
+  (let* ((items (directory-files dir t "[^/\\.+$]" t))
+         (subdirs)
+         (rename (lambda (f)
+                   (let* ((ı (replace-regexp-in-string "ı" "i" f t))
+                          (İ (replace-regexp-in-string "İ" "I" ı t))
+                          (name İ))
+                     (unless (string= f name)
+                       (while (file-exists-p name)
+                         (let ((new-name
+                                (read-file-name
+                                 (format
+                                  "File `%s' exists.  Please provide new name: " name)
+                                 (file-name-directory f))))
+                           (setq name new-name))))
+                     name))))
+    (dolist (f items)
+      (let ((n (funcall rename f)))
+        (when (file-directory-p n)
+          (push subdirs n))
+        (when (and
+               (not (string= f n))
+               (y-or-n-p
+                (format "Rename as following?\nOld: %s\nNew: %s" f n)))
+          (rename-file f n 1993))))
+    (when recurse
+      (dolist (subdir subdirs)
+        (gk-sanitise-dir-files subdir recurse)))))
+
+
+
+(defun gk-org-capture-microblog (key descr file)
+  "Generate a microblog capture template.
+FILE is the microblog file.  KEY is the capture key.  DESCR is
+the template description."
+  (let ((sym (intern (symbol-name (gensym "gk-org-capture-microblog--")))))
+    (defalias sym
+      (lambda ()
+        (let* ((id (with-temp-buffer
+                     (insert-file-contents file)
+                     (org-mode)
+                     (org-next-visible-heading 1)
+                     (number-to-string
+                      (if (= (point) (point-max)) 1 ; First entry if the file is empty.
+                        (1+ (string-to-number (org-entry-get (point) "CUSTOM_ID")))))))
+               (title (read-string "Title: "))
+               (time (current-time))
+               (date (format-time-string "%F" time))
+               (day (format-time-string "%a" time))
+               (template
+                (concat "* " title " [[#" id "][∞]]\n"
+                        ":PROPERTIES:\n"
+                        ":X-LINK:   #" id "\n"
+                        ":X-DATE:   " date "\n"
+                        ":X-TITLE:  " title "\n"
+                        ":CUSTOM_ID: " id "\n"
+                        ":END:\n"
+                        "[" date " " day "]\n\n%?")))
+          template)))
+    ;; The actual template
+    `(,key ,descr entry (file ,file) (function ,sym)
+           :prepend t :immediate-finish nil :empty-lines-after 1)))
+
+
+
+(setf org-caldav-inbox (gk-org-dir-file "caldav.org")
+      org-caldav-files org-agenda-files
+      ;; TODO: maybe don't sync anything at all.  Just sync outbound?
+      org-caldav-sync-changes-to-org 'title-and-timestamp)
+
+
+
 (provide 'gk-grave)
 ;;; gk-grave.el ends here
