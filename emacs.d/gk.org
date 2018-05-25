@@ -4112,6 +4112,7 @@ Do things with the current buffer.
                           (switch-to-buffer b nil t))))
 (gk-prefix-binding (kbd "C-#") 'display-line-numbers-mode)
 (gk-prefix-binding "_" 'delete-other-windows-vertically)
+(gk-prefix-binding "2" #'clone-indirect-buffer)
 #+END_SRC
 
 *** Multiple cursors
