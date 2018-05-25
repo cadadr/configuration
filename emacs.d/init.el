@@ -519,11 +519,7 @@ If FORCE is non-nil, force compilation, i.e. compile even if
 up-to-date."
   (interactive "p")
   (mapcar ($ (byte-recompile-file $1 (> force 1) 0))
-          (remove-if-not
-           #'file-exists-p
-           (concatenate 'list
-                        (list custom-file user-init-file)
-                        gk-loaded-files)))
+          (remove-if-not #'file-exists-p (cons custom-file gk-loaded-files)))
   (byte-recompile-directory (locate-user-emacs-file "packages") 0 (> force 4))
   (byte-recompile-directory (locate-user-emacs-file "site") 0 (> force 4))
   (when custom-file
