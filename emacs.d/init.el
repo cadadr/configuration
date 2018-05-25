@@ -3460,7 +3460,6 @@ Ask otherwise."
 
 (setf
  ido-use-filename-at-point nil
- ido-show-dot-for-dired t
  ;; Don't show dotfiles if the prefix of the search string is not ‘.’
  ido-enable-dot-prefix t
  ido-confirm-unique-completion t)
