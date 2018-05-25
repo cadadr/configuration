@@ -470,6 +470,24 @@ WikiZero is a mirror of wikipedia."
   (when (file-exists-p filename)
     filename))
 
+(defun gk-insert-today (&optional full)
+  "Insert today's date into the current buffer, before point.
+
+FULL is the processed prefix argument from the interactive call.
+
+With no prefix arguments, insert YYYY-MM-DD (ISO 8601 date).
+With one prefix argument, insert YYYY-MM-DD (ISO 8601 date) with
+HH:MM:SS.  With two prefix arguments, insert a full ISO 8601 date
+together with current time and timezone information."
+  (interactive "p")
+  (insert
+   (format-time-string
+    (case full
+      (1 "%F")                          ;ISO date format
+      (4 "%F %T")                       ;ISO date format with time w/ seconds
+      (16 "%FT%T%z")                    ;full ISO 8601
+      ))))
+
 
 
 ;;;; Recompilation:
@@ -4331,6 +4349,7 @@ Does various tasks after saving a file, see it's definition."
 (gk-prefix-binding (kbd "C-#") 'display-line-numbers-mode)
 (gk-prefix-binding "_" 'delete-other-windows-vertically)
 (gk-prefix-binding "2" #'clone-indirect-buffer)
+(gk-prefix-binding "t" #'gk-insert-today)
 
 
 
