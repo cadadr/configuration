@@ -1260,70 +1260,80 @@ If ‘sentence-end-double-space’ is non-nil, and if a line ends
 with a period, insert two spaces afterwards instead of one."
   (interactive "p")
   (save-mark-and-excursion
-    (let* ((para-beg
-            (if (looking-at "^$") (point)
-              (progn (backward-paragraph) (1+ (point)))))
-           (para-end
-            (progn (forward-paragraph) (1- (point))))
-           (subs (buffer-substring para-beg para-end))
-           (lines (split-string subs "\n" t "\\s+"))
-           ;; We should wrap if any of the lines are longer than
-           ;; ‘fill-column’.
-           (should-wrap
-            (cl-reduce (lambda (x y) (or x y))
-                       (mapcar (lambda (l)
-                                 (> (length l) fill-column))
-                               lines)))
-           justify)
-      (goto-char para-beg)
-      (setq justify
-            ;; If we should wrap, learn justification from text properties.
-            (if should-wrap
-                (get-text-property (point) 'justification)
-              ;; Else, see if the right edge is justified.
-              (let ((right-edge-justified
-                     (cl-reduce (lambda (x y) (and x y (= x y fill-column)))
-                                (mapcar #'length (butlast lines)))))
-                (cond
-                 ;; If the left edge is not justified, then the text
-                 ;; is right aligned.
-                 ((and right-edge-justified
-                       (save-excursion
-                         (goto-char para-beg)
-                         (re-search-forward "^[ \\t]" para-end t)))
-                  'right)
-                 ;; Otherwise, it is justified both edges.
-                 (right-edge-justified 'both)
-                 ;; If neither, then the paragrah is not justified.
-                 ;; We can just allow ‘cond’ to return nil here.
-                 ))))
+    (let ((fill-paragraph-function
+           (cl-case major-mode
+             ('org-mode #'org-fill-paragraph)
+             (otherwise #'fill-paragraph)))
+          (para-beg
+           (save-excursion
+             (save-match-data
+               (if (looking-at "^$") (point)
+                 (progn (backward-paragraph) (1+ (point)))))))
+          (para-end
+           (save-excursion
+             (progn (forward-paragraph) (1- (point)))))
+          justify)
       (case arg
-        ((4 64)
+        (4
+         (funcall fill-paragraph-function))
+        (64
          (setq justify nil)
          (put-text-property para-beg para-end 'justification justify)
-         (fill-paragraph))
-        (16 (fill-paragraph 'both))
+         (funcall fill-paragraph-function))
+        (16 (funcall fill-paragraph-function 'both))
         (1
-         (if should-wrap
+         (let* ((subs (buffer-substring para-beg para-end))
+                (lines (split-string subs "\n" t "\\s+"))
+                ;; We should wrap if any of the lines are longer than
+                ;; ‘fill-column’.
+                (should-wrap
+                 (cl-reduce (lambda (x y) (or x y))
+                            (mapcar (lambda (l)
+                                      (> (length l) fill-column))
+                                    lines))))
+           (goto-char para-beg)
+           (setq justify
+                 ;; If we should wrap, learn justification from text properties.
+                 (if should-wrap
+                     (get-text-property (point) 'justification)
+                   ;; Else, see if the right edge is justified.
+                   (let ((right-edge-justified
+                          (cl-reduce (lambda (&optional x y) (and x y (= x y fill-column)))
+                                     (mapcar #'length (butlast lines)))))
+                     (cond
+                      ;; If the left edge is not justified, then the text
+                      ;; is right aligned.
+                      ((and right-edge-justified
+                            (save-excursion
+                              (goto-char para-beg)
+                              (re-search-forward "^[ \\t]" para-end t)))
+                       'right)
+                      ;; Otherwise, it is justified both edges.
+                      (right-edge-justified 'both)
+                      ;; If neither, then the paragraph is not
+                      ;; justified.  We can just allow ‘cond’ to
+                      ;; return nil here.
+                      ))))
+           (if should-wrap
+               (progn
+                 (put-text-property para-beg para-end 'justification justify)
+                 (fill-region para-beg para-end justify))
              (progn
-               (put-text-property para-beg para-end 'justification justify)
-               (fill-region para-beg para-end justify))
-           (progn
-             (goto-char para-beg)
-             ;; Remove possible justification artifacts.
-             (fill-region para-beg para-end nil)
-             ;; 1- because we don't want to include the final \n of
-             ;; the paragraph.  Will include the next paragraph too
-             ;; then.
-             (while (re-search-forward "\n" (1- para-end) t)
-               (goto-char (match-beginning 0))
-               (when (looking-at "\n\\([ \t]+\\)?"))
-               (replace-match
-                (if (and sentence-end-double-space
-                         (looking-at "\\.")) "  "
-                  " ")))
-             (put-text-property
-              para-beg (line-end-position) 'justification justify))))))))
+               (goto-char para-beg)
+               ;; Remove possible justification artifacts.
+               (fill-region para-beg para-end nil)
+               ;; 1- because we don't want to include the final \n of
+               ;; the paragraph.  Will include the next paragraph too
+               ;; then.
+               (while (re-search-forward "\n" (1- para-end) t)
+                 (goto-char (match-beginning 0))
+                 (when (looking-at "\n\\([ \t]+\\)?"))
+                 (replace-match
+                  (if (and sentence-end-double-space
+                           (looking-at "\\.")) "  "
+                    " ")))
+               (put-text-property
+                para-beg (line-end-position) 'justification justify)))))))))
 #+END_SRC
 
 *** Common
