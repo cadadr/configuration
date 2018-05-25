@@ -501,8 +501,7 @@ up-to-date."
           (remove-if-not
            #'file-exists-p
            (concatenate 'list
-                        (list custom-file user-init-file
-                              (locate-user-emacs-file "gk.el"))
+                        (list custom-file user-init-file)
                         gk-loaded-files)))
   (byte-recompile-directory (locate-user-emacs-file "packages") 0 (> force 4))
   (byte-recompile-directory (locate-user-emacs-file "site") 0 (> force 4))
