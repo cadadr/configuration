@@ -144,8 +144,13 @@ cd () {
     fi
 }
 
-###
+countpdfpagesdir () {
+    exiftool -T -filename -PageCount -s3 -ext pdf $1\
+	| awk 'BEGIN{X=0}; {X+=$2}; END{print X}'
+}
 
+###
+alias re=". $ENV"
 alias apt-dependencies='apt-cache depends --no-recommends --no-breaks --no-suggests --no-conflicts --no-enhances --no-replaces --recurse'
 alias j=jobs
 alias ls='ls -F'
