@@ -80,6 +80,74 @@
           <property name="image-style" type="int" value="5"/>
           <property name="last-image" type="string" value="/usr/share/images/desktop-base/default"/>
         </property>
+        <property name="workspace4" type="empty">
+          <property name="color-style" type="int" value="1"/>
+          <property name="color1" type="array">
+            <value type="uint" value="7936"/>
+            <value type="uint" value="16128"/>
+            <value type="uint" value="28416"/>
+            <value type="uint" value="65535"/>
+          </property>
+          <property name="color2" type="array">
+            <value type="uint" value="26880"/>
+            <value type="uint" value="34048"/>
+            <value type="uint" value="46848"/>
+            <value type="uint" value="65535"/>
+          </property>
+          <property name="image-style" type="int" value="5"/>
+          <property name="last-image" type="string" value="/usr/share/images/desktop-base/default"/>
+        </property>
+        <property name="workspace5" type="empty">
+          <property name="color-style" type="int" value="1"/>
+          <property name="color1" type="array">
+            <value type="uint" value="7936"/>
+            <value type="uint" value="16128"/>
+            <value type="uint" value="28416"/>
+            <value type="uint" value="65535"/>
+          </property>
+          <property name="color2" type="array">
+            <value type="uint" value="26880"/>
+            <value type="uint" value="34048"/>
+            <value type="uint" value="46848"/>
+            <value type="uint" value="65535"/>
+          </property>
+          <property name="image-style" type="int" value="5"/>
+          <property name="last-image" type="string" value="/usr/share/images/desktop-base/default"/>
+        </property>
+        <property name="workspace6" type="empty">
+          <property name="color-style" type="int" value="1"/>
+          <property name="color1" type="array">
+            <value type="uint" value="7936"/>
+            <value type="uint" value="16128"/>
+            <value type="uint" value="28416"/>
+            <value type="uint" value="65535"/>
+          </property>
+          <property name="color2" type="array">
+            <value type="uint" value="26880"/>
+            <value type="uint" value="34048"/>
+            <value type="uint" value="46848"/>
+            <value type="uint" value="65535"/>
+          </property>
+          <property name="image-style" type="int" value="5"/>
+          <property name="last-image" type="string" value="/usr/share/images/desktop-base/default"/>
+        </property>
+        <property name="workspace7" type="empty">
+          <property name="color-style" type="int" value="1"/>
+          <property name="color1" type="array">
+            <value type="uint" value="7936"/>
+            <value type="uint" value="16128"/>
+            <value type="uint" value="28416"/>
+            <value type="uint" value="65535"/>
+          </property>
+          <property name="color2" type="array">
+            <value type="uint" value="26880"/>
+            <value type="uint" value="34048"/>
+            <value type="uint" value="46848"/>
+            <value type="uint" value="65535"/>
+          </property>
+          <property name="image-style" type="int" value="5"/>
+          <property name="last-image" type="string" value="/usr/share/images/desktop-base/default"/>
+        </property>
       </property>
       <property name="monitor1" type="empty">
         <property name="brightness" type="empty"/>
@@ -92,5 +160,9 @@
         <property name="last-single-image" type="empty"/>
       </property>
     </property>
+  </property>
+  <property name="last" type="empty">
+    <property name="window-width" type="int" value="636"/>
+    <property name="window-height" type="int" value="492"/>
   </property>
 </channel>
