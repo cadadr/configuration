@@ -9,7 +9,7 @@
     <property name="button_layout" type="string" value="O|SHMC"/>
     <property name="button_offset" type="int" value="0"/>
     <property name="button_spacing" type="int" value="0"/>
-    <property name="click_to_focus" type="bool" value="true"/>
+    <property name="click_to_focus" type="bool" value="false"/>
     <property name="cycle_apps_only" type="bool" value="false"/>
     <property name="cycle_draw_frame" type="bool" value="true"/>
     <property name="cycle_hidden" type="bool" value="true"/>
@@ -70,7 +70,7 @@
     <property name="unredirect_overlays" type="bool" value="true"/>
     <property name="urgent_blink" type="bool" value="false"/>
     <property name="use_compositing" type="bool" value="true"/>
-    <property name="workspace_count" type="int" value="4"/>
+    <property name="workspace_count" type="int" value="2"/>
     <property name="wrap_cycle" type="bool" value="true"/>
     <property name="wrap_layout" type="bool" value="true"/>
     <property name="wrap_resistance" type="int" value="10"/>
@@ -82,6 +82,10 @@
       <value type="string" value="Workspace 2"/>
       <value type="string" value="Workspace 3"/>
       <value type="string" value="Workspace 4"/>
+      <value type="string" value="Workspace 5"/>
+      <value type="string" value="Workspace 6"/>
+      <value type="string" value="Workspace 7"/>
+      <value type="string" value="Workspace 8"/>
     </property>
   </property>
 </channel>
