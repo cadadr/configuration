@@ -125,6 +125,7 @@
       <property name="&lt;Shift&gt;&lt;Super&gt;plus" type="string" value="add_workspace_key"/>
       <property name="&lt;Shift&gt;&lt;Super&gt;greater" type="string" value="add_adjacent_workspace_key"/>
       <property name="&lt;Super&gt;BackSpace" type="string" value="del_workspace_key"/>
+      <property name="&lt;Super&gt;m" type="string" value="maximize_window_key"/>
     </property>
   </property>
   <property name="providers" type="array">
