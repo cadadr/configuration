@@ -1,7 +1,7 @@
 [Desktop Entry]
 Version=1.0
 Name=Qutebrowser (gk)
-Exec=/home/g/bin/start-qutebrowser.sh
+Exec=/home/g/bin/qute.pl
 Terminal=false
 X-MultipleArgs=false
 Type=Application
