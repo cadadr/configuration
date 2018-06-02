@@ -3371,8 +3371,8 @@ Ask otherwise."
  pop-up-frames nil
  ;; Display buffers in current window.
  display-buffer-alist
- '(("\*.*Completions\*" . (display-buffer-pop-up-window))
-   ("\*Help\*" . (display-buffer-reuse-window))
+ '(("\\*.*Completions\\*" . (display-buffer-pop-up-window))
+   ("\\*Help\\*" . (display-buffer-reuse-window))
    ("Checkdoc" . (display-buffer-pop-up-window))
    (".*" . (display-buffer-same-window)))
  ;; With C-v and M-v, scroll to beginning or end of buffer if at top
