@@ -2124,7 +2124,7 @@ KEYWORDS are the keywords for the file."
   "Generic hook for shell script modes."
   (gk-turn-on-outline-minor-mode "####* " ":$" "C-'"))
 
-(add-hook 'shell-script-mode 'gk-shell-script-hook)
+(add-hook 'sh-mode-hook 'gk-shell-script-hook)
 
 
 
