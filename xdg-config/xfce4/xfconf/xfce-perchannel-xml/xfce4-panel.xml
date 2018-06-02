@@ -15,6 +15,7 @@
         <value type="int" value="16"/>
         <value type="int" value="29"/>
         <value type="int" value="7"/>
+        <value type="int" value="30"/>
         <value type="int" value="8"/>
         <value type="int" value="9"/>
         <value type="int" value="10"/>
@@ -116,10 +117,17 @@
     <property name="plugin-14" type="string" value="wavelan"/>
     <property name="plugin-15" type="string" value="netload"/>
     <property name="plugin-18" type="string" value="systemload"/>
-    <property name="plugin-27" type="string" value="windowmenu"/>
+    <property name="plugin-27" type="string" value="windowmenu">
+      <property name="style" type="uint" value="0"/>
+    </property>
     <property name="plugin-29" type="string" value="launcher">
       <property name="items" type="array">
         <value type="string" value="15273700531.desktop"/>
+      </property>
+    </property>
+    <property name="plugin-30" type="string" value="launcher">
+      <property name="items" type="array">
+        <value type="string" value="15275208292.desktop"/>
       </property>
     </property>
   </property>
