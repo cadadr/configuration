@@ -3452,7 +3452,9 @@ Ask otherwise."
  ido-use-filename-at-point nil
  ;; Don't show dotfiles if the prefix of the search string is not ‘.’
  ido-enable-dot-prefix t
- ido-confirm-unique-completion t)
+ ido-confirm-unique-completion t
+ ;; Show in the current frame, change window's buffer if necessary.
+ ido-default-buffer-method 'selected-window)
 
 (push 'ido-mode gk-global-modes)
 (push 'ido-everywhere gk-global-modes)
