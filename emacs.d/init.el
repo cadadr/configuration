@@ -2288,7 +2288,7 @@ Otherwise start mail program in offline mode."
   (interactive)
   (make-process
    :name "gk-fetch-mail" :buffer (get-buffer-create "*Fetch Mail*")
-   :command (list "do-netrc.sh" "mpop" "-a")
+   :command (list "do-netrc.sh" "mpop" "-Q" "-a")
    :sentinel
    (lambda (process event)
      (let ((msg ""))
