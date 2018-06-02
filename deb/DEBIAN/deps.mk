@@ -43,7 +43,7 @@ DEPS+=gnutls-bin cups cups-browsed cups-filters			      \
 	krb5-locales bash-completion ncurses-term mime-support	      \
 	pulseaudio
 ### Libraries:
-DEPS+=libxrandr-dev
+DEPS+=libxrandr-dev lib32stdc++6
 ### Documentation:
 DEPS+=autoconf-doc ffmpeg-doc mailutils-doc nginx-doc perl-doc	   \
 	python3-doc sbcl-doc gimp-help-en git-doc gnutls-doc	   \

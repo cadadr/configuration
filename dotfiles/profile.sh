@@ -77,7 +77,20 @@ fi
 # Pip installs to `.local'.
 PKGMANS_PATH="$RUBY_PATH:$HOME/.local/bin"
 
-PATH="$PROFILE_PATH:${PATH}$GUIX_PATH:$PKGMANS_PATH"
+# Add paths from ~/opt.
+
+# These are portable applications that can be run on multiple systems
+# w/o recompilation, and is sort of parallel to how /opt is generally
+# used.
+
+GK_OPT_DIR="~/opt"
+ANDROID_HOME="$GK_OPT_DIR/android-sdk";	export ANDROID_HOME
+ANDROID_SDK_HOME="~/.android";		export ANDROID_SDK_HOME
+GK_OPT_PATH="$GK_OPT_DIR/flutter/bin"
+
+# Finalise binary path.
+
+PATH="$PROFILE_PATH:${PATH}$GUIX_PATH:$PKGMANS_PATH:$GK_OPT_PATH"
 # Remove double colons.
 PATH="$(echo $PATH | sed -E s,:+,:,g)"
 export PATH

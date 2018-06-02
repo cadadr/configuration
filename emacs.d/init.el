@@ -97,6 +97,7 @@
 (require 'comint)
 (require 'compile)
 (require 'copyright)
+(require 'dart-mode)
 (require 'dash)
 (require 'debug)
 (require 'desktop)
@@ -2134,6 +2135,12 @@ KEYWORDS are the keywords for the file."
   (imenu-add-to-menubar "Definitions"))
 
 (add-hook 'lua-mode-hook #'gk-lua-mode-hook)
+
+
+
+;;;;; Dart:
+
+(add-to-list 'auto-mode-alist '("\\.dart\\'" . dart-mode))
 
 
 
