@@ -3782,7 +3782,7 @@ Redirect to the raw file url."
 (defun gk-urls-browse-cornucopia (url &rest args)
   "Browse a cornucopia URL."
   (apply #'gk-browse-url
-         (replace-regexp-in-string "\.local" ".net" url)
+         (replace-regexp-in-string "\\.local" ".net" url)
          args))
 
 (defun gk-urls-browse-wikipedia (url &rest args)
