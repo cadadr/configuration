@@ -3766,6 +3766,12 @@ Redirect to the raw file url."
           (s-join "/" (cons (cadr bits) (cons (caddr bits) (cddddr bits))))))
     (browse-url (concat rawprefix rawurl))))
 
+(defun gk-urls-browse-github-raw (url &rest args)
+  "Browse a GitHub raw URL as an Emacs file."
+  (gk-urls-browse-file
+   (replace-regexp-in-string
+    "\\.github\\.com/" ".githubusercontent.com/" url)))
+
 (defun gk-urls-browse-youtube (url &rest args)
   "Browse a youtube URL via mpv."
   (and
@@ -3805,7 +3811,7 @@ with external browser."
 ;; To add a new adapter, simply: =(gk-urls-make-file-adapter "ext")=
 ;; where =ext= is the filename extension.
 
-(defun gk-urls-browse-file (url ext &optional cb)
+(defun gk-urls-browse-file (url &optional ext cb)
   "Browse a file with the given extension.
 URL is the URL to browse.
 EXT is the extension, omit the leading dot.
@@ -3817,7 +3823,10 @@ Writes the data to a temporary file."
          (ignore cbargs)
          (unless (plist-get status :error)
            (let ((fil  (make-temp-file
-                        (concat "gkbrowse" ext) nil (concat "." ext))))
+                        (concat "gkbrowse-" ext)
+                        nil
+                        (when ext
+                          (concat "." ext)))))
              (write-region
               ;; Two consequtive newlines delimit the headers section.
               (save-excursion
@@ -3897,7 +3906,8 @@ provided."
       `(("\\(youtube\\.com\\|youtu\\.be\\)/" . gk-urls-browse-youtube)
         ("^https?://github.com/.*?/.*?/\\(commit\\|compare\\)/[a-z0-9]+$" .
          gk-urls-browse-github-commit)
-        ("^https?://github.com/.*?/.*?/blob/" . gk-urls-browse-github-file)
+        ("^https?://github\\.com/.*?/.*?/blob/" . gk-urls-browse-github-file)
+        ("^https?://raw\\.github\\.com/" . gk-urls-browse-github-raw)
         ("^http://www.cornucopia\\.local/" . gk-urls-browse-cornucopia)
         ("^https?://\\w+\\.wikipedia\\.org/" . gk-urls-browse-wikipedia)
         ("file:///home/.+/co/lisp/doc/HyperSpec/" . gk-browse-url)
