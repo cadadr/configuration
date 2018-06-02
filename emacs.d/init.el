@@ -922,7 +922,7 @@ Set locally the variable `outline-minor-mode-prefix' to PREFIX."
   (setq-local outline-regexp headline-begin)
   (setq-local outline-heading-end-regexp headline-end)
   (setq-local outline-minor-mode-prefix (kbd prefix))
-  (outline-minor-mode)
+  (outline-minor-mode +1)
   (local-set-key outline-minor-mode-prefix outline-mode-prefix-map))
 
 
