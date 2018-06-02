@@ -3684,13 +3684,56 @@ So that the reader knows where to continue reading."
 
 
 
+;;;;;; Qutebrowser:
+
+;; Qutebrowser is a webkit based web browser, which is currently my
+;; default one.  The following code adds browse-url support for it,
+;; and is based on the code for Firefox in browse-url.el.
+
+(defcustom browse-url-qutebrowser-arguments nil
+  "A list of strings to pass to Qutebrowser as arguments."
+  :type '(repeat (string :tag "Argument"))
+  :group 'browse-url)
+
+;; qute.pl is a script to invoke Qutebrowser with my setup.
+(defcustom browse-url-qutebrowser-program "qute.pl"
+  "The name by which to invoke Qutebrowser."
+  :type 'string
+  :group 'browse-url)
+
+(defun browse-url-qutebrowser (url &optional new-window)
+  "Ask Qutebrowser to load URL.
+Defaults to the URL around or before point.  Passes the strings
+in the variable `browse-url-qutebrowser-arguments' to Qutebrowser.
+
+Interactively, if the variable `browse-url-new-window-flag' is
+non-nil, loads the document in a new Qutebrowser window.  A
+non-nil prefix argument reverses the effect of
+`browse-url-new-window-flag'.
+
+Non-interactively, this uses the optional second argument NEW-WINDOW
+instead of `browse-url-new-window-flag'."
+  (interactive (browse-url-interactive-arg "URL: "))
+  (let* ((encoded-url (browse-url-encode-url url))
+         (process-environment (browse-url-process-environment)))
+    (apply 'start-process
+           (concat "qutebrowser " encoded-url) nil
+           browse-url-qutebrowser-program
+           (append
+            browse-url-qutebrowser-arguments
+            (when (browse-url-maybe-new-window new-window)
+              '("--target" "window"))
+            (list url)))))
+
+
+
 ;;;;;; Common:
 
 (defconst gk-ytl-format
   "http://localhost:3991/ytl.html?v=%s"
   "The url for lite youtube player, %s for where to insert video id.")
 
-(defalias 'gk-urls-external-browser 'browse-url-xdg-open)
+(defalias 'gk-urls-external-browser 'browse-url-qutebrowser)
 
 ;; TODO Check if still relevant when switch to Emacs 25.
 ;; Replacement for odd standard implementation.
