@@ -2412,8 +2412,8 @@ Otherwise start mail program in offline mode."
 ;; XXX(2018-05-25): Use with Gnus?
 
 (setf
- mairix-file-path gk-mail-home
- mairix-search-file "mairix-search")
+ mairix-file-path (expand-file-name "mairix/" gk-mail-home)
+ mairix-search-file "search")
 
 (defalias 'search-mail 'mairix-widget-search)
 
