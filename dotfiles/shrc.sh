@@ -64,7 +64,7 @@ if [ ! x$BASH = x ]; then
         [ $xit -ne 0 ] && echo "		*** It exited $xit! ***"
     }
     PROMPT_COMMAND=lastcmdexit
-    PS1='[In:  \w]\n[\#] \u@\H (\j)\$ '
+    PS1='[In: \w]\n[\#] \u@\H (\j)\$ '
     HISTTIMEFORMAT='%s'
 fi
 
