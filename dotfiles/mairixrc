@@ -2,8 +2,8 @@
 
 # Set this to the directory where your maildir folders live
 base=/home/g/posta
-mbox=archive*:outbox*:current
-mfolder=/home/g/posta/mairix-search
+mbox=archives/*:outbox*:current:lists/bug-gnu-emacs/*:lists/emacs-devel/*:lists/help-gnu-emacs/*
+mfolder=/home/g/posta/mairix/search
 mformat=mbox
-database=/home/g/posta/mairix-index
+database=/home/g/posta/mairix/index
 
