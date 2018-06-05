@@ -2250,9 +2250,13 @@ and special ones sepatarely."
   "Where all mailboxes etc. are.")
 
 (defvar gk-mail-inboxes
-  (list (expand-file-name "inbox" gk-mail-home)
-        (getenv "MAIL"))
+  (list (expand-file-name "inbox" gk-mail-home))
   "Where to look for mail.")
+
+;; XXX(2018-06-06): Maybe manually add it if not defined?  Or does
+;; that belong to the .profile script.
+(when-let* ((spool (getenv "MAIL")))
+  (pushnew spool gk-mail-inboxes))
 
 
 
