@@ -3086,6 +3086,43 @@ BEGIN and END are bounds of the region."
 
 
 
+;;;;; Dynamic blocks:
+
+(defun org-dblock-write:vcdirty (&rest args)
+  "Update a vcdirty dynamic block.
+Generates a "
+  (let ((vcs-dirs (append
+                   (list (expand-file-name "~/cf")
+                         org-directory
+                         (expand-file-name "~/doc/not/www2"))
+                   (cl-remove-if
+                    ($ (member $1 '("." ".." "Playground" "External" "Go" "Lisp"
+                                    "Attic")))
+                    (directory-files "~/co" t nil t))))
+        (outbuf " gk-org-dynablock-cmd")
+        (errbuf " gk-org-dynablock-cmd-err")
+        dirty)
+    (dolist (d vcs-dirs dirty)
+      (cond
+       ((file-exists-p (expand-file-name ".git" d))
+        (when
+            (zerop
+             (let ((default-directory d))
+               (shell-command "git status -s | egrep ." outbuf errbuf)))
+          (push d dirty)))
+       ((file-exists-p (expand-file-name ".hg" d))
+        (when
+            (zerop
+             (let ((default-directory d))
+               (shell-command "hg status | egrep ." outbuf errbuf)))
+          (push d dirty)))))
+    (when dirty
+      (insert "Dirty repos:")
+      (dolist (d dirty)
+        (insert "\n[[elisp:(vc-dir \"" d "\")][" d "]]")))))
+
+
+
 ;;;;; Source code:
 
 ;; Editing source code elements.
