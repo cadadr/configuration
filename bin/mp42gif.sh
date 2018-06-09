@@ -1,4 +1,5 @@
 #!/bin/sh
+# mp42gif.sh --- convert an MP4 video to a GIF file.
 
 set -e
 
