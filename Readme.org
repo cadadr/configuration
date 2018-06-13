@@ -19,19 +19,19 @@ This repo contains the following:
 
 - My GNU Emacs configuration tree (~emacs.d/~)
 - My dotfiles (~dotfiles/~,  ~xdg-config/i3*~)
-- A debian package for my Debian/Ubuntu desktop (~deb/~), which helps
-  install all the programs I use; and relevant configuration files
-  (~system/debian~, ~system/ubuntu~)
+- A debian package for my Debian desktop (~deb/~), which helps install
+  all the programs I use; and relevant configuration files
+  (~system/debian~)
 - My configuration for Raspberry Pi (~rpi/~, ~system/rpi~)
 - My (incomplete) configuration for Arch Linux (~arch/~, ~system/arch~)
 - My userscripts (~www/~)
 - And some other stuff.
 
-I've re-created this Mercurial repository from scratch, removing some
-secrets for publishing.  If you want to use any part of my
-configurations, you're free to do so, but *do not* try to use it as
-is, it's complex and personal, and some additional secret stuff is not
-included, so it won't work reliably.  Just cherry-pick what you want.
+I've re-created this repository from scratch, removing some secrets
+for publishing.  If you want to use any part of my configurations,
+you're free to do so, but *do not* try to use it as is, it's complex
+and personal, and some additional secret stuff is not included, so it
+won't work reliably.  Just cherry-pick what you want.
 
 Lots of files created by other people are included in this repository,
 most of the time verbatim.  Any file that does not include a statement
@@ -40,21 +40,10 @@ of them in public domain.
 
 * Installation
 ** System setup
-*** Debian
 Run the following commands:
 
 #+BEGIN_SRC sh
 sh scripts/debian-init.sh
-./bin/invade -v $HOME
-cd emacs.d; make all; cd ..
-make build
-#+END_SRC
-
-*** Ubuntu/Xubuntu
-Run the following commands:
-
-#+BEGIN_SRC sh
-sh scripts/ubuntu-init.sh
 ./bin/invade -v $HOME
 cd emacs.d; make all; cd ..
 make build
