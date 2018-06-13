@@ -47,14 +47,18 @@
 
   ;; Add custom paths.
   (add-to-list 'load-path (expand-file-name  "~/co/elisp"))
-  (dolist (p '("site" "lisp" "themes" "ext"))
+  (dolist (p '("lisp" "themes" "ext"))
     (add-to-list 'load-path
                  (expand-file-name
                   (locate-user-emacs-file p))))
 
-  ;; Add packages from ~/.emacs.d/packages.
-  (let ((dirs (directory-files (locate-user-emacs-file "packages") t
-                               directory-files-no-dot-files-regexp)))
+  ;; Add packages from local site.
+  (defconst gk-site-dir (expand-file-name "~/co/emacs-site-lisp/"))
+  (add-to-list 'load-path gk-site-dir)
+  (let ((dirs
+         (directory-files
+          (expand-file-name "packages" gk-site-dir) t
+          directory-files-no-dot-files-regexp)))
     (dolist (dir dirs)
       (add-to-list 'load-path dir)))
 
@@ -521,8 +525,7 @@ up-to-date."
   (interactive "p")
   (mapcar ($ (byte-recompile-file $1 (> force 1) 0))
           (remove-if-not #'file-exists-p (cons custom-file gk-loaded-files)))
-  (byte-recompile-directory (locate-user-emacs-file "packages") 0 (> force 4))
-  (byte-recompile-directory (locate-user-emacs-file "site") 0 (> force 4))
+  (byte-recompile-directory gk-site-dir 0 (> force 4))
   (when custom-file
     (byte-recompile-file custom-file (> force 1) 0)))
 
