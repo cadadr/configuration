@@ -1,6 +1,0 @@
-# Static table lookup for hostnames.
-# See hosts(5) for details.
-
-127.0.0.1	localhost.local	localhost
-::1		localhost.local	localhost
-127.0.0.1	alpha.local	alpha
