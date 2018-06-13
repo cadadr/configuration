@@ -24,7 +24,6 @@ This repo contains the following:
   (~system/debian~, ~system/ubuntu~)
 - My configuration for Raspberry Pi (~rpi/~, ~system/rpi~)
 - My (incomplete) configuration for Arch Linux (~arch/~, ~system/arch~)
-- My (incomplete) configuration for Guix(SD) (~guix/~)
 - My userscripts (~www/~)
 - And some other stuff.
 

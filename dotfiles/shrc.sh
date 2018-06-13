@@ -107,22 +107,6 @@ cloudbleed () {
 serve () {
     python3 -m http.server --bind localhost --cgi 8000
 }
-gx () {
-	arg=$1; shift
-	case $arg in
-	ls) guix system list-generations;;
-	p) guix package $*;;
-	in) guix package -i "$*";;
-	s) guix package -s "$*";;
-	w) guix package "--show=$*";;
-	up) guix pull && guix install -u;;
-	re) guix package -m $HOME/.config/GK/guix/guix-user.scm;;
-	# When the configuration file is not on the same filesystem with the guix command, it causes troubles.  Probably because it interferes with mounting and unmounting of filesystems.
-	reco) sudo cp $HOME/.config/GK/guix/guix-system.scm /config.scm; sudo guix system reconfigure /config.scm;;
-	*) guix $arg $*;;
-	esac
-}
-
 mkemacsbdir () {
     f=$(mktemp -d emacs-build.XXXXXX)
     git clone ~/co/External/emacs -b gk "$f" && echo "$f"

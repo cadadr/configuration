@@ -3293,31 +3293,6 @@ Ask otherwise."
 
 
 
-;;;;; Guix:
-
-(defconst gk-guix-site-lisp-path
-  (expand-file-name "~/.guix-profile/share/emacs/site-lisp/")
-  "Path to where Guix Elisp files are found.")
-
-(defun gk-guix-p ()
-  "Whether or not this is a Guix system."
-  (and (file-exists-p "~/.guix-profile")
-       ;; Make sure  this exists, or  else the existence of  guix path
-       ;; does not mean anything with regards to its use thru Emacs.
-       (file-exists-p gk-guix-site-lisp-path)
-       (executable-find "guix")))
-
-(when (gk-guix-p)
-  (let ((guix-load-path gk-guix-site-lisp-path))
-    (add-to-list 'load-path guix-load-path)
-    ;; TODO(2018-05-25): Make this not pollute compilation warnings.
-    (require 'guix)
-    (require 'guix-init)
-    ;; Commit the load path.
-    (setf guix-load-path guix-load-path)))
-
-
-
 ;;;;; POSIX:
 
 (when (executable-find "man")

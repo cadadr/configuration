@@ -2,7 +2,6 @@
 
 ### Import system settings:
 # . /etc/profile >/dev/null 2>&1 || echo Could not source /etc/profile...
-[ -f .guix-profile/etc/profile ] && . .guix-profile/etc/profile
 
 ###
 
@@ -48,23 +47,6 @@ export CDPATH=.:$HOME:$HOME/co
 
 PROFILE_PATH="$HOME/bin:$HOME/local/bin"
 
-# Guix.
-if [ -d "$HOME/.guix-profile" ]; then
-    export GUIX_LOCPATH=$HOME/.guix-profile/lib/locale
-    export GUILE_WARN_DEPRECATED=detailed
-    GUIX_PATH=$HOME/.guix-profile/bin:$HOME/.guix-profile/sbin
-
-    export GIT_EXEC_PATH="/home/g/.guix-profile/libexec/git-core"
-    export PYTHONPATH="/home/g/.guix-profile/lib/python3.5/site-packages${PYTHONPATH:+:}$PYTHONPATH"
-    export PERL5LIB="/home/g/.guix-profile/lib/perl5/site_perl${PERL5LIB:+:}$PERL5LIB"
-    export GEM_PATH="/home/g/.guix-profile/lib/ruby/gems/2.4.0${GEM_PATH:+:}$GEM_PATH"
-    export XDG_DATA_DIRS="/home/g/.guix-profile/share${XDG_DATA_DIRS:+:}$XDG_DATA_DIRS"
-    export ASPELL_DICT_DIR="/home/g/.guix-profile/lib/aspell"
-    export INFOPATH="/home/g/.guix-profile/share/info${INFOPATH:+:}$INFOPATH"
-    export ACLOCAL_PATH="/home/g/.guix-profile/share/aclocal${ACLOCAL_PATH:+:}$ACLOCAL_PATH"
-    export PKG_CONFIG_PATH="/home/g/.guix-profile/lib/pkgconfig${PKG_CONFIG_PATH:+:}$PKG_CONFIG_PATH"
-fi
-
 # Deduplicate path.
 
 PATH=$(echo "$PATH" | tr ':' '\n' | grep '^/[^h]' | sort | uniq | tr '\n' :)
@@ -94,7 +76,7 @@ GK_OPT_PATH="$GK_OPT_DIR/flutter/bin"
 
 # Finalise binary path.
 
-PATH="$PROFILE_PATH:${PATH}$GUIX_PATH:$PKGMANS_PATH:$GK_OPT_PATH"
+PATH="$PROFILE_PATH:${PATH}$PKGMANS_PATH:$GK_OPT_PATH"
 # Remove double colons.
 PATH="$(echo $PATH | sed -E s,:+,:,g)"
 export PATH
