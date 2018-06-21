@@ -3,3 +3,5 @@ text/*=emacsclient.desktop;
 application/pdf=emacsclient.desktop;
 image/gif=feh.desktop;
 image/jpeg=ristretto.desktop;feh.desktop;
+image/png=ristretto.desktop;feh.desktop;
+video/mp4=mpv.desktop;
