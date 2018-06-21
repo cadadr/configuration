@@ -14,6 +14,7 @@
         <value type="int" value="20"/>
         <value type="int" value="16"/>
         <value type="int" value="29"/>
+        <value type="int" value="2"/>
         <value type="int" value="7"/>
         <value type="int" value="30"/>
         <value type="int" value="8"/>
@@ -51,6 +52,7 @@
       <property name="names-visible" type="array">
         <value type="string" value="xfce4-power-manager"/>
         <value type="string" value="task manager"/>
+        <value type="string" value="thunar"/>
       </property>
     </property>
     <property name="plugin-16" type="string" value="launcher">
@@ -100,6 +102,11 @@
     <property name="clipman" type="empty">
       <property name="tweaks" type="empty">
         <property name="never-confirm-history-clear" type="bool" value="true"/>
+      </property>
+      <property name="settings" type="empty">
+        <property name="show-qr-code" type="bool" value="false"/>
+        <property name="save-on-quit" type="bool" value="false"/>
+        <property name="max-texts-in-history" type="uint" value="50"/>
       </property>
     </property>
     <property name="plugin-11" type="string" value="xfce4-verve-plugin"/>
