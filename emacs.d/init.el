@@ -3356,7 +3356,7 @@ Ask otherwise."
 (defvar gk-gui-theme nil
   "The default theme's name to load at startup.")
 
-(setf gk-gui-theme 'mono)
+(setf gk-gui-theme 'wombat)
 
 (when (gk-gui-p)
   (add-to-list 'gk-disabled-modes 'tool-bar-mode)
@@ -3370,11 +3370,16 @@ Ask otherwise."
   (when gk-gui-theme
     (load-theme gk-gui-theme t))
 
-  ;; With wombat the active window is hard to tell.
   (when (eq gk-gui-theme 'wombat)
+    ;; With wombat the active window is hard to tell.
     (set-face-attribute 'mode-line nil
                         :background "khaki"
-                        :foreground "black"))
+                        :foreground "black")
+    ;; Don't change the foreground or decorate the text when
+    ;; ‘hl-line-mode’ is on.
+    (set-face-attribute 'highlight nil
+                        :foreground nil
+                        :underline nil))
 
   (set-face-attribute 'default nil
                       :height gk-font-default-height
