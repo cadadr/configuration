@@ -2657,6 +2657,47 @@ For PATH, DESC and FORMAT see `org-add-link-type'."
              (special-mode)
              (local-set-key [?Q] 'kill-this-buffer))))))))
 
+;; Adapted from: https://www.reddit.com/r/emacs/comments/8qm1lb/new_orgcountwords_command/
+(defun gk-org-count-words-subtree ()
+  "If region is active, count words in it; otherwise count words in subtree."
+  (interactive)
+  (if (use-region-p)
+      (funcall-interactively #'count-words-region
+                             (region-beginning) (region-end))
+    (org-with-wide-buffer
+     (cl-loop for (lines words characters)
+              in (org-map-entries
+                  (lambda ()
+                    (gk-org-forward-to-entry-content 'unsafe)
+                    (let ((end (org-entry-end-position)))
+                      (list (count-lines (point) end)
+                            (count-words (point) end)
+                            (- end (point)))))
+                  nil 'tree)
+              sum lines into total-lines
+              sum words into total-words
+              sum characters into total-characters
+              finally do
+              (message
+               "Subtree \"%s\" has %s lines, %s words, and %s characters."
+               (org-get-heading t t)
+               total-lines total-words total-characters)))))
+
+(defun gk-org-forward-to-entry-content (&optional unsafe)
+  "Skip headline, planning line, and all drawers in current entry.
+If UNSAFE is non-nil, assume point is on headline."
+  (unless unsafe
+    ;; To improve performance in loops (e.g. with `org-map-entries')
+    (org-back-to-heading))
+  (cl-loop for element = (org-element-at-point)
+           for pos = (pcase element
+                       (`(headline . ,_)
+                        (org-element-property :contents-begin element))
+                       (`(,(or 'planning 'property-drawer 'drawer) . ,_)
+                        (org-element-property :end element)))
+           while pos
+           do (goto-char pos)))
+
 
 
 ;;;;; Variables:
