@@ -4200,7 +4200,7 @@ Define an ‘elfeed-serch-mode’ keybinding prepending the letter
 ;; Go cycling a list of tags in the search mode.
 
 (defvar gk-elfeed-search-ring-tags
-  '("+iu" "+edu" "+yt" "+ist" "+mag" "+teatro" "+blog"
+  '("+iu" "+edu" "+yt" "+pod" "+ist" "+mag" "+teatro" "+blog"
     "+commits" ""))
 
 (defvar-local gk-elfeed-search-ring-current-search nil)
