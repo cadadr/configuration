@@ -3989,6 +3989,12 @@ provided."
 
 
 
+;;;;; SHR:
+
+(setf shr-use-colors nil)
+
+
+
 ;;;;; EWW:
 
 (setf eww-search-prefix "https://duckduckgo.com/html/?q=")
