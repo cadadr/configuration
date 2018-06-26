@@ -4298,6 +4298,18 @@ the body of the entry, and the cdr is the score, an integer.")
 
 
 
+
+;;;;;; Show mode:
+
+(add-hook
+ 'elfeed-show-mode-hook
+ (defun gk-elfeed-show-mode-hook ()
+   "Hook for ‘elfeed-show-mode’."
+   (setq-local truncate-lines nil)
+   (setq-local word-wrap t)))
+
+
+
 ;;;; After Save™:
 
 ;; This is /the/ after save hook.  It's the one hook added to
