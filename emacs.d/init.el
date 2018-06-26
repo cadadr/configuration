@@ -2048,11 +2048,13 @@ KEYWORDS are the keywords for the file."
 (defun gk-ri (what)
   "Interface to ri(1) documentation browser."
   (interactive (list (read-string "Search in Ruby documentation: ")))
-  (let ((buf (get-buffer-create "*ri*")))
+  (let ((buf (get-buffer-create (format "*ri %s*" what))))
     (with-current-buffer buf
       (erase-buffer)
       (shell-command (format "ri -f ansi '%s'" what) buf)
-      (ansi-color-filter-region (goto-char (point-min)) (point-max)))))
+      (ansi-color-filter-region (goto-char (point-min)) (point-max))
+      (gk-minor-mode)
+      (view-mode))))
 
 (define-key ruby-mode-map "\C-\M-x" 'ruby-send-definition)
 (define-key ruby-mode-map "\C-x\C-e" 'ruby-send-last-sexp)
