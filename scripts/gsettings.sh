@@ -13,5 +13,8 @@ gsettings set org.gnome.desktop.interface gtk-key-theme "Emacs"
 gsettings set org.gnome.desktop.wm.keybindings switch-windows '["<Alt>Tab"]'
 gsettings set org.gnome.shell.window-switcher current-workspace-only "true"
 
+# Consistent window focus and raising: just don't.
+gsettings set org.gnome.desktop.wm.preferences focus-new-windows strict
+
 # Tell the user that this script was run.
 touch ~/.cf-scripts-gsettings-sh-was-applied
