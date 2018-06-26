@@ -135,6 +135,11 @@ export GO=$GOPATH/bin
 export PYTHONSTARTUP=$MEINE/python-init.py
 export DJANGO_COLORS="nocolor"
 
+# GNU Coreutils
+
+# Make numbered backups
+export VERSION_CONTROL=numbered
+
 ###
 
 ### Umask:
