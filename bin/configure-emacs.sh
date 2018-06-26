@@ -9,7 +9,6 @@ fi
 
 # Keep an eye on:
 #   . --with-cairo
-#   . Threads' development, enable when stable
 case $V in
     pdmp)
 	./configure \
@@ -18,7 +17,6 @@ case $V in
 	    --with-imagemagick \
 	    --with-modules \
 	    --with-file-notification=yes \
-	    --without-threads \
 	    --with-gameuser=no \
 	    --with-mailutils \
 	    \
@@ -32,7 +30,6 @@ case $V in
 	    --with-imagemagick \
 	    --with-modules \
 	    --with-file-notification=yes \
-	    --without-threads \
 	    --with-gameuser=no \
 	    --with-mailutils ;;
     26)
