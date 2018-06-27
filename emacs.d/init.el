@@ -489,6 +489,18 @@ together with current time and timezone information."
       (16 "%FT%T%z")                    ;full ISO 8601
       ))))
 
+(defun gk-toggle-wrap (&optional arg)
+  "Toggle word wrap and line truncation.
+Without a prefix ARG, toggle each.  With a positive prefix, turn
+both on.  With a negative prefix, turn both off."
+  (interactive "p")
+  (setf arg (cond ((or (null arg) (= arg 1)) nil)
+                  ((> arg 1) +1)
+                  ((< arg 0) -1)))
+  (toggle-truncate-lines arg)
+  (toggle-word-wrap arg)
+  (message "truncate-lines: %S; word-wap: %S" truncate-lines word-wrap))
+
 
 
 ;;;; Recompilation:
@@ -4483,6 +4495,7 @@ Does various tasks after saving a file, see it's definition."
 (gk-prefix-binding "_" 'delete-other-windows-vertically)
 (gk-prefix-binding "2" #'clone-indirect-buffer)
 (gk-prefix-binding "t" #'gk-insert-today)
+(gk-prefix-binding "~" #'gk-toggle-wrap)
 
 
 
