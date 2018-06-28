@@ -9,6 +9,7 @@
 .local/share/applications/emacs.desktop		candy/emacs.desktop
 .local/share/applications/emacsclient.desktop	candy/emacsclient.desktop
 .local/share/applications/ff-dev.desktop	candy/ff-dev.desktop
+.local/share/applications/firefox.desktop	candy/firefox.desktop
 .local/share/applications/org-protocol.desktop	candy/org-protocol.desktop
 .local/share/applications/qute.desktop		candy/qute.desktop
 .mailcap			dotfiles/mailcap
