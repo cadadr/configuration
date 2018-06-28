@@ -144,6 +144,7 @@
 (require 'ls-lisp)
 (require 'mail-source)
 (require 'mairix)
+(require 'mastodon)
 (require 'message)
 (require 'mm-url)
 (require 'multiple-cursors)
@@ -4325,6 +4326,33 @@ the body of the entry, and the cdr is the score, an integer.")
    "Hook for ‘elfeed-show-mode’."
    (setq-local truncate-lines nil)
    (setq-local word-wrap t)))
+
+
+
+;;;;; Mastodon:
+
+(setf mastodon-instance-url "https://mastodon.sdf.org/")
+
+;; Quick toot.
+(defalias 'toot #'mastodon-toot)
+
+;; Emacsify keybindings.
+(define-key mastodon-mode-map "n" #'mastodon-tl--goto-next-toot)
+(define-key mastodon-mode-map "p" #'mastodon-tl--goto-prev-toot)
+(define-key mastodon-mode-map "+" #'mastodon-toot)
+(define-key mastodon-mode-map "q" #'bury-buffer)
+(define-key mastodon-mode-map "s" #'mastodon-tl--get-tag-timeline)
+(define-key mastodon-mode-map "Q" #'kill-this-buffer)
+(define-key mastodon-mode-map "/f" #'mastodon-tl--get-federated-timeline)
+(define-key mastodon-mode-map "/h" #'mastodon-tl--get-home-timeline)
+(define-key mastodon-mode-map "/l" #'mastodon-tl--get-local-timeline)
+
+(add-hook
+ 'mastodon-mode-hook
+ (defun gk-mastodon-mode-hook ()
+   ;; Unmap unused keys.
+  (dolist (key (map #'list #'string "jkFHLT"))
+    (define-key mastodon-mode-map key nil))))
 
 
 

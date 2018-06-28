@@ -1,0 +1,156 @@
+* mastodon.el 
+
+[[https://melpa.org/#/mastodon][file:https://melpa.org/packages/mastodon-badge.svg]]
+
+[[https://travis-ci.org/jdenen/mastodon.el][https://travis-ci.org/jdenen/mastodon.el.svg?branch=master]]
+[[http://waffle.io/jdenen/mastodon.el][https://badge.waffle.io/jdenen/mastodon.el.png?label=in%20progress&title=In%20Progress]]
+
+Emacs client for [[https://github.com/tootsuite/mastodon][Mastodon]]
+
+[[http://spacemacs.org][https://cdn.rawgit.com/syl20bnr/spacemacs/442d025779da2f62fc86c2082703697714db6514/assets/spacemacs-badge.svg]]
+
+** Installation
+
+Clone this repository and add the lisp directory to your load path.
+Then, require it and go.
+
+#+BEGIN_SRC emacs-lisp
+    (add-to-list 'load-path "/path/to/mastodon.el/lisp")
+    (require 'mastodon)
+#+END_SRC
+
+Or, with =use-package=:
+
+#+BEGIN_SRC emacs-lisp
+  (use-package mastodon
+    :load-path "/path/to/mastodon.el/lisp")
+#+END_SRC
+
+*** MELPA
+
+Add =MELPA= to your archives:
+
+#+BEGIN_SRC emacs-lisp
+  (require 'package)
+  (add-to-list 'package-archives
+               '("melpa" . "http://melpa.org/packages/") t)
+#+END_SRC
+
+Update and install:
+
+=M-x package-refresh-contents RET=
+
+=M-x package-install RET mastodon RET=
+
+*** Emoji
+
+=mastodon-mode= will enable [[https://github.com/iqbalansari/emacs-emojify][Emojify]] if it is loaded in your Emacs environment, so
+there's no need to write your own hook anymore. =emojify-mode= is not required.
+
+*** Discover
+
+=mastodon-mode= will provide a context menu for its keybindings if [[https://github.com/mickeynp/discover.el][Discover]] is 
+installed. It is not required.
+
+** Usage
+*** 2 Factor Auth
+2FA is not supported yet. It is in the [[https://github.com/jdenen/mastodon.el/milestone/2][plans]] for the =1.0.0= release.
+
+If you have 2FA enabled and try to use mastodon.el, your Emacs client will hang until you `C-g` your way out.
+*** Instance
+
+Set =mastodon-instance-url= in your =.emacs= or =customize=. Defaults to the [[https://mastodon.social][flagship]].
+
+#+BEGIN_SRC emacs-lisp
+    (setq mastodon-instance-url "https://my.instance.url")
+#+END_SRC
+
+*** Timelines
+
+=M-x mastodon=
+
+Opens a =*mastodon-home*= buffer in the major mode so you can see toots. You will be prompted for email and password. The app registration process will take place if your =mastodon-token-file= does not contain =:client_id= and =:client_secret=.
+
+**** Keybindings
+
+|--------------------------+-----------------------------------------------------------------------------------|
+| Key                      | Action                                                                            |
+|--------------------------+-----------------------------------------------------------------------------------|
+| =?=                      | Open context menu (if =discover= is available)                                    |
+| =b=                      | Boost toot under =point=                                                          |
+| =f=                      | Favourite toot under =point=                                                      |
+| =F=                      | Open federated timeline                                                           |
+| =H=                      | Open home timeline                                                                |
+| =j=                      | Go to next toot                                                                   |
+| =k=                      | Go to previous toot                                                               |
+| =L=                      | Open local timeline                                                               |
+| =n=                      | Switch to =mastodon-toot= buffer                                                  |
+| =q=                      | Quit mastodon buffer. Leave window open.                                          |
+| =Q=                      | Quit mastodon buffer and kill window.                                             |
+| =r=                      | Reply to toot under =point=.                                                      |
+| =t=                      | Open thread buffer for toot under =point=.                                        |
+| =T=                      | Prompt for tag and open its timeline                                              |
+| =<tab>=                  | Go to the next interesting thing that has an action.                              |
+| =<S-tab>=                | Go to the previous interesting thing that has an action.                          |
+| =<return>= / =<mouse-2>= | Perform action for the thing under point (or under mouse for =<mouse-2>=) if any. |
+|--------------------------+-----------------------------------------------------------------------------------|
+
+**** Legend
+
+|--------+-------------------------|
+| Marker | Meaning                 |
+|--------+-------------------------|
+| =(B)=  | I boosted this toot.    |
+| =(F)=  | I favourited this toot. |
+|--------+-------------------------|
+
+*** Toot toot
+
+=M-x mastodon-toot=
+
+Pops a new buffer/window with a =mastodon-toot= minor mode. Enter the
+contents of your toot here. =C-c C-c= sends the toot. =C-c C-k= cancels. 
+Both actions kill the buffer and window.
+
+If you have not previously authenticated, you will be prompted for your
+account email and password. *NOTE*: Email and password are NOT stored by mastodon.el.
+
+Authentication stores your access token in the =mastodon-auth--token= 
+variable. It is not stored on your filesystem, so you will have to 
+re-authenticate when you close/reopen Emacs.
+
+**** Keybindings
+
+|-----------+---------------------|
+| Key       | Action              |
+|-----------+---------------------|
+| =C-c C-c= | Send toot           |
+| =C-c C-k= | Cancel toot         |
+| =C-c C-w= | Add content warning |
+|-----------+---------------------|
+
+** Roadmap
+
+[[https://github.com/jdenen/mastodon.el/milestone/1][Here]] are the features I plan to implement before putting mastodon.el on MELPA.
+
+[[https://github.com/jdenen/mastodon.el/milestone/2][Here]] are the plans I have for the =1.0.0= release.
+
+** Contributing
+
+PRs, issues, and feature requests are very welcome!
+
+*** Features
+
+1. Create an [[https://github.com/jdenen/mastodon.el/issues][issue]] detailing the feature you'd like to add.
+2. Fork the repository and create a branch off of =develop=.
+3. Create a pull request referencing the issue created in step 1.
+
+*** Fixes
+
+1. In an [[https://github.com/jdenen/mastodon.el/issues][issue]], let me know that you're working to fix it.
+2. Fork the repository and create a branch off of =develop=.
+3. Create a pull request referencing the issue from step 1.
+
+** Connect
+
+If you want to get in touch with me, give me a [[https://mastodon.social/@johnson][toot]] or leave an [[https://github.com/jdenen/mastodon.el/issues][issue]].
