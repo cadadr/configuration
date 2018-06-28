@@ -3628,12 +3628,18 @@ Ask otherwise."
 So that the reader knows where to continue reading."
   (ignore arg)
   (ignore-errors
-    (forward-line next-screen-context-lines)
-    ;; Flash if ‘hl-line-mode’ is inactive.  If it's active, the
-    ;; cursor is on the line to continue anyways.
-    (unless hl-line-mode
-      (hl-line-mode +1)
-      (run-with-idle-timer 1 nil ($ (hl-line-mode -1))))))
+    ;; Note the buffer, will return to it to disable ‘hl-line-mode’
+    ;; only there.
+    (let ((buf (current-buffer)))
+      (forward-line next-screen-context-lines)
+      ;; Flash if ‘hl-line-mode’ is inactive.  If it's active, the
+      ;; cursor is on the line to continue anyways.
+      (unless hl-line-mode
+        (hl-line-mode +1)
+        (run-with-idle-timer
+         1 nil
+         ($ (with-current-buffer buf
+              (hl-line-mode -1))))))))
 
 
 
