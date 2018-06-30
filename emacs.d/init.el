@@ -2007,7 +2007,7 @@ KEYWORDS are the keywords for the file."
 
 ;; Hyperspec location
 (setf common-lisp-hyperspec-root
-      (concat "file://" (expand-file-name "~/co/lisp/doc/HyperSpec/")))
+      (concat "file://" (expand-file-name "~/co/Lisp/doc/HyperSpec/")))
 
 
 
