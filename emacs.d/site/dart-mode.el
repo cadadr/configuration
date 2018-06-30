@@ -90,6 +90,7 @@
 (require 'dash)
 (ignore-errors
  (require 'flycheck))
+(require 'help-mode)
 (require 'json)
 (require 's)
 
