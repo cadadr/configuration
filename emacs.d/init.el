@@ -3825,7 +3825,9 @@ instead of `browse-url-new-window-flag'."
   "http://localhost:3991/ytl.html?v=%s"
   "The url for lite youtube player, %s for where to insert video id.")
 
-(defalias 'gk-urls-external-browser 'browse-url-qutebrowser)
+(defalias 'gk-urls-external-browser 'browse-url-firefox)
+(setf browse-url-firefox-program
+      (gk-executable-ensure "~/opt/firefox/firefox"))
 
 ;; TODO Check if still relevant when switch to Emacs 25.
 ;; Replacement for odd standard implementation.
