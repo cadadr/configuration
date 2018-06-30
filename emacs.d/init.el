@@ -2095,6 +2095,23 @@ KEYWORDS are the keywords for the file."
 
 (add-hook 'perl-mode-hook 'gk-algol-like-hook)
 
+(pushnew
+ '((perl-mode . "Perl source file")
+   nil
+   (when (y-or-n-p "Is this an executable script?")
+     "#!/usr/bin/env perl\n")
+   "# "
+   (or (ignore-errors (file-name-nondirectory (buffer-file-name)))
+       "<filename>")
+   " --- "
+   (let ((d (string-trim (read-string "Description: "))))
+     (if (string-empty-p d)
+         "..."
+       d))
+   "\n\n"
+   "use v5.24;\n\nuse strict;\nuse warnings;\n\n")
+ auto-insert-alist)
+
 
 
 ;;;;; Python:
