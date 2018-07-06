@@ -4184,13 +4184,6 @@ It is rather slow to do so."
 
 
 
-;;;;;; Feeds:
-
-;; Load feeds from external source.
-(gk-load (dropbox "feeds") t)
-
-
-
 ;;;;;; Keys:
 
 (define-key elfeed-show-mode-map (kbd "v") #'gk-elfeed-browse-article)
@@ -4238,9 +4231,7 @@ Define an ‘elfeed-serch-mode’ keybinding prepending the letter
 
 ;; Go cycling a list of tags in the search mode.
 
-(defvar gk-elfeed-search-ring-tags
-  '("+iu" "+edu" "+yt" "+pod" "+ist" "+mag" "+teatro" "+blog"
-    "+commits" ""))
+(defvar gk-elfeed-search-ring-tags nil)
 
 (defvar-local gk-elfeed-search-ring-current-search nil)
 
@@ -4346,6 +4337,13 @@ the body of the entry, and the cdr is the score, an integer.")
    "Hook for ‘elfeed-show-mode’."
    (setq-local truncate-lines nil)
    (setq-local word-wrap t)))
+
+
+
+;;;;;; Feeds:
+
+;; Load feeds from external source.
+(gk-load (dropbox "feeds") t)
 
 
 
