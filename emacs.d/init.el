@@ -3167,7 +3167,8 @@ Generates a "
   (let ((vcs-dirs (append
                    (list (expand-file-name "~/cf")
                          org-directory
-                         (expand-file-name "~/doc/not/www2"))
+                         (expand-file-name "~/doc/not/www2")
+                         (expand-file-name "~/.mozilla"))
                    (cl-remove-if
                     ($ (member $1 '("." ".." "Playground" "External" "Go" "Lisp"
                                     "Attic")))
