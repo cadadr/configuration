@@ -20,4 +20,5 @@
 .profile			dotfiles/profile.sh
 .signature			dotfiles/signature
 .xinitrc			dotfiles/xsession
+.vimrc				dotfiles/rc.vim
 bin				bin
