@@ -1,7 +1,36 @@
 [Added Associations]
 text/*=emacsclient.desktop;
-application/pdf=emacsclient.desktop;
+application/pdf=evince.desktop;emacsclient.desktop;
 image/gif=feh.desktop;
 image/jpeg=ristretto.desktop;feh.desktop;
 image/png=ristretto.desktop;feh.desktop;
 video/mp4=mpv.desktop;
+x-scheme-handler/http=firefox.desktop;
+x-scheme-handler/https=firefox.desktop;
+x-scheme-handler/ftp=firefox.desktop;
+x-scheme-handler/chrome=firefox.desktop;
+text/html=firefox.desktop;
+application/x-extension-htm=firefox.desktop;
+application/x-extension-html=userapp-mousepad-1CI8KZ.desktop;firefox.desktop;
+application/x-extension-shtml=firefox.desktop;
+application/xhtml+xml=vim.desktop;firefox.desktop;
+application/x-extension-xhtml=firefox.desktop;
+application/x-extension-xht=firefox.desktop;
+text/plain=libreoffice-writer.desktop;
+video/mp2t=mpv.desktop;
+application/zip=xarchiver.desktop;
+application/x-compressed-tar=xarchiver.desktop;
+audio/x-opus+ogg=quodlibet.desktop;
+
+[Default Applications]
+x-scheme-handler/http=firefox.desktop
+x-scheme-handler/https=firefox.desktop
+x-scheme-handler/ftp=firefox.desktop
+x-scheme-handler/chrome=firefox.desktop
+text/html=firefox.desktop
+application/x-extension-htm=firefox.desktop
+application/x-extension-html=firefox.desktop
+application/x-extension-shtml=firefox.desktop
+application/xhtml+xml=firefox.desktop
+application/x-extension-xhtml=firefox.desktop
+application/x-extension-xht=firefox.desktop
