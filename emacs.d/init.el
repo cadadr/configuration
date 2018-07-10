@@ -3360,7 +3360,7 @@ Ask otherwise."
 (defvar gk-gui-theme nil
   "The default theme's name to load at startup.")
 
-(setf gk-gui-theme 'wombat)
+(setf gk-gui-theme 'mono)
 
 (when (gk-gui-p)
   (add-to-list 'gk-disabled-modes 'tool-bar-mode)
