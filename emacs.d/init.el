@@ -1971,39 +1971,13 @@ KEYWORDS are the keywords for the file."
 
 ;;;;;; Common Lisp:
 
-;; TODO(2018-05-25): Separate Slime settings from Common Lisp
-;; settings, as the former is not limited to working with CL.
-
-(defvar gk-slime-image
-  (let ((core (expand-file-name
-               (locate-user-emacs-file "extras/slime.fasl"))))
-    (when (file-exists-p core) core))
-  "Common Lisp image to start a swank session for SLIME.")
-
 (defvar gk-lisp-program (or (executable-find "ccl")
                             (executable-find "sbcl"))
   "Full path to the default Common Lisp implementation.")
 
 (setf
  ;; Set default Lisp interpreter.
- inferior-lisp-program
- (cond
-  ((not gk-lisp-program)
-   (prog1 nil (warn "No Common Lisp interpreter found!")))
-  ;; If a FASL for slime was found, set up to use it.
-  (gk-slime-image (concat gk-lisp-program " "
-                          (cond
-                           ((string-match "sbcl$" gk-lisp-program)
-                            "--core")
-                           ((string-match "ccl$" gk-lisp-program)
-                            "-I"))
-                          " " gk-slime-image))
-  (t gk-lisp-program))
- ;; Extra slime features to load.
- slime-contribs '(slime-fancy slime-mrepl slime-asdf slime-banner
-                              slime-tramp slime-xref-browser slime-quicklisp))
-
-(slime-setup)
+ inferior-lisp-program gk-lisp-program)
 
 ;; Hyperspec location
 (setf common-lisp-hyperspec-root
