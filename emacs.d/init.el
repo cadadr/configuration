@@ -192,7 +192,6 @@
 (require 'shell)
 (require 'shr)
 (require 'simple)
-(require 'slime)
 (require 'smtpmail)
 (require 'spam)
 (require 'subr-x)
