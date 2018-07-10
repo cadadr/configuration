@@ -111,7 +111,6 @@
 (require 'eimp)
 (require 'eldoc)
 (require 'elfeed)
-(require 'emms-setup)
 (require 'epa)
 (require 'epa-mail)
 (require 'epg)
@@ -3327,13 +3326,6 @@ Ask otherwise."
 (define-key image-mode-map [?\ ] (gk-interactively
                                    (let ((image-animate-loop t))
                                      (image-toggle-animation))))
-
-
-
-;;;;; EMMS:
-
-(emms-standard)
-(emms-default-players)
 
 
 
