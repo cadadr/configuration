@@ -1,0 +1,3 @@
+[submodule "emacs.d/vendored-lisp"]
+	path = emacs.d/vendored-lisp
+	url = /home/g/co/Lisp/elisp/site

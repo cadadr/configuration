@@ -41,20 +41,39 @@
 
 ;;;; Loadpaths:
 
+(require 'cl-lib)
+
+;; These settings are grouped into a ‘progn’ so that they can be run
+;; together with a single keystroke in interactive mode.
 (progn
+  (defun gk-directory-files (directory &optional include-dotfiles relative-names)
+    "Saner version of ‘directory-files’.
+Exclude dot-files, don't sort, and return full paths by default."
+    (directory-files
+     directory
+     (not include-dotfiles)
+     directory-files-no-dot-files-regexp
+     t))
+
+  (defvar gk-elisp-site-dir
+    (locate-user-emacs-file "vendored-lisp")
+    "Directory where 3rd party Elisp is contained.")
+
   ;; Sanitise.
   (add-to-list 'load-path "/usr/local/share/emacs/site-lisp/")
 
   ;; Add custom paths.
   (add-to-list 'load-path (expand-file-name  "~/co/elisp"))
-  (dolist (p '("site" "lisp" "themes" "ext"))
+  (dolist (p '("lisp" "themes" "ext"))
     (add-to-list 'load-path
                  (expand-file-name
                   (locate-user-emacs-file p))))
 
-  ;; Add packages from ~/.emacs.d/packages.
-  (let ((dirs (directory-files (locate-user-emacs-file "packages") t
-                               directory-files-no-dot-files-regexp)))
+  (add-to-list 'load-path gk-elisp-site-dir)
+
+  (let ((dirs (cl-remove-if-not
+               #'file-directory-p
+               (gk-directory-files gk-elisp-site-dir))))
     (dolist (dir dirs)
       (add-to-list 'load-path dir)))
 
