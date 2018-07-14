@@ -8,17 +8,14 @@ The basic structure is as follows:
 ~/.emacs.d
 ├ init.el
 │   The init file.
-├ site/
-│   Third-party little elisp files that provide additional
-│   functionality.
+├ vendored-lisp/
+│   Git submodule for third party Elisp.
 ├ lisp/
 │   Various programs that are not loaded unless needed. Not in
 │   loadpath.
 ├ extras/
 │   Various non-elisp programmes that are used by my emacs
 │   setup.
-├ packages/
-│   Third-party packages.
 ├ themes/
 │   Custom themes
 └ etc
