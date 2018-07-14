@@ -29,23 +29,22 @@ The basic structure is as follows:
 * Installation / updating
 There are multiple ways to activate this configuration:
 
-- run the invasion (see perldoc invade) from the repo root
-- copy/link this tree to ~/.emacs.d
-- load init.el via the `load' function
-- link init.el to ~/.emacs.d (not tested)
+- run the invasion (see =perldoc invade=) from the repo root
+- copy/link this tree to =~/.emacs.d=
+- load init.el via the =load= function
+- link init.el to =~/.emacs.d= (not tested)
 
 Choose *EITHER*.
 
 In order to be able to run this setup, submodules need to be initiated
-and updated.  It is assumed that the vendored-lisp submodule can be
-cloned from ~/co/Lisp/elisp/site (it can be found [[https://github.com/cadadr/vendored-elisp][online]]).  Provided
+and updated.  It is assumed that the =vendored-lisp= submodule can be
+cloned from =~/co/Lisp/elisp/site= (it can be found [[https://github.com/cadadr/vendored-elisp][online]]).  Provided
 that, the following commands should suffice:
 
 #+BEGIN_EXAMPLE
 $ git submodule init
 $ git submodule update
 #+END_EXAMPLE
-
 
 * Licence
 Unless stated otherwise within the file or the directory, all the code
