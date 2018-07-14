@@ -24,6 +24,27 @@ The basic structure is as follows:
   └ load-test.el
       Used by gk-test-init, test whether emacs loads successfully.
 
+Installation / updating
+=======================
+
+There are multiple ways to activate this configuration:
+
+- run the invasion (see perldoc invade) from the repo root
+- copy/link this tree to ~/.emacs.d
+- load init.el via the `load' function
+- link init.el to ~/.emacs.d (not tested)
+
+Choose EITHER.
+
+In order to be able to run this setup, submodules need to be initiated
+and updated.  It is assumed that the vendored-lisp submodule can be
+cloned from ~/co/Lisp/elisp/site (it can be found online at
+<https://github.com/cadadr/vendored-elisp>).  Provided that, the
+following commands should suffice:
+
+$ git submodule init
+$ git submodule update
+
 
 Licence
 =======
