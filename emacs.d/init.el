@@ -3621,7 +3621,7 @@ Ask otherwise."
 
 ;;;;; Cursor:
 
-(setq-default cursor-type 'box)
+(setq-default cursor-type 'bar)
 (setq-default cursor-in-non-selected-windows 'hollow)
 
 ;; Box cursor in special-mode and some other modes when the default
