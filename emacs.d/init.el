@@ -2896,7 +2896,13 @@ If UNSAFE is non-nil, assume point is on headline."
 
 (add-hook 'org-export-before-parsing-hook 'gk-org-latex-set-classes)
 
-(setf org-latex-pdf-process (list "latexmk -xelatex -bibtex %f"))
+(setf org-latex-pdf-process (list "latexmk -f -silent -bibtex-cond -xelatex %f")
+      ;; Do remove many sorts of files the process generates...
+      org-latex-remove-logfiles t
+      ;; ...but keep some important log files.
+      org-latex-logfiles-extensions
+      (cl-remove-if ($ (member $1 (list "log" "blg")))
+                    org-latex-logfiles-extensions))
 
 (defun gk-org-pdf-subtree (arg)
   "Export subtree under point to pdf, show the output.
