@@ -2842,10 +2842,6 @@ If UNSAFE is non-nil, assume point is on headline."
                                     gk-org-project-agenda-files))
                  (org-agenda-span 'day)
                  (org-agenda-compact-blocks t)))
-     (alltodo "" ((org-agenda-files
-                   (list
-                    (gk-org-dir-file "listeler.org")
-                    "~/doc/not/rsc/Recherche.org"))))
      (alltodo "" ((org-agenda-files gk-org-project-agenda-files)))
      (alltodo "" ((org-agenda-files (list (gk-org-dir-file "../yazi/defter.org")))))
      (tags-todo "+mtd")))))                ;ajanda.org/Master Todo List.
