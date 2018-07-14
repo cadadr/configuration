@@ -79,7 +79,9 @@ Exclude dot-files, don't sort, and return full paths by default."
 
   (with-eval-after-load 'info
     (info-initialize)
-    (add-to-list 'Info-directory-list (locate-user-emacs-file "docs")))
+    (add-to-list
+     'Info-directory-list
+     (locate-user-emacs-file "vendored-lisp/docs")))
 
   ;; Custom themes:
   (add-to-list 'custom-theme-load-path
