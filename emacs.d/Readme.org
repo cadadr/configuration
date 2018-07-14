@@ -1,10 +1,11 @@
-My Emacs Setup
-==============
+#+title: Göktuğ's Emacs Setup
 
+* Introduction
 This is my GNU Emacs setup.
 
 The basic structure is as follows:
 
+#+BEGIN_EXAMPLE
 ~/.emacs.d
 ├ init.el
 │   The init file.
@@ -23,10 +24,9 @@ The basic structure is as follows:
   │   M-x Customize settings.
   └ load-test.el
       Used by gk-test-init, test whether emacs loads successfully.
+#+END_EXAMPLE
 
-Installation / updating
-=======================
-
+* Installation / updating
 There are multiple ways to activate this configuration:
 
 - run the invasion (see perldoc invade) from the repo root
@@ -34,27 +34,23 @@ There are multiple ways to activate this configuration:
 - load init.el via the `load' function
 - link init.el to ~/.emacs.d (not tested)
 
-Choose EITHER.
+Choose *EITHER*.
 
 In order to be able to run this setup, submodules need to be initiated
 and updated.  It is assumed that the vendored-lisp submodule can be
-cloned from ~/co/Lisp/elisp/site (it can be found online at
-<https://github.com/cadadr/vendored-elisp>).  Provided that, the
-following commands should suffice:
+cloned from ~/co/Lisp/elisp/site (it can be found [[https://github.com/cadadr/vendored-elisp][online]]).  Provided
+that, the following commands should suffice:
 
+#+BEGIN_EXAMPLE
 $ git submodule init
 $ git submodule update
+#+END_EXAMPLE
 
 
-Licence
-=======
-
+* Licence
 Unless stated otherwise within the file or the directory, all the code
 in this repository is released in the public domain.  Make use of it
 as you like.
-
-Directories  `packages', and  `site' contain  third-party code.   Code
-there is subject to the terms stated therewithin.
 
 The `themes'  directory may contain  third party code.  Code  there is
 subject to the terms stated therewithin, if stated.
