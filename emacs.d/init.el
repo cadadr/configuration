@@ -2092,7 +2092,8 @@ KEYWORDS are the keywords for the file."
 (define-key ruby-mode-map "\C-c\C-h" 'gk-ri)
 
 (defun gk-ruby-mode-hook ()
-  (imenu-add-to-menubar "Definitions"))
+  (imenu-add-to-menubar "Definitions")
+  (gk-turn-on-outline-minor-mode "###*" ":$" "C-'"))
 
 (defun gk-inf-ruby-mode-hook ()
   (setf truncate-lines nil word-wrap t))
