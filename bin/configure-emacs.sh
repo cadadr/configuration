@@ -12,7 +12,7 @@ fi
 case $V in
     pdmp)
 	./configure \
-	    --prefix=$HOME/local \
+	    --prefix=$HOME/local/emacs \
 	    --with-x-toolkit=$TK \
 	    --with-imagemagick \
 	    --with-modules \
@@ -25,7 +25,7 @@ case $V in
 	    --with-dumping=pdumper ;;
     head)
 	./configure \
-	    --prefix=$HOME/local \
+	    --prefix=$HOME/local/emacs \
 	    --with-x-toolkit=$TK \
 	    --with-imagemagick \
 	    --with-modules \
@@ -34,14 +34,14 @@ case $V in
 	    --with-mailutils ;;
     26)
 	./configure \
-	    --prefix=$HOME/local \
+	    --prefix=$HOME/local/emacs \
 	    --with-x-toolkit=$TK \
 	    --with-modules \
 	    --with-file-notification=yes \
 	    --with-mailutils ;;
     25)
 	./configure \
-	    --prefix=$HOME/local \
+	    --prefix=$HOME/local/emacs \
 	    --with-x-toolkit=$TK \
 	    --with-modules \
 	    --with-file-notification=yes ;;

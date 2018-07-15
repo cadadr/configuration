@@ -45,7 +45,20 @@ export SYSTEM=$(uname)
 
 export CDPATH=.:$HOME:$HOME/co
 
-PROFILE_PATH="$HOME/bin:$HOME/local/bin"
+PROFILE_PATH="$HOME/bin"
+
+# Collect local path
+LOCALDIR=$HOME/local
+LOCALPATH=
+
+for dir in $(ls $LOCALDIR); do
+    d=$LOCALDIR/$dir
+    if [ -d $d/bin ]; then
+	LOCALPATH=$d/bin:$LOCALPATH
+    fi
+done
+
+PROFILE_PATH="$PROFILE_PATH:$LOCALPATH"
 
 # Deduplicate path.
 
