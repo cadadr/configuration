@@ -95,6 +95,8 @@ Exclude dot-files, don't sort, and return full paths by default."
   (add-to-list 'custom-theme-load-path
                (expand-file-name (locate-user-emacs-file "themes")))
   (add-to-list 'custom-theme-load-path
+               (expand-file-name (locate-user-emacs-file "vendored-lisp/themes")))
+  (add-to-list 'custom-theme-load-path
                (expand-file-name  "~/co/elisp"))
   (message "Load paths are set up."))
 
