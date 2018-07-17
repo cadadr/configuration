@@ -2840,7 +2840,14 @@ If UNSAFE is non-nil, assume point is on headline."
  org-agenda-skip-scheduled-if-done t
  org-agenda-skip-timestamp-if-done t
  ;; Don't mess with my window setup.
- org-agenda-window-setup 'current-window)
+ org-agenda-window-setup 'current-window
+ ;; Make todays agenda appear first, then the rest grouped by
+ ;; category.
+ org-agenda-sorting-strategy
+ '((agenda time-up category-up habit-down priority-down)
+   (todo priority-down category-up)
+   (tags priority-down category-up)
+   (search category-up)))
 
 (setf
  org-agenda-custom-commands
