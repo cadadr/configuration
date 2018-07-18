@@ -21,7 +21,6 @@
         <value type="int" value="30"/>
         <value type="int" value="8"/>
         <value type="int" value="9"/>
-        <value type="int" value="10"/>
         <value type="int" value="3"/>
         <value type="int" value="4"/>
         <value type="int" value="11"/>
@@ -90,11 +89,6 @@
     <property name="plugin-9" type="string" value="launcher">
       <property name="items" type="array">
         <value type="string" value="15261793093.desktop"/>
-      </property>
-    </property>
-    <property name="plugin-10" type="string" value="launcher">
-      <property name="items" type="array">
-        <value type="string" value="15261793154.desktop"/>
       </property>
     </property>
     <property name="clipman" type="empty">
