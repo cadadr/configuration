@@ -149,6 +149,8 @@ alias stracemacs='strace -p $(pgrep emacs) 2>~/log/stracemacs.log 1>~/log/strace
 alias free='free -h'
 # see https://www.mercurial-scm.org/wiki/MqTutorial#Versioning_our_patch_set
 alias mq='hg -R $(hg root)/.hg/patches'
+# Vagrant gets confused when GEM_* variables are set...
+alias vagrant="env -u GEM_HOME -u GEM_PATH vagrant"
 
 ###
 
