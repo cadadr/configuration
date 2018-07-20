@@ -3,6 +3,7 @@
 export VERSION!=date +'%Y%m%d%H%M'
 export MAINT="Göktuğ Kayaalp <self@gkayaalp.com>"
 export DEB=goktug.deb
+export UMASK=
 HERE=$(PWD)
 
 M4=m4 config.m4
@@ -87,10 +88,10 @@ debian-init: deb-inst debian-config
 DEBIANDIR=system/debian
 
 $(DEBIANDIR)/etc/resolv.conf: $(DEBIANDIR)/etc/resolv.conf.in
-	$(M4) $< > $@
+	$(M4) $< > $@; chmod 644 $@
 
 $(DEBIANDIR)/etc/network/interfaces: $(DEBIANDIR)/etc/network/interfaces.in
-	$(M4) $< > $@
+	$(M4) $< > $@; chmod 644 $@
 
 DEBIANCONFFILS=$(DEBIANDIR)/etc/resolv.conf
 DEBIANCONFFILS+=$(DEBIANDIR)/etc/network/interfaces
@@ -100,16 +101,11 @@ export GLOBIGNORE:=*.in
 debian-config: debian-install-configs debian-regen
 
 debian-install-configs: $(DEBIANCONFFILS)
-	sudo cp -RPvu --preserve=mode --backup=numbered \
+	sudo cp -RPv --preserve=mode --backup=numbered \
 		$(DEBIANDIR)/* /\
 
 debian-regen:
 	sudo locale-gen && sudo update-grub
-
-ubuntu-init: deb-inst ubuntu-config
-
-ubuntu-config:
-	cp -RPvu --preserve=mode --backup=numbered system/ubuntu/* /
 
 #### Raspberry Pi:
 rpi-init: rpi-setup rpi-config
@@ -117,9 +113,9 @@ rpi-init: rpi-setup rpi-config
 RPIDIR=system/rpi
 
 $(RPIDIR)/etc/network/interfaces: $(RPIDIR)/etc/network/interfaces.in
-	$(M4) $< > $@
+	$(M4) $< > $@; chmod 644 $@
 $(RPIDIR)/etc/wpa_supplicant/wpa_supplicant.conf: $(RPIDIR)/etc/wpa_supplicant/wpa_supplicant.conf.in
-	$(M4) $< > $@
+	$(M4) $< > $@; chmod 644 $@
 
 RPICONFFILS=$(RPIDIR)/etc/network/interfaces
 RPICONFFILS+=$(RPIDIR)/etc/wpa_supplicant/wpa_supplicant.conf
