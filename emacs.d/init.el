@@ -2457,6 +2457,59 @@ Otherwise start mail program in offline mode."
  (rx (and bol (or "to" "date" "from" "cc" "subject" "message-id" "list-id")))
  rmail-mime-prefer-html nil)
 
+(defun gk-rmail-view-html-part-in-browser ()
+  "View the HTML part of the message in this buffer in the
+browser."
+  (interactive)
+  (save-excursion
+    (goto-char (point-min))
+    (re-search-forward
+     (rx bol "[" digit ":" "text/html "
+         (or "Hide" "Show")
+         " Save:"))
+    (point)
+    (forward-char 1)
+    (let ((button (button-at (point)))
+          (filename
+           (concat (make-temp-name
+                    (expand-file-name
+                     "gkrmailout" temporary-file-directory))
+                   ".html")))
+      (browse-url (concat "file://"
+                          (gk-rmail-mime-save-to-tmp button filename))))))
+
+(defun gk-rmail-mime-save-to-tmp (button output-file-name)
+  "Save the attachment in BUTTON in OUTPUT-FILE-NAME.
+Return the file name, expanded."
+  ;; Adapted from ‘rmail-mime-save’ in order to automatically export
+  ;; to HTML and open in external browser.
+  (let* ((rmail-mime-mbox-buffer rmail-view-buffer)
+	 (data (button-get button 'data)))
+    (prog1 (expand-file-name output-file-name)
+      (if (and (not (stringp data))
+	       (rmail-mime-entity-truncated data))
+	  (unless (y-or-n-p "This entity is truncated; save anyway? ")
+	    (error "Aborted")))
+      (with-temp-buffer
+        (set-buffer-file-coding-system 'no-conversion)
+        ;; Needed e.g. by jka-compr, so if the attachment is a compressed
+        ;; file, the magic signature compares equal with the unibyte
+        ;; signature string recorded in jka-compr-compression-info-list.
+        (set-buffer-multibyte nil)
+        (setq buffer-undo-list t)
+        (if (stringp data)
+	    (insert data)
+	  ;; DATA is a MIME-entity object.
+	  (let ((transfer-encoding (rmail-mime-entity-transfer-encoding data))
+	        (body (rmail-mime-entity-body data)))
+	    (insert-buffer-substring rmail-mime-mbox-buffer
+				     (aref body 0) (aref body 1))
+	    (cond ((string= transfer-encoding "base64")
+		   (ignore-errors (base64-decode-region (point-min) (point-max))))
+		  ((string= transfer-encoding "quoted-printable")
+		   (quoted-printable-decode-region (point-min) (point-max))))))
+        (write-region nil nil output-file-name nil nil nil t)))))
+
 (defun gk-rmail-force-expunge-and-save ()
   "Force save the mail box, even if it seems to not be modified."
   (interactive)
@@ -2464,6 +2517,7 @@ Otherwise start mail program in offline mode."
   (rmail-expunge-and-save))
 
 (define-key rmail-mode-map "S" 'gk-rmail-force-expunge-and-save)
+(define-key rmail-mode-map "b" #'gk-rmail-view-html-part-in-browser)
 
 (add-hook
  'rmail-mode-hook
