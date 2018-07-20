@@ -2516,7 +2516,7 @@ Return the file name, expanded."
   (set-buffer-modified-p t)
   (rmail-expunge-and-save))
 
-(define-key rmail-mode-map "S" 'gk-rmail-force-expunge-and-save)
+(define-key rmail-mode-map "S" #'gk-rmail-force-expunge-and-save)
 (define-key rmail-mode-map "b" #'gk-rmail-view-html-part-in-browser)
 
 (add-hook
