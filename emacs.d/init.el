@@ -1157,7 +1157,8 @@ Set locally the variable `outline-minor-mode-prefix' to PREFIX."
 
 (setf
  pdf-info-epdfinfo-program
- (gk-executable-ensure "~/co/External/emacs-pdf-tools/server/epdfinfo")
+ (gk-executable-ensure
+ "~/co/External/github-politza-emacs-pdf-tools/server/epdfinfo")
  pdf-tools-enabled-modes
  '(pdf-isearch-minor-mode
    pdf-links-minor-mode
