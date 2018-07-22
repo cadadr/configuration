@@ -75,7 +75,7 @@ deb-check:
 	lintian $(DEB)
 
 deb-inst: deb
-	sudo apt-get install --no-install-recommends ./$(DEB)
+	apt-get install --no-install-recommends ./$(DEB)
 
 clean-deb:
 	rm -rf *.deb; cd deb/DEBIAN; $(MAKE) $(MAKEFLAGS) clean;\
@@ -101,11 +101,11 @@ export GLOBIGNORE:=*.in
 debian-config: debian-install-configs debian-regen
 
 debian-install-configs: $(DEBIANCONFFILS)
-	sudo cp -RPv --preserve=mode --backup=numbered \
+	cp -RPv --preserve=mode --backup=numbered \
 		$(DEBIANDIR)/* /\
 
 debian-regen:
-	sudo locale-gen && sudo update-grub
+	locale-gen && update-grub
 
 #### Raspberry Pi:
 rpi-init: rpi-setup rpi-config
