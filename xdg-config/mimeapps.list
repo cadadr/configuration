@@ -21,6 +21,7 @@ video/mp2t=mpv.desktop;
 application/zip=xarchiver.desktop;
 application/x-compressed-tar=xarchiver.desktop;
 audio/x-opus+ogg=quodlibet.desktop;
+text/x-emacs-lisp=emacsclient.desktop;mousepad.desktop;libreoffice-writer.desktop;
 
 [Default Applications]
 x-scheme-handler/http=firefox.desktop
