@@ -155,11 +155,6 @@ export VERSION_CONTROL=numbered
 
 ###
 
-### Umask:
-umask 027
-
-###
-
 ### Import shell settings:
 # set ENV to a file invoked each time sh is started for interactive use.
 ENV=$HOME/.$(basename $SHELL)rc; export ENV
