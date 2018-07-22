@@ -2908,10 +2908,8 @@ If UNSAFE is non-nil, assume point is on headline."
 (setf
  org-agenda-custom-commands
  '(("g" "Agenda for today and all agenda TODOs"
-    ((agenda "" ((org-agenda-files gk-org-project-agenda-files)
-                 (org-agenda-span 'day)
-                 (org-agenda-compact-blocks t)))
-     (alltodo "" ((org-agenda-files gk-org-project-agenda-files)))
+    ((alltodo "" ((org-agenda-files gk-org-project-agenda-files)))
+     (alltodo "" ((org-agenda-files (gk-org-dir-files "listeler.org"))))
      (alltodo "" ((org-agenda-files (gk-org-dir-files "../yazi/defter.org"))))))))
 
 (defun gk-org-agenda-mode-hook ()
