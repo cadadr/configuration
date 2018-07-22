@@ -142,6 +142,7 @@ Exclude dot-files, don't sort, and return full paths by default."
 (require 'eimp)
 (require 'eldoc)
 (require 'elfeed)
+(require 'emms)
 (require 'emms-setup)
 (require 'epa)
 (require 'epa-mail)
