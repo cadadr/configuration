@@ -27,7 +27,7 @@
             <value type="uint" value="65535"/>
           </property>
           <property name="image-style" type="int" value="5"/>
-          <property name="last-image" type="string" value="/usr/share/images/desktop-base/default"/>
+          <property name="last-image" type="string" value="/home/g/pic/wlp/goodfon/some-indonesian-mountains.jpg"/>
         </property>
         <property name="workspace1" type="empty">
           <property name="color-style" type="int" value="1"/>
