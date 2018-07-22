@@ -18,6 +18,9 @@ say () {
 ### Install required tools:
 apt install -y make curl apt-transport-https
 
+### Set apt sources:
+cp -v system/debian/etc/apt/* /etc/apt/
+
 ### Add third-party repos:
 #### Syncthing:
 curl -s https://syncthing.net/release-key.txt | apt-key add -
@@ -46,17 +49,15 @@ else
     say Adding user $username...
     useradd -c 'Goktug Kayaalp' -d /home/$username \
 	 -G sudo,adm,cdrom,dip,plugdev -m -s /bin/bash -U -u $userno $username \
-	|| echo Failed adding user $username && exit 1;
-    groupmod -g $userno $username || echo Failed setting GID for $username && exit 1;
+	|| echo Failed adding user $username # && exit 1;
+    groupmod -g $userno $username || echo Failed setting GID for $username # && exit 1;
 fi
 
 ### Start system services:
 say Starting system services...
 for service in spamassassin ssh nginx; do
-    (systemctl status $service | grep 'enabled;') >/dev/null \
-	|| systemctl enable $service;
-    (systemctl status $service | grep 'active (running)') >/dev/null \
-	|| systemctl start $service;
+	systemctl enable $service || true
+	systemctl start $service || true
 done
 
 say Done.  You may want to reboot your computer.
