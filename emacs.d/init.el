@@ -3595,6 +3595,8 @@ Ask otherwise."
  bookmark-save-flag t
  ;; Search modes default to regexps.
  search-default-mode t
+ ;; Only search in visible part.
+ search-invisible nil
  ;; Move to trash instead of unlinking.
  delete-by-moving-to-trash t
  ;; Save abbrevs silently
