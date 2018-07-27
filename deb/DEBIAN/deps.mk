@@ -11,7 +11,7 @@ DEPS+=pass telnet file reportbug lsof gawk vim tmux units		\
 	sqlite3 zip unzip python3-reportbug groff-base gnupg2 lshw	\
 	openssh-client host texinfo cups-bsd cups-client bind9-host	\
 	sloccount pandoc qemu hugo dirmngr pm-utils moreutils		\
-	libimage-exiftool-perl pv virtualbox virtualbox-qt
+	libimage-exiftool-perl pv virtualbox virtualbox-qt avahi-utils
 ### Services:
 DEPS+=nginx syncthing openssh-server avahi-daemon avahi-autoipd
 ### Devtools:
@@ -23,7 +23,7 @@ DEPS+=laptop-mode-tools hdparm
 #### Base:
 DEPS+=sane sane-utils dbus-x11 feh dunst suckless-tools i3lock	\
 	notify-osd libnotify-bin pinentry-gtk2 ssh-askpass gksu	\
-	lightdm
+	lightdm xdotool
 #### XMonad:
 DEPS+=libghc-xmonad-dev libghc-xmonad-contrib-dev libghc-xmonad-doc \
 	libghc-xmonad-contrib-doc
