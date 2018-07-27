@@ -18,13 +18,9 @@ move and modify anything in any way.
 This repo contains the following:
 
 - My GNU Emacs configuration tree (~emacs.d/~)
-- My dotfiles (~dotfiles/~,  ~xdg-config/i3*~)
-- A debian package for my Debian desktop (~deb/~), which helps install
-  all the programs I use; and relevant configuration files
-  (~system/debian~)
-- My configuration for Raspberry Pi (~rpi/~, ~system/rpi~)
-- My (incomplete) configuration for Arch Linux (~arch/~, ~system/arch~)
-- My userscripts (~www/~)
+- My dotfiles (~dotfiles/~,  ~xdg-config/~)
+- My configuration for a Kubuntu system (~kubuntu~)
+- My configuration for Raspberry Pi (~rpi/~)
 - And some other stuff.
 
 I've re-created this repository from scratch, removing some secrets
@@ -43,8 +39,7 @@ of them in public domain.
 Run the following commands:
 
 #+BEGIN_SRC sh
-sh scripts/debian-init.sh
-./bin/invade -v $HOME
-cd emacs.d; make all; cd ..
+(cd kubuntu; sudo make init)
 make build
+./bin/invade -v $HOME
 #+END_SRC

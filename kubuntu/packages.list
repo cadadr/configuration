@@ -1,0 +1,153 @@
+# packages.list -*- mode: conf -*-
+
+# Packages to be installed are marked (+), removed (-);
+# those marked (*) are for build-dep.
+
+### Emacs:
+* emacs25
+* emacs-pdf-tools
++ gnutls-dev
++ libjansson-dev
+
+### Application software:
++ cheese
++ chromium-browser
++ firefox
++ gimp
++ gparted
++ gv
++ libreoffice
++ libreoffice-help-en-gb
++ libreoffice-help-en-us
++ mpv
++ simple-scan
++ transmission
++ vokoscreen
+qutebrowser
+
+### Utilities:
++ bind9utils
++ curl
++ finger
++ hugo
++ moreutils
++ net-tools
++ netcat-traditional
++ pandoc
++ pass
++ pciutils
++ pv
++ qemu
++ rsync
++ telnet
++ tmux
++ traceroute
++ units
++ vim
++ vorbis-tools
++ vorbisgain
++ w3m
++ w3m-el
++ webalizer
++ wget
++ whois
++ xclip
++ xdotool
++ youtube-dl
+net-tools
+openvpn
+resolvconf
+virtualbox
+virtualbox-qt
+
+### Version control:
++ cvs
++ git
++ git-cvs
++ gitk
++ mercurial
++ python-dulwich
++ python-fastimport
++ python-hglib
++ python3-hglib
++ quilt
++ rcs
++ subversion
+
+### Mail:
++ clamav
++ mailutils
++ mairix
++ mpop
++ msmtp
++ procmail
++ spamassassin
++ spamc
+
+### TeX:
++ texlive-full
+
+### Libraries:
++ bash-completion
++ libclass-isa-perl
++ libimage-exiftool-perl
++ libswitch-perl
++ mime-support
++ ncurses-term
+
+### Services:
++ nginx
++ openssh-server
++ syncthing
+
+### Documentation:
++ autoconf-doc
++ bash-doc
++ debian-faq
++ doc-base
++ doc-debian
++ ffmpeg-doc
++ gimp-help-en
++ git-doc
++ glibc-doc
++ glibc-doc-reference
++ gnuplot-doc
++ gnutls-doc
++ hyperspec
++ linux-doc
++ mailutils-doc
++ make-doc
++ manpages-dev
++ nginx-doc
++ perl-doc
++ python3-doc
+
+### Laptop:
++ laptop-mode-tools
+
+### Development tools:
++ autoconf
++ autoconf-archive
++ automake
++ bmake
++ build-essential
++ exuberant-ctags
++ feedgnuplot
++ gdb
++ gnuplot
++ strace
+
+### Programming languages:
++ bundler
++ cpanminus
++ liblocal-lib-perl
++ perl-modules
++ perlbrew
++ python3
++ python3-matplotlib
++ python3-pip
++ python3-tk
++ python3-venv
++ ri
++ ruby
+python-flup

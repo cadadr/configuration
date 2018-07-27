@@ -108,3 +108,9 @@ xdg-config/qutebrowser/
 xdg-config/sublime-text-3
 xdg-config/xfce4/desktop/
 xdg-config/VirtualBox/
+xdg-config/katemetainfos
+xdg-config/kdeconnect/
+xdg-config/kded_device_automounterrc
+xdg-config/plasma-org.kde.plasma.desktop-appletsrc
+xdg-config/session/
+xdg-config/systemsettingsrc

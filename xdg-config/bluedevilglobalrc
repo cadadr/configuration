@@ -1,0 +1,5 @@
+[Devices]
+connectedDevices=
+
+[Global]
+bluetoothBlocked=false
