@@ -133,6 +133,10 @@ countpdfpagesdir () {
 	| awk 'BEGIN{X=0}; {X+=$2}; END{print X}'
 }
 
+sx () {
+    startx -- :$1
+}
+
 ###
 alias re=". $ENV"
 alias apt-dependencies='apt-cache depends --no-recommends --no-breaks --no-suggests --no-conflicts --no-enhances --no-replaces --recurse'
