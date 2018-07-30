@@ -498,7 +498,13 @@ WikiZero is a mirror of wikipedia."
   (make-process
    :name "gk-desktop-notification"
    :buffer (get-buffer-create " *Desktop Notifications*")
-   :command (list "notify-send" (concat "[Emacs] " summary) message)))
+   :command
+   (cond
+    ((executable-find "notify-send")
+     (list "notify-send" (concat "[Emacs] " summary) message))
+    ((executable-find "kdialog")
+     (list "kdialog" "--passivepopup" message "10"
+           "--title" (concat "[Emacs] " summary))))))
 
 (defun gk-existing-file-name-or-nil (filename)
   (when (file-exists-p filename)
