@@ -1,2 +1,24 @@
+[1]
+Description=Application settings for emacs
+clientmachine=alpha
+clientmachinematch=0
+fullscreen[$d]
+fullscreenrule[$d]
+strictgeometry=false
+strictgeometryrule=2
+title[$d]
+titlematch[$d]
+types[$d]
+wmclass=emacs
+wmclasscomplete=false
+wmclassmatch=1
+
 [General]
-count=0
+XftAntialias[$d]
+XftHintStyle[$d]
+XftSubPixel[$d]
+count=2
+
+[KDE]
+LookAndFeelPackage[$d]
+SingleClick[$d]

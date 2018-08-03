@@ -105,6 +105,9 @@ ForegroundNormal=35,38,39
 ForegroundPositive=39,174,96
 ForegroundVisited=127,140,141
 
+[DirSelect Dialog]
+DirSelectDialog Size=640,480
+
 [General]
 ColorScheme=Breeze
 Name=Breeze
@@ -138,12 +141,15 @@ Show hidden files=false
 Sort by=Name
 Sort directories first=true
 Sort reversed=false
-Speedbar Width=112
+Speedbar Width=118
 View Style=Simple
 listViewIconSize=0
 
 [KShortcutsDialog Settings]
 Dialog Size=600,480
+
+[Shortcuts]
+AddBookmark=
 
 [WM]
 activeBackground=71,80,87
