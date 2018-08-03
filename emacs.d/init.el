@@ -2142,7 +2142,8 @@ KEYWORDS are the keywords for the file."
          "..."
        d))
    "\n\n"
-   "use v5.24;\n\nuse strict;\nuse warnings;\n\n")
+   "use v5.24;\n\nuse strict;\nuse warnings;\nno warnings 'experimental::smartmatch';
+\n\n")
  auto-insert-alist)
 
 
