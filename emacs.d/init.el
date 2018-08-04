@@ -69,6 +69,15 @@ Exclude dot-files, don't sort, and return full paths by default."
     (locate-user-emacs-file "vendored-lisp")
     "Directory where 3rd party Elisp is contained.")
 
+  (defvar gk-ext-site-dir "~/co/Lisp/elisp/site"
+    "Source for ‘gk-elisp-site-dir’.")
+
+  (defun gk-load-from-ext-site-dir (subpath &rest args)
+    "Load SUBPATH from external vendor site.
+That which emacs.d/vendored-lisp pulls from.
+This redirects to ‘load’ using ‘apply’."
+    (apply #'load (expand-file-name subpath gk-ext-site-dir) args))
+
   ;; Sanitise.
   (add-to-list 'load-path "/usr/local/share/emacs/site-lisp/")
 
