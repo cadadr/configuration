@@ -20,7 +20,7 @@ of: optfuck.c
 sct: sct.o
 	$(LD) $(LDFLAGS)  $< -lm -lX11 -lXrandr -lXext  -o $@
 
-sct.o: sct.c
+.c.o:
 	$(CC) $(CFLAGS) -o $@ -c $<
 
 clean:
