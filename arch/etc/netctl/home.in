@@ -1,11 +1,16 @@
 Description='Home wireless network'
 Interface=wlp2s0
-Connection=wireless
 
+Connection=wireless
 Security=wpa
-IP=dhcp
+
+IP=static
+Adress=__ALPHAIP__
+Gateway=__GATEWAY__
+DNS=(__DNS1__ __DNS2__ __DNS3__)
 
 ESSID='__SSID__'
 Key='__WPAKEY__'
+
 # Priority for automatic profile selection
 Priority=1
