@@ -51,14 +51,16 @@ PROFILE_PATH="$HOME/bin"
 LOCALDIR=$HOME/local
 LOCALPATH=
 
-for dir in $(ls $LOCALDIR); do
-    d=$LOCALDIR/$dir
-    if [ -d $d/bin ]; then
-	LOCALPATH=$d/bin:$LOCALPATH
-    fi
-done
+if [ -d $LOCALDIR ]; then
+    for dir in $(ls $LOCALDIR); do
+	d=$LOCALDIR/$dir
+	if [ -d $d/bin ]; then
+	    LOCALPATH=$d/bin:$LOCALPATH
+	fi
+    done
 
-PROFILE_PATH="$PROFILE_PATH:$LOCALPATH"
+    PROFILE_PATH="$PROFILE_PATH:$LOCALPATH"
+fi
 
 # Deduplicate path.
 
@@ -82,9 +84,9 @@ PKGMANS_PATH="$RUBY_PATH:$HOME/.local/bin"
 # w/o recompilation, and is sort of parallel to how /opt is generally
 # used.
 
-GK_OPT_DIR="~/opt"
-ANDROID_HOME="$GK_OPT_DIR/android-sdk";	export ANDROID_HOME
-ANDROID_SDK_HOME="~/.android";		export ANDROID_SDK_HOME
+GK_OPT_DIR="$HOME/opt"
+ANDROID_HOME="$GK_OPT_DIR/android-sdk";		export ANDROID_HOME
+ANDROID_SDK_HOME="$HOME/.android";		export ANDROID_SDK_HOME
 GK_OPT_PATH="$GK_OPT_DIR/flutter/bin"
 
 # Finalise binary path.
