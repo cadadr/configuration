@@ -19,6 +19,8 @@ emacs-pdf-tools
 + xmonad-contrib
 + xmonad-utils
 + dmenu
++ dunst
++ notify-osd
 
 ### Application software:
 + cheese
