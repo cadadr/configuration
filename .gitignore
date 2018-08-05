@@ -17,6 +17,8 @@
 *~
 tmp.patch
 
+arch/etc/netctl/home
+
 deb/DEBIAN/control
 bin/sct
 bin/of

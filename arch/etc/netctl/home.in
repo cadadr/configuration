@@ -1,0 +1,11 @@
+Description='Home wireless network'
+Interface=wlp2s0
+Connection=wireless
+
+Security=wpa
+IP=dhcp
+
+ESSID='__SSID__'
+Key='__WPAKEY__'
+# Priority for automatic profile selection
+Priority=1
