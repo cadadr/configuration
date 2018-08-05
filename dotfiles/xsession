@@ -21,5 +21,8 @@ xsetroot -gray
 echo xinput settings
 xinput --set-prop 'ETPS/2 Elantech Touchpad' 282 -75 -75 # natural scrolling
 
+echo Start status bar script
+dwm-status.sh &
+
 echo 'Start the desktop session...'
 exec dbus-launch --exit-with-session sh $MEINE/x.sh
