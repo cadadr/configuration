@@ -7,7 +7,7 @@ CFLAGS=-std=c99 -O0
 LDFLAGS=-L /usr/lib
 BINS=sct of dwm
 
-.PHONY: all clean
+.PHONY: all clean dwm-clean
 
 all: $(BINS)
 
@@ -26,6 +26,8 @@ sct: sct.o
 .c.o:
 	$(CC) $(CFLAGS) -o $@ -c $<
 
-clean:
+clean: dwm-clean
 	rm -f *.o *.hi $(BINS)
+
+dwm-clean:
 	$(MAKE) $(MAKEFLAGS) -f dwm.mk clean
