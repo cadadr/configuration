@@ -1,6 +1,6 @@
 # packages.list -*- mode: conf -*-
 
-# Packages to be installed are marked (+), removed (-).
+# Packages to be installed are marked (+), removed (-), (@) for AUR.
 
 ### Check later:
 xorg-xclipboard
@@ -71,8 +71,8 @@ virtualbox-qt
 git-cvs
 gitk
 + mercurial
-python-dulwich
-python2-fastimport
+@ python2-dulwich
++ python2-fastimport
 + python-hglib
 + quilt
 + rcs
