@@ -19,9 +19,7 @@ echo Set the background.
 xsetroot -gray
 
 echo xinput settings
-xinput --set-prop 'ETPS/2 Elantech Touchpad' 286 1 # natural scrolling
-# click method: no areas, two finger is right click, three finger middle
-xinput --set-prop 'ETPS/2 Elantech Touchpad' 294 0 1
+xinput --set-prop 'ETPS/2 Elantech Touchpad' 282 -75 -75 # natural scrolling
 
 echo 'Start the desktop session...'
 exec dbus-launch --exit-with-session sh $MEINE/x.sh
