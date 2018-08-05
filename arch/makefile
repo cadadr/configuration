@@ -1,3 +1,8 @@
+# Makefile
+
+# Generated configuration files:
+GENCONFIGS=etc/netctl/home
+
 help:
 	@echo "Targets:"
 	@echo "	help			show this message"
@@ -7,8 +12,9 @@ help:
 install-packages:
 	perl pkglist2cmds.pl | sh -i
 
-install-config: etc/netctl/home
-	cp -RPv --preserve=mode --backup=numbered etc/* /etc/
+install-config: $(GENCONFIGS)
+	@echo Installing configuration files...
+	@sudo sh ./install-configs.sh
 
 etc/netctl/home: etc/netctl/home.in
 	m4 ../config.m4 $< > $@
@@ -19,4 +25,7 @@ pacman-update:
 init: install-config apt-update install-packages
 	sh init.sh
 
-.PHONY: help init install-config pacman-update install-packages
+clean:
+	rm $(GENCONFIGS)
+
+.PHONY: help init install-config pacman-update install-packages clean
