@@ -1832,6 +1832,11 @@ Creates problems.
 The default implementation of this function is in `log-edit.el'."
   (interactive))
 
+(add-hook
+ 'vc-dir-mode-hook
+ (defun gk-vc-dir-mode-hook ()
+   (hl-line-mode +1)))
+
 
 
 ;;;;; Diff:
