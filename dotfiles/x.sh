@@ -5,4 +5,4 @@
 # by ‘dbus-launch’ and it starts dbus-dependent programs before it
 # hands the control to the window manager.
 
-exec xmonad
+exec dwm

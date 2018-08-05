@@ -5,7 +5,7 @@ CC=gcc
 LD=gcc
 CFLAGS=-std=c99 -O0
 LDFLAGS=-L /usr/lib
-BINS=sct of xmonad
+BINS=sct of dwm
 
 .PHONY: all clean
 
@@ -13,6 +13,9 @@ all: $(BINS)
 
 xmonad: xmonad.hs
 	$(HSC) $(HSCFLAGS) -o $@ $<
+
+dwm: dwm.mk dwm*.c dwm*.h
+	$(MAKE) $(MAKEFLAGS) -f dwm.mk dwm
 
 of: optfuck.c
 	$(CC) $(CFLAGS)  -o $@ $<
@@ -25,3 +28,4 @@ sct: sct.o
 
 clean:
 	rm -f *.o *.hi $(BINS)
+	$(MAKE) $(MAKEFLAGS) -f dwm.mk clean

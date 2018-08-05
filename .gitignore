@@ -21,6 +21,7 @@ deb/DEBIAN/control
 bin/sct
 bin/of
 bin/xmonad
+bin/dwm
 config.m4
 
 # Generated files.
