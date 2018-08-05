@@ -34,6 +34,10 @@
 ;; loading ls-lisp.el.
 (defvar ls-lisp-use-insert-directory-program nil)
 
+;; Set EMMS directory before loading EMMS because it doesn't know how
+;; to update it's other directory settings.
+(setq emms-directory (locate-user-emacs-file "etc/emms"))
+
 ;; Prefer newer files when loading:
 (setq load-prefer-newer t)
 
@@ -281,8 +285,7 @@ This redirects to ‘load’ using ‘apply’."
       tramp-persistency-file-name (locate-user-emacs-file "etc/tramp")
       custom-file (locate-user-emacs-file "etc/custom.el")
       nsm-settings-file (locate-user-emacs-file "etc/network-security.data")
-      mc/list-file (locate-user-emacs-file "etc/mc-lists.el")
-      emms-directory (locate-user-emacs-file "etc/emms"))
+      mc/list-file (locate-user-emacs-file "etc/mc-lists.el"))
 
 (defvar gk-website-settings
   (expand-file-name "~/doc/not/www/publish")
