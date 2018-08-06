@@ -21,6 +21,7 @@ emacs-pdf-tools
 + dmenu
 + dunst
 + notify-osd
++ xbindkeys
 
 ### Application software:
 + cheese

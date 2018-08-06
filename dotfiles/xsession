@@ -21,6 +21,9 @@ xsetroot -gray
 echo xinput settings
 xinput --set-prop 'ETPS/2 Elantech Touchpad' 282 -75 -75 # natural scrolling
 
+echo Start sbindkeys
+xbindkeys
+
 echo Start status bar script
 dwm-status.sh &
 
