@@ -23,7 +23,7 @@ if id $username 2>/dev/null >/dev/null; then
 else
     say Adding user $username...
     useradd -c 'Goktug Kayaalp' -d /home/$username \
-	 -G users,wheel,adm \
+	 -G users,wheel,adm,cups \
 	 -m -s /bin/bash -U -u $userno $username \
 	|| echo Failed adding user $username # && exit 1;
     groupmod -g $userno $username \
@@ -32,6 +32,6 @@ fi
 
 ### Enable services:
 say Enabling system services...
-systemctl enable spamassassin sshd nginx gpm avahi-daemon
+systemctl enable spamassassin sshd nginx gpm avahi-daemon org.cups.cupsd.service
 
 say Done.  You may want to reboot your computer.

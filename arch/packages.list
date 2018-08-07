@@ -14,6 +14,7 @@ emacs-pdf-tools
 + alsa-oss
 + alsa-utils
 + cups
++ hplip
 + xdg-utils
 + xmonad
 + xmonad-contrib
@@ -103,6 +104,7 @@ gitk
 + nginx
 + openssh
 + syncthing
++ nss-mdns
 
 ### Laptop
 laptop-mode-tools
