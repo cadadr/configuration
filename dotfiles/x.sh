@@ -5,4 +5,7 @@
 # by ‘dbus-launch’ and it starts dbus-dependent programs before it
 # hands the control to the window manager.
 
+echo Start sbindkeys
+(sleep 2; xbindkeys) &
+
 exec dwm
