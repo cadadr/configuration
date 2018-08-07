@@ -24,6 +24,7 @@ emacs-pdf-tools
 + dunst
 + notify-osd
 + xbindkeys
++ i3lock
 
 ### Application software:
 + cheese
