@@ -4,9 +4,10 @@ Interface=wlp2s0
 Connection=wireless
 Security=wpa
 
-IP=static
-Adress=__ALPHAIP__
-Gateway=__GATEWAY__
+#IP=static
+#Adress=__ALPHAIP__
+#Gateway=__GATEWAY__
+IP=dhcp
 DNS=(__DNS1__ __DNS2__ __DNS3__)
 
 ESSID='__SSID__'
