@@ -8,6 +8,7 @@ ensure ttf-dejavu
 
 ### Emacs:
 emacs-pdf-tools
++ poppler-glib
 + jansson
 
 ### Desktop environment:
