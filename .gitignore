@@ -22,7 +22,6 @@ arch/etc/netctl/home
 arch/aur/*/src
 arch/aur/*/pkg
 
-deb/DEBIAN/control
 bin/sct
 bin/of
 bin/xmonad
@@ -32,11 +31,6 @@ config.m4
 # Generated files.
 dotfiles/mpoprc
 dotfiles/msmtprc
-system/debian/etc/network/interfaces
-system/debian/etc/resolv.conf
-system/debian/etc/NetworkManager/system-connections/feriha
-system/rpi/etc/network/interfaces
-system/rpi/etc/wpa_supplicant/wpa_supplicant.conf
 
 # Emacs stuff.
 .emacs.desktop
@@ -60,80 +54,9 @@ emacs.d/eshell/lastdir
 emacs.d/extras/*.el
 emacs.d/.trash_emacs/
 
-
-# XDG.
-xdg-config/syncthing
-xdg-config/dconf/user
-xdg-config/guix/latest
-xdg-config/user-dirs.*
-xdg-config/pulse/
-xdg-config/dleyna*
-xdg-config/gnome-control-center/
-xdg-config/ibus/
-xdg-config/libaccounts-glib/
-xdg-config/enchant/
-xdg-config/gedit/
-xdg-config/menus/applications-merged/
-xdg-config/libreoffice/
-xdg-config/transmission/*.dat
-xdg-config/transmission/stats.json
-xdg-config/transmission/resume/
-xdg-config/transmission/torrents/
-xdg-config/transmission/settings.json
-xdg-config/nautilus/desktop-metadata
-xdg-config/yelp/yelp.cfg
-xdg-config/evolution/sources/system-proxy.source
-xdg-config/evolution/sources/birthdays.source
-xdg-config/evolution/sources/system-calendar.source
-xdg-config/qupzilla
-xdg-config/chromium
-xdg-config/QtProject.conf
-xdg-config/totem/state.ini
-xdg-config/corebird/
-xdg-config/evince
-xdg-config/xfce4/Verve/history
-xdg-config/xfce4/xfconf/xfce-perchannel-xml/xfce4-settings-editor.xml
-xdg-config/xfce4/xfconf/xfce-perchannel-xml/xfce4-settings-manager.xml
-xdg-config/xfce4/xfconf/xfce-perchannel-xml/xfce4-notifyd.xml
-xdg-config/xfce4/desktop/icons.screen
-xdg-config/update-notifier/
-xdg-config/xfce4/panel/whiskermenu
-xdg-config/catfish/catfish.rc
-xdg-config/xfce4/xfconf/xfce-perchannel-xml/xfce4-appfinder.xml
-xdg-config/xfce4/xfconf/xfce-perchannel-xml/parole.xml
-xdg-config/xfce4/xfconf/xfce-perchannel-xml/ristretto.xml
-xdg-config/xfce4/xfconf/xfce-perchannel-xml/keyboards.xml
-xdg-config/xfce4/xfconf/xfce-perchannel-xml/thunar.xml
-xdg-config/gtk-2.0/gtkfilechooser.ini
-xdg-config/dconf/user.dump
-xdg-config/pavucontrol.ini
-xdg-config/volti/config
-xdg-config/spotify
-xdg-config/Trolltech.conf
-xdg-config/qutebrowser/
-xdg-config/sublime-text-3
-xdg-config/xfce4/desktop/
-xdg-config/VirtualBox/
-xdg-config/katemetainfos
-xdg-config/kdeconnect/
-xdg-config/kded_device_automounterrc
-xdg-config/plasma-org.kde.plasma.desktop-appletsrc
-xdg-config/session/
-xdg-config/systemsettingsrc
-xdg-config/dolphinrc
-xdg-config/drkonqirc
-xdg-config/gtkrc
-xdg-config/gtkrc-2.0
-xdg-config/kactivitymanagerd-statsrc
-xdg-config/kde.org/
-xdg-config/kdialogrc
-xdg-config/khelpcenterrc
-xdg-config/krunnerrc
-xdg-config/ksmserverrc
-xdg-config/kwin_dialogsrc
-xdg-config/kwin_rules_dialogrc
-xdg-config/marblerc
-xdg-config/okularrc
-xdg-config/plasmashellrc
-xdg-config/print-manager
-xdg-config/skanliterc
+# XDG stuff
+xdg-config/chromium/
+xdg-config/evince/
+xdg-config/transmission/
+xdg-config/user-dirs.dirs
+xdg-config/user-dirs.locale
