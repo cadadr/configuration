@@ -1,0 +1,14 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    rdoc (6.0.4)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  bundler
+  rdoc
+
+BUNDLED WITH
+   1.16.3
