@@ -19,7 +19,7 @@ This repo contains the following:
 
 - My GNU Emacs configuration tree (~emacs.d/~)
 - My dotfiles (~dotfiles/~,  ~xdg-config/~)
-- My configuration for a Kubuntu system (~kubuntu~)
+- My Arch GNU/Linux configuration (~arch/~)
 - My configuration for Raspberry Pi (~rpi/~)
 - And some other stuff.
 
@@ -36,10 +36,31 @@ of them in public domain.
 
 * Installation
 ** System setup
-Run the following commands:
+I have recently switched from Debian to Arch and thus this setup is
+not very streamlined.  Read the scripts to see what they are doing.
 
-#+BEGIN_SRC sh
-(cd kubuntu; sudo make init)
-make build
-./bin/invade -v $HOME
-#+END_SRC
+[[./arch/install.sh]] is a list of commands used while installing Arch.
+It's more of a page of notes than a proper, tested, working script.
+Also, it's personal in that it assumes a certain partition layout.
+
+In order to get this configuration running on a vanilla Arch
+installation, run the following commands:
+
+#+BEGIN_EXAMPLE
+$ touch config.m4
+# cd arch
+# $(perl pkglist2cmds.pl)
+# sh init.sh
+# make install-config clean
+$ cd ..
+$ make build
+$ ./bin/invade -v $HOME
+#+END_EXAMPLE
+
+The initial ~#~ is meant to indicate that the command need be run as
+the superuser, while ~$~ is for commands that are run as a normal
+user.
+
+These commands, among other things, will create a user ~g~ with uid
+1993 and a group of similar identifiers, and assing the user certain
+groups.
