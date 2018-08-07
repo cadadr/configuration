@@ -120,6 +120,7 @@ laptop-mode-tools
 + gnuplot
 + strace
 feedgnuplot
++ redis
 
 ### Programming languages:
 + ruby-bundler
