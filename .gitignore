@@ -60,3 +60,4 @@ xdg-config/evince/
 xdg-config/transmission/
 xdg-config/user-dirs.dirs
 xdg-config/user-dirs.locale
+xdg-config/dconf
