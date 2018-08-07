@@ -2429,7 +2429,6 @@ Otherwise start mail program in offline mode."
  ;;
  ;; My god.
  nnmail-split-fancy-match-partial-words t)
-(gk-load (dropbox "split-mail") t)
 
 
 
