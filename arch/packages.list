@@ -124,6 +124,8 @@ feedgnuplot
 
 ### Programming languages:
 + ruby-bundler
++ ruby-rdoc
++ ruby-docs
 + cpanminus
 + perl-local-lib
 + perlbrew
