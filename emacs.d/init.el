@@ -2107,16 +2107,34 @@ KEYWORDS are the keywords for the file."
      (re-search-backward "^\\(%[qw]\\|class\\|def\\|if\\|begin\\|module\\)")
      (re-search-forward "^end"))))
 
+(defvar gk-ri-history nil
+  "The history list for ‘gk-ri’.")
+
 (defun gk-ri (what)
   "Interface to ri(1) documentation browser."
-  (interactive (list (read-string "Search in Ruby documentation: ")))
-  (let ((buf (get-buffer-create (format "*ri %s*" what))))
+  (interactive
+   (list
+    (let* ((w (word-at-point))
+           (p (format "Search in Ruby documentation (default: %s): " w)))
+      (read-string p nil 'gk-ri-history w))))
+  (let ((buf (get-buffer-create (format "*ri %s*" what)))
+        (inhibit-read-only t))
     (with-current-buffer buf
       (erase-buffer)
-      (shell-command (format "ri -f ansi '%s'" what) buf)
-      (ansi-color-filter-region (goto-char (point-min)) (point-max))
-      (gk-minor-mode)
-      (view-mode))))
+      (call-process "ri" nil buf nil "-f" "ansi" what)
+      ;; If ri reports no documentation is available, kill the buffer
+      ;; and redirect the error to the user.  Else, treat the buffer
+      ;; and present it.
+      (if (save-match-data
+            (goto-char (point-min))
+            (looking-at "^Nothing known about"))
+          (let ((m (string-trim (buffer-string))))
+            (kill-this-buffer)
+            (message m))
+        (ansi-color-filter-region (goto-char (point-min)) (point-max))
+        (gk-minor-mode)
+        (view-mode)
+        (display-buffer buf)))))
 
 (define-key ruby-mode-map "\C-\M-x" 'ruby-send-definition)
 (define-key ruby-mode-map "\C-x\C-e" 'ruby-send-last-sexp)
