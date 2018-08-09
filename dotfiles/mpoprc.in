@@ -15,6 +15,7 @@ host __IU_POP3_HOST__
 port 995
 user __IU_MAIL_ADDR__
 delivery mda "/usr/bin/procmail -f '%F' -a iumail"
+uidls_file ~/posta/mpop_uidls/1
 
 # self@gkayaalp.com
 account self-inbox
@@ -22,4 +23,4 @@ host __MAIL_HOST__
 port 995
 user self@gkayaalp.com
 delivery mda "/usr/bin/procmail -f '%F' -a self"
-
+uidls_file ~/posta/mpop_uidls/2
