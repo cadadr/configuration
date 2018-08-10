@@ -6,7 +6,7 @@ defaults
 tls on
 tls_starttls off
 tls_trust_file /etc/ssl/certs/ca-certificates.crt
-keep on
+keep off
 password
 
 # IUmail
