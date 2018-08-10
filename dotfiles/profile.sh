@@ -70,7 +70,7 @@ PATH=$(echo "$PATH" | tr ':' '\n' | grep '^/[^h]' | sort | uniq | tr '\n' :)
 # Collect paths from programming-language specific package managers.
 
 export GEM_HOME="$HOME/.gem"
-export GEM_PATH="$GEM_HOME/ruby/$(ruby -v | cut -d\  -f2 | cut -c1-3).0"
+export GEM_PATH="$GEM_HOME/bin:$GEM_HOME/ruby/$(ruby -v | cut -d\  -f2 | cut -c1-3).0"
 
 if which ruby 2>&1 > /dev/null; then
     RUBY_PATH="$GEM_PATH/bin"
