@@ -5,6 +5,14 @@
 
 ###
 
+### Variables and system information:
+
+export MEINE=/igk/config/dotfiles
+export MYLIB=/igk/config/lib
+export SYSTEM=$(uname)
+
+###
+
 ### Locale and time zone:
 MM_CHARSET=UTF-8;		export MM_CHARSET
 LANG=en_GB.$MM_CHARSET;		export LANG
@@ -31,13 +39,6 @@ touch $dbusfil
 chmod 600 $dbusfil
 env | grep DBUS_SESSION_BUS_ADDRESS > $dbusfil
 echo 'export DBUS_SESSION_BUS_ADDRESS' >> $dbusfil
-
-###
-
-### Variables and system information:
-
-export MEINE=/igk/config/dotfiles
-export SYSTEM=$(uname)
 
 ###
 
