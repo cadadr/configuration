@@ -2973,6 +2973,15 @@ If UNSAFE is non-nil, assume point is on headline."
       org-export-with-sub-superscripts t
       org-export-dispatch-use-expert-ui t)
 
+;; From: https://lists.gnu.org/archive/html/emacs-orgmode/2013-07/msg00731.html
+(defun gk-org-export-comment-removal-hook (backend)
+  "Remove comments from export.
+Prevent comments inline in paragraphs from splitting them."
+  (delete-matching-lines "^[ \t]*#\\( \\|$\\)"))
+
+(add-hook 'org-export-before-parsing-hook
+          'gk-org-export-comment-removal-hook)
+
 
 
 ;;;;;; LaTeX->PDF:
