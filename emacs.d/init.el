@@ -4740,6 +4740,13 @@ Does various tasks after saving a file, see it's definition."
 
 
 
+;;;; Mail:
+
+(gk-prefix-binding "<" #'gk-fetch-mail)
+(gk-prefix-binding "C-r" #'rmail)
+
+
+
 ;;; Additional modules:
 
 (when (eq system-type 'berkeley-unix)
