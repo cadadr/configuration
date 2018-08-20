@@ -58,6 +58,9 @@ say Set timezone...
 ln -sf /usr/share/zoneinfo/$TZ /etc/localtime
 hwclock --systohc
 
+say Use libinput instead of synaptics
+ln -s /usr/share/X11/xorg.conf.d/40-libinput.conf /etc/X11/xorg.conf.d/40-libinput.conf
+
 say Generate locales...
 printf "en_GB.UTF-8 UTF-8\nen_US.UTF-8 UTF-8\ntr_TR.UTF-8 UTF-8" > /etc/locale.gen
 locale-gen
