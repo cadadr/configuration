@@ -9,4 +9,7 @@ Xft.rgba: rgb
 
 xterm*selectToClipboard: true
 xterm*metaSendsEscape: true
-
+xterm*renderFont: true
+xterm*faceName: "DejaVu Sans Mono"
+xterm*faceSize: 10
+xterm*scrollBar: true
