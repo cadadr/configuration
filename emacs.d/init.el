@@ -4661,6 +4661,19 @@ Does various tasks after saving a file, see it's definition."
 ;; Comparison
 (gk-prefix-binding (kbd "C-=") 'diff-buffer-with-file)
 
+;; Insert TODO/XXX/FIXME notes
+(gk-prefix-binding "xx"
+  (gk-interactively
+   (insert (format-time-string "XXX (%F): "))))
+
+(gk-prefix-binding "xt"
+  (gk-interactively
+   (insert (format-time-string "TODO (%F): "))))
+
+(gk-prefix-binding "xf"
+  (gk-interactively
+   (insert (format-time-string "FIXME (%F): "))))
+
 
 
 ;;;; Current buffer:
