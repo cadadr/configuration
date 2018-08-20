@@ -22,23 +22,23 @@ help:
 build: bins emacs
 
 bins:
-	cd bin; $(MAKE) $(MAKEFLAGS); cd $(HERE)
+	cd bin; $(MAKE) -$(MAKEFLAGS); cd $(HERE)
 
 emacs:
-	cd emacs.d; $(MAKE) $(MAKEFLAGS) all; cd $(HERE)
+	cd emacs.d; $(MAKE) -$(MAKEFLAGS) all; cd $(HERE)
 
 clean-bin:
-	rm -rf $(DEB); cd bin; $(MAKE) $(MAKEFLAGS) clean;\
+	rm -rf $(DEB); cd bin; $(MAKE) -$(MAKEFLAGS) clean;\
 	cd $(HERE)
 
 invade: dotfiles
 	./bin/invade -v $(HOME)
 
 dotfiles:
-	cd dotfiles; $(MAKE) $(MAKEFLAGS); cd $(HERE)
+	cd dotfiles; $(MAKE) -$(MAKEFLAGS); cd $(HERE)
 
 clean-dotfiles:
-	cd dotfiles; $(MAKE) $(MAKEFLAGS) clean; cd $(HERE)
+	cd dotfiles; $(MAKE) -$(MAKEFLAGS) clean; cd $(HERE)
 
 ### Clean:
 clean: clean-bin
