@@ -12,6 +12,7 @@
 *.spec
 *.swp
 *.xz
+*.gz
 *.tgz
 *.plstore
 *.tmp
