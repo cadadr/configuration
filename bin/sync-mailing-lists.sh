@@ -1,17 +1,13 @@
 #!/bin/sh
 # sync.sh --- sync mailing list archives.
 
+. $MYLIB/fns.sh
+
 ### Config:
 set -e
 
 LISTS_DIR=$HOME/posta/lists
 PARALLEL=2
-
-### Common:
-
-say(){
-    echo $0 [$(date)]: $@
-}
 
 ### GNU lists:
 
