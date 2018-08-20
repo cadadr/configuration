@@ -17,14 +17,13 @@ emacs-pdf-tools
 + cups
 + hplip
 + xdg-utils
-+ xmonad
-+ xmonad-contrib
-+ xmonad-utils
 + dmenu
 + dunst
 + notify-osd
 + xbindkeys
++ i3-wm
 + i3lock
++ i3status
 
 ### Application software:
 + cheese

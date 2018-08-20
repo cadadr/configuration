@@ -8,4 +8,4 @@
 echo Start sbindkeys
 (sleep 2; xbindkeys) &
 
-exec xmonad
+exec i3
