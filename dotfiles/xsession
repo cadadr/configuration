@@ -23,7 +23,8 @@ say Set the background.
 xsetroot -gray
 
 say xinput settings
-xinput --set-prop 'ETPS/2 Elantech Touchpad' 282 -75 -75 # natural scrolling
+xinput --set-prop 'ETPS/2 Elantech Touchpad' 283 1	# natural scrolling
+xinput --set-prop 'ETPS/2 Elantech Touchpad' 291 0 1	# multitouch clicks
 
 say Start status bar script
 dwm-status.sh &
