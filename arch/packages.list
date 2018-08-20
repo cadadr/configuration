@@ -14,6 +14,9 @@ emacs-pdf-tools
 ### Desktop environment:
 + alsa-oss
 + alsa-utils
++ pulseaudio
++ pulseaudio-alsa
++ pavucontrol
 + cups
 + hplip
 + xdg-utils
