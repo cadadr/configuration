@@ -19,7 +19,7 @@
 .procmailrc			dotfiles/procmailrc
 .profile			dotfiles/profile.sh
 .signature			dotfiles/signature
-.xbindkeys.scm			dotfiles/xbindkeys.scm
+.xbindkeysrc.scm		dotfiles/xbindkeysrc.scm
 .xinitrc			dotfiles/xsession
 .xmonad				dotfiles/xmonad
 .vimrc				dotfiles/rc.vim
