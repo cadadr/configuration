@@ -16,20 +16,20 @@ echo
 echo Commits since HEAD:
 git wut
 
-echo 'Continue with build (RETURN to continue, ^C to quit)?'; read
+echo 'Continue with build (RETURN to continue, ^C to quit)?'; read nought
 
 git pull --ff
 git clean -dfx
 
-TK=gtk configure-emacs.sh
+TK=athena configure-emacs.sh
 
 make
 
-echo Build finished, hit RETURN to continue to testing w/ -Q.; read
+echo Build finished, hit RETURN to continue to testing w/ -Q.; read nought
 ./src/emacs -Q
 
-echo Hit RETURN to test w/ configuration.; read
+echo Hit RETURN to test w/ configuration.; read nought
 ./src/emacs
 
-echo Hit RETURN to install...; read
+echo Hit RETURN to install...; read nought
 rm -rf ~/local/emacs && make install

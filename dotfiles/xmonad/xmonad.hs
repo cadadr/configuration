@@ -1,4 +1,4 @@
--- gk-xmonad.hs --- Göktuğ's XMonad Configuration.
+-- xmonad.hs --- Göktuğ's XMonad Configuration.
 
 import XMonad
 import XMonad.Config.Desktop (desktopConfig)
@@ -41,5 +41,4 @@ myKeys = [((myModMask, xK_q), (spawn "start-qutebrowser.sh")),
 
 -- Local Variables:
 -- indent-tabs-mode: nil
--- compile-command: "make xmonad && xmonad --restart"
 -- End:
