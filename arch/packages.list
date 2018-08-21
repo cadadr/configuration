@@ -22,11 +22,12 @@ emacs-pdf-tools
 + xdg-utils
 + dmenu
 + dunst
-+ notify-osd
++ libnotify
 + xbindkeys
 + i3-wm
 + i3lock
 + i3status
++ feh
 
 ### Application software:
 + cheese
