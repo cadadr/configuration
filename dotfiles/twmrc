@@ -12,8 +12,11 @@ MoveDelta 3
 
 SortIconManager
 IconManagerDontShow { "xclock" "VTWM *" "xstatus" }
-IconRegion "1150x200-260-0" South East 45 15
+IconManagerGeometry "250x125-3+0"
+IconRegion "5000x130-260-0" South East 45 15
+ShowIconManager
 VirtualDesktop  "125x125-130-0" 30
+DeiconifyToScreen
 
 MenuFont        "-*-helvetica-medium-r-*-*-*-100-*-*-*-*-*-*"
 MenuTitleFont   "-*-helvetica-medium-r-*-*-*-100-*-*-*-*-*-*"
@@ -26,7 +29,7 @@ Function "move-or-lower" { f.move f.deltastop f.lower }
 Function "move-or-raise" { f.move f.deltastop f.raise }
 Function "move-or-iconify" { f.move f.deltastop f.iconify }
 
-Notitle { "xclock" "VTWM Desktop" "xstatus" }
+Notitle { "xclock" "VTWM Desktop" "VTWM Icon Manager" "xstatus" }
 NailedDown { "VTWM *" "xclock" "xstatus" }
 
 Button1 =   : title : f.function "move-or-raise"
@@ -44,7 +47,7 @@ Button1 = m      : all : f.menu "TwmWindows"
 Button1 = mod4   : all : f.menu "super"
 Button1 = c | m  : all : f.menu "apps"
 Button1 = c | m4 : all : f.menu "scr"
-Button1 = m | m4 : all : f.menu "bsdvol"
+Button1 = m | m4 : all : f.menu "linuxvol"
 
 Function "next-window" { f.downiconmgr  }
 Function "prev-window" { f.upiconmgr }
