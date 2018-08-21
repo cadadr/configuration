@@ -5,11 +5,14 @@ set -e
 
 . $MYLIB/fns.sh
 
+logx Set up environment...
 # If shell settings are not loaded yet, load them.
 if [ "x$SHRC_VERSION" = "x" ]; then
 	logx Source user profile...
 	. $HOME/.profile
 fi
+
+systemctl --user import-environment DISPLAY
 
 logx Merge X resources...
 xrdb -merge $MEINE/Xdefaults
