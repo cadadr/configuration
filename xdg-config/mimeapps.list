@@ -22,6 +22,7 @@ application/zip=xarchiver.desktop;
 application/x-compressed-tar=xarchiver.desktop;
 audio/x-opus+ogg=quodlibet.desktop;
 text/x-emacs-lisp=emacsclient.desktop;mousepad.desktop;libreoffice-writer.desktop;
+x-scheme-handler/mailto=exo-mail-reader.desktop
 
 [Default Applications]
 x-scheme-handler/http=firefox.desktop
@@ -35,3 +36,4 @@ application/x-extension-shtml=firefox.desktop
 application/xhtml+xml=firefox.desktop
 application/x-extension-xhtml=firefox.desktop
 application/x-extension-xht=firefox.desktop
+

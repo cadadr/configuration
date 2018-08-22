@@ -10,7 +10,7 @@ ColorPalette=#000000;#aa0000;#44aa44;#aa5500;#0039aa;#aa22aa;#1a92aa;#aaaaaa;#77
 FontName=DejaVu Sans Mono 9
 MiscAlwaysShowTabs=FALSE
 MiscBell=FALSE
-MiscBellUrgent=FALSE
+MiscBellUrgent=TRUE
 MiscBordersDefault=TRUE
 MiscCursorBlinks=FALSE
 MiscCursorShape=TERMINAL_CURSOR_SHAPE_BLOCK
@@ -35,4 +35,6 @@ MiscSlimTabs=FALSE
 MiscNewTabAdjacent=FALSE
 ShortcutsNoMnemonics=TRUE
 TabActivityColor=#0f4999
+ShortcutsNoHelpkey=TRUE
+ShortcutsNoMenukey=TRUE
 
