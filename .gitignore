@@ -1,4 +1,6 @@
 %gconf.xml
+accels.scm
+icons.*.rc
 *.core
 *.deb
 *.elc
@@ -64,3 +66,5 @@ xdg-config/user-dirs.locale
 xdg-config/dconf
 xdg-config/QtProject.conf
 xdg-config/libreoffice/
+xdg-config/xubuntu/xdg-xubuntu-templates.cfg
+xdg-config/pulse/

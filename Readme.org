@@ -19,7 +19,7 @@ This repo contains the following:
 
 - My GNU Emacs configuration tree (~emacs.d/~)
 - My dotfiles (~dotfiles/~,  ~xdg-config/~)
-- My Arch GNU/Linux configuration (~arch/~)
+- My Xubuntu GNU/Linux configuration (~os-config/~)
 - My configuration for Raspberry Pi (~rpi/~)
 - And some other stuff.
 
@@ -36,25 +36,23 @@ of them in public domain.
 
 * Installation
 ** System setup
-I have recently switched from Debian to Arch and thus this setup is
-not very streamlined.  Read the scripts to see what they are doing.
+I have recently abandoned a debian package based setup to a shell script
+based setup, which is not totally streamlined yet
 
-[[./arch/install.sh]] is a list of commands used while installing Arch.
-It's more of a page of notes than a proper, tested, working script.
-Also, it's personal in that it assumes a certain partition layout.
-
-In order to get this configuration running on a vanilla Arch
+In order to get this configuration running on a vanilla Xubuntu
 installation, run the following commands:
 
 #+BEGIN_EXAMPLE
 $ touch config.m4
-# cd arch
-# $(perl pkglist2cmds.pl)
+$ cd os-config
+# perl pkglist2cmds.pl | sh
+# sh install-config.sh
+# dpkg --configure -a
 # sh init.sh
-# make install-config clean
+# passwd g
+# su g
 $ cd ..
-$ make build
-$ ./bin/invade -v $HOME
+$ make clean build invade
 #+END_EXAMPLE
 
 The initial ~#~ is meant to indicate that the command need be run as

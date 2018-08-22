@@ -1,0 +1,88 @@
+# packages.list -*- mode: conf -*-
+
+# Packages to be installed are marked (+), removed (-), (*) for build-deps.
+
+### Emacs:
+* emacs25
++ libjansson-dev
++ libpoppler-glib-dev
+
+### Application software:
++ cheese
++ chromium-browser
++ firefox
++ gimp
++ gparted
++ gv
++ libreoffice
++ mpv
++ simple-scan
++ transmission-gtk
++ vokoscreen
+
+### Utilities:
++ hugo
++ moreutils
++ net-tools netcat-openbsd telnet traceroute bind9utils
++ pandoc
++ pass
++ pv
++ qemu
++ rsync
++ units
++ vim
++ vorbis-tools vorbisgain
++ w3m w3m-el
++ webalizer
++ whois
++ xclip xdotool
++ youtube-dl
+openvpn resolvconf
+virtualbox virtualbox-qt
+
+### Version control:
++ cvs
++ git git-cvs gitk
++ mercurial python-hglib python-dulwich python-fastimport
++ quilt
++ rcs
++ subversion
+
+### Mail:
++ mailutils
++ mairix
++ mpop msmtp
++ procmail
++ spamassassin clamav
+
+### TeX:
++ texlive-full
+
+### Libraries:
++ libuniversal-isa-perl
++ libimage-exiftool-perl
++ libswitch-perl
+
+### Services:
++ nginx
++ openssh-server
++ syncthing
++ libnss-mdns
+
+### Laptop
++ laptop-mode-tools
+
+### Development tools:
++ autoconf autoconf-archive automake
++ bmake
++ exuberant-ctags
++ gdb
++ gnuplot feedgnuplot
++ strace
++ redis
+
+### Programming languages:
++ ruby bundler ri
++ cpanminus liblocal-lib-perl perlbrew
++ python python-matplotlib python-pip python3-tk python3-venv
+
