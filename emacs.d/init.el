@@ -1191,7 +1191,7 @@ Set locally the variable `outline-minor-mode-prefix' to PREFIX."
  ;; Manually change the page.
  pdf-view-continuous nil
  ;; Resize more granularly.
- pdf-view-resize-factor 1.01)
+ pdf-view-resize-factor 1.2)
 
 (pdf-tools-install)
 
