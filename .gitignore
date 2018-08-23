@@ -68,3 +68,5 @@ xdg-config/QtProject.conf
 xdg-config/libreoffice/
 xdg-config/xubuntu/xdg-xubuntu-templates.cfg
 xdg-config/pulse/
+xdg-config/pavucontrol.ini
+xdg-config/enchant/
