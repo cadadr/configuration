@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=Zotero
+GenericName=Zotero
+Comment=Zotero
+Exec=/home/g/opt/zotero/zotero
+Icon=/home/g/opt/zotero/chrome/icons/default/default256.png
+Type=Application
+Terminal=false
+Categories=Education;
+Keywords=Education;Reseach;PDFs;Documents;
+X-XFCE-Source=file:///home/g/.local/share/applications/zotero.desktop
