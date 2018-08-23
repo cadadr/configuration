@@ -3,7 +3,7 @@
 <channel name="xfwm4" version="1.0">
   <property name="general" type="empty">
     <property name="activate_action" type="empty"/>
-    <property name="box_move" type="empty"/>
+    <property name="box_move" type="bool" value="false"/>
     <property name="box_resize" type="empty"/>
     <property name="button_layout" type="empty"/>
     <property name="button_offset" type="empty"/>
@@ -22,7 +22,7 @@
     <property name="mousewheel_rollup" type="empty"/>
     <property name="placement_mode" type="empty"/>
     <property name="raise_delay" type="empty"/>
-    <property name="raise_on_click" type="empty"/>
+    <property name="raise_on_click" type="bool" value="false"/>
     <property name="raise_on_focus" type="empty"/>
     <property name="repeat_urgent_blink" type="empty"/>
     <property name="scroll_workspaces" type="empty"/>
@@ -58,7 +58,7 @@
       <value type="string" value="Workspace 6"/>
     </property>
     <property name="wrap_resistance" type="empty"/>
-    <property name="wrap_windows" type="empty"/>
+    <property name="wrap_windows" type="bool" value="false"/>
     <property name="wrap_workspaces" type="empty"/>
     <property name="borderless_maximize" type="bool" value="true"/>
     <property name="cycle_hidden" type="bool" value="true"/>
