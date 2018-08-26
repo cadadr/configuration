@@ -59,6 +59,8 @@ virtualbox virtualbox-qt
 
 ### TeX:
 + texlive-full
+# TeXdoctk requires this, but for some reason does not depend on it.
++ perl-tk
 
 ### Libraries:
 + libuniversal-isa-perl
