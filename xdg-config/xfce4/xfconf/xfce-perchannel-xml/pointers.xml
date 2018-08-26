@@ -3,7 +3,7 @@
 <channel name="pointers" version="1.0">
   <property name="ETPS2_Elantech_Touchpad" type="empty">
     <property name="RightHanded" type="bool" value="true"/>
-    <property name="ReverseScrolling" type="bool" value="true"/>
+    <property name="ReverseScrolling" type="bool" value="false"/>
     <property name="Threshold" type="int" value="4"/>
     <property name="Acceleration" type="double" value="2.000000"/>
     <property name="Properties" type="empty">
