@@ -5,7 +5,9 @@
 ### Emacs:
 * emacs25
 + libjansson-dev
+# The following are emacs-pdf-tools dependencies
 + libpoppler-glib-dev
++ libpoppler-private-dev
 
 ### Application software:
 + cheese
