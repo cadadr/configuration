@@ -27,6 +27,9 @@ application/postscript=atril.desktop;
 application/vnd.oasis.opendocument.text=libreoffice-writer.desktop;
 text/x-bibtex=mousepad.desktop;
 text/markdown=mousepad.desktop;
+application/x-xz-compressed-tar=engrampa.desktop;
+video/webm=mpv.desktop;
+application/x-raw-disk-image=exo-file-manager.desktop;
 
 [Default Applications]
 x-scheme-handler/http=firefox.desktop
