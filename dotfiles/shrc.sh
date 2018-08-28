@@ -115,7 +115,7 @@ mkemacsbdir () {
 # This function uses pushd and popd to make a better cd.  It imitates
 # cd, but maintains a full history of navigation.  Luckily, pushd and
 # popd uses CDPATH too, so this can seamlessly replace cd.
-cd () {
+c () {
     if [ x$1 = x- ]; then
 	popd
     elif [ $# = 0 ]; then
