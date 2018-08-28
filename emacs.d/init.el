@@ -2518,8 +2518,8 @@ browser."
                     (expand-file-name
                      "gkrmailout" temporary-file-directory))
                    ".html")))
-      (browse-url (concat "file://"
-                          (gk-rmail-mime-save-to-tmp button filename))))))
+      (browse-url-default-browser
+       (concat "file://" (gk-rmail-mime-save-to-tmp button filename))))))
 
 (defun gk-rmail-mime-save-to-tmp (button output-file-name)
   "Save the attachment in BUTTON in OUTPUT-FILE-NAME.
