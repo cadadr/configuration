@@ -1,7 +1,7 @@
 # Makefile
 
 # Generated configuration files:
-GENCONFIGS=etc/netctl/home
+GENCONFIGS=
 
 help:
 	@echo "Targets:"
@@ -16,11 +16,8 @@ install-config: $(GENCONFIGS)
 	@echo Installing configuration files...
 	@sudo sh ./install-configs.sh
 
-etc/netctl/home: etc/netctl/home.in
-	m4 ../config.m4 $< > $@
-
-pacman-update:
-	echo TODO
+apt-update:
+	sudo apt-get update
 
 init: install-config apt-update install-packages
 	sh init.sh

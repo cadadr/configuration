@@ -11,8 +11,8 @@
 
 ### Application software:
 + cheese
-+ chromium-browser
-+ firefox
++ chromium
+firefox
 + gimp
 + gparted
 + gv
@@ -37,7 +37,7 @@
 + w3m w3m-el
 + webalizer
 + whois
-+ xclip xdotool
++ xclip xdotool xinput
 + youtube-dl
 openvpn resolvconf
 virtualbox virtualbox-qt
@@ -68,7 +68,6 @@ virtualbox virtualbox-qt
 + libswitch-perl
 
 ### Services:
-+ nginx
 + openssh-server
 + syncthing
 + libnss-mdns
@@ -83,7 +82,7 @@ virtualbox virtualbox-qt
 + gdb
 + gnuplot feedgnuplot
 + strace
-+ redis
++ redis-server redis-tools
 
 ### Programming languages:
 + ruby bundler ri

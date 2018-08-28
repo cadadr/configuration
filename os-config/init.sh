@@ -22,8 +22,8 @@ if id $username 2>/dev/null >/dev/null; then
     say User $username exists already.
 else
     say Adding user $username...
-    useradd -c 'Goktug Kayaalp' -d /home/$username		\
-	 -G adm,cdrom,sudo,dip,plugdev,lpadmin,sambashare	\
+    useradd -c 'cadadr' -d /home/$username		\
+	 -G sudo,cdrom,floppy,audio,dip,video,plugdev,netdev,bluetooth,lpadmin,scanner \
 	 -m -s /bin/bash -U -u $userno $username		\
 	|| echo Failed adding user $username # && exit 1;
     groupmod -g $userno $username				\
