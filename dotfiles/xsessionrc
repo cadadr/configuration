@@ -1,0 +1,20 @@
+# xsessionrc --- x session environment
+
+logx Set up environment...
+# If shell settings are not loaded yet, load them.
+if [ "x$SHRC_VERSION" = "x" ]; then
+	logx Source user profile...
+	. $HOME/.profile
+fi
+
+systemctl --user import-environment DISPLAY
+
+logx Merge X resources...
+xrdb -merge $MEINE/Xdefaults
+
+logx Keyboard settings...
+setxkbmap -option "ctrl:nocaps"
+
+logx xinput settings
+xinput set-prop 'ETPS/2 Elantech Touchpad' 295 0 1	# multitouch clicks
+xinput --set-prop 'ETPS/2 Elantech Touchpad' 287 1	# natural scrolling
