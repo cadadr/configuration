@@ -6,7 +6,8 @@
     <property name="XkbLayout" type="string" value="gb,tr"/>
     <property name="XkbVariant" type="string" value=",alt"/>
     <property name="XkbOptions" type="empty">
-      <property name="Group" type="string" value="grp:menu_toggle"/>
+      <property name="Group" type="string" value=""/>
+      <property name="Compose" type="string" value=""/>
     </property>
   </property>
 </channel>
