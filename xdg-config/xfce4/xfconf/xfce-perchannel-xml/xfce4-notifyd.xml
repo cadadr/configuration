@@ -1,26 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <channel name="xfce4-notifyd" version="1.0">
-  <property name="notify-location" type="uint" value="3"/>
-  <property name="theme" type="empty"/>
-  <property name="initial-opacity" type="double" value="1.000000"/>
-  <property name="do-fadeout" type="empty"/>
-  <property name="primary-monitor" type="uint" value="0"/>
-  <property name="log-level" type="uint" value="1"/>
-  <property name="log-level-apps" type="uint" value="0"/>
   <property name="applications" type="empty">
     <property name="known_applications" type="array">
-      <value type="string" value="Firefox"/>
+      <value type="string" value="ibus"/>
       <value type="string" value="nm-applet"/>
       <value type="string" value="notify-send"/>
-      <value type="string" value="Thunar"/>
-      <value type="string" value="thunar-volman"/>
-      <value type="string" value="Transmission"/>
       <value type="string" value="Xfce volume control"/>
-      <value type="string" value="Xfce4-notifyd settings"/>
       <value type="string" value="xfce4-power-manager"/>
     </property>
   </property>
-  <property name="do-slideout" type="bool" value="true"/>
-  <property name="notification-log" type="bool" value="true"/>
 </channel>
