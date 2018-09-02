@@ -4,10 +4,9 @@ ColorBackground=#131926
 ColorCursor=#0f4999
 ColorSelection=#163b59
 ColorSelectionUseDefault=FALSE
-ColorBold=#ffffff
 ColorBoldUseDefault=FALSE
 ColorPalette=#000000;#aa0000;#44aa44;#aa5500;#0039aa;#aa22aa;#1a92aa;#aaaaaa;#777777;#ff8787;#4ce64c;#ded82c;#295fcc;#cc58cc;#4ccce6;#ffffff
-FontName=DejaVu Sans Mono 9
+FontName=DejaVu Sans Mono 11
 MiscAlwaysShowTabs=FALSE
 MiscBell=FALSE
 MiscBellUrgent=TRUE
@@ -37,4 +36,5 @@ ShortcutsNoMnemonics=TRUE
 TabActivityColor=#0f4999
 ShortcutsNoHelpkey=TRUE
 ShortcutsNoMenukey=TRUE
+MiscDefaultWorkingDir=
 
