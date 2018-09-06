@@ -1385,19 +1385,29 @@ is active."
       (goto-char start)
       (insert-rectangle (mapcar #'reverse rect)))))
 
-(defun gk-lowercase-this-or-previous-word ()
-  (interactive)
+(defun gk-lowercase-this-or-previous-word (arg)
+  (interactive "P")
   (save-excursion
-    (backward-word)
-    (mark-word)
-    (downcase-word 1)))
+    (cond (arg
+           (progn (backward-sexp)
+                  (mark-sexp)
+                  (downcase-region (region-beginning) (region-end))))
+          (:else
+           (progn
+             (backward-word)
+             (downcase-word 1))))))
 
-(defun gk-upcase-this-or-previous-word ()
-  (interactive)
+(defun gk-upcase-this-or-previous-word (arg)
+  (interactive "P")
   (save-excursion
-    (backward-word)
-    (mark-word)
-    (upcase-word 1)))
+    (cond (arg
+           (progn (backward-sexp)
+                  (mark-sexp)
+                  (upcase-region (region-beginning) (region-end))))
+          (:else
+           (progn
+             (backward-word)
+             (upcase-word 1))))))
 
 (defun gk-end-sentence (punctuation)
   "Finish a sentence with a punctuation and two spaces.
