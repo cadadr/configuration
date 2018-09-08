@@ -2360,6 +2360,9 @@ and special ones sepatarely."
 (defvar gk-mail-home (expand-file-name "~/posta")
   "Where all mailboxes etc. are.")
 
+(defvar gk-mail-temporary-file-directory
+  (expand-file-name "tmp" gk-mail-home))
+
 (defvar gk-mail-inboxes
   (list (expand-file-name "inbox" gk-mail-home))
   "Where to look for mail.")
@@ -2527,7 +2530,7 @@ browser."
           (filename
            (concat (make-temp-name
                     (expand-file-name
-                     "gkrmailout" temporary-file-directory))
+                     "gkrmailout" gk-mail-temporary-file-directory))
                    ".html")))
       (browse-url-default-browser
        (concat "file://" (gk-rmail-mime-save-to-tmp button filename))))))
