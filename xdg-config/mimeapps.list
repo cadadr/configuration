@@ -31,6 +31,7 @@ application/x-xz-compressed-tar=xarchiver.desktop;engrampa.desktop;
 video/webm=mpv.desktop;
 application/x-raw-disk-image=exo-file-manager.desktop;
 application/x-desktop=mousepad.desktop;
+application/msword=libreoffice-writer.desktop;
 
 [Default Applications]
 x-scheme-handler/http=userapp-Firefox-CS7FOZ.desktop
