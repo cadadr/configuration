@@ -2872,6 +2872,31 @@ If UNSAFE is non-nil, assume point is on headline."
            while pos
            do (goto-char pos)))
 
+(defun gk-org-refill-reading-note ()
+  "Refill a list item when taking reading notes from a PDF.
+Account for soft hyphens."
+  ;; TODO (2018-09-11): account for dash used as hyphen.
+  (interactive)
+  (let (g)
+    (save-excursion
+      (save-match-data
+        (save-restriction
+          (let* ((beg (or (and (looking-at "^-") (point))
+                          (re-search-backward "^- ")))
+                 (end (re-search-forward (string ?\n ?\n)))
+                 (lines (count-lines beg end)))
+            (narrow-to-region beg (- end 2))
+            (dotimes (_ lines)
+              (join-line))
+            ;; Deal with soft-hyphens
+            (while (re-search-forward "­" nil t)
+              (replace-match "")
+              (while (looking-at " ")
+                (delete-forward-char 1)))
+            (fill-paragraph)
+            (setq g (point-max))))))
+    (goto-char g)))
+
 
 
 ;;;;; Variables:
@@ -3429,6 +3454,7 @@ Ask otherwise."
 ;; Paragraphs
 (define-key org-mode-map [remap backward-paragraph] nil)
 (define-key org-mode-map [remap forward-paragraph] nil)
+(define-key org-mode-map "C-c q" #'gk-org-refill-reading-note)
 
 
 
