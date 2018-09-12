@@ -19,12 +19,12 @@
         <value type="int" value="8"/>
         <value type="int" value="3"/>
         <value type="int" value="2"/>
+        <value type="int" value="15"/>
         <value type="int" value="5"/>
         <value type="int" value="4"/>
         <value type="int" value="7"/>
         <value type="int" value="10"/>
         <value type="int" value="9"/>
-        <value type="int" value="15"/>
       </property>
       <property name="autohide-behavior" type="uint" value="0"/>
     </property>
@@ -37,6 +37,7 @@
       <property name="names-visible" type="array">
         <value type="string" value="networkmanager applet"/>
         <value type="string" value="xfce4-power-manager"/>
+        <value type="string" value="task manager"/>
         <value type="string" value="ibus panel"/>
       </property>
     </property>
