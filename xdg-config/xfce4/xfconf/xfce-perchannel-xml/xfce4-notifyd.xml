@@ -12,6 +12,6 @@
       <value type="string" value="xfce4-power-manager"/>
     </property>
   </property>
-  <property name="notify-location" type="uint" value="2"/>
+  <property name="notify-location" type="uint" value="3"/>
   <property name="theme" type="string" value="Bright"/>
 </channel>
