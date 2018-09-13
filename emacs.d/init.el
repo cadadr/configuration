@@ -280,7 +280,7 @@ This redirects to ‘load’ using ‘apply’."
       bookmark-default-file (dropbox "bookmarks.el")
       bbdb-file (expand-file-name "~/doc/bbdb")
       savehist-file (locate-user-emacs-file "etc/history")
-      eww-bookmarks-directory (dropbox "/")
+      eww-bookmarks-directory (dropbox ".")
       save-place-file (locate-user-emacs-file "etc/places")
       tramp-persistency-file-name (locate-user-emacs-file "etc/tramp")
       custom-file (locate-user-emacs-file "etc/custom.el")
