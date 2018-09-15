@@ -15,6 +15,7 @@
         <value type="int" value="12"/>
         <value type="int" value="13"/>
         <value type="int" value="14"/>
+        <value type="int" value="16"/>
         <value type="int" value="11"/>
         <value type="int" value="8"/>
         <value type="int" value="3"/>
@@ -38,6 +39,7 @@
         <value type="string" value="networkmanager applet"/>
         <value type="string" value="xfce4-power-manager"/>
         <value type="string" value="task manager"/>
+        <value type="string" value="redshift-gtk"/>
         <value type="string" value="ibus panel"/>
       </property>
     </property>
@@ -77,5 +79,10 @@
       </property>
     </property>
     <property name="plugin-15" type="string" value="xfce4-clipman-plugin"/>
+    <property name="plugin-16" type="string" value="launcher">
+      <property name="items" type="array">
+        <value type="string" value="15367873131.desktop"/>
+      </property>
+    </property>
   </property>
 </channel>
