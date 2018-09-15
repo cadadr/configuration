@@ -9,11 +9,11 @@ The basic structure is as follows:
 ~/.emacs.d
 ├ init.el
 │   The init file.
-├ vendored-lisp/
-│   Git submodule for third party Elisp.
 ├ lisp/
 │   Various programs that are not loaded unless needed. Not in
 │   loadpath.
+├ lisp/site/
+│   Third party Elisp.
 ├ extras/
 │   Various non-elisp programmes that are used by my emacs
 │   setup.
@@ -36,30 +36,18 @@ There are multiple ways to activate this configuration:
 
 Choose *EITHER*.
 
-In order to be able to run this setup, submodules need to be initiated
-and updated.  It is assumed that the =vendored-lisp= submodule can be
-cloned from =~/co/Lisp/elisp/site= (it can be found [[https://github.com/cadadr/vendored-elisp][online]]).  Also,
-the [[https://github.com/cadadr/elisp][Göktuğ's Elisp]] repository is assumed to be accessible at
-=~/co/elisp=.  This should be easy to modify, in the prelude of
-[[./init.el][init.el]].
+[[https://github.com/cadadr/elisp][Göktuğ's Elisp]] repository is assumed to be accessible at =~/co/elisp=.
+This should be easy to modify, in the prelude of [[./init.el][init.el]].
 
 The following commands should suffice to initiate, provided the
 configuration itself is [[../Readme.org::Installation][installed]]:
 
 #+BEGIN_EXAMPLE
-# The following two commands apply if vendored-lisp is not
-# already downloaded
-$ mkdir -p ~/co/Lisp/elisp/
-$ git clone https://github.com/cadadr/vendored-elisp ~/co/Lisp/elisp/site
-
 # This applies if Göktuğ's Elisp repo is not downloaded
 $ git clone https://github.com/cadadr/elisp ~/co/elisp
-
-# These are the actual commands to initialise the configuration
-$ git submodule init
-$ git submodule update
+$ cd ~/.emacs.d
+$ make all
 #+END_EXAMPLE
-
 
 * Licence
 Unless stated otherwise within the file or the directory, all the code
