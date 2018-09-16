@@ -3445,7 +3445,7 @@ Ask otherwise."
 ;; Paragraphs
 (define-key org-mode-map [remap backward-paragraph] nil)
 (define-key org-mode-map [remap forward-paragraph] nil)
-(define-key org-mode-map "C-c q" #'gk-org-refill-reading-note)
+(define-key org-mode-map (kbd "C-c q") #'gk-org-refill-reading-note)
 
 
 
