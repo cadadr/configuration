@@ -2512,7 +2512,9 @@ browser."
   (save-excursion
     (goto-char (point-min))
     (re-search-forward
-     (rx bol "[" (optional digit ":") "text/html "
+     (rx bol "["
+         (optional digit (zero-or-more (and "/" digit)) ":")
+         "text/html "
          (or "Hide" "Show")
          " Save:"))
     (point)
