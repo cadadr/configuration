@@ -140,6 +140,7 @@ sx () {
 ###
 alias re=". $ENV"
 alias apt-dependencies='apt-cache depends --no-recommends --no-breaks --no-suggests --no-conflicts --no-enhances --no-replaces --recurse'
+alias apt-fresh='sudo apt-get update && apt list --upgradable'
 alias j=jobs
 alias ls='ls -F'
 alias mo=pg
