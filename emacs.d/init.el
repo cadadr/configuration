@@ -2876,7 +2876,8 @@ Account for soft hyphens."
         (save-restriction
           (let* ((beg (or (and (looking-at "^-") (point))
                           (re-search-backward "^- ")))
-                 (end (re-search-forward (string ?\n ?\n)))
+                 (end (re-search-forward
+                       (rx (or "\n\n" buffer-end))))
                  (lines (count-lines beg end)))
             (narrow-to-region beg (- end 2))
             (dotimes (_ lines)
