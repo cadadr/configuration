@@ -50,10 +50,10 @@
     <property name="use_compositing" type="bool" value="true"/>
     <property name="workspace_count" type="int" value="4"/>
     <property name="workspace_names" type="array">
-      <value type="string" value="1"/>
-      <value type="string" value="2"/>
-      <value type="string" value="3"/>
-      <value type="string" value="4"/>
+      <value type="string" value="1 home"/>
+      <value type="string" value="2 rsc"/>
+      <value type="string" value="3 read"/>
+      <value type="string" value="4 www"/>
       <value type="string" value="Workspace 5"/>
       <value type="string" value="Workspace 6"/>
     </property>
