@@ -2499,8 +2499,8 @@ Otherwise start mail program in offline mode."
 (setf
  rmail-primary-inbox-list gk-mail-inboxes
  rmail-secondary-file-directory gk-mail-home
- rmail-secondary-file-regexp "spam\\|outbox"
- rmail-file-name (expand-file-name "archive" gk-mail-home)
+ rmail-secondary-file-regexp "spam\\|outbox\\|archive$"
+ rmail-file-name (expand-file-name "current" gk-mail-home)
  rmail-displayed-headers
  (rx (and bol (or "to" "date" "from" "cc" "subject" "message-id" "list-id")))
  rmail-mime-prefer-html nil)
