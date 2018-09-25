@@ -151,6 +151,8 @@
       <property name="&lt;Primary&gt;&lt;Super&gt;p" type="string" value="move_window_prev_workspace_key"/>
       <property name="&lt;Super&gt;Left" type="string" value="tile_left_key"/>
       <property name="&lt;Super&gt;Right" type="string" value="tile_right_key"/>
+      <property name="&lt;Super&gt;minus" type="string" value="tile_up_key"/>
+      <property name="&lt;Shift&gt;&lt;Super&gt;underscore" type="string" value="tile_down_key"/>
     </property>
   </property>
   <property name="providers" type="array">
