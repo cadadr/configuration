@@ -25,6 +25,8 @@ firefox
 + redshift-gtk
 
 ### Utilities:
++ apt-transport-https
++ dirmngr
 + hugo
 + moreutils
 + net-tools netcat-openbsd telnet traceroute bind9utils
