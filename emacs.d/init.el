@@ -3923,11 +3923,12 @@ So that the reader knows where to continue reading."
 
 ;;;;; Whitespace:
 
-(setf whitespace-style '(face trailing tabs)
+(setf whitespace-style '(face trailing tabs newline newline-mark)
       ;; When nil uses ‘fill-column’.
       whitespace-line-column nil)
 
 (setcdr (assoc 'tab-mark whitespace-display-mappings) '(9 [?> 9]))
+(setcdr (assoc 'newline-mark whitespace-display-mappings) '(10 [?$ 10]))
 
 (pushnew 'global-whitespace-mode gk-global-modes)
 (diminish 'global-whitespace-mode "¶")
