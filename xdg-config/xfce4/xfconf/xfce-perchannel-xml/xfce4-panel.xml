@@ -16,10 +16,12 @@
         <value type="int" value="13"/>
         <value type="int" value="14"/>
         <value type="int" value="16"/>
+        <value type="int" value="21"/>
         <value type="int" value="20"/>
         <value type="int" value="11"/>
         <value type="int" value="8"/>
         <value type="int" value="10"/>
+        <value type="int" value="22"/>
         <value type="int" value="17"/>
         <value type="int" value="3"/>
         <value type="int" value="2"/>
@@ -99,6 +101,21 @@
     <property name="plugin-19" type="string" value="separator"/>
     <property name="plugin-20" type="string" value="separator">
       <property name="expand" type="bool" value="false"/>
+    </property>
+    <property name="plugin-21" type="string" value="launcher">
+      <property name="items" type="array">
+        <value type="string" value="15378757231.desktop"/>
+      </property>
+    </property>
+    <property name="clipman" type="empty">
+      <property name="tweaks" type="empty">
+        <property name="never-confirm-history-clear" type="bool" value="true"/>
+      </property>
+    </property>
+    <property name="plugin-22" type="string" value="windowmenu">
+      <property name="urgentcy-notification" type="bool" value="false"/>
+      <property name="style" type="uint" value="1"/>
+      <property name="workspace-actions" type="bool" value="true"/>
     </property>
   </property>
 </channel>
