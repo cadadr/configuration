@@ -1,6 +1,6 @@
 [Added Associations]
 text/*=emacsclient.desktop;
-application/pdf=atril.desktop;emacsclient.desktop;
+application/pdf=atril.desktop;firefox.desktop;emacsclient.desktop;
 image/gif=feh.desktop;
 image/jpeg=ristretto.desktop;feh.desktop;
 image/png=ristretto.desktop;feh.desktop;
