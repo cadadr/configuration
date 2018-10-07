@@ -18,6 +18,7 @@ icons.*.rc
 *.tgz
 *.plstore
 *.tmp
+*.lock
 *~
 tmp.patch
 
