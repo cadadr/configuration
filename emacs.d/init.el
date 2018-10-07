@@ -2908,6 +2908,36 @@ Account for soft hyphens."
             (setq g (point-max))))))
     (goto-char g)))
 
+(defun gk-org-insert-reading-note (page)
+  "Insert a reading note into the reading notes file.
+A note in that file has a certain structure, i.e. a list item
+with the page number as the first thing, then the quote text,
+which comes from the ‘kill-ring’ via ‘yank’ wrapped in
+guillemets.  PAGE is the page number, and can be any string,
+given how page numbers are realised varies in the real world."
+  (interactive (list (read-string "Page number: ")))
+  (unless (org-insert-item)
+    (goto-char (line-beginning-position))
+    (insert "- "))
+  (insert "p. " page ": «")
+  (yank)
+  (insert "»\n")
+  (gk-org-refill-reading-note)
+  (when (y-or-n-p "Inserted reading note, save file now?")
+    (save-buffer)))
+
+(defun gk-org-insert-reading-bibliograpy-note ()
+  (interactive)
+  (unless (org-insert-item)
+    (goto-char (line-beginning-position))
+    (insert "- "))
+  (insert "-> ")
+  (yank)
+  (insert "\n")
+  (gk-org-refill-reading-note)
+  (when (y-or-n-p "Inserted bibliographic reference, save file now?")
+    (save-buffer)))
+
 
 
 ;;;;; Variables:
@@ -3466,6 +3496,8 @@ Ask otherwise."
 (define-key org-mode-map [remap backward-paragraph] nil)
 (define-key org-mode-map [remap forward-paragraph] nil)
 (define-key org-mode-map (kbd "C-c q") #'gk-org-refill-reading-note)
+(define-key org-mode-map (kbd "C-c # n") #'gk-org-insert-reading-note)
+(define-key org-mode-map (kbd "C-c # b") #'gk-org-insert-reading-bibliograpy-note)
 
 
 
