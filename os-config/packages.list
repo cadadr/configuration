@@ -26,6 +26,7 @@ firefox
 ### Utilities:
 + apt-transport-https
 + dirmngr
++ equivs
 + hugo
 + moreutils
 + net-tools netcat-openbsd telnet traceroute bind9utils
