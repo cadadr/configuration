@@ -2610,6 +2610,7 @@ email and archiving read mail in another file."
  mairix-search-file "search")
 
 (defalias 'search-mail 'mairix-widget-search)
+(defalias 'mx 'mairix-widget-search)
 
 (define-advice mairix-widget-search
     (:after (&rest args) enable-widget-minor-mode)
@@ -4850,6 +4851,8 @@ Does various tasks after saving a file, see it's definition."
 
 (gk-prefix-binding "<" #'gk-fetch-mail)
 (gk-prefix-binding "C-r" #'rmail)
+(gk-prefix-binding "/" #'mairix-search)
+(gk-prefix-binding "?" #'mairix-widget-search)
 
 
 
