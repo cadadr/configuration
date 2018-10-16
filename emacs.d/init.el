@@ -2509,6 +2509,7 @@ Otherwise start mail program in offline mode."
  rmail-secondary-file-regexp "spam\\|outbox\\|archive$"
  rmail-file-name (expand-file-name "current" gk-mail-home)
  rmail-default-file (expand-file-name "archive" gk-mail-home)
+ gk-rmail-archive-file (expand-file-name "archive" gk-mail-home)
  rmail-displayed-headers
  (rx (and bol (or "to" "date" "from" "cc" "subject" "message-id" "list-id")))
  rmail-mime-prefer-html nil)
@@ -2578,18 +2579,18 @@ Return the file name, expanded."
   "Advance to the next message in default mbox.
 This command will not run unless in an RMAIL buffer visiting
 ‘rmail-file-name’.  It will output the current message to
-‘rmail-default-file’ and delete it, advancing to the next message
-in the RMAIL file.  This is a utility for the email workflow
-where a temporary inbox is used for working with current email
-and archiving read mail in another file."
+‘gk-rmail-archive-file’ and delete it, advancing to the next
+message in the RMAIL file.  This is a utility for the email
+workflow where a temporary inbox is used for working with current
+email and archiving read mail in another file."
   (interactive)
   (unless (string= (buffer-file-name) rmail-file-name)
     (user-error
      "This is not your default RMAIL file, won't run ‘gk-rmail-advance’ here"))
-  (rmail-output rmail-default-file)
+  (rmail-output gk-rmail-archive-file)
   (rmail-delete-forward))
 
-(define-key rmail-mode-map (kbd "TAB") #'gk-rmail-advance)
+(define-key rmail-mode-map "N" #'gk-rmail-advance)
 (define-key rmail-mode-map "S" #'gk-rmail-force-expunge-and-save)
 (define-key rmail-mode-map "b" #'gk-rmail-view-html-part-in-browser)
 
