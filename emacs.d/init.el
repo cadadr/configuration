@@ -3618,7 +3618,7 @@ Ask otherwise."
 
 ;;;;; GUI:
 
-(defvar gk-gui-theme 'mono
+(defvar gk-gui-theme 'wombat
   "The default theme's name to load at startup.")
 
 (when (gk-gui-p)
@@ -3642,7 +3642,10 @@ Ask otherwise."
     ;; ‘hl-line-mode’ is on.
     (set-face-attribute 'highlight nil
                         :foreground nil
-                        :underline nil))
+                        :underline nil)
+    ;; Make the cursor more visible, the default grey colour is
+    ;; indistinguishable, especially with the bar cursor.
+    (set-face-attribute 'cursor nil :background "orange"))
 
   (set-face-attribute 'default nil
                       :height gk-font-default-height
