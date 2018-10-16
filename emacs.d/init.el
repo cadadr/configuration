@@ -153,6 +153,7 @@ Exclude dot-files, don't sort, and return full paths by default."
 (require 'epg)
 (require 'etags)
 (require 'eval-sexp-fu)
+(require 'evil)
 (require 'eww)
 (require 'f)
 (require 'face-remap) ; buffer-face-mode
@@ -1201,6 +1202,12 @@ Set locally the variable `outline-minor-mode-prefix' to PREFIX."
 
 (defalias 'library 'bibliothek)
 (defalias 'bib 'bibliothek)
+
+
+
+;;;; Evil:
+
+
 
 
 
@@ -4825,6 +4832,7 @@ Does various tasks after saving a file, see it's definition."
 ;;;; Text editing:
 
 (gk-prefix-binding [? ] 'gk-mark-thing)
+(gk-prefix-binding "v" #'evil-mode)
 
 
 

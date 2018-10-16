@@ -8,6 +8,7 @@ User Emacs packages
 * SLIME: (slime).            The Superior Lisp Mode for Emacs
 * EMMS: (emms).		     Emacs MultiMedia System
 * Magit: (magit).	     Git porcelain for Emacs
+* Evil: (evil).		     Emacs Vi emulation
 
 User documentation
 * Göktuğ's Config: (gk).     The Big Brother DataBase
