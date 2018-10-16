@@ -3507,6 +3507,10 @@ Ask otherwise."
 (define-key org-mode-map (kbd "C-c q") #'gk-org-refill-reading-note)
 (define-key org-mode-map (kbd "C-c # n") #'gk-org-insert-reading-note)
 (define-key org-mode-map (kbd "C-c # b") #'gk-org-insert-reading-bibliograpy-note)
+;; Reading notes
+(define-key org-mode-map (kbd "C-c M-r") #'gk-org-insert-reading-note)
+(define-key org-mode-map (kbd "C-c M-b") #'gk-org-insert-reading-bibliograpy-note)
+
 
 
 
