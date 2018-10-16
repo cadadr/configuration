@@ -3965,7 +3965,7 @@ So that the reader knows where to continue reading."
 
 ;;;;; Whitespace:
 
-(setf whitespace-style '(face trailing tabs newline newline-mark)
+(setf whitespace-style '(face trailing tabs)
       ;; When nil uses ‘fill-column’.
       whitespace-line-column nil)
 
