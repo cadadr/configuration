@@ -5,7 +5,8 @@ Standards-Version: 3.5.10
 
 Package: oddmuse
 Architecture: any
-Depends: perl, libwww-perl, libxml-rss-perl, diffutils
+Depends: perl, libwww-perl, libxml-rss-perl, diffutils,
+  libmojo-server-fastcgi-perl, libmojolicious-plugin-cgi-perl
 Description: wiki engine
   A "wiki" is a website that is usually collaboratively edited
   by its users, including the ability to alter text written by
