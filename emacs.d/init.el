@@ -3622,7 +3622,7 @@ Ask otherwise."
 
 ;;;;; GUI:
 
-(defvar gk-gui-theme 'wombat
+(defvar gk-gui-theme 'mono
   "The default theme's name to load at startup.")
 
 (when (gk-gui-p)

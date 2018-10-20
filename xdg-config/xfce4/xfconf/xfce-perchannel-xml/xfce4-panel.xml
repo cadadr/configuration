@@ -33,9 +33,9 @@
         <value type="int" value="9"/>
       </property>
       <property name="autohide-behavior" type="uint" value="0"/>
-      <property name="background-alpha" type="uint" value="0"/>
+      <property name="background-alpha" type="uint" value="100"/>
       <property name="enter-opacity" type="uint" value="100"/>
-      <property name="leave-opacity" type="uint" value="64"/>
+      <property name="leave-opacity" type="uint" value="100"/>
     </property>
   </property>
   <property name="plugins" type="empty">
