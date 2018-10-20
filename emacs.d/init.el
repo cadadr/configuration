@@ -3524,7 +3524,7 @@ Ask otherwise."
   (when (boundp goto-address-mode)
     (goto-address-mode -1))
   (imenu-add-to-menubar "Entries")
-  (setq truncate-lines t)
+  (setq truncate-lines nil)
   (setq indent-tabs-mode nil))
 
 (add-hook 'org-mode-hook 'gk-org-hook)
@@ -3683,9 +3683,6 @@ Ask otherwise."
 
 
 ;;;;; Lines:
-
-;; Truncate lines by default.
-(setq-default truncate-lines t)
 
 (setf
  ;; Behave according to `truncate-lines'.
