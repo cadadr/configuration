@@ -28,6 +28,7 @@ firefox
 + dirmngr
 + equivs
 + hugo
++ gawk gawk-doc
 + moreutils
 + net-tools netcat-openbsd telnet traceroute bind9utils
 + pandoc
