@@ -16,3 +16,7 @@ set wildmenu		" enhanced command-line completion
 " generate tags:
 command! MkTags !/usr/bin/ctags -R .
 
+" bindings
+" make Y behave like C, D, etc., i.e. operate from point to eol
+nmap Y y$
+
