@@ -11,8 +11,9 @@ DROPPRIVS=yes
 
 ### Rules:
 #### Spam check:
-:0fw
-| /usr/bin/spamc
+# Takes too long, for some reason.
+#:0fw
+#| /usr/bin/spamc
 
 # Discard if spam-score ≥ 10 stars.
 :0
