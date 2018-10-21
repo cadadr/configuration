@@ -58,13 +58,15 @@ if [ ! x$BASH = x ]; then
     shopt -s histappend
     shopt -s checkwinsize
     shopt -s globstar
+    bold='\033[1m'
+    reset='\033[0m'
 
     lastcmdexit () {
 	xit=$?
-        [ $xit -ne 0 ] && echo "		*** It exited $xit! ***"
+        [ $xit -ne 0 ] && echo -e "	$bold*** It exited $xit! ***$reset"
     }
     PROMPT_COMMAND=lastcmdexit
-    PS1='[In: \w; \d \A]\n[\#] \u@\H (\j)\$ '
+    PS1="$bold"'[In: \w; \d \A]\n[\#] \u@\H (\j)\$'"$reset "
     HISTTIMEFORMAT='%s'
 fi
 
