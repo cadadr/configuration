@@ -1,0 +1,3 @@
+# lxc-net
+
+USE_LXC_BRIDGE="true"
