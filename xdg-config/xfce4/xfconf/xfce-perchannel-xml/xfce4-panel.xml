@@ -54,7 +54,7 @@
     </property>
     <property name="plugin-7" type="string" value="clock">
       <property name="mode" type="uint" value="2"/>
-      <property name="digital-format" type="string" value="%R, %d %B %A"/>
+      <property name="digital-format" type="string" value="%R, %d %b %a"/>
       <property name="tooltip-format" type="string" value=""/>
     </property>
     <property name="plugin-8" type="string" value="separator">
