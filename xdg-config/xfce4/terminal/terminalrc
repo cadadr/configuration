@@ -1,12 +1,10 @@
 [Configuration]
-ColorForeground=#b7b7b7
-ColorBackground=#131926
-ColorCursor=#0f4999
-ColorSelection=#163b59
-ColorSelectionUseDefault=FALSE
+ColorForeground=#073642
+ColorBackground=#fdf6e3
+ColorCursor=#073642
 ColorBoldUseDefault=FALSE
-ColorPalette=#000000;#aa0000;#44aa44;#aa5500;#0039aa;#aa22aa;#1a92aa;#aaaaaa;#777777;#ff8787;#4ce64c;#ded82c;#295fcc;#cc58cc;#4ccce6;#ffffff
-FontName=DejaVu Sans Mono 11
+ColorPalette=#073642;#dc322f;#859900;#b58900;#268bd2;#d33682;#2aa198;#eee8d5;#002b36;#cb4b16;#586e75;#657b83;#839496;#6c71c4;#93a1a1;#fdf6e3
+FontName=DejaVu Sans Mono 10
 MiscAlwaysShowTabs=FALSE
 MiscBell=FALSE
 MiscBellUrgent=TRUE
@@ -33,8 +31,10 @@ MiscUseShiftArrowsToScroll=FALSE
 MiscSlimTabs=FALSE
 MiscNewTabAdjacent=FALSE
 ShortcutsNoMnemonics=TRUE
-TabActivityColor=#0f4999
+TabActivityColor=#dc322f
 ShortcutsNoHelpkey=TRUE
 ShortcutsNoMenukey=TRUE
 MiscDefaultWorkingDir=
+ColorBold=#073642
+Encoding=UTF-8
 
