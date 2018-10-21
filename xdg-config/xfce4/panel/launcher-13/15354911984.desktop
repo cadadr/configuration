@@ -10,3 +10,5 @@ Categories=Development;TextEditor;
 StartupWMClass=Emacs
 Keywords=Text;Editor;Lisp;
 X-XFCE-Source=file:///home/g/.local/share/applications/emacs.desktop
+Path=
+StartupNotify=false
