@@ -1,6 +1,1 @@
-# lxc-usernet --- lxc user containers network configuration
-
-# g will be able to create up to 10 devices connected to the lxcbr0
-# bridge.
-g veth lxcbr0 10
-
+g veth lxcbr0 100
