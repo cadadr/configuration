@@ -1,0 +1,31 @@
+#!/usr/bin/env ruby
+# lx --- front-end for lxc -*- mode: ruby -*-
+
+container = ENV['LXC_CONTAINER']
+
+arg0 = ARGV.shift
+
+if arg0 == 'help'
+  puts "usage: lx COMMAND ARGS...; where COMMAND is lxc-COMMAND"
+  puts "  You can set LXC_CONTAINER to default container name in order to"
+  puts "  be able to omit the -n flat to all the commands."
+  exit 1
+end
+
+cmd = "lxc-" + arg0
+
+args = []
+
+if container
+  unless ['unshare'].include? arg0
+    args += ["-n", container]
+  end
+end
+
+args += ARGV
+
+puts cmd, *args if ENV['LX_DEBUG']
+
+exec cmd, *args
+
+exit 123                        # should never happen!
