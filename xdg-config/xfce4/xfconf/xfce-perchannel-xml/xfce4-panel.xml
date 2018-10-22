@@ -37,6 +37,7 @@
       <property name="background-alpha" type="uint" value="100"/>
       <property name="enter-opacity" type="uint" value="100"/>
       <property name="leave-opacity" type="uint" value="100"/>
+      <property name="length-adjust" type="bool" value="true"/>
     </property>
   </property>
   <property name="plugins" type="empty">
