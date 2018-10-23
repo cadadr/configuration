@@ -45,12 +45,7 @@ installation, run the following commands:
 #+BEGIN_EXAMPLE
 $ touch config.m4
 $ cd os-config
-# perl pkglist2cmds.pl | sh
-# sh install-config.sh
-# dpkg --configure -a
-# sh init.sh
-# passwd g
-# su g
+$ make init
 $ cd ..
 $ make clean build invade
 $ gem install bundler && bundle
