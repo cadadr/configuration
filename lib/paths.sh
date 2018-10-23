@@ -48,7 +48,7 @@ GK_OPT_PATH="$GK_OPT_DIR/flutter/bin"
 
 # Finalise binary path.
 
-PATH="$PROFILE_PATH:${PATH}$PKGMANS_PATH:$GK_OPT_PATH"
+PATH="$PROFILE_PATH:$PKGMANS_PATH:$GK_OPT_PATH:$PATH"
 # Remove double colons.
 PATH="$(echo $PATH | sed -E s,:+,:,g)"
 export PATH
