@@ -19,8 +19,8 @@ This repo contains the following:
 
 - My GNU Emacs configuration tree (~emacs.d/~)
 - My dotfiles (~dotfiles/~,  ~xdg-config/~)
-- My Debian GNU/Linux w/ XFCE configuration (~os-config/~)
-- My configuration for Raspberry Pi (~rpi/~)
+- My Debian GNU/Linux w/ XFCE configuration (~systems/alpha/~)
+- My configuration for Raspberry Pi (~systems/pi/~)
 - And some other stuff.
 
 I've re-created this repository from scratch, removing some secrets
@@ -40,22 +40,17 @@ I have recently abandoned a debian package based setup to a shell script
 based setup, which is not totally streamlined yet
 
 In order to get this configuration running on a vanilla Debian XFCE4
-installation, run the following commands:
+installation, run the following command:
 
 #+BEGIN_EXAMPLE
-$ touch config.m4
-$ cd os-config
-$ make init
-$ cd ..
-$ make clean build invade
-$ gem install bundler && bundle
-$ pip3 install -r requirements.txt
+$ make alpha-init
 #+END_EXAMPLE
 
-The initial ~#~ is meant to indicate that the command need be run as
-the superuser, while ~$~ is for commands that are run as a normal
-user.
+This will trigger a series of shell scripts and make rules which will
+initialise the system.  It should not cause any problems to re-run
+this command after fixing a failure that interrupts it running in
+order to complete installation.
 
-These commands, among other things, will create a user ~g~ with uid
+This command, among other things, will create a user ~g~ with uid
 1993 and a group of similar identifiers, and assing the user certain
 groups.
