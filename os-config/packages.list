@@ -52,6 +52,7 @@ virtualbox virtualbox-qt
 + cvs
 + git git-cvs gitk
 + mercurial python-hglib python-dulwich python-fastimport
++ python3-pip
 + quilt
 + rcs
 + subversion
