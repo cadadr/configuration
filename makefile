@@ -1,8 +1,5 @@
 # makefile --- main makefile for Göktuğ's configuration.
 
-export VERSION!=date +'%Y%m%d%H%M'
-export MAINT="Göktuğ Kayaalp <self@gkayaalp.com>"
-export DEB=goktug.deb
 export UMASK=
 HERE=$(PWD)
 
