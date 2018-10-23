@@ -13,14 +13,13 @@ install-packages:
 	perl pkglist2cmds.pl | sh -i
 
 install-config: $(GENCONFIGS)
-	@echo Installing configuration files...
-	@sudo sh ./install-configs.sh
+	sudo sh ./install-configs.sh
 
 apt-update:
 	sudo apt-get update
 
 init: install-config apt-update install-packages
-	sh init.sh
+	sudo sh init.sh
 
 clean:
 	rm $(GENCONFIGS)

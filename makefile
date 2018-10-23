@@ -19,7 +19,8 @@ help:
 
 ### System initialisation:
 
-alpha-init: alpha-init-sub clean build invade
+alpha-init: alpha-init-sub
+	sudo -u g $(MAKE) -$(MAKEFLAGS) clean build invade
 	gem install bundler && bundle && pip3 install -r requirements.txt
 
 alpha-init-sub:
