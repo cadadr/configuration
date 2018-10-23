@@ -76,6 +76,12 @@ fi
 path () {
 	echo $PATH | tr : \\n
 }
+repath () {
+    . $MYLIB/paths.sh
+}
+refresh () {
+    . $ENV
+}
 whichroot () {
     if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
         cat /etc/debian_chroot
