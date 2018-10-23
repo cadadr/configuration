@@ -53,7 +53,7 @@ $ cd os-config
 # su g
 $ cd ..
 $ make clean build invade
-$ bundle
+$ gem install bundler && bundle
 #+END_EXAMPLE
 
 The initial ~#~ is meant to indicate that the command need be run as
