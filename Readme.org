@@ -54,6 +54,7 @@ $ cd os-config
 $ cd ..
 $ make clean build invade
 $ gem install bundler && bundle
+$ pip3 install -r requirements.txt
 #+END_EXAMPLE
 
 The initial ~#~ is meant to indicate that the command need be run as
