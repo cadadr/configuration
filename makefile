@@ -1,7 +1,7 @@
 # makefile --- main makefile for Göktuğ's configuration.
 
 export UMASK=
-HERE=$(PWD)
+HERE:=$(PWD)
 
 all: help
 
