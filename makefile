@@ -2,6 +2,7 @@
 
 export UMASK=
 HERE:=$(PWD)
+export BASIC?=no
 
 all: help
 
@@ -16,14 +17,12 @@ help:
 	echo "			separately";\
 	echo "	dotfiles	build dotfiles";\
 	echo "	clean		delete build artefacts";\
+	echo Variables:;\
+	echo "	BASIC=no/yes	Make a basic installation (default: no)"
 
 ### System initialisation:
 
-alpha-init: alpha-init-sub
-	sudo -u g $(MAKE) -$(MAKEFLAGS) clean build invade
-	gem install bundler && bundle && pip3 install -r requirements.txt
-
-alpha-init-sub:
+alpha-init:
 	touch config.m4; cd systems/alpha;\
 		 $(MAKE) -$(MAKEFLAGS) init; cd $(HERE)
 

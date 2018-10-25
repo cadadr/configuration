@@ -1,0 +1,35 @@
+# base-packages.list -*- mode: conf -*-
+
+# Packages to be installed are marked (+), removed (-), (*) for build-deps.
+
+### Utilities:
++ apt-transport-https
++ dirmngr
++ equivs
++ gawk
++ lxc libvirt0 libpam-cgroup libpam-cgfs bridge-utils
++ moreutils
++ net-tools netcat-openbsd telnet traceroute bind9utils
++ pass
++ pv
++ rsync
++ units
++ w3m w3m-el
++ whois
+
+### Services:
++ openssh-server
++ libnss-mdns
+
+### Development tools:
++ autoconf autoconf-archive automake
++ bmake
++ exuberant-ctags
++ gdb
++ strace
+
+### Programming languages:
++ ruby bundler ri
++ cpanminus liblocal-lib-perl perlbrew
++ python python-matplotlib python-pip python3-tk python3-venv
+

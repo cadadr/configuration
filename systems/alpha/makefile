@@ -3,6 +3,14 @@
 # Generated configuration files:
 GENCONFIGS=
 
+ifeq ($(BASIC), no)
+	BASEPFX=
+else
+	ifeq ($(BASIC), yes)
+	BASEPFX=basic-
+	endif
+endif
+
 help:
 	@echo "Targets:"
 	@echo "	help			show this message"
@@ -10,7 +18,7 @@ help:
 	@echo "	init			run system/user initialisation script"
 
 install-packages:
-	perl pkglist2cmds.pl | sh -i
+	perl pkglist2cmds.pl < $(BASEPFX)packages.list | sudo sh -i
 
 install-config: $(GENCONFIGS)
 	sudo sh ./install-configs.sh
@@ -19,7 +27,7 @@ apt-update:
 	sudo apt-get update
 
 init: install-config apt-update install-packages
-	sudo sh init.sh
+	sudo sh $(BASEPFX)init.sh
 
 clean:
 	rm $(GENCONFIGS)
