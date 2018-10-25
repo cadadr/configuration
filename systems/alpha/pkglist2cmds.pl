@@ -6,11 +6,9 @@ use strict;
 use warnings;
 no warnings 'experimental::smartmatch';
 
-open(my $in, '<', 'packages.list');
-
 my @install; my @remove; my @builddep;
 
-for(<$in>) {
+for(<>) {
     when(/^\+ (.*)/) { push @install, $1 }
     when(/^\- (.*)/) { push @remove, $1 }
     when(/^\* (.*)/) { push @builddep, $1 }
