@@ -7,8 +7,8 @@
 
 ### Variables and system information:
 
-export MEINE=/igk/config/dotfiles
-export MYLIB=/igk/config/lib
+export MEINE=~/cf/dotfiles
+export MYLIB=~/cf/lib
 export SYSTEM=$(uname)
 
 ###
