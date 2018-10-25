@@ -20,3 +20,6 @@ command! MkTags !/usr/bin/ctags -R .
 " make Y behave like C, D, etc., i.e. operate from point to eol
 nmap Y y$
 
+" visuals
+set lbr			" word wrap
+let &sbr = '\ '		" illustrate logical line breaks
