@@ -7,8 +7,8 @@
 
 ### Variables and system information:
 
-export MEINE=~/cf/dotfiles
-export MYLIB=~/cf/lib
+export MEINE=$HOME/cf/dotfiles
+export MYLIB=$HOME/cf/lib
 export SYSTEM=$(uname)
 
 ###
