@@ -25,6 +25,7 @@ firefox
 
 ### Utilities:
 + apt-transport-https
++ curl
 + dirmngr
 + equivs
 + hugo
