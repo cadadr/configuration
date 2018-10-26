@@ -74,3 +74,11 @@ xdg-config/enchant/
 xdg-config/xfce4/Verve/
 xdg-config/ibus/
 xdg-config/spotify/
+xdg-config/Code/*Cache*
+xdg-config/Code/User/workspaceStorage
+xdg-config/Code/Local Storage
+xdg-config/Code/Cookie*
+xdg-config/Code/Backups/*
+xdg-config/Code/machineid
+xdg-config/Code/*.json
+xdg-config/Code/Preferences
