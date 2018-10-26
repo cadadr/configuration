@@ -51,4 +51,8 @@ GK_OPT_PATH="$GK_OPT_DIR/flutter/bin"
 PATH="$PROFILE_PATH:$PKGMANS_PATH:$GK_OPT_PATH:$PATH"
 # Remove double colons.
 PATH="$(echo $PATH | sed -E s,:+,:,g)"
+# Remove double slashes.
+PATH="$(echo $PATH | sed -E s,/+,/,g)"
+# Remove trailing colons.
+PATH="$(echo $PATH | sed -E s,:+\$,,g)"
 export PATH
