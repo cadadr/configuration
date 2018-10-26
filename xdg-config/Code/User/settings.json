@@ -2,5 +2,6 @@
     "telemetry.enableTelemetry": false,
     "telemetry.enableCrashReporter": false,
     "workbench.colorTheme": "Visual Studio Dark",
-    "diffEditor.renderSideBySide": false
+    "diffEditor.renderSideBySide": false,
+    "editor.tabSize": 8
 }
