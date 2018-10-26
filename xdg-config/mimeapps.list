@@ -1,7 +1,7 @@
 [Added Associations]
 text/*=emacsclient.desktop;
 application/pdf=atril.desktop;firefox.desktop;emacsclient.desktop;
-image/gif=feh.desktop;
+image/gif=firefox.desktop;feh.desktop;
 image/jpeg=ristretto.desktop;feh.desktop;
 image/png=ristretto.desktop;feh.desktop;
 video/mp4=mpv.desktop;
@@ -32,6 +32,7 @@ video/webm=mpv.desktop;
 application/x-raw-disk-image=exo-file-manager.desktop;
 application/x-desktop=mousepad.desktop;
 application/msword=libreoffice-writer.desktop;
+application/x-shellscript=vim.desktop;
 
 [Default Applications]
 x-scheme-handler/http=userapp-Firefox-FW39QZ.desktop
