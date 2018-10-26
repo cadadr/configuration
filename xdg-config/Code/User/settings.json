@@ -3,5 +3,14 @@
     "telemetry.enableCrashReporter": false,
     "workbench.colorTheme": "Visual Studio Dark",
     "diffEditor.renderSideBySide": false,
-    "editor.tabSize": 8
+    "editor.tabSize": 8,
+    "workbench.enableExperiments": false,
+    "workbench.settings.enableNaturalLanguageSearch": false,
+    "update.channel": "none",
+    "update.enableWindowsBackgroundUpdates": false,
+    "typescript.disableAutomaticTypeAcquisition": true,
+    "extensions.autoCheckUpdates": false,
+    "extensions.autoUpdate": false,
+    "npm.fetchOnlinePackageInfo": false,
+    "extensions.showRecommendationsOnlyOnDemand": true
 }
