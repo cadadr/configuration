@@ -29,6 +29,7 @@ firefox
 + equivs
 + hugo
 + gawk
++ gvfs-bin
 + lxc libvirt0 libpam-cgroup libpam-cgfs bridge-utils
 + moreutils
 + net-tools netcat-openbsd telnet traceroute bind9utils
