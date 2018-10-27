@@ -54,6 +54,8 @@
         <property name="startup-notify" type="bool" value="true"/>
       </property>
       <property name="&lt;Super&gt;space" type="string" value="xfce4-popup-whiskermenu"/>
+      <property name="&lt;Alt&gt;&lt;Super&gt;p" type="string" value="/home/g/bin/passmenu.sh"/>
+      <property name="&lt;Alt&gt;&lt;Super&gt;x" type="string" value="xtype.sh"/>
     </property>
   </property>
   <property name="xfwm4" type="empty">
