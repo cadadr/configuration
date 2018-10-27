@@ -1,0 +1,11 @@
+[Desktop Entry]
+NoDisplay=true
+Version=1.0
+Encoding=UTF-8
+Type=X-XFCE-Helper
+X-XFCE-Category=WebBrowser
+X-XFCE-CommandsWithParameter=gk-web-browser "%s"
+Icon=gk-web-browser
+Name=gk-web-browser
+X-XFCE-Commands=gk-web-browser
+
