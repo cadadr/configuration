@@ -31,6 +31,7 @@ firefox
 + apt-transport-https
 + curl
 + dirmngr
++ dmenu
 + equivs
 + hugo
 + gawk
