@@ -13,6 +13,10 @@
 + atril
 + cheese
 firefox
+# For some reason this XUL extension is included, and when it's
+# present, removing firefox causes thunderbird or lightning getting
+# installed.
+- xul-ext-mozvoikko firefox-esr
 + gimp
 + gparted
 + gv
