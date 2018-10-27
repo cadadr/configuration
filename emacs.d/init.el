@@ -179,7 +179,6 @@ Exclude dot-files, don't sort, and return full paths by default."
 (require 'lorem-ipsum)
 (require 'lua-mode)
 (require 'ls-lisp)
-(require 'magit)
 (require 'mail-source)
 (require 'mairix)
 (require 'mastodon)
@@ -1895,12 +1894,6 @@ unlocked, offer to lock it before pasting."
 (define-advice vc-hg-push (:around (fn &rest args) always-prompt)
   "Always prompt for editing the push command."
   (funcall fn t))
-
-
-
-;;;;; Magit:
-
-(setf magit-commit-show-diff nil)
 
 
 
