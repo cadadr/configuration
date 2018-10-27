@@ -1,10 +1,13 @@
 #!/bin/sh
-# xtype.sh --- choose a window and type command line arguments into it
+# xtype.sh --- choose a window and type command line arguments or X clipboard contents into it
+
+go () {
+    xdotool type -delay 200ms \
+	-window "$(xwininfo | grep 'Window\ id:' | cut -d ' ' -f4)" "$*"
+}
 
 if [ x"$*" = x ]; then
-    echo usage: xtype.sh STR [STR..]
-    exit 1
+    go "$(xclip -o)"
+else
+    go "$*"
 fi
-
-xdotool type -window "$(xwininfo | grep 'Window\ id:' | cut -d ' ' -f4)" "$*"
-
