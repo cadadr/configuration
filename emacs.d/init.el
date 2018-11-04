@@ -1883,6 +1883,15 @@ unlocked, offer to lock it before pasting."
 
 
 
+;;;;; Git:
+
+(define-advice vc-git-push (:around (fn &rest args) always-prompt)
+  "Always prompt for editing the push command."
+  (funcall fn t))
+
+
+
+
 ;;;;; Mercurial:
 
 (setf
