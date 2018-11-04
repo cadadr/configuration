@@ -37,9 +37,10 @@ of them in public domain.
 * Installation
 ** System setup
 In order to get this configuration running on a vanilla Debian XFCE4
-installation, run the following command:
+installation, run the following commands:
 
 #+BEGIN_EXAMPLE
+# apt-get install sudo make git
 $ make alpha-init
 #+END_EXAMPLE
 
