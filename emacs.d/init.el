@@ -4084,7 +4084,7 @@ instead of `browse-url-new-window-flag'."
 
 (defalias 'gk-urls-external-browser 'browse-url-firefox)
 (setf browse-url-firefox-program
-      (or (gk-executable-ensure "~/opt/firefox/firefox")
+      (or (gk-executable-ensure "gk-web-browser")
           (gk-executable-ensure "firefox")))
 
 ;; TODO Check if still relevant when switch to Emacs 25.
