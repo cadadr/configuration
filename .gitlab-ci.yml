@@ -3,7 +3,7 @@ before_script:
 
 init_alpha:
   script:
-    - make alpha-init
+    - make BASIC=yes alpha-init
     - gem install bundler --no-ri --no-rdoc
     - bundle install --jobs $(nproc)  "${FLAGS[@]}"
     - make invade
