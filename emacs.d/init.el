@@ -2527,7 +2527,7 @@ browser."
                     (expand-file-name
                      "gkrmailout" gk-mail-temporary-file-directory))
                    ".html")))
-      (browse-url-default-browser
+      (gk-urls-external-browser
        (concat "file://" (gk-rmail-mime-save-to-tmp button filename))))))
 
 (defun gk-rmail-mime-save-to-tmp (button output-file-name)
