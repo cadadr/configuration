@@ -2590,7 +2590,8 @@ email and archiving read mail in another file."
 (add-hook
  'rmail-mode-hook
  (defun gk-rmail-mode-hook ()
-   (goto-address-mode +1)))
+   (goto-address-mode +1)
+   (setq-local word-wrap t)))
 
 
 
