@@ -37,4 +37,5 @@ ShortcutsNoMenukey=TRUE
 MiscDefaultWorkingDir=
 ColorBold=#073642
 Encoding=UTF-8
+ScrollingOnOutput=FALSE
 
