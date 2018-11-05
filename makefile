@@ -9,21 +9,21 @@ all: help
 ### Help:
 help:
 	@echo "Targets:";\
-	echo "	alpha-init	initialise alpha instance";\
-	echo "	pi-init		initialise pi instance";\
-	echo "	invade		run invasion";\
-	echo "	build		build utilites and emacs.d";\
-	echo "			use \`bins' and \`emacs' rules to build these";\
-	echo "			separately";\
-	echo "	dotfiles	build dotfiles";\
-	echo "	clean		delete build artefacts";\
+	echo "	alpha-debian-init	initialise alpha instance with Debian";\
+	echo "	pi-init			initialise pi instance";\
+	echo "	invade			run invasion";\
+	echo "	build			build utilites and emacs.d";\
+	echo "				use \`bins' and \`emacs' rules to build these";\
+	echo "				separately";\
+	echo "	dotfiles		build dotfiles";\
+	echo "	clean			delete build artefacts";\
 	echo Variables:;\
-	echo "	BASIC=no/yes	Make a basic installation (default: no)"
+	echo "	BASIC=no/yes		Make a basic installation (default: no)"
 
 ### System initialisation:
 
-alpha-init:
-	touch config.m4; cd systems/alpha;\
+alpha-debian-init:
+	touch config.m4; cd systems/alpha-debian;\
 		 $(MAKE) -$(MAKEFLAGS) init; cd $(HERE)
 
 ### Build rules:

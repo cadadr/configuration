@@ -19,7 +19,7 @@ This repo contains the following:
 
 - My GNU Emacs configuration tree (~emacs.d/~)
 - My dotfiles (~dotfiles/~,  ~xdg-config/~)
-- My Debian GNU/Linux w/ XFCE configuration (~systems/alpha/~)
+- My Debian GNU/Linux w/ XFCE configuration (~systems/alpha-debian/~)
 - My configuration for Raspberry Pi (~systems/pi/~)
 - And some other stuff.
 
@@ -41,7 +41,7 @@ installation, run the following commands:
 
 #+BEGIN_EXAMPLE
 # apt-get install sudo make git
-$ make alpha-init
+$ make alpha-debian-init
 #+END_EXAMPLE
 
 This will trigger a series of shell scripts and make rules which will
