@@ -1120,9 +1120,6 @@ Set locally the variable `outline-minor-mode-prefix' to PREFIX."
  ;; otherwise.
  dired-hide-details-hide-symlink-targets nil)
 
-(set-face-attribute dired-symlink-face nil
-                    :foreground "blue")
-
 (setf ls-lisp-dirs-first t)
 
 (setf
