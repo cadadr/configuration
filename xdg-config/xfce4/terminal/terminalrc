@@ -1,15 +1,11 @@
 [Configuration]
-ColorForeground=#073642
-ColorBackground=#fdf6e3
-ColorCursor=#073642
-ColorBoldUseDefault=FALSE
-ColorPalette=#073642;#dc322f;#859900;#b58900;#268bd2;#d33682;#2aa198;#eee8d5;#002b36;#cb4b16;#586e75;#657b83;#839496;#6c71c4;#93a1a1;#fdf6e3
+ColorForeground=#dcdcdc
 FontName=DejaVu Sans Mono 10
 MiscAlwaysShowTabs=FALSE
 MiscBell=FALSE
 MiscBellUrgent=TRUE
 MiscBordersDefault=TRUE
-MiscCursorBlinks=FALSE
+MiscCursorBlinks=TRUE
 MiscCursorShape=TERMINAL_CURSOR_SHAPE_BLOCK
 MiscDefaultGeometry=80x24
 MiscInheritGeometry=FALSE
@@ -31,11 +27,12 @@ MiscUseShiftArrowsToScroll=FALSE
 MiscSlimTabs=FALSE
 MiscNewTabAdjacent=FALSE
 ShortcutsNoMnemonics=TRUE
-TabActivityColor=#dc322f
 ShortcutsNoHelpkey=TRUE
 ShortcutsNoMenukey=TRUE
 MiscDefaultWorkingDir=
-ColorBold=#073642
 Encoding=UTF-8
 ScrollingOnOutput=FALSE
+ColorBackground=#2c2c2c
+ColorCursor=#dcdcdc
+ColorPalette=#3f3f3f;#705050;#60b48a;#dfaf8f;#9ab8d7;#dc8cc3;#8cd0d3;#dcdcdc;#709080;#dca3a3;#72d5a3;#f0dfaf;#94bff3;#ec93d3;#93e0e3;#ffffff
 

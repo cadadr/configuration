@@ -3625,7 +3625,7 @@ Ask otherwise."
 
 ;;;;; GUI:
 
-(defvar gk-gui-theme 'mono
+(defvar gk-gui-theme 'wombat
   "The default theme's name to load at startup.")
 
 (when (gk-gui-p)
@@ -4520,10 +4520,11 @@ Define an ‘elfeed-serch-mode’ keybinding prepending the letter
 (mapc
  (lambda (x) (apply #'set-face-attribute x))
  `((elfeed-search-title-face nil :foreground "normal")
-   (elfeed-search-unread-title-face nil :foreground "normal" :weight bold)
+   (elfeed-search-unread-title-face nil :foreground "normal")
    (elfeed-search-tag-face nil :foreground "normal")
    (elfeed-search-date-face nil :foreground "normal")
-   (elfeed-search-feed-face nil :foreground "normal" :slant italic)))
+   (elfeed-search-feed-face nil :foreground "normal" :slant italic
+                            :weight bold)))
 
 
 
@@ -4532,11 +4533,11 @@ Define an ‘elfeed-serch-mode’ keybinding prepending the letter
 ;; Adapted from http://kitchingroup.cheme.cmu.edu/blog/2017/01/05/Scoring-elfeed-articles/
 
 (defface gk-relevant-elfeed-entry
-  `((t :background "orange1"))
+  `((t :underline "orange1"))
   "Marks a relevant Elfeed entry.")
 
 (defface gk-important-elfeed-entry
-  `((t :background "hotpink"))
+  `((t :underline "hotpink"))
   "Marks an important Elfeed entry.")
 
 (push '(relevant gk-relevant-elfeed-entry)
