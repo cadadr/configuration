@@ -3626,7 +3626,7 @@ Ask otherwise."
 
 ;;;;; GUI:
 
-(defvar gk-gui-theme 'solarized-dark
+(defvar gk-gui-theme 'misterioso
   "The default theme's name to load at startup.")
 
 ;; Solarized customisations
@@ -3664,10 +3664,11 @@ Ask otherwise."
      ;; ‘hl-line-mode’ is on.
      (set-face-attribute 'highlight nil
                          :foreground nil
-                         :underline nil)
+                         :underline nil))
+    ((wombat misterioso)
      ;; Make the cursor more visible, the default grey colour is
      ;; indistinguishable, especially with the bar cursor.
-     (set-face-attribute 'cursor nil :background "orange"))
+     (set-face-attribute 'cursor nil :background "hotpink"))
     ('solarized-dark
      ;; Swap active and inactive mode-line colours.  I like the active
      ;; window's mode line to be darker.
