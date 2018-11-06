@@ -588,10 +588,10 @@ up-to-date."
   (interactive "p")
   (mapcar ($ (byte-recompile-file $1 (> force 1) 0))
           (remove-if-not #'file-exists-p (cons custom-file gk-loaded-files)))
-  (byte-recompile-directory (locate-user-emacs-file "packages") 0 (> force 4))
-  (byte-recompile-directory (locate-user-emacs-file "site") 0 (> force 4))
+  (byte-recompile-directory (locate-user-emacs-file "lisp/site") 0 (> force 4))
   (when custom-file
-    (byte-recompile-file custom-file (> force 1) 0)))
+    (byte-recompile-file custom-file (> force 1) 0))
+  (byte-recompile-file user-init-file))
 
 
 
