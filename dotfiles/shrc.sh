@@ -165,6 +165,8 @@ alias free='free -h'
 alias mq='hg -R $(hg root)/.hg/patches'
 # Vagrant gets confused when GEM_* variables are set...
 alias vagrant="env -u GEM_HOME -u GEM_PATH vagrant"
+# Show file name and line numbers.
+alias ngrep="grep -Hn"
 
 ###
 
