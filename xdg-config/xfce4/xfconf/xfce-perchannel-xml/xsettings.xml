@@ -35,7 +35,7 @@
     <property name="MenuBarAccel" type="empty"/>
     <property name="CursorThemeName" type="string" value="default"/>
     <property name="CursorThemeSize" type="empty"/>
-    <property name="DecorationLayout" type="string" value="close,maximize,minimize:"/>
+    <property name="DecorationLayout" type="string" value="menu:minimize,maximize,close"/>
     <property name="MonospaceFontName" type="empty"/>
   </property>
   <property name="Xfce" type="empty">
