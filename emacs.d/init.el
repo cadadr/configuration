@@ -42,14 +42,14 @@
 (setq load-prefer-newer t)
 
 ;; Allow debugging initialisation errors even w/o --debug-init.
-(unless debug-on-error
-  (message "Temporarily enable debugging on errors...")
-  (setq debug-on-error t)
- (add-hook
-  'after-init-hook
-  (lambda ()
-    (message "Finished initialisation, turn debugging off...")
-    (setq debug-on-error nil))))
+;; (unless debug-on-error
+;;   (message "Temporarily enable debugging on errors...")
+;;   (setq debug-on-error t)
+;;  (add-hook
+;;   'after-init-hook
+;;   (lambda ()
+;;     (message "Finished initialisation, turn debugging off...")
+;;     (setq debug-on-error nil))))
 
 
 
