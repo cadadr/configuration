@@ -45,6 +45,7 @@ kdeconnect
 + pv
 + qemu
 + rsync
++ tmux
 + units
 + vim
 + vorbis-tools vorbisgain
