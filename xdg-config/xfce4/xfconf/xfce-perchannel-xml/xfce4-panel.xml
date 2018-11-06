@@ -38,6 +38,7 @@
       <property name="enter-opacity" type="uint" value="100"/>
       <property name="leave-opacity" type="uint" value="100"/>
       <property name="length-adjust" type="bool" value="true"/>
+      <property name="disable-struts" type="bool" value="false"/>
     </property>
   </property>
   <property name="plugins" type="empty">
@@ -115,6 +116,8 @@
     <property name="clipman" type="empty">
       <property name="tweaks" type="empty">
         <property name="never-confirm-history-clear" type="bool" value="true"/>
+        <property name="paste-on-activate" type="uint" value="0"/>
+        <property name="popup-at-pointer" type="bool" value="false"/>
       </property>
     </property>
     <property name="plugin-22" type="string" value="windowmenu">
