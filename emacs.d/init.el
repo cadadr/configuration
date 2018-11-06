@@ -1090,7 +1090,10 @@ Set locally the variable `outline-minor-mode-prefix' to PREFIX."
   ;; BSD /bin/sh echoes.
   (when (and (not (memq system-type '(gnu gnu/linux gnu/kfreebsd)))
              (string-match "/k?sh$" (getenv "SHELL")))
-    (setq-local comint-process-echoes t)))
+    (setq-local comint-process-echoes t))
+  ;; Compilation shell minor mode activates certain parts of command
+  ;; output as clickable links to parts of files (e.g. grep -Hn).
+  (compilation-shell-minor-mode 1))
 
 
 
