@@ -1,7 +1,7 @@
 {
     "telemetry.enableTelemetry": false,
     "telemetry.enableCrashReporter": false,
-    "workbench.colorTheme": "Visual Studio Light",
+    "workbench.colorTheme": "Solarized Dark",
     "diffEditor.renderSideBySide": false,
     "editor.tabSize": 8,
     "workbench.enableExperiments": false,

@@ -231,6 +231,7 @@ Exclude dot-files, don't sort, and return full paths by default."
 (require 'shr)
 (require 'simple)
 (require 'smtpmail)
+(require 'solarized)
 (require 'spam)
 (require 'subr-x)
 (require 'thingatpt)
@@ -3625,8 +3626,21 @@ Ask otherwise."
 
 ;;;;; GUI:
 
-(defvar gk-gui-theme 'wombat
+(defvar gk-gui-theme 'solarized-dark
   "The default theme's name to load at startup.")
+
+;; Solarized customisations
+(setq
+ solarized-distinct-fringe-background t
+ solarized-use-variable-pitch nil
+ solarized-high-contrast-mode-line t
+ solarized-use-less-bold t
+ solarized-scale-org-headlines nil
+ solarized-height-minus-1 1.0
+ solarized-height-plus-1 1.0
+ solarized-height-plus-2 1.0
+ solarized-height-plus-3 1.0
+ solarized-height-plus-4 1.0)
 
 (when (gk-gui-p)
   (add-to-list 'gk-disabled-modes 'tool-bar-mode)
@@ -3640,19 +3654,37 @@ Ask otherwise."
   (when gk-gui-theme
     (load-theme gk-gui-theme t))
 
-  (when (eq gk-gui-theme 'wombat)
-    ;; With wombat the active window is hard to tell.
-    (set-face-attribute 'mode-line nil
-                        :background "khaki"
-                        :foreground "black")
-    ;; Don't change the foreground or decorate the text when
-    ;; ‘hl-line-mode’ is on.
-    (set-face-attribute 'highlight nil
-                        :foreground nil
-                        :underline nil)
-    ;; Make the cursor more visible, the default grey colour is
-    ;; indistinguishable, especially with the bar cursor.
-    (set-face-attribute 'cursor nil :background "orange"))
+  (case gk-gui-theme
+    ('wombat
+     ;; With wombat the active window is hard to tell.
+     (set-face-attribute 'mode-line nil
+                         :background "khaki"
+                         :foreground "black")
+     ;; Don't change the foreground or decorate the text when
+     ;; ‘hl-line-mode’ is on.
+     (set-face-attribute 'highlight nil
+                         :foreground nil
+                         :underline nil)
+     ;; Make the cursor more visible, the default grey colour is
+     ;; indistinguishable, especially with the bar cursor.
+     (set-face-attribute 'cursor nil :background "orange"))
+    ('solarized-dark
+     ;; Swap active and inactive mode-line colours.  I like the active
+     ;; window's mode line to be darker.
+     (let ((active-bg (face-attribute 'mode-line :background))
+           (active-fg (face-attribute 'mode-line :foreground))
+           (active-box (face-attribute 'mode-line :box))
+           (active-ol (face-attribute 'mode-line :overline))
+           (inactive-bg (face-attribute 'mode-line-inactive :background))
+           (inactive-fg (face-attribute 'mode-line-inactive :foreground))
+           (inactive-box (face-attribute 'mode-line-inactive :box))
+           (inactive-ol (face-attribute 'mode-line-inactive :overline)))
+       (set-face-attribute
+        'mode-line nil :foreground inactive-fg :background inactive-bg
+        :box inactive-box :overline inactive-ol)
+       (set-face-attribute
+        'mode-line-inactive nil :foreground active-fg :background active-bg
+        :box inactive-box :overline active-ol))))
 
   (set-face-attribute 'default nil
                       :height gk-font-default-height
@@ -4519,12 +4551,11 @@ Define an ‘elfeed-serch-mode’ keybinding prepending the letter
 
 (mapc
  (lambda (x) (apply #'set-face-attribute x))
- `((elfeed-search-title-face nil :foreground "normal")
-   (elfeed-search-unread-title-face nil :foreground "normal")
+ `((elfeed-search-title-face nil :foreground "normal" :strike-through t)
+   (elfeed-search-unread-title-face nil :foreground "normal" :strike-through nil)
    (elfeed-search-tag-face nil :foreground "normal")
    (elfeed-search-date-face nil :foreground "normal")
-   (elfeed-search-feed-face nil :foreground "normal" :slant italic
-                            :weight bold)))
+   (elfeed-search-feed-face nil :foreground "normal" :weight bold)))
 
 
 
