@@ -4144,8 +4144,8 @@ xdg-open is a desktop utility that calls your preferred web browser."
 ;; Functions specific for browsing some websites, and the browser
 ;; function.
 
-(defun gk-urls-browse-github-commit (url &rest args)
-  "Browse a github URL.
+(defun gk-urls-browse-github/gitlab-commit (url &rest args)
+  "Browse a Github/Gitlab URL.
 Append .diff to the url.  Pass ARGS on to ‘gk-browse-url’."
   (browse-url (concat url ".diff")))
 
@@ -4298,8 +4298,8 @@ provided."
       (executable-find "firefox")
       browse-url-browser-function
       `(("\\(youtube\\.com\\|youtu\\.be\\)/" . gk-urls-browse-youtube)
-        ("^https?://github.com/.*?/.*?/\\(commit\\|compare\\)/[a-z0-9]+$" .
-         gk-urls-browse-github-commit)
+        ("^https?://\\(github\\|gitlab\\).com/.*?/.*?/\\(commit\\|compare\\)/[a-z0-9]+$" .
+         gk-urls-browse-github/gitlab-commit)
         ("^https?://github\\.com/.*?/.*?/blob/" . gk-urls-browse-github-file)
         ("^https?://raw\\.github\\.com/" . gk-urls-browse-github-raw)
         ("^http://www.cornucopia\\.local/" . gk-urls-browse-cornucopia)
