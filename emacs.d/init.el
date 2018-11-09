@@ -4875,6 +4875,7 @@ Does various tasks after saving a file, see it's definition."
 (gk-prefix-binding "t" #'gk-insert-today)
 (gk-prefix-binding "~" #'gk-toggle-wrap)
 (gk-prefix-binding "]" #'gk-pop-shell)
+(gk-prefix-binding "[" #'window-toggle-side-windows)
 
 
 
