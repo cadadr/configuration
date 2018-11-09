@@ -4552,7 +4552,8 @@ Define an ‘elfeed-serch-mode’ keybinding prepending the letter
    (elfeed-search-unread-title-face nil :foreground "normal" :strike-through nil)
    (elfeed-search-tag-face nil :foreground "normal")
    (elfeed-search-date-face nil :foreground "normal")
-   (elfeed-search-feed-face nil :foreground "normal" :weight bold)))
+   (elfeed-search-feed-face nil :foreground "normal" :weight bold)
+   (elfeed-search-unread-count-face nil :foreground nil)))
 
 
 
