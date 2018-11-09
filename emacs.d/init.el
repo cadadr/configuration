@@ -1081,6 +1081,18 @@ Set locally the variable `outline-minor-mode-prefix' to PREFIX."
 
 (add-hook 'shell-mode-hook 'gk-shell-mode-hook)
 
+(defun gk-pop-shell (arg)
+  "Pop a shell in a side window.
+Pass arg to ‘shell’."
+  (interactive "P")
+  (select-window
+   (display-buffer-in-side-window
+    (save-window-excursion
+      (let ((prefix-arg arg))
+        (call-interactively #'shell))
+      (current-buffer))
+    '((side . bottom)))))
+
 (defun gk-shell-mode-hook ()
   "Hook for `shell-mode'."
   ;; BSD /bin/sh echoes.
@@ -4851,6 +4863,7 @@ Does various tasks after saving a file, see it's definition."
 (gk-prefix-binding "2" #'clone-indirect-buffer)
 (gk-prefix-binding "t" #'gk-insert-today)
 (gk-prefix-binding "~" #'gk-toggle-wrap)
+(gk-prefix-binding "]" #'gk-pop-shell)
 
 
 
