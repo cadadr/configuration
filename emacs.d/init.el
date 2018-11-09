@@ -1934,6 +1934,17 @@ unlocked, offer to lock it before pasting."
 
 
 
+;;;;; Snippets
+(require 'yasnippet)
+
+(setf yas-snippet-dirs
+      (list
+       (locate-user-emacs-file "etc/snippets")))
+
+(pushnew 'yas-global-mode gk-global-modes)
+
+
+
 ;;;;; Lisps:
 
 
