@@ -2970,6 +2970,32 @@ given how page numbers are realised varies in the real world."
   (when (y-or-n-p "Inserted bibliographic reference, save file now?")
     (save-buffer)))
 
+(cl-defun gk-org-forward-content (&optional (n 1))
+  "Go forward in content view.
+
+Toggle the contents view, go to Nth next visible entry, make it
+visible.
+
+N defaults to 1."
+  (interactive "p")
+  (org-content)
+  (outline-next-visible-heading n)
+  (org-show-entry)
+  (recenter 1))
+
+(cl-defun gk-org-backward-content (&optional (n 1))
+  "Go backward in content view.
+
+Toggle the contents view, go to Nth previous visible entry, make it
+visible.
+
+N defaults to 1."
+  (interactive "p")
+  (org-content)
+  (outline-previous-visible-heading n)
+  (org-show-entry)
+  (recenter 1))
+
 
 
 ;;;;; Variables:
@@ -3524,6 +3550,8 @@ Ask otherwise."
 ;; Heading navigation
 (org-defkey org-mode-map (kbd "M-p") 'outline-previous-visible-heading)
 (org-defkey org-mode-map (kbd "M-n") 'outline-next-visible-heading)
+(define-key org-mode-map (kbd "C-M-n") #'gk-org-forward-content)
+(define-key org-mode-map (kbd "C-M-p") #'gk-org-backward-content)
 ;; Paragraphs
 (define-key org-mode-map [remap backward-paragraph] nil)
 (define-key org-mode-map [remap forward-paragraph] nil)
