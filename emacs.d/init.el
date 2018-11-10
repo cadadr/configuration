@@ -3749,6 +3749,11 @@ Ask otherwise."
 
 
 ;;;;; UI Semantics:
+(defun gk-display-buffer-please-no (buf &rest ignore)
+  "Do not display a buffer.
+Made specifically to give the middle finger to Quail.  Stop
+popping your useless completions up, idiot."
+  (error "Inhibited stupid buffer: %s" (buffer-name buf)))
 
 (setf
  find-file-suppress-same-file-warnings t
@@ -3764,7 +3769,8 @@ Ask otherwise."
  pop-up-frames nil
  ;; Display buffers in current window.
  display-buffer-alist
- '(("\\*.*Completions\\*" . (display-buffer-pop-up-window))
+ '(("\\*Quail Completions" . (gk-display-buffer-please-no))
+   ("\\*.*Completions\\*" . (display-buffer-in-side-window . ((side . right))))
    ("\\*Help\\*" . (display-buffer-reuse-window))
    ("Checkdoc" . (display-buffer-pop-up-window))
    (".*" . (display-buffer-same-window)))
