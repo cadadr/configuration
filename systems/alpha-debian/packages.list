@@ -52,7 +52,7 @@ kdeconnect
 + w3m w3m-el
 + webalizer
 + whois
-+ xclip xdotool xinput
++ xcape xclip xdotool xinput
 + youtube-dl
 openvpn resolvconf
 virtualbox virtualbox-qt
