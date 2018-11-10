@@ -42,9 +42,7 @@ PKGMANS_PATH="$RUBY_PATH:$HOME/.local/bin"
 # used.
 
 GK_OPT_DIR="$HOME/opt"
-ANDROID_HOME="$GK_OPT_DIR/android-sdk";		export ANDROID_HOME
-ANDROID_SDK_HOME="$HOME/.android";		export ANDROID_SDK_HOME
-GK_OPT_PATH="$GK_OPT_DIR/flutter/bin"
+GK_OPT_PATH=""
 
 # Finalise binary path.
 
