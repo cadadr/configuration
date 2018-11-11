@@ -2,6 +2,12 @@
 
 export CDPATH=.:$HOME:$HOME/co
 
+if [ -z "$DEFAULT_PATH" ]; then
+    export DEFAULT_PATH="$PATH"
+else
+    PATH="$DEFAULT_PATH"
+fi
+
 PROFILE_PATH="$HOME/bin"
 
 # Collect local path
@@ -18,10 +24,6 @@ if [ -d $LOCALDIR ]; then
 
     PROFILE_PATH="$PROFILE_PATH:$LOCALPATH"
 fi
-
-# Deduplicate path.
-
-PATH=$(echo "$PATH" | tr ':' '\n' | grep '^/[^h]' | sort | uniq | tr '\n' :)
 
 # Collect paths from programming-language specific package managers.
 
