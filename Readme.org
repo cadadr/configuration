@@ -35,7 +35,7 @@ for its licence terms is probably written by me, and I hereby put all
 of them in public domain.
 
 * Installation
-** System setup
+** ~alpha-debian~ System setup
 In order to get this configuration running on a vanilla Debian XFCE4
 installation, run the following commands:
 
@@ -55,3 +55,13 @@ commands that needs such privileges.
 This recipe, among other things, will create a user ~g~ with uid 1993
 and a group of similar identifiers, and assing the user certain
 groups.
+
+** ~alpha-guix~ System Setup
+The following commands get this configuration set up on a GuixSD
+system installed using the configuration file found at
+=systems/alpha-guix/etc/config.scm=.  Beware that this is WIP
+stuff, just started configuring GuixSD.
+
+#+BEGIN_EXAMPLE
+$ make invade
+#+END_EXAMPLE
