@@ -24,7 +24,8 @@
      (dired-omit-extensions ".org_archive" "~")
      (dired-omit-extensions ".html" ".dirty" ".html.m4" ".xml" ".list.txt" "~")
      (slime-port . 9678)))
- '(tramp-syntax 'default nil (tramp)))
+ '(tramp-syntax 'default nil (tramp))
+ '(xref-marker-ring-length 160))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
