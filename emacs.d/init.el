@@ -1062,6 +1062,16 @@ Set locally the variable `outline-minor-mode-prefix' to PREFIX."
 
 ;; Settings and keybindings common to all comint buffers.
 
+;; DEATH TO ALL FUCKING COLOURS!
+;; FUCK ALL COLOURS!
+;; THANK GOD FOR THIS VARIABLE!
+;; THANK YOU WHOMEVER ADDED THIS!
+;; NOW COLOUR WHATEVER THE FUCK YOU WANT YOU BRAIN
+;; DEAD DEVELOPERS OF COMMAND LINE UTILITIES WITH
+;; COLOURFUL OUTPUT THAT CANNOT BE DISABLED!
+;; FUCK YOU ALL.
+(setf ansi-color-for-comint-mode 'filter)
+
 (defun gk-toggle-comint-process-echoes ()
   "Toggle ‘comint-process-echoes’ variable."
   (interactive)
