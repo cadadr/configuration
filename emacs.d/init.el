@@ -3711,38 +3711,47 @@ Ask otherwise."
   (when gk-gui-theme
     (load-theme gk-gui-theme t))
 
-  (case gk-gui-theme
-    ('wombat
-     ;; With wombat the active window is hard to tell.
-     (set-face-attribute 'mode-line nil
-                         :background "khaki"
-                         :foreground "black")
-     ;; Don't change the foreground or decorate the text when
-     ;; ‘hl-line-mode’ is on.
-     (set-face-attribute 'highlight nil
-                         :foreground nil
-                         :underline nil))
-    ((wombat misterioso)
-     ;; Make the cursor more visible, the default grey colour is
-     ;; indistinguishable, especially with the bar cursor.
-     (set-face-attribute 'cursor nil :background "hotpink"))
-    ('solarized-dark
-     ;; Swap active and inactive mode-line colours.  I like the active
-     ;; window's mode line to be darker.
-     (let ((active-bg (face-attribute 'mode-line :background))
-           (active-fg (face-attribute 'mode-line :foreground))
-           (active-box (face-attribute 'mode-line :box))
-           (active-ol (face-attribute 'mode-line :overline))
-           (inactive-bg (face-attribute 'mode-line-inactive :background))
-           (inactive-fg (face-attribute 'mode-line-inactive :foreground))
-           (inactive-box (face-attribute 'mode-line-inactive :box))
-           (inactive-ol (face-attribute 'mode-line-inactive :overline)))
-       (set-face-attribute
-        'mode-line nil :foreground inactive-fg :background inactive-bg
-        :box inactive-box :overline inactive-ol)
-       (set-face-attribute
-        'mode-line-inactive nil :foreground active-fg :background active-bg
-        :box inactive-box :overline active-ol))))
+  ;; Customise wombat
+  (when (eq gk-gui-theme 'wombat)
+    ;; With wombat the active window is hard to tell.
+    (set-face-attribute 'mode-line nil
+                        :background "khaki"
+                        :foreground "black")
+    ;; Don't change the foreground or decorate the text when
+    ;; ‘hl-line-mode’ is on.
+    (set-face-attribute 'highlight nil
+                        :foreground nil
+                        :underline nil))
+
+  ;; Customise misterioso.
+  (when (eq gk-gui-theme 'misterioso)
+    (set-face-attribute 'header-line nil :background "black"
+                        :foreground "white"))
+
+  ;; Common customisations for misterioso and wombat.
+  (when (memq gk-gui-theme '(wombat misterioso))
+    ;; Make the cursor more visible, the default grey colour is
+    ;; indistinguishable, especially with the bar cursor.
+    (set-face-attribute 'cursor nil :background "hotpink"))
+
+  ;; Further customise solarized.
+  (when (eq gk-gui-theme 'solarized-dark)
+    ;; Swap active and inactive mode-line colours.  I like the active
+    ;; window's mode line to be darker.
+    (let ((active-bg (face-attribute 'mode-line :background))
+          (active-fg (face-attribute 'mode-line :foreground))
+          (active-box (face-attribute 'mode-line :box))
+          (active-ol (face-attribute 'mode-line :overline))
+          (inactive-bg (face-attribute 'mode-line-inactive :background))
+          (inactive-fg (face-attribute 'mode-line-inactive :foreground))
+          (inactive-box (face-attribute 'mode-line-inactive :box))
+          (inactive-ol (face-attribute 'mode-line-inactive :overline)))
+      (set-face-attribute
+       'mode-line nil :foreground inactive-fg :background inactive-bg
+       :box inactive-box :overline inactive-ol)
+      (set-face-attribute
+       'mode-line-inactive nil :foreground active-fg :background active-bg
+       :box inactive-box :overline active-ol)))
 
   (set-face-attribute 'default nil
                       :height gk-font-default-height
