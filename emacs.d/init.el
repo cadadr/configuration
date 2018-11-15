@@ -1953,6 +1953,8 @@ unlocked, offer to lock it before pasting."
 
 (pushnew 'yas-global-mode gk-global-modes)
 
+(diminish 'yas-minor-mode)
+
 
 
 ;;;;; Lisps:
