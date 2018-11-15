@@ -60,7 +60,7 @@ openvpn resolvconf
 
 ### Version control:
 + cvs
-+ git git-cvs gitk
++ git git-cvs gitk git-email
 + mercurial python-hglib python-dulwich python-fastimport
 + python3-pip
 + quilt
