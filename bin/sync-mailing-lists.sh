@@ -12,7 +12,7 @@ PARALLEL=2
 ### GNU lists:
 
 GNU_FTP=ftp://lists.gnu.org
-GNU_LISTS="help-gnu-emacs bug-gnu-emacs emacs-devel"
+GNU_LISTS="help-gnu-emacs bug-gnu-emacs emacs-devel emacs-orgmode"
 
 gnu_fetch_list(){
     lftp -c "set ftp:list-options -a;
