@@ -65,3 +65,13 @@ stuff, just started configuring GuixSD.
 #+BEGIN_EXAMPLE
 $ make invade
 #+END_EXAMPLE
+
+** ~alpha~ Post-install
+The following commands help complete the installation, regardless of
+the system flavour:
+
+#+BEGIN_EXAMPLE
+$ pip3 install -r requirements.txt
+$ bundle
+$ gem rdoc --all
+#+END_EXAMPLE
