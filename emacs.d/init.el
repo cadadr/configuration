@@ -2150,6 +2150,13 @@ KEYWORDS are the keywords for the file."
 (defvar gk-ri-history nil
   "The history list for ‘gk-ri’.")
 
+(define-derived-mode gk-ri-mode view-mode "GKRi"
+  "GK Ri mode is an adapation of ‘view-mode’ to ‘gk-ri’."
+  :group 'GK
+  (let ((map gk-ri-mode-map))
+   (define-key map "r" #'gk-ri)
+   (define-key map (kbd "C-c C-h") #'gk-ri)))
+
 (defun gk-ri (what)
   "Interface to ri(1) documentation browser."
   (interactive
@@ -2172,8 +2179,8 @@ KEYWORDS are the keywords for the file."
             (kill-this-buffer)
             (message m))
         (ansi-color-filter-region (goto-char (point-min)) (point-max))
+        (gk-ri-mode)
         (gk-minor-mode)
-        (view-mode)
         (display-buffer buf)))))
 
 (define-key ruby-mode-map "\C-\M-x" 'ruby-send-definition)
