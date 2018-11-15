@@ -56,7 +56,7 @@ kdeconnect
 + xcape xclip xdotool xinput
 + youtube-dl
 openvpn resolvconf
-virtualbox virtualbox-qt
++ virtualbox virtualbox-qt
 
 ### Version control:
 + cvs
