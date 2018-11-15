@@ -38,6 +38,7 @@ kdeconnect
 + gawk
 + gvfs-bin
 + lxc libvirt0 libpam-cgroup libpam-cgfs bridge-utils
++ lftp
 + moreutils
 + net-tools netcat-openbsd telnet traceroute bind9utils
 + pandoc
