@@ -553,6 +553,30 @@ turn both off.  With a zero prefix, toggle both."
   (interactive)
   (find-file (format "/proc/%d/status" (emacs-pid))))
 
+(defun gk-ellipsize-file-or-directory-name (name maxlen)
+  "Ellipsize the directory part of a file NAME.
+If NAME is larget than MAXLEN, ellipsise the directory part,
+preserving, ‘file-name-nondirectory’ if it's a file or the last
+directory name if a directory, returning the ellipsized string as
+the result."
+  (if (> (length name) maxlen)
+      (if (or (file-directory-p name)
+              (save-match-data (string-match "/$" name)))
+          (let* ((bits (split-string name "/" t))
+                 (head (butlast bits))
+                 (tail (car (last bits))))
+            (concat
+             (unless (equal (car bits) "~") "/")
+             (substring (mapconcat #'identity head "/") 0
+                        (- (- maxlen 4) (length bits)))
+             ".../" tail "/"))
+        (let ((fnod (file-name-nondirectory name)))
+          (concat
+           (substring (file-name-directory name) 0
+                      (- (- maxlen 4) (length fnod)))
+           ".../" fnod)))
+    name))
+
 
 
 ;;;; Recompilation:
@@ -1813,9 +1837,7 @@ my configurations."
         global-paren-face-mode
         auto-insert-mode
         url-handler-mode
-        which-key-mode
-        line-number-mode
-        column-number-mode))
+        which-key-mode))
 
 (mapc ($ (pushnew $1 gk-disabled-modes))
       '(electric-indent-mode
@@ -3838,12 +3860,64 @@ popping your useless completions up, idiot."
   (butlast gk-mode-line-pristine-format 1)
   "The base for constructing a custom mode line.")
 
-(setq-default
- mode-line-format
- (append gk-mode-line-base
-         '(" "
-           ;; Buffer's file if visiting one, the default directory otherwise.
-           (:eval (or (buffer-file-name) default-directory)))))
+(defvar gk-mode-line-modes
+  (let ((recursive-edit-help-echo "Recursive edit, type C-M-c to get out")
+        (major-mode-help-text "Major mode\n\
+mouse-1: Display major mode menu\n\
+mouse-2: Show help for major mode\n\
+mouse-3: Toggle minor modes
+
+Active minor modes: \n - "))
+    (list (propertize "%[" 'help-echo recursive-edit-help-echo)
+          `(:eval
+            (propertize
+             (concat "#" mode-name)
+             'face '(:weight bold :underline t)
+             'help-echo
+             (concat
+              ,major-mode-help-text
+              (mapconcat
+               #'symbol-name
+               (cl-remove-if-not ($ (symbol-value $1)) (mapcar #'car minor-mode-alist))
+               "\n - "))
+             'mouse-face 'mode-line-highlight
+             'local-map mode-line-major-mode-keymap))
+          '("" mode-line-process)
+          (propertize "%n" 'help-echo "mouse-2: Remove narrowing from buffer"
+                      'mouse-face 'mode-line-highlight
+                      'local-map (make-mode-line-mouse-map
+                                  'mouse-2 #'mode-line-widen))
+          (propertize "%]" 'help-echo recursive-edit-help-echo)
+          " "))
+  "Mode line construct for displaying major and minor modes.
+An adaptation and simplification of ‘mode-line-modes’.")
+(put 'gk-mode-line-modes 'risky-local-variable t)
+
+(defvar gk-mode-line-buffer-file-name
+  '(" "
+    (:eval
+     ;; Buffer's file if visiting one, the default directory
+     ;; otherwise.  Ellipsise long names.
+     (let* ((f (or (buffer-file-name) default-directory))
+            (... (gk-ellipsize-file-or-directory-name f 25)))
+       (propertize
+        ...
+        'help-echo (concat f "\nmouse-1: Copy full path of buffer to clipboard")
+        'mouse-face 'mode-line-highlight
+        'local-map (make-mode-line-mouse-map
+                    'mouse-1 (lambda (event)
+                               (interactive "e")
+                               (with-selected-window (posn-window (event-start event))
+                                 (gk-copy-buffer-file-name)))))))))
+(put 'gk-mode-line-buffer-file-name 'risky-local-variable t)
+
+(defun gk-build-mode-line-format ()
+  (-replace-first
+   'mode-line-modes 'gk-mode-line-modes
+   (append gk-mode-line-base
+           gk-mode-line-buffer-file-name)))
+
+(setq-default mode-line-format (gk-build-mode-line-format))
 
 
 
