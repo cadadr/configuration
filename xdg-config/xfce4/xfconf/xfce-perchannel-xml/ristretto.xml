@@ -5,13 +5,13 @@
     <property name="navigationbar" type="empty">
       <property name="position" type="string" value="left"/>
     </property>
-    <property name="height" type="uint" value="534"/>
-    <property name="width" type="uint" value="764"/>
+    <property name="height" type="uint" value="342"/>
+    <property name="width" type="uint" value="675"/>
     <property name="thumbnails" type="empty">
-      <property name="show" type="bool" value="false"/>
+      <property name="show" type="bool" value="true"/>
     </property>
     <property name="toolbar" type="empty">
-      <property name="show" type="bool" value="false"/>
+      <property name="show" type="bool" value="true"/>
     </property>
   </property>
 </channel>
