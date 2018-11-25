@@ -30,13 +30,16 @@ kdeconnect
 
 ### Utilities:
 + apt-transport-https
++ certbot
 + curl
 + dirmngr
 + dmenu
++ dnsutils
 + equivs
 + hugo
 + gawk
 + gvfs-bin
++ inotify-tools
 + lxc libvirt0 libpam-cgroup libpam-cgfs bridge-utils
 + lftp
 + moreutils
