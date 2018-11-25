@@ -23,3 +23,7 @@ nmap Y y$
 " visuals
 set lbr			" word wrap
 let &sbr = '\ '		" illustrate logical line breaks
+
+" keybindings
+nmap ,n :set nu<CR>
+nmap ,r :source ~/.vimrc<CR>
