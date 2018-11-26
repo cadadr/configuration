@@ -3826,8 +3826,8 @@ popping your useless completions up, idiot."
  ;; Show in the current frame, change window's buffer if necessary.
  ido-default-buffer-method 'selected-window)
 
-;;(push 'ido-mode gk-global-modes)
-;;(push 'ido-everywhere gk-global-modes)
+(push 'ido-mode gk-global-modes)
+(push 'ido-everywhere gk-global-modes)
 
 (setf ido-enable-flex-matching t)
 
