@@ -31,7 +31,8 @@ case $V in
 	    --with-modules \
 	    --with-file-notification=yes \
 	    --with-gameuser=no \
-	    --with-mailutils ;;
+	    --with-mailutils \
+            --without-threads ;;
     26)
 	./configure \
 	    --prefix=$HOME/local/emacs \
