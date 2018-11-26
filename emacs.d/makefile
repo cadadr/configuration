@@ -24,9 +24,6 @@ clean-ext:
 clean-extras:
 	cd extras; $(MAKE) -$(MAKEFLAGS) clean; cd ..
 
-clean-docs:
-	cd docs; $(MAKE) -$(MAKEFLAGS) clean; cd ..
-
-clean: clean-extras clean-docs
+clean: clean-extras
 
 .PHONY: all help ext extras docs clean clean-ext clean-docs
