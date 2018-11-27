@@ -3601,7 +3601,7 @@ Ask otherwise."
 
 ;;;;; GUI:
 
-(defvar gk-gui-theme 'mono
+(defvar gk-gui-theme 'misterioso
   "The default theme's name to load at startup.")
 
 ;; Solarized customisations
@@ -3644,7 +3644,12 @@ Ask otherwise."
   ;; Customise misterioso.
   (when (eq gk-gui-theme 'misterioso)
     (set-face-attribute 'header-line nil :background "black"
-                        :foreground "white"))
+                        :foreground "white")
+    (set-face-attribute 'show-paren-match nil
+                        :foreground "green yellow"
+                        :background nil)
+    (set-face-attribute 'diff-refine-added nil
+                        :background "sea green"))
 
   ;; Common customisations for misterioso and wombat.
   (when (memq gk-gui-theme '(wombat misterioso))
