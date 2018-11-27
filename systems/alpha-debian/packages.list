@@ -9,6 +9,10 @@
 + libpoppler-glib-dev
 + libpoppler-private-dev
 
+### Desktop:
++ subtle
++ dunst pasystray
+
 ### Application software:
 + atril
 + cheese
