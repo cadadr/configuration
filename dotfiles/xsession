@@ -3,18 +3,8 @@
 
 set -e
 
-. $MYLIB/fns.sh
-. ~/.xsessionrc
-
-logx Set the background.
-xsetroot -gray
-
-logx Start status bar script
-dwm-status.sh &
-
-logx Start background programs
-dunst &
-pasystray &
+. $MYLIB/xcommon.sh
+. $MYLIB/xbackground.sh
 
 logx 'Start the desktop session...'
-exec dbus-launch --exit-with-session sh $MEINE/x.sh
+exec dbus-launch --exit-with-session subtle
