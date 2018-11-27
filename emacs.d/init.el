@@ -987,8 +987,8 @@ integer argument, otherwise positive."
 
 ;; Set up so that there's 75-80 chars width for half-sized horizontal
 ;; windows.
-(defconst gk-font-default-height 110)
-(defconst gk-font-variable-pitch-height 120)
+(defconst gk-font-default-height 100)
+(defconst gk-font-variable-pitch-height 110)
 
 (defun gk-font (type)
   "Get default font for TYPE, a keyword.
