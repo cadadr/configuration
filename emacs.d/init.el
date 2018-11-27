@@ -2085,7 +2085,9 @@ KEYWORDS are the keywords for the file."
 
 ;;;;;;; Debugger:
 
-;; Configuaration for the Elisp debugger.
+(setq
+ ;; (expr ...) not expr(...)
+ debugger-stack-frame-as-list t)
 
 ;; From https://www.reddit.com/r/emacs/comments/7htdzk/show_reddit_prettyprint_debugger_frames/
 
