@@ -3625,7 +3625,7 @@ Ask otherwise."
   ;; This needs to be set manually for solarized.
   (setf frame-background-mode nil)
   ;; Update all the existing frames.
-  (mapc 'frame-set-background-mode (frame-list))
+  (mapc #'frame-set-background-mode (frame-list))
 
   (when gk-gui-theme
     (load-theme gk-gui-theme t))
