@@ -3827,7 +3827,6 @@ popping your useless completions up, idiot."
  ido-default-buffer-method 'selected-window)
 
 (push 'ido-mode gk-global-modes)
-(push 'ido-everywhere gk-global-modes)
 
 (setf ido-enable-flex-matching t)
 
