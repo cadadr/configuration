@@ -3620,6 +3620,7 @@ Ask otherwise."
 (when (gk-gui-p)
   (add-to-list 'gk-disabled-modes 'tool-bar-mode)
   (add-to-list 'gk-disabled-modes 'scroll-bar-mode)
+  (add-to-list 'gk-disabled-modes 'menu-bar-mode)
 
   ;; This needs to be set manually for solarized.
   (setf frame-background-mode nil)
@@ -4903,6 +4904,7 @@ Does various tasks after saving a file, see it's definition."
 (gk-prefix-binding "~" #'gk-toggle-wrap)
 (gk-prefix-binding "]" #'gk-pop-shell)
 (gk-prefix-binding "[" #'window-toggle-side-windows)
+(gk-prefix-binding "=" #'menu-bar-mode) ;toggle
 
 
 
