@@ -53,6 +53,7 @@
         <value type="string" value="redshift-gtk"/>
         <value type="string" value="thunar"/>
         <value type="string" value="ibus panel"/>
+        <value type="string" value="pulseaudio system tray"/>
       </property>
     </property>
     <property name="plugin-7" type="string" value="clock">
