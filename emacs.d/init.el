@@ -3275,10 +3275,6 @@ unlocked, offer to lock it before pasting."
 
 (setf org-variable-pitch-fixed-font (gk-font :mono))
 
-(set-face-attribute 'org-variable-pitch-face
-                     nil :inherit 'org-level-1
-                     :weight 'bold)
-
 ;; Links in tables mess with alignment.
 (pushnew 'org-link org-variable-pitch-fixed-faces)
 
