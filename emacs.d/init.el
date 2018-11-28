@@ -1884,7 +1884,9 @@ my configurations."
 (setf
  log-edit-diff-function 'vc-diff
  ;; STFU and follow them links.
- vc-follow-symlinks t)
+ vc-follow-symlinks t
+ ;; Do not write these out.
+ vc-find-revision-no-save t)
 
 (defun gk-log-edit-mode-hook ()
   "Hook for `log-edit-mode', used for vc checkins."
