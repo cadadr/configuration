@@ -37,7 +37,7 @@ kdeconnect
 + certbot
 + curl
 + dirmngr
-+ dmenu
++ suckless-tools
 + dnsutils
 + equivs
 + hugo
