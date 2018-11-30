@@ -6,6 +6,7 @@
 
 ;;; Code:
 
+(require 'battery)
 (require 'exwm)
 (require 'exwm-config)
 (require 'exwm-systemtray)
@@ -22,10 +23,10 @@
 (exwm-input-set-key (kbd "s-w") #'exwm-workspace-switch)
 
 ;; 's-N': Switch to certain workspace
-(cl-loop for i from 1 to exwm-workspace-number
-         do (exwm-input-set-key
-             (kbd (format "s-%d" i))
-             (gk-interactively (exwm-workspace-switch i))))
+(dolist (i (number-sequence 0 3))
+  (exwm-input-set-key
+   (kbd (format "s-%d" (1+ i)))
+   (gk-interactively (exwm-workspace-switch i))))
 
 ;; Launch command
 (exwm-input-set-key
@@ -45,7 +46,9 @@
         ([?\M-v] . [prior])
         ([?\C-v] . [next])
         ([?\C-d] . [delete])
-        ([?\C-k] . [S-end delete])))
+        ([?\C-k] . [S-end delete])
+        ([?\M->] . [end])
+        ([?\M-<] . [home])))
 
 (setf exwm-systemtray-height 16)
 
@@ -58,9 +61,18 @@
   (add-hook 'exwm-init-hook
             #'exwm-config--fix/ido-buffer-window-other-frame))
 
+;; Shortcuts
 (defun www ()
   (interactive)
   (start-process-shell-command "Firefox" nil "gk-web-browser"))
+
+(defun free ()
+  (interactive)
+  (shell-command "free -h"))
+
+;; Monitors
+(cl-pushnew 'display-time-mode gk-global-modes)
+(cl-pushnew 'display-battery-mode gk-global-modes)
 
 (provide 'exwm-init)
 ;;; exwm-init.el ends here
