@@ -1,0 +1,12 @@
+Maintainer: Göktuğ Kayaalp <self@gkayaalp.com>
+Section: gk
+Priority: optional
+Standards-Version: 3.5.10
+Version: 0.1.0
+
+Package: goktug-layer-emacs
+Architecture: any
+
+Depends: libjansson-dev, libpoppler-glib-dev, libpoppler-private-dev
+
+Description: Emacs layer for Göktuğ's Debian System

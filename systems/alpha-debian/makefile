@@ -3,12 +3,12 @@
 # Generated configuration files:
 GENCONFIGS=
 
-ifeq ($(BASIC), no)
-	BASEPFX=
-else
-	ifeq ($(BASIC), yes)
+ifeq ($(BASIC), yes)
 	BASEPFX=basic-
-	endif
+else ifeq ($(BASIC), devel)
+	BASEPFX=basic-
+else
+	BASEPFX=
 endif
 
 help:
@@ -18,16 +18,22 @@ help:
 	@echo "	init			run system/user initialisation script"
 
 install-packages:
-	perl pkglist2cmds.pl < $(BASEPFX)packages.list | sudo sh -i
+ifeq ($(BASIC), yes)
+	cd layers/; $(MAKE) -$(MAKEFLAGS) install-base; cd ..
+else ifeq ($(BASIC), devel)
+	cd layers/; $(MAKE) -$(MAKEFLAGS) install-devel; cd..
+else
+	cd layers/; $(MAKE) -$(MAKEFLAGS) install-full; cd ..
+endif
 
 install-config: $(GENCONFIGS)
-	sudo sh ./install-configs.sh
+	sudo sh ./scripts/install-configs.sh
 
 apt-update:
 	sudo apt-get update
 
 init: install-config apt-update install-packages
-	sudo sh $(BASEPFX)init.sh
+	sudo sh ./scripts/$(BASEPFX)init.sh
 
 clean:
 	rm $(GENCONFIGS)

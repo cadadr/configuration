@@ -1,0 +1,15 @@
+Maintainer: Göktuğ Kayaalp <self@gkayaalp.com>
+Section: gk
+Priority: optional
+Standards-Version: 3.5.10
+Version: 0.1.0
+
+Package: goktug-layer-base
+Architecture: any
+
+Depends: apt-transport-https, curl, dnsutils, equivs, gawk, gvfs-bin,
+  net-tools, netcat-openbsd, telnet, traceroute, bind9utils,
+  moreutils, lftp, lxc, libvirt0, libpam-cgroup, libpam-cgfs,
+  bridge-utils, qemu, rsync, openssh-server,
+
+Description: Base layer for Göktuğ's Debian System
