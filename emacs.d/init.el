@@ -3897,18 +3897,20 @@ mouse-3: Toggle minor modes
 Active minor modes: \n - "))
     (list (propertize "%[" 'help-echo recursive-edit-help-echo)
           `(:eval
-            (propertize
-             (concat "#" mode-name)
-             'face '(:weight bold :underline t)
-             'help-echo
-             (concat
-              ,major-mode-help-text
-              (mapconcat
-               #'symbol-name
-               (cl-remove-if-not ($ (symbol-value $1)) (mapcar #'car minor-mode-alist))
-               "\n - "))
-             'mouse-face 'mode-line-highlight
-             'local-map mode-line-major-mode-keymap))
+            (if (stringp mode-name)
+                (propertize
+                 (concat "#" mode-name)
+                 'face '(:weight bold :underline t)
+                 'help-echo
+                 (concat
+                  ,major-mode-help-text
+                  (mapconcat
+                   #'symbol-name
+                   (cl-remove-if-not ($ (symbol-value $1)) (mapcar #'car minor-mode-alist))
+                   "\n - "))
+                 'mouse-face 'mode-line-highlight
+                 'local-map mode-line-major-mode-keymap)
+              mode-name))
           '("" mode-line-process)
           (propertize "%n" 'help-echo "mouse-2: Remove narrowing from buffer"
                       'mouse-face 'mode-line-highlight
