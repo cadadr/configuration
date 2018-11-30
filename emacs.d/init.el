@@ -3621,7 +3621,7 @@ Ask otherwise."
 
 ;;;;; GUI:
 
-(defvar gk-gui-theme 'misterioso
+(defvar gk-gui-theme nil
   "The default theme's name to load at startup.")
 
 ;; Solarized customisations
