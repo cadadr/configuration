@@ -8,6 +8,7 @@ icons.*.rc
 *.hi
 *.log
 *.o
+*.so
 *.old
 *.orig
 *.rpm
