@@ -5026,6 +5026,13 @@ whose function is run when the menu item is clicked."
 
 
 
+;;; EXWM:
+
+(when (string= (getenv "EXWM") "yes")
+  (load (locate-user-emacs-file "exwm-init")))
+
+
+
 ;;; Finalise initialisation:
 
 (unless noninteractive
