@@ -3441,7 +3441,8 @@ Generates a "
 (org-babel-do-load-languages
  'org-babel-load-languages
  '((emacs-lisp . t)
-   (shell . t)))
+   (shell . t)
+   (python . t)))
 
 (defun gk-org-confirm-babel-evaluate (&rest ignore)
   "Evaluate code blocks straight away if they are in the ‘org-directory’.
