@@ -3447,7 +3447,9 @@ Generates a "
 (defun gk-org-confirm-babel-evaluate (&rest ignore)
   "Evaluate code blocks straight away if they are in the ‘org-directory’.
 Ask otherwise."
-  (not (file-in-directory-p (buffer-file-name) org-directory)))
+  (member
+   (buffer-file-name)
+   (directory-files-recursively org-directory "\\.org$")))
 
 (setf org-confirm-babel-evaluate #'gk-org-confirm-babel-evaluate)
 
