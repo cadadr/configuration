@@ -1,5 +1,5 @@
 before_script:
-  - apt-get update -qq && apt-get install -y -qq sudo make git
+  - apt-get update -qq && apt-get install -y -qq sudo make git equivs
 
 init_alpha:
   script:
