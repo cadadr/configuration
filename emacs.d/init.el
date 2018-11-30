@@ -1986,7 +1986,8 @@ unlocked, offer to lock it before pasting."
 
 
 
-;;;;; Snippets
+;;;;; Snippets:
+
 (require 'yasnippet)
 
 (setf yas-snippet-dirs
