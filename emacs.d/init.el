@@ -597,6 +597,16 @@ the beginning of the list."
 
 
 
+;;;; Generic advices:
+
+(defun gk-ad-stay-here (fun &rest args)
+  "Stay in the current buffer when running FUN.
+Pass ARGS to FUN."
+  (save-window-excursion
+    (apply fun args)))
+
+
+
 ;;;; Recompilation:
 
 ;; This bit of code helps with recompilation.  Various files external to
@@ -2675,6 +2685,9 @@ email and archiving read mail in another file."
      "This is not your default RMAIL file, won't run ‘gk-rmail-advance’ here"))
   (rmail-output gk-rmail-archive-file)
   (rmail-delete-forward))
+
+(dolist (f '(rmail-summary-previous-msg rmail-summary-next-msg))
+ (advice-add f :around #'gk-ad-stay-here))
 
 (define-key rmail-mode-map "N" #'gk-rmail-advance)
 (define-key rmail-mode-map "S" #'gk-rmail-force-expunge-and-save)
