@@ -10,6 +10,7 @@ all: help
 help:
 	@echo "Targets:";\
 	echo "	alpha-debian-init	initialise alpha instance with Debian";\
+	echo "	alpha-debian-test	test alpha-debian w/ Docker";\
 	echo "	pi-init			initialise pi instance";\
 	echo "	invade			run invasion";\
 	echo "	build			build utilites and emacs.d";\
@@ -23,30 +24,31 @@ help:
 ### System initialisation:
 
 alpha-debian-init:
-	touch config.m4; cd systems/alpha-debian;\
-		 $(MAKE) -$(MAKEFLAGS) init; cd $(HERE)
+	touch config.m4; $(MAKE) -C systems/alpha-debian -$(MAKEFLAGS) init
+
+alpha-debian-test:
+	docker build -t config-layers . && docker run config-layers
 
 ### Build rules:
 build: bins emacs
 
 bins:
-	cd bin; $(MAKE) -$(MAKEFLAGS); cd $(HERE)
+	$(MAKE) -C bin -$(MAKEFLAGS)
 
 emacs:
-	cd emacs.d; $(MAKE) -$(MAKEFLAGS) all; cd $(HERE)
+	$(MAKE) -C emacs.d; -$(MAKEFLAGS) all
 
 clean-bin:
-	rm -rf $(DEB); cd bin; $(MAKE) -$(MAKEFLAGS) clean;\
-	cd $(HERE)
+	$(MAKE) -C bin -$(MAKEFLAGS) clean
 
 invade: dotfiles
 	./bin/invade -v $(HOME)
 
 dotfiles:
-	cd dotfiles; $(MAKE) -$(MAKEFLAGS); cd $(HERE)
+	$(MAKE) -C dotfiles -$(MAKEFLAGS)
 
 clean-dotfiles:
-	cd dotfiles; $(MAKE) -$(MAKEFLAGS) clean; cd $(HERE)
+	$(MAKE) -C dotfiles -$(MAKEFLAGS) clean
 
 ### Clean:
 clean: clean-bin

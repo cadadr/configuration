@@ -13,16 +13,16 @@ help:
 all: extras
 
 ext:
-	cd ext; $(MAKE) -$(MAKEFLAGS); cd ..
+	$(MAKE) -C ext -$(MAKEFLAGS)
 
 extras:
-	cd extras; $(MAKE) -$(MAKEFLAGS); cd ..
+	$(MAKE) -C extras -$(MAKEFLAGS)
 
 clean-ext:
-	cd ext; $(MAKE) -$(MAKEFLAGS) clean; cd ..
+	$(MAKE) -C ext -$(MAKEFLAGS) clean
 
 clean-extras:
-	cd extras; $(MAKE) -$(MAKEFLAGS) clean; cd ..
+	$(MAKE) -C extras -$(MAKEFLAGS) clean
 
 clean: clean-extras
 

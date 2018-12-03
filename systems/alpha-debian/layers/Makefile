@@ -1,19 +1,26 @@
 # Makefile
 
-CONTROLS!=ls *.control
+CONTROLS=$(wildcard *.control)
+BASEDEBS=$(wildcard ./goktug-layer-base_*.deb)
+UTILDEBS=$(wildcard ./goktug-layer-util_*.deb)
+DEVELDEBS=$(wildcard ./goktug-layer-devel_*.deb)
+ALLDEBS=$(wildcard ./*.deb)
+
+INSTALL=sudo apt-get install -yqq
 
 all:
 	$(foreach c,$(CONTROLS),equivs-build $(c);)
 
 install-full: all
-	sudo apt-get install ./*.deb
+	$(INSTALL) $(ALLDEBS)
+	echo $(PWD)
 
 install-base: all
-	sudo apt-get install ./goktug-base-*.deb
-	sudo apt-get install ./goktug-util-*.deb
+	$(INSTALL) $(BASEDEBS)
+	$(INSTALL) $(UTILDEBS)
 
 install-devel: all install-base
-	sudo apt-get install ./goktug-devel-*.deb
+	$(INSTALL) $(DEVELDEBS)
 
 clean:
 	rm -f *.deb

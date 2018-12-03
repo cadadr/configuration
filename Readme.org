@@ -42,6 +42,8 @@ installation, run the following commands:
 #+BEGIN_EXAMPLE
 # apt-get install sudo make git
 $ make alpha-debian-init
+# locale-gen
+# update-initramfs -u
 #+END_EXAMPLE
 
 This will trigger a series of shell scripts and make rules which will

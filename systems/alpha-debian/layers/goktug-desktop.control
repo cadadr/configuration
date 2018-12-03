@@ -7,9 +7,10 @@ Version: 0.1.0
 Package: goktug-layer-desktop
 Architecture: any
 
-Depends: dunst, pasystray, subtle, atril, cheese, firefox-esr, gimp,
- gparted, gv, libreoffice, mpv, simple-scan, transmission-gtk,
- vokoscreen, redshift-gtk, suckless-tools, laptop-mode-tools, xcape,
- xclip, xdotool, xinput, virtualbox, virtualbox-qt
+Depends: dunst, pasystray, i3-wm, i3status, i3lock, atril, cheese,
+ firefox-esr, gimp, gparted, gv, libreoffice, mpv, simple-scan,
+ transmission-gtk, vokoscreen, redshift-gtk, suckless-tools,
+ laptop-mode-tools, xcape, xclip, xdotool, xinput, virtualbox,
+ virtualbox-qt
 
 Description: Desktop layer for Göktuğ's Debian System

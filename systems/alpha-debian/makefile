@@ -19,11 +19,11 @@ help:
 
 install-packages:
 ifeq ($(BASIC), yes)
-	cd layers/; $(MAKE) -$(MAKEFLAGS) install-base; cd ..
+	$(MAKE) -C layers/ -$(MAKEFLAGS) install-base
 else ifeq ($(BASIC), devel)
-	cd layers/; $(MAKE) -$(MAKEFLAGS) install-devel; cd..
+	$(MAKE) -C layers/ -$(MAKEFLAGS) install-devel
 else
-	cd layers/; $(MAKE) -$(MAKEFLAGS) install-full; cd ..
+	$(MAKE) -C layers/ -$(MAKEFLAGS) install-full
 endif
 
 install-config: $(GENCONFIGS)
