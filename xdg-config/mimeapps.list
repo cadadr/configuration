@@ -1,8 +1,0 @@
-[Added Associations]
-text/*=emacsclient.desktop;
-application/pdf=atril.desktop;emacsclient.desktop;
-x-scheme-handler/http=exo-web-browser.desktop
-x-scheme-handler/https=exo-web-browser.desktop
-binary/octet-stream=emacsclient.desktop;
-image/*=ristretto.desktop;
-video/*=mpv.desktop;

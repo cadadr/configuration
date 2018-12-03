@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<channel name="accessibility" version="1.0">
-  <property name="MouseKeys" type="bool" value="false">
-    <property name="Delay" type="int" value="1"/>
-    <property name="TimeToMax" type="int" value="500"/>
-  </property>
-</channel>
