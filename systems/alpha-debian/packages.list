@@ -10,7 +10,7 @@
 + libpoppler-private-dev
 
 ### Desktop:
-+ subtle
++ i3-wm i3status i3lock
 + dunst pasystray
 
 ### Application software:
@@ -79,7 +79,6 @@ openvpn resolvconf
 + mairix
 + mpop msmtp
 + procmail
-+ spamassassin clamav
 
 ### TeX:
 + texlive-full
