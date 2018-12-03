@@ -6,15 +6,11 @@ set -e
 . $MYLIB/xcommon.sh
 . $MYLIB/xbackground.sh
 
-# Set up and start EXWM:
+WM=i3
 
-# Disable access control
-xhost +SI:localuser:$USER
-
-# Make Java applications aware this is a non-reparenting window manager.
-export _JAVA_AWT_WM_NONREPARENTING=1
-
-export EXWM=yes
+if [ $WM = EXWM ]; then
+    . $MYLIB/exwm.sh
+fi
 
 logx 'Start the desktop session...'
-exec dbus-launch --exit-with-session emacs
+exec dbus-launch --exit-with-session $WM
