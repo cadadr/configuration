@@ -2,4 +2,4 @@ image: debian:stable
 
 init_alpha:
   script:
-    - sh cf/systems/alpha-debian/scripts/test.sh
+    - sh systems/alpha-debian/scripts/test.sh
