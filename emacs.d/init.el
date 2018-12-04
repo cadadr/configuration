@@ -742,6 +742,29 @@ up-to-date."
     (interactive "P")
     (async-shell-command (format "dmesg | tail -n %d" (or lines 10)))))
 
+(defun gk-screen-brightness (n)
+  "Set screen brightness to N tenths of max.
+10 >= N >= 1."
+  (interactive
+   (list (read-number "Brightness interval [1--10]: " 5)))
+  (unless (>= 10 n 1)
+    (user-error "Brightness interval not in range 10 >= N >= 1"))
+  (with-current-buffer
+      (find-file-noselect
+       "/sudo::/sys/class/backlight/intel_backlight/brightness")
+    (erase-buffer)
+    (insert
+     (number-to-string
+      (* n
+         (/
+          (string-to-number
+           (with-temp-buffer
+             (insert-file-contents
+              "/sys/class/backlight/intel_backlight/max_brightness")
+             (buffer-string)))
+          10))))
+    (save-buffer)))
+
 
 
 ;;;; Diff regions:
