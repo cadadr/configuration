@@ -2,21 +2,12 @@
 
 general {
         colors = true
-        interval = 5
+        interval = 20
 }
 
+order += "load"
 order += "battery all"
 order += "tztime local"
-
-wireless _first_ {
-        format_up = "W: (%quality at %essid) %ip"
-        format_down = "~W~"
-}
-
-ethernet _first_ {
-        format_up = "E: %ip"
-        format_down = "~E~"
-}
 
 battery all {
         format = "%status %percentage"
@@ -27,6 +18,6 @@ tztime local {
 }
 
 load {
-        format = "%1min"
+        format = "i%1min v%5min xv%15min"
 }
 
