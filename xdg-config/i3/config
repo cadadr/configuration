@@ -97,10 +97,10 @@ bindsym F10 mode "$mode_display"
 
 # color theme:
 # colorclass		border	background	text 	indicator	child_border
-client.focused		#000000	#000000		#dedede	#000000		#dedede
-client.focused_inactive	#000000	#000000		#dedede	#000000		#dedede
-client.unfocused	#000000	#ffffff		#000000	#ffffff		#dedede
-client.urgent		#000000	#ffffff		#C20000	#ffffff		#dedede
+client.focused		#333333	#333333		#dedede	#333333		#dedede
+client.focused_inactive	#333333	#333333		#dedede	#333333		#dedede
+client.unfocused	#333333	#ffffff		#333333	#ffffff		#dedede
+client.urgent		#333333	#ffffff		#C20000	#ffffff		#dedede
 
 bar {
 	font pango:DejaVu Sans 12
@@ -108,11 +108,11 @@ bar {
 	status_command i3status
 	colors {
 		separator		#C20000
-		background		#000000
+		background		#333333
 		statusline		#ffffff
-		focused_workspace	#ffffff	#000000	#ffffff
-		active_workspace	#ffffff	#dddddd	#000000
-		inactive_workspace	#dddddd	#dddddd	#000000
-		urgent_workspace	#C20000	#dddddd	#000000
+		focused_workspace	#ffffff	#333333	#ffffff
+		active_workspace	#ffffff	#dddddd	#333333
+		inactive_workspace	#dddddd	#dddddd	#333333
+		urgent_workspace	#C20000	#dddddd	#333333
 	}
 }
