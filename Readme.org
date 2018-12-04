@@ -19,7 +19,7 @@ This repo contains the following:
 
 - My GNU Emacs configuration tree (~emacs.d/~)
 - My dotfiles (~dotfiles/~,  ~xdg-config/~)
-- My Debian GNU/Linux w/ XFCE configuration (~systems/alpha-debian/~)
+- My Debian GNU/Linux configuration (~systems/alpha-debian/~)
 - My configuration for Raspberry Pi (~systems/pi/~)
 - And some other stuff.
 
@@ -36,7 +36,7 @@ of them in public domain.
 
 * Installation
 ** ~alpha-debian~ System setup
-In order to get this configuration running on a vanilla Debian XFCE4
+In order to get this configuration running on a vanilla Debian stable
 installation, run the following commands:
 
 #+BEGIN_EXAMPLE
