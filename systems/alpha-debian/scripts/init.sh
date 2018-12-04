@@ -30,9 +30,4 @@ else
 	|| echo Failed setting GID for $username
 fi
 
-### Enable services:
-say Enabling system services...
-systemctl enable spamassassin sshd
-systemctl disable nginx
-
 say Done.  You may want to reboot your computer.
