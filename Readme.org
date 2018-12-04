@@ -40,7 +40,7 @@ In order to get this configuration running on a vanilla Debian XFCE4
 installation, run the following commands:
 
 #+BEGIN_EXAMPLE
-# apt-get install sudo make git
+# apt-get install sudo make git equivs
 $ make alpha-debian-init
 # locale-gen
 # update-initramfs -u
