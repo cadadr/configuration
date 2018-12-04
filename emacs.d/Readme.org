@@ -49,6 +49,15 @@ $ cd ~/.emacs.d
 $ make all
 #+END_EXAMPLE
 
+* Building Emacs
+Use the commands below to build Emacs on a Debian stable system
+(e.g. the =alpha-debian= config in this repo:
+
+#+BEGIN_EXAMPLE
+# apt-get build-dep emacs25 emacs-pdf-tools
+$ build-emacs-master.sh
+#+END_EXAMPLE
+
 * Licence
 Unless stated otherwise within the file or the directory, all the code
 in this repository is released in the public domain.  Make use of it
