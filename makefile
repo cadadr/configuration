@@ -36,7 +36,7 @@ bins:
 	$(MAKE) -C bin -$(MAKEFLAGS)
 
 emacs:
-	$(MAKE) -C emacs.d; -$(MAKEFLAGS) all
+	$(MAKE) -C emacs.d -$(MAKEFLAGS) all
 
 clean-bin:
 	$(MAKE) -C bin -$(MAKEFLAGS) clean
