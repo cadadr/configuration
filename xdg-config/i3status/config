@@ -13,8 +13,9 @@ battery all {
         format = "%status %percentage"
 }
 
+# Holocene (ish) calendar
 tztime local {
-        format = "%d %B %Y %A; %I:%M %P"
+        format = "%d %B 1%Y %A; %I:%M %P"
 }
 
 load {
