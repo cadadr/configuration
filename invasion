@@ -12,7 +12,6 @@
 .local/share/applications/org-protocol.desktop		candy/org-protocol.desktop
 .local/share/applications/qute.desktop			candy/qute.desktop
 .local/share/applications/zotero.desktop		candy/zotero.desktop
-.local/share/xfce4/helpers/custom-WebBrowser.desktop	candy/xfce4-custom-WebBrowser.desktop
 .mailcap						dotfiles/mailcap
 .mairixrc						dotfiles/mairixrc
 .mpoprc							dotfiles/mpoprc
