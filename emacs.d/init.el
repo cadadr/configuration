@@ -3282,6 +3282,34 @@ unlocked, offer to lock it before pasting."
 
 
 
+;;;;; Translating
+
+(defun gk-org-trans-show-paragraph ()
+  "Show the ASCII export of current paragraph in a side window."
+  (interactive)
+  (let* ((org-export-show-temporary-export-buffer nil)
+         (beg (save-excursion
+                (save-match-data
+                  (re-search-backward (make-string 2 ?\C-j)))))
+         (end (save-excursion
+                (save-match-data
+                  (re-search-forward (make-string 2 ?\C-j)))))
+         buf)
+    (save-restriction
+      (narrow-to-region beg end)
+      (setq buf (org-ascii-export-as-ascii nil nil t))
+      (with-current-buffer buf
+        (save-excursion
+          (save-match-data
+            (push-mark (point-min) nil t)
+            (re-search-forward (make-string 5 ?\C-j))
+            (delete-region (region-beginning) (region-end))
+            (deactivate-mark t)
+            (text-mode))))
+      (display-buffer-in-side-window buf '((side . bottom))))))
+
+
+
 ;;;;; Visuals:
 
 ;; Show sub/superscript notation with ^ _ w/ UTF8 characters by
