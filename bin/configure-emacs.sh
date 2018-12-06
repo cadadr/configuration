@@ -31,8 +31,17 @@ case $V in
 	    --with-modules \
 	    --with-file-notification=yes \
 	    --with-gameuser=no \
+	    --with-mailutils ;;
+    nothreads)
+	./configure \
+	    --prefix=$HOME/local/emacs \
+	    --with-x-toolkit=$TK \
+	    --with-imagemagick \
+	    --with-modules \
+	    --with-file-notification=yes \
+	    --with-gameuser=no \
 	    --with-mailutils \
-            --without-threads ;;
+	    --without-threads ;;
     26)
 	./configure \
 	    --prefix=$HOME/local/emacs \
