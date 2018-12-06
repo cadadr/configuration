@@ -203,6 +203,7 @@ Exclude dot-files, don't sort, and return full paths by default."
 (require 'ox-hugo)
 (require 'ox-latex)
 (require 'ox-odt)
+(require 'ox-org)
 (require 'ox-publish)
 (require 'paredit)
 (require 'paren-face)
