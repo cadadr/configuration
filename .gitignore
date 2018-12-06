@@ -84,3 +84,5 @@ xdg-config/Code/machineid
 xdg-config/Code/*.json
 xdg-config/Code/Preferences
 xdg-config/VirtualBox/
+xdg-config/autostart/
+xdg-config/gtk-2.0/
