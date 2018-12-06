@@ -1,7 +1,7 @@
 # i3 configuration
 
 set $mod Mod4
-font pango:DejaVu Sans 10
+font pango:DejaVu Sans 8
 floating_modifier $mod
 
 bindsym F12 exec --no-startup-id i3-dmenu-desktop
@@ -97,9 +97,9 @@ bindsym F10 mode "$mode_display"
 
 # color theme:
 # colorclass		border	background	text 	indicator	child_border
-client.focused		#333333	#333333		#dedede	#333333		#dedede
-client.focused_inactive	#333333	#333333		#dedede	#333333		#dedede
-client.unfocused	#333333	#ffffff		#333333	#ffffff		#dedede
+client.focused		#0087af	#0087af		#ffffff	#0087af		#0087af
+client.focused_inactive	#dedede	#dedede		#333333	#333333		#dedede
+client.unfocused	#dddddd	#dddddd		#333333	#ffffff		#dedede
 client.urgent		#333333	#ffffff		#C20000	#ffffff		#dedede
 
 bar {
@@ -108,8 +108,8 @@ bar {
 	status_command i3status
 	colors {
 		separator		#C20000
-		background		#333333
-		statusline		#ffffff
+		background		#dddddd
+		statusline		#000000
 		focused_workspace	#ffffff	#333333	#ffffff
 		active_workspace	#ffffff	#dddddd	#333333
 		inactive_workspace	#dddddd	#dddddd	#333333
