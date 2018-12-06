@@ -43,3 +43,7 @@
     foreground = "#ffffff"
     frame_color = "#ff0000"
     timeout = 0
+
+[play_sound]
+    summary = "*"
+    script = /home/g/cf/lib/pop.sh
