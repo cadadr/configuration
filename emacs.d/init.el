@@ -4592,6 +4592,16 @@ It is rather slow to do so."
   (setq elfeed-search-filter filter)
   (elfeed-search-update :force))
 
+(defun gk-elfeed-search-kill-url ()
+  "Copy the URL for entry under point as kill."
+  (interactive)
+  (dolist (entry (elfeed-search-selected))
+    (when-let* ((link (elfeed-entry-link entry)))
+      (with-temp-buffer
+        (insert link)
+        (clipboard-kill-ring-save (point-min) (point-max))
+        (message link)))))
+
 (defalias 'gk-elfeed-next 'next-logical-line)
 (defalias 'gk-elfeed-prev 'previous-logical-line)
 
@@ -4614,6 +4624,7 @@ It is rather slow to do so."
 (define-key elfeed-search-mode-map (kbd "J") #'elfeed-unjam)
 (define-key elfeed-search-mode-map (kbd "n") #'gk-elfeed-next)
 (define-key elfeed-search-mode-map (kbd "p") #'gk-elfeed-prev)
+(define-key elfeed-search-mode-map (kbd "w") #'gk-elfeed-search-kill-url)
 
 
 
