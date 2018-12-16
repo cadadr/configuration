@@ -2,7 +2,7 @@ Maintainer: Göktuğ Kayaalp <self@gkayaalp.com>
 Section: gk
 Priority: optional
 Standards-Version: 3.5.10
-Version: 0.1.0
+Version: 0.1.1
 
 Package: goktug-layer-desktop
 Architecture: any
@@ -11,6 +11,8 @@ Depends: dunst, pasystray, i3-wm, i3status, i3lock, atril, cheese,
  firefox-esr, gimp, gparted, gv, libreoffice, mpv, simple-scan,
  transmission-gtk, vokoscreen, redshift-gtk, suckless-tools,
  laptop-mode-tools, xcape, xclip, xdotool, xinput, virtualbox,
- virtualbox-qt
+ virtualbox-qt, xinit, libxrandr-dev, network-manager-gnome, dbus-x11,
+ pulseaudio, pulseaudio-utils, pavucontrol, alsa-oss, alsa-utils,
+ alsamixergui, libnotify-bin, pcmanfm
 
 Description: Desktop layer for Göktuğ's Debian System
