@@ -139,6 +139,7 @@ Exclude dot-files, don't sort, and return full paths by default."
 (require 'diff)
 (require 'diminish)
 (require 'dired)
+(require 'dired-narrow)
 (require 'dired-subtree)
 (require 'dired-x)
 (require 'doc-view)
