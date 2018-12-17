@@ -1,6 +1,0 @@
-# stretch-backports.list
-
-# has virtualbox, among other things.
-
-deb http://ftp.debian.org/debian stretch-backports main
-deb http://ftp.debian.org/debian stretch-backports contrib

@@ -1,0 +1,5 @@
+# sources.list --- Debian unstable
+
+deb http://ftp.uk.debian.org/debian/ unstable main
+deb-src http://ftp.uk.debian.org/debian/ unstable main
+
