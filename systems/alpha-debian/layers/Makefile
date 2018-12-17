@@ -6,7 +6,7 @@ UTILDEBS=$(wildcard ./goktug-layer-util_*.deb)
 DEVELDEBS=$(wildcard ./goktug-layer-devel_*.deb)
 ALLDEBS=$(wildcard ./goktug-layer-*.deb)
 
-INSTALL=sudo apt-get install -yqq
+INSTALL=sudo apt-get install -y
 
 all:
 	$(foreach c,$(CONTROLS),equivs-build $(c);)
