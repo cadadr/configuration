@@ -36,5 +36,6 @@ cd $LISTS_DIR
 say In $PWD:
 
 gnu_fetch_all
+mairix				# update index
 
 say Finished.
