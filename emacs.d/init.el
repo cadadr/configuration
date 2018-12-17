@@ -3347,7 +3347,7 @@ unlocked, offer to lock it before pasting."
 
 (defun gk-ovp-hook ()
   "Hook for ‘org-variable-pitch-minor-mode’."
-  (setq-local cursor-type 'bar))
+  (setq-local cursor-type gk-default-cursor-type))
 
 (add-hook 'org-variable-pitch-minor-mode-hook #'gk-ovp-hook)
 
@@ -4021,7 +4021,10 @@ An adaptation and simplification of ‘mode-line-modes’.")
 
 ;;;;; Cursor:
 
-(setq-default cursor-type 'bar)
+(defvar gk-default-cursor-type 'box
+  "Cursor type for editable buffers.")
+
+(setq-default cursor-type gk-default-cursor-type)
 (setq-default cursor-in-non-selected-windows 'hollow)
 
 ;; Box cursor in special-mode and some other modes when the default
