@@ -34,6 +34,9 @@ most of the time verbatim.  Any file that does not include a statement
 for its licence terms is probably written by me, and I hereby put all
 of them in public domain.
 
+The sound file =candy/cowbell.wav= was adapted from the work of the
+Wikimedia Commons user [[https://commons.wikimedia.org/w/index.php?title=User:I_speak_so_quietly][I speak so quietly]], see [[https://commons.wikimedia.org/wiki/File:808,_cowbell.OGG][here]].
+
 * Installation
 ** ~alpha-debian~ System setup
 In order to get this configuration running on a vanilla Debian stable

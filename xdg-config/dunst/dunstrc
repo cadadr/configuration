@@ -47,3 +47,4 @@
 [play_sound]
     summary = "*"
     script = /home/g/cf/lib/pop.sh
+
