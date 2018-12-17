@@ -11,6 +11,7 @@ help:
 	@echo "Targets:";\
 	echo "	alpha-debian-init	initialise alpha instance with Debian";\
 	echo "	alpha-debian-test	test alpha-debian w/ Docker";\
+	echo "	alpha-debian-config	install alpha-debian config files";\
 	echo "	pi-init			initialise pi instance";\
 	echo "	invade			run invasion";\
 	echo "	build			build utilites and emacs.d";\
@@ -28,6 +29,9 @@ alpha-debian-init:
 
 alpha-debian-test:
 	docker build -t config-layers . && docker run config-layers
+
+alpha-debian-config:
+	$(MAKE) -C systems/alpha-debian -$(MAKEFLAGS) install-config
 
 ### Build rules:
 build: bins emacs
