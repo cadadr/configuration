@@ -4755,11 +4755,18 @@ the body of the entry, and the cdr is the score, an integer.")
     ;; store score for later in case I ever integrate machine learning
     (setf (elfeed-meta entry :my/score) score)
 
-    (cond
-     ((= score 1)
-      (elfeed-tag entry 'relevant))
-     ((> score 1)
-      (elfeed-tag entry 'important)))
+    ;; (cond
+    ;;  ((= score 1)
+    ;;   (elfeed-tag entry 'relevant))
+    ;;  ((> score 1)
+    ;;   (elfeed-tag entry 'important)))
+    ;;
+    ;; XXX(2018-12-21): this is an experiment where anything that’s
+    ;; relevant is also important, given the distinction is irrelevant
+    ;; given the scale.
+    (when (>= score 1)
+      (elfeed-tag entry 'relevant)
+      (elfeed-tag entry 'important))
     entry))
 
 (add-hook 'elfeed-new-entry-hook 'gk-score-elfeed-entry)
