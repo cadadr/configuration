@@ -1,0 +1,75 @@
+# packages.list --- list of user packages
+
+base:
+ - build-essential
+ - curl
+ - dnsutils
+ - equivs
+ - gawk
+ - net-tools
+ - netcat-openbsd
+ - telnet
+ - traceroute
+ - bind9utils
+ - moreutils
+ - lftp
+ - bridge-utils
+ - qemu
+ - rsync
+ - openssh-server
+
+desktop:
+ - gimp
+ - gparted
+ - gv
+ - libreoffice
+ - mpv
+ - simple-scan
+ - transmission-gtk
+ - suckless-tools
+ - xdotool
+ - libxrandr-dev
+
+emacs:
+ - libjansson-dev
+ - libpoppler-glib-dev
+ - libpoppler-private-dev
+
+tex:
+ - texlive-full
+ - perl-tk
+
+util:
+ - pass
+ - pv
+ - tmux
+ - units
+ - vim
+ - vorbis-tools
+ - vorbisgain
+ - w3m
+ - w3m-el
+ - whois
+ - mailutils
+ - mairix
+ - mpop
+ - msmtp
+ - procmail
+ - certbot
+ - dirmngr
+ - youtube-dl
+ - hugo
+ - inotify-tools
+ - pandoc
+ - pandoc-citeproc
+
+docs:
+ - perl-doc
+ - vim-doc
+ - mailutils-doc
+ - make-doc
+ - libreoffice-help-en-us
+ - gimp-help-en
+ - ffmpeg-doc
+
+
