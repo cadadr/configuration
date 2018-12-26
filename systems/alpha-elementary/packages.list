@@ -19,6 +19,7 @@ base:
  - openssh-server
 
 desktop:
+ - firefox
  - gimp
  - gparted
  - gv
