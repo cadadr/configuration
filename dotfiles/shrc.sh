@@ -167,6 +167,8 @@ alias mq='hg -R $(hg root)/.hg/patches'
 alias vagrant="env -u GEM_HOME -u GEM_PATH vagrant"
 # Show file name and line numbers.
 alias ngrep="grep -Hn"
+alias msgs="dmesg | tail"
+alias has="dpkg-query -l"
 
 ###
 
