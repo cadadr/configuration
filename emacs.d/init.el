@@ -223,6 +223,7 @@ Exclude dot-files, don't sort, and return full paths by default."
 (require 'quail)
 (require 'rect)
 (require 'rmail)
+(require 'rmailsum)
 (require 'ruby-mode)
 (require 'rx)
 (require 's)
@@ -2717,6 +2718,10 @@ email and archiving read mail in another file."
 (define-key rmail-mode-map "N" #'gk-rmail-advance)
 (define-key rmail-mode-map "S" #'gk-rmail-force-expunge-and-save)
 (define-key rmail-mode-map "b" #'gk-rmail-view-html-part-in-browser)
+
+;; ‘q’ is normally bound to #'rmail-summary-quit, which is simply
+;; useless.
+(define-key rmail-summary-mode-map "q" #'bury-buffer)
 
 (add-hook
  'rmail-mode-hook
