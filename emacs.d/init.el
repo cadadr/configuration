@@ -3290,7 +3290,7 @@ unlocked, offer to lock it before pasting."
 
 
 
-;;;;; Translating
+;;;;; Translating:
 
 (defun gk-org-trans-show-paragraph ()
   "Show the ASCII export of current paragraph in a side window."
