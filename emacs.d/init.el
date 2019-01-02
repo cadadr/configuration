@@ -5053,6 +5053,7 @@ Does various tasks after saving a file, see it's definition."
 (gk-prefix-binding "]" #'gk-pop-shell)
 (gk-prefix-binding "[" #'window-toggle-side-windows)
 (gk-prefix-binding "=" #'menu-bar-mode) ;toggle
+(gk-prefix-binding "g" #'magit-status)
 
 
 
