@@ -180,6 +180,7 @@ Exclude dot-files, don't sort, and return full paths by default."
 (require 'lorem-ipsum)
 (require 'lua-mode)
 (require 'ls-lisp)
+(require 'magit)
 (require 'mail-source)
 (require 'mairix)
 (require 'mastodon)
