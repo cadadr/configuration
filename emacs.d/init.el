@@ -162,6 +162,7 @@ Exclude dot-files, don't sort, and return full paths by default."
 (require 'files)
 (require 'flyspell)
 (require 'forecast)
+(require 'git-commit)
 (require 'gnus-sum)
 (require 'goto-addr)
 (require 'goto-last-change)
@@ -1987,6 +1988,26 @@ unlocked, offer to lock it before pasting."
 (define-advice vc-git-push (:around (fn &rest args) always-prompt)
   "Always prompt for editing the push command."
   (funcall fn t))
+
+(defun gk-git-commit-mode-hook ()
+  "Set up git commit buffer."
+  ;; If a single file is modified, prefix the message w/ it.
+  (let ((modified-re "^#	modified:")
+        filename)
+    (save-excursion
+      (with-current-buffer "COMMIT_EDITMSG"
+        (goto-char (point-min))
+        (re-search-forward "^# Changes to be committed:")
+        (forward-line)
+        (beginning-of-line)
+        (when (looking-at modified-re)
+          (re-search-forward ":   ")
+          (setf filename (thing-at-point 'filename t)))))
+    (unless (progn (forward-line) (looking-at modified-re))
+      (goto-char (point-min))
+      (insert filename ": "))))
+
+(add-hook 'git-commit-mode-hook #'gk-git-commit-mode-hook)
 
 
 
