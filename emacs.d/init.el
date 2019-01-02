@@ -4059,7 +4059,7 @@ An adaptation and simplification of ‘mode-line-modes’.")
 
 ;;;;; Cursor:
 
-(defvar gk-default-cursor-type 'box
+(defvar gk-default-cursor-type 'bar
   "Cursor type for editable buffers.")
 
 (setq-default cursor-type gk-default-cursor-type)
