@@ -1990,6 +1990,16 @@ unlocked, offer to lock it before pasting."
 
 
 
+;;;;;; Magit:
+
+(setf
+ ;; No autorevert.
+ magit-auto-revert-mode nil
+ magit-auto-revert-immediately nil
+ magit-commit-show-diff nil
+ magit-commit-arguments '("--verbose"))
+
+
 
 ;;;;; Mercurial:
 
