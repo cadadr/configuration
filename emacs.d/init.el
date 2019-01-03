@@ -4362,6 +4362,10 @@ Redirect to the raw file url."
          (gk-wikipedia-link-to-wikizero url)
          args))
 
+(defun gk-urls-add-to-emms (url &rest args)
+  "Add an URL to EMMS."
+  (emms-add-url url))
+
 (defun gk-browse-url (&rest args)
   "Prompt for whether or not to browse with EWW, if no browse
 with external browser."
@@ -4482,6 +4486,7 @@ provided."
         ("^http://www.cornucopia\\.local/" . gk-urls-browse-cornucopia)
         ("^https?://\\w+\\.wikipedia\\.org/" . gk-urls-browse-wikipedia)
         ("file:///home/.+/co/lisp/doc/HyperSpec/" . gk-browse-url)
+        ("\\.\\(mp3\\|ogg\\)$" . gk-urls-add-to-emms)
         ,@browse-url-browser-function
         (".*" . gk-browse-url)))
 
