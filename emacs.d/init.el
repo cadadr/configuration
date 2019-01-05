@@ -2003,9 +2003,10 @@ unlocked, offer to lock it before pasting."
         (when (looking-at modified-re)
           (re-search-forward ":   ")
           (setf filename (thing-at-point 'filename t)))))
-    (unless (progn (forward-line) (looking-at modified-re))
-      (goto-char (point-min))
-      (insert filename ": "))))
+    (unless (save-excursion (forward-line) (looking-at modified-re))
+      (when filename
+        (goto-char (point-min))
+        (insert filename ": ")))))
 
 (add-hook 'git-commit-mode-hook #'gk-git-commit-mode-hook)
 
