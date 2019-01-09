@@ -5017,7 +5017,7 @@ Does various tasks after saving a file, see it's definition."
 
 ;; Flash to show point
 (gk-prefix-binding "\M-f" #'gk-flash-current-line)
-(gk-prefix-binding (kbd "<f1>") #'gk-flash-current-line)
+(gk-global-binding (kbd "<f1>") #'gk-flash-current-line)
 
 
 
