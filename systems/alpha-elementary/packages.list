@@ -73,4 +73,19 @@ docs:
  - gimp-help-en
  - ffmpeg-doc
 
-
+devel:
+ - cvs quilt rcs subversion
+ - git git-cvs gitk git-email
+ - mercurial python-hglib python-dulwich python-fastimport
+ - python3-pip python python-matplotlib python-pip python3-tk python3-venv
+ - guile-2.2 guile-2.2-dev guile-2.2-doc guile-library
+ - sbcl
+ - cpanminus perlbrew
+ - libuniversal-isa-perl libimage-exiftool-perl libswitch-perl liblocal-lib-perl
+ - autoconf autoconf-archive automake
+ - bmake
+ - exuberant-ctags
+ - gdb strace
+ - redis-server redis-tools
+ - gnuplot feedgnuplot
+ - ruby bundler ri
