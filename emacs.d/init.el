@@ -1908,6 +1908,9 @@ my configurations."
         url-handler-mode
         which-key-mode))
 
+;; Mainly to enable GK keybindings there.
+(add-hook 'fundamental-mode-hook 'gk-minor-mode)
+
 (mapc ($ (pushnew $1 gk-disabled-modes))
       '(electric-indent-mode
         pixel-scroll-mode))
