@@ -3632,6 +3632,15 @@ Ask otherwise."
 (define-key org-mode-map (kbd "C-c M-r") #'gk-org-insert-reading-note)
 (define-key org-mode-map (kbd "C-c M-b") #'gk-org-insert-reading-bibliograpy-note)
 
+;; Translation
+(define-key org-mode-map (kbd "C-c M-t") #'gk-org-trans-show-paragraph)
+(define-key org-mode-map (kbd "C-@")
+  (gk-interactively
+   "Insert sentence number"
+   (insert "<<" (read-string "Page #: ") "."
+           (read-string "Paragrap #: ") "."
+           (read-string "Sentence #: ")
+           ">> ")))
 
 
 
