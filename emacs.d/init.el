@@ -3759,15 +3759,11 @@ Ask otherwise."
  solarized-height-plus-3 1.0
  solarized-height-plus-4 1.0)
 
-(when (gk-gui-p)
-  (add-to-list 'gk-disabled-modes 'tool-bar-mode)
-  (add-to-list 'gk-disabled-modes 'scroll-bar-mode)
-  (add-to-list 'gk-disabled-modes 'menu-bar-mode)
-
-  ;; This needs to be set manually for solarized.
-  (setf frame-background-mode nil)
-  ;; Update all the existing frames.
-  (mapc #'frame-set-background-mode (frame-list))
+(defun gk-setup-frame-looks (&optional frame)
+  "Customisations that modify frame behaviour.
+Groups such customisations which might need to be re-ran when a
+new frame is created."
+  (ignore frame)
 
   (when gk-gui-theme
     (load-theme gk-gui-theme t))
@@ -3798,10 +3794,16 @@ Ask otherwise."
   (when (memq gk-gui-theme '(wombat misterioso))
     ;; Make the cursor more visible, the default grey colour is
     ;; indistinguishable, especially with the bar cursor.
-    (set-face-attribute 'cursor nil :background "hotpink"))
+    (set-face-attribute 'cursor nil :background "hotpink")
+    ;; Region should not have a foreground colour.
+    (set-face-attribute 'region nil :foreground nil))
 
   ;; Further customise solarized.
   (when (eq gk-gui-theme 'solarized-dark)
+    ;; This needs to be set manually for solarized.
+    (setf frame-background-mode nil)
+    ;; Update all the existing frames.
+    (mapc #'frame-set-background-mode (frame-list))
     ;; Swap active and inactive mode-line colours.  I like the active
     ;; window's mode line to be darker.
     (let ((active-bg (face-attribute 'mode-line :background))
@@ -3847,6 +3849,15 @@ Ask otherwise."
 
   ;; Have a bit more line-spacing.
   (setq-default line-spacing 0.2))
+
+(when (gk-gui-p)
+  (add-to-list 'gk-disabled-modes 'tool-bar-mode)
+  (add-to-list 'gk-disabled-modes 'scroll-bar-mode)
+  (add-to-list 'gk-disabled-modes 'menu-bar-mode)
+
+  (gk-setup-frame-looks)
+
+  (add-hook 'after-make-frame-functions #'gk-setup-frame-looks))
 
 
 
