@@ -4184,7 +4184,7 @@ So that the reader knows where to continue reading."
 
 ;;;;; Mouse:
 
-;; (pushnew 'pixel-scroll-mode gk-global-modes)
+(pushnew 'pixel-scroll-mode gk-global-modes)
 
 (setq
  ;; Scroll smoother, no hurries.
