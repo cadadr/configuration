@@ -4990,6 +4990,10 @@ Does various tasks after saving a file, see it's definition."
 (gk-global-binding (kbd "<C-M-mouse-6>") #'mwheel-scroll)
 (gk-global-binding (kbd "<C-M-mouse-7>") #'mwheel-scroll)
 
+;; Flash to show point
+(gk-prefix-binding "\M-f" #'gk-flash-current-line)
+(gk-prefix-binding (kbd "<f1>") #'gk-flash-current-line)
+
 
 
 ;;;; Editing:
