@@ -1970,7 +1970,9 @@ The default implementation of this function is in `log-edit.el'."
 (setf
  vc-cvs-diff-switches "-uNp"
  vc-diff-switches "-uNp"
- diff-switches "-uNp")
+ diff-switches "-uNp"
+ ;; Do not syntax-highligh diffs for source language.  Confusing.
+ diff-font-lock-syntax nil)
 
 (add-hook 'diff-mode-hook 'gk-diff-mode-hook)
 
