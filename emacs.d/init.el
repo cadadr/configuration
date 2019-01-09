@@ -601,6 +601,18 @@ the beginning of the list."
           (message "Loaded theme ‘%S’" next))
       (message "All themes disabled"))))
 
+(cl-defun gk-flash-current-line (&optional buffer &key (seconds 1))
+  "Flash current line briefly for SECONDS in BUFFER.
+BUFFER defaults to current buffer, and SECONDS to 1."
+  (interactive)
+  (unless hl-line-mode
+    (let ((buf (or buffer (current-buffer))))
+      (hl-line-mode +1)
+      (run-with-idle-timer
+       seconds nil
+       ($ (with-current-buffer buf
+            (hl-line-mode -1)))))))
+
 
 
 ;;;; Generic advices:
@@ -4111,14 +4123,7 @@ So that the reader knows where to continue reading."
     ;; only there.
     (let ((buf (current-buffer)))
       (forward-line next-screen-context-lines)
-      ;; Flash if ‘hl-line-mode’ is inactive.  If it's active, the
-      ;; cursor is on the line to continue anyways.
-      (unless hl-line-mode
-        (hl-line-mode +1)
-        (run-with-idle-timer
-         1 nil
-         ($ (with-current-buffer buf
-              (hl-line-mode -1))))))))
+      (gk-flash-current-line))))
 
 
 
