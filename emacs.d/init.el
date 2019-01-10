@@ -3489,7 +3489,7 @@ numerals which regularly appear in texts."
       keyword
       (or desc "COMMENT")))
     ((eq format 'latex)
-     (format "\\todo{%s}{%s}" keyword (or desc ""))))))
+     (format "\\todo[inline]{%s}{%s}" keyword (or desc ""))))))
 
 (defun gk-org-add-comment (begin end)
   "Add a comment link.
