@@ -3366,6 +3366,33 @@ unlocked, offer to lock it before pasting."
             (text-mode))))
       (display-buffer-in-side-window buf '((side . bottom))))))
 
+(defvar gk-org-trans--pageno-hist nil)
+(defvar gk-org-trans--parno-hist nil)
+(defvar gk-org-trans--sentenceno-hist nil)
+
+(defun gk-org-trans-insert-sentence-reference (page paragraph sentence)
+  "Insert sentence number.
+PAGE is the page number.
+
+PARAGRAPH is the paragraph number where the if a paragraph
+continues to the page from the last one that paragraph is
+counted as the first.
+
+SENTENCE is the sentence number, counted similarly to
+paragraphs.
+
+Interactively, prompts for these numbers.  These numbers should
+be represented as strings, in order to account for non-Arabic
+numerals which regularly appear in texts."
+  (interactive
+   (list (read-string "Page #: " (car gk-org-trans--pageno-hist)
+                      'gk-org-trans--pageno-hist)
+         (read-string "Paragrap #: " (car gk-org-trans--parno-hist)
+                      'gk-org-trans--parno-hist)
+         (read-string "Sentence #: " (car gk-org-trans--sentenceno-hist)
+                      'gk-org-trans--sentenceno-hist)))
+  (insert "<<" page "." paragraph "." sentence ">> "))
+
 
 
 ;;;;; Visuals:
@@ -3634,13 +3661,7 @@ Ask otherwise."
 
 ;; Translation
 (define-key org-mode-map (kbd "C-c M-t") #'gk-org-trans-show-paragraph)
-(define-key org-mode-map (kbd "C-@")
-  (gk-interactively
-   "Insert sentence number"
-   (insert "<<" (read-string "Page #: ") "."
-           (read-string "Paragrap #: ") "."
-           (read-string "Sentence #: ")
-           ">> ")))
+(define-key org-mode-map (kbd "C-@") #'gk-org-trans-insert-sentence-reference)
 
 
 
