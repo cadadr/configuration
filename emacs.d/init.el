@@ -3385,12 +3385,18 @@ Interactively, prompts for these numbers.  These numbers should
 be represented as strings, in order to account for non-Arabic
 numerals which regularly appear in texts."
   (interactive
-   (list (read-string "Page #: " (car gk-org-trans--pageno-hist)
-                      'gk-org-trans--pageno-hist)
-         (read-string "Paragrap #: " (car gk-org-trans--parno-hist)
-                      'gk-org-trans--parno-hist)
-         (read-string "Sentence #: " (car gk-org-trans--sentenceno-hist)
-                      'gk-org-trans--sentenceno-hist)))
+   (list (read-string (format "Page # [default: %S]: "
+                              (car gk-org-trans--pageno-hist))
+                      nil 'gk-org-trans--pageno-hist
+                      (car gk-org-trans--pageno-hist))
+         (read-string (format "Paragrap # [default: %S]: "
+                              (car gk-org-trans--parno-hist))
+                      nil 'gk-org-trans--parno-hist
+                      (car gk-org-trans--parno-hist))
+         (read-string (format "Sentence # [default: %S]: "
+                              (car gk-org-trans--sentenceno-hist))
+                      nil 'gk-org-trans--sentenceno-hist
+                      (car gk-org-trans--sentenceno-hist))))
   (insert "<<" page "." paragraph "." sentence ">> "))
 
 
