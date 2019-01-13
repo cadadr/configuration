@@ -2266,6 +2266,15 @@ KEYWORDS are the keywords for the file."
 
 
 
+;;;;; CSS:
+
+(defun gk-css-mode-hook ()
+  (gk-turn-on-outline-minor-mode "^/\\*\\*\\*+" ": \\*/" "C-'"))
+
+(add-hook 'css-mode-hook #'gk-css-mode-hook)
+
+
+
 ;;;;; Ruby:
 
 (defun gk-ruby-send-line ()
