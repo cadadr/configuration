@@ -182,6 +182,7 @@ Exclude dot-files, don't sort, and return full paths by default."
 (require 'lua-mode)
 (require 'ls-lisp)
 (require 'magit)
+(require 'magit-todos)
 (require 'mail-source)
 (require 'mairix)
 (require 'mastodon)
@@ -2036,7 +2037,9 @@ unlocked, offer to lock it before pasting."
  magit-auto-revert-mode nil
  magit-auto-revert-immediately nil
  magit-commit-show-diff nil
- magit-commit-arguments '("--verbose"))
+ magit-commit-arguments '("--verbose")
+ ;; Exclude 3rd-party lisp from todos search.
+ magit-todos-exclude-globs '("emacs.d/lisp/site/*" "*/patches/*"))
 
 
 
