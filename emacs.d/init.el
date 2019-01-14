@@ -2036,6 +2036,7 @@ unlocked, offer to lock it before pasting."
  ;; No autorevert.
  magit-auto-revert-mode nil
  magit-auto-revert-immediately nil
+ ;; Don’t pop up diff, commit --verbosely instead.
  magit-commit-show-diff nil
  magit-commit-arguments '("--verbose")
  ;; Exclude 3rd-party lisp from todos search.
