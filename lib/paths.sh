@@ -56,3 +56,8 @@ PATH="$(echo $PATH | sed -E s,/+,/,g)"
 # Remove trailing colons.
 PATH="$(echo $PATH | sed -E s,:+\$,,g)"
 export PATH
+
+# Update systemd paths.
+systemctl --user import-environment PATH
+systemctl --user import-environment GEM_HOME
+systemctl --user import-environment GEM_PATH
