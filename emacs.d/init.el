@@ -2011,20 +2011,31 @@ unlocked, offer to lock it before pasting."
   "Set up git commit buffer."
   ;; If a single file is modified, prefix the message w/ it.
   (let ((modified-re "^#	modified:")
-        filename)
+        (new-re "^#	new file:")
+        filename addp onlyp)
     (save-excursion
       (with-current-buffer "COMMIT_EDITMSG"
         (goto-char (point-min))
         (re-search-forward "^# Changes to be committed:")
         (forward-line)
         (beginning-of-line)
-        (when (looking-at modified-re)
-          (re-search-forward ":   ")
-          (setf filename (thing-at-point 'filename t)))))
-    (unless (save-excursion (forward-line) (looking-at modified-re))
+        (cond ((looking-at modified-re)
+               (re-search-forward ":   ")
+               (setf filename (thing-at-point 'filename t)))
+              ((looking-at new-re)
+               (re-search-forward ":   ")
+               (setf filename (thing-at-point 'filename t)
+                     addp t)))
+        (setq onlyp (progn
+                      (forward-line)
+                      (not (or (looking-at modified-re)
+                               (looking-at new-re)))))))
+    (when onlyp
       (when filename
         (goto-char (point-min))
-        (insert filename ": ")))))
+        (if addp
+            (insert "Add " filename)
+          (insert filename ": "))))))
 
 (add-hook 'git-commit-mode-hook #'gk-git-commit-mode-hook)
 
