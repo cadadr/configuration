@@ -19,7 +19,7 @@ This repo contains the following:
 
 - My GNU Emacs configuration tree (~emacs.d/~)
 - My dotfiles (~dotfiles/~,  ~xdg-config/~)
-- My Debian GNU/Linux configuration (~systems/alpha-debian/~)
+- My Debian GNU/Linux configuration (~systems/alpha/~)
 - My configuration for Raspberry Pi (~systems/pi/~)
 - And some other stuff.
 
