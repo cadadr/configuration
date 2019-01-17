@@ -1,7 +1,6 @@
 .Xdefaults						dotfiles/Xdefaults
 .bashrc							dotfiles/shrc.sh
-.config/git						xdg-config/git
-.config/systemd						xdg-config/systemd
+.config							xdg-config
 .cvsrc							dotfiles/cvsrc
 .emacs.d						emacs.d
 .gitconfig						dotfiles/gitconfig.ini
