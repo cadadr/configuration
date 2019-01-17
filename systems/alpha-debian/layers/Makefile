@@ -6,7 +6,9 @@ UTILDEBS=$(wildcard ./goktug-layer-util_*.deb)
 DEVELDEBS=$(wildcard ./goktug-layer-devel_*.deb)
 ALLDEBS=$(wildcard ./goktug-layer-*.deb)
 
-INSTALL=sudo apt-get install -y
+# Always keep the old version of configs w/o prompting.  Breaks
+# automatic builds for testing otherwise.
+INSTALL=sudo apt-get -o Dpkg::Options::="--force-confold" install -y
 
 all:
 	$(foreach c,$(CONTROLS),equivs-build $(c);)
