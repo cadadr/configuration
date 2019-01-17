@@ -9,7 +9,7 @@ Architecture: any
 
 Depends: apt-transport-https, curl, cups-bsd, dnsutils, equivs, gawk,
   gvfs-bin, net-tools, netcat-openbsd, telnet, traceroute, bind9utils,
-  moreutils, lftp, lxc, libvirt0, libpam-cgroup, libpam-cgfs,
-  bridge-utils, qemu, rsync, openssh-server, network-manager,
+  moreutils, lftp, libpam-cgroup, libpam-cgfs, bridge-utils, qemu,
+  rsync, openssh-server, network-manager,
 
 Description: Base layer for Göktuğ's Debian System
