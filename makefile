@@ -9,9 +9,9 @@ all: help
 ### Help:
 help:
 	@echo "Targets:";\
-	echo "	alpha-debian-init	initialise alpha instance with Debian";\
-	echo "	alpha-debian-test	test alpha-debian w/ Docker";\
-	echo "	alpha-debian-config	install alpha-debian config files";\
+	echo "	alpha-init		initialise alpha instance with Debian";\
+	echo "	alpha-test		test alpha w/ Docker";\
+	echo "	alpha-config		install alpha config files";\
 	echo "	pi-init			initialise pi instance";\
 	echo "	invade			run invasion";\
 	echo "	build			build utilites and emacs.d";\
@@ -24,14 +24,14 @@ help:
 
 ### System initialisation:
 
-alpha-debian-init:
-	touch config.m4; $(MAKE) -C systems/alpha-debian -$(MAKEFLAGS) init
+alpha-init:
+	touch config.m4; $(MAKE) -C systems/alpha -$(MAKEFLAGS) init
 
-alpha-debian-test:
+alpha-test:
 	docker build -t config-layers . && docker run config-layers
 
-alpha-debian-config:
-	$(MAKE) -C systems/alpha-debian -$(MAKEFLAGS) install-config
+alpha-config:
+	$(MAKE) -C systems/alpha -$(MAKEFLAGS) install-config
 
 ### Build rules:
 build: bins emacs

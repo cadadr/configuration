@@ -38,13 +38,13 @@ The sound file =candy/cowbell.wav= was adapted from the work of the
 Wikimedia Commons user [[https://commons.wikimedia.org/w/index.php?title=User:I_speak_so_quietly][I speak so quietly]], see [[https://commons.wikimedia.org/wiki/File:808,_cowbell.OGG][here]].
 
 * Installation
-** ~alpha-debian~ System setup
+** ~alpha~ System setup
 In order to get this configuration running on a vanilla Debian stable
 installation, run the following commands:
 
 #+BEGIN_EXAMPLE
 # apt-get install sudo make git equivs
-$ make alpha-debian-init
+$ make alpha-init
 # locale-gen
 # update-initramfs -u
 #+END_EXAMPLE
@@ -60,16 +60,6 @@ commands that needs such privileges.
 This recipe, among other things, will create a user ~g~ with uid 1993
 and a group of similar identifiers, and assing the user certain
 groups.
-
-** ~alpha-guix~ System Setup
-The following commands get this configuration set up on a GuixSD
-system installed using the configuration file found at
-=systems/alpha-guix/etc/config.scm=.  Beware that this is WIP
-stuff, just started configuring GuixSD.
-
-#+BEGIN_EXAMPLE
-$ make invade
-#+END_EXAMPLE
 
 ** ~alpha~ Post-install
 The following commands help complete the installation, regardless of
