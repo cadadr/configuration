@@ -28,7 +28,7 @@
 ;;
 ;; The trickiest part is to make theses intermediate functions behave
 ;; like the pdf-info-* equivalents in both the synchronous and
-;; asynchronous case.  
+;; asynchronous case.
 
 ;;; Code:
 (eval-when-compile
@@ -257,9 +257,7 @@ case it is nil, i.e. check that the buffer passes
   (declare (doc-string 3) (indent defun)
            (debug (&define name lambda-list
                            [&optional stringp]
-                           def-body))
-           (font-lock defun)
-           (imenu "Document"))
+                           def-body)))
   (unless (stringp documentation)
     (push documentation body)
     (setq documentation nil))
@@ -316,7 +314,7 @@ ranges corresponding to PAGES. Each element has the form
      \(FILENAME \(FILE-FIRT-PAGE . FILE-LAST-PAGE\) REGION\)
 .
 "
-  
+
   (let ((begin (car pages))
         (end (cdr pages)))
     (unless (<= begin end)
@@ -328,7 +326,7 @@ ranges corresponding to PAGES. Each element has the form
         (signal 'args-out-of-range (list 'pages pages)))
       (while (<= begin end)
         (let* ((page (aref arr (1- begin)))
-               (filename (pdf-virtual-range-filename page)) 
+               (filename (pdf-virtual-range-filename page))
                (offset (- (1- begin)
                           (pdf-virtual-range-index-start page)))
                (first (+ (pdf-virtual-range-first page)
@@ -337,7 +335,7 @@ ranges corresponding to PAGES. Each element has the form
                           (pdf-virtual-range-last page)))
                (region (pdf-virtual-range-region page)))
           (push `(,filename (,first . ,last) ,region) result)
-          (cl-incf begin (1+ (- last first)))))      
+          (cl-incf begin (1+ (- last first)))))
       (nreverse result))))
 
 (pdf-virtual-document-defun number-of-pages (doc)
@@ -435,7 +433,7 @@ PAGE should be a page-number."
                              (pdf-virtual-range-filename other)))))))
     (when page
       (1+ (pdf-virtual-range-index-start page)))))
-                                           
+
 
 ;; * ================================================================== *
 ;; * Modes
@@ -449,7 +447,7 @@ PAGE should be a page-number."
 
 
 ;;;###autoload
-(define-derived-mode pdf-virtual-edit-mode emacs-lisp-mode "VPDF-Edit" 
+(define-derived-mode pdf-virtual-edit-mode emacs-lisp-mode "VPDF-Edit"
   "Major mode when editing a virtual PDF buffer."
   (buffer-enable-undo)
   (setq-local buffer-read-only nil)
@@ -539,7 +537,7 @@ PAGE should be a page-number."
   (with-current-buffer (generate-new-buffer buffer-name)
     (insert ";; %VPDF 1.0\n\n")
     (insert ";; File Format
-;; 
+;;
 ;; FORMAT    ::= ( FILES* )
 ;; FILES     ::= ( FILE . PAGE-SPEC* )
 ;; PAGE-SPEC ::= PAGE | ( PAGE . REGION )
@@ -602,7 +600,7 @@ PAGE should be a page-number."
                  pdf-virtual-document))
          (page (aref pages (1- pn)))
          (first-filepage (1+ (pdf-virtual-range-index-start page))))
-    
+
     (when (and (< n 0)
                (not (= first-filepage pn)))
       (cl-incf n))
@@ -715,9 +713,7 @@ PAGE should be a page-number."
   (declare (doc-string 3) (indent 2)
            (debug (&define name lambda-list
                            [&optional stringp]
-                           def-body))
-           (font-lock defun)
-           (imenu "Adapter"))
+                           def-body)))
   (unless (stringp doc)
     (push doc body)
     (setq doc nil))
@@ -1034,6 +1030,9 @@ argument denotes a VPDF document."
 
 (pdf-virtual-define-adapter getoptions (&optional file-or-buffer)
   (signal 'pdf-virtual-unsupported-operation (list 'getoptions)))
+
+(pdf-virtual-define-adapter encrypted-p (&optional file-or-buffer)
+  nil)
 
 (provide 'pdf-virtual)
 ;;; pdf-virtual.el ends here

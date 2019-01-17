@@ -21,7 +21,7 @@
 ;;; Commentary:
 ;;
 ;;; Todo:
-;; 
+;;
 ;; * Add the possibility to limit the search to a range of pages.
 
 (require 'cl-lib)
@@ -103,6 +103,7 @@ searching across multiple lines.")
 ;; * ================================================================== *
 
 (declare-function pdf-occur "pdf-occur.el")
+(declare-function pdf-sync-backward-search "pdf-sync.el")
 
 (defvar pdf-isearch-minor-mode-map
   (let ((kmap (make-sparse-keymap)))
@@ -116,6 +117,7 @@ searching across multiple lines.")
     (define-key kmap (kbd "C-d") 'pdf-view-dark-minor-mode)
     (define-key kmap (kbd "C-b") 'pdf-isearch-batch-mode)
     (define-key kmap (kbd "M-s o") 'pdf-isearch-occur)
+    (define-key kmap (kbd "M-s s") 'pdf-isearch-sync-backward)
     kmap)
   "Keymap used in `pdf-isearch-active-mode'.
 
@@ -281,7 +283,7 @@ This is a Isearch interface function."
             (re-search-forward ".")
           (re-search-backward ".")))
        ((and (not pdf-isearch-narrow-to-page)
-             (not (pdf-isearch-empty-match-p matches)))                   
+             (not (pdf-isearch-empty-match-p matches)))
         (let ((next-page (pdf-isearch-find-next-matching-page
                           string pdf-isearch-current-page t)))
           (when next-page
@@ -433,6 +435,18 @@ there was no previous search, this function returns t."
       (pdf-occur (or regexp isearch-string) regexp))
     (isearch-message)))
 
+(defun pdf-isearch-sync-backward ()
+  "Visit the source of the beginning of the current match."
+  (interactive)
+  (pdf-util-assert-pdf-window)
+  (unless pdf-isearch-current-match
+    (user-error "No current or recent match"))
+  (when isearch-mode
+    (isearch-exit))
+  (cl-destructuring-bind (left top _right _bot)
+      (car pdf-isearch-current-match)
+    (pdf-sync-backward-search left top)))
+
 
 ;; * ================================================================== *
 ;; * Interface to epdfinfo
@@ -465,14 +479,14 @@ coordinates, sorted top to bottom, then left to right."
       ;; the user adds and removes characters in the search string
       ;; (or when using nonincremental word isearch)
       (let ((lax (not (or isearch-nonincremental
-			  (null (car isearch-cmds))
-			  (eq (length isearch-string)
-			      (length (isearch--state-string
+                          (null (car isearch-cmds))
+                          (eq (length isearch-string)
+                              (length (isearch--state-string
                                        (car isearch-cmds))))))))
         (pdf-info-search-regexp
-	 (pdf-isearch-word-search-regexp
-	  string lax pdf-isearch-hyphenation-character)
-	 pages 'invalid-regexp))))
+         (pdf-isearch-word-search-regexp
+          string lax pdf-isearch-hyphenation-character)
+         pages 'invalid-regexp))))
    (isearch-regexp
     (lambda (string &optional pages)
       (pdf-info-search-regexp string pages 'invalid-regexp)))
@@ -596,7 +610,7 @@ match."
     ;; Next match of new search closest to the last one.
     (pdf-isearch-closest-match
      last-match matches forward))))
-  
+
 (defun pdf-isearch-focus-match-isearch (match)
   "Make the image area in MATCH visible in the selected window."
   (pdf-util-scroll-to-edges (apply 'pdf-util-edges-union match)))
@@ -653,7 +667,7 @@ The direction in which to look is determined by FORWARD-P.
 MATCH should be a list of edges, MATCHES a list of such element;
 it is assumed to be ordered with respect to FORWARD-P."
 
-  
+
   (cl-check-type match pdf-isearch-match)
   (cl-check-type matches (list-of pdf-isearch-match))
   (let ((matched (apply 'pdf-util-edges-union match)))
@@ -743,7 +757,7 @@ MATCH-BG LAZY-FG LAZY-BG\)."
 ;; * ================================================================== *
 
 ;; The following isearch-search function is debuggable.
-;; 
+;;
 (when nil
   (defun isearch-search ()
     ;; Do the search with the current search string.
@@ -811,3 +825,7 @@ MATCH-BG LAZY-FG LAZY-BG\)."
 (provide 'pdf-isearch)
 
 ;;; pdf-isearch.el ends here
+
+;; Local Variables:
+;; byte-compile-warnings: (not obsolete)
+;; End:

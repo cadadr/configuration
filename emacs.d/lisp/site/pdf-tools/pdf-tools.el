@@ -5,7 +5,7 @@
 ;; Author: Andreas Politz <politza@fh-trier.de>
 ;; Keywords: files, multimedia
 ;; Package: pdf-tools
-;; Version: 0.70
+;; Version: 1.0
 ;; Package-Requires: ((emacs "24.3") (tablist "0.70") (let-alist "1.0.4"))
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -30,7 +30,7 @@
 ;;
 ;; Note: This package requires external libraries and works currently
 ;; only on GNU/Linux systems.
-;; 
+;;
 ;; Note: If you ever update it, you need to restart Emacs afterwards.
 ;;
 ;; To activate the package put
@@ -48,36 +48,36 @@
 ;; offers some customization options.
 
 ;; Features:
-;; 
+;;
 ;; * View
 ;;   View PDF documents in a buffer with DocView-like bindings.
-;;   
-;; * Isearch 
+;;
+;; * Isearch
 ;;   Interactively search PDF documents like any other buffer. (Though
 ;;   there is currently no regexp support.)
-;;   
+;;
 ;; * Follow links
 ;;   Click on highlighted links, moving to some part of a different
 ;;   page, some external file, a website or any other URI.  Links may
 ;;   also be followed by keyboard commands.
-;;   
+;;
 ;; * Annotations
 ;;   Display and list text and markup annotations (like underline),
 ;;   edit their contents and attributes (e.g. color), move them around,
 ;;   delete them or create new ones and then save the modifications
 ;;   back to the PDF file.
-;;   
+;;
 ;; * Attachments
 ;;   Save files attached to the PDF-file or list them in a dired buffer.
-;;   
+;;
 ;; * Outline
 ;;   Use imenu or a special buffer to examine and navigate the PDF's
 ;;   outline.
-;;   
+;;
 ;; * SyncTeX
 ;;   Jump from a position on a page directly to the TeX source and
 ;;   vice-versa.
-;;   
+;;
 ;; * Misc
 ;;    + Display PDF's metadata.
 ;;    + Mark a region and kill the text from the PDF.
@@ -91,6 +91,8 @@
 (require 'pdf-info)
 (require 'cus-edit)
 (require 'compile)
+(require 'cl-lib)
+(require 'package)
 
 
 
@@ -100,7 +102,7 @@
 
 (defgroup pdf-tools nil
   "Support library for PDF documents."
-  :group 'doc-view)
+  :group 'data)
 
 (defgroup pdf-tools-faces nil
   "Faces determining the colors used in the pdf-tools package.
@@ -125,7 +127,7 @@ In order to customize dark and light colors use
     pdf-view-auto-slice-minor-mode
     pdf-occur-global-minor-mode
     pdf-virtual-global-minor-mode))
-    
+
 (defcustom pdf-tools-enabled-modes
   '(pdf-history-minor-mode
     pdf-isearch-minor-mode
@@ -160,7 +162,11 @@ PDF buffers."
 (defconst pdf-tools-auto-mode-alist-entry
   '("\\.[pP][dD][fF]\\'" . pdf-view-mode)
   "The entry to use for `auto-mode-alist'.")
-  
+
+(defconst pdf-tools-magic-mode-alist-entry
+  '("%PDF" . pdf-view-mode)
+  "The entry to use for `magic-mode-alist'.")
+
 (defun pdf-tools-customize ()
   "Customize Pdf Tools."
   (interactive)
@@ -180,7 +186,7 @@ PDF buffers."
 
 
 ;; * ================================================================== *
-;; * Initialization
+;; * Installation
 ;; * ================================================================== *
 
 ;;;###autoload
@@ -188,121 +194,250 @@ PDF buffers."
   "Whether PDF Tools should handle upgrading itself."
   :group 'pdf-tools
   :type 'boolean)
-  
-;;;###autoload
-(when (and pdf-tools-handle-upgrades
-           (boundp 'pdf-info-epdfinfo-program)
-           (stringp pdf-info-epdfinfo-program)
-           (boundp 'package-user-dir)
-           (stringp package-user-dir)
-           (stringp load-file-name))
-  (let* ((package-dir (file-name-directory load-file-name))
-         (server-dir (file-name-directory pdf-info-epdfinfo-program))
-         (upgrading-p (and (not (file-equal-p package-dir server-dir))
-                           (file-in-directory-p package-dir package-user-dir)
-                           (file-in-directory-p server-dir package-user-dir)
-                           (file-executable-p pdf-info-epdfinfo-program))))
-    (when upgrading-p
-      (require 'cl-lib)
-      (when (cl-some (lambda (buffer)
-                       (and (eq 'pdf-view-mode
-                                (buffer-local-value
-                                 'major-mode buffer))
-                            (buffer-modified-p buffer)))
-                     (buffer-list))
-        (when (y-or-n-p
-               (concat "Warning: Upgrading will abandon ALL pdf modifications,"
-                       "save some of them ?"))
-          (save-some-buffers
-           nil
-           (lambda ()
-             (and (eq 'pdf-view-mode major-mode)
-                  (buffer-modified-p))))))
-      (dolist (buffer (buffer-list))
-        (with-current-buffer buffer
-          (when (eq major-mode 'pdf-view-mode)
-            (set-buffer-modified-p nil)
-            (fundamental-mode)
-            (let ((ov (make-overlay (point-min) (point-max))))
-              (overlay-put ov 'pdf-view t)
-              (overlay-put ov 'display "Recompiling, stand by...")))))
-      (pdf-info-quit)
-      (setq pdf-info-epdfinfo-program
-            (expand-file-name "epdfinfo" package-dir))
-      (let ((build-hook (make-symbol "pdf-tools--upgrade")))
-        (fset build-hook
-              `(lambda ()
-                 (remove-hook 'post-command-hook ',build-hook)
-                 (let ((load-path (cons ,package-dir load-path))
-                       (elc (directory-files ,package-dir nil "\\.elc\\'")))
-                   ;; Recompile because package does it wrong.
-                   (let ((load-suffixes '(".el")))
-                     (dolist (file elc)
-                       (load (file-name-sans-extension file))))
-                   (byte-recompile-directory ,package-dir 0 t)
-                   (dolist (file elc)
-                     (load file)))
-                 (pdf-tools-install 'compile 'skip-deps 'no-error)))
-        (add-hook 'post-command-hook build-hook)))))
+
+(make-obsolete-variable 'pdf-tools-handle-upgrades
+                        "Not used anymore" "0.90")
+
+(defconst pdf-tools-directory
+  (or (and load-file-name
+           (file-name-directory load-file-name))
+      default-directory)
+  "The directory from where this library was first loaded.")
+
+(defvar pdf-tools-msys2-directory nil)
+
+(defun pdf-tools-identify-build-directory (directory)
+  "Return non-nil, if DIRECTORY appears to contain the epdfinfo source.
+
+Returns the expanded directory-name of DIRECTORY or nil."
+  (setq directory (file-name-as-directory
+                   (expand-file-name directory)))
+  (and (file-exists-p (expand-file-name "autobuild" directory))
+       (file-exists-p (expand-file-name "epdfinfo.c" directory))
+       directory))
+
+(defun pdf-tools-locate-build-directory ()
+  "Attempt to locate a source directory.
+
+Returns a appropriate directory or nil.  See also
+`pdf-tools-identify-build-directory'."
+  (cl-some #'pdf-tools-identify-build-directory
+           (list default-directory
+                 (expand-file-name "build/server" pdf-tools-directory)
+                 (expand-file-name "server")
+                 (expand-file-name "../server" pdf-tools-directory))))
+
+(defun pdf-tools-msys2-directory (&optional noninteractive-p)
+  "Locate the Msys2 installation directory.
+
+Ask the user if necessary and NONINTERACTIVE-P is nil.
+Returns always nil, unless `system-type' equals windows-nt."
+  (cl-labels ((if-msys2-directory (directory)
+                (and (stringp directory)
+                     (file-directory-p directory)
+                     (file-exists-p
+                      (expand-file-name "usr/bin/bash.exe" directory))
+                     directory)))
+    (when (eq system-type 'windows-nt)
+      (setq pdf-tools-msys2-directory
+            (or pdf-tools-msys2-directory
+                (cl-some #'if-msys2-directory
+                         (cl-mapcan
+                          (lambda (drive)
+                            (list (format "%c:/msys64" drive)
+                                  (format "%c:/msys32" drive)))
+                          (number-sequence ?c ?z)))
+                (unless (or noninteractive-p
+                            (not (y-or-n-p "Do you have Msys2 installed ? ")))
+                  (if-msys2-directory
+                   (read-directory-name
+                    "Please enter Msys2 installation directory: " nil nil t))))))))
+
+(defun pdf-tools-msys2-mingw-bin ()
+  "Return the location of /mingw*/bin."
+  (when (pdf-tools-msys2-directory)
+    (let ((arch (intern (car (split-string system-configuration "-" t)))))
+    (expand-file-name
+     (format "./mingw%s/bin" (if (eq arch 'x86_64) "64" "32"))
+     (pdf-tools-msys2-directory)))))
+
+(defun pdf-tools-find-bourne-shell ()
+  "Locate a usable sh."
+  (or (and (eq system-type 'windows-nt)
+           (let* ((directory (pdf-tools-msys2-directory)))
+             (when directory
+               (expand-file-name "usr/bin/bash.exe" directory))))
+      (executable-find "sh")))
+
+(defun pdf-tools-build-server (target-directory
+                               &optional
+                               skip-dependencies-p
+                               force-dependencies-p
+                               callback
+                               build-directory)
+  "Build the epdfinfo program in the background.
+
+Install into TARGET-DIRECTORY, which should be a directory.
+
+If CALLBACK is non-nil, it should be a function.  It is called
+with the compiled executable as the single argument or nil, if
+the build falied.
+
+Expect sources to be in BUILD-DIRECTORY.  If nil, search for it
+using `pdf-tools-locate-build-directory'.
+
+See `pdf-tools-install' for the SKIP-DEPENDENCIES-P and
+FORCE-DEPENDENCIES-P arguments.
+
+Returns the buffer of the compilation process."
+
+  (unless callback (setq callback #'ignore))
+  (unless build-directory
+    (setq build-directory (pdf-tools-locate-build-directory)))
+  (cl-check-type target-directory file-directory)
+  (setq target-directory (file-name-as-directory
+                          (expand-file-name target-directory)))
+  (cl-check-type build-directory (and (not null) file-directory))
+  (when (and skip-dependencies-p force-dependencies-p)
+    (error "Can't simultaneously skip and force dependencies"))
+  (let* ((compilation-auto-jump-to-first-error nil)
+         (compilation-scroll-output t)
+         (shell-file-name (pdf-tools-find-bourne-shell))
+         (shell-command-switch "-c")
+         (process-environment process-environment)
+         (default-directory build-directory)
+         (autobuild (shell-quote-argument
+                     (expand-file-name "autobuild" build-directory)))
+         (msys2-p (equal "bash.exe" (file-name-nondirectory shell-file-name))))
+    (unless shell-file-name
+      (error "No suitable shell found"))
+    (when msys2-p
+      (push "BASH_ENV=/etc/profile" process-environment))
+    (let ((executable
+           (expand-file-name
+            (concat "epdfinfo" (and (eq system-type 'windows-nt) ".exe"))
+            target-directory))
+          (compilation-buffer
+           (compilation-start
+            (format "%s -i %s%s"
+                    autobuild
+                    (shell-quote-argument target-directory)
+                    (cond
+                     (skip-dependencies-p " -D")
+                     (force-dependencies-p " -d")
+                     (t "")))
+            t)))
+      ;; In most cases user-input is required, so select the window.
+      (if (get-buffer-window compilation-buffer)
+          (select-window (get-buffer-window compilation-buffer))
+        (pop-to-buffer compilation-buffer))
+      (with-current-buffer compilation-buffer
+        (setq-local compilation-error-regexp-alist nil)
+        (add-hook 'compilation-finish-functions
+                  (lambda (_buffer status)
+                    (funcall callback
+                             (and (equal status "finished\n")
+                                  executable)))
+                  nil t)
+        (current-buffer)))))
+
+
+;; * ================================================================== *
+;; * Initialization
+;; * ================================================================== *
 
 ;;;###autoload
-(defun pdf-tools--melpa-build-server (&optional build-directory
-						skip-dependencies-p
-						callback)
-  "Compile the epdfinfo program in BUILD-DIRECTORY.
+(defun pdf-tools-install (&optional no-query-p skip-dependencies-p
+                                    no-error-p force-dependencies-p)
+  "Install PDF-Tools in all current and future PDF buffers.
 
-This is a helper function when installing via melpa.
+If the `pdf-info-epdfinfo-program' is not running or does not
+appear to be working, attempt to rebuild it.  If this build
+succeeded, continue with the activation of the package.
+Otherwise fail silently, i.e. no error is signaled.
 
-Don't try to install dependencies if SKIP-DEPENDENCIES-P is non-nil.
+Build the program (if necessary) without asking first, if
+NO-QUERY-P is non-nil.
 
-CALLBACK may be a function, which will be locally put on
-`compilation-finish-functions', which see."
+Don't attempt to install system packages, if SKIP-DEPENDENCIES-P
+is non-nil.
 
-  (if (file-executable-p pdf-info-epdfinfo-program)
-      (message "%s" "Server already build.")
-    (let* ((make-cmd
-	    (if (eq system-type 'berkeley-unix) "gmake" "make"))
-	   (have-apt-and-sudo
-	    (and (executable-find "apt-get")
-		 (executable-find "sudo")))
-	   (install-server-deps
-	    (and have-apt-and-sudo
-		 (not skip-dependencies-p)
-		 (y-or-n-p "Should I try to install dependencies with apt-get ?")))
-	   (compilation-auto-jump-to-first-error nil)
-	   (compilation-scroll-output t)
-	   compilation-buffer
-	   (compilation-buffer-name-function
-	    (lambda (&rest _)
-	      (setq compilation-buffer
-		    (generate-new-buffer-name "*compile pdf-tools*")))))
-      (unless (eq system-type 'windows-nt)
-	(unless (executable-find make-cmd)
-	  (error "Executable `%s' command not found"
-		 make-cmd)))
-      (unless build-directory
-	(setq build-directory
-	      (expand-file-name
-	       "build"
-	       (file-name-directory pdf-info-epdfinfo-program))))
-      (unless (file-directory-p build-directory)
-	(error "No such directory: %s" build-directory))
-      (if (not (eq system-type 'windows-nt))
-	  (compile
-	      (format "%s V=0 -kC '%s' %smelpa-build"
-		      make-cmd
-		      build-directory
-		      (if install-server-deps "install-server-deps " " "))
-	    install-server-deps)
-	(let* ((arch (upcase (nth 2 (split-string system-configuration "-"))))
-	       (msys2-install-directory
-		(file-name-directory (read-file-name "Path to msys2_shell.bat: "))))
-	  (compile (format "%susr/bin/bash.exe --login -c 'MSYSTEM=%s source /etc/profile; LANG=C make V=0 -kC \"%s\" melpa-build'"
-			   msys2-install-directory
-			   arch
-			   build-directory))))
-      compilation-buffer)))
+Do not signal an error in case the build failed, if NO-ERROR-P is
+non-nil.
 
+Attempt to install system packages (even if it is deemed
+unnecessary), if FORCE-DEPENDENCIES-P is non-nil.
+
+Note that SKIP-DEPENDENCIES-P and FORCE-DEPENDENCIES-P are
+mutually exclusive.
+
+Note further, that you can influence the installation directory
+by setting `pdf-info-epdfinfo-program' to an appropriate
+value (e.g. ~/bin/epdfinfo) before calling this function.
+
+See `pdf-view-mode' and `pdf-tools-enabled-modes'."
+  (interactive)
+  (if (or (pdf-info-running-p)
+          (ignore-errors (pdf-info-check-epdfinfo) t))
+      (pdf-tools-install-noverify)
+    (let ((target-directory
+           (or (and (stringp pdf-info-epdfinfo-program)
+                    (file-name-directory
+                     pdf-info-epdfinfo-program))
+               pdf-tools-directory)))
+      (if (or no-query-p
+              (y-or-n-p "Need to (re)build the epdfinfo program, do it now ?"))
+        (pdf-tools-build-server
+         target-directory
+         skip-dependencies-p
+         force-dependencies-p
+         (lambda (executable)
+           (let ((msg (format
+                       "Building the PDF Tools server %s"
+                       (if executable "succeeded" "failed"))))
+             (if (not executable)
+                 (funcall (if no-error-p #'message #'error) "%s" msg)
+               (message "%s" msg)
+               (setq pdf-info-epdfinfo-program executable)
+               (let ((pdf-info-restart-process-p t))
+                 (pdf-tools-install-noverify))))))
+        (message "PDF Tools not activated")))))
+
+(defun pdf-tools-install-noverify ()
+  "Like `pdf-tools-install', but skip checking `pdf-info-epdfinfo-program'."
+  (add-to-list 'auto-mode-alist pdf-tools-auto-mode-alist-entry)
+  (add-to-list 'magic-mode-alist pdf-tools-magic-mode-alist-entry)
+  ;; FIXME: Generalize this sometime.
+  (when (memq 'pdf-occur-global-minor-mode
+              pdf-tools-enabled-modes)
+    (pdf-occur-global-minor-mode 1))
+  (when (memq 'pdf-virtual-global-minor-mode
+              pdf-tools-enabled-modes)
+    (pdf-virtual-global-minor-mode 1))
+  (add-hook 'pdf-view-mode-hook 'pdf-tools-enable-minor-modes)
+  (dolist (buf (buffer-list))
+    (with-current-buffer buf
+      (when (and (not (derived-mode-p 'pdf-view-mode))
+                 (pdf-tools-pdf-buffer-p)
+                 (buffer-file-name))
+        (pdf-view-mode)))))
+
+(defun pdf-tools-uninstall ()
+  "Uninstall PDF-Tools in all current and future PDF buffers."
+  (interactive)
+  (pdf-info-quit)
+  (setq-default auto-mode-alist
+    (remove pdf-tools-auto-mode-alist-entry auto-mode-alist))
+  (setq-default magic-mode-alist
+    (remove pdf-tools-magic-mode-alist-entry magic-mode-alist))
+  (pdf-occur-global-minor-mode -1)
+  (pdf-virtual-global-minor-mode -1)
+  (remove-hook 'pdf-view-mode-hook 'pdf-tools-enable-minor-modes)
+  (dolist (buf (buffer-list))
+    (with-current-buffer buf
+      (when (pdf-util-pdf-buffer-p buf)
+        (pdf-tools-disable-minor-modes pdf-tools-modes)
+        (normal-mode)))))
 
 (defun pdf-tools-pdf-buffer-p (&optional buffer)
   "Return non-nil if BUFFER contains a PDF document."
@@ -317,7 +452,7 @@ CALLBACK may be a function, which will be locally put on
 (defun pdf-tools-assert-pdf-buffer (&optional buffer)
   (unless (pdf-tools-pdf-buffer-p buffer)
     (error "Buffer does not contain a PDF document")))
-  
+
 (defun pdf-tools-set-modes-enabled (enable &optional modes)
   (dolist (m (or modes pdf-tools-enabled-modes))
     (let ((enabled-p (and (boundp m)
@@ -345,59 +480,6 @@ MODES defaults to `pdf-tools-enabled-modes'."
 
 (declare-function pdf-occur-global-minor-mode "pdf-occur.el")
 (declare-function pdf-virtual-global-minor-mode "pdf-virtual.el")
-
-;;;###autoload
-(defun pdf-tools-install (&optional force-compile-p skip-dependencies-p no-error)
-  "Install PDF-Tools in all current and future PDF buffers.
-
-See `pdf-view-mode' and `pdf-tools-enabled-modes'."
-  (interactive)
-  (cond
-   ((not (file-executable-p pdf-info-epdfinfo-program))
-    (when (or force-compile-p
-              (y-or-n-p "Need to build the server, do it now ? "))
-      (pdf-tools--melpa-build-server
-       nil
-       skip-dependencies-p
-       (lambda (buffer _status)
-         (when (buffer-live-p buffer)
-           (display-buffer buffer))
-         (when (file-executable-p pdf-info-epdfinfo-program)
-           (let ((pdf-info-restart-process-p t))
-             (pdf-tools-install))))))
-    (funcall (if no-error 'message 'error)
-             "%s" "No executable `epdfinfo' found"))
-   (t
-    (add-to-list 'auto-mode-alist pdf-tools-auto-mode-alist-entry)
-    ;; FIXME: Generalize this sometime.
-    (when (memq 'pdf-occur-global-minor-mode
-                pdf-tools-enabled-modes)
-      (pdf-occur-global-minor-mode 1))
-    (when (memq 'pdf-virtual-global-minor-mode
-                pdf-tools-enabled-modes)
-      (pdf-virtual-global-minor-mode 1))
-    (add-hook 'pdf-view-mode-hook 'pdf-tools-enable-minor-modes)
-    (dolist (buf (buffer-list))
-      (with-current-buffer buf
-        (when (and (not (derived-mode-p 'pdf-view-mode))
-                   (pdf-tools-pdf-buffer-p)
-                   (buffer-file-name))
-          (pdf-view-mode)))))))
-
-(defun pdf-tools-uninstall ()
-  "Uninstall PDF-Tools in all current and future PDF buffers."
-  (interactive)
-  (pdf-info-quit)
-  (setq-default auto-mode-alist
-    (remove pdf-tools-auto-mode-alist-entry auto-mode-alist))
-  (pdf-occur-global-minor-mode -1)
-  (pdf-virtual-global-minor-mode -1)
-  (remove-hook 'pdf-view-mode-hook 'pdf-tools-enable-minor-modes)
-  (dolist (buf (buffer-list))
-    (with-current-buffer buf
-      (when (pdf-util-pdf-buffer-p buf)
-        (pdf-tools-disable-minor-modes pdf-tools-modes)
-        (normal-mode)))))
 
 ;;;###autoload
 (defun pdf-tools-help ()
