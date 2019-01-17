@@ -1,4 +1,4 @@
-# Initialise a Kubuntu installation.
+# Initialise a Debian installation.
 
 set -e
 
