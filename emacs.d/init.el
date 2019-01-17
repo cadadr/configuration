@@ -3099,16 +3099,15 @@ N defaults to 1."
  org-agenda-files gk-org-agenda-files
  ;; Find all the relevant Readme.org files.
  gk-org-project-agenda-files
- (cons (expand-file-name "~/doc/not/www2/Readme.org")
-       ;; Find Readme.org files.
-       (seq-filter
-        ($ (string= (file-name-nondirectory $1) "Readme.org"))
-        (let ((re directory-files-no-dot-files-regexp))
-          (apply #'append
-                 (mapcar
-                  ($ (when (file-directory-p $1)
-                       (directory-files $1 t re)))
-                  (directory-files "~/co" t re)))))))
+ ;; Find Readme.org files.
+ (seq-filter
+  ($ (string= (file-name-nondirectory $1) "Readme.org"))
+  (let ((re directory-files-no-dot-files-regexp))
+    (apply #'append
+           (mapcar
+            ($ (when (file-directory-p $1)
+                 (directory-files $1 t re)))
+            (directory-files "~/co" t re))))))
 
 
 
