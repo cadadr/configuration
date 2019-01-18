@@ -58,6 +58,7 @@ if [ ! x$BASH = x ]; then
     shopt -s histappend
     shopt -s checkwinsize
     shopt -s globstar
+    shopt -s autocd
     bold='\[\033[1m\]'
     reset='\[\033[0m\]'
 
@@ -142,7 +143,30 @@ countpdfpagesdir () {
 }
 
 sx () {
-    startx -- :$1
+    startx -- :${1:-0}
+}
+
+# From: https://news.ycombinator.com/item?id=18898898
+pycd () {
+    pushd $(python3 -c "import os.path, $1; print(os.path.dirname($1.__file__))");
+}
+
+# Combined find+grep, e.g. fgr "Class" "*.cpp" "-l" (2nd and 3rd
+# parameters optional
+# From: https://news.ycombinator.com/item?id=18909446
+fgr () {
+    NAM=""
+    GREPTYPE="-i -H"
+    if [ -n "$1" ]; then
+        test -n "$2" && NAM="-name \"$2\""
+        test -n "$3" && GREPTYPE=$3
+        CMMD="find . $NAM -not -path '*/\.*' -exec egrep --colour=auto $GREPTYPE \"$1\" {} + 2>/dev/null"
+        >&2 echo -e "Running: $CMMD\n"
+        sh -c "$CMMD"
+        echo ""
+    else
+        echo -e "Expected: fgr <search> [file filter] [grep opt]\n"
+    fi
 }
 
 ###
@@ -169,6 +193,13 @@ alias vagrant="env -u GEM_HOME -u GEM_PATH vagrant"
 alias ngrep="grep -Hn"
 alias msgs="dmesg | tail"
 alias has="dpkg-query -l"
+alias sudo="sudo --preserve-env" # https://news.ycombinator.com/item?id=18902265
+alias wanna="man -k"
+# From: https://news.ycombinator.com/item?id=18909446
+alias fs="mount | grep ^/ | column -t | sort"
+# CD to the root of the current git project
+# From: https://news.ycombinator.com/item?id=18910827
+alias up='git rev-parse --git-dir >/dev/null 2>&1 && cd `git rev-parse --show-toplevel` || echo "Not in git repo"'
 
 ###
 
