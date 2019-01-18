@@ -2053,6 +2053,8 @@ unlocked, offer to lock it before pasting."
  ;; Exclude 3rd-party lisp from todos search.
  magit-todos-exclude-globs '("emacs.d/lisp/site/*" "*/patches/*"))
 
+(cl-pushnew 'magit-todos-mode gk-global-modes)
+
 
 
 ;;;;; Mercurial:
