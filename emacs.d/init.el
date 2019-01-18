@@ -3832,12 +3832,7 @@ new frame is created."
     ;; With wombat the active window is hard to tell.
     (set-face-attribute 'mode-line nil
                         :background "khaki"
-                        :foreground "black")
-    ;; Don't change the foreground or decorate the text when
-    ;; ‘hl-line-mode’ is on.
-    (set-face-attribute 'highlight nil
-                        :foreground nil
-                        :underline nil))
+                        :foreground "black"))
 
   ;; Customise misterioso.
   (when (eq gk-gui-theme 'misterioso)
@@ -3855,7 +3850,12 @@ new frame is created."
     ;; indistinguishable, especially with the bar cursor.
     (set-face-attribute 'cursor nil :background "hotpink")
     ;; Region should not have a foreground colour.
-    (set-face-attribute 'region nil :foreground nil))
+    (set-face-attribute 'region nil :foreground nil)
+    ;; Don't change the foreground or decorate the text when
+    ;; ‘hl-line-mode’ is on.
+    (set-face-attribute 'highlight nil
+                        :foreground nil
+                        :underline nil))
 
   ;; Further customise solarized.
   (when (eq gk-gui-theme 'solarized-dark)
