@@ -169,6 +169,22 @@ fgr () {
     fi
 }
 
+# Remount filesystems.
+# usage: remount [MODE] [FS]
+# MODE defaults to `ro' and FS defaults to `$PWD'.
+remount () {
+    FS="${2:-$PWD}"
+    if [ "$FS" = "$PWD" ]; then
+        cd /
+    fi
+    MODE="${1:-ro}"
+    if [ "$MODE" = "-" ]; then
+        MODE=ro
+    fi
+    sudo mount -o "remount,$MODE" "$FS"
+    cd "$FS"
+}
+
 ###
 alias edit="$EDITOR"
 alias re=". $ENV"

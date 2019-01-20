@@ -1,5 +1,7 @@
 # env.sh --- Shell environment.
 
+export MYFS=/igk
+
 export EMAIL=$USER@localhost
 export MAILDIR=$HOME/Mail
 export PS1='\$ '
@@ -20,7 +22,7 @@ esac
 # OpenBSD...
 export CVS_RSH=ssh
 
-export CVSROOT=/igk/cvsroot
+export CVSROOT=$MYFS/cvsroot
 export GITROOT=/var/git
 export HGROOT=/var/mercurial
 
