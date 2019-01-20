@@ -1,0 +1,11 @@
+# /etc/fstab --- static file system information
+
+# <file system>            <mount point>   <type>      <options>           <dump>  <pass>
+/dev/mapper/alpha-root     /               ext4        errors=remount-ro    0       1
+/dev/mapper/alpha-backups  /backups        ext4        noatime              0       2
+/dev/mapper/alpha-igk      /igk            ext4        errors=remount-ro    0       2
+/dev/mapper/alpha-swap     none            swap        sw                   0       0
+/dev/mapper/alpha-home     /home           ext4        defaults             0       2
+/dev/sda2                  /boot           ext4        defaults             0       2
+/dev/sda1                  /boot/efi       vfat        umask=0077           0       1
+/dev/sr0                   /media/cdrom0   udf,iso9660 user,noauto          0       0
