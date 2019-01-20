@@ -3824,6 +3824,8 @@ Ask otherwise."
   "Customisations that modify frame behaviour.
 Groups such customisations which might need to be re-ran when a
 new frame is created."
+  (interactive)
+
   (ignore frame)
 
   (when gk-gui-theme
