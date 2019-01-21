@@ -2145,7 +2145,7 @@ Usable for Repl buffers."
 ;;;;;; Emacs Lisp:
 
 (defun gk-emacs-lisp-mode-hook ()
-  (imenu-add-to-menubar "Definitions")) 
+  (imenu-add-to-menubar "Definitions"))
 
 (add-hook 'emacs-lisp-mode-hook 'gk-lisp-mode-hook)
 (add-hook 'emacs-lisp-mode-hook 'gk-emacs-lisp-mode-hook)
