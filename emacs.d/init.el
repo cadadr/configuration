@@ -1644,7 +1644,7 @@ with a period, insert two spaces afterwards instead of one."
   (visual-line-mode 1)
   (gk-utf8-entry-mode 1)
   (set-input-method default-input-method)
-  ;; (olivetti-mode 1)
+  (olivetti-mode 1)
   (setq indent-tabs-mode nil))
 
 (add-hook 'text-mode-hook 'gk-text-editing-modes-hook)
