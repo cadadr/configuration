@@ -3,7 +3,7 @@
 Version=1.0
 Name=Firefox Quantum (gk)
 Comment=Firefox from the Mozilla release
-Exec=/home/g/opt/firefox/firefox %u
+Exec=firefox %u
 Terminal=false
 X-MultipleArgs=false
 Type=Application
