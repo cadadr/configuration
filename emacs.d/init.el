@@ -4844,11 +4844,11 @@ Define an ‘elfeed-serch-mode’ keybinding prepending the letter
 ;; Adapted from http://kitchingroup.cheme.cmu.edu/blog/2017/01/05/Scoring-elfeed-articles/
 
 (defface gk-relevant-elfeed-entry
-  `((t :underline "orange1"))
+  `((t :underline nil :foreground "orange1"))
   "Marks a relevant Elfeed entry.")
 
 (defface gk-important-elfeed-entry
-  `((t :underline "hotpink"))
+  `((t :underline nil :foreground "hotpink"))
   "Marks an important Elfeed entry.")
 
 (push '(relevant gk-relevant-elfeed-entry)
