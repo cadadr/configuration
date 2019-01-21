@@ -2088,6 +2088,12 @@ unlocked, offer to lock it before pasting."
   "Hook for Algol-like programming languages editing."
   (electric-pair-local-mode +1))
 
+(defun gk-prog-mode-hook ()
+  "Hook for all programming modes."
+  (olivetti-mode 1))
+
+(add-hook 'prog-mode-hook #'gk-prog-mode-hook)
+
 
 
 ;;;;; Snippets:
