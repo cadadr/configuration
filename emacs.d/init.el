@@ -3804,7 +3804,7 @@ Ask otherwise."
 
 ;;;;; GUI:
 
-(defvar gk-gui-theme 'misterioso
+(defvar gk-gui-theme 'wombat
   "The default theme's name to load at startup.")
 
 ;; Solarized customisations
