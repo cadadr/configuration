@@ -1894,6 +1894,11 @@ my configurations."
 
 ;;;;; Global modes:
 
+;; Default mode is ‘text-mode’.  The actual default,
+;; ‘fundamental-mode’ is rather useless.
+
+(setq-default major-mode 'text-mode)
+
 ;; Configuration for the Global modes utility library, and other
 ;; settings regarding global modes.
 
