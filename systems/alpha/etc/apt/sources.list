@@ -1,8 +1,8 @@
 # sources.list --- Debian unstable
 
 # testing
-deb http://ftp.uk.debian.org/debian/ testing main
-deb-src http://ftp.uk.debian.org/debian/ testing main
+deb http://ftp.uk.debian.org/debian/ testing main contrib non-free
+deb-src http://ftp.uk.debian.org/debian/ testing main contrib non-free
 
 # unstable, used partially
 deb http://ftp.uk.debian.org/debian/ unstable main
