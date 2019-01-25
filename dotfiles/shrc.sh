@@ -188,8 +188,6 @@ remount () {
 ###
 alias edit="$EDITOR"
 alias re=". $ENV"
-alias apt-dependencies='apt-cache depends --no-recommends --no-breaks --no-suggests --no-conflicts --no-enhances --no-replaces --recurse'
-alias apt-fresh='sudo apt-get update && (apt list --upgradable | pg)'
 alias j=jobs
 alias ls='ls -F'
 alias mo=pg
@@ -208,7 +206,6 @@ alias vagrant="env -u GEM_HOME -u GEM_PATH vagrant"
 # Show file name and line numbers.
 alias ngrep="grep -Hn"
 alias msgs="dmesg | tail"
-alias has="dpkg-query -l"
 alias sudo="sudo --preserve-env" # https://news.ycombinator.com/item?id=18902265
 alias wanna="man -k"
 # From: https://news.ycombinator.com/item?id=18909446
@@ -216,6 +213,13 @@ alias fs="mount | grep ^/ | column -t | sort"
 # CD to the root of the current git project
 # From: https://news.ycombinator.com/item?id=18910827
 alias up='git rev-parse --git-dir >/dev/null 2>&1 && cd `git rev-parse --show-toplevel` || echo "Not in git repo"'
+alias venv='python3 -m venv'
+
+#### Debian:
+alias deps='apt-cache depends --no-recommends --no-breaks --no-suggests --no-conflicts --no-enhances --no-replaces --recurse'
+alias fresh='sudo apt-get update && (apt list --upgradable | pg)'
+alias haz="dpkg-query -l"
+alias has="apt-cache search"
 
 ###
 
