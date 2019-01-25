@@ -14,16 +14,16 @@ endif
 help:
 	@echo "Targets:"
 	@echo "	help			show this message"
-	@echo "	install-packages	install packages from packages.list"
+	@echo "	install-packages	install package layers"
 	@echo "	init			run system/user initialisation script"
 
 install-packages:
 ifeq ($(BASIC), yes)
-	$(MAKE) -C layers/ -$(MAKEFLAGS) install-base
+	$(MAKE) -C layers/ -$(MAKEFLAGS) all install-base
 else ifeq ($(BASIC), devel)
-	$(MAKE) -C layers/ -$(MAKEFLAGS) install-devel
+	$(MAKE) -C layers/ -$(MAKEFLAGS) all install-devel
 else
-	$(MAKE) -C layers/ -$(MAKEFLAGS) install-full
+	$(MAKE) -C layers/ -$(MAKEFLAGS) all install-full
 endif
 
 install-config: $(GENCONFIGS)

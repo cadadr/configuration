@@ -1,10 +1,6 @@
 # Makefile
 
 CONTROLS=$(wildcard *.control)
-BASEDEBS=$(wildcard ./goktug-layer-base_*.deb)
-UTILDEBS=$(wildcard ./goktug-layer-util_*.deb)
-DEVELDEBS=$(wildcard ./goktug-layer-devel_*.deb)
-ALLDEBS=$(wildcard ./goktug-layer-*.deb)
 
 # Always keep the old version of configs w/o prompting.  Breaks
 # automatic builds for testing otherwise.
@@ -13,19 +9,15 @@ INSTALL=sudo apt-get -o Dpkg::Options::="--force-confold" install -y
 all:
 	$(foreach c,$(CONTROLS),equivs-build $(c);)
 
-install-full: all
-	if [ -z "$(strip $(ALLDEBS))" ]; then echo ALLDEBS EMPTY\!; exit 3; fi
-	$(INSTALL) $(ALLDEBS)
+install-full:
+	$(INSTALL) ./goktug-layer-*.deb
 
-install-base: all
-	if [ -z "$(strip $(BASEDEBS))" ]; then echo ALLDEBS EMPTY\!; exit 3; fi
-	if [ -z "$(strip $(UTILDEBS))" ]; then echo ALLDEBS EMPTY\!; exit 3; fi
-	$(INSTALL) $(BASEDEBS)
-	$(INSTALL) $(UTILDEBS)
+install-base:
+	$(INSTALL) ./goktug-layer-base_*.deb
+	$(INSTALL) ./goktug-layer-util_*.deb
 
-install-devel: all install-base
-	if [ -z "$(strip $(DEVELDEBS))" ]; then echo ALLDEBS EMPTY\!; exit 3; fi
-	$(INSTALL) $(DEVELDEBS)
+install-devel: install-base
+	$(INSTALL) ./goktug-layer-devel_*.deb
 
 clean:
 	rm -f *.deb

@@ -11,7 +11,8 @@ help:
 	@echo "Targets:";\
 	echo "	alpha-init		initialise alpha instance with Debian";\
 	echo "	alpha-test		test alpha w/ Docker";\
-	echo "	alpha-config		install alpha config files";\
+	echo "	alpha-pkg		(re)install alpha packages";\
+	echo "	alpha-config		(re)install alpha config files";\
 	echo "	pi-init			initialise pi instance";\
 	echo "	invade			run invasion";\
 	echo "	build			build utilites and emacs.d";\
@@ -32,6 +33,9 @@ alpha-test:
 
 alpha-config:
 	$(MAKE) -C systems/alpha -$(MAKEFLAGS) install-config
+
+alpha-pkg:
+	$(MAKE) -C systems/alpha -$(MAKEFLAGS) install-packages
 
 ### Build rules:
 build: bins emacs
