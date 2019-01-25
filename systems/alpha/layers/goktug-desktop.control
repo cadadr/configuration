@@ -12,6 +12,6 @@ Depends: dunst, pasystray, i3-wm, i3status, i3lock, atril, cheese,
  vokoscreen, redshift-gtk, suckless-tools, laptop-mode-tools, xcape,
  xclip, xdotool, xinput, xinit, libxrandr-dev, network-manager-gnome,
  dbus-x11, pulseaudio, pulseaudio-utils, pavucontrol, alsa-oss,
- alsa-utils, alsamixergui, libnotify-bin, pcmanfm
+ alsa-utils, alsamixergui, libnotify-bin, pcmanfm, tootle
 
 Description: Desktop layer for Göktuğ's Debian System
