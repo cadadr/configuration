@@ -3,3 +3,9 @@ openvpn
 resolvconf
 spamassassin
 clamav
+
+# No installation candidate
+automake1.10-doc
+cpp-doc
+gcc-doc
+
