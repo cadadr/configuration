@@ -10,6 +10,10 @@ application/x-extension-shtml=userapp-Firefox-YX7ZVZ.desktop
 application/xhtml+xml=userapp-Firefox-YX7ZVZ.desktop
 application/x-extension-xhtml=userapp-Firefox-YX7ZVZ.desktop
 application/x-extension-xht=userapp-Firefox-YX7ZVZ.desktop
+image/jpeg=ristretto.desktop
+image/png=ristretto.desktop
+image/gif=ristretto.desktop
+image/tiff=ristretto.desktop
 
 [Added Associations]
 x-scheme-handler/http=userapp-Firefox-YX7ZVZ.desktop;
@@ -24,3 +28,7 @@ application/xhtml+xml=userapp-Firefox-YX7ZVZ.desktop;
 application/x-extension-xhtml=userapp-Firefox-YX7ZVZ.desktop;
 application/x-extension-xht=userapp-Firefox-YX7ZVZ.desktop;
 application/zip=emacsclient.desktop;
+image/jpeg=ristretto.desktop;
+image/png=ristretto.desktop
+image/gif=ristretto.desktop
+image/tiff=ristretto.desktop
