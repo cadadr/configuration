@@ -63,7 +63,7 @@ bindsym $mod+k kill
 
 # power management
 # from: https://wiki.archlinux.org/index.php/I3
-set $Locker i3lock -fec 000000 && sleep 1
+set $Locker i3lock -fec 8b008b && sleep 1
 bindsym $mod+l exec --no-startup-id $Locker, mode "default"
 set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
 mode "$mode_system" {
