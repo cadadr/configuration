@@ -3374,7 +3374,13 @@ unlocked, offer to lock it before pasting."
 
 (setf
  ;; Do not indent entry content.
- org-adapt-indentation nil)
+ org-adapt-indentation nil
+ ;; Allow alphabetical list elements and those that start with * above
+ ;; initial level.
+ org-list-allow-alphabetical t)
+
+;; Required after setting ‘org-list-allow-alphabetical’.
+(org-element-update-syntax)
 
 
 
