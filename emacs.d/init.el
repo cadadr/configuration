@@ -2805,7 +2805,9 @@ email and archiving read mail in another file."
 
 (define-key rmail-mode-map "N" #'gk-rmail-advance)
 (define-key rmail-mode-map "S" #'gk-rmail-force-expunge-and-save)
-(define-key rmail-mode-map "b" #'gk-rmail-view-html-part-in-browser)
+(define-key rmail-mode-map "b"
+  (gk-interactively (gk-rmail-view-html-part-in-browser)
+                    (gk-rmail-advance)))
 
 ;; ‘q’ is normally bound to #'rmail-summary-quit, which is simply
 ;; useless.
