@@ -608,7 +608,7 @@ the beginning of the list."
           (message "Loaded theme ‘%S’" next))
       (message "All themes disabled"))))
 
-(cl-defun gk-flash-current-line (&optional buffer &key (seconds 1))
+(cl-defun gk-flash-current-line (&optional buffer &key (seconds 0.5))
   "Flash current line briefly for SECONDS in BUFFER.
 BUFFER defaults to current buffer, and SECONDS to 1."
   (interactive)
