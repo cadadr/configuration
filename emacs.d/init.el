@@ -167,6 +167,7 @@ Exclude dot-files, don't sort, and return full paths by default."
 (require 'goto-addr)
 (require 'goto-last-change)
 (require 'highlight-parentheses)
+(require 'hl-line)
 (require 'ibuffer)
 (require 'ibuffer-vc)
 (require 'ido)
