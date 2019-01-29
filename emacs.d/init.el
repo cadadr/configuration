@@ -4881,7 +4881,7 @@ Define an ‘elfeed-serch-mode’ keybinding prepending the letter
   "Marks a relevant Elfeed entry.")
 
 (defface gk-important-elfeed-entry
-  `((t :underline nil :foreground "hotpink"))
+  `((t :underline nil :foreground "maroon"))
   "Marks an important Elfeed entry.")
 
 (push '(relevant gk-relevant-elfeed-entry)
