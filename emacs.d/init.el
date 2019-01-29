@@ -1883,6 +1883,14 @@ my configurations."
 
 
 
+;;;;; Auto modes:
+
+;; Emacs can display fonts with ‘image-mode’.  It already does TTF
+;; fonts, but do OTF also.
+(add-to-list 'auto-mode-alist '("\\.otf\\'" . image-mode))
+
+
+
 ;;;;; Calendar:
 
 (calendar-set-date-style 'iso)          ;The only unambiguous one.
