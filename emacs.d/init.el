@@ -1232,6 +1232,44 @@ Pass arg to ‘shell’."
 
 
 
+;;;;; Utilities:
+
+(defun gk-dired-copy-marked-file-paths-as-kill (&optional arg)
+  "Copy the paths of marked files into the kill ring as one big string.
+The string is space separated, ready for use in shell.
+
+If ARG is non-nil, or one prefix arg is given, place each file
+in single quotes.
+
+If two prefix arguments are given, place each file in double
+quotes.
+
+If called with prefix arg 0 (zero), return a null-separated list
+instead of space separated.
+
+If called with a negative prefix arg, return a comma-separated
+list.
+
+If called with three prefix args, return a colon separated list."
+  (interactive "p")
+  (let ((str (mapconcat
+              (case arg
+                ((1 0 -1 64)  #'identity)
+                ('4  ($ (concat "'" $1 "'")))
+                ('16 ($ (concat "\"" $1 "\""))))
+              (dired-get-marked-files)
+              (case arg
+                ((1 4 16 nil) " ")
+                ('0 " ")
+                ('-1 ", ")
+                ('64 ":")))))
+    (with-temp-buffer
+      (insert str)
+      (clipboard-kill-ring-save (point-min) (point-max)))
+    (message str)))
+
+
+
 ;;;;; Customisations:
 
 (setf
@@ -1254,6 +1292,7 @@ Pass arg to ‘shell’."
 ;;;;; Keymappings:
 
 (define-key dired-mode-map (kbd "W") 'wdired-change-to-wdired-mode)
+(define-key dired-mode-map (kbd "C-c y") 'gk-dired-copy-marked-file-paths-as-kill)
 
 
 
