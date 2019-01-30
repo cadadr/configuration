@@ -1,4 +1,4 @@
-;;; init.el --- Göktuğ's Emacs configuration. -*- lexical-binding: t; -*-
+;;; init.el --- Göktuğ's Emacs configuration. -*- lexical-binding: t; coding: utf-8 -*-
 
 ;; Author: Göktuğ Kayaalp <self@gkayaalp.com>
 ;; Version: ETERNAL
