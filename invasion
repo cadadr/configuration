@@ -3,6 +3,7 @@
 .config							xdg-config
 .cvsrc							dotfiles/cvsrc
 .emacs.d						emacs.d
+.flutter						dotfiles/flutter.json
 .gitconfig						dotfiles/gitconfig.ini
 .hgrc							dotfiles/hgrc.ini
 .irbrc							dotfiles/irbrc.rb
