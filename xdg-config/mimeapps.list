@@ -32,3 +32,4 @@ image/jpeg=ristretto.desktop;
 image/png=ristretto.desktop
 image/gif=ristretto.desktop
 image/tiff=ristretto.desktop
+application/pdf=atril.desktop;
