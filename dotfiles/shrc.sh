@@ -220,6 +220,7 @@ alias deps='apt-cache depends --no-recommends --no-breaks --no-suggests --no-con
 alias fresh='sudo apt-get update && (apt list --upgradable | pg)'
 alias haz="dpkg-query -l"
 alias has="apt-cache search"
+alias show="apt-cache show"
 
 ###
 
