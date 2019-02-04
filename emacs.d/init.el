@@ -2250,6 +2250,35 @@ KEYWORDS are the keywords for the file."
     (find-file name)
     (insert str)))
 
+(defun gk-elisp-add-require-for-symbol-at-point ()
+  "Add a requirement for the feature that exports symbol at point.
+On success, prints a message and returns the feature name (a
+symbol)."
+  (interactive)
+  (let* ((symbol (thing-at-point 'symbol))
+         (file (symbol-file (intern symbol)))
+         (feature (file-name-base file))
+         (lastreq (save-excursion (re-search-backward "^(require '" nil t)))
+         (inspos (or lastreq
+                     (save-excursion (re-search-backward "^;;; Code:" nil t))))
+         (form (concat "(require '" feature ")")))
+    (when (or
+           (null file)
+           (string= (expand-file-name file)
+                    (expand-file-name (buffer-file-name))))
+      (user-error "Symbol ‘%S’ defined in current buffer" symbol))
+    (push-mark nil t)
+    (goto-char inspos)
+    (end-of-line)
+    (open-line 1)
+    (forward-line)
+    (insert form)
+    (message
+     (substitute-command-keys
+      "Added ‘%S’; Hit \\[pop-mark] to go back to where you were")
+     feature)
+    feature))
+
 ;; Pretty-printing:
 (define-key emacs-lisp-mode-map (kbd "C-c C-M-x") 'pp-macroexpand-expression)
 (define-key emacs-lisp-mode-map (kbd "C-c C-x C-e") 'pp-eval-last-sexp)
