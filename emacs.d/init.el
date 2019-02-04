@@ -657,6 +657,7 @@ BUFFER defaults to current buffer, and SECONDS to 1."
              (funcall bolf))))
        ;; Return the point.
        (point)))))
+
 
 
 ;;;; Generic advices:
