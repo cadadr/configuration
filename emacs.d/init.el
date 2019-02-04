@@ -1438,25 +1438,23 @@ my configurations."
 
 
 
-;;;;; UTF-8 input minor mode (obsolete):
+;;;;; Unicode input minor mode (obsolete?):
 
-;; TODO(2018-05-25): Move into Utility libraries section.
-
-(defvar gk-utf8-entry-mode-map
+(defvar gk-ucins-entry-mode-map
   (make-sparse-keymap))
 
-(define-minor-mode gk-utf8-entry-mode
+(define-minor-mode gk-ucins-entry-mode
   "Minor mode for definition of some shortcuts for UTF8 characters."
-  nil " u8"
-  gk-utf8-entry-mode-map)
+  nil " Ucins"
+  gk-ucins-entry-mode-map)
 
-(defvar gk-utf8-combining-diacritic-keybindings-alist nil)
-(defvar gk-utf8-combining-diacritic-keybindings-prefix nil)
-(defvar gk-utf8-character-shortcuts-alist nil)
-(defvar gk-utf8-character-shortcuts-prefix nil)
+(defvar gk-ucins-combining-diacritic-keybindings-alist nil)
+(defvar gk-ucins-combining-diacritic-keybindings-prefix nil)
+(defvar gk-ucins-character-shortcuts-alist nil)
+(defvar gk-ucins-character-shortcuts-prefix nil)
 
-(defun gk-utf8-set-bindings (prefix binding-alist)
-  "Set utf-8bindings.
+(defun gk-ucins-set-bindings (prefix binding-alist)
+  "Set Ucins bindings.
 Use PREFIX as prefix key.
 Bindings come from BINDING-ALIST."
   (dolist (i binding-alist)
@@ -1466,19 +1464,19 @@ Bindings come from BINDING-ALIST."
            (fun `(lambda ()
                    (interactive)
                    (insert-char ,char))))
-      (define-key gk-utf8-entry-mode-map
+      (define-key gk-ucins-entry-mode-map
         (kbd binding) (eval fun)))))
 
-(defun gk-utf8--update-hook ()
-  "Hook for updating utf8 binding definitions."
-  (gk-utf8-set-bindings
-   gk-utf8-character-shortcuts-prefix
-   gk-utf8-character-shortcuts-alist)
-  (gk-utf8-set-bindings
-   gk-utf8-combining-diacritic-keybindings-prefix
-   gk-utf8-combining-diacritic-keybindings-alist))
+(defun gk-ucins--update-hook ()
+  "Hook for updating Ucins binding definitions."
+  (gk-ucins-set-bindings
+   gk-ucins-character-shortcuts-prefix
+   gk-ucins-character-shortcuts-alist)
+  (gk-ucins-set-bindings
+   gk-ucins-combining-diacritic-keybindings-prefix
+   gk-ucins-combining-diacritic-keybindings-alist))
 
-(add-hook 'gk-utf8-entry-mode-hook #'gk-utf8--update-hook)
+(add-hook 'gk-ucins-entry-mode-hook #'gk-ucins--update-hook)
 
 
 
@@ -1687,7 +1685,7 @@ with a period, insert two spaces afterwards instead of one."
 ;; Settings common to all major/minor modes that edit text.
 
 (diminish 'visual-line-mode "¬")
-(diminish 'gk-utf8-entry-mode)
+(diminish 'gk-ucins-entry-mode)
 (diminish 'olivetti-mode "𝍌")
 ;; i.e. ‘auto-fill-mode’, but diminish does not like that.
 (diminish 'auto-fill-function "=")
@@ -1698,7 +1696,7 @@ with a period, insert two spaces afterwards instead of one."
   "Hook for `text-mode'."
   (setq-local truncate-lines nil)
   (visual-line-mode 1)
-  (gk-utf8-entry-mode 1)
+  (gk-ucins-entry-mode 1)
   (set-input-method default-input-method)
   (olivetti-mode 1)
   (setq indent-tabs-mode nil))
@@ -1800,18 +1798,18 @@ backwards."
 
 
 
-;;;;; UTF-8 input minor mode configuration:
+;;;;; Unicode input minor mode configuration:
 
-;; This section configures the UTF-8 entry minor mode from above.
+;; This section configures the Unicode entry minor mode from above.
 
-(setf gk-utf8-combining-diacritic-keybindings-alist
+(setf gk-ucins-combining-diacritic-keybindings-alist
       '(("," . 807) ; COMBINING CEDILLA
         ("p" . 801) ; COMBINING PALATALIZED HOOK BELOW
         ("-" . 772) ; COMBINING MACRON
         (":" . 776) ; COMBINING DIAERESIS
         ))
 
-(setf gk-utf8-character-shortcuts-alist
+(setf gk-ucins-character-shortcuts-alist
       '(("s" . ?ʃ) ; IPA Voiceless palato-alveolar sibilan fricative
         ("z" . ?ʒ) ; IPA Voiced palato-alveolar sibilan fricative
         ("!" . ?ʔ) ; IPA Glottal stop
@@ -1825,12 +1823,12 @@ backwards."
         ("P" . ?¶)
         ))
 
-(setf gk-utf8-character-shortcuts-prefix
+(setf gk-ucins-character-shortcuts-prefix
       "C-c 8")
-(setf gk-utf8-combining-diacritic-keybindings-prefix
-      gk-utf8-character-shortcuts-prefix)
+(setf gk-ucins-combining-diacritic-keybindings-prefix
+      gk-ucins-character-shortcuts-prefix)
 
-(add-hook 'gk-minor-mode-hook #'gk-utf8-entry-mode)
+(add-hook 'gk-minor-mode-hook #'gk-ucins-entry-mode)
 
 
 
@@ -1969,7 +1967,7 @@ file extension.")
         pixel-scroll-mode))
 
 ;; Diminish global modes that are always on.
-(diminish 'gk-utf8-entry-mode)
+(diminish 'gk-ucins-entry-mode)
 (diminish 'whole-line-or-region-mode)
 (diminish 'buffer-face-mode "☺")
 (diminish 'which-key-mode "⁈")
