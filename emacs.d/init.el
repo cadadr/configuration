@@ -1364,7 +1364,18 @@ If called with three prefix args, return a colon separated list."
 
 ;;;; Evil:
 
+(defvar-local gk-evil-default-cursor nil
+  "The value of ‘cursor-type’ before ‘gk-toggle-evil-mode’ was
+run.")
 
+(defun gk-toggle-evil-mode ()
+  "Toggle ‘evil-mode’, trying to deal with how it interacts with
+my configurations."
+  (interactive)
+  (if evil-mode
+      (setq-local cursor-type gk-evil-default-cursor)
+    (setq-local gk-evil-default-cursor cursor-type))
+  (evil-mode (if evil-mode -1 +1)))
 
 
 
@@ -1882,23 +1893,6 @@ file extension.")
   (flyspell-mode +1))
 
 ;; (add-hook 'text-mode-hook 'gk-ispell-hook)
-
-
-
-;;;;; Evil:
-
-(defvar-local gk-evil-default-cursor nil
-  "The value of ‘cursor-type’ before ‘gk-toggle-evil-mode’ was
-run.")
-
-(defun gk-toggle-evil-mode ()
-  "Toggle ‘evil-mode’, trying to deal with how it interacts with
-my configurations."
-  (interactive)
-  (if evil-mode
-      (setq-local cursor-type gk-evil-default-cursor)
-    (setq-local gk-evil-default-cursor cursor-type))
-  (evil-mode (if evil-mode -1 +1)))
 
 
 
