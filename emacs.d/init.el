@@ -620,6 +620,43 @@ BUFFER defaults to current buffer, and SECONDS to 1."
        ($ (with-current-buffer buf
             (hl-line-mode -1)))))))
 
+(defun gk-empty-kill-ring ()
+  "Empty the kill ring."
+  (interactive)
+  (when kill-ring
+    (setq kill-ring nil)
+    (garbage-collect)))
+
+(defun gk-bol ()
+  "Alternate between the first and the indentation on a line."
+  (interactive)
+  (let ((bolf (if visual-line-mode #'beginning-of-visual-line
+                #'beginning-of-line))
+        (p  (point)))
+    ;; We do this to prevent any flicker happening between
+    ;; ‘back-to-indentation’ and ‘bolf‘ when going to
+    ;; ‘beginning-of-line’.
+    (goto-char
+     (save-excursion
+       ;; If visual-line-mode is on and we're on a continuation line,
+       ;; go to the beginning of the continuation line.
+       ;;
+       ;; XXX: sometimes this goes to the previous line because of
+       ;; word-wrapping
+       (if (and visual-line-mode
+                (>= (- p (line-beginning-position))
+                    (window-width)))
+           (funcall bolf)
+         ;; Else, do the toggling.
+         (progn
+           ;; Go back to indentation.
+           (back-to-indentation)
+           ;; If we didn't move, we were already at the indentation.
+           ;; Go to the beginning of the line.
+           (when (= p (point))
+             (funcall bolf))))
+       ;; Return the point.
+       (point)))))
 
 
 ;;;; Generic advices:
@@ -1481,46 +1518,6 @@ Bindings come from BINDING-ALIST."
 
 
 ;;;;; Utilites:
-
-;; XXX(2018-05-25): Consider moving to Utility libraries.
-
-(defun gk-empty-kill-ring ()
-  "Empty the kill ring."
-  (interactive)
-  (when kill-ring
-    (setq kill-ring nil)
-    (garbage-collect)))
-
-(defun gk-bol ()
-  "Alternate between the first and the indentation on a line."
-  (interactive)
-  (let ((bolf (if visual-line-mode #'beginning-of-visual-line
-                #'beginning-of-line))
-        (p  (point)))
-    ;; We do this to prevent any flicker happening between
-    ;; ‘back-to-indentation’ and ‘bolf‘ when going to
-    ;; ‘beginning-of-line’.
-    (goto-char
-     (save-excursion
-       ;; If visual-line-mode is on and we're on a continuation line,
-       ;; go to the beginning of the continuation line.
-       ;;
-       ;; XXX: sometimes this goes to the previous line because of
-       ;; word-wrapping
-       (if (and visual-line-mode
-                (>= (- p (line-beginning-position))
-                    (window-width)))
-           (funcall bolf)
-         ;; Else, do the toggling.
-         (progn
-           ;; Go back to indentation.
-           (back-to-indentation)
-           ;; If we didn't move, we were already at the indentation.
-           ;; Go to the beginning of the line.
-           (when (= p (point))
-             (funcall bolf))))
-       ;; Return the point.
-       (point)))))
 
 (defun gk-join-nl ()
   "Join the line under point with the next line."
