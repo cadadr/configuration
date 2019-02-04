@@ -163,6 +163,8 @@ Exclude dot-files, don't sort, and return full paths by default."
 (require 'flyspell)
 (require 'forecast)
 (require 'git-commit)
+(require 'gk-greek)
+(require 'gk-unilat)
 (require 'gnus-sum)
 (require 'goto-addr)
 (require 'goto-last-change)
@@ -1416,11 +1418,6 @@ my configurations."
 
 
 ;;;; Input methods:
-
-;; Load them up.
-
-(require 'gk-greek)
-(require 'gk-unilat)
 
 
 
