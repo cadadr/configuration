@@ -2,6 +2,12 @@
 #+title: Göktuğ's Configuration
 #+options: toc:nil
 
+#+BEGIN_EXPORT html
+<img
+ src="https://gitlab.com/cadadr/configuration/badges/master/build.svg"
+ alt="Gitlab build status badge" />
+#+END_EXPORT
+
 * Introduction
 #+BEGIN_QUOTE
 Sic transit gloria mundi.
