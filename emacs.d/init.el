@@ -260,6 +260,7 @@ Exclude dot-files, don't sort, and return full paths by default."
 (require 'windmove)
 (require 'winner)
 (require 'zencoding-mode)
+(require 'yasnippet)
 
 
 
@@ -2142,8 +2143,6 @@ unlocked, offer to lock it before pasting."
 
 
 ;;;;; Snippets:
-
-(require 'yasnippet)
 
 (setf yas-snippet-dirs
       (list
