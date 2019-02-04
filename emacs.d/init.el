@@ -1045,6 +1045,42 @@ integer argument, otherwise positive."
 
 
 
+;;;; Things:
+
+;; In this section are defined a suite of functions to work with
+;; ‘things’ in buffers, à la ‘thing-at-point’.
+
+(defmacro gk-make-thing-marker (thing)
+  (let ((thingname (symbol-name thing)))
+    `(defun ,(intern (concat "gk-mark-" thingname)) ()
+       ,(concat "Mark the " thingname " under cursor.")
+       (interactive)
+       (let ((b (bounds-of-thing-at-point (quote ,thing))))
+         (set-mark (point))
+         (goto-char (car b))
+         (push-mark (cdr b) t t)))))
+
+(defvar gk-things '(list sexp defun filename url email word paragraph
+                         sentence whitespace line page symbol)
+  "A list of known things")
+
+(dolist (thing gk-things)
+  (eval `(gk-make-thing-marker ,thing)))
+
+(defun gk-mark-thing ()
+  "Interactively find some THING to mark."
+  (interactive)
+  (funcall
+   (intern
+    (concat
+     "gk-mark-"
+     (completing-read
+      "What to mark (hit TAB to complete): "
+      (mapcar #'symbol-name gk-things)
+      nil t)))))
+
+
+
 ;;; The GK minor mode:
 
 ;; The GK minor mode is at the heart of this configuration.  Almost
@@ -1126,45 +1162,6 @@ Set locally the variable `outline-minor-mode-prefix' to PREFIX."
   (setq-local outline-minor-mode-prefix (kbd prefix))
   (outline-minor-mode +1)
   (local-set-key outline-minor-mode-prefix outline-mode-prefix-map))
-
-
-
-;;;; Things:
-
-;; XXX(2018-05-25): Consider moving this into the Utility libraries
-;; section.
-
-;; In this section are defined a suite of functions to work with
-;; ‘things’ in buffers, à la ‘thing-at-point’.
-
-(defmacro gk-make-thing-marker (thing)
-  (let ((thingname (symbol-name thing)))
-    `(defun ,(intern (concat "gk-mark-" thingname)) ()
-       ,(concat "Mark the " thingname " under cursor.")
-       (interactive)
-       (let ((b (bounds-of-thing-at-point (quote ,thing))))
-         (set-mark (point))
-         (goto-char (car b))
-         (push-mark (cdr b) t t)))))
-
-(defvar gk-things '(list sexp defun filename url email word paragraph
-                         sentence whitespace line page symbol)
-  "A list of known things")
-
-(dolist (thing gk-things)
-  (eval `(gk-make-thing-marker ,thing)))
-
-(defun gk-mark-thing ()
-  "Interactively find some THING to mark."
-  (interactive)
-  (funcall
-   (intern
-    (concat
-     "gk-mark-"
-     (completing-read
-      "What to mark (hit TAB to complete): "
-      (mapcar #'symbol-name gk-things)
-      nil t)))))
 
 
 
