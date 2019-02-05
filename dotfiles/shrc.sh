@@ -66,7 +66,18 @@ if [ ! x$BASH = x ]; then
 	xit=$?
         [ $xit -ne 0 ] && printf "\033[7m\033[1m> $xit!\033[0m "
     }
-    PROMPT_COMMAND=lastcmdexit
+
+    queue () {
+	count="$(( $(ls $MAILQUEUE | wc -l) / 2 ))"
+	[ "0" != "$count" ] && echo "Queued messages: $count";
+	true
+    }
+
+    procmd () {
+	queue ; lastcmdexit
+    }
+
+    PROMPT_COMMAND=procmd
     PS1="$bold"'[In: \w; \d \A]\n[\#] \u@\H (\j)\$'"$reset "
     HISTTIMEFORMAT='%s'
 fi
