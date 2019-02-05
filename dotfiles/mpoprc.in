@@ -16,11 +16,13 @@ port 995
 user __IU_MAIL_ADDR__
 delivery mda "/usr/bin/procmail -f '%F' -a iumail"
 uidls_file ~/posta/mpop_uidls/1
+passwordeval "pass show __IU_MAIL_ADDR__"
 
-# self@gkayaalp.com
+# self@
 account self-inbox
 host __MAIL_HOST__
 port 995
-user self@gkayaalp.com
+user __MAIL_ADDR__
 delivery mda "/usr/bin/procmail -f '%F' -a self"
 uidls_file ~/posta/mpop_uidls/2
+passwordeval "pass show __MAIL_ADDR__"

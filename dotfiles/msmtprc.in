@@ -11,12 +11,13 @@ protocol smtp
 # Leave ↓ blank for check netrc
 password
 
-# self@gkayaalp.com
+# self@
 account self
 host __MAIL_HOST__
 port 465
-from self@gkayaalp.com
-user self@gkayaalp.com
+from __MAIL_ADDR__
+user __MAIL_ADDR__
+passwordeval "pass show __MAIL_ADDR__"
 
 # IU ogrenci mail
 account iumail
@@ -24,6 +25,7 @@ host __IU_SMTP_HOST__
 port 465
 from __IU_MAIL_ADDR__
 user __IU_MAIL_ADDR__
+passwordeval "pass show __IU_MAIL_ADDR__"
 
 # Set a default account
 account default : self
