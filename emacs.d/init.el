@@ -236,6 +236,7 @@ Exclude dot-files, don't sort, and return full paths by default."
 (require 's)
 (require 'saveplace)
 (require 'scheme)
+(require 'sendmail)
 (require 'seq)
 (require 'shell)
 (require 'shr)
@@ -2656,7 +2657,7 @@ and special ones sepatarely."
 
 ;;;;; User agent:
 
-(setf message-mail-user-agent nil
+(setf message-mail-user-agent t
       read-mail-command 'gnus)
 
 
@@ -2739,14 +2740,39 @@ Otherwise start mail program in offline mode."
 ;;;;; Sending mail:
 
 (setf
- message-send-mail-function 'smtpmail-send-it
- send-mail-function 'smtpmail-send-it ; mail-mode
- smtpmail-local-domain (system-name)
- smtpmail-sendto-domain (system-name)
- smtpmail-stream-type 'ssl
- smtpmail-smtp-service 465)
+ message-send-mail-function 'message-send-mail-with-sendmail
+ message-sendmail-f-is-evil t
+ message-sendmail-envelope-from 'header
+ sendmail-program (gk-executable-ensure "msmtp-enqueue.sh"))
 
-(gk-load (dropbox "smtp") t)
+(defun gk-mail-set-msmtp-account ()
+  "Find account name for email address in From: line."
+  (let ((from (save-excursion
+                (goto-char (point-min))
+                (or (re-search-forward "^From: .*? <" nil t)
+                    (user-error "No From: line or an empty one"))
+                (buffer-substring (point) (1- (line-end-position))))))
+    (with-current-buffer (find-file-noselect "~/.msmtprc")
+      (goto-char (point-min))
+      (or (re-search-forward (concat "^from " from) nil t)
+          (user-error "No msmtp account for ‘%s’" from))
+      (re-search-backward "^account ")
+      (end-of-line)
+      (setf
+       message-sendmail-extra-arguments
+       (list "-a" (substring-no-properties (thing-at-point 'symbol)))))))
+
+(add-hook 'message-send-mail-hook #'gk-mail-set-msmtp-account)
+
+(defun gk-runq ()
+  "Run outgoing email queue."
+  (interactive)
+  (async-shell-command "msmtp-runqueue.sh" "*runq*"))
+
+(defun gk-listq ()
+  "Show email queue."
+  (interactive)
+  (async-shell-command "msmtp-listqueue.sh" "*listq*"))
 
 ;; Spammers are everywhere.
 (setf user-mail-address (concat "self" "@" "gkayaalp" "." "com")
