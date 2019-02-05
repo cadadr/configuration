@@ -4,6 +4,7 @@ export MYFS=/igk
 
 export EMAIL=$USER@localhost
 export MAILDIR=$HOME/posta
+export MAILQUEUE=$MAILDIR/queue
 export PS1='\$ '
 export PASSWORD_STORE_DIR=$HOME/fil/pass
 export TROFFONTS=$HOME/.fonts
