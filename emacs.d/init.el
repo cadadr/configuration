@@ -3212,7 +3212,7 @@ N defaults to 1."
   "List of files that contain per-project TODO items.")
 
 (setf
- gk-org-agenda-files (gk-org-dir-files "ajanda.org" "caldav.org")
+ ;; gk-org-agenda-files (gk-org-dir-files "ajanda.org" "caldav.org")
  org-agenda-files gk-org-agenda-files
  ;; Find all the relevant Readme.org files.
  gk-org-project-agenda-files
@@ -3224,7 +3224,8 @@ N defaults to 1."
            (mapcar
             ($ (when (file-directory-p $1)
                  (directory-files $1 t re)))
-            (directory-files "~/co" t re))))))
+            (append (directory-files "~/co" t re)
+                    (directory-files "~/co/com.gkayaalp" t re)))))))
 
 
 
