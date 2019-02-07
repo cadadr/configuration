@@ -4541,10 +4541,10 @@ Redirect to the raw file url."
    (replace-regexp-in-string
     "\\.github\\.com/" ".githubusercontent.com/" url)))
 
-(defun gk-urls-browse-youtube (url &rest args)
-  "Browse a youtube URL via mpv."
+(defun gk-urls-browse-mpv (url &rest args)
+  "Browse a URL via mpv."
   (and
-   (start-process "gk-youtube-mpv" (generate-new-buffer-name "*Youtube MPV*")
+   (start-process "gk-mpv" (generate-new-buffer-name "*MPV URL*")
                   "mpv" url)
    (message "Started mpv process for: %s" url)))
 
@@ -4676,7 +4676,8 @@ provided."
 (setf browse-url-generic-program
       (executable-find "firefox")
       browse-url-browser-function
-      `(("\\(youtube\\.com\\|youtu\\.be\\)/" . gk-urls-browse-youtube)
+      `(("\\(youtube\\.com\\|youtu\\.be\\)/" . gk-urls-browse-mpv)
+        ("invidio\\.us/" . gk-urls-browse-mpv)
         ("^https?://\\(github\\|gitlab\\).com/.*?/.*?/\\(commit\\|compare\\)/[a-z0-9]+$" .
          gk-urls-browse-github/gitlab-commit)
         ("^https?://github\\.com/.*?/.*?/blob/" . gk-urls-browse-github-file)
