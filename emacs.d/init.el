@@ -5011,12 +5011,29 @@ the body of the entry, and the cdr is the score, an integer.")
 
 ;;;;;; Show mode:
 
+(defvar gk-elfeed-capture-kmac
+  [?\M-< ?\C-s ?T ?i ?t ?l ?e ?: ?  ?\C-m ?\C-  ?\C-e ?\C-x ?r ?s ?T
+         ?\M-< ?\C-s ?F ?e ?e ?d ?: ?  ?\C-m ?\C-  ?\C-e ?\C-x ?r ?s ?F
+         tab ?w ?\C-c ?c ?s ?\C-  ?\M-< ?\C-f ?\C-f ?\C-w ?\C-c ?\C-l
+         ?\C-y ?\C-m ?\C-x ?r ?i ?T ?  ?\( ?\C-x ?r ?i ?F ?\)
+         ?\C-m ?\C-c ?\C-c]
+  "Keyboard macro to capture the link inshow mode.")
+
 (add-hook
  'elfeed-show-mode-hook
  (defun gk-elfeed-show-mode-hook ()
    "Hook for ‘elfeed-show-mode’."
    (setq-local truncate-lines nil)
-   (setq-local word-wrap t)))
+   (setq-local word-wrap t)
+   (when (and (not (equal gk-elfeed-capture-kmac last-kbd-macro))
+              (or (not last-kbd-macro)
+                  (y-or-n-p
+                   "Replace last kbd macro with ‘gk-elfeed-capture-kmac’?")))
+     (setq last-kbd-macro gk-elfeed-capture-kmac))
+   (when (equal gk-elfeed-capture-kmac last-kbd-macro)
+     (message
+      (substitute-command-keys
+       "Hit \\[kmacro-end-and-call-macro] to capture")))))
 
 
 
