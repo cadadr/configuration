@@ -16,14 +16,14 @@ DROPPRIVS=yes
 #| /usr/bin/spamc
 
 # Discard if spam-score ≥ 10 stars.
-:0
-* ^X-Spam-Level: \*\*\*\*\*\*\*\*\*\*
-/dev/null
+#:0
+#* ^X-Spam-Level: \*\*\*\*\*\*\*\*\*\*
+#/dev/null
 
 # Put into spam mailbox otherwise.
-:0:
-* ^X-Spam-Status: Yes
-spam
+#:0:
+#* ^X-Spam-Status: Yes
+#spam
 
 ### Delivery:
 # Deliver non-spam messages.
