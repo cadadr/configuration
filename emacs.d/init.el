@@ -5365,6 +5365,12 @@ whose function is run when the menu item is clicked."
 ;; The earlier the definition the lower the item will appear,
 ;; i.e. items are stacked on top of the previous ones in the menu.
 
+(gk-menu-add-item 'outbox "Outbox" (gk-interactively
+                                   (rmail
+                                    (expand-file-name "outbox" gk-mail-home))))
+(gk-menu-add-item 'spam "Spam" (gk-interactively
+                                   (rmail
+                                    (expand-file-name "spam" gk-mail-home))))
 (gk-menu-add-item 'fetch-mail "Fetch mail" 'gk-fetch-mail)
 (gk-menu-add-item 'rmail "Read mail" 'rmail)
 (gk-menu-add-separator)
