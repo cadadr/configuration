@@ -1365,7 +1365,7 @@ If called with three prefix args, return a colon separated list."
 (setf
  pdf-info-epdfinfo-program
  (gk-executable-ensure
- "~/co/External/github-politza-emacs-pdf-tools/server/epdfinfo")
+  (locate-user-emacs-file "lisp/site/pdf-tools/server/epdfinfo"))
  pdf-tools-enabled-modes
  '(pdf-isearch-minor-mode
    pdf-links-minor-mode
