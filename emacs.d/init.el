@@ -5326,7 +5326,7 @@ Does various tasks after saving a file, see it's definition."
 ;;;; Mail:
 
 (gk-prefix-binding "<" #'gk-fetch-mail)
-(gk-prefix-binding "C-r" #'rmail)
+(gk-prefix-binding (kbd "C-r") #'rmail)
 (gk-prefix-binding "/" #'mairix-search)
 (gk-prefix-binding "?" #'mairix-widget-search)
 
