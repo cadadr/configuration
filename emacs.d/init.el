@@ -74,7 +74,16 @@ Exclude dot-files, don't sort, and return full paths by default."
     "Directory where 3rd party Elisp is contained.")
 
   ;; Sanitise.
-  (add-to-list 'load-path "/usr/local/share/emacs/site-lisp/")
+  (add-to-list 'load-path "/usr/share/emacs/site-lisp/")
+
+  (let ((dirs (cl-remove-if-not
+               ($ (and (file-directory-p $1)
+                       (not (string-match "elpa-src" $1))))
+               (append
+                (gk-directory-files "/usr/share/emacs/site-lisp/")
+                (gk-directory-files "/usr/share/emacs/site-lisp/elpa/")))))
+    (dolist (dir dirs)
+      (add-to-list 'load-path dir)))
 
   ;; Add custom paths.
   (add-to-list 'load-path (expand-file-name  "~/co/elisp"))
