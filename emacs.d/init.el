@@ -2056,7 +2056,8 @@ unlocked, offer to lock it before pasting."
   ;; If a single file is modified, prefix the message w/ it.
   (let ((modified-re "^#	modified:")
         (new-re "^#	new file:")
-        filename addp onlyp)
+        (issue-re "^[+\\- ]\\*+ \\(TODO\\|DONE\\) ")
+        filename addp onlyp issuep)
     (save-excursion
       (with-current-buffer "COMMIT_EDITMSG"
         (goto-char (point-min))
@@ -2073,13 +2074,23 @@ unlocked, offer to lock it before pasting."
         (setq onlyp (progn
                       (forward-line)
                       (not (or (looking-at modified-re)
-                               (looking-at new-re)))))))
+                               (looking-at new-re)))))
+        (when (and onlyp (equal filename "Readme.org"))
+          (goto-char (point-min))
+          (when-let* ((pos (re-search-forward issue-re nil t)))
+            (setq issuep (progn
+                           (re-search-backward "\\*")
+                           (buffer-substring (1+ (point))
+                                             (line-end-position))))))))
     (when onlyp
-      (when filename
+      (cond
+       ((and issuep (not addp))
         (goto-char (point-min))
-        (if addp
-            (insert "Add " filename)
-          (insert filename ": "))))))
+        (insert ";" issuep))
+       (filename (goto-char (point-min))
+                 (if addp
+                     (insert "Add " filename)
+                   (insert filename ": ")))))))
 
 (add-hook 'git-commit-mode-hook #'gk-git-commit-mode-hook)
 
@@ -4745,7 +4756,8 @@ provided."
 (define-key eww-mode-map "k" 'gk-eww-save-link-as-kill)
 
 (defun gk-eww-mode-hook ()
-  "Set up `eww' for easier reading.")
+  "Set up `eww' for easier reading."
+  (olivetti-mode +1))
 
 (add-hook 'eww-mode-hook 'gk-eww-mode-hook)
 
