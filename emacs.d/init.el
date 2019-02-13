@@ -77,8 +77,9 @@ Exclude dot-files, don't sort, and return full paths by default."
   (add-to-list 'load-path "/usr/share/emacs/site-lisp/")
 
   (let ((dirs (cl-remove-if-not
-               ($ (and (file-directory-p $1)
-                       (not (string-match "elpa-src" $1))))
+               (lambda (path)
+		 (and (file-directory-p path)
+                      (not (string-match "elpa-src" path))))
                (append
                 (gk-directory-files "/usr/share/emacs/site-lisp/")
                 (gk-directory-files "/usr/share/emacs/site-lisp/elpa/")))))
