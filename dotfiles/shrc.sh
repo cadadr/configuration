@@ -225,6 +225,10 @@ alias fs="mount | grep ^/ | column -t | sort"
 # From: https://news.ycombinator.com/item?id=18910827
 alias up='git rev-parse --git-dir >/dev/null 2>&1 && cd `git rev-parse --show-toplevel` || echo "Not in git repo"'
 alias venv='python3 -m venv'
+# Directory navigation
+alias up='cd ..'
+alias right='cd "$(dirname $PWD)/$( OLDPWD=$PWD cd .. && for p in *; do if [ -d $p ]; then echo $p; fi; done | sort | grep -A 1 $(basename $OLDPWD) | tail -1 )"'
+alias left='cd "$(dirname $PWD)/$( OLDPWD=$PWD cd .. && for p in *; do if [ -d $p ]; then echo $p; fi; done | sort | grep -B 1 $(basename $OLDPWD) | head -1 )"'
 
 #### Debian:
 alias deps='apt-cache depends --no-recommends --no-breaks --no-suggests --no-conflicts --no-enhances --no-replaces --recurse'
