@@ -227,8 +227,8 @@ alias up='git rev-parse --git-dir >/dev/null 2>&1 && cd `git rev-parse --show-to
 alias venv='python3 -m venv'
 # Directory navigation
 alias up='cd ..'
-alias right='cd "$(dirname $PWD)/$( OLDPWD=$PWD cd .. && for p in *; do if [ -d $p ]; then echo $p; fi; done | sort | grep -A 1 $(basename $OLDPWD) | tail -1 )"'
-alias left='cd "$(dirname $PWD)/$( OLDPWD=$PWD cd .. && for p in *; do if [ -d $p ]; then echo $p; fi; done | sort | grep -B 1 $(basename $OLDPWD) | head -1 )"'
+alias right='cd "$( find -L ${PWD%/*}/ -maxdepth 1 -type d -not -name \".*\" | sort | grep -A 1 ../${PWD##*/} | tail -n 1 )"'
+alias left='cd "$( find -L ${PWD%/*}/ -maxdepth 1 -type d -not -name \".*\" | sort | grep -B 1 ../${PWD##*/} | head -n 1 )"'
 
 #### Debian:
 alias deps='apt-cache depends --no-recommends --no-breaks --no-suggests --no-conflicts --no-enhances --no-replaces --recurse'
