@@ -419,6 +419,17 @@ When ARG is a positive number, repeat that many times."
       (clipboard-kill-ring-save
        (line-beginning-position) (line-end-position)))))
 
+(defun gk-copy-as-markdown-code-snippet (beg end)
+  "Copy region, prepend four spaces to every line."
+  (interactive "r")
+  (let ((snip (buffer-substring beg end)))
+    (with-temp-buffer
+      (insert snip)
+      (goto-char (point-min))
+      (while (re-search-forward "^" nil t)
+        (replace-match "    "))
+      (clipboard-kill-ring-save (point-min) (point-max)))))
+
 (defun gk-home ()
   "Take me to the home view."
   (interactive)
