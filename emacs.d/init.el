@@ -438,7 +438,7 @@ When ARG is a positive number, repeat that many times."
   (find-file (gk-org-dir-file "start.org"))
   (split-window-horizontally)
   (other-window 1)
-  (org-agenda nil "g")
+  (dired "~/wrk")
   (other-window 1)
   (gk-flash-current-line))
 
