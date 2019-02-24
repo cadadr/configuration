@@ -234,7 +234,11 @@ alias fs="mount | grep ^/ | column -t | sort"
 # CD to the root of the current git project
 # From: https://news.ycombinator.com/item?id=18910827
 alias up='git rev-parse --git-dir >/dev/null 2>&1 && cd `git rev-parse --show-toplevel` || echo "Not in git repo"'
+# Python 3
 alias venv='python3 -m venv'
+alias mkvenv='venv .venv'
+alias usevenv='( source ./.venv/bin/activate && bash -i )'
+alias py='python3'
 # Directory navigation
 alias up='cd ..'
 alias right='cd "$( find -L ${PWD%/*}/ -maxdepth 1 -type d -not -name \".*\" | sort | grep -A 1 ../${PWD##*/} | tail -n 1 )"'
