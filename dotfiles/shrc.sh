@@ -74,11 +74,21 @@ if [ ! x$BASH = x ]; then
     }
 
     procmd () {
+	line1='[In: \w; \d \A; ^$SHLVL]'
+	line2='[\#] \u@\H (\j)\$'
+	# A python virtual environment is active, provide relevant
+	# info.
+	if [ -n "$VIRTUAL_ENV" ]; then
+	    venvname="$(realpath --relative-to=$PWD $VIRTUAL_ENV)"
+	    venvpyver="v$($venvname/bin/python --version | cut -d ' ' -f 2)"
+	    PS1="$bold$line1$reset ($venvname: $venvpyver)\n$bold$line2$reset "
+	else
+	    PS1="$bold$line1\n$line2$reset "
+	fi
 	queue ; lastcmdexit
     }
 
     PROMPT_COMMAND=procmd
-    PS1="$bold"'[In: \w; \d \A]\n[\#] \u@\H (\j)\$'"$reset "
     HISTTIMEFORMAT='%s'
 fi
 
