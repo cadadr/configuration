@@ -4576,10 +4576,12 @@ Redirect to the raw file url."
 
 (defun gk-urls-browse-mpv (url &rest args)
   "Browse a URL via mpv."
-  (and
-   (start-process "gk-mpv" (generate-new-buffer-name "*MPV URL*")
-                  "mpv" url)
-   (message "Started mpv process for: %s" url)))
+  (if (y-or-n-p "Browse with mpv?")
+      (and
+       (start-process "gk-mpv" (generate-new-buffer-name "*MPV URL*")
+                      "mpv" url)
+       (message "Started mpv process for: %s" url))
+    (gk-urls-external-browser url)))
 
 (defun gk-urls-browse-cornucopia (url &rest args)
   "Browse a cornucopia URL."
