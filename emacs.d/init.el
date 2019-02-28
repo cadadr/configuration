@@ -4576,7 +4576,7 @@ Redirect to the raw file url."
 
 (defun gk-urls-browse-mpv (url &rest args)
   "Browse a URL via mpv."
-  (if (y-or-n-p "Browse with mpv?")
+  (if (y-or-n-p "Watch with mpv?")
       (and
        (start-process "gk-mpv" (generate-new-buffer-name "*MPV URL*")
                       "mpv" url)
