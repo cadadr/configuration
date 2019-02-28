@@ -4348,7 +4348,7 @@ So that the reader knows where to continue reading."
     ;; only there.
     (let ((buf (current-buffer)))
       (forward-line next-screen-context-lines)
-      (gk-flash-current-line))))
+      (gk-flash-current-line buf))))
 
 
 
