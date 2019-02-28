@@ -4119,7 +4119,7 @@ popping your useless completions up, idiot."
  read-file-name-completion-ignore-case t
  read-buffer-completion-ignore-case t
  completion-ignore-case t
- completion-styles '(basic substring partial-completion)
+ completion-styles '(basic substring partial-completion initials flex)
  ;; Add ‘<’ as a delimiter, and update the relevant regexp.
  completion-pcm-word-delimiters
  (progn
