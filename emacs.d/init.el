@@ -5151,6 +5151,14 @@ Does various tasks after saving a file, see it's definition."
 
 (add-hook 'after-save-hook 'gk-after-save-hook)
 
+
+
+;;;;; Other after save hooks
+
+(add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
+
+
+
 ;;; Global keybindings:
 
 
