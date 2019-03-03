@@ -439,6 +439,9 @@ When ARG is a positive number, repeat that many times."
   (split-window-horizontally)
   (other-window 1)
   (dired "~/wrk")
+  (split-window-vertically (/ (window-height) 4))
+  (other-window 1)
+  (org-agenda nil "g")
   (other-window 1)
   (gk-flash-current-line))
 
