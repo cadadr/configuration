@@ -4584,7 +4584,8 @@ Redirect to the raw file url."
   (if (y-or-n-p "Watch with mpv?")
       (and
        (start-process "gk-mpv" (generate-new-buffer-name "*MPV URL*")
-                      "mpv" url)
+                      "mpv" "--ytdl-format"
+                      "bestvideo[height<=720]+bestaudio/best[height<=720]" url)
        (message "Started mpv process for: %s" url))
     (gk-urls-external-browser url)))
 
