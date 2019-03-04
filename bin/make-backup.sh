@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # make-backup.sh --- make a tarball of /igk
 
 set -e
@@ -42,3 +42,28 @@ co -l $sums
 md5sum $ball >> $sums
 ci -u -m'new backup' $sums
 tail -n 1 $sums
+
+echo
+echo
+echo ',-----------------------------8<------------------------------.'
+echo '|                                                             |'
+echo '|                                                             |'
+echo '|--------============ BACKUP COMPLETE =============-----------|'
+echo '|                                                             |'
+echo "The backup ($OUTDIR/$ball) is now complete ($(date))." \
+	| fmt -59 | awk '{printf("| %-59s |\n",$0)}'
+echo '|                                                             |'
+echo "The filesystem mounted at $IGKDIR was remounted as readonly."   \
+     'Run the following command in order to remount it as readwrite:' \
+	| fmt -59 | awk '{printf("| %-59s |\n",$0)}'
+echo '|                                                             |'
+if type -t remount; then
+echo '    'remount rw $IGKDIR
+else
+echo '    'sudo mount -o remount,rw $IGKDIR
+fi | fmt -59 | awk '{printf("| %-59s |\n",$0)}'
+echo '|                                                             |'
+echo '| But consider rebooting instead of that.                     |'
+echo '|                                                             |'
+echo '`----------------------------->8------------------------------'\'
+echo
