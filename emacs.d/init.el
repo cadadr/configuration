@@ -2825,7 +2825,9 @@ Otherwise start mail program in offline mode."
 
 (setf
  ;; Save a copy of outgoing messages to an mbox.
- message-default-headers (format "Fcc: %s/outbox" gk-mail-home))
+ message-default-headers (format "Fcc: %s/outbox" gk-mail-home)
+ ;; Drafts directory.
+ message-auto-save-directory (expand-file-name "drafts" gk-mail-home))
 
 (defun gk-message-mode-hook ()
   "Set up the message buffer."
