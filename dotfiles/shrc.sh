@@ -74,6 +74,10 @@ if [ ! x$BASH = x ]; then
     }
 
     procmd () {
+	# Should always be the first thing in this function so that it
+	# is run just after the last evaluated command whose exit code
+	# is in $?.
+	lastcmdexit
 	line1='[In: \w; \d \A; ^$SHLVL]'
 	line2='[\#] \u@\H (\j)\$'
 	# A python virtual environment is active, provide relevant
@@ -85,7 +89,7 @@ if [ ! x$BASH = x ]; then
 	else
 	    PS1="$bold$line1\n$line2$reset "
 	fi
-	queue ; lastcmdexit
+	queue
     }
 
     PROMPT_COMMAND=procmd
