@@ -5360,7 +5360,6 @@ Does various tasks after saving a file, see it's definition."
 ;;;; Text editing:
 
 (gk-prefix-binding [? ] 'gk-mark-thing)
-(gk-prefix-binding "v" #'evil-mode)
 
 
 
