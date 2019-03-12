@@ -3952,7 +3952,7 @@ Ask otherwise."
 
 ;;;;; GUI:
 
-(defvar gk-gui-theme 'misterioso
+(defvar gk-gui-theme nil
   "The default theme's name to load at startup.")
 
 ;; Solarized customisations
@@ -5003,7 +5003,7 @@ Define an ‘elfeed-serch-mode’ keybinding prepending the letter
   "Marks a relevant Elfeed entry.")
 
 (defface gk-important-elfeed-entry
-  `((t :underline nil :foreground "yellow"))
+  `((t :underline nil :foreground "red"))
   "Marks an important Elfeed entry.")
 
 (push '(relevant gk-relevant-elfeed-entry)
