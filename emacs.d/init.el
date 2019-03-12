@@ -995,7 +995,6 @@ PARAMETERS are passed into ‘make-frame’."
 
 ;; Helper functions for association lists.
 
-;; [[file:/igk/config/emacs.d/gk.org::*Association%20lists][Association lists:1]]
 (defun dissoc (key list &optional arg)
   "Delete pairs whose car is `equal' to KEY from LIST.
 
