@@ -158,7 +158,9 @@ alias py='python3'
 alias up='cd ..'
 alias right='cd "$( find -L ${PWD%/*}/ -maxdepth 1 -type d -not -name \".*\" | sort | grep -A 1 ../${PWD##*/} | tail -n 1 )"'
 alias left='cd "$( find -L ${PWD%/*}/ -maxdepth 1 -type d -not -name \".*\" | sort | grep -B 1 ../${PWD##*/} | head -n 1 )"'
-
+# Mail
+alias runq=msmtp-runqueue.sh
+alias lisq=msmtp-listqueue.sh
 
 ### OS specific aliases:
 case $SYSTEM in
