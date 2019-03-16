@@ -13,6 +13,7 @@ help:
 	echo "	alpha-test		test alpha w/ Docker";\
 	echo "	alpha-pkg		(re)install alpha packages";\
 	echo "	alpha-config		(re)install alpha config files";\
+	echo "	cron			(re)install current config's cron";\
 	echo "	pi-init			initialise pi instance";\
 	echo "	invade			run invasion";\
 	echo "	build			build utilites and emacs.d";\
@@ -36,6 +37,9 @@ alpha-config:
 
 alpha-pkg:
 	$(MAKE) -C systems/alpha -$(MAKEFLAGS) install-packages
+
+cron:
+	crontab cron/$(shell hostname).crontab
 
 ### Build rules:
 build: bins emacs
@@ -63,4 +67,4 @@ clean: clean-bin
 
 ### Postamble:
 .PHONY: all build bins dotfiles clean clean-bin clean-dotfiles
-.PHONY: alpha-init alpha-init-sub
+.PHONY: alpha-init alpha-init-sub cron
