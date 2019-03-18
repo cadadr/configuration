@@ -11,6 +11,18 @@ bindsym $mod+Return exec emacsclient -c
 bindsym $mod+Shift+Return exec i3-sensible-terminal
 bindsym $mod+h exec --no-startup-id sh $MYLIB/i3cheatsheet.sh
 
+# Set brightness
+bindsym $mod+Shift+1 exec bright.rb 0.1
+bindsym $mod+Shift+2 exec bright.rb 0.2
+bindsym $mod+Shift+3 exec bright.rb 0.3
+bindsym $mod+Shift+4 exec bright.rb 0.4
+bindsym $mod+Shift+5 exec bright.rb 0.5
+bindsym $mod+Shift+6 exec bright.rb 0.6
+bindsym $mod+Shift+7 exec bright.rb 0.7
+bindsym $mod+Shift+8 exec bright.rb 0.8
+bindsym $mod+Shift+9 exec bright.rb 0.9
+bindsym $mod+Shift+0 exec bright.rb 1
+
 bindsym $mod+b focus left
 bindsym $mod+n focus down
 bindsym $mod+p focus up
