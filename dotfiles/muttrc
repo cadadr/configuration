@@ -1,0 +1,29 @@
+# muttrc                                                 -*- mode: conf -*-
+
+### Personal details:
+
+set realname = "İ. Göktuğ Kayaalp"
+set from = "self@gkayaalp.com"
+
+### Folders:
+
+# This attempts to replicate the mail flow I have in Rmail: all mail is
+# under ~/posta, it comes into `inbox', gets read in `current', then either
+# gets appended to `archive' or `spam' (generally); outgoing mail is recorder
+# in `outbox'.
+
+set folder = ~/posta
+set mbox = +archive
+set spoolfile = +current
+set record = +outbox
+# In Emacs I save drafts one per file, so use a separate mbox for Mutt's
+# drafts.
+set postponed = +drafts/postponed
+mailboxes = +inbox
+
+### Sending mail:
+
+set edit_headers = yes
+set envelope_from = yes
+set sendmail = "~/bin/msmtp-enqueue.sh"
+# set sendmail = /usr/bin/msmtp
