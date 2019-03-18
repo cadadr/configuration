@@ -9,7 +9,7 @@ Architecture: any
 
 Depends: pass, pv, tmux, units, vim, vorbis-tools, vorbisgain, w3m,
   w3m-el, webalizer, whois, syncthing, libnss-mdns, mailutils, mairix,
-  mpop, msmtp, procmail, certbot, dirmngr, youtube-dl, hugo,
-  inotify-tools, pandoc
+  mutt, mpop, msmtp, procmail, certbot, dirmngr, youtube-dl, hugo,
+  inotify-tools, pandoc, fbi
 
 Description: Utilities layer for Göktuğ's Debian System
