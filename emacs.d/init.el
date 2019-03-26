@@ -5203,7 +5203,7 @@ Does various tasks after saving a file, see it's definition."
 
 
 
-;;;;; Other after save hooks
+;;;;; Other after save hooks:
 
 (add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
 
