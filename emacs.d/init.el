@@ -2084,14 +2084,14 @@ unlocked, offer to lock it before pasting."
     (save-excursion
       (with-current-buffer "COMMIT_EDITMSG"
         (goto-char (point-min))
-        (re-search-forward "^# Changes to be committed:")
+        (re-search-forward "^# Changes to be committed:" nil t)
         (forward-line)
         (beginning-of-line)
         (cond ((looking-at modified-re)
-               (re-search-forward ":   ")
+               (re-search-forward ":   " nil t)
                (setf filename (thing-at-point 'filename t)))
               ((looking-at new-re)
-               (re-search-forward ":   ")
+               (re-search-forward ":   " nil t)
                (setf filename (thing-at-point 'filename t)
                      addp t)))
         (setq onlyp (progn
@@ -2102,7 +2102,7 @@ unlocked, offer to lock it before pasting."
           (goto-char (point-min))
           (when-let* ((pos (re-search-forward issue-re nil t)))
             (setq issuep (progn
-                           (re-search-backward "\\*")
+                           (re-search-backward "\\*" nil t)
                            (buffer-substring (1+ (point))
                                              (line-end-position))))))))
     (if onlyp
