@@ -39,3 +39,14 @@ naturalScrolling=$(xinput list-props "$touchpad" |\
 xinput set-prop "$touchpad" "$tappingToggle" 0
 xinput set-prop "$touchpad" "$clickMethod" 0 1
 xinput set-prop "$touchpad" "$naturalScrolling" 1
+
+### Power saving:
+
+# Disable power saving.  I make the computer sleep when I don’t use it
+# anyways.
+
+# From: https://raspberrypi.stackexchange.com/questions/752/
+
+xset s off         # don't activate screensaver
+xset -dpms         # disable DPMS (Energy Star) features.
+xset s noblank     # don't blank the video device
