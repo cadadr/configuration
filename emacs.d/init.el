@@ -2452,24 +2452,28 @@ symbol)."
     (let* ((w (word-at-point))
            (p (format "Search in Ruby documentation (default: %s): " w)))
       (read-string p nil 'gk-ri-history w))))
-  (let ((buf (get-buffer-create (format "*ri %s*" what)))
-        (inhibit-read-only t))
-    (with-current-buffer buf
-      (erase-buffer)
-      (call-process "ri" nil buf nil "-f" "ansi" what)
-      ;; If ri reports no documentation is available, kill the buffer
-      ;; and redirect the error to the user.  Else, treat the buffer
-      ;; and present it.
-      (if (save-match-data
-            (goto-char (point-min))
-            (looking-at "^Nothing known about"))
-          (let ((m (string-trim (buffer-string))))
-            (kill-this-buffer)
-            (message m))
-        (ansi-color-filter-region (goto-char (point-min)) (point-max))
-        (gk-ri-mode)
-        (gk-minor-mode)
-        (display-buffer buf)))))
+  (if-let* ((bufnam (format "*ri %s*" what))
+            (buf (get-buffer bufnam)))
+      ;; If already exists, display the buffer.
+      (display-buffer buf)
+    (let ((buf (generate-new-buffer bufnam))
+          (inhibit-read-only t))
+      (with-current-buffer buf
+        (erase-buffer)
+        (call-process "ri" nil buf nil "-f" "ansi" what)
+        ;; If ri reports no documentation is available, kill the buffer
+        ;; and redirect the error to the user.  Else, treat the buffer
+        ;; and present it.
+        (if (save-match-data
+              (goto-char (point-min))
+              (looking-at "^Nothing known about"))
+            (let ((m (string-trim (buffer-string))))
+              (kill-this-buffer)
+              (message m))
+          (ansi-color-filter-region (goto-char (point-min)) (point-max))
+          (gk-ri-mode)
+          (gk-minor-mode)
+          (display-buffer buf))))))
 
 (define-key ruby-mode-map "\C-\M-x" 'ruby-send-definition)
 (define-key ruby-mode-map "\C-x\C-e" 'ruby-send-last-sexp)
