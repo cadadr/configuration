@@ -2128,6 +2128,9 @@ unlocked, offer to lock it before pasting."
          ((equal filename "TAGS")
           (goto-char (point-min))
           (insert "; Update TAGS"))
+         ((equal filename ".gitignore")
+          (goto-char (point-min))
+          (insert "; Ignore "))
          (filename
           (goto-char (point-min))
           (if addp
