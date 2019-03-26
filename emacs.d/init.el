@@ -2105,15 +2105,32 @@ unlocked, offer to lock it before pasting."
                            (re-search-backward "\\*")
                            (buffer-substring (1+ (point))
                                              (line-end-position))))))))
-    (when onlyp
-      (cond
-       ((and issuep (not addp))
+    (if onlyp
+        (cond
+         ((and issuep (not addp))
+          (goto-char (point-min))
+          (insert ";" issuep))
+         ((equal filename "TAGS")
+          (goto-char (point-min))
+          (insert "; Update TAGS"))
+         (filename (goto-char (point-min))
+                   (if addp
+                       (insert "Add " filename)
+                     (insert filename ": "))))
+      (when (and (equal filename "Readme.org")
+                 (save-excursion
+                   (goto-char (point-min))
+                   (re-search-forward (concat modified-re " +Readme.org_archive")
+                                      nil t))
+                 (save-excursion
+                   (goto-char (point-min))
+                   (re-search-forward "\\-\\*+ DONE" nil t))
+                 (not
+                  (save-excursion
+                    (goto-char (point-min))
+                    (re-search-forward "\\+\\*[\\+\\-] TODO" nil t))))
         (goto-char (point-min))
-        (insert ";" issuep))
-       (filename (goto-char (point-min))
-                 (if addp
-                     (insert "Add " filename)
-                   (insert filename ": ")))))))
+        (insert "; Archive DONE")))))
 
 (add-hook 'git-commit-mode-hook #'gk-git-commit-mode-hook)
 
