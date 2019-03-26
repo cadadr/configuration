@@ -7,10 +7,10 @@
 # Inform systemd
 systemctl --user import-environment DISPLAY
 
-#### X resources:
+### X resources:
 xrdb -merge $MEINE/Xdefaults
 
-#### Input:
+### Input:
 #### Keyboard:
 setxkbmap -option "ctrl:nocaps"
 
