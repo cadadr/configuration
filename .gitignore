@@ -21,6 +21,7 @@ icons.*.rc
 *.tmp
 *.lock
 *~
+*.#*
 tmp.patch
 
 arch/etc/netctl/home
@@ -43,6 +44,7 @@ ido.last
 emacs.d/org-caldav-*
 emacs.d/etc/backups/
 emacs.d/etc/+scratch+
+emacs.d/etc/+scratch+.new
 emacs.d/etc/auto-save-list/
 emacs.d/etc/tramp
 emacs.d/etc/url/
