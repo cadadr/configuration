@@ -2080,7 +2080,7 @@ unlocked, offer to lock it before pasting."
   (let ((modified-re "^#	modified:")
         (new-re "^#	new file:")
         (issue-re "^[+\\- ]\\*+ \\(TODO\\|DONE\\) ")
-        filename addp onlyp issuep)
+        current-defun filename addp onlyp issuep)
     (save-excursion
       (with-current-buffer "COMMIT_EDITMSG"
         (goto-char (point-min))
@@ -2104,7 +2104,22 @@ unlocked, offer to lock it before pasting."
             (setq issuep (progn
                            (re-search-backward "\\*" nil t)
                            (buffer-substring (1+ (point))
-                                             (line-end-position))))))))
+                                             (line-end-position))))))
+        ;; Try to set ‘current-defun’.
+        (when onlyp
+          (save-excursion
+            (goto-char (point-min))
+            ;; Error if not found, means verbose diffs
+            ;; not enabled.
+            (re-search-forward "^diff --git")
+            (goto-char (line-beginning-position))
+            (let ((str (buffer-substring (point) (point-max)))
+                  (default-directory (expand-file-name "..")))
+              (with-temp-buffer
+                (insert str)
+                (diff-mode)
+                (goto-char (point-min))
+                (setq current-defun (diff-current-defun))))))))
     (if onlyp
         (cond
          ((and issuep (not addp))
@@ -2113,10 +2128,16 @@ unlocked, offer to lock it before pasting."
          ((equal filename "TAGS")
           (goto-char (point-min))
           (insert "; Update TAGS"))
-         (filename (goto-char (point-min))
-                   (if addp
-                       (insert "Add " filename)
-                     (insert filename ": "))))
+         (filename
+          (goto-char (point-min))
+          (if addp
+              (insert "Add " filename)
+            (insert
+             filename
+             (if (and current-defun)
+                 (format " (%s)" current-defun)
+               "")
+             ": "))))
       (when (and (equal filename "Readme.org")
                  (save-excursion
                    (goto-char (point-min))
