@@ -161,6 +161,8 @@ alias left='cd "$( find -L ${PWD%/*}/ -maxdepth 1 -type d -not -name \".*\" | so
 # Mail
 alias runq=msmtp-runqueue.sh
 alias lisq=msmtp-listqueue.sh
+# Node / Yarn
+alias yarn=yarnpkg
 
 ### OS specific aliases:
 case $SYSTEM in
