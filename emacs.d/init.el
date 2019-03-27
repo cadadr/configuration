@@ -1255,15 +1255,18 @@ Set locally the variable `outline-minor-mode-prefix' to PREFIX."
 
 (defun gk-pop-shell (arg)
   "Pop a shell in a side window.
-Pass arg to ‘shell’."
+Pass arg to ‘shell’.  If already in a side window that displays a
+shell, toggle the side window."
   (interactive "P")
-  (select-window
-   (display-buffer-in-side-window
-    (save-window-excursion
-      (let ((prefix-arg arg))
-        (call-interactively #'shell))
-      (current-buffer))
-    '((side . bottom)))))
+  (if (and (assoca 'window-side (window-parameters))
+           (equal major-mode 'shell-mode))
+      (window-toggle-side-windows)
+    (when-let* ((win (display-buffer-in-side-window
+                      (save-window-excursion
+                        (let ((prefix-arg arg))
+                          (call-interactively #'shell)))
+                      '((side . bottom)))))
+      (select-window win))))
 
 (defun gk-shell-mode-hook ()
   "Hook for `shell-mode'."
