@@ -21,7 +21,7 @@ echo 'Continue with build (RETURN to continue, ^C to quit)?'; read nought
 git pull --ff
 git clean -dfx
 
-TK=athena configure-emacs.sh
+TK=gtk configure-emacs.sh
 
 make
 
