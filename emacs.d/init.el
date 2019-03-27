@@ -2417,7 +2417,7 @@ symbol)."
 
 (setf
  ;; Default C style.
- c-default-style "gnu")
+ c-default-style "k&r")
 
 (add-hook 'c-mode-hook 'gk-algol-like-hook)
 
