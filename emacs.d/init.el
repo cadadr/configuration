@@ -2209,7 +2209,8 @@ unlocked, offer to lock it before pasting."
 
 (defun gk-prog-mode-hook ()
   "Hook for all programming modes."
-  (olivetti-mode 1))
+  (olivetti-mode 1)
+  (setq-local indent-tabs-mode nil))
 
 (add-hook 'prog-mode-hook #'gk-prog-mode-hook)
 
