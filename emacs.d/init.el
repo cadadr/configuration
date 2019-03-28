@@ -2581,7 +2581,8 @@ symbol)."
 
 (defun gk-makefile-hook ()
   "Generic hook for makefile modes."
-  (gk-turn-on-outline-minor-mode "####* " ":$" "C-'"))
+  (gk-turn-on-outline-minor-mode "####* " ":$" "C-'")
+  (setq-local indent-tabs-mode t))
 
 (add-hook 'makefile-mode-hook 'gk-makefile-hook)
 
