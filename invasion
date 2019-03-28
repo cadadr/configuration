@@ -11,7 +11,6 @@
 .local/share/applications/emacsclient.desktop		candy/emacsclient.desktop
 .local/share/applications/firefox.desktop		candy/firefox.desktop
 .local/share/applications/org-protocol.desktop		candy/org-protocol.desktop
-.local/share/applications/qute.desktop			candy/qute.desktop
 .local/share/applications/zotero.desktop		candy/zotero.desktop
 .local/share/applications/mimeapps.list			xdg-config/mimeapps.list
 .mailcap						dotfiles/mailcap
