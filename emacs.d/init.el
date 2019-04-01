@@ -3349,7 +3349,8 @@ N defaults to 1."
  '(("g" "Agenda for today and all agenda TODOs"
     ((alltodo "" ((org-agenda-files gk-org-project-agenda-files)))
      (alltodo "" ((org-agenda-files (gk-org-dir-files "listeler.org"))))
-     (alltodo "" ((org-agenda-files (gk-org-dir-files "../yazi/defter.org"))))))))
+     (alltodo "" ((org-agenda-files (gk-org-dir-files "../yazi/defter.org"
+                                                      "../yazi/essais.org"))))))))
 
 (defun gk-org-agenda-mode-hook ()
     (gk-turn-on-outline-minor-mode "^[A-Z]" ".$" "C-'"))
