@@ -5424,6 +5424,7 @@ Does various tasks after saving a file, see it's definition."
 ;;;; Mail:
 
 (gk-prefix-binding "<" #'gk-fetch-mail)
+(gk-prefix-binding ">" #'gk-runq)
 (gk-prefix-binding (kbd "C-r") #'rmail)
 (gk-prefix-binding "/" #'mairix-search)
 (gk-prefix-binding "?" #'mairix-widget-search)
@@ -5469,6 +5470,7 @@ whose function is run when the menu item is clicked."
 (gk-menu-add-item 'spam "Spam" (gk-interactively
                                    (rmail
                                     (expand-file-name "spam" gk-mail-home))))
+(gk-menu-add-item 'runq "Run outbound mail queue" 'gk-runq)
 (gk-menu-add-item 'fetch-mail "Fetch mail" 'gk-fetch-mail)
 (gk-menu-add-item 'rmail "Read mail" 'rmail)
 (gk-menu-add-separator)
