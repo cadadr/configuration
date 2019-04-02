@@ -34,10 +34,6 @@
 ;; loading ls-lisp.el.
 (defvar ls-lisp-use-insert-directory-program nil)
 
-;; Set EMMS directory before loading EMMS because it doesn't know how
-;; to update it's other directory settings.
-(setq emms-directory (locate-user-emacs-file "etc/emms"))
-
 ;; Prefer newer files when loading:
 (setq load-prefer-newer t)
 
@@ -157,14 +153,11 @@ Exclude dot-files, don't sort, and return full paths by default."
 (require 'eimp)
 (require 'eldoc)
 (require 'elfeed)
-(require 'emms)
-(require 'emms-setup)
 (require 'epa)
 (require 'epa-mail)
 (require 'epg)
 (require 'etags)
 (require 'eval-sexp-fu)
-(require 'evil)
 (require 'eww)
 (require 'f)
 (require 'face-remap) ; buffer-face-mode
@@ -198,7 +191,6 @@ Exclude dot-files, don't sort, and return full paths by default."
 (require 'magit-todos)
 (require 'mail-source)
 (require 'mairix)
-(require 'mastodon)
 (require 'message)
 (require 'mm-url)
 (require 'multiple-cursors)
@@ -252,7 +244,6 @@ Exclude dot-files, don't sort, and return full paths by default."
 (require 'shr)
 (require 'simple)
 (require 'smtpmail)
-(require 'solarized)
 (require 'spam)
 (require 'subr-x)
 (require 'thingatpt)
@@ -1424,23 +1415,6 @@ If called with three prefix args, return a colon separated list."
 
 (defalias 'library 'bibliothek)
 (defalias 'bib 'bibliothek)
-
-
-
-;;;; Evil:
-
-(defvar-local gk-evil-default-cursor nil
-  "The value of ‘cursor-type’ before ‘gk-toggle-evil-mode’ was
-run.")
-
-(defun gk-toggle-evil-mode ()
-  "Toggle ‘evil-mode’, trying to deal with how it interacts with
-my configurations."
-  (interactive)
-  (if evil-mode
-      (setq-local cursor-type gk-evil-default-cursor)
-    (setq-local gk-evil-default-cursor cursor-type))
-  (evil-mode (if evil-mode -1 +1)))
 
 
 
@@ -3975,13 +3949,6 @@ Ask otherwise."
 
 
 
-;;;;; EMMS:
-
-(emms-standard)
-(emms-default-players)
-
-
-
 ;;;; OS-specific settings:
 
 
@@ -4005,19 +3972,6 @@ Ask otherwise."
 
 (defvar gk-gui-theme nil
   "The default theme's name to load at startup.")
-
-;; Solarized customisations
-(setq
- solarized-distinct-fringe-background t
- solarized-use-variable-pitch nil
- solarized-high-contrast-mode-line t
- solarized-use-less-bold t
- solarized-scale-org-headlines nil
- solarized-height-minus-1 1.0
- solarized-height-plus-1 1.0
- solarized-height-plus-2 1.0
- solarized-height-plus-3 1.0
- solarized-height-plus-4 1.0)
 
 (defun gk-setup-frame-looks (&optional frame)
   "Customisations that modify frame behaviour.
@@ -4059,29 +4013,6 @@ new frame is created."
     (set-face-attribute 'highlight nil
                         :foreground nil
                         :underline nil))
-
-  ;; Further customise solarized.
-  (when (eq gk-gui-theme 'solarized-dark)
-    ;; This needs to be set manually for solarized.
-    (setf frame-background-mode nil)
-    ;; Update all the existing frames.
-    (mapc #'frame-set-background-mode (frame-list))
-    ;; Swap active and inactive mode-line colours.  I like the active
-    ;; window's mode line to be darker.
-    (let ((active-bg (face-attribute 'mode-line :background))
-          (active-fg (face-attribute 'mode-line :foreground))
-          (active-box (face-attribute 'mode-line :box))
-          (active-ol (face-attribute 'mode-line :overline))
-          (inactive-bg (face-attribute 'mode-line-inactive :background))
-          (inactive-fg (face-attribute 'mode-line-inactive :foreground))
-          (inactive-box (face-attribute 'mode-line-inactive :box))
-          (inactive-ol (face-attribute 'mode-line-inactive :overline)))
-      (set-face-attribute
-       'mode-line nil :foreground inactive-fg :background inactive-bg
-       :box inactive-box :overline inactive-ol)
-      (set-face-attribute
-       'mode-line-inactive nil :foreground active-fg :background active-bg
-       :box inactive-box :overline active-ol)))
 
   (set-face-attribute 'default nil
                       :height gk-font-default-height
@@ -4776,7 +4707,7 @@ provided."
         ("^http://www.cornucopia\\.local/" . gk-urls-browse-cornucopia)
         ("^https?://\\w+\\.wikipedia\\.org/" . gk-urls-browse-wikipedia)
         ("file:///home/.+/co/lisp/doc/HyperSpec/" . gk-browse-url)
-        ("\\.\\(mp3\\|ogg\\)$" . gk-urls-add-to-emms)
+        ;;("\\.\\(mp3\\|ogg\\)$" . gk-urls-add-to-emms)
         ,@browse-url-browser-function
         (".*" . gk-browse-url)))
 
@@ -5135,33 +5066,6 @@ the body of the entry, and the cdr is the score, an integer.")
 
 ;; Load feeds from external source.
 (gk-load (dropbox "feeds") t)
-
-
-
-;;;;; Mastodon:
-
-(setf mastodon-instance-url "https://mastodon.sdf.org/")
-
-;; Quick toot.
-(defalias 'toot #'mastodon-toot)
-
-;; Emacsify keybindings.
-(define-key mastodon-mode-map "n" #'mastodon-tl--goto-next-toot)
-(define-key mastodon-mode-map "p" #'mastodon-tl--goto-prev-toot)
-(define-key mastodon-mode-map "+" #'mastodon-toot)
-(define-key mastodon-mode-map "q" #'bury-buffer)
-(define-key mastodon-mode-map "s" #'mastodon-tl--get-tag-timeline)
-(define-key mastodon-mode-map "Q" #'kill-this-buffer)
-(define-key mastodon-mode-map "/f" #'mastodon-tl--get-federated-timeline)
-(define-key mastodon-mode-map "/h" #'mastodon-tl--get-home-timeline)
-(define-key mastodon-mode-map "/l" #'mastodon-tl--get-local-timeline)
-
-(add-hook
- 'mastodon-mode-hook
- (defun gk-mastodon-mode-hook ()
-   ;; Unmap unused keys.
-  (dolist (key (map #'list #'string "jkFHLT"))
-    (define-key mastodon-mode-map key nil))))
 
 
 
