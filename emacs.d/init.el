@@ -1365,7 +1365,12 @@ If called with three prefix args, return a colon separated list."
 
 ;;;; Documents:
 
+(defun gk-doc-view-open-externally ()
+  "Open current document externally."
+  (interactive)
+  (browse-url-xdg-open (concat "file://" (buffer-file-name))))
 
+(define-key doc-view-mode-map [?&] #'gk-doc-view-open-externally)
 
 
 
