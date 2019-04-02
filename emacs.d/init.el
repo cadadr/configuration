@@ -131,7 +131,6 @@ Exclude dot-files, don't sort, and return full paths by default."
 (require 'autoinsert)
 (require 'bbdb)
 (require 'bbdb-vcard)
-(require 'bibliothek)
 (require 'bookmark)
 (require 'boxquote)
 (require 'browse-url)
@@ -220,12 +219,6 @@ Exclude dot-files, don't sort, and return full paths by default."
 (require 'paredit)
 (require 'paren-face)
 (require 'pass-listing)
-(require 'pdf-cache)
-(require 'pdf-isearch)
-(require 'pdf-misc)
-(require 'pdf-outline)
-(require 'pdf-sync)
-(require 'pdf-tools)
 (require 'perl-mode)
 (require 'persistent-scratch)
 (require 'pixel-scroll)
@@ -1372,51 +1365,7 @@ If called with three prefix args, return a colon separated list."
 
 ;;;; Documents:
 
-
 
-;;;;; PDF-tools:
-
-;; TODO(2018-05-25): implement a smarter resizing addon where the
-;; resize factor can vary
-
-;; PDF tools is a sophisticated alternative to DocView for PDF files.
-
-(setf
- pdf-info-epdfinfo-program
- (gk-executable-ensure
-  (locate-user-emacs-file "lisp/site/pdf-tools/server/epdfinfo"))
- pdf-tools-enabled-modes
- '(pdf-isearch-minor-mode
-   pdf-links-minor-mode
-   pdf-misc-minor-mode
-   pdf-outline-minor-mode
-   pdf-misc-size-indication-minor-mode
-   pdf-misc-menu-bar-minor-mode
-   pdf-sync-minor-mode
-   pdf-misc-context-menu-minor-mode
-   pdf-cache-prefetch-minor-mode)
- ;; Manually change the page.
- pdf-view-continuous nil
- ;; Resize more granularly.
- pdf-view-resize-factor 1.2)
-
-(pdf-tools-install)
-
-(define-key pdf-view-mode-map (kbd "M-w") #'pdf-view-kill-ring-save)
-(define-key pdf-view-mode-map (kbd "C-w") #'pdf-view-kill-ring-save)
-
-;;;;; PDF utilites:
-
-(setf bibliothek-path
-      (nconc
-       (list "~/fil/PDFs" "~/wrk/papers" "~/wrk/leggi" "~/wrk/print"
-             "~/wrk")
-       (remove-if-not
-        #'file-directory-p
-        (directory-files "~/wrk/rsc" t "[a-z]" t))))
-
-(defalias 'library 'bibliothek)
-(defalias 'bib 'bibliothek)
 
 
 
