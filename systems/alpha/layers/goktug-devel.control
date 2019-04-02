@@ -13,7 +13,7 @@ Depends: cvs, git, git-cvs, gitk, git-email, mercurial, python-hglib,
   libswitch-perl, autoconf, autoconf-archive, automake, bmake,
   exuberant-ctags, gdb, gnuplot, feedgnuplot, strace, redis-server,
   redis-tools, ruby, bundler, ri, cpanminus, liblocal-lib-perl,
-  perlbrew, python, python-pip, python3-tk, python3-venv, gjs
-  libgjs-dev gnome-js-common
+  perlbrew, python, python-pip, python3-tk, python3-venv, gjs,
+  libgjs-dev, gnome-js-common
 
 Description: Development layer for Göktuğ's Debian System
