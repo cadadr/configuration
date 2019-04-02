@@ -14,6 +14,7 @@ image/jpeg=ristretto.desktop
 image/png=ristretto.desktop
 image/gif=ristretto.desktop
 image/tiff=ristretto.desktop
+application/pdf=atril.desktop;
 
 [Added Associations]
 x-scheme-handler/http=userapp-Firefox-YX7ZVZ.desktop;
