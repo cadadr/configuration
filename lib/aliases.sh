@@ -142,7 +142,8 @@ alias mq='hg -R $(hg root)/.hg/patches'
 alias vagrant="env -u GEM_HOME -u GEM_PATH vagrant"
 # Show file name and line numbers.
 alias ngrep="grep -Hn"
-alias msgs="sudo dmesg | tail"
+alias msgs="dmesg | tail"
+alias msgrep="dmesg | grep"
 alias sudo="sudo --preserve-env" # https://news.ycombinator.com/item?id=18902265
 alias wanna="man -k"
 # From: https://news.ycombinator.com/item?id=18909446
