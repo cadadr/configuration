@@ -672,6 +672,29 @@ BUFFER defaults to current buffer, and SECONDS to 1."
        ;; Return the point.
        (point)))))
 
+;; TODO: extend candidates
+(defvar gk-project-root-candidates
+  (list ".git" ".hg" "Makefile" "makefile" "GNUmakefile" "BSDmakefile"
+        "GNUMakefile" "BSDMakefile" "configure.ac" "Rakefile"
+        "setup.py")
+  "Candidates for files that typically reside at project root.")
+
+(defun gk-compile ()
+  "Run ‘compile’, at project root if can find."
+  (interactive)
+  (if-let* ((bfn (buffer-file-name)))
+      (let (done)
+        (dolist (c gk-project-root-candidates)
+          (unless done
+            (when-let* ((default-directory (locate-dominating-file bfn c)))
+              (call-interactively #'compile)
+              (setq done t))))
+        ;; Project root not found, run compile at ‘default-directory’.
+        (unless done
+          (call-interactively #'compile)))
+    ;; No buffer file name, run compile at ‘default-directory’.
+    (call-interactively #'compile)))
+
 
 
 ;;;; Generic advices:
@@ -5215,7 +5238,7 @@ Does various tasks after saving a file, see it's definition."
 ;;;; Programming:
 
 (gk-prefix-binding "d" 'xref-find-definitions)
-(gk-prefix-binding [?\r] 'compile)
+(gk-prefix-binding [?\r] #'gk-compile)
 
 ;;;; Shortcuts:
 
