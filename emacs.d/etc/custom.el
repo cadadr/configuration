@@ -17,7 +17,9 @@
  '(large-file-warning-threshold 20000000)
  '(org-agenda-files nil)
  '(safe-local-variable-values
-   '((python-shell-virtualenv-path . "../.venv")
+   '((org-clock-into-drawer . "log")
+     (org-log-into-drawer . "log")
+     (python-shell-virtualenv-path . "../.venv")
      (python-shell-interpreter-args . "mysite/manage.py shell")
      (python-shell-interpreter . "python3")
      (c-file-style . bsd)
