@@ -3306,16 +3306,10 @@ N defaults to 1."
    (tags priority-down category-up)
    (search category-up)))
 
-(setf
- org-agenda-custom-commands
- '(("g" "Agenda for today and all agenda TODOs"
-    ((alltodo "" ((org-agenda-files gk-org-project-agenda-files)))
-     (alltodo "" ((org-agenda-files (gk-org-dir-files "listeler.org"))))
-     (alltodo "" ((org-agenda-files (gk-org-dir-files "../yazi/defter.org"
-                                                      "../yazi/essais.org"))))))))
+(setf org-agenda-block-separator nil)
 
 (defun gk-org-agenda-mode-hook ()
-    (gk-turn-on-outline-minor-mode "^[A-Z]" ".$" "C-'"))
+  (orgstruct-mode +1))
 
 (add-hook 'org-agenda-mode-hook #'gk-org-agenda-mode-hook)
 
