@@ -1907,6 +1907,18 @@ file extension.")
 
 
 
+;;;;; Help echo:
+
+;; Always display help echo under point in the echo area.
+
+(setf help-at-pt-display-when-idle t
+      help-at-pt-timer-delay 0.1)
+
+;; (help-at-pt-cancel-timer)
+(help-at-pt-set-timer)
+
+
+
 ;;;;; Global modes:
 
 ;; Default mode is ‘text-mode’.  The actual default,
