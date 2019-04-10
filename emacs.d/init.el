@@ -3059,14 +3059,15 @@ For PATH, DESC and FORMAT see `org-add-link-type'."
 
 (defun gk-org-confirm-elisp-link-function (prompt)
   "Skip confirmation PROMPT in `org-directory'."
-  (if (not (equal
-            (file-truename
-             (file-name-directory
-              (expand-file-name "bob" org-directory)))
-            (file-truename
-             (file-name-directory (expand-file-name (buffer-file-name))))))
-      (yes-or-no-p prompt)
-    t))
+  (when (buffer-file-name)
+   (if (not (equal
+             (file-truename
+              (file-name-directory
+               (expand-file-name "bob" org-directory)))
+             (file-truename
+              (file-name-directory (expand-file-name (buffer-file-name))))))
+       (yes-or-no-p prompt)
+     t)))
 
 (setq org-confirm-elisp-link-function
       #'gk-org-confirm-elisp-link-function)
