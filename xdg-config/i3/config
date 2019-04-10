@@ -102,9 +102,10 @@ mode "$mode_system" {
     bindsym r exec --no-startup-id systemctl reboot, mode "default"
     bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"
 
-    # back to normal: Enter or Escape
+    # exit mode
     bindsym Return mode "default"
     bindsym Escape mode "default"
+    bindsym Control+g mode "default"
 }
 bindsym Pause mode "$mode_system"
 
@@ -117,9 +118,10 @@ mode "$mode_display" {
     bindsym s exec --no-startup-id pactl set-card-profile 0 output:hdmi-stereo
     bindsym S exec --no-startup-id pactl set-card-profile 0 output:analog-stereo
 
-    # back to normal: Enter or Escape
+    # exit mode
     bindsym Return mode "default"
     bindsym Escape mode "default"
+    bindsym Control+g mode "default"
 }
 # Declare here the shortcut to bring the display selection menu
 bindsym F10 mode "$mode_display"
