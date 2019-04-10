@@ -4787,17 +4787,28 @@ Custom version of `elfeed-search-print-entry--default'."
          (feed (elfeed-entry-feed entry))
          (window-width (- (window-width) 2))
          (feed-name (elfeed-feed-title feed))
-         (feed-column
-          (gk-truncate-and-fill-string
-           (/ window-width 3) feed-name))
-         (title-column
-          (gk-truncate-and-fill-string
-           (* (/ window-width 3) 2) title)))
-    (insert (propertize title-column 'face title-faces
-                        'help-echo (format "%s (%s)" title date)))
-    (insert " ")
-    (insert (propertize feed-column 'face 'elfeed-search-feed-face
-                        'help-echo feed-name))))
+         (tags (elfeed-feed-autotags feed)))
+    (when (member 'commits tags)
+      (insert (symbol-name (caddr tags)) " "))
+    (when (member 'news tags)
+      (insert (symbol-name (cadr tags)) " "))
+    (when (or (member 'blog tags)
+              (member 'me tags)
+              (member 'pod tags)
+              (member 'prog tags)
+              (member 'security tags))
+      (insert
+       (let ((url (elfeed-feed-url feed)))
+        (save-match-data
+          (string-match "\\w+\\.\\w+/" url)
+          (substring (match-string 0 url) 0 -1)))
+       " "))
+    (insert (propertize
+             title 'face title-faces
+             'help-echo (format "%s (%s; %s; %s)"
+                                title date feed-name
+                                (mapconcat ($ (concat "+" (symbol-name $1)))
+                                           tags " "))))))
 
 
 
