@@ -73,7 +73,9 @@ The following commands help complete the installation, regardless of the
 system flavour:
 
 ```
+$ make cron
 $ pip3 install -r requirements.txt
+$ gem install bundler
 $ bundle
 $ gem rdoc --all
 ```
