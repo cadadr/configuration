@@ -121,6 +121,14 @@ remount () {
     cd "$FS"
 }
 
+# Use pandoc to convert epub to pdf
+epub2pdf () {
+    case $# in
+        2) pandoc -f epub -t latex -o $1.pdf --pdf-engine=xelatex $2 ;;
+        *) echo "usage: epub2pdf OUTPUT-SANS-EXT INPUT-FILE"
+    esac
+}
+
 ###
 alias edit="$EDITOR"
 alias re=". $ENV"
