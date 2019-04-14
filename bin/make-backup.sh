@@ -36,12 +36,7 @@ $tarcmd | $pvcmd >/dev/null
 chmod 400 "$OUTDIR/$ball"
 
 echo "Write MD5SUM..."
-sums="MD5SUMS"
-cd $OUTDIR
-co -l $sums
-md5sum $ball >> $sums
-ci -u -m'new backup' $sums
-tail -n 1 $sums
+( cd $OUTDIR && md5sum $ball > $ball.md5sum )
 
 echo
 echo
