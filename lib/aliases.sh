@@ -193,6 +193,11 @@ case $SYSTEM in
             esac
         fi
         alias uctl='systemctl --user'
+        alias hows='systemctl status'
+        alias stop='systemctl stop'
+        alias start='systemctl start'
+        alias enable='systemctl enable'
+        alias disable='systemctl disable'
         ;;
     FreeBSD)
         alias describe='pkg search -Q description'
