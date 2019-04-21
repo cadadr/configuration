@@ -183,6 +183,7 @@ case $SYSTEM in
                 debian)
                     alias deps="apt-cache depends --no-recommends --no-breaks --no-suggests --no-conflicts --no-enhances --no-replaces --recurse"
                     alias fresh='sudo apt-get update && (apt list --upgradable | pg)'
+                    alias distup='sudo apt-get dist-upgrade'
                     alias haz="dpkg-query -l"
                     alias has="apt-cache search"
                     alias wanna="sudo apt-get install"
