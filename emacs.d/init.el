@@ -5288,6 +5288,8 @@ Does various tasks after saving a file, see it's definition."
 (gk-prefix-binding "[" #'window-toggle-side-windows)
 (gk-prefix-binding "=" #'menu-bar-mode) ;toggle
 (gk-prefix-binding "g" #'magit-status)
+(gk-prefix-binding "." #'repeat-complex-command)
+(gk-prefix-binding (kbd "<C-backspace>") #'delete-frame)
 
 
 
