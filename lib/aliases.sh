@@ -130,6 +130,7 @@ epub2pdf () {
 }
 
 ###
+alias listall="(alias | cut -d= -f1 && declare -F | cut -d ' '  -f 3 | sed 's,^,function ,')"
 alias edit="$EDITOR"
 alias re=". $ENV"
 alias j=jobs
