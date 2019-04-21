@@ -74,6 +74,7 @@ system flavour:
 
 ```
 $ make cron
+$ update-desktop-database ~/.local/share/applications/
 $ pip3 install -r requirements.txt
 $ gem install bundler
 $ bundle
