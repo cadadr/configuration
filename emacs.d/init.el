@@ -3218,6 +3218,13 @@ N defaults to 1."
   (org-show-entry)
   (recenter 1))
 
+(defun gk-org-insert-all-stored-links ()
+  "Insert the contents of ‘org-stored-links’, one per line."
+  (interactive)
+  (dolist (link org-stored-links)
+    (insert (apply #'format "[[%s][%s]]" link))
+    (newline 2)))
+
 
 
 ;;;;; Variables:
