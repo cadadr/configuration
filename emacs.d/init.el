@@ -2100,12 +2100,16 @@ unlocked, offer to lock it before pasting."
           (goto-char (point-min))
           (if addp
               (insert "Add " filename)
-            (insert
-             filename
-             (if (and current-defun)
-                 (format " (%s)" current-defun)
-               "")
-             ": "))))
+            ;; The below is inserted in two steps so that undo
+            ;; boundaries can be added and removing the
+            ;; ‘current-defun’ string in case it is useless is as easy
+            ;; as a single undo.
+            (insert filename ": ")
+            (undo-boundary)
+            (when (and current-defun)
+              (save-excursion
+                (backward-char 2)
+                (insert (format " (%s)" current-defun)))))))
       (when (and (equal filename "Readme.org")
                  (save-excursion
                    (goto-char (point-min))
