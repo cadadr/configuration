@@ -57,6 +57,7 @@ emacs.d/etc/network-security.data
 emacs.d/etc/emms
 emacs.d/eshell/history
 emacs.d/eshell/lastdir
+emacs.d/anaconda-mode/
 
 emacs.d/extras/*.el
 emacs.d/.trash_emacs/

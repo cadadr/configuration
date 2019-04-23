@@ -2517,6 +2517,7 @@ symbol)."
 
 
 ;;;;; Python:
+(require 'anaconda-mode)
 
 (setf python-shell-interpreter "python3"
       ;; Please don't annoy me, and fuck you.
@@ -2524,7 +2525,12 @@ symbol)."
 
 (defalias 'django 'python-django-open-project)
 
+(defun gk-python-mode-hook ()
+  (anaconda-mode +1)
+  (anaconda-eldoc-mode +1))
+
 (add-hook 'python-mode-hook 'gk-algol-like-hook)
+(add-hook 'python-mode-hook 'gk-python-mode-hook)
 
 (defun gk-python-send-line ()
   "Send current-line to inferior Python."
