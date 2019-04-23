@@ -692,6 +692,20 @@ BUFFER defaults to current buffer, and SECONDS to 1."
     ;; No buffer file name, run compile at ‘default-directory’.
     (call-interactively #'compile)))
 
+(defvar gk-insert-todo-comment--history nil)
+(defvar gk-insert-todo-comment-default "TODO")
+
+(defun gk-insert-todo-comment (keyword)
+  (interactive
+   (list
+    (read-string
+     (format "Todo keyword to use (default: %s): "
+             gk-insert-todo-comment-default)
+     nil 'gk-insert-todo-comment--history "TODO" t)))
+  (gk-comment-dwim nil)
+  (insert keyword)
+  (insert (format-time-string "(%F): ")))
+
 
 
 ;;;; Generic advices:
@@ -5284,6 +5298,7 @@ Does various tasks after saving a file, see it's definition."
 (gk-prefix-binding "_" 'delete-other-windows-vertically)
 (gk-prefix-binding "2" #'clone-indirect-buffer)
 (gk-prefix-binding "t" #'gk-insert-today)
+(gk-prefix-binding "#" #'gk-insert-todo-comment)
 (gk-prefix-binding "~" #'gk-toggle-wrap)
 (gk-prefix-binding "]" #'gk-pop-shell)
 (gk-prefix-binding "[" #'window-toggle-side-windows)
