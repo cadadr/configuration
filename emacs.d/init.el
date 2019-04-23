@@ -2532,20 +2532,15 @@ symbol)."
 (add-hook 'python-mode-hook 'gk-algol-like-hook)
 (add-hook 'python-mode-hook 'gk-python-mode-hook)
 
-(defun gk-python-send-line ()
-  "Send current-line to inferior Python."
+(defun gk-python-send-statement ()
+  "Send statement under point to inferior Python."
   (interactive)
-  (message
-   "=> %s"
-   (python-shell-send-string-no-output
-    ;; Hackish, but it seems to me to be the only way to get what one
-    ;; would expect from an inferior interpreter process in Emacs.
-    (concat "print(" (buffer-substring
-                      (line-beginning-position)
-                      (line-end-position))
-            ")"))))
+  (python-shell-send-string-no-output
+   (buffer-substring
+    (save-excursion (python-nav-beginning-of-statement) (point))
+    (save-excursion (python-nav-end-of-statement) (point)))))
 
-(define-key python-mode-map "\C-c\C-l" #'gk-python-send-line)
+(define-key python-mode-map "\C-c\C-l" #'gk-python-send-statement)
 
 
 
