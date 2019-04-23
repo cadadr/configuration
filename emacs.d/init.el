@@ -2519,7 +2519,7 @@ symbol)."
 ;;;;; Python:
 (require 'anaconda-mode)
 
-(setf python-shell-interpreter "python3"
+(setf python-shell-interpreter "run-python.sh"
       ;; Please don't annoy me, and fuck you.
       python-indent-guess-indent-offset nil)
 
