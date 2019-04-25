@@ -2531,8 +2531,6 @@ symbol)."
 
 
 ;;;;; Python:
-(require 'anaconda-mode)
-
 (setf python-shell-interpreter "run-python.sh"
       ;; Please don't annoy me, and fuck you.
       python-indent-guess-indent-offset nil)
@@ -2540,8 +2538,7 @@ symbol)."
 (defalias 'django 'python-django-open-project)
 
 (defun gk-python-mode-hook ()
-  (anaconda-mode +1)
-  (anaconda-eldoc-mode +1))
+  )
 
 (add-hook 'python-mode-hook 'gk-algol-like-hook)
 (add-hook 'python-mode-hook 'gk-python-mode-hook)
