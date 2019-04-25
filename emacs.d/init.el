@@ -223,7 +223,6 @@ Exclude dot-files, don't sort, and return full paths by default."
 (require 'persistent-scratch)
 (require 'pixel-scroll)
 (require 'pp)
-(require 'python-django)
 (require 'quail)
 (require 'rect)
 (require 'rmail)
@@ -2534,8 +2533,6 @@ symbol)."
 (setf python-shell-interpreter "run-python.sh"
       ;; Please don't annoy me, and fuck you.
       python-indent-guess-indent-offset nil)
-
-(defalias 'django 'python-django-open-project)
 
 (defun gk-python-mode-hook ()
   )
