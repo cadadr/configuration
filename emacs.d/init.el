@@ -210,7 +210,6 @@ Exclude dot-files, don't sort, and return full paths by default."
 (require 'outline)
 (require 'ox)
 (require 'ox-beamer)
-(require 'ox-groff)
 (require 'ox-hugo)
 (require 'ox-latex)
 (require 'ox-odt)
@@ -3430,15 +3429,6 @@ its contents."
 
 
 
-;;;;;; Groff->PDF:
-
-(defconst gk-org-pristine-groff-process (copy-tree org-groff-pdf-process))
-
-(let ((process "< %f preconv -e utf8 | pic | tbl | eqn | groff -mm -Tpdf > %b.pdf"))
-  (setf org-groff-pdf-process (list process)))
-
-
-
 ;;;;; Refile:
 
 (setf
@@ -5407,8 +5397,6 @@ whose function is run when the menu item is clicked."
 
 (when (eq system-type 'berkeley-unix)
   (require 'bsdpkg))
-
-(autoload 'twit "twittering-mode" "Emacs twitter client." t)
 
 
 
