@@ -3938,7 +3938,7 @@ Ask otherwise."
 
 ;;;;; GUI:
 
-(defvar gk-gui-theme nil
+(defvar gk-gui-theme 'misterioso
   "The default theme's name to load at startup.")
 
 (defun gk-setup-frame-looks (&optional frame)
