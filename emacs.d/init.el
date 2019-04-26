@@ -4748,7 +4748,7 @@ It is rather slow to do so."
   "Marks a relevant Elfeed entry.")
 
 (defface gk-important-elfeed-entry
-  `((t :underline nil :foreground "red"))
+  `((t :underline nil :foreground "orange2"))
   "Marks an important Elfeed entry.")
 
 (push '(relevant gk-relevant-elfeed-entry)
