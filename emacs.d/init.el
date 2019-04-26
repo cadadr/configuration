@@ -4702,35 +4702,6 @@ It is rather slow to do so."
 
 
 
-;;;;;; Quicksearch:
-
-(defun gk-elfeed-quicksearch (keys &optional search)
-  "Define an elfeed quicksearch activated by «t» + the KEYS string
-
-Define an ‘elfeed-serch-mode’ keybinding prepending the letter
-«t» to the KEYS.  If SEARCH is nil, the search becomes
-«+unread +KEYS», otherwise «+unread SEARCH»."
-  (define-key elfeed-search-mode-map
-    (concat "t" keys)
-    (if search (gk-interactively
-                (gk-elfeed-filter
-                 (concat "+unread " search)))
-      (gk-interactively
-       (gk-elfeed-filter
-        (concat "+unread +" keys))))))
-
-(gk-elfeed-quicksearch "iu")
-(gk-elfeed-quicksearch "yt")
-(gk-elfeed-quicksearch "hn")
-(gk-elfeed-quicksearch "ist")
-(gk-elfeed-quicksearch "edu")
-(gk-elfeed-quicksearch "mag")
-(gk-elfeed-quicksearch "u" "")
-(gk-elfeed-quicksearch "log" "+blog")
-(gk-elfeed-quicksearch "eatro" "+teatro")
-
-
-
 ;;;;;; Search ring:
 
 ;; Go cycling a list of tags in the search mode.
