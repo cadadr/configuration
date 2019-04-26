@@ -166,7 +166,6 @@ Exclude dot-files, don't sort, and return full paths by default."
 (require 'hl-line)
 (require 'ibuffer)
 (require 'ibuffer-vc)
-(require 'ido)
 (require 'image)
 (require 'image-dired)
 (require 'imenu)
@@ -4140,38 +4139,6 @@ popping your useless completions up, idiot."
        (goto-char (point-min))
        (next-completion i)
        (choose-completion)))))
-
-
-
-;;;;; Ido:
-
-(setf
- ido-use-filename-at-point nil
- ;; Don't show dotfiles if the prefix of the search string is not ‘.’
- ido-enable-dot-prefix t
- ido-confirm-unique-completion t
- ;; Show in the current frame, change window's buffer if necessary.
- ido-default-buffer-method 'selected-window)
-
-(push 'ido-mode gk-global-modes)
-
-(setf ido-enable-flex-matching t)
-
-;; Display completions vertically:
-(setf ido-decorations
-      '("\n-> " "" "\n   " "\n   ..." "[" "]" " [No match]" " [Matched]"
-        " [Not readable]" " [Too big]" " [Confirm]"))
-
-(add-hook
- 'ido-minibuffer-setup-hook
- (defun gk-ido-disable-line-truncation ()
-   (set (make-local-variable 'truncate-lines) nil)))
-
-(add-hook
- 'ido-setup-hook
- (defun gk-ido-define-keys () ;; C-n/p is more intuitive in vertical layout
-   (define-key ido-completion-map (kbd "C-n") 'ido-next-match)
-   (define-key ido-completion-map (kbd "C-p") 'ido-prev-match)))
 
 
 
