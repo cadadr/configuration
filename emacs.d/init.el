@@ -4947,19 +4947,6 @@ the body of the entry, and the cdr is the score, an integer.")
 ;; Comparison
 (gk-prefix-binding (kbd "C-=") 'diff-buffer-with-file)
 
-;; Insert TODO/XXX/FIXME notes
-(gk-prefix-binding "xx"
-  (gk-interactively
-   (insert (format-time-string "XXX (%F): "))))
-
-(gk-prefix-binding "xt"
-  (gk-interactively
-   (insert (format-time-string "TODO (%F): "))))
-
-(gk-prefix-binding "xf"
-  (gk-interactively
-   (insert (format-time-string "FIXME (%F): "))))
-
 
 
 ;;;; Current buffer:
@@ -4985,8 +4972,6 @@ the body of the entry, and the cdr is the score, an integer.")
                                             (toggle-debug-on-quit)))
 (gk-prefix-binding "r" 'rename-buffer)
 (gk-prefix-binding "n" 'other-frame)
-(gk-prefix-binding "\M-k" 'gk-kill-buffer-file-name)
-(gk-prefix-binding "\M-k" 'gk-kill-buffer-file-name)
 (gk-global-binding [home] 'gk-home)
 (gk-prefix-binding "h" (gk-interactively
                         (when-let* ((b (get-buffer "*Help*")))
