@@ -3621,7 +3621,7 @@ numerals which regularly appear in texts."
 
 (defun gk-ovp-hook ()
   "Hook for ‘org-variable-pitch-minor-mode’."
-  (setq-local cursor-type gk-default-cursor-type))
+  )
 
 (add-hook 'org-variable-pitch-minor-mode-hook #'gk-ovp-hook)
 
@@ -4265,36 +4265,6 @@ An adaptation and simplification of ‘mode-line-modes’.")
            gk-mode-line-buffer-file-name)))
 
 (setq-default mode-line-format (gk-build-mode-line-format))
-
-
-
-;;;;; Cursor:
-
-(defvar gk-default-cursor-type 'bar
-  "Cursor type for editable buffers.")
-
-(setq-default cursor-type gk-default-cursor-type)
-(setq-default cursor-in-non-selected-windows 'hollow)
-
-;; Box cursor in special-mode and some other modes when the default
-;; cursor type is 'bar.
-(when (eq cursor-type 'bar)
- (let ((modes '(special-mode-hook term-mode-hook forecast-mode-hook))
-       (hook (defun gk-special-mode-box-cursor ()
-               (setq-local cursor-type 'box)))
-       gnus-modes hookies)
-   ;; Find all gnus modes.
-   (dolist (cns (custom-group-members 'gnus nil))
-     (let* ((sym (car cns))
-            (symnam (symbol-name sym))
-            (hooknam (intern (concat symnam "-mode-hook"))))
-       (when (and (string-prefix-p "gnus-" symnam)
-                  (boundp hooknam))
-         (pushnew hooknam gnus-modes))))
-   ;; Add the hook to all modes.
-   (dolist (hookvar `(,@modes ,@gnus-modes) hookies)
-     (add-hook hookvar hook)
-     (push hookvar hookies))))
 
 
 
