@@ -2715,16 +2715,6 @@ and special ones sepatarely."
 
 ;;;;; Utilities:
 
-(defun posta (&optional arg)
-  "Start the selected mail application.
-If arg is non-nil, or universal argument given fetch new mail.
-Otherwise start mail program in offline mode."
-  (interactive "P")
-  (gk-with-new-frame ()
-    (if arg
-        (gnus)
-      (gnus-unplugged))))
-
 (defun gk-fetch-mail ()
   "Run mail retrieval scripts."
   (interactive)
