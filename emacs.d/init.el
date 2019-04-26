@@ -221,6 +221,7 @@ Exclude dot-files, don't sort, and return full paths by default."
 (require 'persistent-scratch)
 (require 'pixel-scroll)
 (require 'pp)
+(require 'python)
 (require 'quail)
 (require 'rect)
 (require 'rmail)
