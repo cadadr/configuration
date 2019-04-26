@@ -231,7 +231,6 @@ Exclude dot-files, don't sort, and return full paths by default."
 (require 'thingatpt)
 (require 'thinks)
 (require 'time)
-(require 'tls)
 (require 'tramp)
 (require 'tramp-cache)
 (require 'uniquify)
@@ -4243,45 +4242,6 @@ So that the reader knows where to continue reading."
 
 
 
-;;;;; Time:
-
-(setf display-time-format " {%d %a %Y %H:%M}"
-      ;; Don't show load average.
-      display-time-default-load-average nil)
-;;(add-to-list 'gk-global-modes 'display-time-mode)
-
-
-
-;;;;; Sessions:
-
-(let ((desktop-dir (expand-file-name (locate-user-emacs-file "etc/"))))
-  (setf
-   ;; Always save desktops.
-   desktop-save t
-   ;; Load all buffers.
-   desktop-restore-eager t
-   ;; Make sure there's only one place to look for desktops.
-   desktop-path (list desktop-dir)
-   desktop-dirname desktop-dir
-   desktop-base-file-name "desktop"
-   desktop-base-lock-name "desktop.lock"
-   ;; Don't save these.
-   desktop-buffers-not-to-save
-   "^\\*"
-   desktop-restore-frames t
-   desktop-globals-to-save nil))
-
-(add-to-list 'desktop-modes-not-to-save 'dired-mode)
-(add-to-list 'desktop-modes-not-to-save 'Info-mode)
-(add-to-list 'desktop-modes-not-to-save 'info-lookup-mode)
-(add-to-list 'desktop-modes-not-to-save 'fundamental-mode)
-
-;; Enable desktop:
-;; (add-to-list 'gk-global-modes 'desktop-save-mode)
-;; (add-hook 'after-init-hook 'desktop-revert)
-
-
-
 ;;;;; Mouse:
 
 (pushnew 'pixel-scroll-mode gk-global-modes)
@@ -4337,32 +4297,6 @@ So that the reader knows where to continue reading."
 
 
 ;;;; Internet:
-
-
-
-;;;;; TLS:
-
-;; This section contains some settings adapted from this blog post [1]
-;; for making sure that ~tls.el~ always checks certificates.  If I'm
-;; not mistaken this is not necessary for normal usage as actually
-;; ~nsm.el~ handles the certificate checking and other network
-;; security (see (info "(emacs)Network Security") and that's what most
-;; if not all internet connections go through.
-
-;; [1] https://glyph.twistedmatrix.com/2015/11/editor-malware.html
-
-(setf
- ;; Enable checking the certificates against root certificates.
- tls-checktrust t
- tls-program
- (mapcar
-  ($ (format $1 (getenv "SSL_CERT_FILE")))
-  (list
-   "gnutls-cli --x509cafile %s -p %%p %%h"
-   "gnutls-cli --x509cafile %s -p %%p %%h --protocols ssl3")))
-
-
-
 ;;;;; URLs:
 
 ;; This is my URL browsing system, which is a big customisation of the
