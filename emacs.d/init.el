@@ -5308,56 +5308,6 @@ Does various tasks after saving a file, see it's definition."
 
 
 
-;;;; The GK Menu:
-;; The GK menu is a menu that pertains to the ‘gk-minor-mode’ and
-;; constitutes another access point for frequent functions.
-
-;;;;; Setup:
-(defvar gk-menu [menu-bar gk])
-
-(define-key gk-minor-mode-map
-  gk-menu (cons "GK" (make-sparse-keymap "GK")))
-
-(defun gk-menu-add-item (symbol-or-vector name command)
-  "Add an item to the ‘gk-menu’.
-SYMBOL-OR-VECTOR is the fake key, for a toplevel item a single
-symbol is used, for a submenu, use a vector.  NAME is the string
-to represent the menu item in the menu.  COMMAND is the symbol
-whose function is run when the menu item is clicked."
-  (define-key gk-minor-mode-map
-    (concatenate 'vector [menu-bar gk]
-                 (if (vectorp symbol-or-vector)
-                     symbol-or-vector
-                   (make-vector 1 symbol-or-vector)))
-    `(,name . ,command)))
-
-(defun gk-menu-add-separator ()
-  "Add a separator to ‘gk-menu’."
-  (gk-menu-add-item (gensym "separator-") "" '("--")))
-
-
-
-;;;;; Items:
-;; The earlier the definition the lower the item will appear,
-;; i.e. items are stacked on top of the previous ones in the menu.
-
-(gk-menu-add-item 'outbox "Outbox" (gk-interactively
-                                   (rmail
-                                    (expand-file-name "outbox" gk-mail-home))))
-(gk-menu-add-item 'spam "Spam" (gk-interactively
-                                   (rmail
-                                    (expand-file-name "spam" gk-mail-home))))
-(gk-menu-add-item 'runq "Run outbound mail queue" 'gk-runq)
-(gk-menu-add-item 'fetch-mail "Fetch mail" 'gk-fetch-mail)
-(gk-menu-add-item 'rmail "Read mail" 'rmail)
-(gk-menu-add-separator)
-(gk-menu-add-item 'forecast "Weather Forecasts" 'forecast)
-(gk-menu-add-item 'feeds "Feed reader" 'elfeed)
-(gk-menu-add-separator)
-(gk-menu-add-item 'home "Home view" 'gk-home)
-
-
-
 ;;; Additional modules:
 
 (when (eq system-type 'berkeley-unix)
