@@ -4830,51 +4830,7 @@ the body of the entry, and the cdr is the score, an integer.")
 
 
 
-;;;; After Save™:
-
-;; This is /the/ after save hook.  It's the one hook added to
-;; =after-save-hook= that'll do all the things I might want automatically
-;; done after when a file is saved.
-
-
-(defvar gk-after-save-org-timer nil)
-(defvar gk-after-save-org-idle-seconds 5)
-
-(defun gk-after-save-hook ()
-  "Göktuğ's After Save™, a man's best companion.
-Does various tasks after saving a file, see it's definition."
-  ;; Export agenda files when edited.
-  (when-let* ((file (ignore-errors      ;expand-file-name signals if
-                                        ;its first argument is nil.
-                      (expand-file-name (buffer-file-name)))))
-    (when (and (not gk-after-save-org-timer) ;check if there is an
-                                        ;active timer, the timer
-                                        ;callback nulls this
-                                        ;variable
-               (eq major-mode 'org-mode)
-               (member file (mapcar #'expand-file-name org-agenda-files)))
-      (message "Wrote an agenda file and there were no active\
- timers, will export ICS files when Emacs is idle for %d seconds"
-               gk-after-save-org-idle-seconds)
-      ;; Do not rush, query only if Emacs is idle.
-      (setf
-       gk-after-save-org-timer
-       (run-with-idle-timer
-        gk-after-save-org-idle-seconds nil
-        (lambda ()
-          (message "Regenerating ICS files...")
-          (if (file-exists-p org-icalendar-combined-agenda-file)
-              (org-icalendar-combine-agenda-files)
-            (org-icalendar-export-agenda-files))
-          (message "Done!")
-          ;; Reset the timer.
-          (setf gk-after-save-org-timer nil)))))))
-
-(add-hook 'after-save-hook 'gk-after-save-hook)
-
-
-
-;;;;; Other after save hooks:
+;;;; After save hooks:
 
 (add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
 
