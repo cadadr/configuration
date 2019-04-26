@@ -2745,29 +2745,6 @@ and special ones sepatarely."
 
 
 
-;;;;; Spam-checking and splitting mail:
-
-(spam-initialize)
-
-(setf
- spam-use-BBDB t
- spam-use-spamassassin t
- spam-assassin-program (gk-executable-ensure "spamc")
- gnus-spam-newsgroup-contents '(("spam" gnus-group-spam-classification-spam)))
-
-(setf
- nnmail-split-methods 'nnmail-split-fancy
- ;; FUCK THIS.  GODAWFUCK THIS.  The docstring reads:
- ;;
- ;; > Normally, regexes given in ‘nnmail-split-fancy’ are implicitly
- ;; > surrounded by "\<...\>".  If this variable is true, they are not
- ;; > implicitly surrounded by anything.
- ;;
- ;; My god.
- nnmail-split-fancy-match-partial-words t)
-
-
-
 ;;;;; Sending mail:
 
 (setf
