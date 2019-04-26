@@ -159,7 +159,6 @@ Exclude dot-files, don't sort, and return full paths by default."
 (require 'git-commit)
 (require 'gk-greek)
 (require 'gk-unilat)
-(require 'gnus-sum)
 (require 'goto-addr)
 (require 'goto-last-change)
 (require 'highlight-parentheses)
@@ -226,7 +225,6 @@ Exclude dot-files, don't sort, and return full paths by default."
 (require 'shr)
 (require 'simple)
 (require 'smtpmail)
-(require 'spam)
 (require 'subr-x)
 (require 'thingatpt)
 (require 'thinks)
@@ -2699,7 +2697,7 @@ and special ones sepatarely."
 ;;;;; User agent:
 
 (setf message-mail-user-agent t
-      read-mail-command 'gnus)
+      read-mail-command 'rmail)
 
 
 
