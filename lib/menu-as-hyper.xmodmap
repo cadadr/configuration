@@ -1,0 +1,12 @@
+! xmodmap
+
+! Set menu as Hyper
+
+! Adapted from https://www.reddit.com/r/emacs/comments/8oqa6w/
+
+! Adding in Hyper_L to ‘add mod3’ line causes an error.
+
+clear mod3
+keycode 135 = Hyper_R
+
+add mod3  = Hyper_R

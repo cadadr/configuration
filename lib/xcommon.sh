@@ -13,6 +13,7 @@ xrdb -merge $MEINE/Xdefaults
 ### Input:
 #### Keyboard:
 setxkbmap -option "ctrl:nocaps"
+xmodmap $MYLIB/menu-as-hyper.xmodmap
 
 ##### Mouse & Touchpad:
 ###### Multitouch clicks:
