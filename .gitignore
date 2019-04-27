@@ -82,3 +82,20 @@ xdg-config/VirtualBox/
 xdg-config/autostart/
 xdg-config/gtk-2.0/
 xdg-config/com.github.bleakgrey.tootle/
+
+# VSCodium
+xdg-config/VSCodium/Backups/
+xdg-config/VSCodium/blob_storage/
+xdg-config/VSCodium/Cache/
+xdg-config/VSCodium/CachedData/
+xdg-config/VSCodium/CachedExtensions/
+xdg-config/VSCodium/GPUCache/
+xdg-config/VSCodium/logs/
+xdg-config/VSCodium/User/globalStorage/
+xdg-config/VSCodium/User/workspaceStorage/
+xdg-config/VSCodium/webrtc_event_logs/
+xdg-config/VSCodium/Cookies*
+xdg-config/VSCodium/machineid
+xdg-config/VSCodium/Network*
+xdg-config/VSCodium/storage.json
+
