@@ -16,7 +16,7 @@ mode "$mode_run" {
     bindsym Control+g mode "default"
 }
 # Declare here the shortcut to bring the display selection menu
-bindsym Menu mode "$mode_run"
+bindsym $mod+r mode "$mode_run"
 
 
 bindsym F12 exec --no-startup-id i3-dmenu-desktop
