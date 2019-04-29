@@ -3998,7 +3998,7 @@ new frame is created."
   ;; Fixes blank area above window after startup with Athena.
   (setf x-frame-normalize-before-maximize t)
 
-  (gk-setup-frame-looks)
+  (add-hook 'after-init-hook #'gk-setup-frame-looks)
 
   (add-hook 'after-make-frame-functions #'gk-setup-frame-looks))
 
