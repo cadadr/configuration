@@ -2170,15 +2170,10 @@ unlocked, offer to lock it before pasting."
   "Whether current buffer is an algol-like programming language.
 Set by ‘gk-algol-like-hook’, don’t manually set.")
 
-;; In buffers where algol-like hook is run, do not insert spaces
-;; before parens automatically.
-(setf paredit-space-for-delimiter-predicates
-      (list ($ [_ _] (not (buffer-local-value gk-algol-like (current-buffer))))))
-
 (defun gk-algol-like-hook ()
   "Hook for Algol-like programming languages editing."
   (setq-local gk-algol-like t)
-  (paredit-mode +1))
+  (electric-pair-local-mode +1))
 
 (defun gk-prog-mode-hook ()
   "Hook for all programming modes."
@@ -2225,6 +2220,8 @@ Usable for Repl buffers."
 
 ;; Let gk-minor-mode do this.
 (define-key paredit-mode-map "\M-;" nil)
+;; ‘paredit-newline’ is wacky.
+(define-key paredit-mode-map "\C-j" nil)
 
 (setf
  eval-sexp-fu-flash-face 'region
