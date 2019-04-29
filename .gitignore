@@ -82,6 +82,8 @@ xdg-config/VirtualBox/
 xdg-config/autostart/
 xdg-config/gtk-2.0/
 xdg-config/com.github.bleakgrey.tootle/
+xdg-config/caja/
+xdg-config/menus/
 
 # VSCodium
 xdg-config/VSCodium/Backups/

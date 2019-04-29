@@ -7,7 +7,7 @@ Version: 0.1.1
 Package: goktug-layer-devel
 Architecture: any
 
-Depends: cvs, git, git-cvs, gitk, git-email, mercurial, python-hglib,
+Depends: cvs, git, git-cvs, git-email, mercurial, python-hglib,
   python-dulwich, python-fastimport, python3-pip, quilt, rcs,
   subversion, libuniversal-isa-perl, libimage-exiftool-perl,
   libswitch-perl, autoconf, autoconf-archive, automake, bmake,

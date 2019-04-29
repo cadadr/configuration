@@ -20,10 +20,7 @@
 .procmailrc						dotfiles/procmailrc
 .profile						dotfiles/profile.sh
 .signature						dotfiles/signature
-.xbindkeysrc.scm					dotfiles/xbindkeysrc.scm
-.xinitrc						dotfiles/xsession
 .xsessionrc						dotfiles/xsessionrc
-.xmonad							dotfiles/xmonad
 .vimrc							dotfiles/rc.vim
 bin							bin
 

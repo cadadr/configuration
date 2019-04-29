@@ -7,12 +7,9 @@ Version: 0.1.1
 Package: goktug-layer-desktop
 Architecture: any
 
-Depends: dunst, pasystray, i3-wm, i3status, i3lock, atril, cheese,
- gimp, gparted, gv, libreoffice, mpv, simple-scan, transmission-gtk,
- vokoscreen, redshift-gtk, suckless-tools, laptop-mode-tools, xcape,
- xclip, xdotool, xinput, xinit, libxrandr-dev, network-manager-gnome,
- dbus-x11, pulseaudio, pulseaudio-utils, pavucontrol, alsa-oss,
- alsa-utils, alsamixergui, libnotify-bin, pcmanfm, tootle, ristretto,
- devhelp, xbacklight, feh, firefox
+Depends: atril, cheese, gimp, gparted, gv, libreoffice, mpv,
+ simple-scan, transmission-gtk, vokoscreen, redshift-gtk,
+ suckless-tools, laptop-mode-tools, xclip, xdotool, xinput,
+ libnotify-bin, tootle, devhelp, firefox, task-mate-desktop
 
 Description: Desktop layer for Göktuğ's Debian System
