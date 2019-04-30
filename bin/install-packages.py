@@ -91,6 +91,7 @@ def get_packages(input, try_similar_distro=False):
         elif isinstance(group, dict):
             name = name
             contents = get_packages(group)
+            groups[name] = contents["all"]
             groups["all"].extend(contents.pop("all"))
             for subname, val in contents.items():
                 groups[name + "." + subname] = val

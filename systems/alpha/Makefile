@@ -11,6 +11,8 @@ else
 	BASEPFX=
 endif
 
+INSTALL=../../bin/install-packages.py packages.list
+
 help:
 	@echo "Targets:"
 	@echo "	help			show this message"
@@ -19,11 +21,11 @@ help:
 
 install-packages:
 ifeq ($(BASIC), yes)
-	$(MAKE) -C layers/ -$(MAKEFLAGS) all install-base
+	$(INSTALL) base util | xargs sudo
 else ifeq ($(BASIC), devel)
-	$(MAKE) -C layers/ -$(MAKEFLAGS) all install-devel
+	$(INSTALL) devel | xargs sudo
 else
-	$(MAKE) -C layers/ -$(MAKEFLAGS) all install-full
+	$(INSTALL) all | xargs sudo
 endif
 
 install-config: $(GENCONFIGS)

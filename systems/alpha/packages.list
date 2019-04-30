@@ -1,0 +1,72 @@
+# packages -*- mode: python -*-
+
+packages = {
+    "base": ["apt-transport-https", "curl", "cups-bsd", "dnsutils",
+             "equivs", "gawk", "gvfs-bin", "net-tools",
+             "netcat-openbsd", "telnet", "traceroute", "bind9utils",
+             "moreutils", "lftp", "libpam-cgroup", "libpam-cgfs",
+             "bridge-utils", "qemu", "rsync","openssh-server",
+             "network-manager", "smartmontools",]
+    ,
+    "desktop": ["task-mate-desktop", # use Debian’s Mate desktop environment
+                "atril", "cheese", "gimp", "gparted", "gv",
+                "libreoffice", "mpv", "simple-scan",
+                "transmission-gtk", "vokoscreen", "redshift-gtk",
+                "suckless-tools", "laptop-mode-tools", "xclip",
+                "xdotool", "xinput", "libnotify-bin", "tootle",
+                "devhelp", "firefox", "audacity",]
+    ,
+    "emacs": ["libjansson-dev", "libpoppler-glib-dev",
+              "libpoppler-private-dev",]
+    ,
+    "sci": ["spek", "praat", "python3-matplotlib",]
+    ,
+    "tex": ["texlive-full", "perl-tk",]
+    ,
+    "util": ["pass", "pv", "tmux", "units", "vim", "vorbis-tools", "vorbisgain",
+             "w3m", "w3m-el", "webalizer", "whois", "syncthing",
+             "libnss-mdns", "mailutils", "mairix", "mutt", "mpop",
+             "msmtp", "procmail", "certbot", "dirmngr", "youtube-dl",
+             "hugo", "inotify-tools", "pandoc", "fbi", "ddgr",]
+    ,
+    "devel": {
+        "vcs": ["cvs", "git", "git-cvs", "git-email", "mercurial",
+                "python-hglib", "python-dulwich", "python-fastimport",
+                "python3-pip", "quilt", "rcs", "subversion",]
+        ,
+        "build": ["autoconf", "autoconf-archive", "automake", "bmake",]
+        ,
+        "perl": ["libuniversal-isa-perl", "libimage-exiftool-perl",
+                 "libswitch-perl", "cpanminus", "liblocal-lib-perl", "perlbrew",]
+        ,
+        "python": ["python", "python-pip", "python3-tk", "python3-venv",
+                   "ipython3",]
+        ,
+        "ruby": ["ruby", "bundler", "ri",]
+        ,
+        "redis": ["redis-server", "redis-tools",]
+        ,
+        "gnome": ["gjs", "libgjs-dev", "gnome-js-common", "valac", "valadoc",]
+        ,
+        "stat": ["gnuplot", "feedgnuplot",]
+        ,
+        "tools": ["exuberant-ctags", "gdb", "strace",]
+        ,
+    }
+    ,
+    "doc": ["texinfo-doc-nonfree", "make-doc", "gawk-doc", "apt-doc",
+            "autoconf-doc", "bash-doc", "binutils-doc", "aspell-doc",
+            "binutils-doc", "bzip2-doc", "cvs-doc", "debconf-doc",
+            "diffutils-doc", "ffmpeg-doc", "gdb-doc", "gettext-doc", "git-doc",
+            "glibc-doc", "gmp-doc", "gnuplot-doc", "gnutls-doc", "graphviz-doc",
+            "grub-doc", "imagemagick-doc", "libtool-doc", "m4-doc",
+            "mailutils-doc", "make-doc", "multiboot-doc", "ncurses-doc",
+            "parted-doc", "pinentry-doc", "python-apt-doc",
+            "python-certbot-doc", "python-doc", "python-numpy-doc",
+            "python-setuptools-doc", "python3-doc", "readline-doc",
+            "rsyslog-doc", "sgml-base-doc", "sharutils-doc", "sqlite3-doc",
+            "tar-doc", "vim-doc", "libgtk-3-doc", "libcairo2-doc", "libxaw-doc",
+            "libx11-doc", "libxcb-doc", "libglib2.0-doc", "iproute2-doc",
+            "libasound2-doc",]
+    ,
+}
