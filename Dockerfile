@@ -6,4 +6,4 @@ FROM debian:stable
 WORKDIR /app
 COPY . /app
 
-CMD sh systems/alpha-debian/scripts/test.sh
+CMD sh systems/alpha/scripts/test.sh
