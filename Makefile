@@ -10,7 +10,7 @@ all: help
 help:
 	@echo "Targets:";\
 	echo "	alpha-init		initialise alpha instance with Debian";\
-	echo "	alpha-test		test alpha w/ Docker";\
+	echo "	alpha-test		test alpha w/ Docker (run as root)";\
 	echo "	alpha-pkg		(re)install alpha packages";\
 	echo "	alpha-config		(re)install alpha config files";\
 	echo "	cron			(re)install current config's cron";\
