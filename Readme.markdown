@@ -49,7 +49,7 @@ In order to get this configuration running on a vanilla Debian stable
 installation, run the following commands:
 
 ```
-# apt-get install sudo make git equivs
+# apt-get install sudo make git python3 python3-distro
 $ make alpha-init
 # locale-gen
 # update-initramfs -u
