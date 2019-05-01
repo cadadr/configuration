@@ -2238,6 +2238,9 @@ Usable for Repl buffers."
 
 (add-hook 'lisp-interaction-mode-hook 'gk-lisp-interaction-mode-hook)
 
+;; Do not eval on C-j.
+(define-key lisp-interaction-mode-map "\n" nil)
+
 (defun gk-minibuf-eval-hook ()
   "Better editing for /M-:/."
   (when (eq this-command  'eval-expression)
