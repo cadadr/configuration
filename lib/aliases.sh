@@ -131,6 +131,7 @@ epub2pdf () {
 
 ###
 alias listall="(alias | cut -d= -f1 && declare -F | cut -d ' '  -f 3 | sed 's,^,function ,')"
+Listall(){ listall | pg; }
 alias edit="$EDITOR"
 alias re=". $ENV"
 alias j=jobs
@@ -151,12 +152,17 @@ alias mq='hg -R $(hg root)/.hg/patches'
 alias vagrant="env -u GEM_HOME -u GEM_PATH vagrant"
 # Show file name and line numbers.
 alias ngrep="grep -Hn"
+Ngrep(){ ngrep $@ | pg; }
 alias msgs="dmesg | tail"
+Msgs(){ msgs $@ | pg ; }
 alias msgrep="dmesg | grep"
+Msgrep(){ msgrep $@ | pg; }
 alias sudo="sudo --preserve-env" # https://news.ycombinator.com/item?id=18902265
-alias wanna="man -k"
+alias umm="man -k"
+Umm(){ umm $@ | pg; }
 # From: https://news.ycombinator.com/item?id=18909446
 alias fs="mount | grep ^/ | column -t | sort"
+Fs(){ fs $@ | pg; }
 # CD to the root of the current git project
 # From: https://news.ycombinator.com/item?id=18910827
 alias gup='git rev-parse --git-dir >/dev/null 2>&1 && cd `git rev-parse --show-toplevel` || echo "Not in git repo"'
@@ -171,7 +177,9 @@ alias right='cd "$( find -L ${PWD%/*}/ -maxdepth 1 -type d -not -name \".*\" | s
 alias left='cd "$( find -L ${PWD%/*}/ -maxdepth 1 -type d -not -name \".*\" | sort | grep -B 1 ../${PWD##*/} | head -n 1 )"'
 # Mail
 alias runq=msmtp-runqueue.sh
+alias rq=msmtp-runqueue.sh
 alias lisq=msmtp-listqueue.sh
+alias lq=msmtp-listqueue.sh
 # Node / Yarn
 alias yarn=yarnpkg
 
@@ -182,18 +190,23 @@ case $SYSTEM in
             case $(grep '^ID=' /etc/os-release | cut -d= -f2) in
                 debian)
                     alias deps="apt-cache depends --no-recommends --no-breaks --no-suggests --no-conflicts --no-enhances --no-replaces --recurse"
+                    Deps(){ deps $@ | pg; }
                     alias fresh='sudo apt-get update && (apt list --upgradable | pg)'
                     alias distup='sudo apt-get dist-upgrade'
                     alias haz="dpkg-query -l"
+                    Haz(){ haz $@ | pg; }
                     alias has="apt-cache search"
+                    Has(){ has $@ | pg; }
                     alias wanna="sudo apt-get install"
                     alias eww="sudo apt-get autoremove"
                     alias show="apt-cache show"
+                    Show(){ show $@ | pg; }
                     ;;
             esac
         fi
         alias uctl='systemctl --user'
         alias hows='systemctl status'
+        Hows(){ hows $@ | pg; }
         alias stop='systemctl stop'
         alias start='systemctl start'
         alias enable='systemctl enable'
