@@ -403,13 +403,8 @@ When ARG is a positive number, repeat that many times."
 (defun gk-home ()
   "Take me to the home view."
   (interactive)
-  (set-frame-parameter nil 'fullscreen 'maximized)
   (delete-other-windows)
   (find-file (gk-org-dir-file "start.org"))
-  (split-window-horizontally)
-  (other-window 1)
-  (org-agenda nil "p")
-  (other-window 1)
   (gk-flash-current-line))
 
 (defun gk-maybe-expand-abbrev-or-space ()
