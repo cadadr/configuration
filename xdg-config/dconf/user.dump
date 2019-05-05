@@ -1,6 +1,14 @@
 [org/gnome/simple-scan]
 document-type='photo'
 
+[org/gnome/cheese]
+photo-y-resolution=480
+burst-delay=1000
+video-y-resolution=480
+camera='USB2.0 HD UVC WebCam: USB2.0 HD'
+photo-x-resolution=640
+video-x-resolution=640
+
 [org/gnome/devhelp/state/main/paned]
 position=261
 
@@ -23,6 +31,14 @@ location-mode='path-bar'
 
 [org/gtk/settings/color-chooser]
 selected-color=(true, 0.82745098039215681, 0.84313725490196079, 0.81176470588235294, 1.0)
+
+[org/mate/terminal/profiles/default]
+allow-bold=false
+background-color='#FFFFFFFFDDDD'
+palette='#2E2E34343636:#CCCC00000000:#4E4E9A9A0606:#C4C4A0A00000:#34346565A4A4:#757550507B7B:#060698209A9A:#D3D3D7D7CFCF:#555557575353:#EFEF29292929:#8A8AE2E23434:#FCFCE9E94F4F:#72729F9FCFCF:#ADAD7F7FA8A8:#3434E2E2E2E2:#EEEEEEEEECEC'
+bold-color='#000000000000'
+foreground-color='#000000000000'
+visible-name='Default'
 
 [org/mate/notification-daemon]
 theme='slider'
@@ -168,13 +184,6 @@ switch-to-workspace-2='<Mod4>F2'
 switch-to-workspace-3='<Mod4>F3'
 switch-to-workspace-4='<Mod4>F4'
 
-[org/mate/caja/window-state]
-start-with-sidebar=true
-geometry='800x550+238+90'
-start-with-status-bar=true
-maximized=false
-start-with-toolbar=true
-
 [org/mate/panel/general]
 object-id-list=['notification-area', 'clock', 'object-0', 'object-1', 'object-4', 'object-8', 'object-7', 'object-2', 'object-6']
 toplevel-id-list=['top']
@@ -274,13 +283,17 @@ panel-right-stick=false
 group-windows='never'
 display-all-workspaces=false
 
-[org/mate/terminal/profiles/default]
-allow-bold=false
-background-color='#FFFFFFFFDDDD'
-palette='#2E2E34343636:#CCCC00000000:#4E4E9A9A0606:#C4C4A0A00000:#34346565A4A4:#757550507B7B:#060698209A9A:#D3D3D7D7CFCF:#555557575353:#EFEF29292929:#8A8AE2E23434:#FCFCE9E94F4F:#72729F9FCFCF:#ADAD7F7FA8A8:#3434E2E2E2E2:#EEEEEEEEECEC'
-bold-color='#000000000000'
-foreground-color='#000000000000'
-visible-name='Default'
+[org/mate/caja/window-state]
+start-with-sidebar=true
+geometry='800x550+238+90'
+start-with-status-bar=true
+maximized=false
+start-with-toolbar=true
+
+[org/mate/dictionary]
+strategy='exact'
+source-name='Default'
+database='!'
 
 [apps/light-locker]
 late-locking=false
