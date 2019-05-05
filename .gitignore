@@ -86,7 +86,7 @@ xdg-config/caja/
 xdg-config/menus/
 xdg-config/pluma/
 xdg-config/mate/backgrounds.xml
-
+xdg-config/mate/mate-dictionary
 
 # VSCodium
 xdg-config/VSCodium/Backups/
