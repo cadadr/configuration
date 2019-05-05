@@ -68,7 +68,7 @@ xdg-config/evince/
 xdg-config/transmission/
 xdg-config/user-dirs.dirs
 xdg-config/user-dirs.locale
-xdg-config/dconf
+xdg-config/dconf/user
 xdg-config/QtProject.conf
 xdg-config/libreoffice/
 xdg-config/xubuntu/xdg-xubuntu-templates.cfg
@@ -84,6 +84,9 @@ xdg-config/gtk-2.0/
 xdg-config/com.github.bleakgrey.tootle/
 xdg-config/caja/
 xdg-config/menus/
+xdg-config/pluma/
+xdg-config/mate/backgrounds.xml
+
 
 # VSCodium
 xdg-config/VSCodium/Backups/
