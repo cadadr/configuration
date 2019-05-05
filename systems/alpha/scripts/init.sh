@@ -23,7 +23,7 @@ if id $username 2>/dev/null >/dev/null; then
 else
     say Adding user $username...
     useradd -c 'cadadr' -d /home/$username		\
-	 -G sudo,cdrom,floppy,audio,dip,video,plugdev,netdev,bluetooth,lpadmin,scanner \
+	 -G sudo,cdrom,docker,floppy,audio,dip,video,plugdev,netdev,bluetooth,lpadmin,scanner \
 	 -m -s /bin/bash -U -u $userno $username		\
 	|| echo Failed adding user $username # && exit 1;
     groupmod -g $userno $username				\
