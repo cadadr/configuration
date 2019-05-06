@@ -1,4 +1,4 @@
-# crontab -- repeating background tasks.
+# crontab -- repeating background tasks. -*- mode: conf-space -*-
 MAILTO=g
 PATH=/home/$LOGNAME/bin:/usr/bin:/usr/sbin:/usr/local/bin:/sbin:/bin
 GKCRON=yes
