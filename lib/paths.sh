@@ -28,9 +28,9 @@ fi
 # Collect paths from programming-language specific package managers.
 
 export GEM_HOME="$HOME/.gem"
-export GEM_PATH="$GEM_HOME/bin:$GEM_HOME/ruby/$(ruby -v | cut -d\  -f2 | cut -c1-3).0"
 
 if which ruby 2>&1 > /dev/null; then
+    export GEM_PATH="$GEM_HOME/bin:$GEM_HOME/ruby/$(ruby -v | cut -d\  -f2 | cut -c1-3).0"
     RUBY_PATH="$GEM_PATH/bin"
 fi
 
