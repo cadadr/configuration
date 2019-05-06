@@ -9,8 +9,10 @@ bp_lastcmdexit () {
 }
 
 bp_queue () {
-    count="$(( $(ls $MAILQUEUE | wc -l) / 2 ))"
-    [ "0" != "$count" ] && echo "Queued messages: $count";
+    if [ -d "$MAILQUEUE" ]; then
+        count="$(( $(ls $MAILQUEUE | wc -l) / 2 ))"
+        [ "0" != "$count" ] && echo "Queued messages: $count";
+    fi
     true
 }
 
