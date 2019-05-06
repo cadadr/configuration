@@ -2085,6 +2085,9 @@ unlocked, offer to lock it before pasting."
          ((equal filename ".gitignore")
           (goto-char (point-min))
           (insert "; Ignore "))
+         ((equal filename "xdg-config/dconf/user.dump")
+          (goto-char (point-min))
+          (insert "; " filename))
          (filename
           (goto-char (point-min))
           (if addp
