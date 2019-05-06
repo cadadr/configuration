@@ -4847,7 +4847,7 @@ the body of the entry, and the cdr is the score, an integer.")
 ;; XXX: not working as intended yet.
 ;; (gk-global-binding [remap fill-paragraph] #'gk-fill-or-join-paragraph)
 ;; So that it doesnt override special-mode and the like.
-(global-set-key [? ] 'gk-maybe-expand-abbrev-or-space)
+;; (global-set-key [? ] 'gk-maybe-expand-abbrev-or-space)
 
 ;; Unset unused keys.
 (global-unset-key (kbd "C-M-%"))  ; Now same as M-%
