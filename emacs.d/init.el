@@ -2050,8 +2050,8 @@ unlocked, offer to lock it before pasting."
                      addp t)))
         (setq onlyp (progn
                       (forward-line)
-                      (not (or (looking-at modified-re)
-                               (looking-at new-re)))))
+                      (beginning-of-line)
+                      (looking-at "^#$")))
         (when (and onlyp (equal filename "Readme.org"))
           (goto-char (point-min))
           (when-let* ((pos (re-search-forward issue-re nil t)))
