@@ -8,6 +8,10 @@ set nocompatible
 syntax enable
 filetype plugin on
 
+" basic text editing settings
+set textwidth=72
+set expandtab
+
 " completion
 set path+=**		" recursive search
 set wildmenu		" enhanced command-line completion

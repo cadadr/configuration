@@ -52,17 +52,11 @@ export GPG_TTY=$(tty)
 
 ### Shell settings:
 
-#### Bash-specific stuff:
-#if [ x$0 = x-bash -o x$0 = xbash -o x$(basename x$0) = xbash ]; then
-if [ ! x$BASH = x ]; then
-    shopt -s histappend
-    shopt -s checkwinsize
-    shopt -s globstar
-    shopt -s autocd
-    source $MYLIB/prompt.bash
-    PROMPT_COMMAND=bp_procmd
-    HISTTIMEFORMAT='%s'
-fi
+#### Load shell-specific stuff:
+case "$SHELL" in
+    *bash) source $MYLIB/rc.bash ;;
+    *) ;;
+esac
 
 ###
 
