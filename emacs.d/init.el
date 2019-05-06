@@ -2073,6 +2073,7 @@ unlocked, offer to lock it before pasting."
                 (insert str)
                 (diff-mode)
                 (goto-char (point-min))
+                (re-search-forward "^[\\+\\-] ")
                 (setq current-defun (diff-current-defun))))))))
     (if onlyp
         (cond
