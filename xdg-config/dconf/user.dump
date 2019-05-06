@@ -156,7 +156,6 @@ picture-filename='/home/g/pic/wlp/145487-4000x3703.jpg'
 secondary-color='rgb(60,143,37)'
 
 [org/mate/desktop/session]
-session-start=1557064115
 
 [org/mate/desktop/interface]
 icon-theme='menta'
@@ -285,7 +284,6 @@ display-all-workspaces=false
 
 [org/mate/caja/window-state]
 start-with-sidebar=true
-geometry='800x550+238+90'
 start-with-status-bar=true
 maximized=false
 start-with-toolbar=true
