@@ -67,6 +67,11 @@ sidebar-width=200
 window-height=480
 window-width=600
 
+
+[org/mate/terminal/global]
+use-menu-accelerators=false
+use-mnemonics=false
+
 [org/mate/power-manager]
 action-critical-battery='suspend'
 brightness-ac=24.0
