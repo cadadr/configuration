@@ -192,7 +192,7 @@ case $SYSTEM in
     Linux)
         if [ -f /etc/os-release ]; then
             case $(grep '^ID=' /etc/os-release | cut -d= -f2) in
-                debian)
+                debian|raspbian)
                     alias deps="apt-cache depends --no-recommends --no-breaks --no-suggests --no-conflicts --no-enhances --no-replaces --recurse"
                     Deps(){ deps $@ | pg; }
                     alias fresh='sudo apt-get update && (apt list --upgradable | pg)'
