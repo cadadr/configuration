@@ -2065,7 +2065,7 @@ unlocked, offer to lock it before pasting."
             (goto-char (point-min))
             ;; Error if not found, means verbose diffs
             ;; not enabled.
-            (re-search-forward "^diff --git")
+            (re-search-forward "^diff --git" nil t)
             (goto-char (line-beginning-position))
             (let ((str (buffer-substring (point) (point-max)))
                   (default-directory (expand-file-name "..")))
