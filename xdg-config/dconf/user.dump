@@ -20,7 +20,6 @@ height=500
 [org/gtk/settings/file-chooser]
 sort-column='name'
 sidebar-width=148
-window-position=(0, 71)
 show-size-column=true
 show-hidden=false
 window-size=(818, 462)
