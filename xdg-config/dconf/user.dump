@@ -138,6 +138,7 @@ group-windows='never'
 display-all-workspaces=false
 
 [org/mate/notification-daemon]
+popup-location='top_right'
 theme='slider'
 
 [org/mate/eom/view]
