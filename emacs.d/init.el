@@ -1988,6 +1988,33 @@ The default implementation of this function is in `log-edit.el'."
 
 ;;;;; Diff:
 
+;; Redefining this function to not let it try to find the current
+;; defun from the hunk itself because it errors.
+;;
+;; This was initially done for ‘gk-git-commit-mode-hook’.
+(defun gk-diff-current-defun ()
+  "Find the name of function at point.
+For use in `add-log-current-defun-function'."
+  ;; Kill change-log-default-name so it gets recomputed each time, since
+  ;; each hunk may belong to another file which may belong to another
+  ;; directory and hence have a different ChangeLog file.
+  (kill-local-variable 'change-log-default-name)
+  (save-excursion
+    (when (looking-at diff-hunk-header-re)
+      (forward-line 1)
+      (re-search-forward "^[^ ]" nil t))
+    (pcase-let ((`(,buf ,_line-offset ,pos ,src ,dst ,switched)
+                 (ignore-errors         ;Signals errors in place of prompting.
+                   ;; Use `noprompt' since this is used in which-func-mode
+                   ;; and such.
+                   (diff-find-source-location nil nil 'noprompt))))
+      (when buf
+        (beginning-of-line)
+        (with-current-buffer buf
+          (goto-char (+ (car pos) (cdr src)))
+          (add-log-current-defun))))))
+(defalias 'diff-current-defun #'gk-diff-current-defun)
+
 (defun gk-diff-mode-hook ()
   "Diffs."
   )
