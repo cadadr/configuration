@@ -1,6 +1,17 @@
 [org/gnome/simple-scan]
 document-type='photo'
 
+[org/gnome/evince]
+document-directory=@ms nothing
+
+[org/gnome/evince/default]
+
+[org/gnome/boxes]
+view='icon-view'
+first-run=false
+window-maximized=true
+window-size=[946, 600]
+
 [org/gnome/cheese]
 photo-y-resolution=480
 burst-delay=1000
@@ -22,7 +33,7 @@ sort-column='name'
 sidebar-width=148
 show-size-column=true
 show-hidden=false
-window-size=(818, 462)
+window-size=(1205, 709)
 sort-directories-first=true
 date-format='regular'
 sort-order='ascending'
@@ -32,7 +43,7 @@ location-mode='path-bar'
 selected-color=(true, 0.82745098039215681, 0.84313725490196079, 0.81176470588235294, 1.0)
 
 [org/mate/panel/general]
-object-id-list=['notification-area', 'clock', 'object-0', 'object-1', 'object-4', 'object-8', 'object-7', 'object-2', 'object-6', 'object-5']
+object-id-list=['notification-area', 'clock', 'object-0', 'object-1', 'object-4', 'object-8', 'object-7', 'object-2', 'object-6', 'object-5', 'object-9', 'object-10', 'object-11']
 toplevel-id-list=['top']
 
 [org/mate/panel/toplevels/top]
@@ -55,21 +66,21 @@ type='none'
 applet-iid='WnckletFactory::WindowMenuApplet'
 locked=false
 toplevel-id='top'
-position=397
+position=462
 object-type='applet'
 panel-right-stick=false
 
 [org/mate/panel/objects/object-5]
 launcher-location='/home/g/.local/share/applications/zotero.desktop'
 toplevel-id='top'
-position=163
+position=201
 object-type='launcher'
 panel-right-stick=false
 
 [org/mate/panel/objects/object-6]
 launcher-location='org.gnome.Devhelp.desktop'
 toplevel-id='top'
-position=163
+position=173
 object-type='launcher'
 panel-right-stick=false
 
@@ -77,7 +88,7 @@ panel-right-stick=false
 applet-iid='ClockAppletFactory::ClockApplet'
 locked=false
 toplevel-id='top'
-position=191
+position=239
 object-type='applet'
 panel-right-stick=false
 
@@ -88,22 +99,40 @@ custom-format=''
 [org/mate/panel/objects/object-7]
 launcher-location='emacs-1.desktop'
 toplevel-id='top'
-position=107
+position=117
 object-type='launcher'
+panel-right-stick=false
+
+[org/mate/panel/objects/object-10]
+toplevel-id='top'
+position=229
+object-type='separator'
 panel-right-stick=false
 
 [org/mate/panel/objects/object-8]
 launcher-location='matecc.desktop'
 toplevel-id='top'
-position=79
+position=89
 object-type='launcher'
+panel-right-stick=false
+
+[org/mate/panel/objects/object-11]
+toplevel-id='top'
+position=79
+object-type='separator'
+panel-right-stick=false
+
+[org/mate/panel/objects/object-9]
+toplevel-id='top'
+position=478
+object-type='separator'
 panel-right-stick=false
 
 [org/mate/panel/objects/notification-area]
 applet-iid='NotificationAreaAppletFactory::NotificationArea'
 locked=false
 toplevel-id='top'
-position=313
+position=374
 object-type='applet'
 panel-right-stick=false
 
@@ -119,17 +148,17 @@ panel-right-stick=false
 applet-iid='WnckletFactory::WorkspaceSwitcherApplet'
 locked=false
 toplevel-id='top'
-position=445
+position=488
 object-type='applet'
 panel-right-stick=false
 
 [org/mate/panel/objects/object-1/prefs]
-num-rows=2
+num-rows=1
 
 [org/mate/panel/objects/object-2]
 launcher-location='firefox-1.desktop'
 toplevel-id='top'
-position=135
+position=145
 object-type='launcher'
 panel-right-stick=false
 
@@ -166,17 +195,8 @@ sidebar-width=200
 window-height=480
 window-width=600
 
-[org/mate/terminal/profiles/default]
-allow-bold=false
-background-color='#FFFFFFFFDDDD'
-palette='#2E2E34343636:#CCCC00000000:#4E4E9A9A0606:#C4C4A0A00000:#34346565A4A4:#757550507B7B:#060698209A9A:#D3D3D7D7CFCF:#555557575353:#EFEF29292929:#8A8AE2E23434:#FCFCE9E94F4F:#72729F9FCFCF:#ADAD7F7FA8A8:#3434E2E2E2E2:#EEEEEEEEECEC'
-bold-color='#000000000000'
-foreground-color='#000000000000'
-visible-name='Default'
-
-[org/mate/terminal/global]
-use-menu-accelerators=false
-use-mnemonics=false
+[org/mate/disk-usage-analyzer/ui]
+active-chart='rings'
 
 [org/mate/power-manager]
 action-critical-battery='suspend'
@@ -208,6 +228,18 @@ include-border=true
 border-effect='none'
 delay=0
 last-save-directory='file:///home/g/pic/scr'
+
+[org/mate/terminal/profiles/default]
+allow-bold=false
+background-color='#FFFFFFFFDDDD'
+palette='#2E2E34343636:#CCCC00000000:#4E4E9A9A0606:#C4C4A0A00000:#34346565A4A4:#757550507B7B:#060698209A9A:#D3D3D7D7CFCF:#555557575353:#EFEF29292929:#8A8AE2E23434:#FCFCE9E94F4F:#72729F9FCFCF:#ADAD7F7FA8A8:#3434E2E2E2E2:#EEEEEEEEECEC'
+bold-color='#000000000000'
+foreground-color='#000000000000'
+visible-name='Default'
+
+[org/mate/terminal/global]
+use-menu-accelerators=false
+use-mnemonics=false
 
 [org/mate/desktop/sound]
 input-feedback-sounds=false
@@ -262,7 +294,7 @@ slowkeys-enable=false
 color-shading-type='vertical-gradient'
 primary-color='rgb(88,145,188)'
 picture-options='zoom'
-picture-filename='/home/g/pic/wlp/145487-4000x3703.jpg'
+picture-filename='/usr/share/backgrounds/mate/desktop/Ubuntu-Mate-Cold-no-logo.png'
 secondary-color='rgb(60,143,37)'
 
 [org/mate/desktop/session]
@@ -293,11 +325,18 @@ switch-to-workspace-2='<Mod4>F2'
 switch-to-workspace-3='<Mod4>F3'
 switch-to-workspace-4='<Mod4>F4'
 
+[org/mate/marco/workspace-names]
+name-1='home'
+name-2='reading'
+
 [org/mate/caja/window-state]
 start-with-sidebar=true
 start-with-status-bar=true
 maximized=false
 start-with-toolbar=true
+
+[org/mate/atril]
+document-directory=@ms nothing
 
 [org/mate/atril/default]
 
