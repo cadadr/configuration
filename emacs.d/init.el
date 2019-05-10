@@ -3237,7 +3237,14 @@ N defaults to 1."
  ;; value.
  org-image-actual-width (list 300)
  ;; The minibuffer prompt is enough.
- org-popup-calendar-for-date-prompt nil)
+ org-popup-calendar-for-date-prompt nil
+ ;; The couple settings below are adapted from
+ ;; https://yiufung.net/post/org-mode-hidden-gems-pt1/.
+ ;;
+ ;; Open collapsed stuff when editing them.
+ org-catch-invisible-edits 'smart
+ ;; In collapsed view, hide empty lines between subtrees.
+ org-cycle-separator-lines 0)
 
 (setf
  ;; Week starts on Monday
