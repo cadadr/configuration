@@ -42,6 +42,7 @@
       <property name="names-visible" type="array">
         <value type="string" value="networkmanager applet"/>
         <value type="string" value="xfce4-power-manager"/>
+        <value type="string" value="redshift-gtk"/>
         <value type="string" value="clipman"/>
       </property>
       <property name="show-frame" type="bool" value="false"/>
