@@ -209,6 +209,7 @@ Exclude dot-files, don't sort, and return full paths by default."
 (require 'persistent-scratch)
 (require 'pixel-scroll)
 (require 'pp)
+(require 'project)
 (require 'python)
 (require 'quail)
 (require 'rect)
@@ -4969,6 +4970,7 @@ the body of the entry, and the cdr is the score, an integer.")
 (gk-prefix-binding "g" #'magit-status)
 (gk-prefix-binding "." #'repeat-complex-command)
 (gk-prefix-binding (kbd "<C-backspace>") #'delete-frame)
+(gk-prefix-binding "\C-f" #'project-find-file)
 
 
 
