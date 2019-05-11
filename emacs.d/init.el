@@ -2114,7 +2114,39 @@ unlocked, offer to lock it before pasting."
           (insert "; Update TAGS"))
          ((equal filename ".gitignore")
           (goto-char (point-min))
-          (insert "; Ignore "))
+          (insert "; Ignore ")
+          ;; If just one addition, add the filename too.
+          (save-excursion
+            (re-search-forward (rx (and bol "+++")) nil t)
+            (when (and (not (re-search-forward "^\\-" nil t))
+                       (re-search-forward "^\\+" nil t)
+                       (not (re-search-forward "^\\+" nil t)))
+              (let ((str (buffer-substring-no-properties
+                          (1+ (line-beginning-position))
+                          (line-end-position))))
+                (goto-char (point-min))
+                (goto-char (line-end-position))
+                (insert str))))
+          ;; If no additions, say ‘Don’t ignore’, if just one removal,
+          ;; add it.
+          (save-excursion
+            (re-search-forward (rx (and bol "+++")) nil t)
+            (when (and (save-excursion (re-search-forward "^\\-" nil t))
+                       (not (re-search-forward "^\\+" nil t)))
+              (save-excursion
+                (goto-char (1+ (point-min)))
+                (insert " Don’t")
+                (downcase-word 1))
+              (when (and (re-search-forward "^\\-" nil t)
+                         (not (re-search-forward "^\\-" nil t)))
+                (let
+                    ((str (buffer-substring-no-properties
+                           (1+ (line-beginning-position))
+                           (line-end-position))))
+                  (goto-char (point-min))
+                  (goto-char (line-end-position))
+                  (insert str)))))
+          (goto-char (line-end-position)))
          ((equal filename "xdg-config/dconf/user.dump")
           (goto-char (point-min))
           (insert "; " filename))
