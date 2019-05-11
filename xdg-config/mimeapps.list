@@ -35,3 +35,5 @@ image/gif=ristretto.desktop
 image/tiff=ristretto.desktop
 application/pdf=atril.desktop;
 application/x-gzip=emacsclient.desktop;
+x-scheme-handler/mailto=exo-mail-reader.desktop
+
