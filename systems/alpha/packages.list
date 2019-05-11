@@ -8,7 +8,10 @@ packages = {
              "bridge-utils", "qemu", "rsync","openssh-server",
              "network-manager", "smartmontools", "entr", "docker.io"]
     ,
-    "desktop": ["task-mate-desktop", # use Debian’s Mate desktop environment
+    "desktop": ["task-xfce-desktop", # use Debian’s XFCE desktop environment
+                "blackbird-gtk-theme", "bluebird-gtk-theme",
+                "greybird-gtk-theme", "xfce4-dev-tools",
+                "xfce4-panel-dev", "gvfs-backends", "gvfs-fuse",
                 "atril", "cheese", "gimp", "gparted", "gv",
                 "libreoffice", "mpv", "simple-scan",
                 "transmission-gtk", "vokoscreen", "redshift-gtk",
