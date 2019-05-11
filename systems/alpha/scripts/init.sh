@@ -12,6 +12,7 @@ export LC_MESSAGES=C
 configdir=/igk/config
 username=g
 userno=1993
+groups=sudo,cdrom,docker,floppy,audio,dip,video,plugdev,netdev,bluetooth,lpadmin,scanner
 
 say () {
     echo === $@
@@ -22,12 +23,8 @@ if id $username 2>/dev/null >/dev/null; then
     say User $username exists already.
 else
     say Adding user $username...
-    useradd -c 'cadadr' -d /home/$username		\
-	 -G sudo,cdrom,docker,floppy,audio,dip,video,plugdev,netdev,bluetooth,lpadmin,scanner \
-	 -m -s /bin/bash -U -u $userno $username		\
-	|| echo Failed adding user $username # && exit 1;
-    groupmod -g $userno $username				\
-	|| echo Failed setting GID for $username
+    useradd -c 'cadadr' -d /home/$username -G $groups -m -s /bin/bash -U -u $userno $username
+    groupmod -g $userno $username
 fi
 
 say Done.  You may want to reboot your computer.
