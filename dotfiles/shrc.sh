@@ -54,14 +54,14 @@ export GPG_TTY=$(tty)
 
 #### Load shell-specific stuff:
 case "$SHELL" in
-    *bash) source $MYLIB/rc.bash ;;
+    *bash) . $MYLIB/rc.bash ;;
     *) ;;
 esac
 
 ###
 
 #### Aliases & functions:
-source $MYLIB/aliases.sh
+. $MYLIB/aliases.sh
 
 # Rebuild known binary list.
 hash -r
