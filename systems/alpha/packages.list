@@ -6,7 +6,7 @@ packages = {
              "netcat-openbsd", "telnet", "traceroute", "bind9utils",
              "moreutils", "lftp", "libpam-cgroup", "libpam-cgfs",
              "bridge-utils", "qemu", "rsync","openssh-server",
-             "network-manager", "smartmontools", "entr",]
+             "network-manager", "smartmontools", "entr", "docker.io"]
     ,
     "desktop": ["task-mate-desktop", # use Debian’s Mate desktop environment
                 "atril", "cheese", "gimp", "gparted", "gv",
@@ -67,6 +67,6 @@ packages = {
             "rsyslog-doc", "sgml-base-doc", "sharutils-doc", "sqlite3-doc",
             "tar-doc", "vim-doc", "libgtk-3-doc", "libcairo2-doc", "libxaw-doc",
             "libx11-doc", "libxcb-doc", "libglib2.0-doc", "iproute2-doc",
-            "libasound2-doc",]
+            "libasound2-doc", "docker-doc"]
     ,
 }
