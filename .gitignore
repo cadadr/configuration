@@ -75,18 +75,17 @@ xdg-config/xubuntu/xdg-xubuntu-templates.cfg
 xdg-config/pulse/
 xdg-config/pavucontrol.ini
 xdg-config/enchant/
-xdg-config/xfce4/Verve/
 xdg-config/ibus/
 xdg-config/spotify/
 xdg-config/VirtualBox/
-xdg-config/autostart/
-xdg-config/gtk-2.0/
+xdg-config/gtk-2.0/gtkfilechooser.ini
 xdg-config/com.github.bleakgrey.tootle/
-xdg-config/caja/
-xdg-config/menus/
-xdg-config/pluma/
-xdg-config/mate/backgrounds.xml
-xdg-config/mate/mate-dictionary
+xdg-config/xfce4/Verve/
+xdg-config/xfce4/desktop/*.rc
+# This is rather device specific
+xdg-config/xfce4/xfconf/xfce-perchannel-xml/displays.xml
+# Doesn’t have anything useful in it
+xdg-config/xfce4/xfconf/xfce-perchannel-xml/xfce4-settings-manager.xml
 
 # VSCodium
 xdg-config/VSCodium/Backups/
