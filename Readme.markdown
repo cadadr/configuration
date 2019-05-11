@@ -50,7 +50,7 @@ installation, run the following commands:
 
 ```
 # apt-get install sudo make git python3 python3-distro
-$ make alpha-init
+# make alpha-init
 # locale-gen
 # update-initramfs -u
 ```
@@ -59,9 +59,6 @@ This will trigger a series of shell scripts and make rules which will
 initialise the system. It should not cause any problems to re-run this
 command after fixing a failure that interrupts it running in order to
 complete installation. Make sure an internet connection is available.
-This recipe should be run by a bootstrap user that can sudo. Do not run
-this recipe as the superuser, it'll use sudo to run commands that needs
-such privileges.
 
 This recipe, among other things, will create a user `g` with uid 1993
 and a group of similar identifiers, and assing the user certain groups.
