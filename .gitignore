@@ -86,6 +86,7 @@ xdg-config/xfce4/desktop/*.rc
 xdg-config/xfce4/xfconf/xfce-perchannel-xml/displays.xml
 # Doesn’t have anything useful in it
 xdg-config/xfce4/xfconf/xfce-perchannel-xml/xfce4-settings-manager.xml
+xdg-config/xfce4/xfconf/xfce-perchannel-xml/xfce4-settings-editor.xml
 
 # VSCodium
 xdg-config/VSCodium/Backups/
