@@ -43,4 +43,7 @@
     <property name="window-width" type="int" value="400"/>
     <property name="pane-position" type="int" value="180"/>
   </property>
+  <property name="always-center" type="bool" value="true"/>
+  <property name="icon-view" type="bool" value="true"/>
+  <property name="text-beside-icons" type="bool" value="true"/>
 </channel>
