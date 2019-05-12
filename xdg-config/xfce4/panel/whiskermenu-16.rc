@@ -1,5 +1,5 @@
 favorites=exo-terminal-emulator.desktop,exo-file-manager.desktop,exo-mail-reader.desktop,exo-web-browser.desktop
-recent=emacs.desktop,firefox.desktop,xfce-wm-settings.desktop,xfce-ui-settings.desktop,xfce4-power-manager-settings.desktop,xfce-settings-manager.desktop,pavucontrol.desktop,xfce4-notifyd-config.desktop,xfce-backdrop-settings.desktop,simple-scan.desktop
+recent=
 button-title=Applications
 button-icon=xfce4-whiskermenu
 button-single-row=false
