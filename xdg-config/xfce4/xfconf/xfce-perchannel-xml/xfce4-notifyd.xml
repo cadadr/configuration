@@ -15,7 +15,7 @@
   <property name="log-level" type="uint" value="1"/>
   <property name="log-level-apps" type="uint" value="0"/>
   <property name="notification-log" type="bool" value="true"/>
-  <property name="theme" type="string" value="Greybird"/>
+  <property name="theme" type="string" value="Greybird-bright"/>
   <property name="do-slideout" type="bool" value="true"/>
   <property name="do-fadeout" type="bool" value="true"/>
 </channel>
