@@ -1,5 +1,4 @@
 %gconf.xml
-accels.scm
 icons.*.rc
 *.core
 *.deb
