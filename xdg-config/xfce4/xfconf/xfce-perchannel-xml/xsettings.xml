@@ -26,8 +26,8 @@
     <property name="FontName" type="string" value="DejaVu Sans 12"/>
     <property name="MonospaceFontName" type="string" value="DejaVu Sans Mono 12"/>
     <property name="IconSizes" type="empty"/>
-    <property name="KeyThemeName" type="string" value="Emacs"/>
-    <property name="ToolbarStyle" type="empty"/>
+    <property name="KeyThemeName" type="empty"/>
+    <property name="ToolbarStyle" type="string" value="both"/>
     <property name="ToolbarIconSize" type="empty"/>
     <property name="MenuImages" type="empty"/>
     <property name="ButtonImages" type="empty"/>
