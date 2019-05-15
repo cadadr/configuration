@@ -36,7 +36,7 @@
     <property name="popup_opacity" type="int" value="100"/>
     <property name="prevent_focus_stealing" type="bool" value="true"/>
     <property name="raise_delay" type="int" value="250"/>
-    <property name="raise_on_click" type="bool" value="true"/>
+    <property name="raise_on_click" type="bool" value="false"/>
     <property name="raise_on_focus" type="bool" value="false"/>
     <property name="raise_with_any_button" type="bool" value="true"/>
     <property name="repeat_urgent_blink" type="bool" value="false"/>
