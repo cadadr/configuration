@@ -11,6 +11,6 @@
     <property name="logind-handle-lid-switch" type="bool" value="true"/>
     <property name="lid-action-on-ac" type="uint" value="1"/>
     <property name="critical-power-action" type="uint" value="3"/>
-    <property name="critical-power-level" type="uint" value="18"/>
+    <property name="critical-power-level" type="uint" value="20"/>
   </property>
 </channel>
