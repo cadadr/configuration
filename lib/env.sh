@@ -9,6 +9,10 @@ export PS1='\$ '
 export PASSWORD_STORE_DIR=$HOME/fil/pass
 export TROFFONTS=$HOME/.fonts
 
+# Fool shitty apps to believe that this is a desktop environment.
+# Simple Scan won't allow keybindings otherwise.
+export XDG_CURRENT_DESKTOP=XFCE
+
 case $SYSTEM in
     FreeBSD)
 	export SSL_CERT_DIR='/etc/ssl';

@@ -8,16 +8,18 @@ packages = {
              "bridge-utils", "qemu", "rsync","openssh-server",
              "network-manager", "smartmontools", "entr", "docker.io"]
     ,
-    "desktop": ["task-xfce-desktop", # use Debian’s XFCE desktop environment
-                "blackbird-gtk-theme", "bluebird-gtk-theme",
-                "greybird-gtk-theme", "xfce4-dev-tools",
-                "xfce4-panel-dev", "gvfs-backends", "gvfs-fuse",
-                "atril", "cheese", "gimp", "gparted", "gv",
-                "libreoffice", "mpv", "simple-scan",
-                "transmission-gtk", "vokoscreen", "redshift-gtk",
-                "suckless-tools", "laptop-mode-tools", "xclip",
-                "xdotool", "xinput", "libnotify-bin", "tootle",
-                "devhelp", "firefox", "audacity",]
+    "desktop": ["dunst", "pasystray", "i3-wm", "i3status", "i3lock",
+                "xinit", "libxrandr-dev", "network-manager-gnome",
+                "dbus-x11", "pulseaudio", "pulseaudio-utils",
+                "pavucontrol", "alsa-oss", "alsa-utils",
+                "alsamixergui", "pcmanfm", "ristretto", "xbacklight",
+                "feh", "gvfs-backends", "gvfs-fuse", "atril",
+                "cheese", "gimp", "gparted", "gv", "libreoffice",
+                "mpv", "simple-scan", "transmission-gtk",
+                "vokoscreen", "redshift-gtk", "suckless-tools",
+                "laptop-mode-tools", "xclip", "xdotool", "xinput",
+                "libnotify-bin", "tootle", "devhelp", "firefox",
+                "audacity",]
     ,
     "emacs": ["libjansson-dev", "libpoppler-glib-dev",
               "libpoppler-private-dev",]

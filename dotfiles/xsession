@@ -1,0 +1,16 @@
+#!/bin/sh
+# X session initialisation file.
+
+set -e
+
+. $MYLIB/xcommon.sh
+. $MYLIB/xbackground.sh
+
+WM=i3
+
+if [ $WM = EXWM ]; then
+    . $MYLIB/exwm.sh
+fi
+
+logx 'Start the desktop session...'
+exec dbus-launch --exit-with-session $WM
