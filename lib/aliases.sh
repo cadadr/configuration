@@ -205,6 +205,8 @@ case $SYSTEM in
                     alias eww="sudo apt-get autoremove"
                     alias show="apt-cache show"
                     Show(){ show $@ | pg; }
+                    alias whose="dpkg-query -S"
+                    alias what="dpkg-query -L"
                     ;;
             esac
         fi
