@@ -405,12 +405,20 @@ When ARG is a positive number, repeat that many times."
   "Take me to the home view."
   (interactive)
   (delete-other-windows)
-  (find-file (gk-org-dir-file "start.org"))
-  (split-window-sensibly)
-  (other-window 1)
-  (org-agenda nil "p")
-  (other-window 1)
-  (gk-flash-current-line))
+  (if (assoca 'gk-project-shell (frame-parameters))
+      (let* ((fparam (frame-parameters))
+             (vcs (assoca 'gk-project-vcs fparam))
+             (dir (assoca 'gk-project-dir fparam)))
+        (dired dir)
+        (split-window-sensibly)
+        (other-window 1)
+        (funcall vcs dir))
+    (find-file (gk-org-dir-file "start.org"))
+    (split-window-sensibly)
+    (other-window 1)
+    (org-agenda nil "p")
+    (other-window 1)
+    (gk-flash-current-line)))
 
 (defun gk-maybe-expand-abbrev-or-space ()
   (interactive)
@@ -1135,18 +1143,20 @@ PATH is the path to the project."
       "Project to open: "
       (f-slash (expand-file-name gk-projects-directory))
       nil t))))
-  (let ((vcs
-         (cond
-          ((file-exists-p (expand-file-name ".git" path))
-           #'magit-status)
-          ((or (mapcar #'vc-backend (gk-directory-files path)))
-           #'vc-dir)))
-        (shell-name
-         (format "*%s shell*"
-                 (file-name-base
-                  (replace-regexp-in-string "/+\\'" "" path)))))
+  (let* ((vcs
+          (cond
+           ((file-exists-p (expand-file-name ".git" path))
+            #'magit-status)
+           ((or (mapcar #'vc-backend (gk-directory-files path)))
+            #'vc-dir)))
+         (project-name (file-name-base
+                        (replace-regexp-in-string "/+\\'" "" path)))
+         (shell-name (format "*%s shell*" project-name)))
     (gk-with-new-frame `((fullscreen . maximized)
-                         (gk-project-shell . ,shell-name))
+                         (gk-project . ,project-name)
+                         (gk-project-dir . ,path)
+                         (gk-project-shell . ,shell-name)
+                         (gk-project-vcs . ,vcs))
       (delete-other-windows)
       (dired path)
       (split-window-sensibly)
