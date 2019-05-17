@@ -1113,6 +1113,53 @@ integer argument, otherwise positive."
 
 
 
+;;;; Projects:
+
+;; Functionality for opening and working with projects.
+
+(defvar gk-projects-directory "~/co"
+  "Directory where software projects are located.")
+
+(defun gk-open-project (path)
+  "Open a project folder.
+
+Dired buffer to the left, magit (or VC if not git) to the
+right. Start a shell with name ‘*XXX shell*’ where XXX is the
+basename of the PATH.
+
+PATH is the path to the project."
+  (interactive
+   (list
+    (f-slash
+     (read-directory-name
+      "Project to open: "
+      (f-slash (expand-file-name gk-projects-directory))
+      nil t))))
+  (let ((vcs
+         (cond
+          ((file-exists-p (expand-file-name ".git" path))
+           #'magit-status)
+          ((or (mapcar #'vc-backend (gk-directory-files path)))
+           #'vc-dir)))
+        (shell-name
+         (format "*%s shell*"
+                 (file-name-base
+                  (replace-regexp-in-string "/+\\'" "" path)))))
+    (gk-with-new-frame `((fullscreen . maximized)
+                         (gk-project-shell . ,shell-name))
+      (delete-other-windows)
+      (dired path)
+      (split-window-sensibly)
+      (other-window 1)
+      (funcall vcs path)
+      (save-window-excursion
+        (let ((buf (get-buffer-create shell-name))
+              (default-directory path))
+          (unless (get-buffer-process buf)
+            (shell buf)))))))
+
+
+
 ;;; The GK minor mode:
 
 ;; The GK minor mode is at the heart of this configuration.  Almost
@@ -1260,7 +1307,10 @@ Set locally the variable `outline-minor-mode-prefix' to PREFIX."
 (defun gk-pop-shell (arg)
   "Pop a shell in a side window.
 Pass arg to ‘shell’.  If already in a side window that displays a
-shell, toggle the side window."
+shell, toggle the side window.
+
+If there is a project shell associated to the frame, just show
+that instead."
   (interactive "P")
   (if (and (assoca 'window-side (window-parameters))
            (equal major-mode 'shell-mode))
@@ -1268,7 +1318,14 @@ shell, toggle the side window."
     (when-let* ((win (display-buffer-in-side-window
                       (save-window-excursion
                         (let ((prefix-arg arg))
-                          (call-interactively #'shell)))
+                          ;; If can find a project shell, show that
+                          ;; instead.
+                          (if-let* ((project-shell
+                                     (get-buffer
+                                      (assoca
+                                       'gk-project-shell (frame-parameters)))))
+                              project-shell
+                            (call-interactively #'shell))))
                       '((side . bottom)))))
       (select-window win))))
 
@@ -5007,6 +5064,7 @@ the body of the entry, and the cdr is the score, an integer.")
 (gk-prefix-binding "M-." #'repeat-complex-command)
 (gk-prefix-binding (kbd "<C-backspace>") #'delete-frame)
 (gk-prefix-binding "\C-f" #'project-find-file)
+(gk-prefix-binding "\C-p" #'gk-open-project)
 
 
 
