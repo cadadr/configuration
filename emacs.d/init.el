@@ -4483,9 +4483,14 @@ Redirect to the raw file url."
   "Browse a URL via mpv."
   (if (y-or-n-p "Watch with mpv?")
       (and
-       (start-process "gk-mpv" (generate-new-buffer-name "*MPV URL*")
-                      "mpv" "--ytdl-format"
-                      "bestvideo[height<=720]+bestaudio/best[height<=720]" url)
+       (save-window-excursion
+         (let* ((dir "~/co/External/youtube-dl"))
+           (async-shell-command
+            (format "PYTHONPATH=%s %s -o- '%s' | mpv -"
+                    dir
+                    (expand-file-name "bin/youtube-dl" dir)
+                    url)
+            (generate-new-buffer "*MPV*"))))
        (message "Started mpv process for: %s" url))
     (gk-urls-external-browser url)))
 
