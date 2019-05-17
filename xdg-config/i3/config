@@ -62,9 +62,12 @@ bindsym $mod+space focus mode_toggle
 bindsym $mod+u focus parent
 bindsym $mod+c focus child
 
+set $w1 "1/wrk"
+set $w2 "2/www"
+
 # switch to workspace
-bindsym F1 workspace 1
-bindsym F2 workspace 2
+bindsym F1 workspace $w1
+bindsym F2 workspace $w2
 bindsym F3 workspace 3
 bindsym F4 workspace 4
 bindsym F5 workspace 5
@@ -74,8 +77,8 @@ bindsym F8 workspace 8
 bindsym F9 workspace 9
 
 # move focused container to workspace
-bindsym Shift+F1 move container to workspace 1
-bindsym Shift+F2 move container to workspace 2
+bindsym Shift+F1 move container to workspace $w1
+bindsym Shift+F2 move container to workspace $w2
 bindsym Shift+F3 move container to workspace 3
 bindsym Shift+F4 move container to workspace 4
 bindsym Shift+F5 move container to workspace 5
