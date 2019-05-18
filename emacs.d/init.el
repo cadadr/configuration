@@ -1412,8 +1412,11 @@ If called with three prefix args, return a colon separated list."
 ;;;;; Customisations:
 
 (setf
- ;; Omit ., .., #*, *~, ~,v.
- dired-omit-files "^\\(\\.\\|#\\)\\(.+\\|.+\\(~\\|,v\\)\\)?$"
+ ;; Omit ., .., #*, *~, ~,v; and some other stuff.
+ dired-omit-files
+ (rx (or (or (and bol (or "." "#") (optional (1+ ".")))
+             (and (or "~" ",v") eol))
+         (and bol (or "__pycache__"))))
  ;; Show symlinks' targets: it's useful, and dired-subtree is stupid
  ;; otherwise.
  dired-hide-details-hide-symlink-targets nil)
