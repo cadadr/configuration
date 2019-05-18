@@ -19,7 +19,7 @@ packages = {
                 "vokoscreen", "redshift-gtk", "suckless-tools",
                 "laptop-mode-tools", "xclip", "xdotool", "xinput",
                 "libnotify-bin", "tootle", "devhelp", "firefox",
-                "audacity",]
+                "audacity", "flameshot",]
     ,
     "emacs": ["libjansson-dev", "libpoppler-glib-dev",
               "libpoppler-private-dev",]
