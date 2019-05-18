@@ -406,7 +406,7 @@ When ARG is a positive number, repeat that many times."
   (interactive)
   ;; Close side windows off first because they can’t be the only
   ;; window.
-  (window-toggle-side-windows)
+  (ignore-errors (window-toggle-side-windows))
   (delete-other-windows)
   (if (assoca 'gk-project-shell (frame-parameters))
       (let* ((fparam (frame-parameters))
