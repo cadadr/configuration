@@ -9,6 +9,7 @@ mode "$mode_run" {
     bindsym 1 mode "default"; exec --no-startup-id pcmanfm
     bindsym 2 mode "default"; exec --no-startup-id ffprofile.sh
     bindsym 3 mode "default"; exec --no-startup-id passmenu.sh
+    bindsym 3 mode "default"; exec --no-startup-id xtype.sh
 
     # exit mode
     bindsym Return mode "default"
