@@ -89,12 +89,14 @@ bindsym Shift+F9 move container to workspace 9
 
 bindsym $mod+g reload
 bindsym $mod+Shift+g restart
+bindsym $mod+Shift+e exec xterm -e 'less /run/user/$UID/i3/errorlog.*'
+bindsym $mod+Ctrl+e exec xterm -e 'less ~/.xsession-errors'
 bindsym $mod+e exec "i3-nagbar -t warning -m 'Bye?' -b 'Yes' 'i3-msg exit'"
 bindsym $mod+k kill
 
 # power management
 # from: https://wiki.archlinux.org/index.php/I3
-set $Locker i3lock -fec 8b008b && sleep 1
+set $Locker lockscr.sh
 bindsym $mod+l exec --no-startup-id $Locker, mode "default"
 set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
 mode "$mode_system" {
