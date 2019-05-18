@@ -12,5 +12,8 @@ if [ $WM = EXWM ]; then
     . $MYLIB/exwm.sh
 fi
 
+logx 'Apply X background...'
+apply_xbgimg
+
 logx 'Start the desktop session...'
 exec dbus-launch --exit-with-session $WM
