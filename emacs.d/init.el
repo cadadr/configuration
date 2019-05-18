@@ -1876,6 +1876,7 @@ backwards."
 (add-hook 'html-mode-hook 'zencoding-mode)
 (add-hook 'html-mode-hook 'gk-html-mode-hook)
 (setq zencoding-preview-default nil)
+(define-key zencoding-mode-keymap "\C-j" nil)
 
 
 
