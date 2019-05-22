@@ -164,7 +164,7 @@ alias gup='git rev-parse --git-dir >/dev/null 2>&1 && cd `git rev-parse --show-t
 alias venv='python3 -m venv'
 alias mkvenv='venv .venv'
 alias usevenv='( source ./.venv/bin/activate && bash -i )'
-alias py='python3'
+alias py='run-python.sh'
 # Directory navigation
 alias up='cd ..'
 alias right='cd "$( find -L ${PWD%/*}/ -maxdepth 1 -type d -not -name \".*\" | sort | grep -A 1 ../${PWD##*/} | tail -n 1 )"'
