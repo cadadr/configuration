@@ -1335,9 +1335,10 @@ that instead."
                           ;; If can find a project shell, show that
                           ;; instead.
                           (if-let* ((project-shell
-                                     (get-buffer
-                                      (assoca
-                                       'gk-project-shell (frame-parameters)))))
+                                     (ignore-errors
+                                       (get-buffer
+                                       (assoca
+                                        'gk-project-shell (frame-parameters))))))
                               project-shell
                             (call-interactively #'shell))))
                       '((side . bottom)))))
