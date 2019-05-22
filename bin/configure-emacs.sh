@@ -14,7 +14,6 @@ case $V in
 	./configure \
 	    --prefix=$HOME/local/emacs \
 	    --with-x-toolkit=$TK \
-	    --with-imagemagick \
 	    --with-modules \
 	    --with-file-notification=yes \
 	    --with-gameuser=no \
@@ -27,7 +26,6 @@ case $V in
 	./configure \
 	    --prefix=$HOME/local/emacs \
 	    --with-x-toolkit=$TK \
-	    --with-imagemagick \
 	    --with-modules \
 	    --with-file-notification=yes \
 	    --with-gameuser=no \
@@ -36,7 +34,6 @@ case $V in
 	./configure \
 	    --prefix=$HOME/local/emacs \
 	    --with-x-toolkit=$TK \
-	    --with-imagemagick \
 	    --with-modules \
 	    --with-file-notification=yes \
 	    --with-gameuser=no \
