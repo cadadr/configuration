@@ -129,6 +129,18 @@ epub2pdf () {
     esac
 }
 
+para() {
+    export LEDGER_FILE="$HOME/doc/finans/$(date +'%Y-%m').dat"
+    if [ -z "$@" ]; then
+         hledger balance
+    else
+        case "$1" in
+            var) hledger balance varlık ;;
+            *) hledger $@ ;;
+        esac
+    fi
+}
+
 ###
 alias listall="alias | cut -d= -f1 && declare -F | cut -d ' '  -f 3 | sed 's,^,function ,'"
 alias edit="$EDITOR"
