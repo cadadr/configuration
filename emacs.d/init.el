@@ -1221,8 +1221,8 @@ PATH is the path to the project."
 ;; Default fonts to use in this config.
 
 (defconst gk-default-fonts-plist
-  (list :serif "DejaVu Serif"
-        :sans "DejaVu Sans"
+  (list :serif "DejaVu Serif Condensed"
+        :sans "DejaVu Sans Condensed"
         :mono "DejaVu Sans Mono"
         :forecast-moon-phase "Quivira")
   "A plist, default fonts.")
