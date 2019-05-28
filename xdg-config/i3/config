@@ -4,27 +4,19 @@ set $mod Mod4
 font pango:DejaVu Sans 8
 floating_modifier $mod
 
-set $mode_run (1) PCManFM (2) Firefox (3) pass (4) xtype
-mode "$mode_run" {
-    bindsym 1 mode "default"; exec --no-startup-id pcmanfm
-    bindsym 2 mode "default"; exec --no-startup-id ffprofile.sh
-    bindsym 3 mode "default"; exec --no-startup-id passmenu.sh
-    bindsym 3 mode "default"; exec --no-startup-id xtype.sh
-
-    # exit mode
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-    bindsym Control+g mode "default"
-}
-# Declare here the shortcut to bring the display selection menu
-bindsym $mod+r mode "$mode_run"
-
-
 bindsym F12 exec --no-startup-id i3-dmenu-desktop
 bindsym Shift+F12 exec dmenu_run
 bindsym $mod+Return exec emacsclient -c
 bindsym $mod+Shift+Return exec i3-sensible-terminal
 bindsym $mod+h exec --no-startup-id sh $MYLIB/i3cheatsheet.sh
+bindsym $mod+Control+y exec --no-startup-id xtype.sh
+bindsym $mod+Control+f exec --no-startup-id pcmanfm
+bindsym $mod+Control+w exec --no-startup-id ffprofile.sh
+bindsym $mod+Control+p exec --no-startup-id passmenu.sh
+bindsym $mod+Control+e exec xterm -e 'less /run/user/$UID/i3/errorlog.*'
+bindsym $mod+Control+x exec xterm -e 'less ~/.xsession-errors'
+bindsym $mod+Control+b exec "i3-nagbar -t warning -m 'Bye?' -b 'Yes' 'i3-msg exit'"
+
 
 # Set brightness
 bindsym $mod+Shift+1 exec bright.rb 0.1
@@ -90,9 +82,6 @@ bindsym Shift+F9 move container to workspace 9
 
 bindsym $mod+g reload
 bindsym $mod+Shift+g restart
-bindsym $mod+Shift+e exec xterm -e 'less /run/user/$UID/i3/errorlog.*'
-bindsym $mod+Ctrl+e exec xterm -e 'less ~/.xsession-errors'
-bindsym $mod+e exec "i3-nagbar -t warning -m 'Bye?' -b 'Yes' 'i3-msg exit'"
 bindsym $mod+k kill
 
 # power management
