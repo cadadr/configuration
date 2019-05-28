@@ -665,29 +665,6 @@ BUFFER defaults to current buffer, and SECONDS to 1."
        ;; Return the point.
        (point)))))
 
-;; TODO: extend candidates
-(defvar gk-project-root-candidates
-  (list ".git" ".hg" "Makefile" "makefile" "GNUmakefile" "BSDmakefile"
-        "GNUMakefile" "BSDMakefile" "configure.ac" "Rakefile"
-        "setup.py")
-  "Candidates for files that typically reside at project root.")
-
-(defun gk-compile ()
-  "Run ‘compile’, at project root if can find."
-  (interactive)
-  (if-let* ((bfn (buffer-file-name)))
-      (let (done)
-        (dolist (c gk-project-root-candidates)
-          (unless done
-            (when-let* ((default-directory (locate-dominating-file bfn c)))
-              (call-interactively #'compile)
-              (setq done t))))
-        ;; Project root not found, run compile at ‘default-directory’.
-        (unless done
-          (call-interactively #'compile)))
-    ;; No buffer file name, run compile at ‘default-directory’.
-    (call-interactively #'compile)))
-
 (defvar gk-insert-todo-comment--history nil)
 (defvar gk-insert-todo-comment-default "TODO")
 
@@ -1128,6 +1105,23 @@ integer argument, otherwise positive."
 ;;;; Projects:
 
 ;; Functionality for opening and working with projects.
+
+(defvar gk-project-compile--hist nil)
+
+(defvar gk-project-compile-default-command "make test"
+  "Default command for ‘gk-project-compile’.")
+
+(defun gk-project-compile (command)
+  (interactive
+   (list
+    (read-shell-command
+     "Run project compile command: "
+     gk-project-compile-default-command
+     gk-project-compile--hist)))
+  (if-let* ((projbuf (get-buffer (assoca 'gk-project (frame-parameters)))))
+      (with-current-buffer projbuf
+        (compile command))
+    (user-error "Not a project frame")))
 
 (defvar gk-projects-directory "~/co"
   "Directory where software projects are located.")
@@ -5063,7 +5057,7 @@ the body of the entry, and the cdr is the score, an integer.")
 ;;;; Programming:
 
 (gk-prefix-binding "d" 'xref-find-definitions)
-(gk-prefix-binding [?\r] #'gk-compile)
+(gk-prefix-binding [?\r] #'gk-project-compile)
 
 ;;;; Shortcuts:
 
