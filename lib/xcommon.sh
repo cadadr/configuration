@@ -3,6 +3,12 @@
 ### Environment:
 . $MYLIB/fns.sh
 
+# Fool shitty apps to believe that this is a desktop environment.
+# Simple Scan won't allow keybindings otherwise.
+export XDG_CURRENT_DESKTOP=XFCE
+
+export WM=awesome
+
 ### Code:
 # Inform systemd
 systemctl --user import-environment DISPLAY

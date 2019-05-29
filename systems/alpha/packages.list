@@ -9,6 +9,7 @@ packages = {
              "network-manager", "smartmontools", "entr", "docker.io"]
     ,
     "desktop": ["dunst", "pasystray", "i3-wm", "i3status", "i3lock",
+                "awesome", "awesome-doc", "awesome-extra",
                 "xinit", "libxrandr-dev", "network-manager-gnome",
                 "dbus-x11", "pulseaudio", "pulseaudio-utils",
                 "pavucontrol", "alsa-oss", "alsa-utils",
