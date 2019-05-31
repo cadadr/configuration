@@ -6,4 +6,4 @@ pasystray &			# pulse audio sound applet
 dunst &				# notifications daemon
 pcmanfm -d &			# PCManFM, can auto-mount stuff
 ( sleep 5 && flameshot; ) &	# screenshots
-xfce4-clipman &			# clipboard manager
+# xfce4-clipman &			# clipboard manager
