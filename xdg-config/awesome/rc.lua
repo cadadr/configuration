@@ -341,9 +341,6 @@ awful.rules.rules = {
 
    { rule = { class = "Firefox" },
      properties = { screen = 1, tag = "2/www" } },
-
-   { rule = { class = "Emacs" },
-     properties = { screen = 1, tag = "1/wrk" } },
 }
 
 
