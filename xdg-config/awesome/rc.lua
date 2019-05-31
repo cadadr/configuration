@@ -196,7 +196,14 @@ globalkeys = gears.table.join(
       {description = "show main menu", group = "awesome"}),
 
    -- Standard program
+   awful.key({modkey}, "Return", function () awful.spawn("emacsclient -c") end,
+      {description = "new emacs client frame", group = "launcher"}),
+
    awful.key({modkey, "Shift"}, "Return", function () awful.spawn(terminal) end,
+      {description = "open a terminal", group = "launcher"}),
+
+   awful.key({modkey, "Control"}, "w",
+      function () awful.spawn("ffprofile.sh") end,
       {description = "open a terminal", group = "launcher"}),
 
    awful.key({modkey}, "g", awesome.restart,
