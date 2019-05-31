@@ -3423,7 +3423,8 @@ N defaults to 1."
  '((agenda time-up category-up habit-down priority-down)
    (todo priority-down category-up)
    (tags priority-down category-up)
-   (search category-up)))
+   (search category-up))
+ org-agenda-dim-blocked-tasks nil)
 
 (setf org-agenda-block-separator nil)
 
