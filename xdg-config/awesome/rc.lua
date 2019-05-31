@@ -137,11 +137,12 @@ awful.screen.connect_for_each_screen(function(s)
       -- Create an imagebox widget which will contain an icon indicating which layout we're using.
       -- We need one layoutbox per screen.
       s.mylayoutbox = awful.widget.layoutbox(s)
-      s.mylayoutbox:buttons(gears.table.join(
-                               awful.button({ }, 1, function () awful.layout.inc( 1) end),
-                               awful.button({ }, 3, function () awful.layout.inc(-1) end),
-                               awful.button({ }, 4, function () awful.layout.inc( 1) end),
-                               awful.button({ }, 5, function () awful.layout.inc(-1) end)))
+      s.mylayoutbox:buttons(
+         gears.table.join(
+            awful.button({ }, 1, function () awful.layout.inc( 1) end),
+            awful.button({ }, 3, function () awful.layout.inc(-1) end),
+            awful.button({ }, 4, function () awful.layout.inc( 1) end),
+            awful.button({ }, 5, function () awful.layout.inc(-1) end)))
       -- Create a taglist widget
       s.mytaglist = awful.widget.taglist {
          screen  = s,
@@ -371,7 +372,8 @@ client.connect_signal(
                awful.mouse.client.resize(c)
       end))
 
-      awful.titlebar(c) : setup {
+      awful.titlebar(c) : setup
+      {
          { -- Left
             awful.titlebar.widget.iconwidget(c),
             buttons = buttons,
@@ -388,13 +390,10 @@ client.connect_signal(
          { -- Right
             awful.titlebar.widget.floatingbutton (c),
             awful.titlebar.widget.maximizedbutton(c),
-            awful.titlebar.widget.stickybutton   (c),
-            awful.titlebar.widget.ontopbutton    (c),
-            awful.titlebar.widget.closebutton    (c),
             layout = wibox.layout.fixed.horizontal()
          },
          layout = wibox.layout.align.horizontal
-                                }
+      }
 end)
 
 -- Enable sloppy focus, so that focus follows mouse.
@@ -404,5 +403,14 @@ client.connect_signal(
       c:emit_signal("request::activate", "mouse_enter", {raise = false})
 end)
 
-client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
-client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
+client.connect_signal(
+   "focus",
+   function(c)
+      c.border_color = beautiful.border_focus
+end)
+
+client.connect_signal(
+   "unfocus",
+   function(c)
+      c.border_color = beautiful.border_normal
+end)
