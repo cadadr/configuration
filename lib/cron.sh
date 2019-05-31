@@ -1,7 +1,7 @@
 # cron.sh --- common setup for cron scripts
 
 # Find dbus
-pid="$(pgrep -u $LOGNAME $WM\$)"
+pid="$(pgrep -u $LOGNAME i3\$)"
 
 if [ -n "$pid" ]; then
     dbus="$(egrep -z DBUS < /proc/$pid/environ | tr -d '\0')"
