@@ -7,7 +7,7 @@
 # Simple Scan won't allow keybindings otherwise.
 export XDG_CURRENT_DESKTOP=XFCE
 
-export WM=awesome
+export WM=i3
 
 ### Code:
 # Inform systemd
