@@ -4882,12 +4882,10 @@ It is rather slow to do so."
 
 ;; Adapted from http://kitchingroup.cheme.cmu.edu/blog/2017/01/05/Scoring-elfeed-articles/
 
-(defface gk-relevant-elfeed-entry
-  `((t :underline nil :foreground "orange1"))
+(defface gk-relevant-elfeed-entry `()
   "Marks a relevant Elfeed entry.")
 
-(defface gk-important-elfeed-entry
-  `((t :underline nil :foreground "orange2"))
+(defface gk-important-elfeed-entry `()
   "Marks an important Elfeed entry.")
 
 (push '(relevant gk-relevant-elfeed-entry)
