@@ -150,7 +150,6 @@
 (require 'persistent-scratch)
 (require 'pixel-scroll)
 (require 'pp)
-(require 'project)
 (require 'python)
 (require 'quail)
 (require 'rect)
@@ -187,6 +186,11 @@
 (require 'zencoding-mode)
 (require 'yasnippet)
 
+(require 'gk-mac)
+(require 'gk-project)
+(require 'gk-util)
+(require 'gk-minor-mode)
+
 
 
 ;;; Files and directories:
@@ -220,405 +224,6 @@
 
 
 ;;; Utility libraries:
-
-
-
-;;;; Utility functions:
-
-(defun gk-backup-file-name (directory extension)
-  (let ((filename (concat directory
-                          (format-time-string "%d-%m-%Y" (current-time))))
-        (extension (concat "." extension)))
-    (while (file-exists-p (concat filename extension))
-      (setq filename (concat filename "+")))
-    (concat filename extension)))
-
-(defun gk-apropos-at-point-or-region ()
-  (interactive)
-  (let ((default (if (region-active-p)
-		     (buffer-substring (region-beginning) (region-end))
-		   (thing-at-point 'word))))
-    (apropos (read-string "Search for command or function (word list or regexp): "
-			  default nil default))))
-
-(defun gk-indent-defun ()
-  (interactive)
-  (save-excursion
-    (mark-defun)
-    (indent-region (region-beginning) (region-end))))
-
-(defun gk-which-mode (buffer)
-  (interactive "bShow major mode for buffer")
-  (with-current-buffer (get-buffer buffer)
-    (set-register ?M (symbol-name major-mode))
-    (message "Major mode for buffer '%s' is '%s'.  C-x r i M to insert it."
-	     buffer
-	     major-mode)))
-
-(defun gk-comment-dwim (arg)
-  "If region is active, or at the end of the line, call ‘comment-dwim’.
-Pass ARG to ‘comment-dwim’ in that case.
-Otherwise comment-out the whole line, or ARG lines."
-  (interactive "*P")
-  (cond
-   ((save-excursion
-      (beginning-of-line)
-      (looking-at (concat "[[:blank:]]*" comment-start)))
-    (uncomment-region (point-at-bol) (point-at-eol)))
-   ((or (looking-at "[[:blank:]]*$")
-        (region-active-p))
-    (comment-dwim arg))
-   (t (save-excursion (comment-line arg)))))
-
-(defun gk-reformat-date (format date)
-  "Parse DATE, then apply FORMAT to it.
-
-For the format, see `format-time-string'."
-  (format-time-string format (date-to-time date)))
-
-(defun gk-executable-ensure (command)
-  "Err-out if COMMAND is not found."
-  (or (executable-find command)
-      (warn "Program is absent: %s" command)))
-
-(defun gk-get-file-contents (file)
-  "Get the contents of FILE as a string."
-  (with-temp-buffer
-    (insert-file-contents file)
-    (buffer-substring (point-min) (point-max))))
-
-(defun gk-deadvice (sym)
-  "Remove all the advice functions from the function named SYM."
-  (interactive "aRemove advices from function: ")
-  (advice-mapc
-   (lambda (x y)
-     (ignore y)
-     (remove-function (symbol-function sym) x))
-   sym))
-
-(defun gk-gui-p ()
-  (or window-system (daemonp)))
-
-(defun gk-swap-windows (&optional arg)
-  "Swap the buffer of the selected window with that of the next one.
-When ARG is a positive number, repeat that many times."
-  (interactive "p")
-  (dotimes (i (or arg 1))
-    (ignore i)
-    (let ((next (window-buffer (next-window)))
-          (this (current-buffer)))
-      (unless (equal this next)
-        (switch-to-buffer next nil t)
-        (switch-to-buffer-other-window this)))))
-
-(defun gk-copy-buffer-file-name ()
-  "Push the buffer's file name to the ‘kill-ring’."
-  (interactive)
-  (if-let* ((fil (buffer-file-name)))
-      (with-temp-buffer
-        (insert fil)
-        (clipboard-kill-ring-save (point-min) (point-max))
-        (message fil))
-    (error "Buffer not visiting a file.")))
-
-(defun gk-copy-last-message ()
-  "Copy-as-kill the last echoed message."
-  (interactive)
-  (with-current-buffer (messages-buffer)
-    (save-excursion
-      (goto-char (point-max))
-      (forward-line -1)
-      (clipboard-kill-ring-save
-       (line-beginning-position) (line-end-position)))))
-
-(defun gk-copy-as-markdown-code-snippet (beg end)
-  "Copy region, prepend four spaces to every line."
-  (interactive "r")
-  (let ((snip (buffer-substring beg end)))
-    (with-temp-buffer
-      (insert snip)
-      (goto-char (point-min))
-      (while (re-search-forward "^" nil t)
-        (replace-match "    "))
-      (clipboard-kill-ring-save (point-min) (point-max)))))
-
-(defun gk-home ()
-  "Take me to the home view."
-  (interactive)
-  ;; Close side windows off first because they can’t be the only
-  ;; window.
-  (when (window-with-parameter 'window-side)
-    (window-toggle-side-windows))
-  (delete-other-windows)
-  (if (assoca 'gk-project-shell (frame-parameters))
-      (let* ((fparam (frame-parameters))
-             (vcs (assoca 'gk-project-vcs fparam))
-             (dir (assoca 'gk-project-dir fparam)))
-        (dired dir)
-        (split-window-sensibly)
-        (other-window 1)
-        (funcall vcs dir))
-    (find-file (gk-org-dir-file "start.org"))
-    (split-window-sensibly)
-    (other-window 1)
-    (org-agenda nil "p")
-    (other-window 1)
-    (gk-flash-current-line)))
-
-(defun gk-maybe-expand-abbrev-or-space ()
-  (interactive)
-  (when (null (expand-abbrev))
-    (insert " ")))
-
-(defun gk-numeronym (name)
-  "Generate a numeronym of NAME, an arbitrary string.
-A numeronym is the initial letter, the length of the name in
-characters, and the last letter,
-i.e. i18n -> internationalisation."
-  (interactive (list (read-string "Enter the name to be numeronymified: ")))
-  (let ((len (length name)))
-    (unless (>= len 2) (user-error "The name must be at least three characters long"))
-    (message (format "%c%d%c" (aref name 0) (- len 2) (aref name (1- len))))))
-
-(defun gk-unbind-key (keyseq)
-    "Unset the KEYSEQ in ‘gk-minor-mode-map’."
-    (interactive "kKey sequence to unset: ")
-    (define-key gk-minor-mode-map keyseq nil)
-    (message "Done."))
-
-(defun gk-delete-buffer-file ()
-  "Delete the file visited in the current buffer."
-  (interactive)
-  (if-let* ((f (buffer-file-name)))
-      (when (yes-or-no-p
-             (format
-              "Delete file ‘%s’, visited by buffer ‘%s’" f (buffer-name)))
-        (delete-file f delete-by-moving-to-trash)
-        (message "Deleted %s." f))
-    (user-error "Buffer ‘%s’ is not visiting a file" (buffer-name))))
-
-(defun gk-copy-buffer-file (file dest)
-  "Copy the file visited in the current buffer."
-  (interactive
-    (list (buffer-file-name)
-          (read-file-name (format "Copy %s to: " (buffer-file-name)))))
-  (copy-file file dest nil t t t))
-
-(defun gk-rename-buffer-file (dest)
-  "Rename the file visited in the current buffer."
-  (interactive
-    (list (read-file-name (format "Rename %s to: " (buffer-file-name)))))
-  (rename-file (buffer-file-name) dest)
-  (find-alternate-file dest))
-
-(defun gk-truncate-and-fill-string (len s)
-  (let ((slen (length s)))
-    (if (> slen len)
-        (s-truncate len s)
-      (concat s (make-string (- len slen) ?\ )))))
-
-(defun gk-find-file (arg)
-  "Like ‘find-file’ but find file at point if ARG is non-nil."
-  (interactive "P")
-  ;; See http://lists.gnu.org/archive/html/help-gnu-emacs/2018-04/msg00280.html
-  (let ((current-prefix-arg nil))
-    (call-interactively (if arg #'ffap #'find-file))))
-
-(defun // (&rest args)
-  (apply #'/ (mapcar #'float args)))
-
-(defun gk-wikipedia-link-to-wikizero (url)
-  "Convert a Wikipedia URL to a WikiZero one.
-WikiZero is a mirror of wikipedia."
-  (interactive
-   (list (read-string "Wikipedia URL: ")))
-  (let* ((baseurl "http://www.wiki-zero.net/index.php?q=")
-         (wiki64 (replace-regexp-in-string
-                  "=+$" ""
-                  (base64-encode-string (url-unhex-string url) t))))
-     (concat baseurl wiki64)))
-
-(defun gk-update-package-load-paths ()
-  "Clean up the ‘load-path’, find and add new packages."
-  (interactive)
-  (setf load-path (seq-uniq load-path #'string=))
-  (let ((packages (directory-files (locate-user-emacs-file "packages")
-                                   directory-files-no-dot-files-regexp))
-        new)
-    (if (dolist (package packages new)
-          (let ((l (length load-path)))
-            (unless (= l (length (pushnew package load-path :test #'string=)))
-              (push package new))))
-        (message "New package(s): %S" new)
-      (message "No new packages were found"))))
-
-(defun gk-send-desktop-notification (summary message)
-  "Show a notification on the desktop."
-  (unless (gk-gui-p)
-    (error "Cannot send desktop notification in non-GUI session"))
-  (make-process
-   :name "gk-desktop-notification"
-   :buffer (get-buffer-create " *Desktop Notifications*")
-   :command
-   (cond
-    ((executable-find "notify-send")
-     (list "notify-send" (concat "[Emacs] " summary) message))
-    ((executable-find "kdialog")
-     (list "kdialog" "--passivepopup" message "10"
-           "--title" (concat "[Emacs] " summary))))))
-
-(defun gk-existing-file-name-or-nil (filename)
-  (when (file-exists-p filename)
-    filename))
-
-(defun gk-insert-today (&optional full)
-  "Insert today's date into the current buffer, before point.
-
-FULL is the processed prefix argument from the interactive call.
-
-With no prefix arguments, insert YYYY-MM-DD (ISO 8601 date).
-With one prefix argument, insert YYYY-MM-DD (ISO 8601 date) with
-HH:MM:SS.  With two prefix arguments, insert a full ISO 8601 date
-together with current time and timezone information."
-  (interactive "p")
-  (insert
-   (format-time-string
-    (case full
-      (1 "%F")                          ;ISO date format
-      (4 "%F %T")                       ;ISO date format with time w/ seconds
-      (16 "%FT%T%z")                    ;full ISO 8601
-      ))))
-
-(defun gk-toggle-wrap (&optional arg)
-  "Toggle word wrap and line truncation.
-Without a prefix ARG, toggle the latter off and the former on.
-With a positive prefix, turn both on.  With a negative prefix,
-turn both off.  With a zero prefix, toggle both."
-  (interactive "p")
-  (cond ((or (null arg) (= arg 1))
-         (toggle-truncate-lines -1)
-         (toggle-word-wrap +1))
-        ((= arg 0)
-         (toggle-truncate-lines (if truncate-lines -1 +1))
-         (toggle-word-wrap (if word-wrap -1 +1)))
-        ((> arg 1)
-         (toggle-truncate-lines +1)
-         (toggle-word-wrap +1))
-        ((< arg 0)
-         (toggle-truncate-lines -1)
-         (toggle-word-wrap -1)))
-  (message "truncate-lines: %S; word-wap: %S" truncate-lines word-wrap))
-
-(defun gk-view-emacs-proc-file ()
-  "Open the Emacs process status file under /proc."
-  (interactive)
-  (find-file (format "/proc/%d/status" (emacs-pid))))
-
-(defun gk-ellipsize-file-or-directory-name (name maxlen)
-  "Ellipsize the directory part of a file NAME.
-If NAME is larget than MAXLEN, ellipsise the directory part,
-preserving, ‘file-name-nondirectory’ if it's a file or the last
-directory name if a directory, returning the ellipsized string as
-the result."
-  (if (> (length name) maxlen)
-      (if (or (file-directory-p name)
-              (save-match-data (string-match "/$" name)))
-          (let* ((bits (split-string name "/" t))
-                 (head (butlast bits))
-                 (tail (car (last bits))))
-            (concat
-             (unless (equal (car bits) "~") "/")
-             (substring (mapconcat #'identity head "/") 0
-                        (- (- maxlen 4) (length bits)))
-             ".../" tail "/"))
-        (let ((fnod (file-name-nondirectory name)))
-          (concat
-           (substring (file-name-directory name) 0
-                      (- (- maxlen 4) (length fnod)))
-           ".../" fnod)))
-    name))
-
-(defun gk-next-theme ()
-  "Switch to the next theme in ‘custom-known-themes’.
-If exhausted, disable themes.  If run again thereafter, wrap to
-the beginning of the list."
-  (interactive)
-  (let* ((ct (or (car custom-enabled-themes)
-                 (car custom-known-themes)))
-         (next (cadr (memq ct custom-known-themes))))
-    (when (memq next '(user changed))
-      (setq next nil))
-    (dolist (theme custom-enabled-themes)
-      (disable-theme theme))
-    (if next
-        (progn
-          (load-theme next t)
-          (message "Loaded theme ‘%S’" next))
-      (message "All themes disabled"))))
-
-(cl-defun gk-flash-current-line (&optional buffer &key (seconds 0.5))
-  "Flash current line briefly for SECONDS in BUFFER.
-BUFFER defaults to current buffer, and SECONDS to 1."
-  (interactive)
-  (unless hl-line-mode
-    (let ((buf (or buffer (current-buffer))))
-      (hl-line-mode +1)
-      (run-with-idle-timer
-       seconds nil
-       ($ (with-current-buffer buf
-            (hl-line-mode -1)))))))
-
-(defun gk-empty-kill-ring ()
-  "Empty the kill ring."
-  (interactive)
-  (when kill-ring
-    (setq kill-ring nil)
-    (garbage-collect)))
-
-(defun gk-bol ()
-  "Alternate between the first and the indentation on a line."
-  (interactive)
-  (let ((bolf (if visual-line-mode #'beginning-of-visual-line
-                #'beginning-of-line))
-        (p  (point)))
-    ;; We do this to prevent any flicker happening between
-    ;; ‘back-to-indentation’ and ‘bolf‘ when going to
-    ;; ‘beginning-of-line’.
-    (goto-char
-     (save-excursion
-       ;; If visual-line-mode is on and we're on a continuation line,
-       ;; go to the beginning of the continuation line.
-       ;;
-       ;; XXX: sometimes this goes to the previous line because of
-       ;; word-wrapping
-       (if (and visual-line-mode
-                (>= (- p (line-beginning-position))
-                    (window-width)))
-           (funcall bolf)
-         ;; Else, do the toggling.
-         (progn
-           ;; Go back to indentation.
-           (back-to-indentation)
-           ;; If we didn't move, we were already at the indentation.
-           ;; Go to the beginning of the line.
-           (when (= p (point))
-             (funcall bolf))))
-       ;; Return the point.
-       (point)))))
-
-(defvar gk-insert-todo-comment--history nil)
-(defvar gk-insert-todo-comment-default "TODO")
-
-(defun gk-insert-todo-comment (keyword)
-  (interactive
-   (list
-    (read-string
-     (format "Todo keyword to use (default: %s): "
-             gk-insert-todo-comment-default)
-     nil 'gk-insert-todo-comment--history "TODO" t)))
-  (gk-comment-dwim nil)
-  (insert keyword)
-  (insert (format-time-string "(%F): ")))
 
 
 
@@ -894,37 +499,6 @@ up-to-date."
 
 
 
-;;;; Utility macros:
-
-;; Some lisp macros for this file.
-
-(defmacro when-fbound (proc &rest args)
-  "Run proc if bound.
-\(when-fbound PROC ARGS...)"
-  `(when (fboundp (quote ,proc))
-     (,proc ,@args)))
-
-(defmacro gk-interactively (&rest body)
-  "Wrap the BODY in an interactive lambda form.
-Return the lambda."
-  `(lambda nil (interactive) ,@body))
-
-(defmacro gk-with-new-frame (parameters &rest body)
-  "Create a new frame and run BODY in it.
-PARAMETERS are passed into ‘make-frame’."
-  (declare (indent defun))
-  (let ((frame (gensym)))
-    `(let ((,frame (make-frame ,parameters)))
-       (raise-frame ,frame)
-       (select-frame-set-input-focus ,frame)
-       (progn ,@body))))
-
-(defmacro setc (variable value)
-  "Exactly like setq, but handles custom."
-  `(funcall (or (get ',variable 'custom-set) 'set-default) ',variable ,value))
-
-
-
 ;;;; Association lists:
 
 ;; Helper functions for association lists.
@@ -1040,116 +614,6 @@ integer argument, otherwise positive."
       "What to mark (hit TAB to complete): "
       (mapcar #'symbol-name gk-things)
       nil t)))))
-
-
-
-;;;; Projects:
-
-;; Functionality for opening and working with projects.
-
-(defvar gk-project-compile--hist nil)
-
-(defvar gk-project-compile-default-command "make test"
-  "Default command for ‘gk-project-compile’.")
-
-(defun gk-project-compile (command)
-  (interactive
-   (list
-    (read-shell-command
-     "Run project compile command: "
-     gk-project-compile-default-command
-     gk-project-compile--hist)))
-  (if-let* ((projbuf (get-buffer (assoca 'gk-project (frame-parameters)))))
-      (with-current-buffer projbuf
-        (compile command))
-    (user-error "Not a project frame")))
-
-(defvar gk-projects-directory "~/co"
-  "Directory where software projects are located.")
-
-(defun gk-open-project (path)
-  "Open a project folder.
-
-Dired buffer to the left, magit (or VC if not git) to the
-right. Start a shell with name ‘*XXX shell*’ where XXX is the
-basename of the PATH.
-
-PATH is the path to the project."
-  (interactive
-   (list
-    (f-slash
-     (read-directory-name
-      "Project to open: "
-      (f-slash (expand-file-name gk-projects-directory))
-      nil t))))
-  (let* ((vcs
-          (cond
-           ((file-exists-p (expand-file-name ".git" path))
-            #'magit-status)
-           ((or (mapcar #'vc-backend (gk-directory-files path)))
-            #'vc-dir)))
-         (project-name (file-name-base
-                        (replace-regexp-in-string "/+\\'" "" path)))
-         (shell-name (format "*%s shell*" project-name)))
-    (gk-with-new-frame `((fullscreen . maximized)
-                         (gk-project . ,project-name)
-                         (gk-project-dir . ,path)
-                         (gk-project-shell . ,shell-name)
-                         (gk-project-vcs . ,vcs))
-      (delete-other-windows)
-      (dired path)
-      (split-window-sensibly)
-      (other-window 1)
-      (funcall vcs path)
-      (save-window-excursion
-        (let ((buf (get-buffer-create shell-name))
-              (default-directory path))
-          (unless (get-buffer-process buf)
-            (shell buf)))))))
-
-(defun gk-frame-parameters ()
-  "Get my frame parameters."
-  (cl-remove-if-not
-   ($ (s-starts-with? "gk-" (symbol-name (car $1))))
-   (frame-parameters)))
-
-
-
-;;; The GK minor mode:
-
-;; The GK minor mode is at the heart of this configuration.  Almost
-;; all keybindings, except unmapping some keys from the global map,
-;; and except bindings in specific modes, should be done with this
-;; minor modes keymap.  This minor mode is active everywhere, except
-;; the Minibuffer and the Fundamental mode buffers.
-
-(defgroup GK nil
-  "Group for my configuration."
-  :group 'emacs
-  :prefix "gk-")
-
-(defvar gk-minor-mode-map
-  (make-sparse-keymap)
-  "Where to put all my bindings.")
-
-(defvar gk-minor-mode-prefix-map
-  (make-sparse-keymap)
-  "Prefix map for my bindings.")
-
-(fset 'gk-minor-mode-prefix-map gk-minor-mode-prefix-map)
-
-(defvar gk-minor-mode-prefix "\C-c"
-  "Keymap prefix for `gk-minor-mode'.")
-
-(define-minor-mode gk-minor-mode
-  "Global minor mode for customisations.
-\\{gk-minor-mode-map}"
-  nil "" gk-minor-mode-map
-  (let ((map gk-minor-mode-map))
-    (define-key map gk-minor-mode-prefix #'gk-minor-mode-prefix-map)))
-
-(define-globalized-minor-mode global-gk-minor-mode gk-minor-mode
-  gk-minor-mode)
 
 
 
@@ -5019,20 +4483,6 @@ the body of the entry, and the cdr is the score, an integer.")
 
 
 
-;;;; Utilities:
-
-(defmacro gk-global-binding (&rest args)
-  (declare (indent defun))
-  `(define-key gk-minor-mode-map ,@args))
-
-(defmacro gk-prefix-binding (&rest args)
-  (declare (indent defun))
-  `(define-key gk-minor-mode-prefix-map ,@args))
-
-(gk-prefix-binding "\M-u" 'gk-unbind-key)
-
-
-
 ;;;; Global overrides:
 
 (gk-global-binding "\C-a" 'gk-bol)
@@ -5145,6 +4595,8 @@ the body of the entry, and the cdr is the score, an integer.")
 (gk-prefix-binding [?\r] #'gk-project-compile)
 
 ;;;; Shortcuts:
+
+(gk-prefix-binding "\M-u" 'gk-unbind-key)
 
 (gk-prefix-binding "k" 'recompile)
 (gk-prefix-binding "\M-d" (gk-interactively (toggle-debug-on-error)
