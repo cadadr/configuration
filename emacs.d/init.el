@@ -1721,6 +1721,24 @@ with a period, insert two spaces afterwards instead of one."
                (put-text-property
                 para-beg (line-end-position) 'justification justify)))))))))
 
+(defun gk-count-words (&rest args)
+  "Call the correct word count function for context.
+Pass ARGS to it, the first two will be set so that the function
+will receive the region if active, or the entire buffer."
+  (interactive
+   (if (region-active-p)
+       (list (region-beginning) (region-end))
+     (list (point-min) (point-max))))
+  (eval
+   `(funcall-interactively
+     (if (eq major-mode 'org-mode)
+         #'gk-org-word-count
+       #'count-words-region)
+     ,@args)))
+
+(defalias 'wc #'gk-count-words)
+(defalias 'cw #'gk-count-words)
+
 
 
 ;;;;; Common:
@@ -3245,6 +3263,110 @@ If UNSAFE is non-nil, assume point is on headline."
                         (org-element-property :end element)))
            while pos
            do (goto-char pos)))
+
+;; From https://orgmode.org/worg/org-hacks.html
+;;
+;; «Count words in an Org buffer
+;;
+;; Paul Sexton posted this function to count words in an Org buffer:»
+;;
+;; This version includes some fixes, so not only an aesthetic
+;; modification.
+(defun gk-org-word-count
+    (beg end &optional count-latex-macro-args no-count-footnotes)
+  "Report the number of words in the Org mode buffer or selected region.
+Ignores:
+- comments
+- tables
+- source code blocks (#+BEGIN_SRC ... #+END_SRC, and inline blocks)
+- hyperlinks (but does count words in hyperlink descriptions)
+- tags, priorities, and TODO keywords in headers
+- sections tagged as 'not for export'.
+
+If the optional argument NO-COUNT-FOOTNOTES is non-nil, footnote
+text is ignored.
+
+If the optional argument COUNT-LATEX-MACRO-ARGS is non-nil, the word count
+includes LaTeX macro arguments (the material between {curly braces}).
+Otherwise, and by default, every LaTeX macro counts as 1 word regardless
+of its arguments.
+
+If called interactively (including with a keybinding), report the
+word count in the echo area and return nil.  If not, return the
+number."
+  (interactive
+   (if (region-active-p)
+       (list (region-beginning) (region-end))
+     (list (point-min) (point-max))))
+  (unless mark-active
+    (setf beg (point-min)
+          end (point-max)))
+  (let ((wc 0)
+        (latex-macro-regexp "\\\\[A-Za-z]+\\(\\[[^]]*\\]\\|\\){\\([^}]*\\)}"))
+    (save-excursion
+      (goto-char beg)
+      (while (< (point) end)
+        (cond
+         ;; Ignore comments.
+         ((or (org-at-comment-p) (org-at-table-p))
+          nil)
+         ;; Ignore hyperlinks. But if link has a description, count
+         ;; the words within the description.
+         ((looking-at org-bracket-link-analytic-regexp)
+          (when (match-string-no-properties 5)
+            (let ((desc (match-string-no-properties 5)))
+              (save-match-data
+                (incf wc (length (remove "" (org-split-string
+                                             desc "\\W")))))))
+          (goto-char (match-end 0)))
+         ((looking-at org-any-link-re)
+          (goto-char (match-end 0)))
+         ;; Ignore source code blocks.
+         ((org-between-regexps-p "^#\\+BEGIN_SRC\\W" "^#\\+END_SRC\\W")
+          nil)
+         ;; Ignore inline source blocks, counting them as 1 word.
+         ((save-excursion
+            (ignore-errors (backward-char))
+            (equal 'inline-src-block (car (org-element-at-point))))
+          (goto-char (match-end 0))
+          (setf wc (+ 2 wc)))
+         ;; Count latex macros as 1 word, ignoring their arguments.
+         ((save-excursion
+            (ignore-errors (backward-char))
+            (looking-at latex-macro-regexp))
+          (goto-char (if count-latex-macro-args
+                         (match-beginning 2)
+                       (match-end 0)))
+          (setf wc (+ 2 wc)))
+         ;; Ignore footnotes.
+         ((and no-count-footnotes
+               (or (org-footnote-at-definition-p)
+                   (org-footnote-at-reference-p)))
+          nil)
+         (t
+          (let ((contexts (org-context)))
+            (cond
+             ;; Ignore tags and TODO keywords, etc.
+             ((or (assoc :todo-keyword contexts)
+                  (assoc :priority contexts)
+                  (assoc :keyword contexts)
+                  (assoc :checkbox contexts))
+              nil)
+             ;; Ignore sections marked with tags that are
+             ;; excluded from export.
+             ((assoc :tags contexts)
+              (if (intersection (org-get-tags-at) org-export-exclude-tags
+                                :test 'equal)
+                  (org-forward-heading-same-level 1)
+                nil))
+             (t
+              (incf wc))))))
+        (re-search-forward "\\w+\\W*")))
+    (if (called-interactively-p 'any)
+        (message (format "%d words in %s." wc
+                         (if mark-active "region" "buffer")))
+      ;; If non-interactive, just return the number
+      wc)))
 
 (defun gk-org-refill-reading-note ()
   "Refill a list item when taking reading notes from a PDF.
