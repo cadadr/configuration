@@ -3508,19 +3508,7 @@ N defaults to 1."
 
 (setf
  ;; gk-org-agenda-files (gk-org-dir-files "ajanda.org" "caldav.org")
- org-agenda-files gk-org-agenda-files
- ;; Find all the relevant Readme.org files.
- gk-org-project-agenda-files
- ;; Find Readme.org files.
- (seq-filter
-  ($ (string= (file-name-nondirectory $1) "Readme.org"))
-  (let ((re directory-files-no-dot-files-regexp))
-    (apply #'append
-           (mapcar
-            ($ (when (file-directory-p $1)
-                 (directory-files $1 t re)))
-            (append (directory-files "~/co" t re)
-                    (directory-files "~/co/com.gkayaalp" t re)))))))
+ org-agenda-files gk-org-agenda-files)
 
 
 
