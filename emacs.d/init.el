@@ -1166,6 +1166,12 @@ PATH is the path to the project."
           (unless (get-buffer-process buf)
             (shell buf)))))))
 
+(defun gk-frame-parameters ()
+  "Get my frame parameters."
+  (cl-remove-if-not
+   ($ (s-starts-with? "gk-" (symbol-name (car $1))))
+   (frame-parameters)))
+
 
 
 ;;; The GK minor mode:
