@@ -3408,7 +3408,9 @@ N defaults to 1."
  ;; Open collapsed stuff when editing them.
  org-catch-invisible-edits 'smart
  ;; In collapsed view, hide empty lines between subtrees.
- org-cycle-separator-lines 0)
+ org-cycle-separator-lines 0
+ ;; RET on links follows link.
+ org-return-follows-link t)
 
 (setf
  ;; Week starts on Monday
