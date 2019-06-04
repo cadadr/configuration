@@ -1,6 +1,8 @@
 [global]
     # [{width}]x{height}[+/-{x}+/-{y}]
-    geometry = "300x600-20-20"
+    geometry = "300x600-533+20"
+    follow = mouse
+    transparency = 20
     padding = 15
     horizontal_padding = 15
     frame_width = 0
