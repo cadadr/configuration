@@ -1,5 +1,6 @@
 # xbackground.sh --- start background applications
 
+compton &			# X compositing
 redshift-gtk &
 nm-applet &			# network manager applet
 pasystray &			# pulse audio sound applet

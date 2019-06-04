@@ -20,7 +20,7 @@ packages = {
                 "vokoscreen", "redshift-gtk", "suckless-tools",
                 "laptop-mode-tools", "xclip", "xdotool", "xinput",
                 "libnotify-bin", "tootle", "devhelp", "firefox",
-                "audacity", "flameshot", "xfce4-clipman"]
+                "audacity", "flameshot", "xfce4-clipman", "compton"]
     ,
     "emacs": ["libjansson-dev", "libpoppler-glib-dev",
               "libpoppler-private-dev",]
