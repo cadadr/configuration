@@ -2999,6 +2999,7 @@ email and archiving read mail in another file."
 (dolist (f '(rmail-summary-previous-msg rmail-summary-next-msg))
  (advice-add f :around #'gk-ad-stay-here))
 
+(define-key rmail-mode-map "<" #'gk-fetch-mail)
 (define-key rmail-mode-map "N" #'gk-rmail-advance)
 (define-key rmail-mode-map "S" #'gk-rmail-force-expunge-and-save)
 (define-key rmail-mode-map "b"
