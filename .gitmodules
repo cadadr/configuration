@@ -1,0 +1,3 @@
+[submodule "emacs.d/lisp/site"]
+	path = emacs.d/lisp/site
+	url = https://github.com/cadadr/vendored-elisp
