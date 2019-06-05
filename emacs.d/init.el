@@ -2109,126 +2109,130 @@ unlocked, offer to lock it before pasting."
 
 (defun gk-git-commit-mode-hook ()
   "Set up git commit buffer."
-  ;; If a single file is modified, prefix the message w/ it.
-  (let ((modified-re "^#	modified:")
-        (new-re "^#	new file:")
-        (issue-re "^[+\\- ]\\*+ \\(TODO\\|DONE\\) ")
-        current-defun filename addp onlyp issuep)
-    (save-excursion
-      (with-current-buffer "COMMIT_EDITMSG"
-        (goto-char (point-min))
-        (re-search-forward "^# Changes to be committed:" nil t)
-        (forward-line)
-        (beginning-of-line)
-        (cond ((looking-at modified-re)
-               (re-search-forward ":   " nil t)
-               (setf filename (thing-at-point 'filename t)))
-              ((looking-at new-re)
-               (re-search-forward ":   " nil t)
-               (setf filename (thing-at-point 'filename t)
-                     addp t)))
-        (setq onlyp (progn
-                      (forward-line)
-                      (beginning-of-line)
-                      (looking-at "^#$")))
-        (when (and onlyp (equal filename "Readme.org"))
+  (catch 'dirty
+    (let ((modified-re "^#	modified:")
+          (new-re "^#	new file:")
+          (issue-re "^[+\\- ]\\*+ \\(TODO\\|DONE\\) ")
+          current-defun filename addp onlyp issuep)
+      (save-excursion
+        (with-current-buffer "COMMIT_EDITMSG"
           (goto-char (point-min))
-          (when-let* ((pos (re-search-forward issue-re nil t)))
-            (setq issuep (progn
-                           (re-search-backward "\\*" nil t)
-                           (buffer-substring (1+ (point))
-                                             (line-end-position))))))
-        ;; Try to set ‘current-defun’.
-        (when onlyp
-          (save-excursion
+          (unless (looking-at "^$")
+            (goto-char (line-end-position))
+            (throw 'dirty nil))
+          (re-search-forward "^# Changes to be committed:" nil t)
+          (forward-line)
+          (beginning-of-line)
+          (cond ((looking-at modified-re)
+                 (re-search-forward ":   " nil t)
+                 (setf filename (thing-at-point 'filename t)))
+                ((looking-at new-re)
+                 (re-search-forward ":   " nil t)
+                 (setf filename (thing-at-point 'filename t)
+                       addp t)))
+          (setq onlyp (progn
+                        (forward-line)
+                        (beginning-of-line)
+                        (looking-at "^#$")))
+          (when (and onlyp (equal filename "Readme.org"))
             (goto-char (point-min))
-            ;; Error if not found, means verbose diffs
-            ;; not enabled.
-            (re-search-forward "^diff --git" nil t)
-            (goto-char (line-beginning-position))
-            (let ((str (buffer-substring (point) (point-max)))
-                  (default-directory (expand-file-name "..")))
-              (with-temp-buffer
-                (insert str)
-                (diff-mode)
-                (goto-char (point-min))
-                (re-search-forward "^@@ " nil t)
-                (re-search-forward "^[\\+\\-]" nil t)
-                (setq current-defun (diff-current-defun))))))))
-    (if onlyp
-        (cond
-         ((and issuep (not addp))
-          (goto-char (point-min))
-          (insert ";" issuep))
-         ((equal filename "TAGS")
-          (goto-char (point-min))
-          (insert "; Update TAGS"))
-         ((equal filename ".gitignore")
-          (goto-char (point-min))
-          (insert "; Ignore ")
-          ;; If just one addition, add the filename too.
-          (save-excursion
-            (re-search-forward (rx (and bol "+++")) nil t)
-            (when (and (not (re-search-forward "^\\-" nil t))
-                       (re-search-forward "^\\+" nil t)
-                       (not (re-search-forward "^\\+" nil t)))
-              (let ((str (buffer-substring-no-properties
-                          (1+ (line-beginning-position))
-                          (line-end-position))))
-                (goto-char (point-min))
-                (goto-char (line-end-position))
-                (insert str))))
-          ;; If no additions, say ‘Don’t ignore’, if just one removal,
-          ;; add it.
-          (save-excursion
-            (re-search-forward (rx (and bol "+++")) nil t)
-            (when (and (save-excursion (re-search-forward "^\\-" nil t))
-                       (not (re-search-forward "^\\+" nil t)))
-              (save-excursion
-                (goto-char (1+ (point-min)))
-                (insert " Don’t")
-                (downcase-word 1))
-              (when (and (re-search-forward "^\\-" nil t)
-                         (not (re-search-forward "^\\-" nil t)))
-                (let
-                    ((str (buffer-substring-no-properties
-                           (1+ (line-beginning-position))
-                           (line-end-position))))
+            (when-let* ((pos (re-search-forward issue-re nil t)))
+              (setq issuep (progn
+                             (re-search-backward "\\*" nil t)
+                             (buffer-substring (1+ (point))
+                                               (line-end-position))))))
+          ;; Try to set ‘current-defun’.
+          (when onlyp
+            (save-excursion
+              (goto-char (point-min))
+              ;; Error if not found, means verbose diffs
+              ;; not enabled.
+              (re-search-forward "^diff --git" nil t)
+              (goto-char (line-beginning-position))
+              (let ((str (buffer-substring (point) (point-max)))
+                    (default-directory (expand-file-name "..")))
+                (with-temp-buffer
+                  (insert str)
+                  (diff-mode)
+                  (goto-char (point-min))
+                  (re-search-forward "^@@ " nil t)
+                  (re-search-forward "^[\\+\\-]" nil t)
+                  (setq current-defun (diff-current-defun))))))))
+      (if onlyp
+          (cond
+           ((and issuep (not addp))
+            (goto-char (point-min))
+            (insert ";" issuep))
+           ((equal filename "TAGS")
+            (goto-char (point-min))
+            (insert "; Update TAGS"))
+           ((equal filename ".gitignore")
+            (goto-char (point-min))
+            (insert "; Ignore ")
+            ;; If just one addition, add the filename too.
+            (save-excursion
+              (re-search-forward (rx (and bol "+++")) nil t)
+              (when (and (not (re-search-forward "^\\-" nil t))
+                         (re-search-forward "^\\+" nil t)
+                         (not (re-search-forward "^\\+" nil t)))
+                (let ((str (buffer-substring-no-properties
+                            (1+ (line-beginning-position))
+                            (line-end-position))))
                   (goto-char (point-min))
                   (goto-char (line-end-position))
-                  (insert str)))))
-          (goto-char (line-end-position)))
-         ((equal filename "xdg-config/dconf/user.dump")
-          (goto-char (point-min))
-          (insert "; " filename))
-         (filename
-          (goto-char (point-min))
-          (if addp
-              (insert "Add " filename)
-            ;; The below is inserted in two steps so that undo
-            ;; boundaries can be added and removing the
-            ;; ‘current-defun’ string in case it is useless is as easy
-            ;; as a single undo.
-            (insert filename ": ")
-            (undo-boundary)
-            (when (and current-defun)
-              (save-excursion
-                (backward-char 2)
-                (insert (format " (%s)" current-defun)))))))
-      (when (and (equal filename "Readme.org")
-                 (save-excursion
-                   (goto-char (point-min))
-                   (re-search-forward (concat modified-re " +Readme.org_archive")
-                                      nil t))
-                 (save-excursion
-                   (goto-char (point-min))
-                   (re-search-forward "\\-\\*+ DONE" nil t))
-                 (not
-                  (save-excursion
+                  (insert str))))
+            ;; If no additions, say ‘Don’t ignore’, if just one removal,
+            ;; add it.
+            (save-excursion
+              (re-search-forward (rx (and bol "+++")) nil t)
+              (when (and (save-excursion (re-search-forward "^\\-" nil t))
+                         (not (re-search-forward "^\\+" nil t)))
+                (save-excursion
+                  (goto-char (1+ (point-min)))
+                  (insert " Don’t")
+                  (downcase-word 1))
+                (when (and (re-search-forward "^\\-" nil t)
+                           (not (re-search-forward "^\\-" nil t)))
+                  (let
+                      ((str (buffer-substring-no-properties
+                             (1+ (line-beginning-position))
+                             (line-end-position))))
                     (goto-char (point-min))
-                    (re-search-forward "\\+\\*[\\+\\-] TODO" nil t))))
-        (goto-char (point-min))
-        (insert "; Archive DONE")))))
+                    (goto-char (line-end-position))
+                    (insert str)))))
+            (goto-char (line-end-position)))
+           ((equal filename "xdg-config/dconf/user.dump")
+            (goto-char (point-min))
+            (insert "; " filename))
+           (filename
+            (goto-char (point-min))
+            (if addp
+                (insert "Add " filename)
+              ;; The below is inserted in two steps so that undo
+              ;; boundaries can be added and removing the
+              ;; ‘current-defun’ string in case it is useless is as easy
+              ;; as a single undo.
+              (insert filename ": ")
+              (undo-boundary)
+              (when (and current-defun)
+                (save-excursion
+                  (backward-char 2)
+                  (insert (format " (%s)" current-defun)))))))
+        (when (and (equal filename "Readme.org")
+                   (save-excursion
+                     (goto-char (point-min))
+                     (re-search-forward (concat modified-re
+                                                " +Readme.org_archive")
+                                        nil t))
+                   (save-excursion
+                     (goto-char (point-min))
+                     (re-search-forward "\\-\\*+ DONE" nil t))
+                   (not
+                    (save-excursion
+                      (goto-char (point-min))
+                      (re-search-forward "\\+\\*[\\+\\-] TODO" nil t))))
+          (goto-char (point-min))
+          (insert "; Archive DONE"))))))
 
 (add-hook 'git-commit-mode-hook #'gk-git-commit-mode-hook)
 
