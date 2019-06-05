@@ -2232,6 +2232,68 @@ unlocked, offer to lock it before pasting."
 
 (add-hook 'git-commit-mode-hook #'gk-git-commit-mode-hook)
 
+(defun gk-copy-git-forge-url-as-kill (file)
+  "Generate a Github/Gitlab url for FILE and copy it as kill."
+  (interactive (list (buffer-file-name)))
+  (unless file (user-error "Buffer not visiting a file"))
+  (if-let* ((dir (expand-file-name
+                  (locate-dominating-file file ".git/config"))))
+      (with-current-buffer (find-file-noselect
+                            (expand-file-name ".git/config" dir))
+        (save-excursion
+          (goto-char (point-min))
+          (when (re-search-forward (rx (and bol "[remote \"origin\"]")) nil t)
+            (re-search-forward (rx (and bol "	url = ")))
+            (if-let* ((str (gk--copy-git-forge-url-as-kill-1 dir file)))
+                (progn
+                  (when (save-match-data (string-match "github" str))
+                    (setq str (replace-regexp-in-string "/tree/" "/blob/" str)))
+                  (with-temp-buffer
+                    (insert str)
+                    (clipboard-kill-ring-save (point-min) (point-max))
+                    (message str)
+                    str))
+              (error "Failed building Git forge url for %s" file)))))
+    (user-error "Could not build a Git forge url")))
+
+(defun gk--copy-git-forge-url-as-kill-1 (dir file)
+  "Subroutine of ‘gk-copy-github-url-as-kill’."
+  (cond
+   ((looking-at (rx "https://git" (or "hub" "lab") ".com"))
+    (concat
+     (buffer-substring-no-properties (point) (line-end-position))
+     "tree/"
+     (magit-get-current-branch)
+     "/"
+     (replace-regexp-in-string
+      (concat "^" (regexp-quote dir)) "" file)))
+   ((looking-at (rx "git@git" (or "hub" "lab") ".com:"))
+    (let ((str (buffer-substring-no-properties
+                (point) (line-end-position))))
+      (save-match-data
+        (when (string-match (rx
+                             (and
+                              string-start
+                              "git@"
+                              (submatch "git" (or "hub" "lab") ".com")
+                              ":"
+                              (submatch (1+ (not (any "/"))))
+                              "/"
+                              (submatch (1+ nonl))
+                              ".git" string-end))
+                            str)
+          (concat "https://"
+                  (match-string 1 str)
+                  "/"
+                  (match-string 2 str)
+                  "/"
+                  (match-string 3 str)
+                  "/tree/"
+                  (magit-get-current-branch)
+                  "/"
+                  (replace-regexp-in-string
+                   (concat "^" (regexp-quote dir)) "" file))))))))
+
 
 
 ;;;;;; Magit:
