@@ -620,6 +620,30 @@ BUFFER defaults to current buffer, and SECONDS to 1."
   (insert keyword)
   (insert (format-time-string "(%F): ")))
 
+;; Adapted from https://www.reddit.com/r/emacs/comments/bwm94g/weekly_tipstricketc_thread/eq09l4k/
+(defun gk-search-forward-1 (char &optional count)
+  "Search forward for CHAR COUNT times in current line."
+  (interactive
+   (list (read-char "1> ")
+         current-prefix-arg))
+  (forward-char)
+  (unwind-protect
+      (search-forward (char-to-string char) (line-end-position) nil (or count 1))
+    (backward-char)
+    (point)))
+
+(defun gk-search-backward-1 (char &optional count)
+  "Search backward for CHAR COUNT times in current line."
+  (interactive
+   (list (read-char "1> ")
+         current-prefix-arg))
+  (backward-char)
+  (unwind-protect
+      (search-backward (char-to-string char) (line-beginning-position) nil
+                       (or count 1))
+    (forward-char)
+    (point)))
+
 
 
 ;;;; Generic advices:
@@ -5094,6 +5118,9 @@ the body of the entry, and the cdr is the score, an integer.")
 ;; Flash to show point
 (gk-prefix-binding "\M-f" #'gk-flash-current-line)
 (gk-global-binding (kbd "<f1>") #'gk-flash-current-line)
+
+(gk-global-binding (kbd "C-M-s") #'gk-search-forward-1)
+(gk-global-binding (kbd "C-M-r") #'gk-search-backward-1)
 
 
 
