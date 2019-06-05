@@ -3484,8 +3484,6 @@ N defaults to 1."
 (setf
  ;; Open files in the same window.
  (cdr (assoc 'file org-link-frame-setup)) 'find-file
- ;; Let emacs show the pdf files.
- org-file-apps (dissoc "\\.pdf\\'" org-file-apps)
  ;; Place tags right after the title.
  org-tags-column 0
  ;; If an #+attr_*: :width xxx available, use xxx, else, car of this
