@@ -70,6 +70,7 @@ The following commands help complete the installation, regardless of the
 system flavour:
 
 ```
+$ git submodule update --init
 $ make cron
 $ update-desktop-database ~/.local/share/applications/
 $ pip3 install -r requirements.txt
