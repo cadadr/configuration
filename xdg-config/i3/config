@@ -129,6 +129,14 @@ mode "$mode_brightness" {
 }
 bindsym $mod+Control+b mode "$mode_brightness"
 
+set $mode_pass Passthrough, Return / Escape / Ctrl+G to exit
+mode "$mode_pass" {
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym Control+g mode "default"
+}
+bindsym $mod+Control+space mode "$mode_pass"
+
 # color theme:
 # colorclass		border	background	text 	indicator	child_border
 client.focused		#0087af	#0087af		#ffffff	#0087af		#0087af
