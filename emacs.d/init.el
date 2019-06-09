@@ -3546,6 +3546,18 @@ N defaults to 1."
 
 ;;;;; Agenda:
 
+(define-advice org-agenda-switch-to
+    (:around (fn &rest args) in-other-window)
+  "Show the buffer in a bottom side window and switch to it."
+  (let (buf ret)
+    (setq buf (save-window-excursion
+                (setq ret (apply fn args))
+                (message (buffer-name))
+                (current-buffer)))
+    (display-buffer-in-side-window buf '((side . bottom)))
+    (select-window (get-buffer-window buf))
+    ret))
+
 (setf
  ;; Don't show done items.
  org-agenda-skip-deadline-if-done t
