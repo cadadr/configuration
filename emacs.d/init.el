@@ -173,6 +173,7 @@
 (require 'time)
 (require 'tramp)
 (require 'tramp-cache)
+(require 'turkish)
 (require 'uniquify)
 (require 'url)
 (require 'vc)
