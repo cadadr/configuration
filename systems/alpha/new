@@ -2,6 +2,8 @@ yarnpkg
 haskell-platform haskell-platform-doc
 gnome-boxes
 snapd
+ocaml ocaml-doc ocaml-book-en
+fossil
 
 Snaps:
 spotify
