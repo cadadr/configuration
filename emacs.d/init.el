@@ -3681,10 +3681,6 @@ its contents."
 ;;;;; Refile:
 
 (setf
- org-refile-targets
- `((,(gk-org-dir-file "ajanda.org") . (:level . 2))
-   (,(gk-org-dir-file "listeler.org") . (:level . 1))
-   (,(gk-org-dir-file "notlar.org") . (:level . 1)))
  org-refile-use-outline-path t
  org-refile-allow-creating-parent-nodes t
  org-log-refile 'time
