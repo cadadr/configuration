@@ -82,7 +82,6 @@
 (require 'dired-x)
 (require 'doc-view)
 (require 'dollar)
-(require 'eimp)
 (require 'eldoc)
 (require 'elfeed)
 (require 'epa)
@@ -4166,15 +4165,6 @@ Ask otherwise."
 ;;;;; Images:
 
 ;; Viewing and editing images.
-
-
-
-;;;;;; EIMP mode:
-
-;; EIMP allows for modifying images in some ways, and saving the end
-;; result in a new file.
-
-(add-hook 'image-mode-hook 'eimp-mode)
 
 
 
