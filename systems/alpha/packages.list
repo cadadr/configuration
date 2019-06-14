@@ -50,6 +50,8 @@ packages = {
         ,
         "ruby": ["ruby", "bundler", "ri",]
         ,
+        "haskell": ["haskell-platform", "haskell-platform-doc"]
+        ,
         "redis": ["redis-server", "redis-tools",]
         ,
         "gnome": ["gjs", "libgjs-dev", "gnome-js-common", "valac", "valadoc",]
