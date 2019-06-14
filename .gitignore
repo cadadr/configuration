@@ -27,6 +27,7 @@ arch/etc/netctl/home
 arch/aur/*/src
 arch/aur/*/pkg
 
+bin/bright
 bin/sct
 bin/of
 bin/xmonad
