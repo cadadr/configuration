@@ -4,7 +4,7 @@ import Data.List (isPrefixOf)
 import Data.Text (pack, strip, unpack)
 import System.Directory (listDirectory)
 import System.Environment (getArgs)
-import System.FilePath (FilePath, (</>))
+import System.FilePath ((</>))
 
 dir = "/sys/class/backlight/"
 
