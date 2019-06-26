@@ -29,6 +29,7 @@ case $V in
 	    --with-modules \
 	    --with-file-notification=yes \
 	    --with-gameuser=no \
+            --with-cairo \
 	    --with-mailutils ;;
     nothreads)
 	./configure \
