@@ -126,6 +126,7 @@
 (require 'netrc)
 (require 'nnfolder)
 (require 'nsm)
+(require 'olivetti)
 (require 'org)
 (require 'org-capture)
 (require 'org-checklist)
@@ -1712,8 +1713,11 @@ will receive the region if active, or the entire buffer."
 
 (diminish 'visual-line-mode "¬")
 (diminish 'gk-ucins-entry-mode)
+(diminish 'olivetti-mode "𝍌")
 ;; i.e. ‘auto-fill-mode’, but diminish does not like that.
 (diminish 'auto-fill-function "=")
+
+(setq-default olivetti-body-width 85)
 
 (defun gk-text-editing-modes-hook ()
   "Hook for `text-mode'."
@@ -1721,6 +1725,7 @@ will receive the region if active, or the entire buffer."
   (visual-line-mode 1)
   (gk-ucins-entry-mode 1)
   (set-input-method default-input-method)
+  (olivetti-mode 1)
   (setq indent-tabs-mode nil))
 
 (add-hook 'text-mode-hook 'gk-text-editing-modes-hook)
@@ -2370,6 +2375,7 @@ Set by ‘gk-algol-like-hook’, don’t manually set.")
 
 (defun gk-prog-mode-hook ()
   "Hook for all programming modes."
+  (olivetti-mode 1)
   (setq-local indent-tabs-mode nil))
 
 (add-hook 'prog-mode-hook #'gk-prog-mode-hook)
@@ -4877,7 +4883,7 @@ provided."
 
 (defun gk-eww-mode-hook ()
   "Set up `eww' for easier reading."
-  )
+  (olivetti-mode +1))
 
 (add-hook 'eww-mode-hook 'gk-eww-mode-hook)
 
