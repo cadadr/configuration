@@ -360,10 +360,6 @@ When ARG is a positive number, repeat that many times."
         (other-window 1)
         (funcall vcs dir))
     (find-file (gk-org-dir-file "start.org"))
-    (split-window-sensibly)
-    (other-window 1)
-    (org-agenda nil "p")
-    (other-window 1)
     (gk-flash-current-line)))
 
 (defun gk-maybe-expand-abbrev-or-space ()
