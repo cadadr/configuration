@@ -16,11 +16,11 @@ packages = {
                 "alsamixergui", "pcmanfm", "ristretto", "xbacklight",
                 "feh", "gvfs-backends", "gvfs-fuse", "atril",
                 "cheese", "gimp", "gparted", "gv", "libreoffice",
-                "mpv", "simple-scan", "transmission-gtk",
-                "vokoscreen", "redshift-gtk", "suckless-tools",
-                "laptop-mode-tools", "xclip", "xdotool", "xinput",
-                "libnotify-bin", "tootle", "devhelp", "firefox",
-                "audacity", "flameshot", "xfce4-clipman", "compton"]
+                "libreoffice-gtk3", "libreoffice-gnome",
+                "mpv", "simple-scan", "transmission-gtk", "vokoscreen",
+                "redshift-gtk", "suckless-tools", "laptop-mode-tools", "xclip",
+                "xdotool", "xinput", "libnotify-bin", "tootle", "devhelp",
+                "firefox", "audacity", "flameshot", "xfce4-clipman", "compton"]
     ,
     "emacs": ["libjansson-dev", "libpoppler-glib-dev",
               "libpoppler-private-dev",]
@@ -75,6 +75,6 @@ packages = {
             "rsyslog-doc", "sgml-base-doc", "sharutils-doc", "sqlite3-doc",
             "tar-doc", "vim-doc", "libgtk-3-doc", "libcairo2-doc", "libxaw-doc",
             "libx11-doc", "libxcb-doc", "libglib2.0-doc", "iproute2-doc",
-            "libasound2-doc", "docker-doc"]
+            "libasound2-doc", "docker-doc", "libreoffice-help-en-us"]
     ,
 }
