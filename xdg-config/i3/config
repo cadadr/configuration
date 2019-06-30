@@ -138,6 +138,17 @@ mode "$mode_pass" {
 }
 bindsym $mod+Control+space mode "$mode_pass"
 
+set $mode_kbdselect Select keyboard layout: (g) GB Q (t) TrAltQ
+mode "$mode_kbdselect" {
+    bindsym g exec setxkbmap gb; mode "default"
+    bindsym t exec setxkbmap tr alt; mode "default"
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym Control+g mode "default"
+}
+bindsym $mod+Control+k mode "$mode_kbdselect"
+
 # color theme:
 # colorclass		border	background	text 	indicator	child_border
 client.focused		#0087af	#0087af		#ffffff	#0087af		#0087af
