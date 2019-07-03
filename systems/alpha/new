@@ -3,6 +3,7 @@ gnome-boxes
 snapd
 ocaml ocaml-doc ocaml-book-en
 fossil
+hg-fast-export
 
 Snaps:
 spotify
