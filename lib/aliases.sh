@@ -192,6 +192,8 @@ alias yarn=yarnpkg
 # Delete all containers that are not running:
 # Adapted from https://linuxhint.com/cleanup-docker/
 alias undocker='docker ps -a -f status=exited | sed "1d" | cut -d " " -f 1 | xargs docker rm'
+# Suppress interactive progress reporting.
+curl='curl -s'
 
 ### OS specific aliases:
 case $SYSTEM in
