@@ -149,6 +149,23 @@ mode "$mode_kbdselect" {
 }
 bindsym $mod+Control+k mode "$mode_kbdselect"
 
+# Pulse Audio controls
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 0 +5%; exec notify-send -u low -t 300 volume "$(pacmd dump-volumes | awk 'NR==1{print $8}' | sed 's/\%//')"%
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume 0 -5%; exec notify-send -u low -t 300 volume "$(pacmd dump-volumes | awk 'NR==1{print $8}' | sed 's/\%//')"%
+bindsym XF86AudioMute exec pactl set-sink-mute 0 toggle
+
+set $mod_volume Set volume (i)ncrease / (d)ecrease / (m)ute
+mode "$mod_volume" {
+    bindsym i exec pactl set-sink-volume 0 +5%; exec notify-send -u low -t 300 volume "$(pacmd dump-volumes | awk 'NR==1{print $8}' | sed 's/\%//')"%
+    bindsym d exec pactl set-sink-volume 0 -5%; exec notify-send -u low -t 300 volume "$(pacmd dump-volumes | awk 'NR==1{print $8}' | sed 's/\%//')"%
+    bindsym m exec pactl set-sink-mute 0 toggle
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym Control+g mode "default"
+}
+bindsym $mod+Control+s mode "$mod_volume"
+
 # color theme:
 # colorclass		border	background	text 	indicator	child_border
 client.focused		#0087af	#0087af		#ffffff	#0087af		#0087af
