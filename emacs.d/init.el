@@ -641,6 +641,13 @@ BUFFER defaults to current buffer, and SECONDS to 1."
     (forward-char)
     (point)))
 
+(defun gk-build-emacs-master ()
+  "Run Emacs git build wrapper script."
+  (interactive)
+  (let ((buf (generate-new-buffer "*Build Emacs Master*")))
+   (async-shell-command "build-emacs-master.sh" buf)
+   (display-buffer buf)))
+
 
 
 ;;;; Generic advices:
