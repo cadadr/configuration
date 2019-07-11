@@ -196,34 +196,49 @@ alias undocker='docker ps -a -f status=exited | sed "1d" | cut -d " " -f 1 | xar
 curl='curl -s'
 
 ### OS specific aliases:
+
+# Generic Linux aliases.
+__gk_linux_aliases(){
+    alias uctl='systemctl --user'
+    alias hows='systemctl status'
+    alias stop='systemctl stop'
+    alias start='systemctl start'
+    alias enable='systemctl enable'
+    alias disable='systemctl disable'
+
+    # Load distro-specific aliases.
+    if [ -f /etc/os-release ]; then
+        case $(grep '^ID=' /etc/os-release | cut -d= -f2) in
+            debian|raspbian)
+                __gk_debian_aliases ;;
+        esac
+    fi
+}
+
+# Aliases for Debian and descendants.
+__gk_debian_aliases(){
+    alias deps="apt-cache depends --no-recommends --no-breaks --no-suggests\
+                           --no-conflicts --no-enhances --no-replaces --recurse"
+    alias fresh='sudo apt-get update && (apt list --upgradable | pg)'
+    alias distup='sudo apt-get dist-upgrade'
+    alias haz="dpkg-query -l"
+    alias has="apt-cache search"
+    alias wanna="sudo apt-get install"
+    alias eww="sudo apt-get autoremove"
+    alias show="apt-cache show"
+    alias whose="dpkg-query -S"
+    alias what="dpkg-query -L"
+}
+
+# Aliases for FreeBSD systems
+__gk_freebsd_aliases(){
+    alias describe='pkg search -Q description'
+    alias netrestart='sudo service netif restart ; sleep 3 ;\
+                            sudo service routing restart'
+}
+
 case $SYSTEM in
-    Linux)
-        if [ -f /etc/os-release ]; then
-            case $(grep '^ID=' /etc/os-release | cut -d= -f2) in
-                debian|raspbian)
-                    alias deps="apt-cache depends --no-recommends --no-breaks --no-suggests --no-conflicts --no-enhances --no-replaces --recurse"
-                    alias fresh='sudo apt-get update && (apt list --upgradable | pg)'
-                    alias distup='sudo apt-get dist-upgrade'
-                    alias haz="dpkg-query -l"
-                    alias has="apt-cache search"
-                    alias wanna="sudo apt-get install"
-                    alias eww="sudo apt-get autoremove"
-                    alias show="apt-cache show"
-                    alias whose="dpkg-query -S"
-                    alias what="dpkg-query -L"
-                    ;;
-            esac
-        fi
-        alias uctl='systemctl --user'
-        alias hows='systemctl status'
-        alias stop='systemctl stop'
-        alias start='systemctl start'
-        alias enable='systemctl enable'
-        alias disable='systemctl disable'
-        ;;
-    FreeBSD)
-        alias describe='pkg search -Q description'
-        alias netrestart='sudo service netif restart ; sleep 3 ; sudo service routing restart'
-        ;;
+    Linux) __gk_linux_aliases ;;
+    FreeBSD) __gk_freebsd_aliases ;;
 esac
 
