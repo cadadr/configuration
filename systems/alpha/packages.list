@@ -6,26 +6,16 @@ packages = {
              "netcat-openbsd", "telnet", "traceroute", "bind9utils",
              "moreutils", "lftp", "libpam-cgroup", "libpam-cgfs",
              "bridge-utils", "qemu", "rsync","openssh-server",
-             "network-manager", "smartmontools", "entr", "docker.io"]
+             "network-manager", "smartmontools", "docker.io",]
     ,
-    "desktop": ["dunst", "pasystray", "i3-wm", "i3status", "i3lock",
-                "awesome", "awesome-doc", "awesome-extra",
-                "xinit", "libxrandr-dev", "network-manager-gnome",
-                "dbus-x11", "pulseaudio", "pulseaudio-utils",
-                "pavucontrol", "alsa-oss", "alsa-utils",
-                "alsamixergui", "pcmanfm", "ristretto", "xbacklight",
-                "feh", "gvfs-backends", "gvfs-fuse", "atril",
-                "cheese", "gimp", "gparted", "gv", "libreoffice",
-                "libreoffice-gtk3", "libreoffice-gnome",
-                "mpv", "simple-scan", "transmission-gtk", "vokoscreen",
-                "redshift-gtk", "suckless-tools", "laptop-mode-tools", "xclip",
-                "xdotool", "xinput", "libnotify-bin", "tootle", "devhelp",
-                "firefox", "audacity", "flameshot", "xfce4-clipman", "compton"]
+    "desktop": ["mpv", "laptop-mode-tools", "xclip",
+                "xdotool", "xinput", "libnotify-bin", "devhelp",
+                "firefox", "audacity",]
     ,
     "emacs": ["libjansson-dev", "libpoppler-glib-dev",
               "libpoppler-private-dev",]
     ,
-    "sci": ["spek", "praat", "python3-matplotlib",]
+    "sci": ["spek", "praat", "python3-matplotlib", "r-recommended"]
     ,
     "tex": ["texlive-full", "perl-tk",]
     ,

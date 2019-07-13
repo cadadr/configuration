@@ -1,6 +1,7 @@
 .Xdefaults						dotfiles/Xdefaults
 .bashrc							dotfiles/shrc.sh
-.config							xdg-config
+.config/mpv						dotfiles/mpv
+.config/systemd						dotfiles/systemd
 .cvsrc							dotfiles/cvsrc
 .emacs.d						emacs.d
 .flutter						dotfiles/flutter.json

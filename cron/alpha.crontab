@@ -6,5 +6,5 @@ GKCRON=yes
 
 # min	hour	d/month	month	d/week	command
 */5	*	*	*	*	/bin/sh $HOME/cf/lib/smtpq-notify.sh
-*/1	*	*	*	*	/bin/sh $HOME/cf/lib/batmon.sh
+*/5	*	*	*	*	/bin/sh $HOME/cf/lib/dump-dconf.sh
 # end

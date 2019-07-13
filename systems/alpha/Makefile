@@ -17,7 +17,7 @@ help:
 	@echo "Targets:"
 	@echo "	help			show this message"
 	@echo "	install-packages	install package layers"
-	@echo "	init			run system/user initialisation script"
+	@echo "	init			initialise system"
 
 install-packages:
 ifeq ($(BASIC), yes)
@@ -35,7 +35,6 @@ apt-update:
 	sudo apt-get update
 
 init: install-config apt-update install-packages
-	sudo sh ./scripts/$(BASEPFX)init.sh
 
 clean:
 	rm $(GENCONFIGS)

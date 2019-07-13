@@ -1,0 +1,128 @@
+[org/gnome/settings-daemon/plugins/color]
+night-light-enabled=true
+
+[org/gnome/settings-daemon/plugins/xsettings]
+antialiasing='grayscale'
+hinting='slight'
+
+[org/gnome/settings-daemon/peripherals/keyboard]
+numlock-state='off'
+
+[org/gnome/shell]
+enabled-extensions=['workspace-indicator@gnome-shell-extensions.gcampax.github.com']
+favorite-apps=['firefox.desktop', 'org.gnome.Evolution.desktop', 'rhythmbox.desktop', 'libreoffice-writer.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Software.desktop', 'yelp.desktop']
+
+[org/gnome/gedit/preferences/editor]
+bracket-matching=true
+wrap-last-split-mode='word'
+highlight-current-line=true
+background-pattern='grid'
+display-line-numbers=true
+
+[org/gnome/gedit/preferences/ui]
+show-tabs-mode='auto'
+
+[org/gnome/gedit/plugins]
+active-plugins=['joinlines', 'time', 'modelines', 'externaltools', 'terminal', 'filebrowser', 'codecomment', 'multiedit', 'docinfo', 'sort', 'wordcompletion', 'commander', 'spell']
+
+[org/gnome/gedit/state/window]
+size=(735, 511)
+state=87168
+bottom-panel-active-page='GeditExternalToolsShellOutput'
+bottom-panel-size=140
+side-panel-active-page='GeditWindowDocumentsPanel'
+side-panel-size=200
+
+[org/gnome/clocks/state/window]
+size=(870, 690)
+state=128
+panel-id='world'
+
+[org/gnome/nautilus/preferences]
+default-folder-viewer='icon-view'
+search-filter-time-type='last_modified'
+
+[org/gnome/nautilus/window-state]
+maximized=false
+initial-size=(890, 550)
+
+[org/gnome/evolution-data-server]
+network-monitor-gio-name=''
+migrated=true
+
+[org/gnome/simple-scan]
+document-type='photo'
+
+[org/gnome/desktop/interface]
+clock-show-date=true
+gtk-im-module='gtk-im-context-simple'
+show-battery-percentage=true
+toolkit-accessibility=false
+
+[org/gnome/desktop/notifications]
+application-children=['gnome-network-panel']
+
+[org/gnome/desktop/notifications/application/gnome-network-panel]
+application-id='gnome-network-panel.desktop'
+
+[org/gnome/desktop/app-folders]
+folder-children=['Utilities', 'Sundry']
+
+[org/gnome/desktop/app-folders/folders/Utilities]
+translate=true
+categories=['X-GNOME-Utilities']
+apps=['org.gnome.baobab.desktop', 'deja-dup-preferences.desktop', 'eog.desktop', 'evince.desktop', 'org.gnome.FileRoller.desktop', 'gnome-calculator.desktop', 'gnome-dictionary.desktop', 'org.gnome.Characters.desktop', 'org.gnome.DiskUtility.desktop', 'org.gnome.font-viewer.desktop', 'org.gnome.Terminal.desktop', 'org.gnome.Screenshot.desktop', 'gnome-system-log.desktop', 'gnome-system-monitor.desktop', 'gnome-tweak-tool.desktop', 'gucharmap.desktop', 'seahorse.desktop', 'vinagre.desktop', 'yelp.desktop']
+name='X-GNOME-Utilities.directory'
+
+[org/gnome/desktop/app-folders/folders/Sundry]
+translate=true
+categories=['X-GNOME-Sundry']
+apps=['alacarte.desktop', 'authconfig.desktop', 'ca.desrt.dconf-editor.desktop', 'fedora-release-notes.desktop', 'firewall-config.desktop', 'flash-player-properties.desktop', 'gconf-editor.desktop', 'gnome-abrt.desktop', 'gnome-power-statistics.desktop', 'ibus-setup-anthy.desktop', 'ibus-setup.desktop', 'ibus-setup-hangul.desktop', 'ibus-setup-libbopomofo.desktop', 'ibus-setup-libpinyin.desktop', 'ibus-setup-m17n.desktop', 'ibus-setup-typing-booster.desktop', 'im-chooser.desktop', 'itweb-settings.desktop', 'jhbuild.desktop', 'javaws.desktop', 'java-1.7.0-openjdk-jconsole.desktop', 'java-1.7.0-openjdk-policytool.desktop', 'log4j-chainsaw.desktop', 'log4j-logfactor5.desktop', 'nm-connection-editor.desktop', 'orca.desktop', 'setroubleshoot.desktop', 'system-config-date.desktop', 'system-config-firewall.desktop', 'system-config-keyboard.desktop', 'system-config-language.desktop', 'system-config-printer.desktop', 'system-config-users.desktop', 'vino-preferences.desktop']
+name='X-GNOME-Sundry.directory'
+
+[org/gnome/desktop/peripherals/touchpad]
+two-finger-scrolling-enabled=true
+tap-to-click=true
+
+[org/gnome/desktop/search-providers]
+sort-order=['org.gnome.Contacts.desktop', 'org.gnome.Documents.desktop', 'org.gnome.Nautilus.desktop']
+
+[org/gnome/desktop/calendar]
+show-weekdate=false
+
+[org/gnome/desktop/sound]
+allow-volume-above-100-percent=true
+
+[org/gnome/desktop/background]
+picture-uri='file:///usr/share/backgrounds/gnome/Flowerbed.jpg'
+color-shading-type='solid'
+primary-color='#ffffff'
+picture-options='zoom'
+secondary-color='#000000'
+
+[org/gnome/desktop/input-sources]
+sources=[('xkb', 'gb')]
+xkb-options=['caps:ctrl_modifier']
+
+[org/gnome/control-center]
+last-panel='wifi'
+
+[org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9]
+use-system-font=true
+
+[org/gnome/terminal/legacy]
+schema-version=uint32 3
+
+[org/gnome/software]
+check-timestamp=int64 1563025145
+
+[org/gtk/settings/file-chooser]
+sort-column='name'
+sidebar-width=158
+show-size-column=true
+show-hidden=false
+window-size=(1203, 694)
+sort-directories-first=false
+date-format='regular'
+sort-order='ascending'
+location-mode='path-bar'
