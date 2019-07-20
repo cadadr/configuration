@@ -39,12 +39,19 @@ state=128
 panel-id='world'
 
 [org/gnome/nautilus/preferences]
+search-view='list-view'
 default-folder-viewer='icon-view'
 search-filter-time-type='last_modified'
 
 [org/gnome/nautilus/window-state]
 maximized=false
 initial-size=(890, 550)
+
+[org/gnome/nautilus/list-view]
+default-visible-columns=['name', 'size', 'date_modified', 'starred']
+default-column-order=['name', 'size', 'type', 'owner', 'group', 'permissions', 'where', 'date_modified', 'date_modified_with_time', 'date_accessed', 'recency', 'starred', 'detailed_type']
+
+[org/gnome/evince/default]
 
 [org/gnome/evolution-data-server]
 network-monitor-gio-name=''
@@ -60,10 +67,16 @@ show-battery-percentage=true
 toolkit-accessibility=false
 
 [org/gnome/desktop/notifications]
-application-children=['gnome-network-panel']
+application-children=['gnome-network-panel', 'org-gnome-software', 'firefox']
+
+[org/gnome/desktop/notifications/application/firefox]
+application-id='firefox.desktop'
 
 [org/gnome/desktop/notifications/application/gnome-network-panel]
 application-id='gnome-network-panel.desktop'
+
+[org/gnome/desktop/notifications/application/org-gnome-software]
+application-id='org.gnome.Software.desktop'
 
 [org/gnome/desktop/app-folders]
 folder-children=['Utilities', 'Sundry']
@@ -113,8 +126,15 @@ use-system-font=true
 [org/gnome/terminal/legacy]
 schema-version=uint32 3
 
+[org/gnome/nm-applet/eap/de14ac56-cf7f-451a-9b2e-6a55a63f4485]
+ignore-phase2-ca-cert=false
+ignore-ca-cert=false
+
+[org/gnome/Totem]
+subtitle-encoding='UTF-8'
+active-plugins=['media_player_keys', 'recent', 'movie-properties', 'screensaver', 'save-file', 'skipto', 'screenshot', 'vimeo', 'variable-rate', 'autoload-subtitles', 'apple-trailers']
+
 [org/gnome/software]
-check-timestamp=int64 1563025145
 
 [org/gtk/settings/file-chooser]
 sort-column='name'
@@ -122,7 +142,7 @@ sidebar-width=158
 show-size-column=true
 show-hidden=false
 window-size=(1203, 694)
-sort-directories-first=false
+sort-directories-first=true
 date-format='regular'
 sort-order='ascending'
 location-mode='path-bar'
