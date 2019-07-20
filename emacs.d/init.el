@@ -168,6 +168,7 @@
 (require 'simple)
 (require 'smtpmail)
 (require 'subr-x)
+(require 'textile-mode)
 (require 'thingatpt)
 (require 'thinks)
 (require 'time)
@@ -1894,9 +1895,7 @@ backwards."
 
 ;;;;; Textile:
 
-;; Instead of using a Textile mode, just use =text-mode=.
-
-(add-to-list 'auto-mode-alist '("\\.textile" . text-mode))
+(add-to-list 'auto-mode-alist '("\\.textile" . textile-mode))
 
 
 
