@@ -10,7 +10,7 @@ packages = {
     ,
     "desktop": ["mpv", "laptop-mode-tools", "xclip",
                 "xdotool", "xinput", "libnotify-bin", "devhelp",
-                "firefox", "audacity",]
+                "firefox", "audacity", "gimp", "dconf-editor",]
     ,
     "emacs": ["libjansson-dev", "libpoppler-glib-dev",
               "libpoppler-private-dev",]
