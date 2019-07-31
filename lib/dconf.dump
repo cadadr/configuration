@@ -1,3 +1,184 @@
+[ca/desrt/dconf-editor]
+bookmarks=['/org/gnome/control-center/last-panel']
+window-width=800
+show-warning=false
+window-height=600
+saved-view='/org/gnome/control-center/last-panel'
+window-is-maximized=false
+
+[org/freedesktop/tracker/miner/files]
+index-recursive-directories=['&DESKTOP', '&DOCUMENTS', '&DOWNLOAD', '&MUSIC', '&PICTURES', '&VIDEOS', '/home/g/co']
+
+[org/gtk/settings/file-chooser]
+date-format='regular'
+show-size-column=true
+show-hidden=false
+sidebar-width=179
+sort-column='name'
+sort-order='ascending'
+location-mode='path-bar'
+sort-directories-first=true
+window-size=(1366, 694)
+
+[org/gnome/gnome-system-monitor]
+show-dependencies=false
+show-whose-processes='user'
+current-tab='processes'
+maximized=false
+window-state=(700, 500, 26, 23)
+
+[org/gnome/gnome-system-monitor/disktreenew]
+col-6-width=0
+col-6-visible=true
+
+[org/gnome/nautilus/window-state]
+initial-size=(890, 550)
+maximized=false
+
+[org/gnome/nautilus/preferences]
+search-view='list-view'
+default-folder-viewer='icon-view'
+search-filter-time-type='last_modified'
+
+[org/gnome/nautilus/list-view]
+default-visible-columns=['name', 'size', 'date_modified', 'starred']
+default-column-order=['name', 'size', 'type', 'owner', 'group', 'permissions', 'where', 'date_modified', 'date_modified_with_time', 'date_accessed', 'recency', 'starred', 'detailed_type']
+
+[org/gnome/nm-applet/eap/de14ac56-cf7f-451a-9b2e-6a55a63f4485]
+ignore-ca-cert=false
+ignore-phase2-ca-cert=false
+
+[org/gnome/evolution-data-server]
+migrated=true
+network-monitor-gio-name=''
+
+[org/gnome/evince/default]
+
+[org/gnome/evince]
+document-directory=@ms 'file:///home/g/dwn'
+
+[org/gnome/shell]
+favorite-apps=['firefox.desktop', 'org.gnome.Evolution.desktop', 'rhythmbox.desktop', 'libreoffice-writer.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Software.desktop', 'yelp.desktop']
+remember-mount-password=false
+enabled-extensions=['workspace-indicator@gnome-shell-extensions.gcampax.github.com']
+
+[org/gnome/eog/view]
+background-color='rgb(0,0,0)'
+use-background-color=true
+
+[org/gnome/desktop/notifications]
+application-children=['gnome-network-panel', 'org-gnome-software', 'firefox', 'libreoffice-startcenter', 'emacs', 'org-gnome-nautilus', 'ca-desrt-dconf-editor']
+
+[org/gnome/desktop/notifications/application/gnome-network-panel]
+application-id='gnome-network-panel.desktop'
+
+[org/gnome/desktop/notifications/application/org-gnome-nautilus]
+application-id='org.gnome.Nautilus.desktop'
+
+[org/gnome/desktop/notifications/application/org-gnome-software]
+application-id='org.gnome.Software.desktop'
+
+[org/gnome/desktop/notifications/application/libreoffice-startcenter]
+application-id='libreoffice-startcenter.desktop'
+
+[org/gnome/desktop/notifications/application/firefox]
+application-id='firefox.desktop'
+
+[org/gnome/desktop/notifications/application/ca-desrt-dconf-editor]
+application-id='ca.desrt.dconf-editor.desktop'
+
+[org/gnome/desktop/notifications/application/emacs]
+application-id='emacs.desktop'
+
+[org/gnome/desktop/peripherals/touchpad]
+two-finger-scrolling-enabled=true
+tap-to-click=true
+
+[org/gnome/desktop/wm/preferences]
+button-layout='appmenu:minimize,close'
+
+[org/gnome/desktop/calendar]
+show-weekdate=false
+
+[org/gnome/desktop/screensaver]
+picture-options='zoom'
+lock-enabled=true
+secondary-color='#000000'
+picture-uri='file:///usr/share/backgrounds/gnome/Flowerbed.jpg'
+primary-color='#ffffff'
+
+[org/gnome/desktop/sound]
+allow-volume-above-100-percent=true
+
+[org/gnome/desktop/background]
+picture-options='zoom'
+color-shading-type='solid'
+secondary-color='#000000'
+picture-uri='file:///usr/share/backgrounds/gnome/Flowerbed.jpg'
+primary-color='#ffffff'
+
+[org/gnome/desktop/interface]
+gtk-im-module='gtk-im-context-simple'
+show-battery-percentage=true
+clock-show-date=true
+toolkit-accessibility=false
+
+[org/gnome/desktop/app-folders/folders/Utilities]
+translate=true
+categories=['X-GNOME-Utilities']
+name='X-GNOME-Utilities.directory'
+apps=['org.gnome.baobab.desktop', 'deja-dup-preferences.desktop', 'eog.desktop', 'evince.desktop', 'org.gnome.FileRoller.desktop', 'gnome-calculator.desktop', 'gnome-dictionary.desktop', 'org.gnome.Characters.desktop', 'org.gnome.DiskUtility.desktop', 'org.gnome.font-viewer.desktop', 'org.gnome.Terminal.desktop', 'org.gnome.Screenshot.desktop', 'gnome-system-log.desktop', 'gnome-system-monitor.desktop', 'gnome-tweak-tool.desktop', 'gucharmap.desktop', 'seahorse.desktop', 'vinagre.desktop', 'yelp.desktop']
+
+[org/gnome/desktop/app-folders/folders/Sundry]
+translate=true
+categories=['X-GNOME-Sundry']
+name='X-GNOME-Sundry.directory'
+apps=['alacarte.desktop', 'authconfig.desktop', 'ca.desrt.dconf-editor.desktop', 'fedora-release-notes.desktop', 'firewall-config.desktop', 'flash-player-properties.desktop', 'gconf-editor.desktop', 'gnome-abrt.desktop', 'gnome-power-statistics.desktop', 'ibus-setup-anthy.desktop', 'ibus-setup.desktop', 'ibus-setup-hangul.desktop', 'ibus-setup-libbopomofo.desktop', 'ibus-setup-libpinyin.desktop', 'ibus-setup-m17n.desktop', 'ibus-setup-typing-booster.desktop', 'im-chooser.desktop', 'itweb-settings.desktop', 'jhbuild.desktop', 'javaws.desktop', 'java-1.7.0-openjdk-jconsole.desktop', 'java-1.7.0-openjdk-policytool.desktop', 'log4j-chainsaw.desktop', 'log4j-logfactor5.desktop', 'nm-connection-editor.desktop', 'orca.desktop', 'setroubleshoot.desktop', 'system-config-date.desktop', 'system-config-firewall.desktop', 'system-config-keyboard.desktop', 'system-config-language.desktop', 'system-config-printer.desktop', 'system-config-users.desktop', 'vino-preferences.desktop']
+
+[org/gnome/desktop/app-folders]
+folder-children=['Utilities', 'Sundry']
+
+[org/gnome/desktop/search-providers]
+sort-order=['org.gnome.Contacts.desktop', 'org.gnome.Documents.desktop', 'org.gnome.Nautilus.desktop']
+
+[org/gnome/desktop/input-sources]
+sources=[('xkb', 'gb')]
+xkb-options=['caps:ctrl_modifier']
+
+[org/gnome/desktop/session]
+idle-delay=uint32 0
+
+[org/gnome/clocks]
+world-clocks=[{'location': <(uint32 2, <('New York', 'KNYC', true, [(0.71180344078725644, -1.2909618758762367)], [(0.71059804659265924, -1.2916478949920254)])>)>}, {'location': <(uint32 2, <('London', 'EGLL', true, [(0.89855367075064974, -0.0078539816339744835)], [(0.89884456477707964, -0.0020362232784242244)])>)>}]
+
+[org/gnome/clocks/state/window]
+size=(870, 690)
+panel-id='world'
+state=87168
+
+[org/gnome/control-center]
+last-panel='info-overview'
+
+[org/gnome/calculator]
+source-currency=''
+source-units='degree'
+button-mode='basic'
+word-size=64
+base=10
+angle-units='degrees'
+accuracy=9
+show-thousands=false
+show-zeroes=false
+target-units='radian'
+number-format='automatic'
+target-currency=''
+
+[org/gnome/settings-daemon/peripherals/keyboard]
+numlock-state='on'
+
+[org/gnome/settings-daemon/peripherals/mouse]
+locate-pointer=false
+
 [org/gnome/settings-daemon/plugins/color]
 night-light-enabled=true
 
@@ -5,144 +186,97 @@ night-light-enabled=true
 antialiasing='grayscale'
 hinting='slight'
 
-[org/gnome/settings-daemon/peripherals/keyboard]
-numlock-state='off'
-
-[org/gnome/shell]
-enabled-extensions=['workspace-indicator@gnome-shell-extensions.gcampax.github.com']
-favorite-apps=['firefox.desktop', 'org.gnome.Evolution.desktop', 'rhythmbox.desktop', 'libreoffice-writer.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Software.desktop', 'yelp.desktop']
-
-[org/gnome/gedit/preferences/editor]
-bracket-matching=true
-wrap-last-split-mode='word'
-highlight-current-line=true
-background-pattern='grid'
-display-line-numbers=true
-
-[org/gnome/gedit/preferences/ui]
-show-tabs-mode='auto'
-
-[org/gnome/gedit/plugins]
-active-plugins=['joinlines', 'time', 'modelines', 'externaltools', 'terminal', 'filebrowser', 'codecomment', 'multiedit', 'docinfo', 'sort', 'wordcompletion', 'commander', 'spell']
-
-[org/gnome/gedit/state/window]
-size=(735, 511)
-state=87168
-bottom-panel-active-page='GeditExternalToolsShellOutput'
-bottom-panel-size=140
-side-panel-active-page='GeditWindowDocumentsPanel'
-side-panel-size=200
-
-[org/gnome/clocks/state/window]
-size=(870, 690)
-state=128
-panel-id='world'
-
-[org/gnome/nautilus/preferences]
-search-view='list-view'
-default-folder-viewer='icon-view'
-search-filter-time-type='last_modified'
-
-[org/gnome/nautilus/window-state]
-maximized=false
-initial-size=(890, 550)
-
-[org/gnome/nautilus/list-view]
-default-visible-columns=['name', 'size', 'date_modified', 'starred']
-default-column-order=['name', 'size', 'type', 'owner', 'group', 'permissions', 'where', 'date_modified', 'date_modified_with_time', 'date_accessed', 'recency', 'starred', 'detailed_type']
-
-[org/gnome/evince/default]
-
-[org/gnome/evolution-data-server]
-network-monitor-gio-name=''
-migrated=true
+[org/gnome/settings-daemon/plugins/power]
+sleep-inactive-battery-type='suspend'
+sleep-inactive-ac-type='nothing'
 
 [org/gnome/simple-scan]
 document-type='photo'
-
-[org/gnome/desktop/interface]
-clock-show-date=true
-gtk-im-module='gtk-im-context-simple'
-show-battery-percentage=true
-toolkit-accessibility=false
-
-[org/gnome/desktop/notifications]
-application-children=['gnome-network-panel', 'org-gnome-software', 'firefox']
-
-[org/gnome/desktop/notifications/application/firefox]
-application-id='firefox.desktop'
-
-[org/gnome/desktop/notifications/application/gnome-network-panel]
-application-id='gnome-network-panel.desktop'
-
-[org/gnome/desktop/notifications/application/org-gnome-software]
-application-id='org.gnome.Software.desktop'
-
-[org/gnome/desktop/app-folders]
-folder-children=['Utilities', 'Sundry']
-
-[org/gnome/desktop/app-folders/folders/Utilities]
-translate=true
-categories=['X-GNOME-Utilities']
-apps=['org.gnome.baobab.desktop', 'deja-dup-preferences.desktop', 'eog.desktop', 'evince.desktop', 'org.gnome.FileRoller.desktop', 'gnome-calculator.desktop', 'gnome-dictionary.desktop', 'org.gnome.Characters.desktop', 'org.gnome.DiskUtility.desktop', 'org.gnome.font-viewer.desktop', 'org.gnome.Terminal.desktop', 'org.gnome.Screenshot.desktop', 'gnome-system-log.desktop', 'gnome-system-monitor.desktop', 'gnome-tweak-tool.desktop', 'gucharmap.desktop', 'seahorse.desktop', 'vinagre.desktop', 'yelp.desktop']
-name='X-GNOME-Utilities.directory'
-
-[org/gnome/desktop/app-folders/folders/Sundry]
-translate=true
-categories=['X-GNOME-Sundry']
-apps=['alacarte.desktop', 'authconfig.desktop', 'ca.desrt.dconf-editor.desktop', 'fedora-release-notes.desktop', 'firewall-config.desktop', 'flash-player-properties.desktop', 'gconf-editor.desktop', 'gnome-abrt.desktop', 'gnome-power-statistics.desktop', 'ibus-setup-anthy.desktop', 'ibus-setup.desktop', 'ibus-setup-hangul.desktop', 'ibus-setup-libbopomofo.desktop', 'ibus-setup-libpinyin.desktop', 'ibus-setup-m17n.desktop', 'ibus-setup-typing-booster.desktop', 'im-chooser.desktop', 'itweb-settings.desktop', 'jhbuild.desktop', 'javaws.desktop', 'java-1.7.0-openjdk-jconsole.desktop', 'java-1.7.0-openjdk-policytool.desktop', 'log4j-chainsaw.desktop', 'log4j-logfactor5.desktop', 'nm-connection-editor.desktop', 'orca.desktop', 'setroubleshoot.desktop', 'system-config-date.desktop', 'system-config-firewall.desktop', 'system-config-keyboard.desktop', 'system-config-language.desktop', 'system-config-printer.desktop', 'system-config-users.desktop', 'vino-preferences.desktop']
-name='X-GNOME-Sundry.directory'
-
-[org/gnome/desktop/peripherals/touchpad]
-two-finger-scrolling-enabled=true
-tap-to-click=true
-
-[org/gnome/desktop/search-providers]
-sort-order=['org.gnome.Contacts.desktop', 'org.gnome.Documents.desktop', 'org.gnome.Nautilus.desktop']
-
-[org/gnome/desktop/calendar]
-show-weekdate=false
-
-[org/gnome/desktop/sound]
-allow-volume-above-100-percent=true
-
-[org/gnome/desktop/background]
-picture-uri='file:///usr/share/backgrounds/gnome/Flowerbed.jpg'
-color-shading-type='solid'
-primary-color='#ffffff'
-picture-options='zoom'
-secondary-color='#000000'
-
-[org/gnome/desktop/input-sources]
-sources=[('xkb', 'gb')]
-xkb-options=['caps:ctrl_modifier']
-
-[org/gnome/control-center]
-last-panel='wifi'
-
-[org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9]
-use-system-font=true
-
-[org/gnome/terminal/legacy]
-schema-version=uint32 3
-
-[org/gnome/nm-applet/eap/de14ac56-cf7f-451a-9b2e-6a55a63f4485]
-ignore-phase2-ca-cert=false
-ignore-ca-cert=false
 
 [org/gnome/Totem]
 subtitle-encoding='UTF-8'
 active-plugins=['media_player_keys', 'recent', 'movie-properties', 'screensaver', 'save-file', 'skipto', 'screenshot', 'vimeo', 'variable-rate', 'autoload-subtitles', 'apple-trailers']
 
-[org/gnome/software]
+[org/gnome/documents]
+window-maximized=true
 
-[org/gtk/settings/file-chooser]
-sort-column='name'
-sidebar-width=158
-show-size-column=true
-show-hidden=false
-window-size=(1203, 694)
-sort-directories-first=true
-date-format='regular'
-sort-order='ascending'
-location-mode='path-bar'
+[org/gnome/gedit/plugins]
+active-plugins=['joinlines', 'time', 'modelines', 'externaltools', 'terminal', 'filebrowser', 'codecomment', 'multiedit', 'docinfo', 'sort', 'wordcompletion', 'commander', 'spell']
+
+[org/gnome/gedit/preferences/editor]
+wrap-last-split-mode='word'
+background-pattern='grid'
+highlight-current-line=true
+bracket-matching=true
+display-line-numbers=true
+
+[org/gnome/gedit/preferences/ui]
+show-tabs-mode='auto'
+
+[org/gnome/gedit/state/window]
+bottom-panel-size=140
+side-panel-size=200
+side-panel-active-page='GeditWindowDocumentsPanel'
+bottom-panel-active-page='GeditExternalToolsShellOutput'
+size=(735, 511)
+state=87168
+
+[org/gnome/evolution/bogofilter]
+command=''
+utf8-for-spam-filter=true
+
+[org/gnome/evolution/mail]
+forward-style-name='attached'
+browser-close-on-reply-policy='ask'
+composer-visually-wrap-long-lines=false
+reply-style-name='quoted'
+junk-check-incoming=true
+image-loading-policy='never'
+search-gravatar-for-photo=false
+
+[org/gnome/evolution/mail/composer-window]
+width=600
+maximized=false
+height=500
+
+[org/gnome/evolution/shell]
+attachment-view=0
+
+[org/gnome/evolution/addressbook]
+completion-show-address=false
+completion-minimum-query-length=3
+
+[org/gnome/evolution/calendar]
+work-day-monday=true
+work-day-thursday=true
+work-day-friday=true
+week-start-day-name='monday'
+work-day-saturday=false
+work-day-sunday=false
+work-day-tuesday=true
+work-day-wednesday=true
+prefer-new-item=''
+
+[org/gnome/evolution]
+version='3.30.5'
+
+[org/gnome/software]
+install-timestamp=int64 1564442048
+download-updates=false
+download-updates-notify=true
+first-run=false
+
+[org/gnome/terminal/legacy]
+default-show-menubar=false
+schema-version=uint32 3
+theme-variant='dark'
+
+[org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9]
+use-system-font=true
+foreground-color='rgb(131,148,150)'
+palette=['rgb(7,54,66)', 'rgb(220,50,47)', 'rgb(133,153,0)', 'rgb(181,137,0)', 'rgb(38,139,210)', 'rgb(211,54,130)', 'rgb(42,161,152)', 'rgb(238,232,213)', 'rgb(0,43,54)', 'rgb(203,75,22)', 'rgb(88,110,117)', 'rgb(101,123,131)', 'rgb(131,148,150)', 'rgb(108,113,196)', 'rgb(147,161,161)', 'rgb(253,246,227)']
+use-theme-colors=false
+cursor-blink-mode='on'
+visible-name='cadadr'
+background-color='rgb(0,43,54)'
+audible-bell=false
