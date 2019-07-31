@@ -148,6 +148,7 @@ alias re=". $ENV"
 alias j=jobs
 alias ls='ls -F'
 alias la='ls -FAl'
+alias lr='ls -lR'
 alias mo=pg
 YOUDL=$HOME/co/External/youtube-dl
 alias ydl="PYTHONPATH=$YOUDL $YOUDL/bin/youtube-dl"
