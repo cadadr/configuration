@@ -4,6 +4,9 @@
 deb http://ftp.uk.debian.org/debian/ testing main contrib non-free
 deb-src http://ftp.uk.debian.org/debian/ testing main contrib non-free
 
+# testing debug syms
+deb http://debug.mirrors.debian.org/debian-debug/ testing-debug main
+
 # unstable, used partially
 deb http://ftp.uk.debian.org/debian/ unstable main
 deb-src http://ftp.uk.debian.org/debian/ unstable main
