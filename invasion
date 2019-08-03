@@ -18,6 +18,7 @@
 .mairixrc						dotfiles/mairixrc
 .mpoprc							dotfiles/mpoprc
 .msmtprc						dotfiles/msmtprc
+.muttrc							dotfiles/muttrc
 .procmailrc						dotfiles/procmailrc
 .profile						dotfiles/profile.sh
 .signature						dotfiles/signature
