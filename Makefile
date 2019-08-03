@@ -31,6 +31,7 @@ setup: build dotfiles invade cron
 	pip3 install -r requirements.txt
 	gem install bundler
 	bundle
+	bundle update --bundler
 	gem rdoc --all	
 
 ### System initialisation:
