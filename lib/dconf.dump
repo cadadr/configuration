@@ -66,6 +66,9 @@ enabled-extensions=['workspace-indicator@gnome-shell-extensions.gcampax.github.c
 background-color='rgb(0,0,0)'
 use-background-color=true
 
+[org/gnome/eog/ui]
+sidebar=false
+
 [org/gnome/desktop/notifications]
 application-children=['gnome-network-panel', 'org-gnome-software', 'firefox', 'libreoffice-startcenter', 'emacs', 'org-gnome-nautilus', 'ca-desrt-dconf-editor']
 
@@ -92,7 +95,7 @@ application-id='emacs.desktop'
 
 [org/gnome/desktop/peripherals/touchpad]
 two-finger-scrolling-enabled=true
-tap-to-click=true
+tap-to-click=false
 
 [org/gnome/desktop/wm/preferences]
 button-layout='appmenu:minimize,close'
