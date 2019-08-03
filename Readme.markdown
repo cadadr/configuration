@@ -18,7 +18,7 @@ anything in any way.
 This repo contains the following:
 
 -   My GNU Emacs configuration tree (`emacs.d/`)
--   My dotfiles (`dotfiles/`)
+-   My dotfiles (`dotfiles/`, `xdg-config/`)
 -   My Debian GNU/Linux configuration (`systems/alpha/`)
 -   My configuration for Raspberry Pi (`systems/pi/`)
 -   And some other stuff.
@@ -70,8 +70,6 @@ The following commands help complete the installation, regardless of the
 system flavour:
 
 ```
-$ make dotfiles invade
-$ dconf load / < lib/dconf.dump
 $ git submodule update --init
 $ make cron
 $ update-desktop-database ~/.local/share/applications/

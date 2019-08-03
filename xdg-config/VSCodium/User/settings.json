@@ -1,0 +1,8 @@
+{
+    "[python]": {},
+    "editor.minimap.enabled": false,
+    "editor.tabSize": 8,
+    "editor.wordWrap": "wordWrapColumn",
+    "telemetry.enableCrashReporter": false,
+    "workbench.colorTheme": "Monokai"
+}

@@ -1,0 +1,52 @@
+[global]
+    # [{width}]x{height}[+/-{x}+/-{y}]
+    geometry = "300x600-533+20"
+    follow = mouse
+    transparency = 20
+    padding = 15
+    horizontal_padding = 15
+    frame_width = 0
+
+    font = DejaVu Sans 11
+    line_height = 1
+    format = "<b>%s</b>\n%b"
+    word_wrap = yes
+    ignore_newline = no
+    stack_duplicates = false
+    show_indicators = yes
+
+    sticky_history = yes
+    history_length = 20
+    dmenu = /usr/bin/dmenu -p dunst:
+    browser = /usr/bin/firefox -new-tab
+    always_run_script = true
+    title = Dunst
+    class = Dunst
+    startup_notification = false
+
+[shortcuts]
+    close =
+    close_all =
+    history =
+    context =
+
+[urgency_low]
+    background = "#222222"
+    foreground = "#888888"
+    timeout = 10
+
+[urgency_normal]
+    background = "#285577"
+    foreground = "#ffffff"
+    timeout = 10
+
+[urgency_critical]
+    background = "#900000"
+    foreground = "#ffffff"
+    frame_color = "#ff0000"
+    timeout = 0
+
+[play_sound]
+    summary = "*"
+    script = /home/g/cf/lib/pop.sh
+
