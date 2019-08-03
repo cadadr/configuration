@@ -34,7 +34,8 @@ packages = {
              "w3m", "w3m-el", "webalizer", "whois", "syncthing",
              "libnss-mdns", "mailutils", "mairix", "mutt", "mpop",
              "msmtp", "procmail", "certbot", "dirmngr", "youtube-dl",
-             "hugo", "inotify-tools", "pandoc", "fbi", "ddgr", "hledger", "jq"]
+             "hugo", "inotify-tools", "pandoc", "fbi", "ddgr", "hledger", "jq",
+             "gitit",]
     ,
     "devel": {
         "vcs": ["cvs", "git", "git-cvs", "git-email", "mercurial",
