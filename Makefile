@@ -15,6 +15,7 @@ help:
 	echo "	alpha-config		(re)install alpha config files";\
 	echo "	cron			(re)install current config's cron";\
 	echo "	pi-init			initialise pi instance";\
+	echo "	setup			set up $$HOME and $$USER after system initialisation";\
 	echo "	invade			run invasion";\
 	echo "	build			build utilites and emacs.d";\
 	echo "				use \`bins' and \`emacs' rules to build these";\
@@ -23,6 +24,14 @@ help:
 	echo "	clean			delete build artefacts";\
 	echo Variables:;\
 	echo "	BASIC=no/yes		Make a basic installation (default: no)"
+
+setup: build dotfiles invade cron
+	git submodule update --init
+	update-desktop-database ~/.local/share/applications/
+	pip3 install -r requirements.txt
+	gem install bundler
+	bundle
+	gem rdoc --all	
 
 ### System initialisation:
 
@@ -68,4 +77,4 @@ clean: clean-bin
 
 ### Postamble:
 .PHONY: all build bins dotfiles clean clean-bin clean-dotfiles
-.PHONY: alpha-init alpha-init-sub cron
+.PHONY: alpha-init alpha-init-sub cron setup
