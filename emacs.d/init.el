@@ -101,6 +101,7 @@
 (require 'gk-unilat)
 (require 'goto-addr)
 (require 'goto-last-change)
+(require 'haskell-mode)
 (require 'highlight-parentheses)
 (require 'hl-line)
 (require 'ibuffer)
