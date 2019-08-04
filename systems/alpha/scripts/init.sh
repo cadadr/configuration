@@ -18,13 +18,9 @@ say () {
     echo === $@
 }
 
-### Add the user:
-if id $username 2>/dev/null >/dev/null; then
-    say User $username exists already.
-else
-    say Adding user $username...
-    useradd -c 'cadadr' -d /home/$username -G $groups -m -s /bin/bash -U -u $userno $username
-    groupmod -g $userno $username
-fi
+### Update the user:
+say Updating user $username...
+usermod -a -G $groups -s /bin/bash -U -u $userno $username
+groupmod -g $userno $username
 
 say Done.  You may want to reboot your computer.
