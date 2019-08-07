@@ -7,6 +7,7 @@ set -e
 
 OUTDIR=${OUTDIR:=/backups}
 IGKDIR=${IGKDIR:=$MYFS}
+SERVICES="pulseaudio $(cd $HOME/.config/systemd/user && ls *.service | cut -d. -f1)"
 
 WAIT_SECS=${WAIT_SECS:=1}
 
@@ -31,6 +32,14 @@ tarcmd="tar --force-local --preserve-permissions 		\
 pvcmd="pv --timer --eta --progress --size $count --line-mode -"
 
 say Close programs that keep $IGKDIR busy:
+
+for service in $SERVICES; do
+    if systemctl --user is-active --quiet $service; then
+        say Stop $service.service...
+        systemctl --user stop $service
+    fi
+done
+
 for xpid in $(lsof -Fp "$IGKDIR" | egrep ^p); do
     pid=${xpid/p}               # remove p prefix that lsof adds
 
