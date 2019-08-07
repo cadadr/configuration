@@ -5326,7 +5326,6 @@ the body of the entry, and the cdr is the score, an integer.")
 
 (gk-prefix-binding "<" #'gk-fetch-mail)
 (gk-prefix-binding ">" #'gk-runq)
-(gk-prefix-binding (kbd "C-r") #'rmail)
 (gk-prefix-binding "/" #'mairix-search)
 (gk-prefix-binding "?" #'mairix-widget-search)
 
