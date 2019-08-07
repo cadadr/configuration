@@ -195,6 +195,8 @@ alias yarn=yarnpkg
 alias undocker='docker ps -a -f status=exited | sed "1d" | cut -d " " -f 1 | xargs docker rm'
 # Suppress interactive progress reporting.
 curl='curl -s'
+# The backup command string
+alias backup-distup='make-backup.sh && fresh && distup && sudo reboot'
 
 ### OS specific aliases:
 
