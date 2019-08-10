@@ -3,29 +3,41 @@
 export UMASK=
 HERE:=$(PWD)
 export BASIC?=no
+export HOST:=$(shell hostname)
 
 all: help
 
 ### Help:
 help:
-	@echo "Targets:";\
-	echo "	alpha-init		initialise alpha instance with Debian";\
-	echo "	alpha-test		test alpha w/ Docker (run as root)";\
-	echo "	alpha-pkg		(re)install alpha packages";\
-	echo "	alpha-config		(re)install alpha config files";\
-	echo "	cron			(re)install current config's cron";\
-	echo "	pi-init			initialise pi instance";\
-	echo "	setup			set up $$HOME and $$USER after system initialisation";\
-	echo "	invade			run invasion";\
-	echo "	build			build utilites and emacs.d";\
-	echo "				use \`bins' and \`emacs' rules to build these";\
-	echo "				separately";\
-	echo "	dotfiles		build dotfiles";\
-	echo "	clean			delete build artefacts";\
+	@echo "System type: $(HOST)";\
+	echo "Targets:";\
+	echo "	init		initialise \`$(HOST)' instance";\
+	echo "	test		test \`$(HOST)' w/ Docker (run as root)";\
+	echo "	pkg		(re)install \`$(HOST)' packages";\
+	echo "	config		(re)install \`$(HOST)' config files";\
+	echo "	cron		(re)install current config's cron";\
+	echo "	setup		set up $$HOME and $$USER after system initialisation";\
+	echo "	invade		run invasion";\
+	echo "	build		build utilites and emacs.d";\
+	echo "			use \`bins' and \`emacs' rules to build these";\
+	echo "			separately";\
+	echo "	dotfiles	build dotfiles";\
+	echo "	clean		delete build artefacts";\
 	echo Variables:;\
-	echo "	BASIC=no/yes		Make a basic installation (default: no)"
+	echo "	BASIC=no/yes	Make a basic installation (default: no)"
 
-setup: build dotfiles invade cron
+### System initialisation:
+
+setup: $(HOST)-setup
+init: $(HOST)-init
+test: $(HOST)-test
+conf: $(HOST)-config
+pkg: $(HOST)-pkg
+cron: $(HOST)-cron
+
+.PHONY: init test conf pkg cron setup
+
+alpha-setup: build dotfiles invade cron
 	git submodule update --init
 	update-desktop-database ~/.local/share/applications/
 	pip3 install -r requirements.txt
@@ -34,7 +46,6 @@ setup: build dotfiles invade cron
 	bundle update --bundler
 	gem rdoc --all	
 
-### System initialisation:
 
 alpha-init:
 	touch config.m4; $(MAKE) -C systems/alpha -$(MAKEFLAGS) init
@@ -48,8 +59,10 @@ alpha-config:
 alpha-pkg:
 	$(MAKE) -C systems/alpha -$(MAKEFLAGS) install-packages
 
-cron:
-	crontab cron/$(shell hostname).crontab
+alpha-cron:
+	crontab cron/alpha.crontab
+
+.PHONY: alpha-init alpha-init-sub alpha-cron alpha-setup
 
 ### Build rules:
 build: bins emacs
@@ -78,4 +91,4 @@ clean: clean-bin
 
 ### Postamble:
 .PHONY: all build bins dotfiles clean clean-bin clean-dotfiles
-.PHONY: alpha-init alpha-init-sub cron setup
+

@@ -50,7 +50,7 @@ installation, run the following commands:
 
 ```
 # apt-get install sudo make git python3 python3-distro
-# make alpha-init
+# make init
 # locale-gen
 # update-initramfs -u
 ```
