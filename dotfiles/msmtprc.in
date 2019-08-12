@@ -27,5 +27,13 @@ from __IU_MAIL_ADDR__
 user __IU_MAIL_ADDR__
 passwordeval "pass show __IU_MAIL_ADDR__"
 
+# HU ogrenci mail
+account humail
+host __HU_MAIL_HOST__
+port 465
+from __HU_MAIL_ADDR__
+user __HU_MAIL_ADDR__
+passwordeval "pass show __HU_MAIL_ADDR__"
+
 # Set a default account
 account default : self
