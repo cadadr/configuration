@@ -14,7 +14,7 @@ packages = {
                 "dbus-x11", "pulseaudio", "pulseaudio-utils",
                 "pavucontrol", "alsa-oss", "alsa-utils",
                 "alsamixergui", "pcmanfm", "ristretto", "xbacklight",
-                "feh", "gvfs-backends", "gvfs-fuse", "atril",
+                "feh", "gvfs-backends", "gvfs-fuse", "okular",
                 "cheese", "gimp", "gparted", "gv", "libreoffice",
                 "libreoffice-gtk3", "libreoffice-gnome",
                 "mpv", "simple-scan", "transmission-gtk", "vokoscreen",

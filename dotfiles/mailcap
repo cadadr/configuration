@@ -2,4 +2,4 @@
 
 # Stuff that Emacs opens.
 text/*; emacsclient %s
-application/pdf; atril %s
+application/pdf; okular %s

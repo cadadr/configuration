@@ -104,4 +104,7 @@ xdg-config/VSCodium/Cookies*
 xdg-config/VSCodium/machineid
 xdg-config/VSCodium/Network*
 xdg-config/VSCodium/storage.json
-
+xdg-config/kactivitymanagerdrc
+xdg-config/kglobalshortcutsrc
+xdg-config/okularpartrc
+xdg-config/okularrc

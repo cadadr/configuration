@@ -14,7 +14,7 @@ image/jpeg=ristretto.desktop
 image/png=ristretto.desktop
 image/gif=ristretto.desktop
 image/tiff=ristretto.desktop
-application/pdf=atril.desktop;
+application/pdf=okular.desktop;
 
 [Added Associations]
 x-scheme-handler/http=firefox.desktop;
@@ -33,7 +33,7 @@ image/jpeg=ristretto.desktop;
 image/png=ristretto.desktop
 image/gif=ristretto.desktop
 image/tiff=ristretto.desktop
-application/pdf=atril.desktop;
+application/pdf=okular.desktop;
 application/x-gzip=emacsclient.desktop;
 x-scheme-handler/mailto=exo-mail-reader.desktop
 
