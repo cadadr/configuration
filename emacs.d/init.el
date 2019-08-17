@@ -4256,7 +4256,7 @@ Ask otherwise."
 
 ;;;;; GUI:
 
-(defvar gk-gui-theme 'mono
+(defvar gk-gui-theme 'dracula
   "The default theme's name to load at startup.")
 
 (defun gk-setup-frame-looks (&optional frame)
