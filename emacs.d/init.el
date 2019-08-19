@@ -1325,6 +1325,16 @@ that instead."
                       '((side . bottom)))))
       (select-window win))))
 
+(defun gk-display-shell (arg)
+  "Pop a shell in a side window.
+Pass arg to ‘shell’.  If already in a side window that displays a
+shell, toggle the side window.
+
+If there is a project shell associated to the frame, just show
+that instead."
+  (interactive "P")
+  (display-buffer (gk--get-shell-for-frame arg)))
+
 (defun gk-shell-mode-hook ()
   "Hook for `shell-mode'."
   ;; BSD /bin/sh echoes.
@@ -5278,6 +5288,7 @@ the body of the entry, and the cdr is the score, an integer.")
 (gk-prefix-binding "\M-#" #'gk-insert-todo-comment)
 (gk-prefix-binding "~" #'gk-toggle-wrap)
 (gk-prefix-binding "]" #'gk-pop-shell)
+(gk-prefix-binding "\C-]" #'gk-display-shell)
 (gk-prefix-binding "[" #'window-toggle-side-windows)
 (gk-prefix-binding "=" #'menu-bar-mode) ;toggle
 (gk-prefix-binding "g" #'magit-status)
