@@ -2354,7 +2354,9 @@ unlocked, offer to lock it before pasting."
  magit-commit-show-diff nil
  magit-commit-arguments '("--verbose")
  ;; Exclude 3rd-party lisp from todos search.
- magit-todos-exclude-globs '("emacs.d/lisp/site/*" "*/patches/*"))
+ magit-todos-exclude-globs '("emacs.d/lisp/site/*" "*/patches/*")
+ ;; Refine all displayed hunks.
+ magit-diff-refine-hunk 'all)
 
 (cl-pushnew 'magit-todos-mode gk-global-modes)
 
