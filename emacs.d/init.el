@@ -4292,8 +4292,11 @@ new frame is created."
   (when (eq gk-gui-theme 'wombat)
     ;; With wombat the active window is hard to tell.
     (set-face-attribute 'mode-line nil
-                        :background "khaki"
-                        :foreground "black"))
+                        :background "black"
+                        :foreground "white")
+    ;; Default added face renders foreground unreadable.
+    (set-face-attribute 'diff-refine-added nil
+                        :background "dark olive green"))
 
   ;; Customise misterioso.
   (when (eq gk-gui-theme 'misterioso)
