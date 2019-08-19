@@ -1293,6 +1293,22 @@ Set locally the variable `outline-minor-mode-prefix' to PREFIX."
 
 (add-hook 'shell-mode-hook 'gk-shell-mode-hook)
 
+(defun gk--get-shell-for-frame (&optional arg-for-shell frame)
+  "Get a shell for current frame, depending on whether it’s a project frame.
+
+Subroutine for ‘gk-pop-shell’ and ‘gk-display-shell’."
+  (save-window-excursion
+    (let ((prefix-arg arg-for-shell))
+      ;; If can find a project shell, show that
+      ;; instead.
+      (if-let* ((project-shell
+                 (ignore-errors
+                   (get-buffer
+                    (assoca
+                     'gk-project-shell (frame-parameters frame))))))
+          project-shell
+        (call-interactively #'shell)))))
+
 (defun gk-pop-shell (arg)
   "Pop a shell in a side window.
 Pass arg to ‘shell’.  If already in a side window that displays a
@@ -1305,17 +1321,7 @@ that instead."
            (equal major-mode 'shell-mode))
       (window-toggle-side-windows)
     (when-let* ((win (display-buffer-in-side-window
-                      (save-window-excursion
-                        (let ((prefix-arg arg))
-                          ;; If can find a project shell, show that
-                          ;; instead.
-                          (if-let* ((project-shell
-                                     (ignore-errors
-                                       (get-buffer
-                                       (assoca
-                                        'gk-project-shell (frame-parameters))))))
-                              project-shell
-                            (call-interactively #'shell))))
+                      (gk--get-shell-for-frame arg)
                       '((side . bottom)))))
       (select-window win))))
 
