@@ -4274,7 +4274,7 @@ Ask otherwise."
 
 ;;;;; GUI:
 
-(defvar gk-gui-theme 'wombat
+(defvar gk-gui-theme 'paper
   "The default theme's name to load at startup.")
 
 (defun gk-setup-frame-looks (&optional frame)
@@ -4313,13 +4313,18 @@ new frame is created."
     ;; Make the cursor more visible, the default grey colour is
     ;; indistinguishable, especially with the bar cursor.
     (set-face-attribute 'cursor nil :background "hotpink")
-    ;; Region should not have a foreground colour.
-    (set-face-attribute 'region nil :foreground nil)
     ;; Don't change the foreground or decorate the text when
     ;; ‘hl-line-mode’ is on.
     (set-face-attribute 'highlight nil
                         :foreground nil
                         :underline nil))
+
+  (when (eq gk-gui-theme 'paper)
+    ;; Better background colour for region.
+    (set-face-attribute 'region nil :background "medium spring green"))
+
+  ;; Region should not have a foreground colour.
+  (set-face-attribute 'region nil :foreground nil)
 
   (set-face-attribute 'default nil
                       :height gk-font-default-height
