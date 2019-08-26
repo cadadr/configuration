@@ -102,6 +102,7 @@
 (require 'goto-addr)
 (require 'goto-last-change)
 (require 'haskell-mode)
+(require 'highlight-indent-guides)
 (require 'highlight-parentheses)
 (require 'hl-line)
 (require 'ibuffer)
@@ -1751,7 +1752,8 @@ will receive the region if active, or the entire buffer."
   (gk-ucins-entry-mode 1)
   (set-input-method default-input-method)
   (olivetti-mode 1)
-  (setq indent-tabs-mode nil))
+  (setq indent-tabs-mode nil)
+  (highlight-indent-guides-mode))
 
 (add-hook 'text-mode-hook 'gk-text-editing-modes-hook)
 
@@ -2401,6 +2403,7 @@ Set by ‘gk-algol-like-hook’, don’t manually set.")
 (defun gk-prog-mode-hook ()
   "Hook for all programming modes."
   (olivetti-mode 1)
+  (highlight-indent-guides-mode)
   (setq-local indent-tabs-mode nil))
 
 (add-hook 'prog-mode-hook #'gk-prog-mode-hook)
@@ -4619,6 +4622,8 @@ So that the reader knows where to continue reading."
 
 (pushnew 'global-whitespace-mode gk-global-modes)
 (diminish 'global-whitespace-mode "¶")
+
+(setq-default highlight-indent-guides-method 'column)
 
 
 
