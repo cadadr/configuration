@@ -654,6 +654,22 @@ BUFFER defaults to current buffer, and SECONDS to 1."
   (let ((compilation-buffer-name-function ($ "*Build Emacs Master*")))
     (compile "build-emacs-master.sh")))
 
+(defun gk-visit-user-init-file ()
+  "Visit ‘user-init-file’, reuse window if useful.
+Flash the current line after that."
+  (interactive)
+  (let ((file (file-truename (expand-file-name user-init-file))))
+    ;; If viewing the file, only flash current line.
+    (unless (string= file (buffer-file-name (window-buffer)))
+      ;; Otherwise, open it, or if the current frame already has a
+      ;; window displaying it, switch to it.
+      (select-window
+       (display-buffer
+        (find-file-noselect file)
+        '(display-buffer-reuse-window . ((reusable-frames . nil)
+                                         (inhibit-same-window . t)))))))
+  (gk-flash-current-line))
+
 
 
 ;;;; Generic advices:
@@ -5310,6 +5326,8 @@ the body of the entry, and the cdr is the score, an integer.")
 (gk-prefix-binding (kbd "<C-backspace>") #'delete-frame)
 (gk-prefix-binding "\C-f" #'project-find-file)
 (gk-prefix-binding "\C-p" #'gk-open-project)
+
+(gk-prefix-binding "\M-i" #'gk-visit-user-init-file)
 
 
 
