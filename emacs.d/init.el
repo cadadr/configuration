@@ -957,7 +957,11 @@ up-to-date."
 (defmacro gk-interactively (&rest body)
   "Wrap the BODY in an interactive lambda form.
 Return the lambda."
-  `(lambda nil (interactive) ,@body))
+  `(lambda nil
+     ,(when (stringp (car body))
+        (pop body))
+     (interactive)
+     ,@body))
 
 (defmacro gk-with-new-frame (parameters &rest body)
   "Create a new frame and run BODY in it.
