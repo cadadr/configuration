@@ -2824,6 +2824,16 @@ symbol)."
 
 
 
+;;;; Compilation
+
+;; Send desktop notification when a compilation is finished.
+;; Adapted from https://www.reddit.com/r/emacs/comments/cw1eky/ey8tisj/
+(add-to-list 'compilation-finish-functions
+             ($ [_ status]
+                (gk-send-desktop-notification "Compilation finished" status)))
+
+
+
 ;;;; Ibuffer:
 
 ;; Use human readable Size column instead of original one
