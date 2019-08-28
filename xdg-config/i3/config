@@ -172,4 +172,10 @@ bar {
 	font pango:DejaVu Sans 10
 	position top
 	status_command i3status
+	colors {
+		separator		#C20000
+		background		#dddddd
+		statusline		#000000
+		inactive_workspace	#dddddd #000000
+	}
 }
