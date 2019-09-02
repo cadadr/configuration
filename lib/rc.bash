@@ -5,6 +5,10 @@ shopt -s checkwinsize
 shopt -s globstar
 shopt -s autocd
 
+# Show command line time information in a single line.
+TIMEFORMAT=$'\n[time elapsed: real: %lR	user: %lU	sys: %lS]'
+export TIMEFORMAT
+
 source $MYLIB/prompt.bash;
 
 # Dance for TRAMP!
