@@ -2635,7 +2635,9 @@ symbol)."
 
 (setf
  ;; Default C style.
- c-default-style "k&r")
+ c-default-style '((java-mode . "java")
+                   (awk-mode . "awk")
+                   (other . "gnu")))
 
 (add-hook 'c-mode-hook 'gk-algol-like-hook)
 
