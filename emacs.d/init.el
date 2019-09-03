@@ -651,8 +651,8 @@ BUFFER defaults to current buffer, and SECONDS to 1."
 (defun gk-build-emacs-master ()
   "Run Emacs git build wrapper script."
   (interactive)
-  (let ((compilation-buffer-name-function ($ "*Build Emacs Master*")))
-    (compile "build-emacs-master.sh")))
+  (let ((compilation-buffer-name-function ($ [_] "*Build Emacs Master*")))
+    (compile "build-emacs-master.sh" t)))
 
 (defun gk-visit-user-init-file ()
   "Visit ‘user-init-file’, reuse window if useful.
