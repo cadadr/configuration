@@ -670,6 +670,13 @@ Flash the current line after that."
                                          (inhibit-same-window . t)))))))
   (gk-flash-current-line))
 
+(defun gk-decode-xml-entities-in-region (beginning end)
+  (interactive "r")
+  (let ((str (buffer-substring (region-beginning) (region-end))))
+    (with-temp-buffer
+      (save-excursion (insert str))
+      (message (substring-no-properties (xml-parse-string))))))
+
 
 
 ;;;; Generic advices:
