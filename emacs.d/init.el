@@ -3175,6 +3175,39 @@ email and archiving read mail in another file."
   (rmail-output gk-rmail-archive-file)
   (rmail-delete-forward))
 
+(defun gk-rmail-forward-link-or-button (p)
+  "Navigate both links and buttons in Rmail in a ring.
+This replaces the use of ‘forward-button’ which only traverses
+buttons and skips over links."
+  (interactive (list (point)))
+  (let (positions)
+    (dolist (overlay (overlays-in (point-min) (point-max)))
+      (when (memq (car (overlay-properties overlay))
+                  '(goto-address button))
+        (pushnew (overlay-start overlay) positions)))
+    (setq positions (sort positions #'<))
+    (if (>= p (car (last positions)))
+        (goto-char (first positions))
+      (goto-char (first (cl-remove-if ($ (<= $1 p)) positions))))))
+
+(defun gk-rmail-backward-link-or-button (p)
+  "Navigate both links and buttons in Rmail in a ring.
+This replaces the use of ‘forward-button’ which only traverses
+buttons and skips over links.
+
+This is the reverse counterpart of
+‘gk-rmail-forward-link-or-button’."
+  (interactive (list (point)))
+  (let (positions)
+    (dolist (overlay (overlays-in (point-min) (point-max)))
+      (when (memq (car (overlay-properties overlay))
+                  '(goto-address button))
+        (pushnew (overlay-start overlay) positions)))
+    (setq positions (sort positions #'<))
+    (if (<= p (first positions))
+        (goto-char (car (last positions)))
+      (goto-char (car (last (cl-remove-if ($ (>= $1 p)) positions)))))))
+
 (dolist (f '(rmail-summary-previous-msg rmail-summary-next-msg))
  (advice-add f :around #'gk-ad-stay-here))
 
@@ -3184,6 +3217,9 @@ email and archiving read mail in another file."
 (define-key rmail-mode-map "b"
   (gk-interactively (gk-rmail-view-html-part-in-browser)
                     (gk-rmail-advance)))
+(define-key rmail-mode-map (kbd "<tab>") #'gk-rmail-forward-link-or-button)
+(define-key rmail-mode-map (kbd "<backtab>") #'gk-rmail-backward-link-or-button)
+
 
 ;; ‘q’ is normally bound to #'rmail-summary-quit, which is simply
 ;; useless.
