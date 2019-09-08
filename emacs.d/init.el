@@ -3095,7 +3095,8 @@ and special ones sepatarely."
  rmail-default-file (expand-file-name "archive" gk-mail-home)
  gk-rmail-archive-file (expand-file-name "archive" gk-mail-home)
  rmail-displayed-headers
- (rx (and bol (or "to" "date" "from" "cc" "subject" "message-id" "list-id")))
+ (rx (and bol (or "to" "date" "from" "cc" "subject" "message-id" "list-id"
+                  "delivered-to")))
  rmail-mime-prefer-html nil)
 
 (defun gk-rmail-view-html-part-in-browser ()
