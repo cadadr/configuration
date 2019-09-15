@@ -3994,6 +3994,7 @@ numerals which regularly appear in texts."
 (pushnew 'org-link org-variable-pitch-fixed-faces)
 (pushnew 'org-footnote org-variable-pitch-fixed-faces)
 (pushnew 'highlight-indent-guides-even-face org-variable-pitch-fixed-faces)
+(pushnew 'highlight-indent-guides-odd-face org-variable-pitch-fixed-faces)
 
 (defun gk-ovp-hook ()
   "Hook for ‘org-variable-pitch-minor-mode’."
