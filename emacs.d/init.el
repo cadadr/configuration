@@ -4413,7 +4413,7 @@ new frame is created."
 
   (set-face-attribute 'variable-pitch nil
                       :height gk-font-variable-pitch-height
-                      :family (gk-font :sans))
+                      :family (gk-font :serif))
 
   (loop for attr in '(mode-line mode-line-inactive) do
         (set-face-attribute attr nil
