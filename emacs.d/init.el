@@ -1113,6 +1113,41 @@ integer argument, otherwise positive."
 (defvar gk-project-compile-default-command "make test"
   "Default command for ‘gk-project-compile’.")
 
+(defun gk-new-project (directory version-control-p add-readme-org-p)
+  "Create a new project at DIRECTORY.
+
+If VERSION-CONTROL-P is non-nil, initialise DIRECTORY with a VCS.
+
+If ADD-README-ORG-P is non-nil, visit a file named “Readme.org”
+under DIRECTORY."
+  (interactive
+   (list
+    (read-directory-name "Project directory (tree root): "
+                         (concat gk-projects-directory "/"))
+    (y-or-n-p "Initialise version control? ")
+    (y-or-n-p "Add a ‘Readme.org’ file? ")))
+  (make-directory directory t)
+  (let ((default-directory directory))
+    ;; Adapted from ‘vc-backend-for-registration’.
+    (unless (dolist (backend vc-handled-backends)
+              (vc-call-backend backend 'responsible-p directory))
+      (let* ((possible-backends
+              (cl-remove-if-not
+               ($ (vc-find-backend-function $1 'create-repo))
+               vc-handled-backends))
+	     (backend
+	      (intern
+	       (completing-read
+	        "Use VC backend: "
+	        (mapcar #'symbol-name possible-backends) nil t))))
+	(vc-call-backend backend 'create-repo))))
+  (when add-readme-org-p
+    (find-file (expand-file-name "Readme.org" directory)))
+  (message "Started new project ‘%s’"
+           (file-name-base
+            (replace-regexp-in-string
+             (concat (f-path-separator) "*$") "" directory))))
+
 (defun gk-project-compile (command)
   (interactive
    (list
