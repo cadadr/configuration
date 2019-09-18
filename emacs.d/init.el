@@ -168,6 +168,9 @@
 (require 'shell)
 (require 'shr)
 (require 'simple)
+(require 'skewer-mode)
+(require 'skewer-css)
+(require 'skewer-html)
 (require 'smtpmail)
 (require 'subr-x)
 (require 'textile-mode)
@@ -2695,6 +2698,11 @@ symbol)."
 
 (add-hook 'js-mode-hook 'gk-javascript-hook)
 (add-hook 'js-mode-hook 'gk-algol-like-hook)
+
+;; Skewer mode setup.
+(add-hook 'js2-mode-hook 'skewer-mode)
+(add-hook 'css-mode-hook 'skewer-css-mode)
+(add-hook 'html-mode-hook 'skewer-html-mode)
 
 
 
