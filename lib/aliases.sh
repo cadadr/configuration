@@ -146,8 +146,18 @@ alias listall="alias | cut -d= -f1 && declare -F | cut -d ' '  -f 3 | sed 's,^,f
 alias edit="$EDITOR"
 alias re=". $ENV"
 alias j=jobs
-alias ls='ls -F'
-alias la='ls -FAl'
+# Group dirs first only for GNU ls.  For non-GNU, ‘ls --version’ will
+# probably error, which should suffice for choosing the correct
+# branch.
+#
+# The rest of ‘ls’ aliases will pick up these settings, so make sure
+# the flags here are relevant for all interactive uses of ls(1).
+if ls --version 2>/dev/null | grep -qs GNU; then
+    alias ls='/bin/ls --group-directories-first -F'
+else
+    alias ls='/bin/ls -F'
+fi
+alias la='ls -Al'
 alias lr='ls -lR'
 alias mo=pg
 YOUDL=$HOME/co/External/youtube-dl
