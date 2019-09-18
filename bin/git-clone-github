@@ -1,0 +1,43 @@
+#!/usr/bin/env perl
+# git-clone-github --- clone a github repo the way I like it -*- mode: perl -*-
+
+=pod
+
+=encoding utf8
+
+=head1 git-clone-github --- clone a github repo the way I like it
+
+=head2 Synopsis
+
+git clone-github GITHUB-URL
+
+=head2 Description
+
+Clone a repo from Github to an appropriate location with an
+appropriate name.  Appropriate as in according to my own
+conventions.
+
+=cut
+
+use v5.24;
+
+use strict;
+use warnings;
+
+my $repo_url = shift @ARGV or die "usage: git clone-github GITHUB-URL";
+
+my $repo_url_parts;
+
+unless ($repo_url =~ /
+           https? :\/\/ (www\.)?
+           (?<forge>github|gitlab)
+           \.com\/
+           (?<user>[\w\d\-_]+) \/
+           (?<repo>[\w\d\-_]+) \/?
+       /x ) {
+    die "Bad URL: $repo_url";
+} else {
+    my $local_path = "$ENV{'HOME'}/co/External/github-$+{user}-$+{repo}";
+    exec ("git-clone", $repo_url, $local_path);
+}
+
