@@ -10,7 +10,7 @@ bindsym F12 exec --no-startup-id i3-dmenu-desktop
 bindsym Shift+F12 exec dmenu_run
 bindsym $mod+Return exec emacsclient -c
 bindsym $mod+Shift+Return exec i3-sensible-terminal
-bindsym $mod+Control+Return exec i3-sensible-terminal
+bindsym $mod+Control+Return exec "firefox --new-window \"$(echo about:home | dmenu -p 'URL for new tab, empty for homepage')\""
 bindsym $mod+h exec --no-startup-id sh $MYLIB/i3cheatsheet.sh
 bindsym $mod+Control+y exec --no-startup-id xtype.sh
 bindsym $mod+Control+f exec --no-startup-id pcmanfm
