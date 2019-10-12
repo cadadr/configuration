@@ -368,7 +368,7 @@ When ARG is a positive number, repeat that many times."
     (find-file (gk-org-dir-file "start.org"))
     (split-window-sensibly)
     (other-window 1)
-    (find-file "~/doc/not/rsc/Dilbilim.org")
+    (org-agenda nil "p")
     (other-window 1)
     (gk-flash-current-line)))
 
