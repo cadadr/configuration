@@ -5460,7 +5460,7 @@ the body of the entry, and the cdr is the score, an integer.")
 (gk-prefix-binding "oa" 'org-agenda)
 (gk-prefix-binding "a" 'org-agenda)
 (gk-prefix-binding "c" 'org-capture)
-(gk-prefix-binding "oo" (gk-interactively (org-agenda nil "g")))
+(gk-prefix-binding "oo" (gk-interactively (org-agenda nil "p")))
 (gk-prefix-binding "oj" #'org-babel-tangle-jump-to-org)
 
 
