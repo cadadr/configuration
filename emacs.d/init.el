@@ -4446,6 +4446,10 @@ new frame is created."
     ;; Better background colour for region.
     (set-face-attribute 'region nil :background "medium spring green"))
 
+  ;; Settings for when using default theme specifically.
+  (unless gk-gui-theme
+    (set-face-attribute 'region nil :background "yellow green"))
+
   ;; Region should not have a foreground colour.
   (set-face-attribute 'region nil :foreground nil)
 
