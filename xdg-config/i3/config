@@ -1,7 +1,7 @@
 # i3 configuration
 
 set $mod Mod4
-font pango:DejaVu Sans 9
+font pango:DejaVu Sans 10
 floating_modifier $mod
 workspace_layout stacked
 focus_follows_mouse no
@@ -167,6 +167,14 @@ mode "$mod_volume" {
     bindsym Control+g mode "default"
 }
 bindsym $mod+Control+s mode "$mod_volume"
+
+# color theme:
+# colorclass		border	background	text 	indicator	child_border
+client.focused		#0087af	#0087af		#ffffff	#0087af		#0087af
+client.focused_inactive	#666666	#dedede		#333333	#333333		#dedede
+client.unfocused	#666666	#dddddd		#333333	#ffffff		#dedede
+client.urgent		#333333	#ffffff		#C20000	#ffffff		#dedede
+
 
 bar {
 	font pango:DejaVu Sans 10
