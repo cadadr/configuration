@@ -3556,12 +3556,13 @@ number."
       ;; If non-interactive, just return the number
       wc)))
 
+(defvar gk-org-reading-note--history '("0"))
+
 (defun gk-org-refill-reading-note ()
   "Refill a list item when taking reading notes from a PDF.
 Account for soft hyphens."
-  ;; TODO (2018-09-11): account for dash used as hyphen.
   (interactive)
-  (let (g)
+  (goto-char
     (save-excursion
       (save-match-data
         (save-restriction
@@ -3574,13 +3575,13 @@ Account for soft hyphens."
             (dotimes (_ lines)
               (join-line))
             ;; Deal with soft-hyphens
-            (while (re-search-forward "­" nil t)
-              (replace-match "")
-              (while (looking-at " ")
-                (delete-forward-char 1)))
+            (goto-char (+ 2 (point-min)))
+            (while (re-search-forward "[-­‐] " nil t)
+              (replace-match ""))
             (fill-paragraph)
-            (setq g (point-max))))))
-    (goto-char g)))
+
+            ;; return where to go
+            (+ 2 (point-max))))))))
 
 (defun gk-org-insert-reading-note (page)
   "Insert a reading note into the reading notes file.
@@ -3589,16 +3590,22 @@ with the page number as the first thing, then the quote text,
 which comes from the ‘kill-ring’ via ‘yank’ wrapped in
 guillemets.  PAGE is the page number, and can be any string,
 given how page numbers are realised varies in the real world."
-  (interactive (list (read-string "Page number: ")))
-  (unless (org-insert-item)
-    (goto-char (line-beginning-position))
-    (insert "- "))
+  (interactive
+   (list
+    (let ((def (car gk-org-reading-note--history)))
+     (read-string
+      (format "Page number (default: %s): " def)
+      nil 'gk-org-reading-note--history def t))))
+  (goto-char (line-beginning-position))
+  (insert "- ")
   (insert "p. " page ": «")
-  (yank)
-  (insert "»\n")
-  (gk-org-refill-reading-note)
-  (when (y-or-n-p "Inserted reading note, save file now?")
-    (save-buffer)))
+  (insert
+   (with-temp-buffer
+     (yank)
+     (string-trim
+      (buffer-substring (point-min) (point-max)))))
+  (insert "»\n\n")
+  (gk-org-refill-reading-note))
 
 (defun gk-org-insert-reading-bibliograpy-note ()
   (interactive)
