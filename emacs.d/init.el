@@ -3724,13 +3724,15 @@ N defaults to 1."
 (define-advice org-agenda-switch-to
     (:around (fn &rest args) in-other-window)
   "Show the buffer in a bottom side window and switch to it."
-  (let (buf ret)
+  (let (buf ret pos)
     (setq buf (save-window-excursion
-                (setq ret (apply fn args))
+                (setq ret (apply fn args)
+                      pos (point))
                 (message (buffer-name))
                 (current-buffer)))
     (display-buffer-in-side-window buf '((side . bottom)))
     (select-window (get-buffer-window buf))
+    (goto-char pos)
     ret))
 
 (setf
