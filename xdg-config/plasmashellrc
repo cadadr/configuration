@@ -1,0 +1,24 @@
+[FileDialogSize]
+Height 768=480
+Width 1366=756
+
+[KFileDialog Settings]
+Recent Files[$e]=672262-2560x1600.jpg,file:$HOME/pic/wlp/goodfon/some-indonesian-mountains.jpg,file:$HOME/pic/wlp/goodfon/672262-2560x1600.jpg
+Recent URLs[$e]=file:$HOME/pic/wlp/goodfon/
+detailViewIconSize=68
+iconViewIconSize=93
+
+[PlasmaRunnerManager]
+pluginWhiteList=services,places,desktopsessions,PowerDevil,shell,bookmarks,recentdocuments,locations,baloosearch
+
+[PlasmaTransientsConfig]
+PreloadWeight=0
+
+[PlasmaViews][Panel 2][Horizontal1366]
+thickness=36
+
+[ScreenConnectors]
+0=LVDS-1
+
+[Updates]
+performed=/usr/share/plasma/shells/org.kde.plasma.desktop/contents/updates/obsolete_kickoffrc.js,/usr/share/plasma/shells/org.kde.plasma.desktop/contents/updates/desktop-base.js

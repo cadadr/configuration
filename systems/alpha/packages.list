@@ -8,20 +8,12 @@ packages = {
              "bridge-utils", "qemu", "rsync","openssh-server",
              "network-manager", "smartmontools", "entr", "docker.io"]
     ,
-    "desktop": ["dunst", "pasystray", "i3-wm", "i3status", "i3lock",
-                "awesome", "awesome-doc", "awesome-extra",
-                "xinit", "libxrandr-dev", "network-manager-gnome",
-                "dbus-x11", "pulseaudio", "pulseaudio-utils",
-                "pavucontrol", "alsa-oss", "alsa-utils",
-                "alsamixergui", "pcmanfm", "ristretto", "xbacklight",
-                "feh", "gvfs-backends", "gvfs-fuse", "okular",
+    "desktop": ["task-kde-desktop", "gvfs-backends", "gvfs-fuse", "okular",
                 "cheese", "gimp", "gparted", "gv", "libreoffice",
-                "libreoffice-gtk3", "libreoffice-gnome",
-                "mpv", "simple-scan", "transmission-gtk", "vokoscreen",
-                "redshift-gtk", "suckless-tools", "laptop-mode-tools", "xclip",
-                "xdotool", "xinput", "libnotify-bin", "tootle", "devhelp",
-                "firefox", "audacity", "flameshot", "xfce4-clipman", "compton",
-                "dconf-editor",]
+                "libreoffice-qt5", "libreoffice-kde5", "mpv", "simple-scan",
+                "transmission-qt", "redshift", "laptop-mode-tools", "xclip",
+                "xdotool", "xinput", "libnotify-bin", "devhelp", "firefox",
+                "audacity", "flameshot", "dconf-editor",]
     ,
     "emacs": ["libjansson-dev", "libpoppler-glib-dev",
               "libpoppler-private-dev",]
