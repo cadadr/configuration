@@ -3804,6 +3804,15 @@ N defaults to 1."
     (goto-char pos)
     ret))
 
+(define-advice org-agenda-goto
+    (:around (fn &rest args) display-here)
+  "Display buffer in place, not in other window."
+  (let (buf)
+   (save-window-excursion
+     (funcall fn args)
+     (setq buf (current-buffer)))
+   (display-buffer buf)))
+
 (setf
  ;; Don't show done items.
  org-agenda-skip-deadline-if-done t
