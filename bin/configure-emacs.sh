@@ -30,7 +30,8 @@ case $V in
 	    --with-file-notification=yes \
 	    --with-gameuser=no \
             --with-cairo \
-	    --with-mailutils ;;
+	    --with-mailutils \
+            --with-imagemagick ;;
     nothreads)
 	./configure \
 	    --prefix=$HOME/local/emacs \
