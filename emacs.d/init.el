@@ -680,6 +680,13 @@ Flash the current line after that."
       (save-excursion (insert str))
       (message (substring-no-properties (xml-parse-string))))))
 
+(defun gk-base64-decode-url (beg end)
+  "Base64-decode the region between BEG and END, assume URL encoding.
+This basically calls ‘base64-decode-region’ with the third
+argument as t, so refer to that command for further details."
+  (interactive "r")
+  (base64-decode-region beg end t))
+
 
 
 ;;;; Generic advices:
