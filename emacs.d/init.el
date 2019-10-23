@@ -3614,6 +3614,42 @@ given how page numbers are realised varies in the real world."
   (insert "»\n\n")
   (gk-org-refill-reading-note))
 
+(defun gk-org-reading-notes-ellipsise-last-note ()
+  "Ellipsise the beginning and the end of the last note.
+This means, look at the first char, if lowercase, assume it’s a
+partial sentence.  Then look at the last char, if not a period,
+assume again it’s a partial sentence.  Then ellipsise with
+brackets and an ASCII ellipsis, i.e. three consecutive dots."
+  (interactive)
+  (save-excursion
+    (condition-case err
+        (progn
+          (re-search-backward "^- p." nil)
+          (re-search-forward ": «" (line-end-position))
+          ;; We’re at the first char of the note, right after the
+          ;; lquote. If it’s lower-case, upcase it and add the
+          ;; ellipsis.
+          (let ((case-fold-search nil))
+           (save-match-data
+             (when (looking-at (rx lower))
+               (let ((char (buffer-substring (point) (1+ (point)))))
+                 (delete-char 1)
+                 (insert "[... " (upcase char) "]")))
+             ;; We’re at the last char, right before rquote.  Check if
+             ;; there is a period, or add one with ellipsis.
+             (when (re-search-forward
+                    "»\n\n" (save-excursion (org-forward-paragraph) (point)))
+               (backward-char 4)
+               ;; Delete punctuation
+               (when (looking-at (rx (any ":;,")))
+                 (delete-char 1)
+                 (backward-char))
+               (when (looking-at (rx (not (any ".!?\"”’"))))
+                 (forward-char)
+                 (insert "[... .]"))))))
+      ('search-failed
+       (user-error "Could not find note delimitation")))))
+
 (defun gk-org-insert-reading-bibliograpy-note ()
   (interactive)
   (unless (org-insert-item)
@@ -3625,6 +3661,32 @@ given how page numbers are realised varies in the real world."
   (gk-org-refill-reading-note)
   (when (y-or-n-p "Inserted bibliographic reference, save file now?")
     (save-buffer)))
+
+(defun gk-org-reading-note-merge-last-n-notes (n)
+  "Merge last N reading notes, at least 2.
+In interactive mode N is read from the prefix argument.  If it’s
+not given or is one, it’s taken as two.  If less than two, it’s a
+user error and the command aborts."
+  (interactive "p")
+  ;; If no arg was given or it was one, assume two.
+  (when (= n 1)
+    (setq n 2))
+  (unless (>= n 2)
+    (user-error "Merging less than two notes is not really possible, no?"))
+  (dotimes (_ (1- n))
+    (save-excursion
+      (condition-case err
+       (progn
+         (goto-char (line-beginning-position))
+         (when (looking-at "^-")
+           (re-search-forward "«."))
+         (let ((pattern (rx (and "»\n\n- p\." (1+ (not (any "\n"))) ": «"))))
+           (re-search-backward pattern)
+           (delete-region (point) (re-search-forward ": «"))
+           (insert " ")
+           (gk-org-refill-reading-note)))
+       ('search-failed
+        (user-error "Could not find last research note"))))))
 
 (cl-defun gk-org-forward-content (&optional (n 1))
   "Go forward in content view.
