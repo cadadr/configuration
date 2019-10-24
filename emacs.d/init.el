@@ -2883,7 +2883,7 @@ symbol)."
 
 
 
-;;;; Compilation
+;;;; Compilation:
 
 ;; Send desktop notification when a compilation is finished.
 ;; Adapted from https://www.reddit.com/r/emacs/comments/cw1eky/ey8tisj/
