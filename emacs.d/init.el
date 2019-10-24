@@ -3806,12 +3806,14 @@ N defaults to 1."
 
 (define-advice org-agenda-goto
     (:around (fn &rest args) display-here)
-  "Display buffer in place, not in other window."
-  (let (buf)
-   (save-window-excursion
-     (funcall fn args)
-     (setq buf (current-buffer)))
-   (display-buffer buf)))
+  "Display buffer in current window, unless called with prefix arg."
+  (if current-prefix-arg
+      (funcall fn args)
+   (let (buf)
+     (save-window-excursion
+       (funcall fn args)
+       (setq buf (current-buffer)))
+     (display-buffer buf))))
 
 (setf
  ;; Don't show done items.
