@@ -144,3 +144,10 @@ xdg-config/startupconfigfiles
 xdg-config/startupconfigkeys
 xdg-config/systemsettingsrc
 xdg-config/webengineurlinterceptoradblockrc
+xdg-config/arkrc
+xdg-config/discoverrc
+xdg-config/kcmshell5rc
+xdg-config/krunnerrc
+xdg-config/ksmserverrc
+xdg-config/session/
+xdg-config/trashrc
