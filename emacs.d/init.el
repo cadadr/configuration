@@ -3869,7 +3869,7 @@ Prevent comments inline in paragraphs from splitting them."
   (copy-list org-latex-classes)
   "Default value of `org-latex-classes'.")
 
-(setf org-latex-toc-command "\\newpage\\gktoc\n\n")
+(setf org-latex-toc-command "\\iftoggle{compact}{}{\\newpage}\\gktoc\n\n")
 
 (defun gk-org-latex-set-classes (backend)
   (when (equal backend 'latex)
