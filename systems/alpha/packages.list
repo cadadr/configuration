@@ -27,8 +27,8 @@ packages = {
              "libnss-mdns", "mailutils", "mairix", "mutt", "mpop",
              "msmtp", "procmail", "certbot", "dirmngr", "youtube-dl",
              "hugo", "inotify-tools", "pandoc", "fbi", "ddgr", "hledger", "jq",
-             "gitit", "lynx", "pwgen", "gnupg2", # for /usr/bin/gpg2
-                                                 # which pass wants
+             "djvulibre-bin", "gitit", "lynx", "pwgen",
+             "gnupg2", # for /usr/bin/gpg2 which pass wants
              ]
     ,
     "devel": {
