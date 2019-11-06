@@ -3829,7 +3829,9 @@ N defaults to 1."
    (todo priority-down category-up)
    (tags priority-down category-up)
    (search category-up))
- org-agenda-dim-blocked-tasks nil)
+ org-agenda-dim-blocked-tasks nil
+ ;; Don’t show tags in agenda.
+ org-agenda-remove-tags t)
 
 (setf org-agenda-block-separator nil)
 
