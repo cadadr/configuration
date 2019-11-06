@@ -4293,6 +4293,8 @@ Generates a "
    (shell . t)
    (python . t)))
 
+(setq org-babel-python-command "run-python.sh")
+
 (defun gk-org-confirm-babel-evaluate (&rest ignore)
   "Evaluate code blocks straight away if they are in the ‘org-directory’.
 Ask otherwise."
