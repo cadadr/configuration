@@ -3074,7 +3074,7 @@ and special ones sepatarely."
  message-send-mail-function 'message-send-mail-with-sendmail
  message-sendmail-f-is-evil t
  message-sendmail-envelope-from 'header
- sendmail-program (gk-executable-ensure "msmtp-enqueue.sh"))
+ sendmail-program (gk-executable-ensure "msmtp"))
 
 (defun gk-mail-set-msmtp-account ()
   "Find account name for email address in From: line."
