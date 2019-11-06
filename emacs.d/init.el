@@ -4368,6 +4368,9 @@ Ask otherwise."
 
 ;;;;; Keybindings:
 
+;; Disable confusing bindings
+(org-defkey org-mode-map (kbd "C-c C-x C-c") nil)
+
 (org-defkey org-mode-map (kbd "C-M-<return>") 'org-insert-subheading)
 ;; Heading navigation
 (org-defkey org-mode-map (kbd "M-p") 'outline-previous-visible-heading)
