@@ -10,6 +10,6 @@ Pin-Priority: 999
 
 # Get Firefox from unstable.
 
-Package: firefox
-Pin: release a=unstable
-Pin-Priority: 1001
+# Package: firefox
+# Pin: release a=unstable
+# Pin-Priority: 1001
