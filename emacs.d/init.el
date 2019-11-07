@@ -4495,6 +4495,10 @@ Ask otherwise."
 
 ;;;;; GUI:
 
+(setf
+ ;; Disable interaction with clipboard manager,
+ x-select-enable-clipboard-manager nil)
+
 (defvar gk-gui-theme 'paper
   "The default theme's name to load at startup.")
 
