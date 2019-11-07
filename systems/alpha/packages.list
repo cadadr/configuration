@@ -68,7 +68,7 @@ packages = {
         ,
     }
     ,
-    "doc": ["texinfo-doc-nonfree", "make-doc", "gawk-doc", "apt-doc",
+    "doc": ["make-doc", "gawk-doc", "apt-doc",
             "autoconf-doc", "bash-doc", "binutils-doc", "aspell-doc",
             "binutils-doc", "bzip2-doc", "cvs-doc", "debconf-doc",
             "diffutils-doc", "ffmpeg-doc", "gdb-doc", "gettext-doc", "git-doc",
