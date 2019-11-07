@@ -14,7 +14,7 @@ help:
 	echo "	init		initialise \`$(HOST)' instance";\
 	echo "	test		test \`$(HOST)' w/ Docker (run as root)";\
 	echo "	pkg		(re)install \`$(HOST)' packages";\
-	echo "	config		(re)install \`$(HOST)' config files";\
+	echo "	conf		(re)install \`$(HOST)' config files";\
 	echo "	cron		(re)install current config's cron";\
 	echo "	setup		set up $$HOME and $$USER after system initialisation";\
 	echo "	invade		run invasion";\
