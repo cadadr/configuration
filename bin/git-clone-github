@@ -37,7 +37,7 @@ unless ($repo_url =~ /
        /x ) {
     die "Bad URL: $repo_url";
 } else {
-    my $local_path = "$ENV{'HOME'}/co/External/github-$+{user}-$+{repo}";
+    my $local_path = "$ENV{'HOME'}/co/External/$+{forge}-$+{user}-$+{repo}";
     exec ("git-clone", $repo_url, $local_path);
 }
 
