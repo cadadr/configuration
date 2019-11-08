@@ -47,7 +47,7 @@ bindsym $mod+c focus child
 
 set $w1 "1/home"
 set $w2 "2/www"
-set $w3 "3/wrk"
+set $w3 "3/rsc"
 
 # switch to workspace
 bindsym F1 workspace $w1
@@ -167,6 +167,18 @@ mode "$mod_volume" {
     bindsym Control+g mode "default"
 }
 bindsym $mod+Control+s mode "$mod_volume"
+
+set $mod_mnemonic_switch Switch to (h)ome (w)ww (r)sc
+mode "$mod_mnemonic_switch" {
+    bindsym h workspace $w1; mode "default"
+    bindsym w workspace $w2; mode "default"
+    bindsym r workspace $w3; mode "default"
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym Control+g mode "default"
+}
+bindsym $mod+m mode "$mod_mnemonic_switch"
 
 # color theme:
 # colorclass		border	background	text 	indicator	child_border
