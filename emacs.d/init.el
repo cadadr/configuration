@@ -2114,6 +2114,14 @@ file extension.")
 
 
 
+;;;;; Misc:
+
+(setf
+ ;; Display ‘default-directory’ when prompting for a shell command.
+ shell-command-prompt-show-cwd t)
+
+
+
 ;;;;; Secrets:
 
 (gk-load (dropbox "secrets") t)
