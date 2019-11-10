@@ -3801,6 +3801,8 @@ N defaults to 1."
     (display-buffer-in-side-window buf '((side . bottom)))
     (select-window (get-buffer-window buf))
     (goto-char pos)
+    (org-back-to-heading)
+    (recenter-top-bottom 0)
     ret))
 
 (define-advice org-agenda-goto
