@@ -45,9 +45,9 @@ bindsym $mod+space focus mode_toggle
 bindsym $mod+u focus parent
 bindsym $mod+c focus child
 
-set $w1 "1/home"
-set $w2 "2/www"
-set $w3 "3/rsc"
+set $w1 "1:home"
+set $w2 "2:www"
+set $w3 "3:rsc"
 
 # switch to workspace
 bindsym F1 workspace $w1
