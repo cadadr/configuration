@@ -21,7 +21,7 @@ packages = {
                 "redshift-gtk", "suckless-tools", "laptop-mode-tools", "xclip",
                 "xdotool", "xinput", "libnotify-bin", "tootle", "devhelp",
                 "firefox-esr", "audacity", "flameshot", "xfce4-clipman",
-                "compton", "dconf-editor",]
+                "compton", "dconf-editor", "wmctrl"]
     ,
     "emacs": ["libjansson-dev", "libpoppler-glib-dev",
               "libpoppler-private-dev",]
