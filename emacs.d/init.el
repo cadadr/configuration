@@ -5538,6 +5538,7 @@ the body of the entry, and the cdr is the score, an integer.")
 (gk-prefix-binding (kbd "<C-backspace>") #'delete-frame)
 (gk-prefix-binding "\C-f" #'project-find-file)
 (gk-prefix-binding "\C-p" #'gk-open-project)
+(gk-prefix-binding (kbd "C-+") #'gk-create-project)
 
 (gk-prefix-binding "\M-i" #'gk-visit-user-init-file)
 
