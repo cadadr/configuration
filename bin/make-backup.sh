@@ -12,7 +12,7 @@ SERVICES="pulseaudio $(cd $HOME/.config/systemd/user && ls *.service | cut -d. -
 WAIT_SECS=${WAIT_SECS:=1}
 
 ballname="backup.$(date --utc +'%F.h%H%M.%Z')"
-ballext="tar.xz"
+ballext="tar.gz"
 ball="$ballname.$ballext"
 
 files="$(find /igk -maxdepth 1 				\
@@ -26,7 +26,7 @@ say Calculate total size of the input...
 insiz="$(du -hs $files | cut -f 1)"
 
 tarcmd="tar --force-local --preserve-permissions 		\
-	    --acls --selinux --xattrs --create --xz --verbose 	\
+	    --acls --selinux --xattrs --create --gzip --verbose 	\
 	    --file=$OUTDIR/$ball $(echo $files)"
 
 pvcmd="pv --timer --eta --progress --size $count --line-mode -"
@@ -72,7 +72,7 @@ sudo mount -o remount,ro $IGKDIR
 mount | grep $IGKDIR
 
 say Remove oldest of backups...
-rm -i "$(ls -t $OUTDIR/*.xz | tac | head -1)"*
+rm -i "$(ls -t $OUTDIR/*.gz | tac | head -1)"*
 
 echo
 echo "Will back up $count items, $insiz of data in total..."
