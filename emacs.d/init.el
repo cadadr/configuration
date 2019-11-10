@@ -1118,45 +1118,13 @@ integer argument, otherwise positive."
 
 ;; Functionality for opening and working with projects.
 
+(defvar gk-projects-directory (expand-file-name "~/co")
+  "Directory where software projects are located.")
+
 (defvar gk-project-compile--hist nil)
 
 (defvar gk-project-compile-default-command "make test"
   "Default command for ‘gk-project-compile’.")
-
-(defun gk-new-project (directory version-control-p add-readme-org-p)
-  "Create a new project at DIRECTORY.
-
-If VERSION-CONTROL-P is non-nil, initialise DIRECTORY with a VCS.
-
-If ADD-README-ORG-P is non-nil, visit a file named “Readme.org”
-under DIRECTORY."
-  (interactive
-   (list
-    (read-directory-name "Project directory (tree root): "
-                         (concat gk-projects-directory "/"))
-    (y-or-n-p "Initialise version control? ")
-    (y-or-n-p "Add a ‘Readme.org’ file? ")))
-  (make-directory directory t)
-  (let ((default-directory directory))
-    ;; Adapted from ‘vc-backend-for-registration’.
-    (unless (dolist (backend vc-handled-backends)
-              (vc-call-backend backend 'responsible-p directory))
-      (let* ((possible-backends
-              (cl-remove-if-not
-               ($ (vc-find-backend-function $1 'create-repo))
-               vc-handled-backends))
-	     (backend
-	      (intern
-	       (completing-read
-	        "Use VC backend: "
-	        (mapcar #'symbol-name possible-backends) nil t))))
-	(vc-call-backend backend 'create-repo))))
-  (when add-readme-org-p
-    (find-file (expand-file-name "Readme.org" directory)))
-  (message "Started new project ‘%s’"
-           (file-name-base
-            (replace-regexp-in-string
-             (concat (f-path-separator) "*$") "" directory))))
 
 (defun gk-project-compile (command)
   (interactive
@@ -1170,8 +1138,31 @@ under DIRECTORY."
         (compile command))
     (user-error "Not a project frame")))
 
-(defvar gk-projects-directory "~/co"
-  "Directory where software projects are located.")
+(defun gk-create-project (name vcs parent-tree)
+  "Create a new project.
+NAME is the project name, and the project path is located in the
+directory at PARENT-TREE + NAME.  PARENT-TREE defaults to
+‘gk-projects-directory’.
+
+If VCS is non-nil (and the name of a version control system
+included in ‘vc-handled-backends’), a new repository with the
+selected VCS is initialised under the new project directory.
+
+The value of NAME is used directly in the project directory name,
+so make sure it does not include unnecessary slashes or
+problematic characters."
+  (interactive (list (read-string "Project name (will be project path basename): ")
+                     (vc-read-backend "VCS, empty for none: ")
+                     (read-directory-name "Parent directory for project subtree: "
+                                          (concat gk-projects-directory "/"))))
+  (let ((project-tree (expand-file-name name parent-tree)))
+    (condition-case e
+        (make-directory project-tree)
+      ('file-already-exists (message (apply #'format "%s: %s" (cdr e)))))
+    (when vcs
+     (let ((default-directory project-tree))
+       (vc-create-repo vcs)))
+    (gk-open-project project-tree)))
 
 (defun gk-open-project (path)
   "Open a project folder.
