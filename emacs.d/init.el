@@ -4401,8 +4401,8 @@ Ask otherwise."
   (when (boundp goto-address-mode)
     (goto-address-mode -1))
   (imenu-add-to-menubar "Entries")
-  (setq truncate-lines nil)
-  (setq indent-tabs-mode nil))
+  (setq-local truncate-lines t)
+  (setq-local indent-tabs-mode nil))
 
 (add-hook 'org-mode-hook 'gk-org-hook)
 
@@ -4595,6 +4595,8 @@ new frame is created."
 ;;;;; Lines:
 
 (setf
+ ;; Truncate long lines.
+ truncate-lines t
  ;; Behave according to `truncate-lines'.
  truncate-partial-width-windows nil
  ;; Use default fringe indicators for ‘visual-line-mode’ too.
