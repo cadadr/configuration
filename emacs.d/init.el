@@ -3818,7 +3818,8 @@ N defaults to 1."
  ;; Make todays agenda appear first, then the rest grouped by
  ;; category.
  org-agenda-sorting-strategy
- '((agenda time-up category-up tag-up habit-down priority-down)
+ '((agenda time-up category-up deadline-up scheduled-up
+           tag-up habit-down priority-down)
    (todo priority-down category-up)
    (tags priority-down category-up)
    (search category-up))
