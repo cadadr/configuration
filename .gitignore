@@ -115,3 +115,5 @@ xdg-config/krunnerrc
 xdg-config/ksmserverrc
 xdg-config/session/
 xdg-config/trashrc
+/xdg-config/kdeglobals
+/xdg-config/khelpcenterrc
