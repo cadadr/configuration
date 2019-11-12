@@ -2105,14 +2105,6 @@ file extension.")
 
 
 
-;;;;; Misc:
-
-(setf
- ;; Display ‘default-directory’ when prompting for a shell command.
- shell-command-prompt-show-cwd t)
-
-
-
 ;;;;; Secrets:
 
 (gk-load (dropbox "secrets") t)
@@ -4667,7 +4659,9 @@ popping your useless completions up, idiot."
  ;; Move to trash instead of unlinking.
  delete-by-moving-to-trash t
  ;; Save abbrevs silently
- save-abbrevs 'silently)
+ save-abbrevs 'silently
+ ;; Display ‘default-directory’ when prompting for a shell command.
+ shell-command-prompt-show-cwd t)
 
 (setq-default save-place t)
 
