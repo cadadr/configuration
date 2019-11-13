@@ -206,6 +206,10 @@
   "Return ~/Dropbox + PATH."
   (expand-file-name path gk-dropbox-dir))
 
+(defconst gk-syndir
+  (expand-file-name "~/syn")
+  "Directory for syncing.")
+
 (setf image-dired-dir (locate-user-emacs-file "etc/image-dired")
       url-configuration-directory (locate-user-emacs-file "etc/url")
       auto-save-list-file-prefix (locate-user-emacs-file
@@ -3752,7 +3756,7 @@ N defaults to 1."
 (setq org-export-coding-system 'utf-8
       org-directory (expand-file-name "~/doc/not/org")
       org-default-notes-file (gk-org-dir-file "start.org")
-      org-icalendar-combined-agenda-file (gk-org-dir-file "ajanda.ics")
+      org-icalendar-combined-agenda-file (expand-file-name "ajanda.ics" gk-syndir)
       org-id-locations-file (locate-user-emacs-file "etc/org-id-locations.el"))
 
 (defvar gk-org-agenda-files nil
@@ -3762,7 +3766,7 @@ N defaults to 1."
   "List of files that contain per-project TODO items.")
 
 (setf
- ;; gk-org-agenda-files (gk-org-dir-files "ajanda.org" "caldav.org")
+ gk-org-agenda-files (gk-org-dir-files "planner.org")
  org-agenda-files gk-org-agenda-files)
 
 
@@ -5374,7 +5378,51 @@ the body of the entry, and the cdr is the score, an integer.")
 
 
 
-;;;; After save hooks:
+;;;; After Save™:
+
+;; This is /the/ after save hook.  It's the one hook added to
+;; =after-save-hook= that'll do all the things I might want automatically
+;; done after when a file is saved.
+
+
+(defvar gk-after-save-org-timer nil)
+(defvar gk-after-save-org-idle-seconds 5)
+
+(defun gk-after-save-hook ()
+  "Göktuğ's After Save™, a man's best companion.
+Does various tasks after saving a file, see it's definition."
+  ;; Export agenda files when edited.
+  (when-let* ((file (ignore-errors      ;expand-file-name signals if
+                                        ;its first argument is nil.
+                      (expand-file-name (buffer-file-name)))))
+    (when (and (not gk-after-save-org-timer) ;check if there is an
+                                        ;active timer, the timer
+                                        ;callback nulls this
+                                        ;variable
+               (eq major-mode 'org-mode)
+               (member file (mapcar #'expand-file-name org-agenda-files)))
+      (message "Wrote an agenda file and there were no active\
+ timers, will export ICS files when Emacs is idle for %d seconds"
+               gk-after-save-org-idle-seconds)
+      ;; Do not rush, query only if Emacs is idle.
+      (setf
+       gk-after-save-org-timer
+       (run-with-idle-timer
+        gk-after-save-org-idle-seconds nil
+        (lambda ()
+          (message "Regenerating ICS files...")
+          (let ((org-icalendar-include-todo nil)
+                (org-agenda-new-buffers nil))
+            (org-icalendar-export-agenda-files))
+          (message "Done!")
+          ;; Reset the timer.
+          (setf gk-after-save-org-timer nil)))))))
+
+(add-hook 'after-save-hook 'gk-after-save-hook)
+
+
+
+;;;;; Other after save hooks:
 
 (add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
 
