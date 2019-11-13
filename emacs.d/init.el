@@ -369,10 +369,10 @@ When ARG is a positive number, repeat that many times."
         (split-window-sensibly)
         (other-window 1)
         (funcall vcs dir))
-    (find-file (gk-org-dir-file "start.org"))
+    (org-agenda nil "p")
     (split-window-sensibly)
     (other-window 1)
-    (org-agenda nil "p")
+    (find-file (gk-org-dir-file "start.org"))
     (other-window 1)
     (gk-flash-current-line)))
 
