@@ -3841,6 +3841,10 @@ N defaults to 1."
 
 (add-hook 'org-agenda-mode-hook #'gk-org-agenda-mode-hook)
 
+(define-key org-agenda-mode-map [mouse-1] #'org-agenda-todo)
+(define-key org-agenda-mode-map [mouse-2] #'org-agenda-goto)
+(define-key org-agenda-mode-map [mouse-3] #'org-agenda-switch-to)
+
 
 
 ;;;;; Exporting:
