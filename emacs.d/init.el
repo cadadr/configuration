@@ -1216,6 +1216,24 @@ PATH is the path to the project."
 
 
 
+;;;; i3wm:
+
+(defun gk-i3wm-get-current-workspace-id ()
+  "Return focused workspace number and name as a cons cell."
+ (let* ((workspaces
+         (with-temp-buffer
+           (call-process "i3-msg" nil t nil "-t" "get_workspaces")
+           (goto-char (point-min))
+           (json-parse-buffer)))
+        (focused (seq-filter ($ (eq t (gethash "focused" $1)))
+                             workspaces)))
+   (unless (eq 1 (length focused))
+     (error "Unreachable state: multiple focused workspaces"))
+   (cons (gethash "num" (car focused))
+         (gethash "name" (car focused)))))
+
+
+
 ;;; The GK minor mode:
 
 ;; The GK minor mode is at the heart of this configuration.  Almost
