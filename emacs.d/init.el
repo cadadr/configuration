@@ -370,9 +370,15 @@ When ARG is a positive number, repeat that many times."
         (other-window 1)
         (funcall vcs dir))
     (org-agenda nil "p")
-    (split-window-sensibly)
+    (split-window-horizontally)
     (other-window 1)
-    (find-file (gk-org-dir-file "start.org"))
+    (if (string= "rsc" (cdr (gk-i3wm-get-current-workspace-id)))
+        (progn
+          (find-file "~/doc/not/rsc/Dilbilim.org")
+          (split-window-vertically)
+          (other-window 1)
+          (find-file "~/doc/not/ders/hacett-idb/notlar.org"))
+      (find-file (gk-org-dir-file "start.org")))
     (other-window 1)
     (gk-flash-current-line)))
 
