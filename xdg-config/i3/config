@@ -3,7 +3,7 @@
 set $mod Mod4
 font pango:DejaVu Sans 10
 floating_modifier $mod
-workspace_layout stacked
+workspace_layout tabbed
 focus_follows_mouse no
 
 bindsym F12 exec --no-startup-id i3-dmenu-desktop
