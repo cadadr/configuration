@@ -5450,10 +5450,9 @@ Does various tasks after saving a file, see it's definition."
         gk-after-save-org-idle-seconds nil
         (lambda ()
           (message "Regenerating ICS files...")
-          (let ((org-icalendar-include-todo nil)
-                (org-agenda-new-buffers nil))
+          (let ((org-icalendar-include-todo nil))
             (org-icalendar-export-agenda-files))
-          (message "Done!")
+          (message "Done regenerating ICS files!")
           ;; Reset the timer.
           (setf gk-after-save-org-timer nil)))))))
 
