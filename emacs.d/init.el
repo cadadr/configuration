@@ -3814,6 +3814,9 @@ N defaults to 1."
 
 ;;;;; Agenda:
 
+;; Don’t fucking kill my buffers.  Why would I ever want that?
+(defalias 'org-release-buffers #'ignore)
+
 (define-advice org-agenda-switch-to
     (:around (fn &rest args) in-other-window)
   "Show the buffer in a bottom side window and switch to it."
