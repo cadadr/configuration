@@ -3370,6 +3370,31 @@ Wonder why this is not the default."
 
 
 
+;;;;; Emphasis:
+;; Slightly customise emphasis markers to work near Unicode
+;; delimiters.  Also expand the range these markers work.
+
+(defvar gk-original-org-emphasis-regexp-components
+  (cl-copy-tree (default-value 'org-emphasis-regexp-components)))
+
+(defvar gk-org-emphasis-additional-chars "‘’«»“”·﻿" ;includes zero-width-nbsp
+  "New characters to add to Org emphasis delimiters")
+
+(setq
+ org-emphasis-regexp-components
+ (list
+  (concat (car gk-original-org-emphasis-regexp-components)
+          gk-org-emphasis-additional-chars)
+  (concat (cadr gk-original-org-emphasis-regexp-components)
+          gk-org-emphasis-additional-chars)
+  (caddr gk-original-org-emphasis-regexp-components)
+  (cadddr gk-original-org-emphasis-regexp-components)
+  20))
+
+(org-reload)
+
+
+
 ;;;;; Citations:
 
 ;; Citation link for org-mode, based on
@@ -4425,29 +4450,6 @@ Ask otherwise."
 
 
 
-;;;;; Emphasis:
-;; Slightly customise emphasis markers to work near Unicode
-;; delimiters.  Also expand the range these markers work.
-
-(defvar gk-original-org-emphasis-regexp-components
-  (cl-copy-tree (default-value 'org-emphasis-regexp-components)))
-
-(defvar gk-org-emphasis-additional-chars "‘’«»“”·﻿" ;includes zero-width-nbsp
-  "New characters to add to Org emphasis delimiters")
-
-(setq
- org-emphasis-regexp-components
- (list
-  (concat (car gk-original-org-emphasis-regexp-components)
-          gk-org-emphasis-additional-chars)
-  (concat (cadr gk-original-org-emphasis-regexp-components)
-          gk-org-emphasis-additional-chars)
-  (caddr gk-original-org-emphasis-regexp-components)
-  (cadddr gk-original-org-emphasis-regexp-components)
-  20))
-
-
-
 ;;;;; Keybindings:
 
 ;; Disable confusing bindings
@@ -4499,12 +4501,6 @@ Ask otherwise."
 (gk-load (gk-org-dir-file "settings") t)
 
 
-
-;;;;; Reload org:
-;; Reload org so that some settings, like emphasis markers, are
-;; applied.
-
-(org-reload)
 
 ;;;; Multimedia:
 
