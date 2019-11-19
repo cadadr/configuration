@@ -3934,7 +3934,8 @@ N defaults to 1."
 (setf org-agenda-block-separator nil)
 
 (defun gk-org-agenda-mode-hook ()
-  (orgstruct-mode +1))
+  (orgstruct-mode +1)
+  (hl-line-mode +1))
 
 (add-hook 'org-agenda-mode-hook #'gk-org-agenda-mode-hook)
 
