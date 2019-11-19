@@ -149,6 +149,7 @@
 (require 'paren-face)
 (require 'pass-listing)
 (require 'pdf-tools)
+(require 'pdf-annot)
 (require 'pdf-cache)
 (require 'pdf-isearch)
 (require 'pdf-misc)
