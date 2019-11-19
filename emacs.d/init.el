@@ -5474,7 +5474,7 @@ Does various tasks after saving a file, see it's definition."
                                         ;callback nulls this
                                         ;variable
                (eq major-mode 'org-mode)
-               (member file (mapcar #'expand-file-name org-agenda-files)))
+               (member file (mapcar #'expand-file-name gk-org-agenda-files)))
       (message "Wrote an agenda file and there were no active\
  timers, will export ICS files when Emacs is idle for %d seconds"
                gk-after-save-org-idle-seconds)
