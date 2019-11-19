@@ -97,6 +97,8 @@
 (require 'flyspell)
 (require 'forecast)
 (require 'git-commit)
+(require 'git-gutter)
+(require 'git-gutter-fringe)
 (require 'gk-greek)
 (require 'gk-unilat)
 (require 'goto-addr)
@@ -1888,7 +1890,8 @@ will receive the region if active, or the entire buffer."
   (set-input-method default-input-method)
   (olivetti-mode 1)
   (setq indent-tabs-mode nil)
-  (highlight-indent-guides-mode))
+  (highlight-indent-guides-mode)
+  (git-gutter-mode +1))
 
 (add-hook 'text-mode-hook 'gk-text-editing-modes-hook)
 
@@ -2539,7 +2542,8 @@ Set by ‘gk-algol-like-hook’, don’t manually set.")
   "Hook for all programming modes."
   (olivetti-mode 1)
   (highlight-indent-guides-mode)
-  (setq-local indent-tabs-mode nil))
+  (setq-local indent-tabs-mode nil)
+  (git-gutter-mode +1))
 
 (add-hook 'prog-mode-hook #'gk-prog-mode-hook)
 
