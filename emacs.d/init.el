@@ -3925,8 +3925,6 @@ N defaults to 1."
    (tags priority-down category-up)
    (search category-up))
  org-agenda-dim-blocked-tasks nil
- ;; Don’t show tags in agenda.
- org-agenda-remove-tags t
  ;; Don’t colour unless deadline
  org-agenda-deadline-faces '((1.0 . org-warning)
                              (0.0 . default)))
