@@ -2500,6 +2500,13 @@ unlocked, offer to lock it before pasting."
 
 (cl-pushnew 'magit-todos-mode gk-global-modes)
 
+;; Automatically ask for ssh-add when necessary.
+(add-hook
+ 'magit-credential-hook
+ ($ (save-window-excursion
+      (setenv "SSH_ASKPASS" (expand-file-name "sshpass.sh" (getenv "MYLIB")))
+      (shell-command "ssh-add" (generate-new-buffer "*ssh-add*")))))
+
 
 
 ;;;;; Mercurial:
