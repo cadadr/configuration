@@ -19,6 +19,7 @@
 .mpoprc							dotfiles/mpoprc
 .msmtprc						dotfiles/msmtprc
 .muttrc							dotfiles/muttrc
+.praat-dir						dotfiles/praat
 .procmailrc						dotfiles/procmailrc
 .profile						dotfiles/profile.sh
 .signature						dotfiles/signature

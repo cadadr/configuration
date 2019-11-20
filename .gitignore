@@ -34,6 +34,8 @@ bin/xmonad
 bin/dwm
 config.m4
 
+dotfiles/praat/pid
+
 # Generated files.
 dotfiles/mpoprc
 dotfiles/msmtprc
