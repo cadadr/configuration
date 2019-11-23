@@ -18,6 +18,7 @@ x-scheme-handler/ftp=firefox.desktop;
 x-scheme-handler/http=firefox.desktop;
 x-scheme-handler/https=firefox.desktop;
 x-scheme-handler/mailto=exo-mail-reader.desktop
+text/csv=emacsclient.desktop;
 
 [Default Applications]
 application/pdf=org.kde.okular.desktop
