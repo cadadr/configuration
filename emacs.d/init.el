@@ -384,7 +384,7 @@ When ARG is a positive number, repeat that many times."
     (if (string= "rsc" (cdr (gk-i3wm-get-current-workspace-id)))
         (progn
           (other-window 1)
-          (split-window-vertically (* 4 (/ (window-height) 5)))
+          (split-window-vertically (* 2 (/ (window-height) 3)))
           (other-window 1)
           (find-file (gk-org-dir-file "okuma.org"))
           (other-window 1)
