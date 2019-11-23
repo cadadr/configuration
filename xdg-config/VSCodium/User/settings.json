@@ -5,4 +5,5 @@
     "editor.wordWrap": "wordWrapColumn",
     "telemetry.enableCrashReporter": false,
     "workbench.colorTheme": "Visual Studio Light",
+    "python.pythonPath": "python3"
 }
