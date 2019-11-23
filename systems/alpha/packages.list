@@ -26,7 +26,10 @@ packages = {
     "emacs": ["libjansson-dev", "libpoppler-glib-dev",
               "libpoppler-private-dev",]
     ,
-    "sci": ["spek", "praat", "python3-matplotlib",]
+    "sci": ["spek", "praat", "python3-matplotlib",
+            # SciPy:
+            "python3-numpy", "python3-scipy", "python3-matplotlib",
+            "python3-pandas", "python3-sympy", "python3-nose",]
     ,
     "tex": ["texlive-full", "perl-tk",]
     ,
