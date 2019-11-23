@@ -60,6 +60,9 @@
       <property name="tweaks" type="empty">
         <property name="never-confirm-history-clear" type="bool" value="true"/>
       </property>
+      <property name="settings" type="empty">
+        <property name="max-texts-in-history" type="uint" value="1000"/>
+      </property>
     </property>
   </property>
 </channel>
