@@ -4,5 +4,5 @@
     "editor.tabSize": 8,
     "editor.wordWrap": "wordWrapColumn",
     "telemetry.enableCrashReporter": false,
-    "workbench.colorTheme": "Monokai"
+    "workbench.colorTheme": "Visual Studio Light",
 }
