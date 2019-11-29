@@ -5,6 +5,7 @@ font pango:DejaVu Sans 10
 floating_modifier $mod
 workspace_layout tabbed
 focus_follows_mouse no
+focus_on_window_activation urgent
 
 bindsym F12 exec --no-startup-id i3-dmenu-desktop
 bindsym Shift+F12 exec dmenu_run
