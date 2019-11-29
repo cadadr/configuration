@@ -27,6 +27,13 @@ DROPPRIVS=yes
 
 ### Delivery:
 # Deliver non-spam messages.
+
+# Mailing lists
+:0:
+* ^List-Id: .*python-list.python.org>$
+lists
+
+# Catch-all for the rest
 :0:
 inbox
 
