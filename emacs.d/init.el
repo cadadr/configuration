@@ -4794,8 +4794,12 @@ new frame is created."
 
   (add-hook 'after-make-frame-functions #'gk-setup-frame-looks)
 
+  ;; Set up cursors:
   (setq-default cursor-type 'bar)
-  (setq-default cursor-in-non-selected-windows 'hollow))
+  (setq-default cursor-in-non-selected-windows 'hollow)
+
+  (dolist (hook '(special-mode-hook dired-mode-hook rmail-mode-hook rmail-summary-mode-hook))
+    (add-hook hook ($ (setq-local cursor-type 'box)))))
 
 
 
