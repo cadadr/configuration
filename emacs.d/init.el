@@ -4697,7 +4697,7 @@ fragments"
  ;; Disable interaction with clipboard manager,
  x-select-enable-clipboard-manager nil)
 
-(defvar gk-gui-theme 'paper
+(defvar gk-gui-theme 'leuven
   "The default theme's name to load at startup.")
 
 (defun gk-setup-frame-looks (&optional frame)
