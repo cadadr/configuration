@@ -2,7 +2,7 @@
 
 # Set this to the directory where your maildir folders live
 base=/home/g/posta
-mbox=current:archive*:outbox*:lists...
+mbox=current:archive*:outbox*:lists*
 mfolder=/home/g/posta/mairix/search
 mformat=mbox
 database=/home/g/posta/mairix/index
