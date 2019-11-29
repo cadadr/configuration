@@ -199,3 +199,11 @@ bar {
 		inactive_workspace	#dddddd #000000
 	}
 }
+
+# Rules:
+for_window [title="Praat Objects"] split h
+for_window [title="Praat Picture"] move to container [title="Praat Objects"]
+for_window [class="Praat" title="SoundRecorder"] floating enable
+for_window [class="Praat" title="\d+\. Sound .*"] floating enable
+for_window [class="Praat" title="VowelEditor"] floating enable
+for_window [class="Praat" title="Praat Info"] floating enable
