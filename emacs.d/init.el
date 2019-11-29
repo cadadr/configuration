@@ -4792,7 +4792,10 @@ new frame is created."
 
   (add-hook 'after-init-hook #'gk-setup-frame-looks)
 
-  (add-hook 'after-make-frame-functions #'gk-setup-frame-looks))
+  (add-hook 'after-make-frame-functions #'gk-setup-frame-looks)
+
+  (setq-default cursor-type 'bar)
+  (setq-default cursor-in-non-selected-windows 'hollow))
 
 
 
