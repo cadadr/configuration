@@ -69,8 +69,8 @@ FormantGridEditor.source.pitch.tStart: 0
 FunctionEditor.arrowScrollStep: 0.05
 FunctionEditor.picture.drawSelectionHairs: 1
 FunctionEditor.picture.drawSelectionTimes: 1
-FunctionEditor.shellHeight: 440
-FunctionEditor.shellWidth: 700
+FunctionEditor.shellHeight: 488
+FunctionEditor.shellWidth: 1281
 FunctionEditor.showSelectionViewer: 0
 FunctionEditor.synchronizedZoomAndScroll: 1
 Graphics.cjkFontStyle: Chinese
@@ -94,8 +94,8 @@ Picture.fontSize: 10
 Picture.mouseSelectsInnerViewport: 0
 PraatShell.batchSessions: 0
 PraatShell.dateOfFirstSession: Wed Nov 20 13:15:12 2019
-PraatShell.interactiveSessions: 2
-PraatShell.memory: 348013168
+PraatShell.interactiveSessions: 8
+PraatShell.memory: 1728207749
 Printer.allowDirectPostScript: 1
 Printer.fontChoiceStrategy: automatic
 Printer.paperSize: A4
@@ -184,7 +184,7 @@ TimeSoundAnalysisEditor.pulses.picture.garnish: 1
 TimeSoundAnalysisEditor.pulses.show: 0
 TimeSoundAnalysisEditor.spectrogram.autoscaling.2: 1
 TimeSoundAnalysisEditor.spectrogram.dynamicCompression.2: 0
-TimeSoundAnalysisEditor.spectrogram.dynamicRange.2: 70
+TimeSoundAnalysisEditor.spectrogram.dynamicRange.2: 50
 TimeSoundAnalysisEditor.spectrogram.frequencySteps.2: 250
 TimeSoundAnalysisEditor.spectrogram.maximum.2: 100
 TimeSoundAnalysisEditor.spectrogram.method.2: Fourier
@@ -218,16 +218,16 @@ VowelEditor.f2max: 3500
 VowelEditor.f2min: 500
 VowelEditor.f3: 2500
 VowelEditor.f4: 3500
-VowelEditor.mark01: x
-VowelEditor.mark02: x
-VowelEditor.mark03: x
-VowelEditor.mark04: x
-VowelEditor.mark05: x
-VowelEditor.mark06: x
-VowelEditor.mark07: x
-VowelEditor.mark08: x
-VowelEditor.mark09: x
-VowelEditor.mark10: x
+VowelEditor.mark01: \ae	663.6666666666666	1727.1060606060605	14
+VowelEditor.mark02: \as	718.4242424242424	1090.8939393939395	14
+VowelEditor.mark03: \ct	568.3181818181819	836.2575757575758	14
+VowelEditor.mark04: \ef	526.1969696969697	1854.409090909091	14
+VowelEditor.mark05: \er\hr	488.5151515151515	1359.8333333333333	14
+VowelEditor.mark06: \hs	436.77272727272725	1023.2727272727273	14
+VowelEditor.mark07: \ic	392.3484848484849	1993.439393939394	14
+VowelEditor.mark08: \vt	630.6060606060606	1191.8636363636363	14
+VowelEditor.mark09: i	266.7121212121212	2293.787878787879	14
+VowelEditor.mark10: u	307.3636363636364	875.969696969697	14
 VowelEditor.mark11: x
 VowelEditor.mark12: x
 VowelEditor.mark13: x
@@ -249,10 +249,10 @@ VowelEditor.mark28: x
 VowelEditor.mark29: x
 VowelEditor.mark30: x
 VowelEditor.markTraceEvery: 0.05
-VowelEditor.marksDataset: 2
+VowelEditor.marksDataSet: American English
 VowelEditor.marksFontsize: 14
-VowelEditor.numberOfMarks: 12
-VowelEditor.shellHeight: 500
-VowelEditor.shellWidth: 500
+VowelEditor.numberOfMarks: 10
+VowelEditor.shellHeight: 636
+VowelEditor.shellWidth: 939
 VowelEditor.soundFollowsMouse: 1
-VowelEditor.speakerType: 1
+VowelEditor.speakerType2: Man
