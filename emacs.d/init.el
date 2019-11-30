@@ -3062,6 +3062,15 @@ and special ones sepatarely."
 
 
 
+
+;;;; BBDB:
+
+(setf
+ ;; Don’t display the record after completion.
+ bbdb-completion-display-record nil)
+
+
+
 ;;;; Mail:
 
 ;; Settings for reading and writing mail, and specific to mail clients
