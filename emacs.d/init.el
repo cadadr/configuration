@@ -380,6 +380,7 @@ When ARG is a positive number, repeat that many times."
         (funcall vcs dir))
     (org-agenda nil "p")
     (split-window-horizontally)
+    (org-agenda-redo-all)               ;adapt alignments to new window layout
     (other-window 1)
     (if (string= "rsc" (cdr (gk-i3wm-get-current-workspace-id)))
         (progn
