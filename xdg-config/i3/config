@@ -49,9 +49,21 @@ bindsym $mod+u focus parent
 bindsym $mod+c focus child
 
 # Workspaces
-set $ws_home "home"
-set $ws_www "www"
-set $ws_rsc "rsc"
+set $ws_home "1:home"
+set $ws_www "2:www"
+set $ws_rsc "3:rsc"
+
+bindsym F1 workspace $ws_home
+bindsym F2 workspace $ws_www
+bindsym F3 workspace $ws_rsc
+bindsym F4 workspace 4
+bindsym F5 workspace 5
+
+bindsym Shift+F1 move container to workspace $ws_home
+bindsym Shift+F2 move container to workspace $ws_www
+bindsym Shift+F3 move container to workspace $ws_rsc
+bindsym Shift+F4 move container to workspace 4
+bindsym Shift+F5 move container to workspace 5
 
 bindsym $mod+g reload
 bindsym $mod+Shift+g restart
@@ -149,36 +161,6 @@ mode "$mod_volume" {
     bindsym Control+g mode "default"
 }
 bindsym $mod+Control+s mode "$mod_volume"
-
-set $mod_mnemonic_switch Switch to (h)ome (w)ww (r)sc [1-3]
-mode "$mod_mnemonic_switch" {
-    bindsym h workspace $ws_home; mode "default"
-    bindsym w workspace $ws_www; mode "default"
-    bindsym r workspace $ws_rsc; mode "default"
-    bindsym 1 workspace 1; mode "default"
-    bindsym 2 workspace 2; mode "default"
-    bindsym 3 workspace 3; mode "default"
-
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-    bindsym Control+g mode "default"
-}
-bindsym $mod+m mode "$mod_mnemonic_switch"
-
-set $mod_mnemonic_move Move window to (h)ome (w)ww (r)sc [1-3]
-mode "$mod_mnemonic_move" {
-    bindsym h move container to workspace $ws_home; mode "default"
-    bindsym w move container to workspace $ws_www; mode "default"
-    bindsym r move container to workspace $ws_rsc; mode "default"
-    bindsym 1 move container to workspace 1; mode "default"
-    bindsym 2 move container to workspace 2; mode "default"
-    bindsym 3 move container to workspace 3; mode "default"
-
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-    bindsym Control+g mode "default"
-}
-bindsym $mod+Control+m mode "$mod_mnemonic_move"
 
 # color theme:
 # colorclass		border	background	text 	indicator	child_border
