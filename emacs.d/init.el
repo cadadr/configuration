@@ -382,7 +382,7 @@ When ARG is a positive number, repeat that many times."
     (split-window-horizontally)
     (org-agenda-redo-all)               ;adapt alignments to new window layout
     (other-window 1)
-    (if (string= "rsc" (cdr (gk-i3wm-get-current-workspace-id)))
+    (if (string= "3:rsc" (cdr (gk-i3wm-get-current-workspace-id)))
         (progn
           (other-window 1)
           (split-window-vertically (* 2 (/ (window-height) 3)))
