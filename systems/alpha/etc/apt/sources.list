@@ -1,13 +1,9 @@
 # sources.list --- Debian unstable
 
-# testing
-deb http://ftp.uk.debian.org/debian/ testing main contrib non-free
-deb-src http://ftp.uk.debian.org/debian/ testing main contrib non-free
+# stable
+deb http://ftp.uk.debian.org/debian/ stable main contrib non-free
+deb-src http://ftp.uk.debian.org/debian/ stable main contrib non-free
 
-# testing debug syms
-deb http://debug.mirrors.debian.org/debian-debug/ testing-debug main
-
-# unstable, used partially
-deb http://ftp.uk.debian.org/debian/ unstable main
-deb-src http://ftp.uk.debian.org/debian/ unstable main
+# stable debug syms
+deb http://debug.mirrors.debian.org/debian-debug/ stable-debug main
 
