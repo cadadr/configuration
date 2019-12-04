@@ -1,0 +1,6 @@
+# inputrc --- readline config
+
+# Case-insensitive completion.
+set completion-ignore-case on
+set completion-map-case on
+

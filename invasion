@@ -7,6 +7,7 @@
 .gitconfig						dotfiles/gitconfig.ini
 .hgrc							dotfiles/hgrc.ini
 .irbrc							dotfiles/irbrc.rb
+.inputrc						dotfiles/inputrc
 .local/share/applications/emacs.desktop			candy/emacs.desktop
 .local/share/applications/emacsclient.desktop		candy/emacsclient.desktop
 .local/share/applications/org-protocol.desktop		candy/org-protocol.desktop
