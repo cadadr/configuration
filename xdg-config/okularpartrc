@@ -6,6 +6,7 @@ ObeyDRM=false
 HighlightLinks=true
 
 [General]
+ShellOpenFileInTabs=true
 ShowOSD=false
 
 [Main View]
