@@ -1,6 +1,6 @@
 # Automatically download upgrades.
 APT::Periodic::Update-Package-Lists "1";
-# Download them also.
-APT::Periodic::Download-Upgradeable-Packages "1";
+# But don't download them.
+APT::Periodic::Download-Upgradeable-Packages "0";
 # Don't install automatically.
 APT::Periodic::Unattended-Upgrade "0";
