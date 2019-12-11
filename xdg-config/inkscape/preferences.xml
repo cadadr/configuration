@@ -171,8 +171,8 @@
          end="0"
          start="0"
          usecurrent="1"
-         rx="7.70827"
-         ry="8.22216" />
+         rx="13.75"
+         ry="3.5" />
       <eventcontext
          id="star"
          magnitude="5"
@@ -338,8 +338,8 @@
        style="fill:black;fill-opacity:1;stroke:none;font-family:sans-serif;font-style:normal;font-weight:normal;font-size:18.66666667px;line-height:1.25;letter-spacing:0px;word-spacing:0px"
        selcue="1">
       <group
-         display_unit="0"
-         id="lineheight" />
+         id="lineheight"
+         display_unit="0" />
     </eventcontext>
     <eventcontext
        id="nodes"
@@ -375,7 +375,8 @@
        doh="1"
        dos="1"
        dol="1"
-       doo="1" />
+       doo="1"
+       mode="0" />
     <eventcontext
        id="spray"
        selcue="1"
@@ -425,12 +426,14 @@
        offset="0"
        offsetunits="cm" />
     <group
-       unit="px"
-       offset="5"
-       scale="100"
-       precision="2"
+       id="measure"
        fontsize="10"
-       id="measure" />
+       precision="2"
+       scale="100"
+       offset="5"
+       unit="px"
+       measure-start="102.5,129"
+       measure-end="93.5,138" />
   </group>
   <group
      id="palette">
@@ -690,6 +693,17 @@
        on-focus="1.0"
        on-blur="0.50"
        animate-time="100" />
+    <group
+       id="tags"
+       panel_size="1"
+       panel_ratio="100"
+       panel_mode="1"
+       panel_wrap="0"
+       panel_border="0"
+       x="0"
+       y="0"
+       w="343"
+       h="106" />
   </group>
   <group
      id="printing">
@@ -977,15 +991,16 @@
        id="rendering" />
   </group>
   <group
-     id="extensions" />
+     id="extensions"
+     org.inkscape.render.empty_icon.size="256" />
   <group
      id="desktop"
-     style="line-height:1.25;fill:#008000;font-size:18.66666667px;stroke:#b3b3b3">
+     style="line-height:1.25;fill:#ff2a2a;font-size:18.66666667px;stroke:#b3b3b3">
     <group
        width="1362"
-       height="683"
+       height="721"
        x="0"
-       y="83"
+       y="45"
        fullscreen="0"
        id="geometry"
        maximized="0" />
