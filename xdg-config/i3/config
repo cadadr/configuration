@@ -193,3 +193,4 @@ for_window [class="Praat" title="SoundRecorder"] floating enable
 for_window [class="Praat" title="\d+\. Sound .*"] floating enable
 for_window [class="Praat" title="VowelEditor"] floating enable
 for_window [class="Praat" title="Praat Info"] floating enable
+for_window [title="Quick Format Citation"] floating enable
