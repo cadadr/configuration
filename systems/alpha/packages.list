@@ -20,7 +20,7 @@ packages = {
                 "redshift-gtk", "suckless-tools", "laptop-mode-tools", "xclip",
                 "xdotool", "xinput", "libnotify-bin", "devhelp", "audacity",
                 "flameshot", "xfce4-clipman", "compton", "dconf-editor", "wmctrl",
-                "arandr",]
+                "arandr", "inkscape", "pdfsam",]
     ,
     "emacs": ["libjansson-dev", "libpoppler-glib-dev",
               "libpoppler-private-dev",]
@@ -54,7 +54,7 @@ packages = {
                  "libswitch-perl", "cpanminus", "liblocal-lib-perl", "perlbrew",]
         ,
         "python": ["python", "python-pip", "python3-tk", "python3-venv",
-                   "ipython3",]
+                   "ipython3", "python3-notify2"]
         ,
         "ruby": ["ruby", "bundler", "ri",]
         ,
