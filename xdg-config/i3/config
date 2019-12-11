@@ -23,6 +23,7 @@ bindsym $mod+Control+q exec "i3-nagbar -t warning -m 'Bye?' -b 'Yes' 'i3-msg exi
 bindsym $mod+Shift+semicolon exec i3-input -P 'i3 command: '
 bindsym $mod+w exec i3switch.rb
 bindsym $mod+BackSpace exec python3 $MYLIB/i3/focus-last.py --switch
+bindsym $mod+Control+t exec --no-startup-id sh $MYLIB/toggle-tapping.sh
 
 bindsym $mod+b focus left
 bindsym $mod+n focus down
