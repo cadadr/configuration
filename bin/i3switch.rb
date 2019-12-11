@@ -13,6 +13,10 @@ focused_ws = (layout_tree["nodes"][1]["nodes"][1]["nodes"].select do |x|
 end)[0]
 
 its_nodes = focused_ws["nodes"][0]["nodes"]
+# TODO: flatten more effectively.
+while its_nodes[0]["window"] == nil
+  its_nodes = its_nodes[0]["nodes"]
+end
 
 windows = {}
 
