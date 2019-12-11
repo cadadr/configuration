@@ -43,7 +43,7 @@ naturalScrolling=$(xinput list-props "$touchpad" |\
 			grep -i 'natural scrolling enabled (' |\
 			sed -E "$propidRe")
 
-xinput set-prop "$touchpad" "$tappingToggle" 1
+xinput set-prop "$touchpad" "$tappingToggle" 0
 xinput set-prop "$touchpad" "$clickMethod" 0 1
 xinput set-prop "$touchpad" "$naturalScrolling" 1
 
