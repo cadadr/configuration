@@ -2,7 +2,15 @@
 
 # Generic log function that prints to stdout
 say () {
-    echo $0 [$(date)]: $@
+    msg="$0 [$(date)]: $@"
+    echo $msg
+    if [ "x$GK_NOTIFY" = xyes ]; then
+        # IDK why I need to do this but if I use "$@" directly in
+        # notify-send command line, it doesn’t work and says invalid
+        # number of arguments...
+        str="$@"
+        notify-send -u normal "$0" "$str"
+    fi
 }
 
 # Log function for xinit scripts
