@@ -43,6 +43,8 @@ bindsym $mod+s layout stacking
 bindsym $mod+t layout tabbed
 bindsym $mod+1 layout toggle split
 bindsym $mod+semicolon floating toggle
+bindsym $mod+comma move scratchpad
+bindsym $mod+period scratchpad show
 
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
