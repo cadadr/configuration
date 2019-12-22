@@ -1,4 +1,4 @@
 distro==1.3.0
 poetry==0.12.12
 i3ipc==2.1.1
-
+seaborn=0.9.0
