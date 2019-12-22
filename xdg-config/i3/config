@@ -187,10 +187,16 @@ bar {
 }
 
 # Rules:
+## Praat:
 for_window [title="Praat Objects"] split h
 for_window [title="Praat Picture"] move to container [title="Praat Objects"]
 for_window [class="Praat" title="SoundRecorder"] floating enable
 for_window [class="Praat" title="\d+\. Sound .*"] floating enable
 for_window [class="Praat" title="VowelEditor"] floating enable
 for_window [class="Praat" title="Praat Info"] floating enable
+## Zotero:
 for_window [title="Quick Format Citation"] floating enable
+## TeXDoctk
+for_window [title="File search results for .*"] floating enable
+## Matplotlib
+for_window [class="Matplotlib"] floating enable
