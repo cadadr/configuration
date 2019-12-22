@@ -70,7 +70,7 @@ FunctionEditor.arrowScrollStep: 0.05
 FunctionEditor.picture.drawSelectionHairs: 1
 FunctionEditor.picture.drawSelectionTimes: 1
 FunctionEditor.shellHeight: 488
-FunctionEditor.shellWidth: 1281
+FunctionEditor.shellWidth: 1266
 FunctionEditor.showSelectionViewer: 0
 FunctionEditor.synchronizedZoomAndScroll: 1
 Graphics.cjkFontStyle: Chinese
@@ -94,8 +94,8 @@ Picture.fontSize: 10
 Picture.mouseSelectsInnerViewport: 0
 PraatShell.batchSessions: 0
 PraatShell.dateOfFirstSession: Wed Nov 20 13:15:12 2019
-PraatShell.interactiveSessions: 8
-PraatShell.memory: 1728207749
+PraatShell.interactiveSessions: 12
+PraatShell.memory: 2820487740
 Printer.allowDirectPostScript: 1
 Printer.fontChoiceStrategy: automatic
 Printer.paperSize: A4
@@ -131,7 +131,6 @@ TextGridEditor.shellHeight: 600
 TextGridEditor.shellWidth: 800
 TextGridEditor.shiftDragMultiple: 1
 TextGridEditor.showNumberOf: intervals or points
-TextGridEditor.showSelectionViewer: 1
 TextGridEditor.useTextStyles: 0
 TimeSoundAnalysisEditor.fixedTimeStep: 0.01
 TimeSoundAnalysisEditor.formant.dotSize: 1
@@ -249,10 +248,10 @@ VowelEditor.mark28: x
 VowelEditor.mark29: x
 VowelEditor.mark30: x
 VowelEditor.markTraceEvery: 0.05
-VowelEditor.marksDataSet: American English
+VowelEditor.marksDataset: 2
 VowelEditor.marksFontsize: 14
 VowelEditor.numberOfMarks: 10
 VowelEditor.shellHeight: 636
 VowelEditor.shellWidth: 939
 VowelEditor.soundFollowsMouse: 1
-VowelEditor.speakerType2: Man
+VowelEditor.speakerType: 1
