@@ -2291,8 +2291,9 @@ unlocked, offer to lock it before pasting."
   (catch 'dirty
     (let ((modified-re "^#	modified:")
           (new-re "^#	new file:")
+          (renamed-re "^#	renamed:")
           (issue-re "^[+\\- ]\\*+ \\(TODO\\|DONE\\) ")
-          current-defun filename addp onlyp issuep)
+          current-defun filename addp onlyp issuep renamep)
       (save-excursion
         (with-current-buffer "COMMIT_EDITMSG"
           (goto-char (point-min))
@@ -2302,7 +2303,14 @@ unlocked, offer to lock it before pasting."
           (re-search-forward "^# Changes to be committed:" nil t)
           (forward-line)
           (beginning-of-line)
-          (cond ((looking-at modified-re)
+          (cond ((looking-at renamed-re)
+                 (re-search-forward ": +" nil t)
+                 (setf filename (cons (thing-at-point 'filename)
+                                      (progn
+                                        (re-search-forward " -> " nil t)
+                                        (thing-at-point 'filename)))
+                       renamep t))
+                ((looking-at modified-re)
                  (re-search-forward ":   " nil t)
                  (setf filename (thing-at-point 'filename t)))
                 ((looking-at new-re)
@@ -2339,6 +2347,9 @@ unlocked, offer to lock it before pasting."
                   (setq current-defun (diff-current-defun))))))))
       (if onlyp
           (cond
+           (renamep
+            (goto-char (point-min))
+            (insert "Renamed ‘" (car filename) "’ as ‘" (cdr filename) "’"))
            ((and issuep (not addp))
             (goto-char (point-min))
             (insert ";" issuep))
