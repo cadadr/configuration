@@ -1527,7 +1527,7 @@ If called with three prefix args, return a colon separated list."
 ;;;;; Keymappings:
 
 (define-key dired-mode-map (kbd "W") 'wdired-change-to-wdired-mode)
-(define-key dired-mode-map (kbd "C-c y") 'gk-dired-copy-marked-file-paths-as-kill)
+(define-key dired-mode-map (kbd "w") 'gk-dired-copy-marked-file-paths-as-kill)
 
 
 
