@@ -59,7 +59,7 @@ xset -dpms         # disable DPMS (Energy Star) features.
 xset s noblank     # don't blank the video device
 
 ### Visuals:
-export XBGIMG=$HOME/pic/wlp/goodfon/some-indonesian-mountains.jpg
+export XBGIMG=$HOME/pic/wlp/kde-a-safe-landing-louis-durrant-5120x2880.jpg
 
 # Do not do this here because this can be used by a window manager
 # too.  Run this function in xinitrc instead.
