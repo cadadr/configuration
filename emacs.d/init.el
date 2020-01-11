@@ -134,7 +134,6 @@
 (require 'org)
 (require 'org-capture)
 (require 'org-checklist)
-(require 'org-eww)
 (require 'org-inlinetask)
 (require 'org-mobile)
 (require 'org-protocol)
