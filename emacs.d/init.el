@@ -968,14 +968,10 @@ up-to-date."
 
 (defun gk-test-init ()
   (interactive)
-  (let ((out-buf (get-buffer-create gk-load-test-output-buffer-name)))
-    (switch-to-buffer-other-window out-buf)
-    (insert "Testing emacs initialisation...\n\n")
-    (start-process
-     gk-load-test-process-name
-     out-buf
-     gk-emacs-executable
-     "-Q" "--batch" "-l" gk-load-test-file)))
+  (compile (mapconcat
+            #'identity
+            (list gk-emacs-executable "-Q" "--batch" "-l" gk-load-test-file)
+            " ")))
 
 
 
