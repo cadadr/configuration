@@ -20,7 +20,7 @@ packages = {
                 "redshift-gtk", "suckless-tools", "laptop-mode-tools", "xclip",
                 "xdotool", "xinput", "libnotify-bin", "devhelp", "audacity",
                 "flameshot", "xfce4-clipman", "compton", "dconf-editor", "wmctrl",
-                "arandr", "inkscape", "pdfsam",]
+                "arandr", "inkscape", "pdfsam", "xarchiver",]
     ,
     "emacs": ["libjansson-dev", "libpoppler-glib-dev",
               "libpoppler-private-dev",]
