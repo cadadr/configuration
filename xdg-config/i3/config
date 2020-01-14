@@ -54,17 +54,17 @@ bindsym $mod+c focus child
 
 # Workspaces
 set $ws_home "1:home"
-set $ws_www "2:www"
+set $ws_read "2:read"
 set $ws_rsc "3:rsc"
 
 bindsym F1 workspace $ws_home
-bindsym F2 workspace $ws_www
+bindsym F2 workspace $ws_read
 bindsym F3 workspace $ws_rsc
 bindsym F4 workspace 4
 bindsym F5 workspace 5
 
 bindsym Shift+F1 move container to workspace $ws_home
-bindsym Shift+F2 move container to workspace $ws_www
+bindsym Shift+F2 move container to workspace $ws_read
 bindsym Shift+F3 move container to workspace $ws_rsc
 bindsym Shift+F4 move container to workspace 4
 bindsym Shift+F5 move container to workspace 5
