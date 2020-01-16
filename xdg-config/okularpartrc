@@ -2,6 +2,9 @@
 ExternalEditor=Emacsclient
 ObeyDRM=false
 
+[Core Performance]
+TextHinting=Enabled
+
 [Dlg Accessibility]
 HighlightLinks=true
 
