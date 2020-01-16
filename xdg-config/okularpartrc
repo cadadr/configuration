@@ -16,6 +16,7 @@ ShowLeftPanel=false
 SplitterSizes=323,946
 
 [PageView]
+EditToolBarPlacement=1
 ViewColumns=1
 ViewMode=Summary
 
