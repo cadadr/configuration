@@ -7,7 +7,7 @@ packages = {
              "moreutils", "lftp", "libpam-cgroup", "libpam-cgfs",
              "bridge-utils", "qemu", "rsync","openssh-server",
              "network-manager", "smartmontools", "entr", "docker.io",
-             "snapd",]
+             "snapd", "rar", "unrar",]
     ,
     "desktop": ["dunst", "pasystray", "i3-wm", "i3status", "i3lock",
                 "xinit", "libxrandr-dev", "network-manager-gnome",
