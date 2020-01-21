@@ -9,6 +9,10 @@ export XDG_CURRENT_DESKTOP=XFCE
 
 export WM=i3
 
+# Fixes blank windows in some Java apps (initially it was SPSS 23 for
+# me).
+export _JAVA_AWT_WM_NONREPARENTING=1
+
 ### Code:
 # Inform systemd
 systemctl --user import-environment DISPLAY
