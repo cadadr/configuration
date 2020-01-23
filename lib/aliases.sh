@@ -207,6 +207,8 @@ alias undocker='docker ps -a -f status=exited | sed "1d" | cut -d " " -f 1 | xar
 curl='curl -s'
 # The backup command string
 alias backup-distup='make-backup.sh && fresh && distup && sudo reboot'
+alias vialiases="$EDITOR $MYLIB/aliases.sh"
+alias envgrep="env | grep -i"
 
 ### OS specific aliases:
 
