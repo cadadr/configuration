@@ -57,6 +57,8 @@ packages = {
         "python": ["python", "python-pip", "python3-tk", "python3-venv",
                    "ipython3", "python3-notify2"]
         ,
+        "r": ["r-base", "r-recommended", "r-doc-info",]
+        ,
         "ruby": ["ruby", "bundler", "ri",]
         ,
         "haskell": ["haskell-platform", "haskell-platform-doc"]
