@@ -200,3 +200,7 @@ for_window [title="Quick Format Citation"] floating enable
 for_window [title="File search results for .*"] floating enable
 ## Matplotlib
 for_window [class="Matplotlib"] floating enable
+## Network Manager
+for_window [class="Nm-connection-editor"] floating enable
+## PulseAudio controller
+for_window [class="Pavucontrol"] floating enable
