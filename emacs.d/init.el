@@ -87,6 +87,7 @@
 (require 'epa)
 (require 'epa-mail)
 (require 'epg)
+(require 'ess-r-mode)
 (require 'etags)
 (require 'eval-sexp-fu)
 (require 'eww)
