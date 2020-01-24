@@ -204,3 +204,5 @@ for_window [class="Matplotlib"] floating enable
 for_window [class="Nm-connection-editor"] floating enable
 ## PulseAudio controller
 for_window [class="Pavucontrol"] floating enable
+## R
+for_window [class="R_x11"] floating enable
