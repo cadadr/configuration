@@ -1,6 +1,4 @@
-<img
- src="https://gitlab.com/cadadr/configuration/badges/master/build.svg"
- alt="Gitlab build status badge" />
+![docker-build](https://github.com/cadadr/configuration/workflows/docker-build/badge.svg)
 
 Introduction
 ============
