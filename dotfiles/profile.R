@@ -6,3 +6,6 @@ describe <- psych::describe
 # Disable scientific notation.
 options(scipen=999)
 # options(scipen=0) #enable scientific notation
+
+# Use ‘rio’ for loading and exporting files.
+library(rio)
