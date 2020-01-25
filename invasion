@@ -1,3 +1,4 @@
+.Rprofile						dotfiles/profile.R
 .Xdefaults						dotfiles/Xdefaults
 .bashrc							dotfiles/shrc.sh
 .config							xdg-config
