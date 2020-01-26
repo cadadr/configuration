@@ -4436,6 +4436,8 @@ Ask otherwise."
 
 (setf org-confirm-babel-evaluate #'gk-org-confirm-babel-evaluate)
 
+(add-hook 'org-babel-after-execute-hook 'org-display-inline-images)
+
 
 
 ;;;;; Auto-insert:
