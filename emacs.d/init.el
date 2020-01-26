@@ -5806,6 +5806,8 @@ Does various tasks after saving a file, see it's definition."
 
 (gk-prefix-binding "\M-i" #'gk-visit-user-init-file)
 
+(gk-prefix-binding "\C-q" #'save-buffers-kill-emacs)
+
 
 
 ;;;; Multiple cursors:
