@@ -1,11 +1,19 @@
 # profile.R --- R environment.
 
-# Load some useful libraries / functions.
-describe <- psych::describe
+### Set options:
 
 # Disable scientific notation.
 options(scipen=999)
 # options(scipen=0) #enable scientific notation
 
-# Use ‘rio’ for loading and exporting files.
-library(rio)
+
+
+### Load some useful functions by default:
+
+# The idea with ‘G.’ prefix here is that using those, I won’t be
+# fooled by my default environment and forget to import packages when
+# publishing code.
+
+G.describe <- psych::describe
+G.import <- rio::import
+G.export <- rio::export
