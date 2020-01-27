@@ -16,6 +16,7 @@
 .local/share/applications/vscodium.desktop		candy/vscodium.desktop
 .local/share/xfce4/helpers/custom-MailReader.desktop	candy/custom-MailReader.desktop
 .local/share/applications/mimeapps.list			xdg-config/mimeapps.list
+.local/share/applications/firefox.list			xdg-config/firefox.list
 .mailcap						dotfiles/mailcap
 .mairixrc						dotfiles/mairixrc
 .mpoprc							dotfiles/mpoprc
