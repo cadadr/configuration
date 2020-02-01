@@ -42,6 +42,8 @@ packages = {
              "gnupg2", # for /usr/bin/gpg2 which pass wants
              ]
     ,
+    "virt": ["qemu-utils", "qemu-system-x86"]
+    ,
     "devel": {
         "c": ["build-essential", ]
         ,
