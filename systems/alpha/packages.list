@@ -15,7 +15,7 @@ packages = {
                 "pavucontrol", "alsa-oss", "alsa-utils",
                 "alsamixergui", "pcmanfm", "ristretto", "xbacklight",
                 "feh", "gvfs-backends", "gvfs-fuse", "okular",
-                "cheese", "gimp", "gparted", "gv", "libreoffice",
+                "cheese", "gimp", "gparted", "libreoffice",
                 "libreoffice-gtk3", "libreoffice-gnome",
                 "mpv", "simple-scan", "transmission-gtk", "vokoscreen",
                 "redshift-gtk", "suckless-tools", "laptop-mode-tools", "xclip",
