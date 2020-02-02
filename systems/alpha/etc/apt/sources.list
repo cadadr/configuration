@@ -4,6 +4,10 @@
 deb http://ftp.uk.debian.org/debian/ stable main contrib non-free
 deb-src http://ftp.uk.debian.org/debian/ stable main contrib non-free
 
+# updates
+deb http://deb.debian.org/debian/ stable-updates main
+deb-src http://deb.debian.org/debian/ stable-updates main
+
 # stable debug syms
 deb http://debug.mirrors.debian.org/debian-debug/ stable-debug main
 
