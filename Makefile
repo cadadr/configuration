@@ -37,18 +37,26 @@ cron: $(HOST)-cron
 
 .PHONY: init test conf pkg cron setup
 
-alpha-setup: build dotfiles invade cron
-	git submodule update --init
-	update-desktop-database ~/.local/share/applications/
-	pip3 install -r requirements.txt
-	gem install bundler
-	bundle
-	bundle update --bundler
-	gem rdoc --all	
+alpha-setup: deep-clean alpha-fetch-config.m4 build dotfiles invade cron
+	sh systems/alpha/scripts/setup.sh
 
 
-alpha-init:
-	touch config.m4; $(MAKE) -C systems/alpha -$(MAKEFLAGS) init
+alpha-init: alpha-fetch-config.m4
+	apt-get install -y sudo git python3 python3-distro
+	$(MAKE) -C systems/alpha -$(MAKEFLAGS) init
+	locale-gen
+	update-initramfs -u
+
+
+alpha-fetch-config.m4:
+	if [ -e ../store/config.m4 ]; then      \
+		cp ../store/config.m4 .        ;\
+	elif [ -e $(HOME)/fil/config.m4 ]; then \
+		cp $(HOME)/fil/config.m4 .     ;\
+	else                                    \
+		touch config.m4                ;\
+	fi
+
 
 alpha-test:
 	docker build -t config-layers . && docker run config-layers
@@ -87,8 +95,11 @@ clean-dotfiles:
 	$(MAKE) -C dotfiles -$(MAKEFLAGS) clean
 
 ### Clean:
-clean: clean-bin
+clean: clean-bin clean-dotfiles
+
+deep-clean:
+	git clean -dfx
 
 ### Postamble:
-.PHONY: all build bins dotfiles clean clean-bin clean-dotfiles
+.PHONY: all build bins dotfiles clean clean-bin clean-dotfiles deep-clean
 

@@ -44,13 +44,10 @@ Installation
 --------------------
 
 In order to get this configuration running on a vanilla Debian stable
-installation, run the following commands:
+installation, run the following command:
 
 ```
-# apt-get install sudo make git python3 python3-distro
-# make init
-# locale-gen
-# update-initramfs -u
+# apt-get install -y make && make init
 ```
 
 This will trigger a series of shell scripts and make rules which will
