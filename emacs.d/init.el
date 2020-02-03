@@ -4910,7 +4910,8 @@ popping your useless completions up, idiot."
 (add-to-list 'gk-global-modes 'winner-mode)
 
 (windmove-default-keybindings)
-(windmove-delete-default-keybindings)
+(when (fboundp 'windmove-delete-default-keybindings)
+ (windmove-delete-default-keybindings))
 
 
 
