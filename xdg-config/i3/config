@@ -2,6 +2,7 @@
 
 set $mod Mod4
 font pango:DejaVu Sans 10
+set $hyp Mod3
 floating_modifier $mod
 workspace_layout tabbed
 focus_follows_mouse no
@@ -29,6 +30,11 @@ bindsym $mod+b focus left
 bindsym $mod+n focus down
 bindsym $mod+p focus up
 bindsym $mod+f focus right
+
+# Find apps w/ Hyper bindings, kinda Quick Dial™.
+bindsym $hyp+f [class="Firefox"] focus
+bindsym $hyp+e [class="Emacs"] focus
+bindsym $hyp+z [class="Zotero"] focus
 
 bindsym $mod+Shift+b move left
 bindsym $mod+Shift+n move down
