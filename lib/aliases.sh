@@ -209,6 +209,7 @@ curl='curl -s'
 alias backup-distup='make-backup.sh && fresh && distup && sudo reboot'
 alias vialiases="$EDITOR $MYLIB/aliases.sh"
 alias envgrep="env | grep -i"
+alias openpdfs="pgrep -af '\.pdf' | cut --complement -d ' ' -f1,2"
 
 ### OS specific aliases:
 
