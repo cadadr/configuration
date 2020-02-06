@@ -1,8 +1,9 @@
 # i3 configuration
 
 set $mod Mod4
-font pango:DejaVu Sans 10
 set $hyp Mod3
+set $fnt pango:DejaVu Mono 8
+font $fnt
 floating_modifier $mod
 workspace_layout tabbed
 focus_follows_mouse no
@@ -173,7 +174,7 @@ mode "$mod_volume" {
 bindsym $mod+Control+s mode "$mod_volume"
 
 bar {
-	font pango:DejaVu Sans 10
+	font $fnt
 	position top
 	status_command i3status
 }
