@@ -5721,17 +5721,6 @@ Does various tasks after saving a file, see it's definition."
 (gk-prefix-binding (kbd "<mouse-1>")
   'gk-find-text-footnote-definition--mouse)
 
-;; Use the touchpad to move the point around:
-(gk-global-binding (kbd "<mouse-4>") #'next-line)
-(gk-global-binding (kbd "<mouse-5>") #'previous-line)
-(gk-global-binding (kbd "<mouse-6>") #'forward-char)
-(gk-global-binding (kbd "<mouse-7>") #'backward-char)
-
-(gk-global-binding (kbd "<C-M-mouse-4>") #'mwheel-scroll)
-(gk-global-binding (kbd "<C-M-mouse-5>") #'mwheel-scroll)
-(gk-global-binding (kbd "<C-M-mouse-6>") #'mwheel-scroll)
-(gk-global-binding (kbd "<C-M-mouse-7>") #'mwheel-scroll)
-
 ;; Flash to show point
 (gk-prefix-binding "\M-f" #'gk-flash-current-line)
 (gk-global-binding (kbd "<f1>") #'gk-flash-current-line)
