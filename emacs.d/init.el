@@ -2922,6 +2922,7 @@ symbol)."
     (save-excursion (python-nav-end-of-statement) (point)))))
 
 (define-key python-mode-map "\C-c\C-l" #'gk-python-send-statement)
+(define-key python-mode-map "\C-c\C-h" #'python-eldoc-at-point)
 
 
 
