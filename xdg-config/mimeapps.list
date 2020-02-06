@@ -1,5 +1,5 @@
 [Added Associations]
-application/pdf=okular.desktop;
+application/pdf=emacsclient.desktop;
 application/x-extension-htm=firefox.desktop;
 application/x-extension-html=firefox.desktop;
 application/x-extension-shtml=firefox.desktop;
@@ -21,7 +21,7 @@ x-scheme-handler/mailto=exo-mail-reader.desktop
 text/csv=emacsclient.desktop;
 
 [Default Applications]
-application/pdf=org.kde.okular.desktop
+application/pdf=emacsclient.desktop
 application/x-extension-htm=firefox.desktop
 application/x-extension-html=firefox.desktop
 application/x-extension-shtml=firefox.desktop
