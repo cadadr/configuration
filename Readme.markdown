@@ -47,7 +47,7 @@ In order to get this configuration running on a vanilla Debian stable
 installation, run the following command:
 
 ```
-# apt-get install -y make && make init
+# apt-get install -y make && make init && update-initramfs -u
 ```
 
 This will trigger a series of shell scripts and make rules which will

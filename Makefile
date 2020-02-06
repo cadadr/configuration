@@ -45,7 +45,6 @@ alpha-init: alpha-fetch-config.m4
 	apt-get install -y sudo git python3 python3-distro
 	$(MAKE) -C systems/alpha -$(MAKEFLAGS) init
 	locale-gen
-	update-initramfs -u
 
 
 alpha-fetch-config.m4:
