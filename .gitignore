@@ -120,3 +120,5 @@ xdg-config/trashrc
 /xdg-config/khelpcenterrc
 xdg-config/vokoscreen/
 /xdg-config/Trolltech.conf
+/xdg-config/quodlibet/feeds
+/xdg-config/quodlibet/queue
