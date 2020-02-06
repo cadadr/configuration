@@ -232,6 +232,10 @@ __gk_linux_aliases(){
 }
 
 # Aliases for Debian and descendants.
+__gk_debian_has(){
+    apt-cache search "$1" | grep "^$1\>"
+}
+
 __gk_debian_aliases(){
     alias listdeps="apt-cache depends --no-recommends --no-breaks --no-suggests\
                            --no-conflicts --no-enhances --no-replaces --recurse"
@@ -239,7 +243,8 @@ __gk_debian_aliases(){
     alias up='sudo apt-get upgrade'
     alias distup='sudo apt-get dist-upgrade'
     alias haz="dpkg-query -l"
-    alias has="apt-cache search"
+    alias has=__gk_debian_has
+    alias like="apt-cache search"
     alias bdeps="sudo apt-get build-dep"
     alias wanna="sudo apt-get install"
     alias eww="sudo apt-get autoremove"
