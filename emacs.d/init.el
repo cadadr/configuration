@@ -1733,7 +1733,8 @@ is active."
                   (upcase-region (region-beginning) (region-end))))
           (:else
            (progn
-             (backward-word)
+             (unless (looking-at "\\<")
+              (backward-word))
              (upcase-word 1))))))
 
 (defun gk-end-sentence (punctuation)
