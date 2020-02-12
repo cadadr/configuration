@@ -706,6 +706,11 @@ argument as t, so refer to that command for further details."
   (interactive "r")
   (base64-decode-region beg end t))
 
+
+(defun gk-new-journal-entry ()
+  (interactive)
+  (find-file (format-time-string "~/doc/not/journal/%F")))
+
 
 
 ;;;; Generic advices:
