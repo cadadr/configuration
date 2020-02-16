@@ -5125,7 +5125,8 @@ So that the reader knows where to continue reading."
   "The url for lite youtube player, %s for where to insert video id.")
 
 (defalias 'gk-urls-external-browser 'browse-url-firefox)
-(setf browse-url-firefox-program (gk-executable-ensure "firefox"))
+(setf browse-url-firefox-program (gk-executable-ensure "firefox")
+      browse-url-firefox-arguments (list "-P" "default"))
 
 ;; TODO Check if still relevant when switch to Emacs 25.
 ;; Replacement for odd standard implementation.
