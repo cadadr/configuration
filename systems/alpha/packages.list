@@ -50,7 +50,7 @@ packages = {
         ,
         "vcs": ["cvs", "git", "git-cvs", "git-email", "mercurial",
                 "python-hglib", "python-dulwich", "python-fastimport",
-                "python3-pip", "quilt", "rcs", "subversion",]
+                "python3-pip", "quilt", "rcs", "subversion", "hub", ]
         ,
         "build": ["autoconf", "autoconf-archive", "automake", "bmake",]
         ,
