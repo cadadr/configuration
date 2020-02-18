@@ -144,7 +144,7 @@ para() {
 ###
 alias listall="alias | cut -d= -f1 && declare -F | cut -d ' '  -f 3 | sed 's,^,function ,'"
 alias edit="$EDITOR"
-alias re=". $ENV"
+alias re="refresh && repath"
 alias j=jobs
 # Group dirs first only for GNU ls.  For non-GNU, ‘ls --version’ will
 # probably error, which should suffice for choosing the correct
