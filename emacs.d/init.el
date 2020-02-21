@@ -478,7 +478,7 @@ WikiZero is a mirror of wikipedia."
         (message "New package(s): %S" new)
       (message "No new packages were found"))))
 
-(defun gk-send-desktop-notification (summary message)
+(defun gk-send-desktop-notification (summary message &optional icon)
   "Show a notification on the desktop."
   (unless (gk-gui-p)
     (error "Cannot send desktop notification in non-GUI session"))
@@ -488,7 +488,7 @@ WikiZero is a mirror of wikipedia."
    :command
    (cond
     ((executable-find "notify-send")
-     (list "notify-send" (concat "[Emacs] " summary) message))
+     (list "notify-send" (concat "[Emacs] " summary) "-i" (or icon "") message))
     ((executable-find "kdialog")
      (list "kdialog" "--passivepopup" message "10"
            "--title" (concat "[Emacs] " summary))))))
@@ -3145,7 +3145,7 @@ and special ones sepatarely."
                (when (> f 0)
                  (setf msg "You have unread mail! "))))
            (when (and (gk-gui-p) (not (string-empty-p msg)))
-               (gk-send-desktop-notification "New mail" msg)))
+               (gk-send-desktop-notification "New mail" msg "mail-message-new")))
          (message "%sFetch mail process %s" msg (string-trim event)))))))
 
 
