@@ -2,7 +2,7 @@
 
 set $mod Mod4
 set $hyp Mod3
-set $fnt pango:DejaVu Mono 8
+set $fnt pango:DejaVu Mono 10
 font $fnt
 floating_modifier $mod
 workspace_layout tabbed
@@ -173,10 +173,25 @@ mode "$mod_volume" {
 }
 bindsym $mod+Control+s mode "$mod_volume"
 
+# Visuals:
+## Colour theme:
+# colorclass		border	background	text 	indicator	child_border
+client.focused		#0087af	#0087af		#ffffff	#0087af		#0087af
+client.focused_inactive	#666666	#dedede		#333333	#333333		#dedede
+client.unfocused	#666666	#dddddd		#333333	#ffffff		#dedede
+client.urgent		#333333	#ffffff		#C20000	#ffffff		#dedede
+
+## The bar:
 bar {
 	font $fnt
 	position top
 	status_command i3status
+	colors {
+		separator		#C20000
+		background		#dddddd
+		statusline		#000000
+		inactive_workspace	#dddddd #000000
+	}
 }
 
 # Rules:
