@@ -387,7 +387,7 @@ When ARG is a positive number, repeat that many times."
           (split-window-vertically (/ (window-height) 2))
           (other-window 1)
           (find-file "~/doc/not/ders/hacett-idb/notlar.org"))
-      (find-file (gk-org-dir-file "start.org")))
+      (find-file (gk-org-dir-file "Start.org")))
     (other-window 1)
     (gk-flash-current-line)))
 
@@ -3881,8 +3881,8 @@ N defaults to 1."
 ;;;;; Org files and directories:
 
 (setq org-export-coding-system 'utf-8
-      org-directory (expand-file-name "~/doc/not/org")
-      org-default-notes-file (gk-org-dir-file "start.org")
+      org-directory (expand-file-name "~/notes")
+      org-default-notes-file (gk-org-dir-file "Start.org")
       org-icalendar-combined-agenda-file (expand-file-name "ajanda.ics" gk-syndir)
       org-id-locations-file (locate-user-emacs-file "etc/org-id-locations.el"))
 
