@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Emacs Client for URLs
+Exec=emacsclient %u
+Icon=emacs-icon
+Type=Application
+Terminal=false
+MimeType=x-scheme-handler/org-protocol;
+NoDisplay=true
