@@ -1,0 +1,9 @@
+# User directories
+DESKTOP=wrk
+DOWNLOAD=dwn
+TEMPLATES=.templates
+PUBLICSHARE=pub
+DOCUMENTS=doc
+MUSIC=mus
+PICTURES=pic
+VIDEOS=vid

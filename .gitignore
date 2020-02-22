@@ -68,8 +68,6 @@ emacs.d/.trash_emacs/
 xdg-config/chromium/
 xdg-config/evince/
 xdg-config/transmission/
-xdg-config/user-dirs.dirs
-xdg-config/user-dirs.locale
 xdg-config/dconf/user
 xdg-config/QtProject.conf
 xdg-config/libreoffice/
