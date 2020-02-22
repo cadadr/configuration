@@ -4,5 +4,5 @@ Exec=emacsclient -c %f
 Icon=emacs-icon
 Type=Application
 Terminal=false
-MimeType=x-scheme-handler/org-protocol;
+MimeType=text/*;
 NoDisplay=true
