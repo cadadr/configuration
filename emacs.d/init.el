@@ -4231,6 +4231,18 @@ numerals which regularly appear in texts."
 
 
 
+;;;;; Store link:
+
+(define-advice  org-store-link (:around (fn &rest args) fuck-pdf-version-cruft)
+  "Disable context in PDFs and other non-text documents"
+  (let ((org-context-in-file-links
+         (and org-context-in-file-links
+              (not (member major-mode
+                           '(pdf-view-mode doc-view-mode))))))
+    (apply fn args)))
+
+
+
 ;;;;; Visuals:
 
 ;; Show sub/superscript notation with ^ _ w/ UTF8 characters by
