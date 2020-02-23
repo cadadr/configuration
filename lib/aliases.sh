@@ -153,7 +153,7 @@ alias j=jobs
 # The rest of ‘ls’ aliases will pick up these settings, so make sure
 # the flags here are relevant for all interactive uses of ls(1).
 if ls --version 2>/dev/null | grep -qs GNU; then
-    alias ls='/bin/ls --group-directories-first -F'
+    alias ls='/bin/ls --group-directories-first -Fh'
 else
     alias ls='/bin/ls -F'
 fi
