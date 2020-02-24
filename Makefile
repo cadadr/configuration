@@ -27,7 +27,6 @@ help:
 	echo "	BASIC=no/yes	Make a basic installation (default: no)"
 
 ### System initialisation:
-
 setup: $(HOST)-setup
 init: $(HOST)-init
 test: $(HOST)-test
@@ -40,12 +39,10 @@ cron: $(HOST)-cron
 alpha-setup: deep-clean alpha-fetch-config.m4 build dotfiles invade cron
 	sh systems/alpha/scripts/setup.sh
 
-
 alpha-init: alpha-fetch-config.m4
 	apt-get install -y sudo git python3 python3-distro
 	$(MAKE) -C systems/alpha -$(MAKEFLAGS) init
 	locale-gen
-
 
 alpha-fetch-config.m4:
 	if [ -e ../store/config.m4 ]; then      \
@@ -55,7 +52,6 @@ alpha-fetch-config.m4:
 	else                                    \
 		touch config.m4                ;\
 	fi
-
 
 alpha-test:
 	docker build -t config-layers . && docker run config-layers
@@ -101,4 +97,3 @@ deep-clean:
 
 ### Postamble:
 .PHONY: all build bins dotfiles clean clean-bin clean-dotfiles deep-clean
-
