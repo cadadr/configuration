@@ -22,7 +22,7 @@ packages = {
                 "xdotool", "xinput", "libnotify-bin", "devhelp", "audacity",
                 "flameshot", "xfce4-clipman", "compton", "dconf-editor", "wmctrl",
                 "arandr", "inkscape", "pdfsam", "xarchiver", "lmms", "quodlibet",
-                "slrn",]
+                "slrn", "pdfarranger", "krop", ]
     ,
     "emacs": ["libjansson-dev", "libpoppler-glib-dev",
               "libpoppler-private-dev",]
