@@ -79,7 +79,9 @@ countpdfpagesdir () {
 }
 
 sx () {
-    startx -- :${1:-0}
+    dpy="${1:-0}"
+    startx -- :$dpy > $HOME/log/xsession:$dpy-stdout.log \
+         2> $HOME/log/xsession:$dpy-error.log
 }
 
 # From: https://news.ycombinator.com/item?id=18898898
