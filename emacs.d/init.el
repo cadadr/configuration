@@ -4909,7 +4909,8 @@ popping your useless completions up, idiot."
 (setq-default save-place t)
 
 (setf frame-title-format
-      '("%@%*[" (:eval (or (frame-parameter nil 'gk-project) "main")) "] %b"))
+      '("%@%*[" (:eval (or (frame-parameter nil 'gk-project) "main")) "] %b")
+      icon-title-format frame-title-format)
 
 
 
