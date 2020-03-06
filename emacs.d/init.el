@@ -4805,9 +4805,6 @@ new frame is created."
                       :family (gk-font :mono)
                       :height gk-font-default-height)
 
-  ;; Project name for frame title.
-  (set-frame-parameter nil 'title (or (frame-parameter nil 'gk-project) "main"))
-
   ;; Special font for moon phase visualisation in forecast.el.
   (set-face-attribute 'forecast-moon-phase nil
                       :font (gk-font :forecast-moon-phase))
@@ -4910,6 +4907,9 @@ popping your useless completions up, idiot."
  shell-command-prompt-show-cwd t)
 
 (setq-default save-place t)
+
+(setf frame-title-format
+      '("%@%*[" (:eval (or (frame-parameter nil 'gk-project) "main")) "] %b"))
 
 
 
