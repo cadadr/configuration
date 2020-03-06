@@ -13,9 +13,11 @@ export WM=i3
 # me).
 export _JAVA_AWT_WM_NONREPARENTING=1
 
-### Code:
 # Inform systemd
 systemctl --user import-environment DISPLAY
+
+# Ensure correct user dirs configuration
+xdg-user-dirs-update
 
 ### X resources:
 xrdb -merge $MEINE/Xdefaults
