@@ -32,6 +32,7 @@ install-config: $(GENCONFIGS)
 	sudo sh ./scripts/install-configs.sh
 
 apt-update:
+	sudo apt-key add apt-keys/oracle_vbox_2016.asc
 	sudo apt-get update
 
 init: install-config apt-update install-packages
