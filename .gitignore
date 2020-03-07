@@ -115,12 +115,12 @@ xdg-config/krunnerrc
 xdg-config/ksmserverrc
 xdg-config/session/
 xdg-config/trashrc
-/xdg-config/kdeglobals
-/xdg-config/khelpcenterrc
+xdg-config/kdeglobals
+xdg-config/khelpcenterrc
 xdg-config/vokoscreen/
-/xdg-config/Trolltech.conf
-/xdg-config/quodlibet/feeds
-/xdg-config/quodlibet/queue
+xdg-config/Trolltech.conf
+xdg-config/quodlibet/feeds
+xdg-config/quodlibet/queue
 xdg-config/hub
 xdg-config/arminstraub.com/krop.conf
 xdg-config/sengi/
