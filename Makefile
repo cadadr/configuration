@@ -40,7 +40,7 @@ alpha-setup: deep-clean alpha-fetch-config.m4 build dotfiles invade cron
 	sh systems/alpha/scripts/setup.sh
 
 alpha-init: alpha-fetch-config.m4
-	apt-get install -y sudo git python3 python3-distro
+	apt-get install -y sudo git python3 python3-distro gnupg
 	$(MAKE) -C systems/alpha -$(MAKEFLAGS) init
 	locale-gen
 
