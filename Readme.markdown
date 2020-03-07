@@ -58,7 +58,7 @@ complete installation. Make sure an internet connection is available.
 This recipe, among other things, will create a user `g` with uid 1993
 and a group of similar identifiers, and assing the user certain groups.
 
-`alpha` Post-install
+Post-install
 --------------------
 
 The following commands help complete the installation, regardless of the
