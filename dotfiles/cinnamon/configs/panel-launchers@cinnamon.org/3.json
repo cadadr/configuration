@@ -11,7 +11,9 @@
             "nemo.desktop"
         ],
         "value": [
+            "emacs.desktop",
             "firefox.desktop",
+            "zotero.desktop",
             "org.gnome.Terminal.desktop",
             "nemo.desktop"
         ]
