@@ -1,6 +1,7 @@
 .Rprofile						dotfiles/profile.R
 .Xdefaults						dotfiles/Xdefaults
 .bashrc							dotfiles/shrc.sh
+.cinnamon						dotfiles/cinnamon
 .config							xdg-config
 .cvsrc							dotfiles/cvsrc
 .emacs.d						emacs.d

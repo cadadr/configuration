@@ -35,6 +35,7 @@ bin/dwm
 config.m4
 
 dotfiles/praat/pid
+dotfiles/cinnamon/spices.cache
 
 # Generated files.
 dotfiles/mpoprc

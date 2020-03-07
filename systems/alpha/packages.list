@@ -9,7 +9,8 @@ packages = {
              "network-manager", "smartmontools", "entr", "docker.io",
              "snapd", "rar", "unrar",]
     ,
-    "desktop": ["dunst", "pasystray", "i3-wm", "i3status", "i3lock",
+    "desktop": ["cinnamon-desktop-environment", # The DE.
+                "dunst", "pasystray", "i3-wm", "i3status", "i3lock",
                 "xinit", "libxrandr-dev", "network-manager-gnome",
                 "dbus-x11", "pulseaudio", "pulseaudio-utils",
                 "pavucontrol", "alsa-oss", "alsa-utils",
