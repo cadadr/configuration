@@ -453,17 +453,6 @@ i.e. i18n -> internationalisation."
 (defun // (&rest args)
   (apply #'/ (mapcar #'float args)))
 
-(defun gk-wikipedia-link-to-wikizero (url)
-  "Convert a Wikipedia URL to a WikiZero one.
-WikiZero is a mirror of wikipedia."
-  (interactive
-   (list (read-string "Wikipedia URL: ")))
-  (let* ((baseurl "http://www.wiki-zero.net/index.php?q=")
-         (wiki64 (replace-regexp-in-string
-                  "=+$" ""
-                  (base64-encode-string (url-unhex-string url) t))))
-     (concat baseurl wiki64)))
-
 (defun gk-update-package-load-paths ()
   "Clean up the ‘load-path’, find and add new packages."
   (interactive)
@@ -5202,12 +5191,6 @@ Redirect to the raw file url."
          (replace-regexp-in-string "\\.local" ".net" url)
          args))
 
-(defun gk-urls-browse-wikipedia (url &rest args)
-  "Browse a wikipedia URL."
-  (apply #'gk-browse-url
-         (gk-wikipedia-link-to-wikizero url)
-         args))
-
 (defun gk-urls-add-to-emms (url &rest args)
   "Add an URL to EMMS."
   (emms-add-url url))
@@ -5331,9 +5314,7 @@ provided."
         ("^https?://github\\.com/.*?/.*?/blob/" . gk-urls-browse-github-file)
         ("^https?://raw\\.github\\.com/" . gk-urls-browse-github-raw)
         ("^http://www.cornucopia\\.local/" . gk-urls-browse-cornucopia)
-        ("^https?://\\w+\\.wikipedia\\.org/" . gk-urls-browse-wikipedia)
         ("file:///home/.+/co/lisp/doc/HyperSpec/" . gk-browse-url)
-        ;;("\\.\\(mp3\\|ogg\\)$" . gk-urls-add-to-emms)
         ,@browse-url-browser-function
         (".*" . gk-browse-url)))
 
