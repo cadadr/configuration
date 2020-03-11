@@ -296,10 +296,12 @@ Otherwise comment-out the whole line, or ARG lines."
 For the format, see `format-time-string'."
   (format-time-string format (date-to-time date)))
 
-(defun gk-executable-ensure (command)
+(defun gk-executable-ensure (command &optional silent)
   "Err-out if COMMAND is not found."
-  (or (executable-find command)
-      (warn "Program is absent: %s" command)))
+  (if-let* ((ex (executable-find command)))
+      ex
+    (when (not silent)
+      (warn "Program is absent: %s" command))))
 
 (defun gk-get-file-contents (file)
   "Get the contents of FILE as a string."
