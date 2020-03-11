@@ -83,6 +83,7 @@ cursor-size=24
 first-day-of-week=1
 font-name='DejaVu Sans 9'
 cursor-theme='mate'
+toolkit-accessibility=false
 cursor-blink-time=1200
 icon-theme='menta'
 gtk-overlay-scrollbars=true
@@ -122,9 +123,11 @@ bouncekeys-delay=300
 slowkeys-delay=300
 
 [org/cinnamon/desktop/a11y/mouse]
+secondary-click-enabled=false
 secondary-click-time=1.2
 dwell-time=1.2
 dwell-threshold=10
+dwell-click-enabled=false
 
 [org/cinnamon/desktop/sound]
 event-sounds=false
