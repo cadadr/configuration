@@ -53,7 +53,7 @@ packages = {
                 "python-hglib", "python-dulwich", "python-fastimport",
                 "python3-pip", "quilt", "rcs", "subversion", "hub", ]
         ,
-        "build": ["autoconf", "autoconf-archive", "automake", "bmake",]
+        "build": ["autoconf", "autoconf-archive", "automake", "bmake", "cmake", ]
         ,
         "perl": ["libuniversal-isa-perl", "libimage-exiftool-perl",
                  "libswitch-perl", "cpanminus", "liblocal-lib-perl", "perlbrew",]
@@ -76,6 +76,7 @@ packages = {
         ,
         "tools": ["exuberant-ctags", "gdb", "strace",]
         ,
+        "misclibs": ["libfuse-dev", ]
     }
     ,
     "doc": ["make-doc", "gawk-doc", "apt-doc",
