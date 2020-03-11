@@ -5060,7 +5060,10 @@ So that the reader knows where to continue reading."
 (setq
  ;; Scroll smoother, no hurries.
  mouse-wheel-scroll-amount '(1 ((shift) . 5) ((control) . nil))
- mouse-wheel-progressive-speed nil)
+ mouse-wheel-progressive-speed nil
+ ;; Horizontal scroll.
+ mouse-wheel-tilt-scroll t
+ mouse-wheel-flip-direction t)
 
 
 
