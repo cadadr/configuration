@@ -130,10 +130,10 @@ dwell-threshold=10
 event-sounds=false
 
 [org/cinnamon/desktop/background]
-picture-uri='file:///home/g/pic/wlp/kde-a-safe-landing-louis-durrant-5120x2880.jpg'
+picture-uri='file:///home/g/pic/wlp/mint/rails.jpg'
 
 [org/cinnamon/desktop/background/slideshow]
-image-source='xml:///usr/share/gnome-background-properties/debian-joy-inksplat.xml'
+image-source='directory:///home/g/pic/wlp/mint'
 delay=15
 
 [org/cinnamon/theme]
