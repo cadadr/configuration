@@ -144,6 +144,24 @@ name='Menta'
 prefer-hybrid-sleep=false
 quit-time-delay=60
 
+[org/gnome/gedit/preferences/ui]
+show-tabs-mode='auto'
+
+[org/gnome/gedit/plugins/filebrowser]
+virtual-root='file:///tmp/mozilla_g0'
+tree-view=true
+root='file:///'
+
+[org/gnome/gedit/plugins]
+active-plugins=['docinfo', 'filebrowser', 'modelines', 'time', 'spell']
+
+[org/gnome/gedit/state/window]
+size=(900, 699)
+state=87168
+bottom-panel-size=140
+side-panel-size=200
+side-panel-active-page='GeditWindowDocumentsPanel'
+
 [org/gnome/cheese]
 photo-y-resolution=480
 burst-delay=1000
