@@ -2506,7 +2506,7 @@ unlocked, offer to lock it before pasting."
  ;; Refine all displayed hunks.
  magit-diff-refine-hunk 'all)
 
-(cl-pushnew 'magit-todos-mode gk-global-modes)
+;; (cl-pushnew 'magit-todos-mode gk-global-modes)
 
 ;; Automatically ask for ssh-add when necessary.
 (add-hook
