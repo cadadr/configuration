@@ -191,23 +191,24 @@ toolkit-accessibility=false
 layouts=['gb', 'tr\talt']
 
 [org/gtk/settings/file-chooser]
-sort-column='name'
+sort-column='modified'
 sidebar-width=156
 show-size-column=true
 show-hidden=false
 window-size=(797, 483)
 sort-directories-first=false
 date-format='regular'
-sort-order='ascending'
+sort-order='descending'
 location-mode='path-bar'
 
 [org/nemo/preferences]
 show-location-entry=true
 
 [org/nemo/window-state]
+network-expanded=true
 start-with-sidebar=true
 maximized=false
-sidebar-bookmark-breakpoint=8
+sidebar-bookmark-breakpoint=9
 
 [org/nemo/desktop]
 network-icon-visible=true
