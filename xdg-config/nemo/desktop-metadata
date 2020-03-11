@@ -2,28 +2,28 @@
 nemo-icon-view-auto-layout=true
 nemo-icon-view-tighter-layout=false
 nemo-icon-view-keep-aligned=true
-nemo-icon-view-layout-timestamp=1583578762
+nemo-icon-view-layout-timestamp=1583934591
 
 [computer]
 nemo-icon-position=74,29
 monitor=0
 icon-scale=1
-nemo-icon-position-timestamp=1583582130
+nemo-icon-position-timestamp=1583934592
 
 [home]
 nemo-icon-position=74,129
 monitor=0
 icon-scale=1
-nemo-icon-position-timestamp=1583582130
+nemo-icon-position-timestamp=1583934592
 
 [trash]
 nemo-icon-position=74,329
 monitor=0
 icon-scale=1
-nemo-icon-position-timestamp=1583582130
+nemo-icon-position-timestamp=1583934592
 
 [network]
 nemo-icon-position=74,229
 monitor=0
 icon-scale=1
-nemo-icon-position-timestamp=1583582130
+nemo-icon-position-timestamp=1583934592
