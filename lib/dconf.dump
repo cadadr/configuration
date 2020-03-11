@@ -97,6 +97,7 @@ autorun-never=false
 
 [org/cinnamon/desktop/screensaver]
 screensaver-name=''
+layout-group=0
 
 [org/cinnamon/desktop/applications/terminal]
 exec='uxterm'
