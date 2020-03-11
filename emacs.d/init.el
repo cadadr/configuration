@@ -5134,9 +5134,10 @@ So that the reader knows where to continue reading."
   "http://localhost:3991/ytl.html?v=%s"
   "The url for lite youtube player, %s for where to insert video id.")
 
-(defalias 'gk-urls-external-browser 'browse-url-firefox)
-(setf browse-url-firefox-program (gk-executable-ensure "firefox")
-      browse-url-firefox-arguments (list "-P" "default"))
+(defalias 'gk-urls-external-browser 'browse-url-xdg-open)
+(setf browse-url-firefox-program
+      (or (gk-executable-ensure "firefox" t)
+          (expand-file-name "~/Applications/firefox/firefox")))
 
 ;; TODO Check if still relevant when switch to Emacs 25.
 ;; Replacement for odd standard implementation.
