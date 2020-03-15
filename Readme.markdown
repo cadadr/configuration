@@ -68,3 +68,7 @@ system flavour:
 ```
 $ make setup
 ```
+
+---
+
+![screen cap](candy/scr.png)
