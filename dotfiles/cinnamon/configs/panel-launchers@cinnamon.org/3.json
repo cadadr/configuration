@@ -11,11 +11,7 @@
             "nemo.desktop"
         ],
         "value": [
-            "emacs.desktop",
-            "firefox-gk.desktop",
-            "zotero.desktop",
-            "org.gnome.Terminal.desktop",
-            "nemo.desktop"
+            "org.gnome.Terminal.desktop"
         ]
     },
     "allow-dragging": {
