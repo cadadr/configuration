@@ -154,11 +154,27 @@ name='Menta'
 prefer-hybrid-sleep=false
 quit-time-delay=60
 
+[org/gnome/nm-applet/eap/6b19b2b7-f3f7-4f6c-9221-039292afd482]
+ignore-phase2-ca-cert=false
+ignore-ca-cert=false
+
+[org/gnome/file-roller/listing]
+sort-method='name'
+name-column-width=250
+sort-type='ascending'
+list-mode='as-folder'
+show-path=false
+
+[org/gnome/file-roller/ui]
+sidebar-width=200
+window-height=480
+window-width=600
+
 [org/gnome/gedit/preferences/ui]
 show-tabs-mode='auto'
 
 [org/gnome/gedit/plugins/filebrowser]
-virtual-root='file:///tmp/mozilla_g0'
+virtual-root='file:///home/g/dwn'
 tree-view=true
 root='file:///'
 
