@@ -206,6 +206,7 @@ sort-order='descending'
 location-mode='path-bar'
 
 [org/nemo/preferences]
+thumbnail-limit=uint64 104857600
 show-location-entry=true
 
 [org/nemo/window-state]
