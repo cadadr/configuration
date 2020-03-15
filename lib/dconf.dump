@@ -71,6 +71,10 @@ drag-threshold=8
 motion-threshold=1
 double-click=400
 
+[org/cinnamon/sounds]
+notification-file='/usr/share/sounds/freedesktop/stereo/dialog-information.oga'
+notification-enabled=true
+
 [org/cinnamon/muffin]
 workspace-cycle=true
 tile-maximize=true
@@ -131,6 +135,8 @@ dwell-threshold=10
 dwell-click-enabled=false
 
 [org/cinnamon/desktop/sound]
+volume-sound-file='/usr/share/sounds/freedesktop/stereo/audio-volume-change.oga'
+volume-sound-enabled=true
 event-sounds=false
 
 [org/cinnamon/desktop/background]
