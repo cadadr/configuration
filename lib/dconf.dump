@@ -66,11 +66,24 @@ gtk-overlay-scrollbars=true
 gtk-theme='Menta'
 clock-show-date=true
 
-[org/cinnamon/desktop/notifications]
-bottom-notifications=true
+[org/cinnamon/desktop/keybindings/custom-keybindings/custom1]
+binding=['<Primary><Super>p']
+command='passmenu.sh'
+name='Password Picker'
+
+[org/cinnamon/desktop/keybindings/custom-keybindings/custom0]
+binding=['<Primary><Super>w']
+command='ffprofile.sh'
+name='Firefox Profile Selector'
+
+[org/cinnamon/desktop/keybindings]
+custom-list=['custom0', 'custom1']
 
 [org/cinnamon/desktop/media-handling]
+autorun-x-content-start-app=['x-content/unix-software']
 autorun-never=false
+autorun-x-content-ignore=@as []
+autorun-x-content-open-folder=@as []
 
 [org/cinnamon/desktop/screensaver]
 screensaver-name=''
@@ -78,6 +91,9 @@ layout-group=0
 
 [org/cinnamon/desktop/applications/terminal]
 exec='uxterm'
+
+[org/cinnamon/desktop/notifications]
+bottom-notifications=true
 
 [org/cinnamon/desktop/privacy]
 recent-files-max-age=-1
