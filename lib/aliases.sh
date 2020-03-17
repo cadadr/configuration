@@ -144,7 +144,7 @@ para() {
 }
 
 yw() {
-    ydl -o- "$1" 2>/dev/null | mpv - 2>/dev/null
+    ydl -o- "$1" 2>/dev/null | mpv - 1>/dev/null 2>/dev/null
 }
 
 ###
