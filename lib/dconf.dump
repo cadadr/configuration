@@ -195,7 +195,6 @@ window-width=600
 show-tabs-mode='auto'
 
 [org/gnome/gedit/plugins/filebrowser]
-virtual-root='file:///home/g/dwn'
 tree-view=true
 root='file:///'
 
