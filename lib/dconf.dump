@@ -3,31 +3,31 @@ desktop-effects-unmaximize-transition='easeNone'
 desktop-effects-on-dialogs=true
 desktop-effects-maximize-transition='easeInExpo'
 desktop-effects-map-effect='traditional'
-hotcorner-layout=['scale:true:0', 'scale:false:0', 'expo:true:0', 'desktop:false:0']
 alttab-switcher-show-all-workspaces=true
 desktop-effects-close-effect='traditional'
-workspace-osd-duration=400
-enabled-desklets=['clock@cinnamon.org:0:1150:25']
+hotcorner-layout=['scale:true:0', 'scale:false:0', 'expo:true:0', 'desktop:false:0']
 desktop-effects-unmaximize-time=100
+desklet-snap-interval=25
 desktop-effects-map-time=100
+enabled-desklets=['clock@cinnamon.org:0:1150:25']
 desktop-effects-minimize-effect='traditional'
 alttab-switcher-style='icons+preview'
+workspace-osd-duration=400
 desktop-effects=true
 prevent-focus-stealing=false
 panels-height=['1:28']
-desklet-snap-interval=25
-next-applet-id=25
-desktop-effects-map-transition='easeOutQuad'
-desktop-effects-maximize-time=100
-desktop-effects-unmaximize-effect='none'
+next-applet-id=27
 panel-launchers=['DEPRECATED']
-alttab-minimized-aware=true
-panels-enabled=['1:0:top']
+desktop-effects-map-transition='easeOutQuad'
 desktop-effects-tile-transition='easeInQuad'
+desktop-effects-unmaximize-effect='none'
+panels-enabled=['1:0:top']
+alttab-minimized-aware=true
+desktop-effects-maximize-time=100
 desktop-effects-maximize-effect='none'
 desktop-effects-on-menus=true
 panels-resizable=['1:false']
-enabled-applets=['panel1:right:6:systray@cinnamon.org:0', 'panel1:left:0:menu@cinnamon.org:1', 'panel1:right:3:show-desktop@cinnamon.org:2', 'panel1:left:3:panel-launchers@cinnamon.org:3', 'panel1:right:7:keyboard@cinnamon.org:5', 'panel1:right:8:notifications@cinnamon.org:6', 'panel1:right:9:removable-drives@cinnamon.org:7', 'panel1:right:14:user@cinnamon.org:8', 'panel1:right:10:network@cinnamon.org:9', 'panel1:right:12:power@cinnamon.org:11', 'panel1:left:2:calendar@cinnamon.org:12', 'panel1:right:11:sound@cinnamon.org:13', 'panel1:left:1:workspace-switcher@cinnamon.org:18']
+enabled-applets=['panel1:right:8:systray@cinnamon.org:0', 'panel1:left:0:menu@cinnamon.org:1', 'panel1:right:5:show-desktop@cinnamon.org:2', 'panel1:left:3:panel-launchers@cinnamon.org:3', 'panel1:right:9:keyboard@cinnamon.org:5', 'panel1:right:10:notifications@cinnamon.org:6', 'panel1:right:11:removable-drives@cinnamon.org:7', 'panel1:right:16:user@cinnamon.org:8', 'panel1:right:12:network@cinnamon.org:9', 'panel1:right:14:power@cinnamon.org:11', 'panel1:left:2:calendar@cinnamon.org:12', 'panel1:right:13:sound@cinnamon.org:13', 'panel1:left:1:workspace-switcher@cinnamon.org:18', 'panel1:right:1:xrandr@cinnamon.org:25', 'panel1:left:4:window-list@cinnamon.org:26']
 desktop-effects-minimize-time=160
 alttab-switcher-delay=100
 desktop-effects-tile-effect='none'
@@ -35,41 +35,12 @@ desktop-effects-close-transition='easeOutQuad'
 desktop-effects-minimize-transition='easeInQuad'
 panel-edit-mode=false
 workspace-expo-view-as-grid=true
-workspace-osd-x=50
+desklet-cache-updated=1584456359
 desktop-effects-close-time=120
 next-desklet-id=1
 workspace-osd-y=50
+workspace-osd-x=50
 desktop-effects-tile-time=100
-
-[org/cinnamon/settings-daemon/plugins/power]
-sleep-display-battery=300
-lid-close-battery-action='hibernate'
-sleep-display-ac=1800
-lid-close-ac-action='suspend'
-sleep-inactive-ac-timeout=0
-sleep-inactive-battery-timeout=600
-
-[org/cinnamon/settings-daemon/plugins/xsettings]
-buttons-have-icons=true
-menus-have-icons=true
-
-[org/cinnamon/settings-daemon/peripherals/touchpad]
-motion-threshold=1
-natural-scroll=true
-horizontal-scrolling=true
-scrolling-method=1
-clickpad-click=2
-touchpad-enabled=true
-tap-to-click=false
-
-[org/cinnamon/settings-daemon/peripherals/keyboard]
-repeat-interval=uint32 30
-delay=uint32 500
-
-[org/cinnamon/settings-daemon/peripherals/mouse]
-drag-threshold=8
-motion-threshold=1
-double-click=400
 
 [org/cinnamon/sounds]
 notification-file='/usr/share/sounds/freedesktop/stereo/dialog-information.oga'
@@ -120,6 +91,10 @@ action-scroll-titlebar='opacity'
 theme='Menta'
 titlebar-font='DejaVu Sans Semi-Condensed 10'
 
+[org/cinnamon/desktop/a11y/applications]
+screen-keyboard-enabled=false
+screen-reader-enabled=false
+
 [org/cinnamon/desktop/a11y/keyboard]
 mousekeys-init-delay=300
 mousekeys-max-speed=10
@@ -149,6 +124,36 @@ delay=15
 [org/cinnamon/theme]
 theme-cache-updated=1583579523
 name='Menta'
+
+[org/cinnamon/settings-daemon/plugins/power]
+sleep-display-battery=300
+lid-close-battery-action='hibernate'
+sleep-display-ac=1800
+lid-close-ac-action='suspend'
+sleep-inactive-ac-timeout=0
+sleep-inactive-battery-timeout=600
+
+[org/cinnamon/settings-daemon/plugins/xsettings]
+buttons-have-icons=true
+menus-have-icons=true
+
+[org/cinnamon/settings-daemon/peripherals/touchpad]
+motion-threshold=1
+natural-scroll=true
+horizontal-scrolling=true
+scrolling-method=1
+clickpad-click=2
+touchpad-enabled=true
+tap-to-click=false
+
+[org/cinnamon/settings-daemon/peripherals/keyboard]
+repeat-interval=uint32 30
+delay=uint32 500
+
+[org/cinnamon/settings-daemon/peripherals/mouse]
+drag-threshold=8
+motion-threshold=1
+double-click=400
 
 [org/cinnamon/cinnamon-session]
 prefer-hybrid-sleep=false
@@ -187,6 +192,22 @@ state=87168
 bottom-panel-size=140
 side-panel-size=200
 side-panel-active-page='GeditWindowDocumentsPanel'
+
+[org/gnome/gnome-system-monitor]
+show-dependencies=false
+current-tab='disks'
+maximized=false
+window-state=(700, 500, 50, 50)
+show-whose-processes='user'
+
+[org/gnome/gnome-system-monitor/disktreenew]
+col-6-visible=true
+col-6-width=0
+
+[org/gnome/gnome-system-monitor/proctree]
+columns-order=[0, 1, 2, 3, 4, 6, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26]
+sort-order=0
+sort-col=15
 
 [org/gnome/cheese]
 photo-y-resolution=480
