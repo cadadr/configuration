@@ -128,6 +128,7 @@ dwell-click-enabled=false
 [org/cinnamon/desktop/sound]
 volume-sound-file='/usr/share/sounds/freedesktop/stereo/audio-volume-change.oga'
 volume-sound-enabled=true
+maximum-volume=150
 event-sounds=false
 
 [org/cinnamon/desktop/background]
