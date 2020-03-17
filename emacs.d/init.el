@@ -3851,6 +3851,17 @@ N defaults to 1."
     (insert (apply #'format "[[%s][%s]]" link))
     (newline 2)))
 
+(define-advice org-tree-to-indirect-buffer
+    (:around (fn arg) arg-for-dedicated-frame)
+  "Use ARG not for selection but for toggling dedicated frames.
+If called with prefix arg, open in a dedicated frame.  Otherwise,
+respect ‘org-indirect-buffer-display’."
+  (interactive "P")
+  (let ((org-indirect-buffer-display
+         (if arg 'dedicated-frame
+           org-indirect-buffer-display)))
+    (funcall fn)))
+
 
 
 ;;;;; Variables:
