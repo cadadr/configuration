@@ -79,6 +79,10 @@ name='Firefox Profile Selector'
 [org/cinnamon/desktop/keybindings]
 custom-list=['custom0', 'custom1']
 
+[org/cinnamon/desktop/keybindings/wm]
+switch-to-workspace-right=['<Control><Alt>Right', '<Super>Tab']
+switch-to-workspace-left=['<Control><Alt>Left', '<Shift><Super>Tab']
+
 [org/cinnamon/desktop/media-handling]
 autorun-x-content-start-app=['x-content/unix-software']
 autorun-never=false
