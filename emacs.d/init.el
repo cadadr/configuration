@@ -2499,6 +2499,23 @@ unlocked, offer to lock it before pasting."
 
 ;; (cl-pushnew 'magit-todos-mode gk-global-modes)
 
+(define-advice  magit-gitignore-read-pattern (:around (fn local) no-leading-slashes)
+  "Same thing but simpler and don’t add leading slashes."
+  (ignore fn)
+  (let* ((default (magit-current-file))
+         (choices
+          (delete-dups
+           (--mapcat
+            (cons it
+                  (-when-let (ext (file-name-extension it))
+                    (list (concat "*." ext))))
+            (magit-untracked-files)))))
+    (unless (member default choices)
+      (setq default nil))
+    (magit-completing-read (concat "File or pattern to ignore"
+                                   (and local " locally"))
+                           choices nil nil nil nil default)))
+
 ;; Automatically ask for ssh-add when necessary.
 (add-hook
  'magit-credential-hook
