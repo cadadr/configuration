@@ -143,6 +143,10 @@ para() {
     fi
 }
 
+yw() {
+    ydl -o- "$1" 2>/dev/null | mpv - 2>/dev/null
+}
+
 ###
 alias listall="alias | cut -d= -f1 && declare -F | cut -d ' '  -f 3 | sed 's,^,function ,'"
 alias edit="$EDITOR"
