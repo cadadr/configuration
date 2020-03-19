@@ -80,7 +80,7 @@
         "tooltip": "Select an icon to show in the panel.",
         "dependency": "menu-icon-custom",
         "indent": "true",
-        "value": "/usr/share/icons/vendor/128x128/emblems/emblem-vendor.png"
+        "value": "/usr/share/icons/vendor/128x128/emblems/emblem-vendor-white.png"
     },
     "menu-label": {
         "type": "entry",
