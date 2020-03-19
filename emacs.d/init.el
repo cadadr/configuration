@@ -1946,6 +1946,9 @@ will receive the region if active, or the entire buffer."
 
 (quail-set-keyboard-layout "brit-q")
 
+;; TAB won’t show completion, C-i will.
+(define-key quail-translation-keymap [tab] nil)
+
 (defvar gk-input-methods
   '("unilat-gk"
     "greek-translit-gk"
