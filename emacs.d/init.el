@@ -2049,6 +2049,21 @@ backwards."
 
 (add-to-list 'auto-mode-alist '("\\.textile" . textile-mode))
 
+;; Fix the terrible faces of Textile using Emacs’ and Org mode’s
+;; faces.
+(set-face-attribute 'textile-link-face nil :foreground nil :inherit 'link)
+(set-face-attribute 'textile-class-face nil :foreground nil :inherit 'font-lock-builtin-face)
+(set-face-attribute 'textile-acronym-face nil :foreground nil :inherit 'font-lock-builtin-face)
+(set-face-attribute 'textile-table-face nil :foreground nil :inherit 'font-lock-builtin-face)
+(set-face-attribute 'textile-lang-face nil :foreground nil :inherit 'font-lock-keyword-face)
+(set-face-attribute 'textile-ol-bullet-face nil :foreground nil :inherit 'org-level-1)
+(set-face-attribute 'textile-ul-bullet-face nil :foreground nil :inherit 'org-level-1)
+(dotimes (i 5)
+  (set-face-attribute
+   (intern (format "textile-h%d-face" (1+ i)))
+   nil :foreground nil :inherit
+   (intern (format "org-level-%d" (1+ i)))))
+
 
 
 ;;;;; Editing macros:
