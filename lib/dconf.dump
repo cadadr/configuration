@@ -104,11 +104,13 @@ recent-files-max-age=-1
 remember-recent-files=true
 
 [org/cinnamon/desktop/wm/preferences]
+mouse-button-modifier='<Super>'
+theme='Menta'
+num-workspaces=2
+action-scroll-titlebar='opacity'
 min-window-opacity=30
 button-layout='close:minimize,maximize'
-mouse-button-modifier='<Super>'
-action-scroll-titlebar='opacity'
-theme='Menta'
+workspace-names=@as []
 titlebar-font='DejaVu Sans Semi-Condensed 10'
 
 [org/cinnamon/desktop/a11y/applications]
@@ -170,6 +172,7 @@ tap-to-click=false
 [org/cinnamon/settings-daemon/peripherals/keyboard]
 repeat-interval=uint32 30
 delay=uint32 500
+numlock-state='on'
 
 [org/cinnamon/settings-daemon/peripherals/mouse]
 drag-threshold=8
@@ -179,22 +182,6 @@ double-click=400
 [org/cinnamon/cinnamon-session]
 prefer-hybrid-sleep=false
 quit-time-delay=60
-
-[org/gnome/nm-applet/eap/6b19b2b7-f3f7-4f6c-9221-039292afd482]
-ignore-phase2-ca-cert=false
-ignore-ca-cert=false
-
-[org/gnome/file-roller/listing]
-sort-method='name'
-name-column-width=250
-sort-type='ascending'
-list-mode='as-folder'
-show-path=false
-
-[org/gnome/file-roller/ui]
-sidebar-width=200
-window-height=480
-window-width=600
 
 [org/gnome/gedit/preferences/ui]
 show-tabs-mode='auto'
@@ -213,30 +200,31 @@ bottom-panel-size=140
 side-panel-size=200
 side-panel-active-page='GeditWindowDocumentsPanel'
 
-[org/gnome/gnome-system-monitor]
-show-dependencies=false
-current-tab='disks'
-maximized=false
-window-state=(700, 500, 50, 50)
-show-whose-processes='user'
+[org/gnome/calculator]
+target-currency=''
+show-zeroes=false
+source-currency=''
+show-thousands=false
+button-mode='basic'
+target-units='radian'
+word-size=64
+number-format='automatic'
+angle-units='degrees'
+base=10
+source-units='degree'
+accuracy=9
 
-[org/gnome/gnome-system-monitor/disktreenew]
-col-6-visible=true
-col-6-width=0
+[org/gnome/file-roller/listing]
+sort-method='name'
+name-column-width=250
+sort-type='ascending'
+list-mode='as-folder'
+show-path=false
 
-[org/gnome/gnome-system-monitor/proctree]
-columns-order=[0, 1, 2, 3, 4, 6, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26]
-sort-order=0
-sort-col=15
-
-[org/gnome/cheese]
-photo-y-resolution=480
-burst-delay=1000
-video-y-resolution=480
-selected-effect='Flip'
-camera='USB2.0 HD UVC WebCam: USB2.0 HD'
-photo-x-resolution=640
-video-x-resolution=640
+[org/gnome/file-roller/ui]
+sidebar-width=200
+window-height=480
+window-width=600
 
 [org/gnome/desktop/a11y/applications]
 screen-keyboard-enabled=false
@@ -254,8 +242,37 @@ document-font-name='DejaVu Sans 11'
 monospace-font-name='DejaVu Sans Mono 11'
 toolkit-accessibility=false
 
+[org/gnome/cheese]
+photo-y-resolution=480
+burst-delay=1000
+video-y-resolution=480
+selected-effect='Flip'
+camera='USB2.0 HD UVC WebCam: USB2.0 HD'
+photo-x-resolution=640
+video-x-resolution=640
+
 [org/gnome/libgnomekbd/keyboard]
 layouts=['gb', 'tr\talt']
+
+[org/gnome/nm-applet/eap/6b19b2b7-f3f7-4f6c-9221-039292afd482]
+ignore-phase2-ca-cert=false
+ignore-ca-cert=false
+
+[org/gnome/gnome-system-monitor]
+show-dependencies=false
+current-tab='disks'
+maximized=false
+window-state=(700, 500, 50, 50)
+show-whose-processes='user'
+
+[org/gnome/gnome-system-monitor/disktreenew]
+col-6-visible=true
+col-6-width=0
+
+[org/gnome/gnome-system-monitor/proctree]
+columns-order=[0, 1, 2, 3, 4, 6, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26]
+sort-order=0
+sort-col=15
 
 [org/gtk/settings/file-chooser]
 sort-column='modified'
