@@ -82,6 +82,6 @@ Terminal=false
 Type=Application
 Categories=Utility;
 StartupNotify=true
-Hidden=true
-X-GNOME-Autostart-enabled=false
+Hidden=false
+X-GNOME-Autostart-enabled=true
 
