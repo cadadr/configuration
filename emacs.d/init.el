@@ -3880,6 +3880,38 @@ respect ‘org-indirect-buffer-display’."
            org-indirect-buffer-display)))
     (funcall fn)))
 
+(defun gk-org-ensure-empty-line-before-headlines (beg end)
+  "Make sure there is an empty line before each headline in the region.
+Interactively, default to whole buffer if region is not active,
+and report how many headlines were affected."
+  (interactive
+   (if (region-active-p)
+       (list (region-beginning) (region-end))
+     (list (point-min) (point-max))))
+  (let ((count 0)
+        (buf (clone-indirect-buffer
+              (format " *gk-org-empty-lines:%s*" (buffer-name))
+              nil t)))
+    (with-current-buffer buf
+      ;; Region will not be active in the indirect buffer.
+      (unless (and (= beg (point-min))
+                   (= end (point-max)))
+        (narrow-to-region beg end))
+      (org-show-all)
+      (goto-char (point-min))
+      (org-map-entries
+       ($ (forward-line -1)
+          (unless (looking-at
+                   (rx (or (and bol eol)
+                           (and bol "\n" "* ")
+                           ;; Empty entry
+                           (and bol "*" (0+ anychar) "\n" "* "))))
+            (forward-line 1)
+            (open-line 1)
+            (cl-incf count))
+          (forward-line 1))))
+    (kill-buffer buf)))
+
 
 
 ;;;;; Variables:
