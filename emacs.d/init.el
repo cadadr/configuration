@@ -4815,6 +4815,11 @@ new frame is created."
     ;; Better background colour for region.
     (set-face-attribute 'region nil :background "medium spring green"))
 
+  (when (eq gk-gui-theme 'dracula)
+    ;; Less prominent inactive modeline.
+    (set-face-attribute
+     'mode-line nil :box t :foreground nil :background nil :inherit 'mode-line))
+
   ;; Settings for when using default theme specifically.
   (unless gk-gui-theme
     (set-face-attribute 'region nil :background "yellow green"))
