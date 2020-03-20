@@ -147,6 +147,15 @@ yw() {
     ydl -o- "$1" 2>/dev/null | mpv - 1>/dev/null 2>/dev/null
 }
 
+qr() {
+    out="$(mktemp --tmpdir qrXXXXXXXXXXXXXX.png)"
+    chmod 600 "$out"
+    qrencode -l H -s 10 -o "$out" "$@"
+    display "$out" &
+    sleep 1
+    rm "$out"
+}
+
 ###
 alias listall="alias | cut -d= -f1 && declare -F | cut -d ' '  -f 3 | sed 's,^,function ,'"
 alias edit="$EDITOR"
