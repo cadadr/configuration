@@ -58,12 +58,12 @@ text-scaling-factor=1.0
 cursor-size=24
 first-day-of-week=1
 font-name='DejaVu Sans 9'
-cursor-theme='mate'
+cursor-theme='Adwaita'
 toolkit-accessibility=false
 cursor-blink-time=1200
 icon-theme='menta'
 gtk-overlay-scrollbars=true
-gtk-theme='Menta'
+gtk-theme='Adwaita-dark'
 clock-show-date=true
 
 [org/cinnamon/desktop/keybindings/custom-keybindings/custom1]
