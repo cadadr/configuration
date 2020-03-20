@@ -275,14 +275,14 @@ sort-order=0
 sort-col=15
 
 [org/gtk/settings/file-chooser]
-sort-column='modified'
-sidebar-width=176
+sort-column='name'
+sidebar-width=157
 show-size-column=true
 show-hidden=false
-window-size=(797, 483)
+window-size=(1018, 702)
 sort-directories-first=false
 date-format='regular'
-sort-order='descending'
+sort-order='ascending'
 location-mode='path-bar'
 
 [org/nemo/preferences]
