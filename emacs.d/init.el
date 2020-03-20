@@ -277,6 +277,7 @@
 
 (defun gk-comment-dwim (arg)
   "If region is active, or at the end of the line, call ‘comment-dwim’.
+
 Pass ARG to ‘comment-dwim’ in that case.
 Otherwise comment-out the whole line, or ARG lines."
   (interactive "*P")
@@ -323,6 +324,7 @@ For the format, see `format-time-string'."
 
 (defun gk-swap-windows (&optional arg)
   "Swap the buffer of the selected window with that of the next one.
+
 When ARG is a positive number, repeat that many times."
   (interactive "p")
   (dotimes (i (or arg 1))
@@ -400,6 +402,7 @@ When ARG is a positive number, repeat that many times."
 
 (defun gk-numeronym (name)
   "Generate a numeronym of NAME, an arbitrary string.
+
 A numeronym is the initial letter, the length of the name in
 characters, and the last letter,
 i.e. i18n -> internationalisation."
@@ -508,6 +511,7 @@ together with current time and timezone information."
 
 (defun gk-toggle-wrap (&optional arg)
   "Toggle word wrap and line truncation.
+
 Without a prefix ARG, toggle the latter off and the former on.
 With a positive prefix, turn both on.  With a negative prefix,
 turn both off.  With a zero prefix, toggle both."
@@ -533,6 +537,7 @@ turn both off.  With a zero prefix, toggle both."
 
 (defun gk-ellipsize-file-or-directory-name (name maxlen)
   "Ellipsize the directory part of a file NAME.
+
 If NAME is larget than MAXLEN, ellipsise the directory part,
 preserving, ‘file-name-nondirectory’ if it's a file or the last
 directory name if a directory, returning the ellipsized string as
@@ -557,6 +562,7 @@ the result."
 
 (defun gk-next-theme ()
   "Switch to the next theme in ‘custom-known-themes’.
+
 If exhausted, disable themes.  If run again thereafter, wrap to
 the beginning of the list."
   (interactive)
@@ -575,6 +581,7 @@ the beginning of the list."
 
 (cl-defun gk-flash-current-line (&optional buffer &key (seconds 0.5))
   "Flash current line briefly for SECONDS in BUFFER.
+
 BUFFER defaults to current buffer, and SECONDS to 1."
   (interactive)
   (unless hl-line-mode
@@ -669,6 +676,7 @@ BUFFER defaults to current buffer, and SECONDS to 1."
 
 (defun gk-visit-user-init-file ()
   "Visit ‘user-init-file’, reuse window if useful.
+
 Flash the current line after that."
   (interactive)
   (let ((file (file-truename (expand-file-name user-init-file))))
@@ -692,6 +700,7 @@ Flash the current line after that."
 
 (defun gk-base64-decode-url (beg end)
   "Base64-decode the region between BEG and END, assume URL encoding.
+
 This basically calls ‘base64-decode-region’ with the third
 argument as t, so refer to that command for further details."
   (interactive "r")
@@ -708,6 +717,7 @@ argument as t, so refer to that command for further details."
 
 (defun gk-ad-stay-here (fun &rest args)
   "Stay in the current buffer when running FUN.
+
 Pass ARGS to FUN."
   (save-window-excursion
     (apply fun args)))
@@ -729,6 +739,7 @@ Pass ARGS to FUN."
 
 (defun gk-load (&rest args)
   "Identical to ‘load’, but makes note of files.
+
 This function passes its arguments untouched to ‘load’, but
 conses the car of ARGS to ‘gk-loaded-files’.  The contents of
 that variable is then to be used to byte compile all the files
@@ -739,6 +750,7 @@ names."
 
 (defun gk-recompile (&optional force)
   "Recompile my configuration.
+
 If FORCE is non-nil, force compilation, i.e. compile even if
 up-to-date."
   (interactive "p")
@@ -851,6 +863,7 @@ up-to-date."
 
 (defun gk-screen-brightness (n)
   "Set screen brightness to N tenths of max.
+
 10 >= N >= 1."
   (interactive
    (list (read-number "Brightness interval [1--10]: " 5)))
@@ -978,12 +991,14 @@ up-to-date."
 
 (defmacro when-fbound (proc &rest args)
   "Run proc if bound.
+
 \(when-fbound PROC ARGS...)"
   `(when (fboundp (quote ,proc))
      (,proc ,@args)))
 
 (defmacro gk-interactively (&rest body)
   "Wrap the BODY in an interactive lambda form.
+
 Return the lambda."
   `(lambda nil
      ,(when (stringp (car body))
@@ -993,6 +1008,7 @@ Return the lambda."
 
 (defmacro gk-with-new-frame (parameters &rest body)
   "Create a new frame and run BODY in it.
+
 PARAMETERS are passed into ‘make-frame’."
   (declare (indent defun))
   (let ((frame (gensym)))
@@ -1151,6 +1167,7 @@ integer argument, otherwise positive."
 
 (defun gk-create-project (name vcs parent-tree)
   "Create a new project.
+
 NAME is the project name, and the project path is located in the
 directory at PARENT-TREE + NAME.  PARENT-TREE defaults to
 ‘gk-projects-directory’.
@@ -1269,6 +1286,7 @@ PATH is the path to the project."
 
 (define-minor-mode gk-minor-mode
   "Global minor mode for customisations.
+
 \\{gk-minor-mode-map}"
   nil "" gk-minor-mode-map
   (let ((map gk-minor-mode-map))
@@ -1403,6 +1421,7 @@ Subroutine for ‘gk-pop-shell’ and ‘gk-display-shell’."
 
 (defun gk-pop-shell (arg)
   "Pop a shell in a side window.
+
 Pass arg to ‘shell’.  If already in a side window that displays a
 shell, toggle the side window.
 
@@ -1419,6 +1438,7 @@ that instead."
 
 (defun gk-display-shell (arg)
   "Pop a shell in a side window.
+
 Pass arg to ‘shell’.  If already in a side window that displays a
 shell, toggle the side window.
 
@@ -1460,6 +1480,7 @@ that instead."
 
 (defun gk-dired-copy-marked-file-paths-as-kill (&optional arg)
   "Copy the paths of marked files into the kill ring as one big string.
+
 The string is space separated, ready for use in shell.
 
 If ARG is non-nil, or one prefix arg is given, place each file
@@ -1654,6 +1675,7 @@ If called with three prefix args, return a colon separated list."
 
 (defun gk-ucins-set-bindings (prefix binding-alist)
   "Set Ucins bindings.
+
 Use PREFIX as prefix key.
 Bindings come from BINDING-ALIST."
   (dolist (i binding-alist)
@@ -1749,6 +1771,7 @@ PUNCTUATION is the punctuation to use"
 
 (defun gk-fill-or-join-paragraph (&optional arg)
   "DWIM fill or join a paragraph.
+
 With no prefix args, toggle the physical wrapping of the
 paragraph's lines, i.e. if it seems to be filled, join all of
 it's lines, else, fill the paragraph.  If any of the lines in a
@@ -1840,6 +1863,7 @@ with a period, insert two spaces afterwards instead of one."
 
 (defun gk-count-words (&rest args)
   "Call the correct word count function for context.
+
 Pass ARGS to it, the first two will be set so that the function
 will receive the region if active, or the entire buffer."
   (interactive
@@ -2080,6 +2104,7 @@ backwards."
 (defvar gk-nroff-compile-command-template
   "< %s tbl | troff -Tps -me | dpost | ps2pdf - %s.pdf"
   "Template for use in producing the ‘compile-command’ for
+
 ‘nroff-mode’ buffers.  The first ‘%s’ will be replaced with the
 name of the current buffer, the second with same but without the
 file extension.")
@@ -2217,6 +2242,7 @@ file extension.")
 
 (defun log-edit-insert-message-template ()
   "Disable log template.
+
 Creates problems.
 The default implementation of this function is in `log-edit.el'."
   (interactive))
@@ -2236,6 +2262,7 @@ The default implementation of this function is in `log-edit.el'."
 ;; This was initially done for ‘gk-git-commit-mode-hook’.
 (defun gk-diff-current-defun ()
   "Find the name of function at point.
+
 For use in `add-log-current-defun-function'."
   ;; Kill change-log-default-name so it gets recomputed each time, since
   ;; each hunk may belong to another file which may belong to another
@@ -2276,6 +2303,7 @@ For use in `add-log-current-defun-function'."
 
 (defun gk-rcs-maybe-unlock (file)
   "Check to see if FILE is controlled by RCS and is
+
 unlocked, offer to lock it before pasting."
   (when (stringp file)
     (let ((default-directory (file-name-directory file)))
@@ -2572,6 +2600,7 @@ unlocked, offer to lock it before pasting."
 
 (defvar-local gk-algol-like nil
   "Whether current buffer is an algol-like programming language.
+
 Set by ‘gk-algol-like-hook’, don’t manually set.")
 
 (defun gk-algol-like-hook ()
@@ -2612,6 +2641,7 @@ Set by ‘gk-algol-like-hook’, don’t manually set.")
 
 (defun gk-lisp-mode-hook ()
   "Standard Lisp mode hook.
+
 Usable for Repl buffers."
   (paredit-mode 1)
   (highlight-parentheses-mode 1)
@@ -2676,6 +2706,7 @@ Usable for Repl buffers."
 
 (defun gk-elisp-file-from-template (name description keywords)
   "Create an Elisp file NAME from the template.
+
 Template is the file named in the variable `gk-elisp-template-file'.
 DESCRIPTION is the short description added to the first line.
 KEYWORDS are the keywords for the file."
@@ -2705,6 +2736,7 @@ KEYWORDS are the keywords for the file."
 
 (defun gk-elisp-add-require-for-symbol-at-point ()
   "Add a requirement for the feature that exports symbol at point.
+
 On success, prints a message and returns the feature name (a
 symbol)."
   (interactive)
@@ -3064,6 +3096,7 @@ symbol)."
 
 (define-advice ibuffer-update (:before (&rest args) autogroups)
   "Group related buffers together using ‘ibuffer-vc’ and ‘dir’,
+
 and special ones sepatarely."
   (ignore args)
   (setf ibuffer-filter-groups
@@ -3274,6 +3307,7 @@ and special ones sepatarely."
 
 (defun gk-rmail-view-html-part-in-browser ()
   "View the HTML part of the message in this buffer in the
+
 browser."
   (interactive)
   (save-excursion
@@ -3297,6 +3331,7 @@ browser."
 
 (defun gk-rmail-mime-save-to-tmp (button output-file-name)
   "Save the attachment in BUTTON in OUTPUT-FILE-NAME.
+
 Return the file name, expanded."
   ;; Adapted from ‘rmail-mime-save’ in order to automatically export
   ;; to HTML and open in external browser.
@@ -3335,6 +3370,7 @@ Return the file name, expanded."
 
 (defun gk-rmail-advance ()
   "Advance to the next message in default mbox.
+
 This command will not run unless in an RMAIL buffer visiting
 ‘rmail-file-name’.  It will output the current message to
 ‘gk-rmail-archive-file’ and delete it, advancing to the next
@@ -3350,6 +3386,7 @@ email and archiving read mail in another file."
 
 (defun gk-rmail-forward-link-or-button (p)
   "Navigate both links and buttons in Rmail in a ring.
+
 This replaces the use of ‘forward-button’ which only traverses
 buttons and skips over links."
   (interactive (list (point)))
@@ -3365,6 +3402,7 @@ buttons and skips over links."
 
 (defun gk-rmail-backward-link-or-button (p)
   "Navigate both links and buttons in Rmail in a ring.
+
 This replaces the use of ‘forward-button’ which only traverses
 buttons and skips over links.
 
@@ -3420,6 +3458,7 @@ This is the reverse counterpart of
 (define-advice mairix-widget-search
     (:after (&rest args) enable-widget-minor-mode)
   "Activate ‘widget-minor-mode’ in the ‘mairix-widget-search’ buffer.
+
 Wonder why this is not the default."
   (widget-minor-mode +1))
 
@@ -3470,6 +3509,7 @@ Wonder why this is not the default."
 
 (defun gk-org-cite-follow (name)
   "Open bibliography and jump to appropriate entry.
+
 NAME is the citation name."
   (let (citfile)
     (setf
@@ -3594,6 +3634,7 @@ For PATH, DESC and FORMAT see `org-add-link-type'."
 
 (defun gk-org-forward-to-entry-content (&optional unsafe)
   "Skip headline, planning line, and all drawers in current entry.
+
 If UNSAFE is non-nil, assume point is on headline."
   (unless unsafe
     ;; To improve performance in loops (e.g. with `org-map-entries')
@@ -3618,6 +3659,7 @@ If UNSAFE is non-nil, assume point is on headline."
 (defun gk-org-word-count
     (beg end &optional count-latex-macro-args no-count-footnotes)
   "Report the number of words in the Org mode buffer or selected region.
+
 Ignores:
 - comments
 - tables
@@ -3715,6 +3757,7 @@ number."
 
 (defun gk-org-refill-reading-note ()
   "Refill a list item when taking reading notes from a PDF.
+
 Account for soft hyphens."
   (interactive)
   (goto-char
@@ -3740,6 +3783,7 @@ Account for soft hyphens."
 
 (defun gk-org-insert-reading-note (page)
   "Insert a reading note into the reading notes file.
+
 A note in that file has a certain structure, i.e. a list item
 with the page number as the first thing, then the quote text,
 which comes from the ‘kill-ring’ via ‘yank’ wrapped in
@@ -3764,6 +3808,7 @@ given how page numbers are realised varies in the real world."
 
 (defun gk-org-reading-notes-ellipsise-last-note ()
   "Ellipsise the beginning and the end of the last note.
+
 This means, look at the first char, if lowercase, assume it’s a
 partial sentence.  Then look at the last char, if not a period,
 assume again it’s a partial sentence.  Then ellipsise with
@@ -3812,6 +3857,7 @@ brackets and an ASCII ellipsis, i.e. three consecutive dots."
 
 (defun gk-org-reading-note-merge-last-n-notes (n)
   "Merge last N reading notes, at least 2.
+
 In interactive mode N is read from the prefix argument.  If it’s
 not given or is one, it’s taken as two.  If less than two, it’s a
 user error and the command aborts."
@@ -3872,6 +3918,7 @@ N defaults to 1."
 (define-advice org-tree-to-indirect-buffer
     (:around (fn arg) arg-for-dedicated-frame)
   "Use ARG not for selection but for toggling dedicated frames.
+
 If called with prefix arg, open in a dedicated frame.  Otherwise,
 respect ‘org-indirect-buffer-display’."
   (interactive "P")
@@ -3882,6 +3929,7 @@ respect ‘org-indirect-buffer-display’."
 
 (defun gk-org-ensure-empty-line-before-headlines (beg end)
   "Make sure there is an empty line before each headline in the region.
+
 Interactively, default to whole buffer if region is not active,
 and report how many headlines were affected."
   (interactive
@@ -4063,6 +4111,7 @@ and report how many headlines were affected."
 ;; From: https://lists.gnu.org/archive/html/emacs-orgmode/2013-07/msg00731.html
 (defun gk-org-export-comment-removal-hook (backend)
   "Remove comments from export.
+
 Prevent comments inline in paragraphs from splitting them."
   (delete-matching-lines "^[ \t]*#\\( \\|$\\)"))
 
@@ -4181,6 +4230,7 @@ its contents."
 ;; [[file:/igk/config/emacs.d/gk.org::*Version%20control][Version control:1]]
 (define-advice org-paste-subtree (:before (&rest args) check-rcs-lock)
   "Check to see if this file is controlled by RCS and is
+
 unlocked, offer to lock it before pasting."
   (ignore args)
   (let ((f (buffer-file-name)))
@@ -4190,6 +4240,7 @@ unlocked, offer to lock it before pasting."
 
 (define-advice org-capture-fill-template (:before (&rest args) check-rcs-lock)
   "Check to see if this file is controlled by RCS and is
+
 unlocked, offer to lock it before pasting."
   (ignore args)
   (let* ((buffer (org-capture-get :buffer))
@@ -4200,6 +4251,7 @@ unlocked, offer to lock it before pasting."
 
 (define-advice org-todo (:before (&rest args) check-rcs-lock)
   "Check to see if this file is controlled by RCS and is
+
 unlocked, offer to lock it before pasting."
   (ignore args)
   (let ((f (buffer-file-name)))
@@ -4209,6 +4261,7 @@ unlocked, offer to lock it before pasting."
 
 (define-advice org-clock-in (:before (&rest args) check-rcs-lock)
   "Check to see if this file is controlled by RCS and is
+
 unlocked, offer to lock it before pasting."
   (ignore args)
   (let ((f (buffer-file-name)))
@@ -4217,6 +4270,7 @@ unlocked, offer to lock it before pasting."
 
 (define-advice org-clock-out (:before (&rest args) check-rcs-lock)
   "Check to see if this file is controlled by RCS and is
+
 unlocked, offer to lock it before pasting."
   (ignore args)
   (let ((f (buffer-file-name)))
@@ -4271,6 +4325,7 @@ unlocked, offer to lock it before pasting."
 
 (defun gk-org-trans-insert-sentence-reference (page paragraph sentence)
   "Insert sentence number.
+
 PAGE is the page number.
 
 PARAGRAPH is the paragraph number where the if a paragraph
@@ -4457,6 +4512,7 @@ BEGIN and END are bounds of the region."
 
 (defun org-dblock-write:vcdirty (&rest args)
   "Update a vcdirty dynamic block.
+
 Generates a "
   (let ((vcs-dirs (append
                    (list (expand-file-name "~/cf")
@@ -4517,6 +4573,7 @@ Generates a "
 
 (defun gk-org-confirm-babel-evaluate (&rest ignore)
   "Evaluate code blocks straight away if they are in the ‘org-directory’.
+
 Ask otherwise."
   (member
    (buffer-file-name)
@@ -4577,6 +4634,7 @@ Ask otherwise."
 
 (defun gk-org-curr-fragment ()
   "Returns the type and position of the current fragment.
+
 Returns the type and position of the current fragment available
 for preview inside org-mode. Returns nil at non-displayable
 fragments"
@@ -4803,6 +4861,7 @@ fragments"
 
 (defun gk-setup-frame-looks (&optional frame)
   "Customisations that modify frame behaviour.
+
 Groups such customisations which might need to be re-ran when a
 new frame is created."
   (interactive)
@@ -5071,6 +5130,7 @@ Active minor modes: \n - "))
           (propertize "%]" 'help-echo recursive-edit-help-echo)
           " "))
   "Mode line construct for displaying major and minor modes.
+
 An adaptation and simplification of ‘mode-line-modes’.")
 (put 'gk-mode-line-modes 'risky-local-variable t)
 
@@ -5233,6 +5293,7 @@ xdg-open is a desktop utility that calls your preferred web browser."
 
 (defun gk-urls-browse-github/gitlab-commit (url &rest args)
   "Browse a Github/Gitlab URL.
+
 Append .diff to the url.  Pass ARGS on to ‘gk-browse-url’."
   (browse-url (concat url ".diff")))
 
@@ -5280,6 +5341,7 @@ Redirect to the raw file url."
 
 (defun gk-browse-url (&rest args)
   "Prompt for whether or not to browse with EWW, if no browse
+
 with external browser."
   (apply
    (if (y-or-n-p "Browse with EWW? ")
@@ -5300,6 +5362,7 @@ with external browser."
 
 (defun gk-urls-browse-file (url &optional ext cb)
   "Browse a file with the given extension.
+
 URL is the URL to browse.
 EXT is the extension, omit the leading dot.
 CB is the optional callback, run after downloading the file,
@@ -5327,6 +5390,7 @@ Writes the data to a temporary file."
 ;; TODO(2018-05-25): Make this support regexps as EXT.
 (defmacro gk-urls-make-file-adapter (ext &optional arg &rest body)
   "Create adapters for `gk-urls-browse-file'.
+
 ARG and BODY are used to make a callback to that function, if both
 provided."
   (declare (indent defun))
@@ -5517,6 +5581,7 @@ provided."
 
 (defun gk-elfeed-filter (filter)
   "Set search filter, do not update live.
+
 It is rather slow to do so."
   (interactive (list (read-string "Filter: " elfeed-search-filter)))
   (setq elfeed-search-filter filter)
@@ -5696,6 +5761,7 @@ the body of the entry, and the cdr is the score, an integer.")
 
 (defun gk-after-save-hook ()
   "Göktuğ's After Save™, a man's best companion.
+
 Does various tasks after saving a file, see it's definition."
   ;; Export agenda files when edited.
   (when-let* ((file (ignore-errors      ;expand-file-name signals if
