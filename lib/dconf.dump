@@ -194,7 +194,7 @@ root='file:///'
 active-plugins=['docinfo', 'filebrowser', 'modelines', 'time', 'spell']
 
 [org/gnome/gedit/state/window]
-size=(900, 699)
+size=(900, 691)
 state=87168
 bottom-panel-size=140
 side-panel-size=200
@@ -276,7 +276,7 @@ sort-col=15
 
 [org/gtk/settings/file-chooser]
 sort-column='modified'
-sidebar-width=156
+sidebar-width=176
 show-size-column=true
 show-hidden=false
 window-size=(797, 483)
