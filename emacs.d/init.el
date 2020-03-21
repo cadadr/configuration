@@ -138,6 +138,7 @@
 (require 'org-inlinetask)
 (require 'org-mobile)
 (require 'org-protocol)
+(require 'org-tempo)                    ; <s, <q &c
 (require 'org-variable-pitch)
 (require 'outline)
 (require 'ox)
