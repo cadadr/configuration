@@ -21,7 +21,7 @@ panel-launchers=['DEPRECATED']
 desktop-effects-map-transition='easeOutQuad'
 desktop-effects-tile-transition='easeInQuad'
 desktop-effects-unmaximize-effect='none'
-panels-enabled=['1:0:bottom']
+panels-enabled=['1:0:top']
 alttab-minimized-aware=true
 desktop-effects-maximize-time=100
 desktop-effects-maximize-effect='none'
@@ -97,7 +97,7 @@ layout-group=0
 exec='uxterm'
 
 [org/cinnamon/desktop/notifications]
-bottom-notifications=true
+bottom-notifications=false
 
 [org/cinnamon/desktop/privacy]
 recent-files-max-age=-1
@@ -146,7 +146,7 @@ delay=15
 
 [org/cinnamon/theme]
 theme-cache-updated=1583579523
-name='cinnamon'
+name='Blue-Submarine'
 
 [org/cinnamon/settings-daemon/plugins/power]
 sleep-display-battery=300
