@@ -4910,7 +4910,8 @@ new frame is created."
   (when (eq gk-gui-theme 'dracula)
     ;; Less prominent inactive modeline.
     (set-face-attribute
-     'mode-line nil :box t :foreground nil :background nil :inherit 'mode-line))
+     'mode-line nil :box t :foreground nil :background nil :inherit 'mode-line)
+    (set-face-attribute 'region nil :background "black"))
 
   ;; Settings for when using default theme specifically.
   (unless gk-gui-theme
