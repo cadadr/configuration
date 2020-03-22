@@ -383,16 +383,6 @@ When ARG is a positive number, repeat that many times."
         (split-window-sensibly)
         (other-window 1)
         (funcall vcs dir))
-    (if (string= "3:rsc" (ignore-errors (cdr (gk-i3wm-get-current-workspace-id))))
-        (progn
-          (find-file "~/doc/not/rsc/Dilbilim.org")
-          (split-window-horizontally)
-          (other-window 1)
-          (find-file (gk-org-dir-file "okuma.org"))
-          (split-window-vertically (/ (window-height) 2))
-          (other-window 1)
-          (find-file "~/doc/not/ders/hacett-idb/notlar.org"))
-      (find-file (gk-org-dir-file "Start.org")))
     (other-window 1)
     (gk-flash-current-line)))
 
