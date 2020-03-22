@@ -319,10 +319,11 @@ show-location-entry=true
 
 [org/nemo/window-state]
 network-expanded=true
+side-pane-view='places'
 sidebar-width=176
-start-with-sidebar=true
 maximized=false
 sidebar-bookmark-breakpoint=9
+start-with-sidebar=true
 
 [org/nemo/desktop]
 network-icon-visible=true
