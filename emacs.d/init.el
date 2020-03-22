@@ -225,7 +225,7 @@
       auto-save-list-file-prefix (locate-user-emacs-file
                                   "etc/auto-save-list/saves-")
       bookmark-default-file (dropbox "bookmarks.el")
-      bbdb-file (expand-file-name "~/doc/bbdb")
+      bbdb-file (expand-file-name "~/Documents/bbdb")
       savehist-file (locate-user-emacs-file "etc/history")
       eww-bookmarks-directory (dropbox ".")
       save-place-file (locate-user-emacs-file "etc/places")
@@ -235,7 +235,7 @@
       mc/list-file (locate-user-emacs-file "etc/mc-lists.el"))
 
 (defvar gk-website-settings
-  (expand-file-name "~/doc/not/www/publish")
+  (expand-file-name "~/Documents/not/www/publish")
   "Settings for publishing http://www.gkayaaalp.com.")
 
 
@@ -700,7 +700,7 @@ argument as t, so refer to that command for further details."
 
 (defun gk-new-journal-entry ()
   (interactive)
-  (find-file (format-time-string "~/doc/not/journal/%F")))
+  (find-file (format-time-string "~/Documents/not/journal/%F")))
 
 
 
@@ -4508,7 +4508,7 @@ Generates a "
   (let ((vcs-dirs (append
                    (list (expand-file-name "~/cf")
                          org-directory
-                         (expand-file-name "~/doc/not/www2")
+                         (expand-file-name "~/Documents/not/www2")
                          (expand-file-name "~/.mozilla"))
                    (cl-remove-if
                     ($ (member $1 '("." ".." "Playground" "External" "Go" "Lisp"

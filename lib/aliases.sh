@@ -132,7 +132,7 @@ epub2pdf () {
 }
 
 para() {
-    export LEDGER_FILE="$HOME/doc/finans/$(date +'%Y-%m').dat"
+    export LEDGER_FILE="$HOME/Documents/finans/$(date +'%Y-%m').dat"
     if [ -z "$@" ]; then
          hledger balance
     else
