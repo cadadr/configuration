@@ -23,7 +23,7 @@ bindsym $mod+Control+e exec xterm -e 'less /run/user/$UID/i3/errorlog.*'
 bindsym $mod+Control+x exec xterm -e 'less ~/.xsession-errors'
 bindsym $mod+Control+q exec "i3-nagbar -t warning -m 'Bye?' -b 'Yes' 'i3-msg exit'"
 bindsym $mod+Shift+semicolon exec i3-input -P 'i3 command: '
-bindsym $mod+w exec --no-startup-id i3switch.rb
+bindsym $mod+w exec --no-startup-id ruby $MYLIB/i3/i3switch.rb
 bindsym $mod+BackSpace exec --no-startup-id python3 $MYLIB/i3/focus-last.py --switch
 bindsym $mod+Control+t exec --no-startup-id sh $MYLIB/toggle-tapping.sh
 
