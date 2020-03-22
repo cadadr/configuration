@@ -254,6 +254,34 @@ video-x-resolution=640
 [org/gnome/libgnomekbd/keyboard]
 layouts=['gb', 'tr\talt']
 
+[org/gnome/rhythmbox/library/source]
+show-browser=true
+
+[org/gnome/rhythmbox/plugins/audioscrobbler/Last.fm]
+scrobbling-enabled=true
+
+[org/gnome/rhythmbox/plugins/audioscrobbler/Libre.fm]
+scrobbling-enabled=true
+
+[org/gnome/rhythmbox/plugins/iradio]
+initial-stations-loaded=true
+
+[org/gnome/rhythmbox/plugins/iradio/source]
+show-browser=true
+
+[org/gnome/rhythmbox/plugins]
+active-plugins=['android', 'mtpdevice', 'audioscrobbler', 'notification', 'audiocd', 'mmkeys', 'generic-player', 'power-manager', 'mpris', 'rb', 'artsearch', 'dbus-media-server', 'cd-recorder', 'daap', 'ipod', 'iradio']
+seen-plugins=['mtpdevice', 'audioscrobbler', 'notification', 'grilo', 'rblirc', 'mpris', 'pythonconsole', 'fmradio', 'rb', 'soundcloud', 'replaygain', 'webremote', 'sendto', 'magnatune', 'artsearch', 'im-status', 'lyrics', 'dbus-media-server', 'cd-recorder', 'daap', 'ipod']
+
+[org/gnome/rhythmbox/podcast/source]
+show-browser=true
+
+[org/gnome/rhythmbox]
+position=(0, 0)
+
+[org/gnome/rhythmbox/rhythmdb]
+locations=['file:///home/g/mus']
+
 [org/gnome/nm-applet/eap/6b19b2b7-f3f7-4f6c-9221-039292afd482]
 ignore-phase2-ca-cert=false
 ignore-ca-cert=false
