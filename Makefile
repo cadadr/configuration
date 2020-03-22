@@ -1,9 +1,6 @@
 # makefile --- main makefile for Göktuğ's configuration.
 
 export UMASK=
-HERE:=$(PWD)
-export BASIC?=no
-export HOST:=$(shell hostname)
 
 all: help
 
@@ -11,40 +8,23 @@ all: help
 help:
 	@echo "System type: $(HOST)";\
 	echo "Targets:";\
-	echo "	init		initialise \`$(HOST)' instance";\
-	echo "	test		test \`$(HOST)' w/ Docker (run as root)";\
-	echo "	pkg		(re)install \`$(HOST)' packages";\
-	echo "	conf		(re)install \`$(HOST)' config files";\
 	echo "	cron		(re)install current config's cron";\
 	echo "	setup		set up $$HOME and $$USER after system initialisation";\
 	echo "	invade		run invasion";\
 	echo "	build		build utilites and emacs.d";\
-	echo "			use \`bins' and \`emacs' rules to build these";\
-	echo "			separately";\
 	echo "	dotfiles	build dotfiles";\
 	echo "	clean		delete build artefacts";\
-	echo Variables:;\
-	echo "	BASIC=no/yes	Make a basic installation (default: no)"
 
 ### System initialisation:
-setup: $(HOST)-setup
-init: $(HOST)-init
-test: $(HOST)-test
-conf: $(HOST)-config
-pkg: $(HOST)-pkg
-cron: $(HOST)-cron
+.PHONY: setup setup-light fetch-config.m4
 
-.PHONY: init test conf pkg cron setup
+setup: fetch-config.m4 build dotfiles invade
+	sh lib/setup.sh
 
-alpha-setup: deep-clean alpha-fetch-config.m4 build dotfiles invade cron
-	sh systems/alpha/scripts/setup.sh
+setup-light: fetch-config.m4 dotfiles invade
+	@echo === Done, consider running make setup later
 
-alpha-init: alpha-fetch-config.m4
-	apt-get install -y sudo git python3 python3-distro gnupg
-	$(MAKE) -C systems/alpha -$(MAKEFLAGS) init
-	locale-gen
-
-alpha-fetch-config.m4:
+fetch-config.m4:
 	if [ -e ../store/config.m4 ]; then      \
 		cp ../store/config.m4 .        ;\
 	elif [ -e $(HOME)/fil/config.m4 ]; then \
@@ -53,25 +33,8 @@ alpha-fetch-config.m4:
 		touch config.m4                ;\
 	fi
 
-alpha-test:
-	docker build -t config-layers . && docker run config-layers
-
-alpha-config:
-	$(MAKE) -C systems/alpha -$(MAKEFLAGS) install-config
-
-alpha-pkg:
-	$(MAKE) -C systems/alpha -$(MAKEFLAGS) install-packages
-
-alpha-cron:
-	crontab cron/alpha.crontab
-
-.PHONY: alpha-init alpha-init-sub alpha-cron alpha-setup
-
 ### Build rules:
-build: bins emacs
-
-bins:
-	$(MAKE) -C bin -$(MAKEFLAGS)
+build: emacs
 
 emacs:
 	$(MAKE) -C emacs.d -$(MAKEFLAGS) all

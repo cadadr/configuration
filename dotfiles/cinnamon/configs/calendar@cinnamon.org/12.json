@@ -19,7 +19,7 @@
     },
     "custom-format": {
         "type": "entry",
-        "default": "%A %B %e, %H:%M",
+        "default": "%A, %B %e, %H:%M",
         "description": "Date format",
         "indent": true,
         "dependency": "use-custom-format",
@@ -34,5 +34,5 @@
         "callback": "on_custom_format_button_pressed",
         "tooltip": "Click this button to know more about the syntax for date formats."
     },
-    "__md5__": "db2204a9b8ebf8688c7d463eed4ac71c"
+    "__md5__": "5a6bfd03cf382a77b9ded0499e12325a"
 }

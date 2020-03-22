@@ -25,5 +25,4 @@ mailboxes = +inbox
 
 set edit_headers = yes
 set envelope_from = yes
-set sendmail = "~/bin/msmtp-enqueue.sh"
-# set sendmail = /usr/bin/msmtp
+set sendmail = /usr/bin/msmtp

@@ -207,11 +207,6 @@ alias py='run-python.sh'
 alias up='cd ..'
 alias right='cd "$( find -L ${PWD%/*}/ -maxdepth 1 -type d -not -name \".*\" | sort | grep -A 1 ../${PWD##*/} | tail -n 1 )"'
 alias left='cd "$( find -L ${PWD%/*}/ -maxdepth 1 -type d -not -name \".*\" | sort | grep -B 1 ../${PWD##*/} | head -n 1 )"'
-# Mail
-alias runq=msmtp-runqueue.sh
-alias rq=msmtp-runqueue.sh
-alias lisq=msmtp-listqueue.sh
-alias lq=msmtp-listqueue.sh
 # Node / Yarn
 alias yarn=yarnpkg
 # Docker
@@ -242,7 +237,7 @@ __gk_linux_aliases(){
     # Load distro-specific aliases.
     if [ -f /etc/os-release ]; then
         case $(grep '^ID=' /etc/os-release | cut -d= -f2) in
-            debian|raspbian)
+            debian|raspbian|ubuntu|linuxmint)
                 __gk_debian_aliases ;;
         esac
     fi

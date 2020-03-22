@@ -1,7 +1,0 @@
-# crontab -- repeating background tasks. -*- mode: conf-space -*-
-MAILTO=g
-PATH=/home/$LOGNAME/bin:/usr/bin:/usr/sbin:/usr/local/bin:/sbin:/bin
-GKCRON=yes
-
-# min	hour		d/month	month	d/week	command
-# end

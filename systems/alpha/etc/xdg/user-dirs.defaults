@@ -1,9 +1,0 @@
-# Default settings for user directories
-DESKTOP=wrk
-DOWNLOAD=dwn
-TEMPLATES=.templates
-PUBLICSHARE=pub
-DOCUMENTS=Documents
-MUSIC=mus
-PICTURES=pic
-VIDEOS=Videos
