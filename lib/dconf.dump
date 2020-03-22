@@ -187,14 +187,14 @@ quit-time-delay=60
 show-tabs-mode='auto'
 
 [org/gnome/gedit/plugins/filebrowser]
-tree-view=true
+tree-view=false
 root='file:///'
 
 [org/gnome/gedit/plugins]
 active-plugins=['docinfo', 'filebrowser', 'modelines', 'time', 'spell']
 
 [org/gnome/gedit/state/window]
-size=(900, 691)
+size=(900, 689)
 state=87168
 bottom-panel-size=140
 side-panel-size=200
@@ -319,6 +319,7 @@ show-location-entry=true
 
 [org/nemo/window-state]
 network-expanded=true
+sidebar-width=176
 start-with-sidebar=true
 maximized=false
 sidebar-bookmark-breakpoint=9
