@@ -254,6 +254,10 @@ video-x-resolution=640
 [org/gnome/libgnomekbd/keyboard]
 layouts=['gb', 'tr\talt']
 
+[org/gnome/eog/view]
+background-color='rgb(0,0,0)'
+use-background-color=true
+
 [org/gnome/rhythmbox/library/source]
 show-browser=true
 
