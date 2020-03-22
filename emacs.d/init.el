@@ -4880,7 +4880,8 @@ new frame is created."
                         :foreground "white")
     ;; Default added face renders foreground unreadable.
     (set-face-attribute 'diff-refine-added nil
-                        :background "dark olive green"))
+                        :background "dark olive green")
+    (set-face-attribute 'region nil :foreground nil))
 
   ;; Customise misterioso.
   (when (eq gk-gui-theme 'misterioso)
