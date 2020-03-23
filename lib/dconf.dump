@@ -1,6 +1,46 @@
 [org/cinnamon]
+desktop-effects-unmaximize-transition='easeNone'
+desktop-effects-maximize-transition='easeInExpo'
+desktop-effects-map-effect='traditional'
+hotcorner-layout=['scale:true:0', 'scale:false:0', 'expo:true:0', 'desktop:false:0']
+desktop-effects-close-effect='traditional'
+workspace-osd-duration=400
+desktop-effects-unmaximize-time=100
+desklet-snap-interval=25
+desktop-effects-map-time=100
+enabled-desklets=@as []
+desktop-effects-minimize-effect='traditional'
+alttab-switcher-style='thumbnails'
+panels-height=['1:40']
 next-applet-id=13
+desktop-effects-map-transition='easeOutQuad'
+enable-indicators=true
+desktop-effects-maximize-time=100
+desktop-effects-unmaximize-effect='none'
+alttab-minimized-aware=true
+panel-zone-symbolic-icon-sizes='[{"panelId": 1, "left": 28, "center": 28, "right": 16}]'
+desktop-effects-tile-transition='easeInQuad'
+desktop-effects-maximize-effect='none'
 enabled-applets=['panel1:left:0:menu@cinnamon.org:0', 'panel1:left:1:show-desktop@cinnamon.org:1', 'panel1:left:2:grouped-window-list@cinnamon.org:2', 'panel1:right:0:systray@cinnamon.org:3', 'panel1:right:1:xapp-status@cinnamon.org:4', 'panel1:right:2:notifications@cinnamon.org:5', 'panel1:right:3:printers@cinnamon.org:6', 'panel1:right:4:removable-drives@cinnamon.org:7', 'panel1:right:5:keyboard@cinnamon.org:8', 'panel1:right:6:network@cinnamon.org:9', 'panel1:right:7:sound@cinnamon.org:10', 'panel1:right:8:power@cinnamon.org:11', 'panel1:right:9:calendar@cinnamon.org:12']
+desktop-effects-minimize-time=160
+alttab-switcher-delay=100
+desktop-effects-tile-effect='none'
+desktop-effects-close-transition='easeOutQuad'
+desktop-effects-minimize-transition='easeInQuad'
+workspace-expo-view-as-grid=true
+workspace-osd-x=50
+desktop-effects-close-time=120
+workspace-osd-y=50
+desktop-effects-tile-time=100
+
+[org/cinnamon/settings-daemon/plugins/power]
+sleep-inactive-ac-timeout=0
+sleep-display-battery=1800
+button-power='suspend'
+lid-close-battery-action='suspend'
+lid-close-ac-action='suspend'
+sleep-display-ac=1800
+sleep-inactive-battery-timeout=300
 
 [org/cinnamon/settings-daemon/peripherals/touchpad]
 motion-threshold=1
@@ -10,6 +50,8 @@ clickpad-click=2
 touchpad-enabled=true
 
 [org/cinnamon/settings-daemon/peripherals/keyboard]
+repeat-interval=uint32 30
+delay=uint32 500
 numlock-state='off'
 
 [org/cinnamon/settings-daemon/peripherals/mouse]
@@ -17,9 +59,61 @@ drag-threshold=8
 motion-threshold=1
 double-click=400
 
+[org/cinnamon/sounds]
+tile-enabled=false
+login-enabled=false
+logout-enabled=false
+unplug-enabled=false
+notification-enabled=true
+plug-enabled=false
+switch-enabled=false
+
+[org/cinnamon/muffin]
+tile-maximize=true
+resize-threshold=24
+tile-hud-threshold=25
+workspace-cycle=true
+
+[org/cinnamon/desktop/interface]
+cursor-size=24
+cursor-blink-time=1200
+text-scaling-factor=1.0
+toolkit-accessibility=false
+
+[org/cinnamon/desktop/keybindings/wm]
+switch-to-workspace-right=['<Super>Tab']
+switch-to-workspace-left=['<Primary><Super>Tab']
+
+[org/cinnamon/desktop/media-handling]
+autorun-x-content-start-app=@as []
+autorun-never=false
+autorun-x-content-ignore=@as []
+autorun-x-content-open-folder=@as []
+
+[org/cinnamon/desktop/applications/calculator]
+exec='gnome-calculator'
+
+[org/cinnamon/desktop/applications/terminal]
+exec='gnome-terminal'
+
+[org/cinnamon/desktop/wm/preferences]
+min-window-opacity=30
+button-layout=':minimize,maximize,close'
+mouse-button-modifier='<Super>'
+action-scroll-titlebar='opacity'
+num-workspaces=2
+workspace-names=@as []
+
 [org/cinnamon/desktop/a11y/applications]
 screen-keyboard-enabled=false
 screen-reader-enabled=false
+
+[org/cinnamon/desktop/a11y/keyboard]
+mousekeys-init-delay=300
+mousekeys-max-speed=10
+mousekeys-accel-time=300
+bouncekeys-delay=300
+slowkeys-delay=300
 
 [org/cinnamon/desktop/a11y/mouse]
 secondary-click-enabled=false
@@ -27,6 +121,10 @@ secondary-click-time=1.2
 dwell-time=1.2
 dwell-threshold=10
 dwell-click-enabled=false
+
+[org/cinnamon/desktop/sound]
+maximum-volume=150
+event-sounds=false
 
 [org/cinnamon/desktop/background]
 picture-uri='file:///home/g/Pictures/wlp/mint/rails.jpg'
@@ -36,12 +134,8 @@ picture-options='zoom'
 image-source='directory:///home/g/Pictures/wlp/mint'
 delay=15
 
-[org/cinnamon/desktop/interface]
-cursor-size=24
-toolkit-accessibility=false
-
-[org/cinnamon/desktop/sound]
-event-sounds=false
+[org/cinnamon/cinnamon-session]
+quit-time-delay=60
 
 [org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9]
 background-color='rgb(0,43,54)'
@@ -50,6 +144,18 @@ foreground-color='rgb(131,148,150)'
 
 [org/gnome/terminal/legacy]
 schema-version=uint32 3
+
+[org/gnome/nm-applet/eap/20d0a475-848a-4533-8128-f9e3554219cc]
+ignore-phase2-ca-cert=false
+ignore-ca-cert=false
+
+[org/gnome/cheese]
+photo-y-resolution=480
+burst-delay=1000
+video-y-resolution=480
+camera='USB2.0 HD UVC WebCam: USB2.0 HD'
+photo-x-resolution=640
+video-x-resolution=640
 
 [org/gnome/desktop/a11y/applications]
 screen-keyboard-enabled=false
@@ -64,6 +170,9 @@ dwell-click-enabled=false
 
 [org/gnome/desktop/interface]
 toolkit-accessibility=false
+
+[org/gnome/libgnomekbd/keyboard]
+layouts=['gb', 'tr\talt']
 
 [org/gtk/settings/file-chooser]
 sort-column='name'
@@ -101,6 +210,9 @@ show-location-entry=false
 start-with-sidebar=true
 maximized=false
 sidebar-bookmark-breakpoint=5
+
+[org/nemo/desktop]
+trash-icon-visible=true
 
 [com/linuxmint/updates]
 window-pane-position=303
