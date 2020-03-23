@@ -101,3 +101,7 @@ exuberant-ctags	install
 gdb	install
 strace	install
 libfuse-dev	install
+python3-setuptools	install
+python3-wheel	install
+python3-dev	install
+libgirepository1.0-dev	install
