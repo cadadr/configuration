@@ -13,7 +13,7 @@ colorscheme morning
 
 " basic text editing settings
 set textwidth=72
-set expandtab
+set noexpandtab
 
 " completion
 set path+=**		" recursive search
