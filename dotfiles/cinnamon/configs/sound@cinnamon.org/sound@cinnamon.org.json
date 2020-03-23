@@ -27,7 +27,8 @@
         "value": [
             "banshee",
             "vlc",
-            "rhythmbox"
+            "rhythmbox",
+            "io.github.celluloid_player.Celluloid"
         ]
     },
     "section2": {
