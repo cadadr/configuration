@@ -53,6 +53,10 @@ export GO=$GOPATH/bin
 export PYTHONSTARTUP=$MEINE/python-init.py
 export DJANGO_COLORS="nocolor"
 
+# SystemD
+# Don't cut my fucking lines in half, you bastard.
+export SYSTEMD_PAGER=
+
 # GNU Coreutils
 
 # Make numbered backups
