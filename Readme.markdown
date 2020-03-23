@@ -16,50 +16,55 @@ anything in any way.
 This repo contains the following:
 
 -   My GNU Emacs configuration tree (`emacs.d/`)
--   My dotfiles (`dotfiles/`, `xdg-config/`)
--   My Debian GNU/Linux configuration (`systems/alpha/`)
--   My configuration for Raspberry Pi (`systems/pi/`)
+-   My dotfiles (`dotfiles/`)
+-   My GNU/Linux configuration
 -   And some other stuff.
 
-I've re-created this repository from scratch, removing some secrets for
-publishing. If you want to use any part of my configurations, you're
-free to do so, but **do not** try to use it as is, it's complex and
-personal, and some additional secret stuff is not included, so it won't
-work reliably. Just cherry-pick what you want.
+I've re-created this repository from scratch, removing some secrets
+for publishing. If you want to use any part of my configurations,
+you're free to do so, but **do not** try to use it as a whole, it's
+complex and personal, and some additional secret stuff is not
+included, so it won't work reliably. Just cherry-pick what you want.
 
 Lots of files created by other people are included in this repository,
 most of the time verbatim. Any file that does not include a statement
 for its licence terms is probably written by me, and I hereby put all of
 them in public domain.
 
-The sound file `candy/cowbell.wav` was adapted from the work of the
-Wikimedia Commons user [I speak so
-quietly](https://commons.wikimedia.org/w/index.php?title=User:I_speak_so_quietly),
-see [here](https://commons.wikimedia.org/wiki/File:808,_cowbell.OGG).
-
 Installation
 ============
 
-`alpha` System setup
---------------------
+System setup
+------------
 
-In order to get this configuration running on a vanilla Debian stable
-installation, run the following command:
+As of recent I’ve moved to Linux Mint to have a simpler config setup
+(after commit a68595e).  At the time of writing this there is not much
+that is specific to Linux Mint, but I make use of the Backup Tool to
+install all my packages.  In order to use it, run the app, click the
+Restore under Software Selection, and select `linuxmint.packages.list`
+file.  It’ll take a while to install all the packages.
 
-```
-# apt-get install -y make && make init && update-initramfs -u
-```
+If you want to use this setup with Ubuntu, first check `invasion` and
+then `dotfiles/config` to see if there is anything that you’d want to
+disable or remove.  Then, a command like the one below should be able
+to install all the packages from `linuxmint.packages.list`:
 
-This will trigger a series of shell scripts and make rules which will
-initialise the system. It should not cause any problems to re-run this
-command after fixing a failure that interrupts it running in order to
-complete installation. Make sure an internet connection is available.
+    # apt-get install $(awk '{print $1}' < linuxmint.packages.list)
 
-This recipe, among other things, will create a user `g` with uid 1993
-and a group of similar identifiers, and assing the user certain groups.
+but I haven’t tested this yet, there may be some packages that are not
+available on Ubuntu, or whatever Ubuntu-based distro you’re using.
+
+If you want to reproduce this setup on a Debian based OS, then it’s a
+bit more involved given there are some differing package names.  You
+might want to go through the package list and find those
+discrepancies, fix them, and run the above command, possibly with a
+different file name.
+
+Because this setup is rather new, it may require some time for it to
+become more easily reproduced between installs.
 
 Post-install
---------------------
+------------
 
 The following commands help complete the installation, regardless of the
 system flavour:
