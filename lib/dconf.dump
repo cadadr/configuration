@@ -235,7 +235,6 @@ trash-icon-visible=true
 [com/linuxmint/updates]
 window-pane-position=303
 default-repo-is-ok=true
-refresh-last-run=1584976894
 window-height=570
 window-width=790
 show-welcome-page=false

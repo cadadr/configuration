@@ -10,7 +10,8 @@ check-timestamp
 last-panel
 application-id
 virtual-root
-extension-cache-updated"
+extension-cache-updated
+refresh-last-run"
 
 /usr/bin/dconf dump / \
     | grep -Ev "^($(echo $filter | tr ' ' '|'))=" \
