@@ -15,8 +15,6 @@
 .local/share/applications/emacsclient-url.desktop	candy/emacsclient-url.desktop
 .local/share/applications/org-protocol.desktop		candy/org-protocol.desktop
 .local/share/applications/zotero.desktop		candy/zotero.desktop
-.local/share/xfce4/helpers/custom-MailReader.desktop	candy/custom-MailReader.desktop
-.local/share/applications/firefox-gk.desktop		candy/firefox-gk.desktop
 .local/share/applications/mimeapps.list			dotfiles/config/mimeapps.list
 .mailcap						dotfiles/mailcap
 .mairixrc						dotfiles/mairixrc
