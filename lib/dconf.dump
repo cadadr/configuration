@@ -1,3 +1,14 @@
+[io/github/celluloid-player/celluloid/window-state]
+playlist-width=250
+show-controls=true
+show-playlist=false
+width=640
+volume=1.0
+height=480
+
+[io/github/celluloid-player/celluloid]
+settings-migrated=true
+
 [org/cinnamon]
 desktop-effects-unmaximize-transition='easeNone'
 desktop-effects-maximize-transition='easeInExpo'
@@ -89,6 +100,9 @@ autorun-x-content-start-app=@as []
 autorun-never=false
 autorun-x-content-ignore=@as []
 autorun-x-content-open-folder=@as []
+
+[org/cinnamon/desktop/screensaver]
+layout-group=0
 
 [org/cinnamon/desktop/applications/calculator]
 exec='gnome-calculator'
@@ -185,6 +199,10 @@ date-format='regular'
 sort-order='ascending'
 location-mode='path-bar'
 
+[org/x/viewer/view]
+background-color='rgb(0,0,0)'
+use-background-color=true
+
 [org/x/editor/preferences/ui]
 statusbar-visible=true
 
@@ -217,7 +235,7 @@ trash-icon-visible=true
 [com/linuxmint/updates]
 window-pane-position=303
 default-repo-is-ok=true
-refresh-last-run=1584962482
+refresh-last-run=1584976894
 window-height=570
 window-width=790
 show-welcome-page=false
