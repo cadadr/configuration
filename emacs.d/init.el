@@ -97,6 +97,7 @@
 (require 'files)
 (require 'flyspell)
 (require 'forecast)
+(require 'geoclue)
 (require 'git-commit)
 (require 'git-gutter)
 (require 'git-gutter-fringe)
@@ -2154,6 +2155,17 @@ file extension.")
 ;;;;; Calendar:
 
 (calendar-set-date-style 'iso)          ;The only unambiguous one.
+
+(let* ((whereami (geoclue-location))
+       (lat (assoca 'latitude whereami))
+       (long (assoca 'longitude whereami))
+       (desc (assoca 'description whereami)))
+  (setf calendar-location-name
+        (if (string-empty-p desc)
+            (or (getenv "TZ") "wHEreVer yOu arEeeEEeEe")
+          desc)
+        calendar-latitude lat
+        calendar-longitude long))
 
 
 
