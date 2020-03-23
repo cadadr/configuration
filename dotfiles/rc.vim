@@ -34,5 +34,6 @@ set relativenumber      " line numbers relative to current line
 " set cursorline          " highlight current line
 
 " keybindings
-nmap ,n :set nu<CR>
-nmap ,r :source ~/.vimrc<CR>
+nmap <Leader>n :set nu<CR>
+nmap <Leader>r :source ~/.vimrc<CR>
+nmap <leader>l :set list!<CR>
