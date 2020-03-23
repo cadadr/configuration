@@ -9,7 +9,7 @@ syntax enable
 filetype plugin on
 
 " set colours
-colorscheme slate
+colorscheme morning
 
 " basic text editing settings
 set textwidth=72
@@ -31,7 +31,7 @@ nmap Y y$
 set lbr			" word wrap
 let &sbr = '\ '		" illustrate logical line breaks
 set relativenumber      " line numbers relative to current line
-set cursorline          " highlight current line
+" set cursorline          " highlight current line
 
 " keybindings
 nmap ,n :set nu<CR>
