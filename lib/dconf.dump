@@ -222,7 +222,7 @@ side-panel-active-page=827629879
 
 [org/nemo/preferences]
 show-hidden-files=true
-show-location-entry=false
+show-location-entry=true
 
 [org/nemo/window-state]
 start-with-sidebar=true
