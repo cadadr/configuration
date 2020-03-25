@@ -1,4 +1,33 @@
-distro==1.3.0
-poetry==0.12.12
-i3ipc==2.1.1
-seaborn==0.9.0
+# requirements.txt
+
+# See https://www.python.org/dev/peps/pep-0440/#compatible-release for
+# what (~=) means.
+
+### General:
+
+distro~=1.3
+poetry~=0.12
+i3ipc~=2.1
+
+
+
+### Sci-py:
+
+numpy~=1.18
+seaborn~=0.9                    # data vis, higher-level i/face to matplotlib
+matplotlib~=3.2
+scipy~=1.4
+ipython~=7.13
+jupyter~=1.0                    # this is a metapackage!
+statsmodels~=0.11               # estimation of numerous statistical models
+pandas~=1.0
+sympy~=1.5                      # symbolic maths
+
+### Linguistics:
+
+# Natural Language processing ToolKit, install data using repl
+#    import nltk; nltk.downloader()
+# or command line
+#    python -m nltk.downloader all
+nltk~=3.4
+
