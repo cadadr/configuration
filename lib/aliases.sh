@@ -203,6 +203,8 @@ alias venv='python3 -m venv'
 alias mkvenv='venv .venv'
 alias usevenv='( source ./.venv/bin/activate && bash -i )'
 alias py='run-python.sh'
+alias python='python3'
+alias pip='pip3'
 # Directory navigation
 alias up='cd ..'
 alias right='cd "$( find -L ${PWD%/*}/ -maxdepth 1 -type d -not -name \".*\" | sort | grep -A 1 ../${PWD##*/} | tail -n 1 )"'
