@@ -136,3 +136,6 @@ dotfiles/config/hexchat/
 dotfiles/config/qt5ct/
 dotfiles/config/user-dirs.locale
 dotfiles/config/xed/
+dotfiles/config/monitors.xml
+dotfiles/config/nemo/
+dotfiles/config/skypeforlinux/
