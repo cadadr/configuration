@@ -161,6 +161,7 @@
 (require 'pdf-sync)
 (require 'perl-mode)
 (require 'persistent-scratch)
+(require 'pip-requirements)
 (require 'pixel-scroll)
 (require 'pp)
 (require 'project)
