@@ -108,3 +108,5 @@ libgirepository1.0-dev	install
 wine-installer	install
 winetricks	install
 qrencode	install
+python3-pyqt5	install
+python3-pyqt5.qtsvg	install

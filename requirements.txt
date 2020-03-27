@@ -19,9 +19,12 @@ matplotlib~=3.2
 scipy~=1.4
 ipython~=7.13
 jupyter~=1.0                    # this is a metapackage!
+qtconsole~=4.7                  # for jupyter-qtconsole
+jupyterlab~=2.0
 statsmodels~=0.11               # estimation of numerous statistical models
 pandas~=1.0
 sympy~=1.5                      # symbolic maths
+
 
 ### Linguistics:
 
