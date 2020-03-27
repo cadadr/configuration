@@ -165,7 +165,9 @@
         "value": [
             "firefox.desktop",
             "org.gnome.Terminal.desktop",
-            "nemo.desktop"
+            "nemo.desktop",
+            "emacs.desktop",
+            "zotero.desktop"
         ]
     },
     "group-apps": {
