@@ -159,6 +159,22 @@ foreground-color='rgb(131,148,150)'
 [org/gnome/terminal/legacy]
 schema-version=uint32 3
 
+[org/gnome/file-roller/listing]
+sort-method='name'
+name-column-width=250
+sort-type='ascending'
+list-mode='as-folder'
+show-path=false
+
+[org/gnome/file-roller/dialogs/extract]
+skip-newer=false
+recreate-folders=true
+
+[org/gnome/file-roller/ui]
+sidebar-width=200
+window-height=480
+window-width=600
+
 [org/gnome/nm-applet/eap/20d0a475-848a-4533-8128-f9e3554219cc]
 ignore-phase2-ca-cert=false
 ignore-ca-cert=false
