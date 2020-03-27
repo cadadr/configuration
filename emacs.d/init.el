@@ -141,6 +141,7 @@
 (require 'org-protocol)
 (require 'org-tempo)                    ; <s, <q &c
 (require 'org-variable-pitch)
+(require 'org-zotxt)
 (require 'outline)
 (require 'ox)
 (require 'ox-beamer)
