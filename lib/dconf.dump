@@ -215,6 +215,9 @@ date-format='regular'
 sort-order='ascending'
 location-mode='path-bar'
 
+[org/x/reader]
+document-directory=@ms 'file:///home/g/Desktop/papers'
+
 [org/x/viewer/view]
 background-color='rgb(0,0,0)'
 use-background-color=true
@@ -249,11 +252,14 @@ sidebar-bookmark-breakpoint=5
 trash-icon-visible=true
 
 [com/linuxmint/updates]
-window-pane-position=303
-default-repo-is-ok=true
+hide-systray=true
 window-height=570
 window-width=790
 show-welcome-page=false
+autorefresh-hours=2
+refresh-minutes=10
+window-pane-position=303
+default-repo-is-ok=true
 
 [com/linuxmint/install]
 search-in-summary=false
