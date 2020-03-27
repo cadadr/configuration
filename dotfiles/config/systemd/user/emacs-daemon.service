@@ -5,8 +5,8 @@ Documentation=info:emacs man:emacs(1) https://gnu.org/software/emacs/
 
 [Service]
 Type=simple
-ExecStart=/bin/bash -l -c '/home/g/local/emacs/bin/emacs --fg-daemon'
-ExecStop=/home/g/local/emacs/bin/emacsclient --eval "(kill-emacs)"
+ExecStart=/bin/bash -l -c '%h/local/emacs/bin/emacs --fg-daemon'
+ExecStop=%h/local/emacs/bin/emacsclient --eval "(kill-emacs)"
 Environment=SSH_AUTH_SOCK=%t/keyring/ssh
 Restart=on-failure
 
