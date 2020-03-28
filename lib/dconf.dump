@@ -91,6 +91,9 @@ cursor-blink-time=1200
 text-scaling-factor=1.0
 toolkit-accessibility=false
 
+[org/cinnamon/desktop/keybindings/media-keys]
+terminal=@as []
+
 [org/cinnamon/desktop/keybindings/wm]
 switch-to-workspace-right=['<Super>Tab']
 switch-to-workspace-left=['<Primary><Super>Tab']
