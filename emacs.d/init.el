@@ -992,8 +992,9 @@ up-to-date."
 
 Return the lambda."
   `(lambda nil
-     ,(when (stringp (car body))
-        (pop body))
+     ,(if (stringp (car body))
+          (pop body)
+        "Not documented.")
      (interactive)
      ,@body))
 
