@@ -4772,6 +4772,7 @@ fragments"
   ;; Disable in org mode
   (when (boundp goto-address-mode)
     (goto-address-mode -1))
+  (org-zotxt-mode +1)
   (imenu-add-to-menubar "Entries")
   (setq-local truncate-lines t)
   (setq-local indent-tabs-mode nil)
