@@ -49,11 +49,17 @@ Exclude dot-files, don't sort, and return full paths by default."
                (expand-file-name
                 (locate-user-emacs-file p))))
 
-(let ((dirs (cl-remove-if-not
-             #'file-directory-p
-             (gk-directory-files gk-elisp-site-dir))))
-  (dolist (dir dirs)
-    (add-to-list 'load-path dir)))
+(defun gk-update-user-site-paths ()
+  (let ((dirs (cl-remove-if-not
+               #'file-directory-p
+               (gk-directory-files gk-elisp-site-dir))))
+    (dolist (dir dirs)
+      (unless (equal load-path
+                     (cl-pushnew dir load-path
+                                 :test #'string-equal))
+        (message "Added %s to ‘load-path’" dir)))))
+
+(gk-update-user-site-paths)
 
 (add-to-list 'load-path gk-elisp-gk-dir)
 
