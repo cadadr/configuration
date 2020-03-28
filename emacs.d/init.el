@@ -34,9 +34,6 @@
 ;; loading ls-lisp.el.
 (defvar ls-lisp-use-insert-directory-program nil)
 
-;; Prefer newer files when loading:
-(setq load-prefer-newer t)
-
 
 
 ;;;; Loadpaths:

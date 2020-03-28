@@ -7,6 +7,9 @@
 
 ;;; Code:
 
+;; Prefer newer files when loading:
+(setq load-prefer-newer t)
+
 (require 'cl-lib)
 
 (defun gk-directory-files (directory &optional include-dotfiles relative-names)
