@@ -224,6 +224,9 @@ alias envgrep="env | grep -i"
 alias openpdfs="pgrep -af '\.pdf' | cut --complement -d ' ' -f1,2"
 alias slrn="NNTPSERVER='news.gmane.io' HOME='$HOME/posta/news' slrn -i \
         '$MEINE/slrnrc'"
+alias pdf2doc='soffice --infilter="writer_pdf_import" --convert-to doc'
+alias pdf2odt='soffice --infilter="writer_pdf_import" --convert-to odt'
+
 
 ### OS specific aliases:
 
