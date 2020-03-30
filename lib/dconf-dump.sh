@@ -11,7 +11,9 @@ last-panel
 application-id
 virtual-root
 extension-cache-updated
-refresh-last-run"
+refresh-last-run
+history-search-for
+installed-apps"
 
 /usr/bin/dconf dump / \
     | grep -Ev "^($(echo $filter | tr ' ' '|'))=" \
