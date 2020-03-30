@@ -156,9 +156,9 @@ delay=15
 quit-time-delay=60
 
 [org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9]
-background-color='rgb(0,43,54)'
+background-color='rgb(255,255,255)'
 use-theme-colors=false
-foreground-color='rgb(131,148,150)'
+foreground-color='rgb(0,0,0)'
 
 [org/gnome/terminal/legacy]
 schema-version=uint32 3
