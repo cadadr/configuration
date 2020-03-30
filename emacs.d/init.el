@@ -1593,6 +1593,7 @@ If called with three prefix args, return a colon separated list."
 (pdf-tools-install-noverify)
 
 (define-key pdf-view-mode-map (kbd "M-w") #'pdf-view-kill-ring-save)
+(define-key pdf-view-mode-map "q" #'bury-buffer)
 
 
 
