@@ -4001,7 +4001,7 @@ and report how many headlines were affected."
 ;;;;; Org files and directories:
 
 (setq org-export-coding-system 'utf-8
-      org-directory (expand-file-name "~/notes")
+      org-directory (expand-file-name "~/Notes")
       org-default-notes-file (gk-org-dir-file "Start.org")
       org-icalendar-combined-agenda-file (expand-file-name "ajanda.ics" gk-syndir)
       org-id-locations-file (locate-user-emacs-file "etc/org-id-locations.el"))
