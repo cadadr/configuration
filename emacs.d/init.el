@@ -4147,9 +4147,9 @@ Prevent comments inline in paragraphs from splitting them."
                    (let ((snam (symbol-name x)))
                      `(,(concat "gk-" snam)
                        ,(gk-get-file-contents
-                         (gk-org-dir-file (format "../tex/%s.tex" snam)))
+                         (gk-org-dir-file (format "Templates/org/%s.tex" snam)))
                        ,@sect)))
-                 '(article beamer cv)))))))
+                 '(article beamer)))))))
 
 (add-hook 'org-export-before-parsing-hook 'gk-org-latex-set-classes)
 
