@@ -69,6 +69,7 @@ numlock-state='off'
 drag-threshold=8
 motion-threshold=1
 double-click=400
+middle-button-enabled=false
 
 [org/cinnamon/sounds]
 tile-enabled=false
