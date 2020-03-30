@@ -4733,6 +4733,15 @@ fragments"
 
 
 
+
+;;;;; Links & files:
+
+(setf
+ ;; Let Emacs handle PDFs.
+ org-file-apps (dissoc "\\.pdf\\'" org-file-apps))
+
+
+
 ;;;;; Keybindings:
 
 ;; Disable confusing bindings
