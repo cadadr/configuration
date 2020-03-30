@@ -8,9 +8,6 @@ set nocompatible
 syntax enable
 filetype plugin on
 
-" set colours
-colorscheme morning
-
 " basic text editing settings
 set textwidth=72
 set noexpandtab
