@@ -87,9 +87,11 @@ tile-hud-threshold=25
 workspace-cycle=true
 
 [org/cinnamon/desktop/interface]
+text-scaling-factor=1.0
 cursor-size=24
 cursor-blink-time=1200
-text-scaling-factor=1.0
+icon-theme='Mint-Y-Dark-Teal'
+gtk-theme='Mint-Y-Dark-Teal'
 toolkit-accessibility=false
 
 [org/cinnamon/desktop/keybindings/media-keys]
@@ -120,6 +122,7 @@ button-layout=':minimize,maximize,close'
 mouse-button-modifier='<Super>'
 action-scroll-titlebar='opacity'
 num-workspaces=2
+theme='Mint-Y-Dark'
 workspace-names=@as []
 
 [org/cinnamon/desktop/a11y/applications]
@@ -156,9 +159,12 @@ delay=15
 quit-time-delay=60
 
 [org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9]
-background-color='rgb(255,255,255)'
-use-theme-colors=false
-foreground-color='rgb(0,0,0)'
+background-color='rgb(46,52,54)'
+use-theme-colors=true
+cursor-background-color='rgb(255,255,255)'
+cursor-foreground-color='rgb(145,107,86)'
+foreground-color='rgb(211,215,207)'
+cursor-colors-set=false
 
 [org/gnome/terminal/legacy]
 schema-version=uint32 3
@@ -218,6 +224,10 @@ sort-directories-first=true
 date-format='regular'
 sort-order='ascending'
 location-mode='path-bar'
+
+[org/gtk/settings/color-chooser]
+selected-color=(true, 1.0, 1.0, 1.0, 1.0)
+custom-colors=[(0.56862745098039214, 0.41960784313725491, 0.33725490196078434, 1.0), (0.57000000000000006, 0.41982454873646219, 0.3363000000000001, 1.0), (0.20000000000000001, 0.20000000000000001, 0.20000000000000001, 1.0)]
 
 [org/x/reader]
 document-directory=@ms 'file:///home/g/Desktop/papers'

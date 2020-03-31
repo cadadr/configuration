@@ -5,7 +5,7 @@
 
 " turn off compatibility and enable modern features.
 set nocompatible
-syntax enable
+" syntax enable
 filetype plugin on
 
 " basic text editing settings
