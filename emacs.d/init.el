@@ -1258,6 +1258,59 @@ PATH is the path to the project."
 
 
 
+;;;; Reading setup:
+
+(defvar gk-reading-modes
+  '(doc-view-mode pdf-view-mode eww-mode)
+  "Modes more likely to be used for reading documents.
+
+Used by ‘gk-reading-setup’ in order to select a buffer that
+contains a document to be read in a smart manner so that there is
+no need to switch windows unnecessarily.")
+
+
+(defvar gk-reading-notes-file
+  (expand-file-name "~/Notes/Reading.org")
+  "Default reading notes file.
+
+Used in ‘gk-reading-setup’.")
+
+
+(defun gk-reading-setup ()
+  "Put windows into a reading setup.
+
+Try to find a potential window containing a document to be read
+\(see ‘gk-reading-modes’), give it a big window, and open
+‘gk-reading-notes-file’ in a smaller window below it."
+  (interactive)
+  ;; Find a suitable window which probably contains the document I
+  ;; want to read. If not found, the current window will be used.
+  (pcase (cl-remove-if-not
+          ($ (memq (buffer-local-value 'major-mode $1)
+                   gk-reading-modes))
+          (mapcar #'window-buffer (window-list)))
+    ((or `(,buffer)
+         `(,buffer . ,buffers))
+     (select-window
+      (display-buffer-reuse-window buffer '((reusable-frames . nil))))))
+  (delete-other-windows)
+  (display-buffer-below-selected
+   (find-file-noselect gk-reading-notes-file)
+   `((window-height . ,(/ (window-height) 3))))
+  ;; XXX(2020-04-02): if point remains in the ‘pdf-view-mode’ window,
+  ;; ‘pdf-view-mode’ behaves funny. It can be remedied via calling
+  ;;
+  ;;   (other-window 1)
+  ;;   (redisplay t)
+  ;;   (other-window 1)
+  ;;
+  ;; but having focus on ‘gk-reading-notes-file’ is both simpler and
+  ;; kinda more logical (if reading a new document I’d probably set up
+  ;; the notes buffer first.
+  (other-window 1))
+
+
+
 ;;; The GK minor mode:
 
 ;; The GK minor mode is at the heart of this configuration.  Almost
@@ -5976,6 +6029,8 @@ Does various tasks after saving a file, see it's definition."
 (gk-prefix-binding "\M-i" #'gk-visit-user-init-file)
 
 (gk-prefix-binding "\C-q" #'save-buffers-kill-emacs)
+
+(gk-prefix-binding (kbd "R") #'gk-reading-setup)
 
 
 
