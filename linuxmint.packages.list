@@ -111,3 +111,4 @@ qrencode	install
 python3-pyqt5	install
 python3-pyqt5.qtsvg	install
 diffpdf	install
+clipit	install
