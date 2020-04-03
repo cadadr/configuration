@@ -4799,7 +4799,9 @@ fragments"
 
 (setf
  ;; Let Emacs handle PDFs.
- org-file-apps (dissoc "\\.pdf\\'" org-file-apps))
+ org-file-apps (dissoc "\\.pdf\\'" org-file-apps)
+ ;; Open file: links in other window.
+ (cdr (assoc 'file org-link-frame-setup)) 'find-file-other-window)
 
 
 
