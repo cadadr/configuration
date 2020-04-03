@@ -391,16 +391,24 @@ When ARG is a positive number, repeat that many times."
   (when (null (expand-abbrev))
     (insert " ")))
 
-(defun gk-numeronym (name)
+(defun gk-numeronym (name &optional insert-p)
   "Generate a numeronym of NAME, an arbitrary string.
 
 A numeronym is the initial letter, the length of the name in
 characters, and the last letter,
-i.e. i18n -> internationalisation."
-  (interactive (list (read-string "Enter the name to be numeronymified: ")))
-  (let ((len (length name)))
+i.e. i18n -> internationalisation.
+
+If INSERT-P is non-nil or called interactively with prefix-arg,
+insert the numeronym at point."
+  (interactive (list (read-string "Enter the name to be numeronymified: ")
+                     ;; convert to bool
+                     (not (not current-prefix-arg))))
+  (let ((len (length name))
+        nym)
     (unless (>= len 2) (user-error "The name must be at least three characters long"))
-    (message (format "%c%d%c" (aref name 0) (- len 2) (aref name (1- len))))))
+    (setf nym (format "%c%d%c" (aref name 0) (- len 2) (aref name (1- len))))
+    (message nym)
+    (when insert-p (insert nym))))
 
 (defun gk-unbind-key (keyseq)
     "Unset the KEYSEQ in ‘gk-minor-mode-map’."
