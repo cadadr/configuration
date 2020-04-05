@@ -1566,6 +1566,20 @@ If called with three prefix args, return a colon separated list."
       (clipboard-kill-ring-save (point-min) (point-max)))
     (message str)))
 
+
+(defun gk-dired-update-default-directory-from-current-line (ret)
+  "Set ‘default-directory’ to dirname of entity under point.
+
+Useful when using dired-subtree."
+  (ignore ret)
+  (ignore-errors
+    (setq-local default-directory
+                (file-name-directory (dired-get-file-for-visit)))))
+
+(advice-add 'dired-previous-line :after #'gk-dired-update-default-directory-from-current-line)
+(advice-add 'dired-next-line :after #'gk-dired-update-default-directory-from-current-line)
+
+
 
 
 ;;;;; Customisations:
