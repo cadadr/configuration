@@ -16,7 +16,7 @@ text/html=firefox.desktop;
 x-scheme-handler/chrome=firefox.desktop;
 x-scheme-handler/ftp=firefox.desktop;
 x-scheme-handler/http=firefox.desktop;firefox-esr.desktop;
-x-scheme-handler/mailto=exo-mail-reader.desktop;thunderbird.desktop;
+x-scheme-handler/mailto=emacsclient-mailto.desktop;
 text/csv=emacsclient.desktop;
 
 [Default Applications]
@@ -76,4 +76,4 @@ video/x-ms-wm=mpv.desktop
 video/x-ms-wvx=mpv.desktop
 video/x-nsv=mpv.desktop
 video/x-theora+ogg=mpv.desktop
-x-scheme-handler/mailto=thunderbird.desktop
+x-scheme-handler/mailto=emacsclient-mailto.desktop

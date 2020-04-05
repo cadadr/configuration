@@ -16,6 +16,7 @@
 .local/share/applications/org-protocol.desktop		candy/org-protocol.desktop
 .local/share/applications/zotero.desktop		candy/zotero.desktop
 .local/share/applications/mimeapps.list			dotfiles/config/mimeapps.list
+.local/share/applications//emacsclient-mailto.desktop	candy/emacsclient-mailto.desktop
 .mailcap						dotfiles/mailcap
 .mairixrc						dotfiles/mairixrc
 .mpoprc							dotfiles/mpoprc
