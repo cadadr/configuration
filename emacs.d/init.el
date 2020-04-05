@@ -4957,7 +4957,26 @@ new frame is created."
     ;; Default added face renders foreground unreadable.
     (set-face-attribute 'diff-refine-added nil
                         :background "dark olive green")
-    (set-face-attribute 'region nil :foreground nil))
+    (set-face-attribute 'region nil :foreground nil)
+
+    ;; Nicer, unambigous headline colours for Org mode headlines that
+    ;; form a scale from green to red.  Also, make headlines a little
+    ;; bit larger if ‘org-variable-pitch-minor-mode’ is enabled.
+    (let ((colours ["yellow green"
+                    "khaki"
+                    "dark sea green"
+                    "light sea green"
+                    "steel blue"
+                    "slate blue"
+                    "orchid"
+                    "hotpink"]))
+      (dotimes (i 7)
+        (let ((face (intern (format "org-level-%d" (1+ i)))))
+          (set-face-attribute face nil :foreground (aref colours i) :height 1.0)
+          (when (with-temp-buffer
+                  (gk-org-visuals-hook)
+                  org-variable-pitch-minor-mode)
+            (set-face-attribute face nil :height 1.2))))))
 
   ;; Customise misterioso.
   (when (eq gk-gui-theme 'misterioso)
