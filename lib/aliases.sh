@@ -191,7 +191,7 @@ alias vagrant="env -u GEM_HOME -u GEM_PATH vagrant"
 alias ngrep="grep -Hn"
 alias msgs="dmesg | tail"
 alias msgrep="dmesg | grep"
-alias sudo="sudo --preserve-env" # https://news.ycombinator.com/item?id=18902265
+alias mysudo="sudo --preserve-env=PATH" # https://news.ycombinator.com/item?id=18902265
 alias umm="man -k"
 # From: https://news.ycombinator.com/item?id=18909446
 alias fs="mount | grep ^/ | column -t | sort"
