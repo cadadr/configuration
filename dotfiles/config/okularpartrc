@@ -9,19 +9,19 @@ TextHinting=Enabled
 HighlightLinks=true
 
 [General]
+DisplayDocumentTitle=false
 ShowOSD=false
 
 [Main View]
-ShowLeftPanel=false
 SplitterSizes=323,946
 
 [PageView]
-EditToolBarPlacement=1
+MouseMode=TextSelect
 ViewColumns=1
 ViewMode=Summary
 
 [Reviews]
-AnnotationTools=<tool name="Yellow" type="highlight" id="1"><engine type="TextSelector" color="#ffff00"><annotation opacity="0.6" type="Highlight" color="#ffff00"/></engine><shortcut>1</shortcut></tool>,<tool name="Blue" type="highlight" id="2"><engine type="TextSelector" color="#729fcf"><annotation opacity="0.6" type="Highlight" color="#729fcf"/></engine><shortcut>2</shortcut></tool>,<tool name="Orange" type="highlight" id="3"><engine type="TextSelector" color="#fcaf3e"><annotation opacity="0.6" type="Highlight" color="#fcaf3e"/></engine><shortcut>3</shortcut></tool>,<tool name="Green" type="highlight" id="4"><engine type="TextSelector" color="#8ae234"><annotation opacity="0.6" type="Highlight" color="#8ae234"/></engine><shortcut>4</shortcut></tool>,<tool name="Red" type="highlight" id="5"><engine type="TextSelector" color="#ad7fa8"><annotation opacity="0.6" type="Highlight" color="#ad7fa8"/></engine><shortcut>5</shortcut></tool>,<tool type="note-linked" id="6"><engine type="PickPoint" color="#e2dfcb" hoverIcon="tool-note"><annotation icon="Note" type="Text" color="#e2dfcb"/></engine><shortcut>6</shortcut></tool>,<tool type="note-inline" id="7"><engine block="true" type="PickPoint" color="#fce94f" hoverIcon="tool-note-inline"><annotation font="DejaVu Sans\\,9\\,-1\\,5\\,50\\,0\\,0\\,0\\,0\\,0" type="FreeText" width="1" color="#fce94f"/></engine><shortcut>7</shortcut></tool>,<tool type="ink" id="8"><engine type="SmoothLine" color="#00ff00"><annotation opacity="0.3" type="Ink" width="2" color="#00ff00"/></engine><shortcut>8</shortcut></tool>,<tool type="squiggly" id="9"><engine type="TextSelector" color="#2e3436"><annotation type="Squiggly" color="#2e3436"/></engine><shortcut>9</shortcut></tool>,<tool type="polygon" id="10"><engine type="PolyLine" color="#007eee" points="-1"><annotation type="Line" width="1" color="#007eee"/></engine></tool>,<tool type="rectangle" id="11"><engine block="true" type="PickPoint" color="#ad7fa8"><annotation opacity="0.6" type="GeomSquare" width="5" color="#ad7fa8"/></engine></tool>
+AnnotationTools=<tool id="1" name="Yellow" type="highlight"><engine color="#ffff00" type="TextSelector"><annotation color="#ffff00" opacity="0.6" type="Highlight"/></engine><shortcut>1</shortcut></tool>,<tool id="2" name="Blue" type="highlight"><engine color="#729fcf" type="TextSelector"><annotation color="#729fcf" opacity="0.6" type="Highlight"/></engine><shortcut>2</shortcut></tool>,<tool id="3" name="Orange" type="highlight"><engine color="#fcaf3e" type="TextSelector"><annotation color="#fcaf3e" opacity="0.6" type="Highlight"/></engine><shortcut>3</shortcut></tool>,<tool id="4" name="Green" type="highlight"><engine color="#8ae234" type="TextSelector"><annotation color="#8ae234" opacity="0.6" type="Highlight"/></engine><shortcut>4</shortcut></tool>,<tool id="5" name="Red" type="highlight"><engine color="#ad7fa8" type="TextSelector"><annotation color="#ad7fa8" opacity="0.6" type="Highlight"/></engine><shortcut>5</shortcut></tool>,<tool id="6" type="note-linked"><engine color="#e2dfcb" hoverIcon="tool-note" type="PickPoint"><annotation icon="Note" color="#e2dfcb" type="Text"/></engine><shortcut>6</shortcut></tool>,<tool id="7" type="note-inline"><engine color="#fce94f" hoverIcon="tool-note-inline" block="true" type="PickPoint"><annotation color="#fce94f" width="1" font="DejaVu Sans\\,9\\,-1\\,5\\,50\\,0\\,0\\,0\\,0\\,0" type="FreeText"/></engine><shortcut>7</shortcut></tool>,<tool id="8" type="ink"><engine color="#00ff00" type="SmoothLine"><annotation color="#00ff00" width="2" opacity="0.3" type="Ink"/></engine><shortcut>8</shortcut></tool>,<tool id="9" type="squiggly"><engine color="#2e3436" type="TextSelector"><annotation color="#2e3436" type="Squiggly"/></engine><shortcut>9</shortcut></tool>,<tool id="10" type="squiggly"><engine color="#550000" type="TextSelector"><annotation color="#550000" type="Squiggly"/></engine></tool>,<tool id="11" type="polygon"><engine color="#007eee" points="-1" type="PolyLine"><annotation color="#007eee" width="1" type="Line"/></engine></tool>,<tool id="12" type="rectangle"><engine color="#ad7fa8" block="true" type="PickPoint"><annotation color="#ad7fa8" width="5" opacity="0.6" type="GeomSquare"/></engine></tool>
 
 [Search]
 FindAsYouType=false
