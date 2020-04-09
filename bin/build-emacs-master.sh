@@ -23,7 +23,7 @@ git clean -dfx
 
 TK=gtk3 configure-emacs.sh
 
-make
+make -j$(lscpu | awk '/^CPU\(s\):/ {print $2}')
 
 echo Build finished, hit RETURN to continue to testing w/ -Q.; read nought
 ./src/emacs -Q
