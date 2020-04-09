@@ -7,21 +7,19 @@ if [ ! -f configure ]; then
     ./autogen.sh all
 fi
 
-# Keep an eye on:
-#   . --with-cairo
 case $V in
-    pdmp)
+    nativecomp)
 	./configure \
 	    --prefix=$HOME/local/emacs \
 	    --with-x-toolkit=$TK \
 	    --with-modules \
 	    --with-file-notification=yes \
 	    --with-gameuser=no \
+            --with-cairo \
 	    --with-mailutils \
-	    \
-	    --with-pdumper=yes \
-	    --with-unexec=yes \
-	    --with-dumping=pdumper ;;
+            --with-imagemagick \
+            \
+            --with-nativecomp ;;
     head)
 	./configure \
 	    --prefix=$HOME/local/emacs \
