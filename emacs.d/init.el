@@ -1189,21 +1189,28 @@ problematic characters."
        (vc-create-repo vcs)))
     (gk-open-project project-tree)))
 
-(defun gk-open-project (path)
+(defun gk-open-project (path &optional use-this-frame)
   "Open a project folder.
 
 Dired buffer to the left, magit (or VC if not git) to the
 right. Start a shell with name ‘*XXX shell*’ where XXX is the
 basename of the PATH.
 
-PATH is the path to the project."
+PATH is the path to the project.
+
+If USE-THIS-FRAME is non-nil, or called interactively with a
+non-zero prefix argument, use the current frame, instead of
+creating a new one."
   (interactive
    (list
     (f-slash
      (read-directory-name
-      "Project to open: "
+      (if current-prefix-arg
+          "Project to open (*in _current_ frame*): "
+        "Project to open (in new frame): ")
       (f-slash (expand-file-name gk-projects-directory))
-      nil t))))
+      nil t))
+    (not (not current-prefix-arg))))
   (let* ((vcs
           (cond
            ((file-exists-p (expand-file-name ".git" path))
@@ -1212,22 +1219,33 @@ PATH is the path to the project."
             #'vc-dir)))
          (project-name (file-name-base
                         (replace-regexp-in-string "/+\\'" "" path)))
-         (shell-name (format "*%s shell*" project-name)))
-    (gk-with-new-frame `((fullscreen . maximized)
+         (shell-name (format "*%s shell*" project-name))
+         (frame-params `((fullscreen . maximized)
                          (gk-project . ,project-name)
                          (gk-project-dir . ,path)
                          (gk-project-shell . ,shell-name)
-                         (gk-project-vcs . ,vcs))
-      (delete-other-windows)
-      (dired path)
-      (split-window-sensibly)
-      (other-window 1)
-      (funcall vcs path)
-      (save-window-excursion
-        (let ((buf (get-buffer-create shell-name))
-              (default-directory path))
-          (unless (get-buffer-process buf)
-            (shell buf)))))))
+                         (gk-project-vcs . ,vcs))))
+    (cond (use-this-frame
+           (pcase-dolist (`(,param . ,val) frame-params)
+             (set-frame-parameter nil param val))
+           (gk--open-project-1 vcs path shell-name))
+          (t
+           (gk-with-new-frame frame-params
+             (gk--open-project-1 vcs path shell-name))))))
+
+
+(defun gk--open-project-1 (vcs path shell-name)
+  "Subroutine of ‘gk-open-project’."
+  (delete-other-windows)
+  (dired path)
+  (split-window-sensibly)
+  (other-window 1)
+  (funcall vcs path)
+  (save-window-excursion
+    (let ((buf (get-buffer-create shell-name))
+          (default-directory path))
+      (unless (get-buffer-process buf)
+        (shell buf)))))
 
 (defun gk-frame-parameters ()
   "Get my frame parameters."
