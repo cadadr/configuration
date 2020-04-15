@@ -7,6 +7,7 @@ tls on
 tls_starttls off
 tls_trust_file /etc/ssl/certs/ca-certificates.crt
 keep off
+delivery maildir "~/posta/maildir"
 password
 
 # IUmail
@@ -14,7 +15,6 @@ account iumail
 host __IU_POP3_HOST__
 port 995
 user __IU_MAIL_ADDR__
-delivery mda "/usr/bin/procmail -f '%F' -a iumail"
 uidls_file ~/posta/mpop_uidls/1
 passwordeval "pass show __IU_MAIL_ADDR__"
 
@@ -23,7 +23,6 @@ account humail
 host __HU_MAIL_HOST__
 port 995
 user __HU_MAIL_ADDR__
-delivery mda "/usr/bin/procmail -f '%F' -a humail"
 uidls_file ~/posta/mpop_uidls/3
 passwordeval "pass show __HU_MAIL_ADDR__"
 
@@ -32,6 +31,5 @@ account self-inbox
 host __MAIL_HOST__
 port 995
 user __MAIL_ADDR__
-delivery mda "/usr/bin/procmail -f '%F' -a self"
 uidls_file ~/posta/mpop_uidls/2
 passwordeval "pass show __MAIL_ADDR__"

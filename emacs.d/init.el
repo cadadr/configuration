@@ -125,6 +125,7 @@
 (require 'mairix)
 (require 'message)
 (require 'mm-url)
+(require 'mu4e)
 (require 'multiple-cursors)
 (require 'netrc)
 (require 'nnfolder)
@@ -3555,6 +3556,19 @@ This is the reverse counterpart of
 
 Wonder why this is not the default."
   (widget-minor-mode +1))
+
+
+
+;;;;; Mu4e:
+
+(setq
+ mu4e-maildir       "~/posta"     ;; top-level Maildir
+ mu4e-sent-folder   "/sent"       ;; folder for sent messages
+ mu4e-drafts-folder "/drafts"     ;; unfinished messages
+ mu4e-trash-folder  "/trash"      ;; trashed messages
+ mu4e-refile-folder "/maildir"    ;; saved messages
+
+ mu4e-get-mail-command "mpop -Q -a")
 
 
 

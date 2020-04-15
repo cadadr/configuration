@@ -114,3 +114,5 @@ diffpdf	install
 clipit	install
 okular	install
 
+mu4e	install
+mb2md	install
