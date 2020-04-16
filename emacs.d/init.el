@@ -5088,7 +5088,6 @@ new frame is created."
 
 (when (gk-gui-p)
   (add-to-list 'gk-disabled-modes 'tool-bar-mode)
-  (add-to-list 'gk-disabled-modes 'menu-bar-mode)
   (add-to-list 'gk-disabled-modes 'scroll-bar-mode)
 
   ;; Fixes blank area above window after startup with Athena.
