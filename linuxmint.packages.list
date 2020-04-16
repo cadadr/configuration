@@ -105,8 +105,6 @@ python3-setuptools	install
 python3-wheel	install
 python3-dev	install
 libgirepository1.0-dev	install
-wine-installer	install
-winetricks	install
 qrencode	install
 python3-pyqt5	install
 python3-pyqt5.qtsvg	install
