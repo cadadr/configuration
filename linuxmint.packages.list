@@ -113,6 +113,6 @@ python3-pyqt5.qtsvg	install
 diffpdf	install
 clipit	install
 okular	install
-
+psychopy	install
 mu4e	install
 mb2md	install
