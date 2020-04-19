@@ -87,11 +87,12 @@ tile-hud-threshold=25
 workspace-cycle=true
 
 [org/cinnamon/desktop/interface]
-text-scaling-factor=1.0
+icon-theme='Mint-Y-Teal'
 cursor-size=24
 cursor-blink-time=1200
-icon-theme='Mint-Y-Dark-Teal'
-gtk-theme='Mint-Y-Dark-Teal'
+text-scaling-factor=1.0
+cursor-theme='DMZ-Black'
+gtk-theme='Mint-Y-Teal'
 toolkit-accessibility=false
 
 [org/cinnamon/desktop/keybindings/media-keys]
@@ -122,7 +123,7 @@ button-layout=':minimize,maximize,close'
 mouse-button-modifier='<Super>'
 action-scroll-titlebar='opacity'
 num-workspaces=2
-theme='Mint-Y-Dark'
+theme='Mint-Y'
 workspace-names=@as []
 
 [org/cinnamon/desktop/a11y/applications]
@@ -154,6 +155,9 @@ picture-options='zoom'
 [org/cinnamon/desktop/background/slideshow]
 image-source='directory:///home/g/Pictures/wlp/mint'
 delay=15
+
+[org/cinnamon/theme]
+name='Mint-Y-Teal'
 
 [org/cinnamon/cinnamon-session]
 quit-time-delay=60
