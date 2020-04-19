@@ -13,7 +13,17 @@ virtual-root
 extension-cache-updated
 refresh-last-run
 history-search-for
-installed-apps"
+installed-apps
+document-directory
+selected-files
+current-folder
+window-size
+maximized
+last-viewed-location
+transportation-type
+window-maximized
+sidebar-width
+sidebar-size"
 
 /usr/bin/dconf dump / \
     | grep -Ev "^($(echo $filter | tr ' ' '|'))=" \
