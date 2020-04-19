@@ -176,6 +176,13 @@ base=10
 source-units='degree'
 accuracy=9
 
+[org/gnome/evince]
+
+[org/gnome/evince/default]
+
+[org/gnome/file-roller/file-selector]
+show-hidden=false
+
 [org/gnome/file-roller/listing]
 sort-method='name'
 name-column-width=250
@@ -183,14 +190,32 @@ sort-type='ascending'
 list-mode='as-folder'
 show-path=false
 
+[org/gnome/file-roller/dialogs/add]
+no-symlinks=true
+update=false
+exclude-folders=''
+include-files='*'
+exclude-files=''
+
+[org/gnome/file-roller/dialogs/new]
+default-extension='.tar.gz'
+volume-size=0
+encrypt-header=false
+
 [org/gnome/file-roller/dialogs/extract]
 skip-newer=false
 recreate-folders=true
 
 [org/gnome/file-roller/ui]
-sidebar-width=200
 window-height=480
 window-width=600
+
+[org/gnome/evolution-data-server]
+network-monitor-gio-name=''
+migrated=true
+
+[org/gnome/calendar]
+active-view='year'
 
 [org/gnome/desktop/a11y/applications]
 screen-keyboard-enabled=false
@@ -202,6 +227,9 @@ secondary-click-time=1.2
 dwell-time=1.2
 dwell-threshold=10
 dwell-click-enabled=false
+
+[org/gnome/desktop/calendar]
+show-weekdate=false
 
 [org/gnome/desktop/interface]
 toolkit-accessibility=false
@@ -216,6 +244,9 @@ video-x-resolution=640
 
 [org/gnome/libgnomekbd/keyboard]
 layouts=['gb', 'tr\talt']
+
+[org/gnome/epiphany/state]
+is-maximized=false
 
 [org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9]
 background-color='rgb(46,52,54)'
@@ -233,29 +264,34 @@ ignore-phase2-ca-cert=false
 ignore-ca-cert=false
 
 [org/gnome/gnome-system-monitor]
-show-dependencies=true
-current-tab='resources'
-maximized=false
+current-tab='processes'
+show-whose-processes='all'
 window-state=(700, 500, 50, 50)
-show-whose-processes='user'
-
-[org/gnome/gnome-system-monitor/disktreenew]
-col-6-visible=true
-col-6-width=0
+show-dependencies=false
 
 [org/gnome/gnome-system-monitor/proctree]
 col-10-visible=true
 columns-order=[0, 1, 2, 3, 4, 6, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26]
 sort-order=0
 col-10-width=70
-sort-col=15
+col-8-visible=true
+sort-col=8
+col-8-width=66
+
+[org/gnome/gnome-system-monitor/memmapstree]
+sort-order=0
+sort-col=0
+
+[org/gnome/gnome-system-monitor/disktreenew]
+col-6-visible=true
+col-6-width=0
+
+[org/gnome/maps]
 
 [org/gtk/settings/file-chooser]
 sort-column='name'
-sidebar-width=150
 show-size-column=true
 show-hidden=false
-window-size=(836, 513)
 sort-directories-first=true
 date-format='regular'
 sort-order='ascending'
@@ -266,7 +302,6 @@ selected-color=(true, 1.0, 1.0, 1.0, 1.0)
 custom-colors=[(0.56862745098039214, 0.41960784313725491, 0.33725490196078434, 1.0), (0.57000000000000006, 0.41982454873646219, 0.3363000000000001, 1.0), (0.20000000000000001, 0.20000000000000001, 0.20000000000000001, 1.0)]
 
 [org/x/reader]
-document-directory=@ms 'file:///home/g/Desktop/papers'
 
 [org/x/reader/default]
 
@@ -299,7 +334,6 @@ show-location-entry=true
 
 [org/nemo/window-state]
 start-with-sidebar=true
-maximized=false
 sidebar-bookmark-breakpoint=5
 
 [org/nemo/desktop]
@@ -309,6 +343,7 @@ trash-icon-visible=true
 hide-systray=true
 window-height=570
 window-width=790
+refresh-schedule-enabled=false
 show-welcome-page=false
 autorefresh-hours=2
 refresh-minutes=10
