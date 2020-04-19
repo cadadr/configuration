@@ -3570,6 +3570,9 @@ Wonder why this is not the default."
 
  mu4e-get-mail-command "mpop -Q -a")
 
+(add-to-list 'mu4e-view-actions
+             '("ViewInBrowser" . mu4e-action-view-in-browser) t)
+
 
 
 ;;;; Org mode:
