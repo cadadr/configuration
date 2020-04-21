@@ -6144,7 +6144,12 @@ Does various tasks after saving a file, see it's definition."
 
 ;;;; Mail:
 
-(gk-prefix-binding "<" #'gk-fetch-mail)
+(gk-global-binding "\C-xm" #'mu4e-compose-new)
+
+(gk-prefix-binding "<" (gk-interactively
+                        (call-interactively #'mu4e)
+                        (call-interactively #'mu4e-update-mail-and-index)))
+
 (gk-prefix-binding ">" #'gk-runq)
 (gk-prefix-binding "/" #'mairix-search)
 (gk-prefix-binding "?" #'mairix-widget-search)
