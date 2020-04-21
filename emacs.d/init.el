@@ -3568,7 +3568,9 @@ Wonder why this is not the default."
  mu4e-trash-folder  "/trash"      ;; trashed messages
  mu4e-refile-folder "/maildir"    ;; saved messages
 
- mu4e-get-mail-command "mpop -Q -a")
+ mu4e-get-mail-command "mpop -Q -a"
+
+ mu4e-confirm-quit nil)
 
 (add-to-list 'mu4e-view-actions
              '("ViewInBrowser" . mu4e-action-view-in-browser) t)
