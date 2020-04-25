@@ -23,7 +23,8 @@ last-viewed-location
 transportation-type
 window-maximized
 sidebar-width
-sidebar-size"
+sidebar-size
+save-directory"
 
 /usr/bin/dconf dump / \
     | grep -Ev "^($(echo $filter | tr ' ' '|'))=" \
