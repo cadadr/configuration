@@ -13,7 +13,7 @@ DisplayDocumentTitle=false
 ShowOSD=false
 
 [Main View]
-SplitterSizes=323,946
+SplitterSizes=273,1008
 
 [PageView]
 EditToolBarPlacement=3
