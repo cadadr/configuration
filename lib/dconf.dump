@@ -11,27 +11,30 @@ settings-migrated=true
 
 [org/cinnamon]
 desktop-effects-unmaximize-transition='easeNone'
+desktop-effects-on-dialogs=false
 desktop-effects-maximize-transition='easeInExpo'
 desktop-effects-map-effect='traditional'
 hotcorner-layout=['scale:true:0', 'scale:false:0', 'expo:true:0', 'desktop:false:0']
 desktop-effects-close-effect='traditional'
 workspace-osd-duration=400
-desktop-effects-unmaximize-time=100
-desklet-snap-interval=25
-desktop-effects-map-time=100
 enabled-desklets=@as []
+desktop-effects-unmaximize-time=100
+desktop-effects-map-time=100
 desktop-effects-minimize-effect='traditional'
 alttab-switcher-style='icons'
+desklet-snap-interval=25
 panels-height=['1:40']
+enable-vfade=false
 next-applet-id=13
 desktop-effects-map-transition='easeOutQuad'
-enable-indicators=true
 desktop-effects-maximize-time=100
+enable-indicators=true
+desktop-effects-tile-transition='easeInQuad'
 desktop-effects-unmaximize-effect='none'
 alttab-minimized-aware=true
 panel-zone-symbolic-icon-sizes='[{"panelId": 1, "left": 28, "center": 28, "right": 16}]'
-desktop-effects-tile-transition='easeInQuad'
 desktop-effects-maximize-effect='none'
+desktop-effects-on-menus=false
 enabled-applets=['panel1:left:0:menu@cinnamon.org:0', 'panel1:left:1:show-desktop@cinnamon.org:1', 'panel1:left:2:grouped-window-list@cinnamon.org:2', 'panel1:right:0:systray@cinnamon.org:3', 'panel1:right:1:xapp-status@cinnamon.org:4', 'panel1:right:2:notifications@cinnamon.org:5', 'panel1:right:3:printers@cinnamon.org:6', 'panel1:right:4:removable-drives@cinnamon.org:7', 'panel1:right:5:keyboard@cinnamon.org:8', 'panel1:right:6:network@cinnamon.org:9', 'panel1:right:7:sound@cinnamon.org:10', 'panel1:right:8:power@cinnamon.org:11', 'panel1:right:9:calendar@cinnamon.org:12']
 desktop-effects-minimize-time=160
 alttab-switcher-delay=100
@@ -43,6 +46,7 @@ workspace-osd-x=50
 desktop-effects-close-time=120
 workspace-osd-y=50
 desktop-effects-tile-time=100
+startup-animation=false
 
 [org/cinnamon/settings-daemon/plugins/power]
 sleep-inactive-ac-timeout=0
@@ -80,20 +84,15 @@ notification-enabled=true
 plug-enabled=false
 switch-enabled=false
 
-[org/cinnamon/muffin]
-tile-maximize=true
-resize-threshold=24
-tile-hud-threshold=25
-workspace-cycle=true
-
 [org/cinnamon/desktop/interface]
-icon-theme='Mint-Y-Teal'
-cursor-size=24
-cursor-blink-time=1200
 text-scaling-factor=1.0
+cursor-size=24
 cursor-theme='DMZ-Black'
-gtk-theme='Mint-Y-Teal'
 toolkit-accessibility=false
+cursor-blink-time=1200
+icon-theme='Adwaita'
+gtk-overlay-scrollbars=false
+gtk-theme='Mint-X-Teal'
 
 [org/cinnamon/desktop/keybindings/media-keys]
 terminal=@as []
@@ -118,12 +117,13 @@ exec='gnome-calculator'
 exec='gnome-terminal'
 
 [org/cinnamon/desktop/wm/preferences]
+mouse-button-modifier='<Super>'
+theme='Mint-X'
+num-workspaces=2
+action-scroll-titlebar='none'
+focus-mode='sloppy'
 min-window-opacity=30
 button-layout=':minimize,maximize,close'
-mouse-button-modifier='<Super>'
-action-scroll-titlebar='opacity'
-num-workspaces=2
-theme='Mint-Y'
 workspace-names=@as []
 
 [org/cinnamon/desktop/a11y/applications]
@@ -149,15 +149,23 @@ maximum-volume=150
 event-sounds=false
 
 [org/cinnamon/desktop/background]
-picture-uri='file:///home/g/Pictures/wlp/mint/rails.jpg'
+picture-uri='file:///usr/share/backgrounds/linuxmint-tessa/dcoffman_lake.jpg'
 picture-options='zoom'
 
 [org/cinnamon/desktop/background/slideshow]
-image-source='directory:///home/g/Pictures/wlp/mint'
+image-source='xml:///usr/share/cinnamon-background-properties/linuxmint.xml'
 delay=15
 
+[org/cinnamon/muffin]
+desktop-effects=false
+tile-maximize=true
+resize-threshold=24
+tile-hud-threshold=25
+workspace-cycle=true
+
 [org/cinnamon/theme]
-name='Mint-Y-Teal'
+theme-cache-updated=1587749413
+name='Mint-Y-Dark-Teal'
 
 [org/cinnamon/cinnamon-session]
 quit-time-delay=60
@@ -210,12 +218,15 @@ recreate-folders=true
 window-height=480
 window-width=600
 
+[org/gnome/calendar]
+active-view='year'
+
 [org/gnome/evolution-data-server]
 network-monitor-gio-name=''
 migrated=true
 
-[org/gnome/calendar]
-active-view='year'
+[org/gnome/simple-scan]
+document-type='photo'
 
 [org/gnome/desktop/a11y/applications]
 screen-keyboard-enabled=false
@@ -248,13 +259,23 @@ layouts=['gb', 'tr\talt']
 [org/gnome/epiphany/state]
 is-maximized=false
 
+[org/gnome/devhelp/state/main/contents]
+group-books-by-language=false
+
+[org/gnome/devhelp/state/main/window]
+width=1000
+height=500
+
 [org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9]
-background-color='rgb(46,52,54)'
-use-theme-colors=true
-cursor-background-color='rgb(255,255,255)'
-cursor-foreground-color='rgb(145,107,86)'
 foreground-color='rgb(211,215,207)'
+visible-name='cadadr'
+cursor-background-color='rgb(255,255,255)'
 cursor-colors-set=false
+use-theme-colors=true
+exit-action='hold'
+cursor-foreground-color='rgb(145,107,86)'
+use-theme-transparency=false
+background-color='rgb(46,52,54)'
 
 [org/gnome/terminal/legacy]
 schema-version=uint32 3
@@ -265,8 +286,8 @@ ignore-ca-cert=false
 
 [org/gnome/gnome-system-monitor]
 current-tab='processes'
-show-whose-processes='all'
-window-state=(700, 500, 50, 50)
+show-whose-processes='user'
+window-state=(700, 500, 305, 173)
 show-dependencies=false
 
 [org/gnome/gnome-system-monitor/proctree]
@@ -298,8 +319,8 @@ sort-order='ascending'
 location-mode='path-bar'
 
 [org/gtk/settings/color-chooser]
-selected-color=(true, 1.0, 1.0, 1.0, 1.0)
-custom-colors=[(0.56862745098039214, 0.41960784313725491, 0.33725490196078434, 1.0), (0.57000000000000006, 0.41982454873646219, 0.3363000000000001, 1.0), (0.20000000000000001, 0.20000000000000001, 0.20000000000000001, 1.0)]
+selected-color=(true, 0.28627450980392155, 0.6588235294117647, 0.20784313725490197, 1.0)
+custom-colors=[(0.28627450980392155, 0.6588235294117647, 0.20784313725490197, 1.0), (0.56862745098039214, 0.41960784313725491, 0.33725490196078434, 1.0), (0.57000000000000006, 0.41982454873646219, 0.3363000000000001, 1.0), (0.20000000000000001, 0.20000000000000001, 0.20000000000000001, 1.0)]
 
 [org/x/reader]
 
