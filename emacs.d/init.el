@@ -850,8 +850,6 @@ up-to-date."
      :filter #'gk-less--proc-filter)
     (view-buffer buf 'kill-buffer)))
 
-;; Make sure that emacs itself uses ‘more’,  necessary for ‘man’ command.
-(setenv "PAGER" "more")
 
 (defalias 'dmesg
   (defun gk-dmesg (&optional lines)
