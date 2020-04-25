@@ -177,6 +177,7 @@ alias lr='ls -lR'
 alias mo=pg
 YOUDL=$HOME/co/External/youtube-dl
 alias ydl="PYTHONPATH=$YOUDL $YOUDL/bin/youtube-dl"
+alias mpv="PYTHONPATH=$YOUDL mpv"
 alias pg="$PAGER"
 alias o=xdg-open
 # Recursively download a website at a given url.
