@@ -24,7 +24,11 @@ transportation-type
 window-maximized
 sidebar-width
 sidebar-size
-save-directory"
+save-directory
+show-hidden-files
+size
+state
+window-state"
 
 /usr/bin/dconf dump / \
     | grep -Ev "^($(echo $filter | tr ' ' '|'))=" \

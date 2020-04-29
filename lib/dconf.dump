@@ -287,7 +287,6 @@ ignore-ca-cert=false
 [org/gnome/gnome-system-monitor]
 current-tab='processes'
 show-whose-processes='user'
-window-state=(700, 500, 305, 173)
 show-dependencies=false
 
 [org/gnome/gnome-system-monitor/proctree]
@@ -343,14 +342,11 @@ active-plugins=['spell', 'textsize', 'time', 'modelines', 'open-uri-context-menu
 [org/x/editor/state/history-entry]
 
 [org/x/editor/state/window]
-size=(650, 500)
-state=87168
 bottom-panel-size=140
 side-panel-size=200
 side-panel-active-page=827629879
 
 [org/nemo/preferences]
-show-hidden-files=true
 show-location-entry=true
 
 [org/nemo/window-state]
