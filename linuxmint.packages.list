@@ -114,3 +114,6 @@ okular	install
 psychopy	install
 mu4e	install
 mb2md	install
+gfortran	install
+automake	install
+
