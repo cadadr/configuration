@@ -285,7 +285,7 @@ ignore-phase2-ca-cert=false
 ignore-ca-cert=false
 
 [org/gnome/gnome-system-monitor]
-current-tab='processes'
+current-tab='resources'
 show-whose-processes='user'
 show-dependencies=false
 
@@ -295,7 +295,7 @@ columns-order=[0, 1, 2, 3, 4, 6, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 2
 sort-order=0
 col-10-width=70
 col-8-visible=true
-sort-col=8
+sort-col=15
 col-8-width=66
 
 [org/gnome/gnome-system-monitor/memmapstree]
