@@ -329,6 +329,10 @@ custom-colors=[(0.28627450980392155, 0.6588235294117647, 0.20784313725490197, 1.
 background-color='rgb(0,0,0)'
 use-background-color=true
 
+[org/x/editor/preferences/editor]
+use-default-font=true
+scheme='tango'
+
 [org/x/editor/preferences/ui]
 statusbar-visible=true
 
