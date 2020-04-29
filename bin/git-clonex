@@ -1,21 +1,31 @@
 #!/usr/bin/env perl
-# git-clone-github --- clone a github repo the way I like it -*- mode: perl -*-
+# git-clonex --- clone an external git repo the way I like
 
 =pod
 
 =encoding utf8
 
-=head1 git-clone-github --- clone a github repo the way I like it
+=head1 git-cloneb --- clone an external git repo the way I like
 
 =head2 Synopsis
 
-git clone-github GITHUB-URL
+git clonex REPO-URL
 
 =head2 Description
 
-Clone a repo from Github to an appropriate location with an
+Clone a repo from a git forge to an appropriate location with an
 appropriate name.  Appropriate as in according to my own
 conventions.
+
+This works for git forge URLs in the common format
+
+=over
+
+domain.tld/user/repo
+
+=back
+
+used by most common git forges, like Github, Gitlab, etc.
 
 =cut
 
@@ -30,8 +40,8 @@ my $repo_url_parts;
 
 unless ($repo_url =~ /
            https? :\/\/ (www\.)?
-           (?<forge>github|gitlab)
-           \.com\/
+           (?<forge>[^\.]+)
+           \. [^\/]+ \/
            (?<user>[\w\d\-_]+) \/
            (?<repo>[\w\d\-_]+) \/?
        /x ) {
