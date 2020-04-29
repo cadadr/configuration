@@ -1974,7 +1974,7 @@ will receive the region if active, or the entire buffer."
 ;; i.e. ‘auto-fill-mode’, but diminish does not like that.
 (diminish 'auto-fill-function "=")
 
-(setq-default olivetti-body-width 100)
+(setq-default olivetti-body-width 120)
 
 (defun gk-text-editing-modes-hook ()
   "Hook for `text-mode'."
