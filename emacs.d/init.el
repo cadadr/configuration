@@ -712,6 +712,11 @@ argument as t, so refer to that command for further details."
   (find-file (format-time-string "~/Documents/not/journal/%F"))
   (gk-insert-today 16))
 
+(defun gk-cancel-last-timer ()
+  "Cancel the most recently created timer."
+  (interactive)
+  (cancel-timer (car timer-list)))
+
 
 
 ;;;; Generic advices:
