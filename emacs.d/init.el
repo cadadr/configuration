@@ -5122,6 +5122,24 @@ new frame is created."
   (set-face-attribute 'forecast-moon-phase nil
                       :font (gk-font :forecast-moon-phase))
 
+  ;; Make docstrings stand out.
+  (set-face-attribute 'font-lock-doc-face nil :bold t)
+
+  ;; Make parentheses more obvious.
+  (set-face-attribute 'parenthesis nil :inherit 'font-lock-keyword-face)
+  (set-face-attribute 'show-paren-match nil :background nil  :inverse-video t)
+  (set-face-attribute 'show-paren-mismatch nil :inherit 'warning)
+  (set-face-attribute 'hl-paren-face nil :inverse-video t)
+
+  ;; Adapts ‘highlight-parentheses-mode’ colours to theme.
+  (let ((c (face-attribute 'font-lock-keyword-face :foreground)))
+    (setf hl-paren-colors
+          (list
+           (color-lighten-name c 10)
+           (color-lighten-name c 20)
+           (color-lighten-name c 30)
+           (color-lighten-name c 40))))
+
   ;; Have a bit more line-spacing.
   (setq-default line-spacing 0.2))
 
