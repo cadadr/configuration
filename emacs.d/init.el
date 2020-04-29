@@ -6019,6 +6019,8 @@ Does various tasks after saving a file, see it's definition."
 ;; So that it doesnt override special-mode and the like.
 ;; (global-set-key [? ] 'gk-maybe-expand-abbrev-or-space)
 
+(gk-global-binding "\C-xm" #'mu4e-compose-new)
+
 ;; Unset unused keys.
 (global-unset-key (kbd "C-M-%"))  ; Now same as M-%
 (global-unset-key (kbd "C-z"))    ; Has no utility
