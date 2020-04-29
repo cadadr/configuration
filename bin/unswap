@@ -1,0 +1,30 @@
+#!/bin/sh
+# unswap --- toggle swap so that it's emptied into memory
+
+[ $(id -u) -eq 0 ] || { echo only root can run unswap; exit 1; }
+
+echo HEY
+echo
+echo MAKE SURE there is enough space in RAM to contain
+echo the contents of SWAP.
+echo
+echo Or the OOM Killer may come to get you.
+echo
+echo Inspect the output of free\(1\) below
+echo
+
+free -h
+
+echo
+echo If you\'re ready, type GO ON in all-caps and hit
+echo Return
+echo
+read answer
+
+case "$answer" in
+	"GO ON") ;;
+	*) echo ; echo READ, YOU FUCK ; exit 69 ;;
+esac
+
+swapoff -a && swapon -a
+
