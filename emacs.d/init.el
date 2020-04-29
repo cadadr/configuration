@@ -4077,6 +4077,36 @@ and report how many headlines were affected."
           (forward-line 1))))
     (kill-buffer buf)))
 
+(defun gk-org-export-this-tree (&optional async)
+  "Export to PDF the toplevel tree the point is in.
+
+If called with a prefix argument, or ASYNC is non-nil, run the
+export process asynchronously and open/revert the file or file’s
+buffer with ‘find-file-other-window’ when export process is
+completed.
+
+If for some reason the timer fails to cancel and the resulting
+PDF is opened in many windows continuously, hit
+\\[gk-cancel-last-timer] to cancel the most recent timer."
+  (interactive (list (not (not current-prefix-arg))))
+  (save-excursion
+    (while (org-up-heading-safe))          ;go to toplevel
+    (org-latex-export-to-pdf async t)
+    (when async
+      (setf gk-org-async-export-this-tree
+            (run-with-timer
+             0.5 0.5
+             (lambda ()
+               (let ((file? (caar org-export-stack-contents))
+                     buf)
+                 (when (and (stringp file?)
+                            (file-exists-p file?))
+                   (cancel-timer gk-org-async-export-this-tree)
+                   (let ((revert-without-query (list ".")))
+                     (find-file-other-window file?)
+                     (other-window 1))
+                   (setf gk-org-async-export-this-tree nil)))))))))
+
 
 
 ;;;;; Variables:
@@ -6135,6 +6165,7 @@ Does various tasks after saving a file, see it's definition."
 (gk-prefix-binding "c" 'org-capture)
 (gk-prefix-binding "oo" (gk-interactively (org-agenda nil "p")))
 (gk-prefix-binding "oj" #'org-babel-tangle-jump-to-org)
+(gk-prefix-binding "o." #'gk-org-export-this-tree)
 
 
 
