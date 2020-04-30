@@ -3119,6 +3119,9 @@ symbol)."
 
 (elpy-enable)
 
+;; Restore usual ‘python-mode’ tab completion.
+(define-key python-mode-map (kbd "C-M-i") #'python-completion-at-point)
+
 
 
 ;;;;; Makefiles:
