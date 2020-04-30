@@ -94,6 +94,14 @@ icon-theme='Adwaita'
 gtk-overlay-scrollbars=false
 gtk-theme='Mint-X-Teal'
 
+[org/cinnamon/desktop/keybindings/custom-keybindings/custom0]
+binding=['<Super>w']
+command='ffprofile.sh'
+name='Firefox profile switcher'
+
+[org/cinnamon/desktop/keybindings]
+custom-list=['custom0']
+
 [org/cinnamon/desktop/keybindings/media-keys]
 terminal=@as []
 
