@@ -3113,7 +3113,8 @@ symbol)."
                   elpy-module-pyvenv)))
   elpy-modules)
 
- elpy-rpc-virtualenv-path 'current)
+ elpy-rpc-virtualenv-path 'system
+ elpy-rpc-python-command "python3")
 
 (elpy-enable)
 
