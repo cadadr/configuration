@@ -3109,7 +3109,8 @@ symbol)."
  ;; Remove unused modules
  elpy-modules
  (cl-remove-if
-  ($ (member $1 '(elpy-module-highlight-indentation
+  ($ (member $1 '(elpy-module-company
+                  elpy-module-highlight-indentation
                   elpy-module-pyvenv)))
   elpy-modules)
 
