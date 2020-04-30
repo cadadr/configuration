@@ -718,6 +718,18 @@ argument as t, so refer to that command for further details."
   (interactive)
   (cancel-timer (car timer-list)))
 
+(defun gk-jump-to-window ()
+  "Jump to a window, completing from window’s buffer name."
+  (interactive)
+  (let ((winbufs
+         (mapcar
+          ($ (cons (buffer-name (window-buffer $1)) $1))
+          (window-list))))
+    (select-window
+     (assoca
+      (completing-read "Window with buffer: " winbufs)
+      winbufs))))
+
 
 
 ;;;; Generic advices:
