@@ -81,7 +81,6 @@
 (require 'dollar)
 (require 'eldoc)
 (require 'elfeed)
-(require 'elpy)
 (require 'epa)
 (require 'epa-mail)
 (require 'epg)
@@ -3100,27 +3099,6 @@ symbol)."
 
 (define-key python-mode-map "\C-c\C-l" #'gk-python-send-statement)
 (define-key python-mode-map "\C-c\C-h" #'python-eldoc-at-point)
-
-
-
-;;;;;; Elpy:
-
-(setf
- ;; Remove unused modules
- elpy-modules
- (cl-remove-if
-  ($ (member $1 '(elpy-module-company
-                  elpy-module-highlight-indentation
-                  elpy-module-pyvenv)))
-  elpy-modules)
-
- elpy-rpc-virtualenv-path 'system
- elpy-rpc-python-command "python3")
-
-(elpy-enable)
-
-;; Restore usual ‘python-mode’ tab completion.
-(define-key python-mode-map (kbd "C-M-i") #'python-completion-at-point)
 
 
 
