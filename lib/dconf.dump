@@ -94,16 +94,22 @@ icon-theme='Adwaita'
 gtk-overlay-scrollbars=false
 gtk-theme='Mint-X-Teal'
 
+[org/cinnamon/desktop/keybindings/custom-keybindings/custom1]
+binding=['<Super>p']
+command='passmenu.sh'
+name='Pass menu'
+
 [org/cinnamon/desktop/keybindings/custom-keybindings/custom0]
 binding=['<Super>w']
 command='ffprofile.sh'
 name='Firefox profile switcher'
 
 [org/cinnamon/desktop/keybindings]
-custom-list=['custom0']
+custom-list=['custom0', 'custom1']
 
 [org/cinnamon/desktop/keybindings/media-keys]
 terminal=@as []
+video-outputs=['XF86Display']
 
 [org/cinnamon/desktop/keybindings/wm]
 switch-to-workspace-right=['<Super>Tab']
