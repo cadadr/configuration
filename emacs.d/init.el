@@ -53,6 +53,7 @@
 
 (eval-when-compile (require 'cl))
 (require 'ace-jump-mode)
+(require 'anaconda-mode)
 (require 'ansi-color)
 (require 'apropos)
 (require 'auth-source)
@@ -92,6 +93,7 @@
 (require 'face-remap) ; buffer-face-mode
 (require 'ffap)
 (require 'files)
+(require 'flymake-python-pyflakes)
 (require 'flyspell)
 (require 'forecast)
 (require 'geoclue)
@@ -113,6 +115,7 @@
 (require 'imenu)
 (require 'inf-lisp)
 (require 'inf-ruby)
+(require 'info-look)
 (require 'ispell)
 (require 'js)
 (require 'log-edit)
@@ -164,7 +167,9 @@
 (require 'pixel-scroll)
 (require 'pp)
 (require 'project)
+(require 'pydoc-info)
 (require 'python)
+(require 'pythonic)
 (require 'quail)
 (require 'rect)
 (require 'rmail)
@@ -3080,11 +3085,34 @@ symbol)."
 
 ;;;;; Python:
 (setf python-shell-interpreter "run-python.sh"
+      ;; Use system python3 for anaconda.
+      pythonic-interpreter "python3"
       ;; Please don't annoy me, and fuck you.
-      python-indent-guess-indent-offset nil)
+      python-indent-guess-indent-offset nil
+
+      flymake-python-pyflakes-executable "flake8")
+
+(defvar gk-python-version
+  (when (gk-executable-ensure pythonic-interpreter)
+    (shell-command (format "%s --version" pythonic-interpreter))
+    (with-current-buffer "*Shell Command Output*"
+      (-interleave
+       (list :major :minor :patch)
+       (mapcar #'string-to-number
+               (split-string
+                (cadr (split-string (buffer-substring-no-properties (point-min) (point-max))))
+                "\\.")))))
+  "A plist containing the version information for ‘pythonic-interpreter’.")
+
+;; Lookup Python symbols in Python Info pages.
+(pydoc-info-add-help (list (format "python%d.%d"
+                                   (plist-get gk-python-version :major)
+                                   (plist-get gk-python-version :minor))))
 
 (defun gk-python-mode-hook ()
-  )
+  (anaconda-mode +1)
+  (anaconda-eldoc-mode +1)
+  (flymake-python-pyflakes-load))
 
 (add-hook 'python-mode-hook 'gk-algol-like-hook)
 (add-hook 'python-mode-hook 'gk-python-mode-hook)
