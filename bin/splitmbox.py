@@ -17,13 +17,15 @@ mbox = mailbox.mbox(source)
 idx = 1
 
 # Find the next slice number.
-files = list(filter(lambda fil: fil.startswith(newname + "-") ,os.listdir('.')))
+files = list(filter(lambda fil: fil.startswith(newname + "-"), os.listdir('.')))
 if files:
     files.sort()
     idx = int(files[-1].split("-")[1])
 
+
 def newmbox():
     return "%s-%04d" % (newname, idx)
+
 
 target = mailbox.mbox(newmbox())
 
