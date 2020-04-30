@@ -6190,6 +6190,8 @@ Does various tasks after saving a file, see it's definition."
 
 (gk-global-binding [f1] #'gk-cancel-last-timer)
 
+(gk-global-binding "\C-xw" #'gk-jump-to-window)
+
 
 
 ;;;; Multiple cursors:
