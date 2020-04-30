@@ -1230,7 +1230,7 @@ creating a new one."
       (if current-prefix-arg
           "Project to open (*in _current_ frame*): "
         "Project to open (in new frame): ")
-      (f-slash (expand-file-name gk-projects-directory))
+      (f-slash (expand-file-name "~"))
       nil t))
     (not (not current-prefix-arg))))
   (let* ((vcs
