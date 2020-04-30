@@ -178,6 +178,8 @@ name='Mint-Y-Dark-Teal'
 [org/cinnamon/cinnamon-session]
 quit-time-delay=60
 
+[org/gnome/baobab/ui]
+
 [org/gnome/calculator]
 target-currency=''
 show-zeroes=false
