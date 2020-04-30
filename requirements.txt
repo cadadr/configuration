@@ -6,8 +6,22 @@
 ### General:
 
 distro~=1.3
+
+
+### Development tools:
+
 poetry~=0.12
 python-language-server~=0.31
+
+
+#### Elpy:
+black==19.10b0
+jedi==0.16.0
+rope==0.16.0
+autopep8==1.5
+yapf==0.29
+setuptools==44.1.0
+flake8==3.7.9
 
 
 ### Sci-py:
