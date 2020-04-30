@@ -2724,6 +2724,8 @@ Set by ‘gk-algol-like-hook’, don’t manually set.")
   "Hook for all programming modes."
   (olivetti-mode 1)
   (highlight-indent-guides-mode)
+  (highlight-parentheses-mode +1)
+  (paren-face-mode +1)
   (setq-local indent-tabs-mode nil)
   (git-gutter-mode +1))
 
