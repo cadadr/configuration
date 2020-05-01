@@ -90,9 +90,9 @@ cursor-size=24
 cursor-theme='DMZ-Black'
 toolkit-accessibility=false
 cursor-blink-time=1200
-icon-theme='Adwaita'
+icon-theme='Mint-Y-Teal'
 gtk-overlay-scrollbars=false
-gtk-theme='Mint-X-Teal'
+gtk-theme='Mint-Y-Teal'
 
 [org/cinnamon/desktop/keybindings/custom-keybindings/custom1]
 binding=['<Super>p']
@@ -132,7 +132,7 @@ exec='gnome-terminal'
 
 [org/cinnamon/desktop/wm/preferences]
 mouse-button-modifier='<Super>'
-theme='Mint-X'
+theme='Mint-Y'
 num-workspaces=2
 action-scroll-titlebar='none'
 focus-mode='sloppy'
