@@ -311,7 +311,7 @@ columns-order=[0, 1, 2, 3, 4, 6, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 2
 sort-order=0
 col-10-width=70
 col-8-visible=true
-sort-col=15
+sort-col=8
 col-8-width=66
 
 [org/gnome/gnome-system-monitor/memmapstree]
@@ -388,5 +388,6 @@ window-pane-position=303
 default-repo-is-ok=true
 
 [com/linuxmint/install]
-search-in-summary=false
+search-in-summary=true
 flatpak-remotes=['flathub::https://dl.flathub.org/repo/::False']
+search-in-description=true
