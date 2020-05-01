@@ -117,3 +117,4 @@ mb2md	install
 gfortran	install
 automake	install
 rofi	install
+whatsapp-desktop	install
