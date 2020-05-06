@@ -4764,9 +4764,10 @@ Generates a "
   "Evaluate code blocks straight away if they are in the ‘org-directory’.
 
 Ask otherwise."
-  (member
-   (buffer-file-name)
-   (directory-files-recursively org-directory "\\.org$")))
+  (not
+   (member
+    (expand-file-name (buffer-file-name))
+    (mapcar #'expand-file-name (directory-files-recursively org-directory "\\.org$")))))
 
 (setf org-confirm-babel-evaluate #'gk-org-confirm-babel-evaluate)
 
