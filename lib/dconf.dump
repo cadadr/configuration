@@ -200,6 +200,12 @@ base=10
 source-units='degree'
 accuracy=9
 
+[org/gnome/power-manager]
+info-history-type='charge'
+info-stats-type='discharge-accuracy'
+info-last-device='wakeups'
+info-page-number=3
+
 [org/gnome/evince]
 
 [org/gnome/evince/default]
@@ -391,3 +397,10 @@ default-repo-is-ok=true
 search-in-summary=true
 flatpak-remotes=['flathub::https://dl.flathub.org/repo/::False']
 search-in-description=true
+
+[ca/desrt/dconf-editor]
+saved-view='/com/canonical/'
+show-warning=false
+window-height=586
+window-width=800
+window-is-maximized=false
