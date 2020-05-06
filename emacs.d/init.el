@@ -5136,7 +5136,16 @@ new frame is created."
 
   ;; Settings for when using default theme specifically.
   (unless gk-gui-theme
-    (set-face-attribute 'region nil :background "yellow green"))
+    (set-face-attribute 'region nil :background "yellow green")
+
+    ;; Distinctively fontify org mode blocks.
+    (let ((color "steel blue"))
+      (set-face-attribute 'org-meta-line nil
+                          :background color :extend t
+                          :foreground "white")
+      (set-face-attribute 'org-block nil
+                          :background (color-lighten-name color 40)
+                          :inherit 'normal :extend t)))
 
   ;; Region should not have a foreground colour.
   (set-face-attribute 'region nil :foreground nil)
