@@ -6104,6 +6104,19 @@ Does various tasks after saving a file, see it's definition."
 (loop for i from 1 to 12 do
          (global-unset-key (kbd (format "<f%d>" i))))
 
+
+;; Go to beginning/end of words.
+(gk-global-binding "\M-e" (gk-interactively
+                           "Go to the beginning of the next word."
+                           (forward-word 2)
+                           (forward-word -1)))
+
+(gk-global-binding "\M-a" (gk-interactively
+                           "Go to the end of the previous word"
+                           (forward-word -2)
+                           (forward-word 1)))
+
+
 
 
 ;;;; Navigation:
