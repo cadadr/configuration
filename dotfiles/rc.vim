@@ -33,4 +33,6 @@ set relativenumber      " line numbers relative to current line
 " keybindings
 nmap <Leader>n :set nu<CR>
 nmap <Leader>r :source ~/.vimrc<CR>
-nmap <leader>l :set list!<CR>
+nmap <Leader>l :set list!<CR>
+nmap <Leader>f {V}:'<,'>!fmt<CR>
+nmap <Leader>F :0,$!fmt<CR>
