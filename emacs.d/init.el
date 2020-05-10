@@ -1488,11 +1488,6 @@ Set locally the variable `outline-minor-mode-prefix' to PREFIX."
 
 
 ;;;;; Shell mode:
-
-;; Comint settings specific to Shell mode, and settings for this mode.
-
-(add-hook 'shell-mode-hook 'gk-shell-mode-hook)
-
 (defun gk--get-shell-for-frame (&optional arg-for-shell frame)
   "Get a shell for current frame, depending on whether it’s a project frame.
 
@@ -1546,6 +1541,9 @@ that instead."
   ;; Compilation shell minor mode activates certain parts of command
   ;; output as clickable links to parts of files (e.g. grep -Hn).
   (compilation-shell-minor-mode 1))
+
+(add-hook 'shell-mode-hook 'gk-shell-mode-hook)
+
 
 
 
