@@ -170,8 +170,7 @@
             "org.gnome.Terminal.desktop",
             "gnome-system-monitor.desktop",
             "whatsappdesktop.desktop",
-            "spotify.desktop",
-            "appimagekit_90233ec2b16303989452ca38e6d53d3a-Sengi.desktop"
+            "spotify.desktop"
         ]
     },
     "group-apps": {
