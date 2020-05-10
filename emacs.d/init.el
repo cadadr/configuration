@@ -4760,6 +4760,30 @@ Generates a "
 
 (setq org-babel-python-command "run-python.sh")
 
+(defun gk-org-python-clean-spurious-indentation (body)
+  (let* ((extra-indentation
+	  (save-match-data
+	    (string-match "\\`\\([ \t]+\\)" body)
+	    (match-string 1 body)))
+	 (xlen (length extra-indentation)))
+    (if (zerop xlen)
+	body
+      (mapconcat
+       (lambda (line) (if (<= (length line) xlen)
+			  line
+			(if (string= extra-indentation
+				     (substring line 0 xlen))
+			    (substring line xlen)
+			  line)))
+       (split-string body "\n")
+       "\n"))))
+
+(define-advice org-babel-execute:python
+    (:filter-args (args) clean-spurious-indentation)
+  (cons
+   (gk-org-python-clean-spurious-indentation (car args))
+   (cdr args)))
+
 (defun gk-org-confirm-babel-evaluate (&rest ignore)
   "Evaluate code blocks straight away if they are in the ‘org-directory’.
 
