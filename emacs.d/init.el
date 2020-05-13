@@ -3141,6 +3141,36 @@ symbol)."
 
 ;;;;; Shell scripts:
 
+(add-to-list
+ 'auto-insert-alist
+ '((sh-mode . "Shell script template")
+   nil
+   (let* ((filename (or
+                     (ignore-errors
+                       (file-name-nondirectory
+                        (buffer-file-name)))
+                     "<filename>"))
+          (bashp (string= "bash" (file-name-extension filename))))
+     (concat
+      (if bashp
+          "#!/usr/bin/env bash"
+        "#!/bin/sh")
+      "\n# "
+      filename
+      " --- "
+      (let
+          ((d
+	    (string-trim
+	     (read-string "Description: "))))
+        (if
+	    (string-empty-p d)
+	    "..." d))
+      "\n\n"
+      (if bashp
+          "# bash strict mode\nset -euo pipefail"
+        "# POSIX strict-ish mode, beware eager pipelines!\nset -eu")
+      "\n\n"))))
+
 (defun gk-shell-script-hook ()
   "Generic hook for shell script modes."
   (gk-turn-on-outline-minor-mode "####* " ":$" "C-'"))
