@@ -5303,7 +5303,12 @@ new frame is created."
  ;; Save abbrevs silently
  save-abbrevs 'silently
  ;; Display ‘default-directory’ when prompting for a shell command.
- shell-command-prompt-show-cwd t)
+ shell-command-prompt-show-cwd t
+ ;; Window manager’s focus follows mouse.
+ focus-follows-mouse t
+ ;; Focus follows mouse in Emacs too. Focus 100ms after the mouse
+ ;; stops in a window.
+ mouse-autoselect-window -0.1)
 
 (setq-default save-place t)
 
