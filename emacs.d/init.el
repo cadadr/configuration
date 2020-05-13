@@ -3166,10 +3166,11 @@ symbol)."
 	    (string-empty-p d)
 	    "..." d))
       "\n\n"
+      ;; Adapted from: http://redsymbol.net/articles/unofficial-bash-strict-mode/
       (if bashp
           "# bash strict mode\nset -euo pipefail"
         "# POSIX strict-ish mode, beware eager pipelines!\nset -eu")
-      "\n\n"))))
+      "\nIFS=$'\\n\\t'\n\n"))))
 
 (defun gk-shell-script-hook ()
   "Generic hook for shell script modes."
