@@ -118,3 +118,4 @@ gfortran	install
 automake	install
 rofi	install
 whatsapp-desktop	install
+ruby-dev	install
