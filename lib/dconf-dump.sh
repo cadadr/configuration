@@ -28,7 +28,9 @@ save-directory
 show-hidden-files
 size
 state
-window-state"
+window-state
+window-height
+window-width"
 
 /usr/bin/dconf dump / \
     | grep -Ev "^($(echo $filter | tr ' ' '|'))=" \

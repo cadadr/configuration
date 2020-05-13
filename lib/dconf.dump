@@ -237,8 +237,6 @@ skip-newer=false
 recreate-folders=true
 
 [org/gnome/file-roller/ui]
-window-height=480
-window-width=600
 
 [org/gnome/calendar]
 active-view='year'
@@ -384,8 +382,6 @@ trash-icon-visible=true
 
 [com/linuxmint/updates]
 hide-systray=true
-window-height=570
-window-width=790
 refresh-schedule-enabled=false
 show-welcome-page=false
 autorefresh-hours=2
@@ -401,6 +397,4 @@ search-in-description=true
 [ca/desrt/dconf-editor]
 saved-view='/com/canonical/'
 show-warning=false
-window-height=586
-window-width=800
 window-is-maximized=false
