@@ -28,6 +28,7 @@ nmap Y y$
 set lbr			" word wrap
 let &sbr = '\ '		" illustrate logical line breaks
 set relativenumber      " line numbers relative to current line
+set number		" but current line number for current line
 " set cursorline          " highlight current line
 
 " keybindings
