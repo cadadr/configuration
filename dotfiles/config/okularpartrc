@@ -13,7 +13,6 @@ DisplayDocumentTitle=false
 ShowOSD=false
 
 [Main View]
-ShowLeftPanel=false
 SplitterSizes=352,929
 
 [PageView]
