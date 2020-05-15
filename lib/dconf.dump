@@ -49,13 +49,16 @@ desktop-effects-tile-time=100
 startup-animation=false
 
 [org/cinnamon/settings-daemon/plugins/power]
-sleep-inactive-ac-timeout=0
-sleep-display-battery=1800
 button-power='suspend'
-lid-close-battery-action='suspend'
+sleep-display-battery=300
+sleep-inactive-ac-timeout=0
+idle-dim-time=30
+sleep-inactive-battery-timeout=600
 lid-close-ac-action='suspend'
+lid-close-battery-action='suspend'
+idle-dim-battery=false
 sleep-display-ac=1800
-sleep-inactive-battery-timeout=300
+idle-brightness=5
 
 [org/cinnamon/settings-daemon/peripherals/touchpad]
 motion-threshold=1
