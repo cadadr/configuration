@@ -9,3 +9,12 @@ Terminal=false
 Categories=Development;TextEditor;
 StartupWMClass=Emacs
 Keywords=Text;Editor;Lisp;
+Actions=new-window;load-project;
+
+[Desktop Action new-window]
+Name=Open a New Client Frame
+Exec=emacsclient -c %f
+
+[Desktop Action load-project]
+Name=Open a New Client Frame for Project
+Exec=gk-open-project.bash
