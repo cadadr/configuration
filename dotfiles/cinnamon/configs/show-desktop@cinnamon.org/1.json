@@ -8,7 +8,7 @@
         "default": false,
         "description": "Peek at the desktop on hover",
         "tooltip": "Peek at the desktop when hovering the applet",
-        "value": false
+        "value": true
     },
     "peek-blur": {
         "type": "switch",
@@ -42,7 +42,7 @@
         "indent": true,
         "description": "Window opacity",
         "tooltip": "Change the opacity of windows when peeking at the desktop",
-        "value": 10
+        "value": 30.0
     },
     "__md5__": "07f5e42ae16fd891dd4356a1e84920ca"
 }
