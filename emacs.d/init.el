@@ -873,6 +873,7 @@ up-to-date."
      :filter #'gk-less--proc-filter)
     (view-buffer buf 'kill-buffer)))
 
+(setenv "PAGER" (locate-user-emacs-file "extras/eless.sh"))
 
 (defalias 'dmesg
   (defun gk-dmesg (&optional lines)
