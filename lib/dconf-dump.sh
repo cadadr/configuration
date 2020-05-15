@@ -30,7 +30,8 @@ size
 state
 window-state
 window-height
-window-width"
+window-width
+device-aliases"
 
 /usr/bin/dconf dump / \
     | grep -Ev "^($(echo $filter | tr ' ' '|'))=" \
