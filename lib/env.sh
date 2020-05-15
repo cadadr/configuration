@@ -53,6 +53,9 @@ export GO=$GOPATH/bin
 export PYTHONSTARTUP=$MEINE/python-init.py
 export DJANGO_COLORS="nocolor"
 
+# R
+export R_LIBS_USER="$HOME/.local/share/R/site-library"
+
 # SystemD
 # Don't cut my fucking lines in half, you bastard.
 export SYSTEMD_PAGER=
