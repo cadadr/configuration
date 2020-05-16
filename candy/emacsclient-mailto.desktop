@@ -1,6 +1,6 @@
 [Desktop Entry]
 Categories=Office;Network;Email;
-Comment=Emacsclient for mailto: links
+Comment=Emacsclient for mailto links
 Exec=%h/cf/emacs.d/extras/mailto.el
 Icon=emacs
 Name=emacsclient-mailto
