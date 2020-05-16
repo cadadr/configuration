@@ -3444,7 +3444,9 @@ and special ones sepatarely."
 
 (setf
  ;; Save a copy of outgoing messages to an mbox.
- message-default-headers (format "Fcc: %s/outbox" gk-mail-home)
+ ;; XXX(2020-05-16): mu4e takes care of that.
+ ;; message-default-headers (format "Fcc: %s/outbox" gk-mail-home)
+
  ;; Drafts directory.
  message-auto-save-directory (expand-file-name "drafts" gk-mail-home)
  ;; Ask for confirmation before sending a message.
@@ -3646,7 +3648,12 @@ Wonder why this is not the default."
 
  mu4e-get-mail-command "mpop -Q -a"
 
- mu4e-confirm-quit nil)
+ mu4e-confirm-quit nil
+
+ ;; Use mu4e to compose mail from links. See also:
+ ;; <~/cf/candy/emacsclient-mailto.el>.
+ browse-url-mailto-function #'mu4e~compose-browse-url-mail
+ mu4e-compose-in-new-frame t)
 
 (add-to-list 'mu4e-view-actions
              '("ViewInBrowser" . mu4e-action-view-in-browser) t)

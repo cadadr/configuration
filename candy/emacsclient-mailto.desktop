@@ -1,7 +1,7 @@
 [Desktop Entry]
 Categories=Office;Network;Email;
 Comment=Emacsclient for mailto links
-Exec=%h/cf/emacs.d/extras/mailto.el
+Exec=emacsclient -eval '(mu4e~compose-browse-url-mail "%u")'
 Icon=emacs
 Name=emacsclient-mailto
 MimeType=x-scheme-handler/mailto;
