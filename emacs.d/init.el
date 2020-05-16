@@ -6175,6 +6175,9 @@ Does various tasks after saving a file, see it's definition."
                            (forward-word -2)
                            (forward-word 1)))
 
+(define-key help-map "h" (gk-interactively "Go to the *Help* buffer"
+                                           (display-buffer "*Help*")))
+
 
 
 
