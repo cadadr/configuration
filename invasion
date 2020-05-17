@@ -1,6 +1,7 @@
 .Rprofile						dotfiles/profile.R
 .Xdefaults						dotfiles/Xdefaults
 .bashrc							dotfiles/shrc.sh
+.cabal							dotfiles/cabal
 .cinnamon						dotfiles/cinnamon
 .config							dotfiles/config
 .cvsrc							dotfiles/cvsrc
