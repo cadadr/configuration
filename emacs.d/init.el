@@ -5576,7 +5576,7 @@ So that the reader knows where to continue reading."
 ;; URLs in EWW or not.
 
 ;; Zero this out first.
-(setf browse-url-browser-function nil)
+(setf browse-url-browser-function #'gk-browse-url)
 
 
 
@@ -5728,7 +5728,7 @@ provided."
     `(progn
        (pushnew
         '(,reg . ,funsym)
-        browse-url-browser-function
+        browse-url-handlers
         :test 'equal)
        (defun ,funsym (url &rest args)
          (ignore args)
@@ -5766,7 +5766,7 @@ provided."
 
 (setf browse-url-generic-program
       (executable-find "firefox")
-      browse-url-browser-function
+      browse-url-handlers
       `(("\\(youtube\\.com\\|youtu\\.be\\)/" . gk-urls-browse-mpv)
         ("invidio\\.us/" . gk-urls-browse-mpv)
         ("^https?://\\(github\\|gitlab\\).com/.*?/.*?/\\(commit\\|compare\\)/[a-z0-9]+$" .
@@ -5774,9 +5774,7 @@ provided."
         ("^https?://github\\.com/.*?/.*?/blob/" . gk-urls-browse-github-file)
         ("^https?://raw\\.github\\.com/" . gk-urls-browse-github-raw)
         ("^http://www.cornucopia\\.local/" . gk-urls-browse-cornucopia)
-        ("file:///home/.+/co/lisp/doc/HyperSpec/" . gk-browse-url)
-        ,@browse-url-browser-function
-        (".*" . gk-browse-url)))
+        ("file:///home/.+/co/lisp/doc/HyperSpec/" . gk-browse-url)))
 
 
 
