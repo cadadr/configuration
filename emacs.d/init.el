@@ -5115,9 +5115,6 @@ fragments"
 
 ;;;;; GUI:
 
-(setf
- ;; Disable interaction with clipboard manager,
- x-select-enable-clipboard-manager nil)
 
 (defvar gk-gui-theme nil
   "The default theme's name to load at startup.")
@@ -5347,7 +5344,9 @@ new frame is created."
  focus-follows-mouse t
  ;; Focus follows mouse in Emacs too. Focus 100ms after the mouse
  ;; stops in a window.
- mouse-autoselect-window -0.1)
+ mouse-autoselect-window -0.1
+;; Disable interaction with clipboard manager, can cause freezes.
+ x-select-enable-clipboard-manager nil)
 
 (setq-default save-place t)
 
