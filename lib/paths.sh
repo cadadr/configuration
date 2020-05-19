@@ -37,6 +37,9 @@ fi
 # Pip installs to `.local'.
 PKGMANS_PATH="$RUBY_PATH:$HOME/.local/bin"
 
+# Haskell
+PKGMANS_PATH="$PKGMANS_PATH:$HOME/.cabal/bin"
+
 # Add paths from ~/opt.
 
 # These are portable applications that can be run on multiple systems
