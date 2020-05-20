@@ -2660,6 +2660,11 @@ unlocked, offer to lock it before pasting."
 
 ;; (cl-pushnew 'magit-todos-mode gk-global-modes)
 
+
+;; From: https://www.reddit.com/r/emacs/comments/gmkg4g/weekly_tipstricketc_thread/fr4gdm6/
+(advice-add 'magit-whitespace-disallowed
+            :around (gk-interactively (insert "-")))
+
 (define-advice  magit-gitignore-read-pattern (:around (fn local) no-leading-slashes)
   "Same thing but simpler and don’t add leading slashes."
   (ignore fn)
