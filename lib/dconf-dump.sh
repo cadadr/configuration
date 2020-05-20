@@ -31,7 +31,8 @@ state
 window-state
 window-height
 window-width
-device-aliases"
+device-aliases
+numlock-state"
 
 /usr/bin/dconf dump / \
     | grep -Ev "^($(echo $filter | tr ' ' '|'))=" \

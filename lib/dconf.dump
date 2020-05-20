@@ -70,7 +70,6 @@ touchpad-enabled=true
 [org/cinnamon/settings-daemon/peripherals/keyboard]
 repeat-interval=uint32 30
 delay=uint32 500
-numlock-state='on'
 
 [org/cinnamon/settings-daemon/peripherals/mouse]
 drag-threshold=8
