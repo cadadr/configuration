@@ -1018,8 +1018,8 @@ up-to-date."
 (defmacro gk-interactively (&rest body)
   "Wrap the BODY in an interactive lambda form.
 
-Return the lambda."
-  `(lambda nil
+Return the lambda.  It has as its sole argument a catch-all ‘_’."
+  `(lambda (&rest _)
      ,(if (stringp (car body))
           (pop body)
         "Not documented.")
