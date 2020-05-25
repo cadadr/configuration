@@ -5240,7 +5240,7 @@ new frame is created."
   (set-face-attribute 'font-lock-doc-face nil :bold t)
 
   ;; Make parentheses more obvious.
-  (set-face-attribute 'parenthesis nil :inherit 'font-lock-keyword-face)
+  (set-face-attribute 'parenthesis nil :foreground nil :inherit 'font-lock-keyword-face)
   (set-face-attribute 'show-paren-match nil :background nil  :inverse-video t)
   (set-face-attribute 'show-paren-mismatch nil :inherit 'warning)
   (set-face-attribute 'hl-paren-face nil :inverse-video t)
