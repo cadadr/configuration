@@ -37,6 +37,12 @@ export SYSTEM=$(uname)
 
 ###
 
+### Guix:
+
+. $MYLIB/guix/guix-env.sh
+
+###
+
 ### Import shell settings:
 # set ENV to a file invoked each time sh is started for interactive use.
 ENV=$HOME/.$(basename $SHELL)rc; export ENV

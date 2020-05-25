@@ -74,6 +74,14 @@ system flavour:
 $ make setup
 ```
 
+The following commands set up Guix, an experimental addition.
+
+```
+$ sudo sh lib/guix-install.sh
+$ guix pull && guix package -u
+$ guix package -m lib/guix/manifest.scm
+```
+
 ---
 
 ![screen cap](candy/scr.png)
