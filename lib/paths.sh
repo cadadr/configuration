@@ -38,7 +38,7 @@ fi
 PKGMANS_PATH="$RUBY_PATH:$HOME/.local/bin"
 
 # Haskell
-PKGMANS_PATH="$PKGMANS_PATH:$HOME/.cabal/bin"
+PKGMANS_PATH="$PKGMANS_PATH:$HOME/.cabal/bin:$HOME/.ghcup/bin"
 
 # Add paths from ~/opt.
 
