@@ -32,7 +32,9 @@ window-state
 window-height
 window-width
 device-aliases
-numlock-state"
+numlock-state
+volume
+volume-sound-enabled"
 
 /usr/bin/dconf dump / \
     | grep -Ev "^($(echo $filter | tr ' ' '|'))=" \

@@ -3,7 +3,6 @@ playlist-width=250
 show-controls=true
 show-playlist=false
 width=640
-volume=1.0
 height=480
 
 [io/github/celluloid-player/celluloid]
@@ -135,7 +134,7 @@ exec='gnome-terminal'
 [org/cinnamon/desktop/wm/preferences]
 mouse-button-modifier='<Super>'
 theme='Mint-Y-Dark'
-num-workspaces=2
+num-workspaces=3
 action-scroll-titlebar='none'
 focus-mode='sloppy'
 min-window-opacity=30
