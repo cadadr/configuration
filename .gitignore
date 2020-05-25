@@ -37,6 +37,9 @@ config.m4
 dotfiles/praat/pid
 dotfiles/cinnamon/spices.cache
 dotfiles/cabal/packages/
+dotfiles/cabal/lib/
+dotfiles/cabal/share/
+dotfiles/cabal/store/
 
 # Generated files.
 dotfiles/mpoprc
