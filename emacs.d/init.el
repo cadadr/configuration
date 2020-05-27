@@ -3656,9 +3656,8 @@ Wonder why this is not the default."
  mu4e-confirm-quit nil
 
  ;; Use mu4e to compose mail from links. See also:
- ;; <~/cf/candy/emacsclient-mailto.el>.
- browse-url-mailto-function #'mu4e~compose-browse-url-mail
- mu4e-compose-in-new-frame t)
+ ;; <~/cf/candy/emacsclient-mailto.desktop>.
+ mail-user-agent 'mu4e-user-agent)
 
 (add-to-list 'mu4e-view-actions
              '("ViewInBrowser" . mu4e-action-view-in-browser) t)
