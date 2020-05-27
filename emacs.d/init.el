@@ -714,7 +714,7 @@ argument as t, so refer to that command for further details."
 
 (defun gk-new-journal-entry ()
   (interactive)
-  (find-file (format-time-string "~/Documents/not/journal/%F"))
+  (find-file (format-time-string (gk-org-dir-file "Journal/%F")))
   (gk-insert-today 16))
 
 (defun gk-cancel-last-timer ()
