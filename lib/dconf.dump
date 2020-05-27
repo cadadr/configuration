@@ -134,7 +134,6 @@ exec='gnome-terminal'
 [org/cinnamon/desktop/wm/preferences]
 mouse-button-modifier='<Super>'
 theme='Mint-Y-Dark'
-num-workspaces=3
 action-scroll-titlebar='none'
 focus-mode='sloppy'
 min-window-opacity=30

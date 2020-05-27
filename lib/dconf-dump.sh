@@ -34,7 +34,8 @@ window-width
 device-aliases
 numlock-state
 volume
-volume-sound-enabled"
+volume-sound-enabled
+num-workspaces"
 
 /usr/bin/dconf dump / \
     | grep -Ev "^($(echo $filter | tr ' ' '|'))=" \
