@@ -6114,7 +6114,6 @@ Does various tasks after saving a file, see it's definition."
 
 ;;; Interactive aliases:
 
-(defalias 'man 'woman)
 
 
 
