@@ -33,6 +33,8 @@ Exclude dot-files, don't sort, and return full paths by default."
 (add-to-list 'load-path "/usr/share/emacs/site-lisp/")
 (let ((default-directory "/usr/share/emacs/site-lisp/"))
   (normal-top-level-add-subdirs-to-load-path))
+(add-to-list 'load-path (expand-file-name ".guix-profile/share/emacs/site-lisp"
+                                          (getenv "HOME")))
 
 ;; Add custom paths.
 (add-to-list 'load-path (expand-file-name  "~/co/elisp"))
