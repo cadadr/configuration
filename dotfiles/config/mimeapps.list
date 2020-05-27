@@ -1,5 +1,5 @@
 [Added Associations]
-application/pdf=emacsclient.desktop;okularApplication_pdf.desktop;
+application/pdf=okularApplication_pdf.desktop;
 application/x-extension-htm=firefox.desktop;
 application/x-extension-html=firefox.desktop;
 application/x-extension-shtml=firefox.desktop;
