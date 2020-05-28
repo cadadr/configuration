@@ -85,6 +85,7 @@
 (require 'epa)
 (require 'epa-mail)
 (require 'epg)
+(require 'eros)
 (require 'ess-r-mode)
 (require 'etags)
 (require 'eval-sexp-fu)
@@ -2788,6 +2789,8 @@ Usable for Repl buffers."
 
 
 ;;;;;; Emacs Lisp:
+
+(add-to-list 'gk-global-modes 'eros-mode)
 
 (defun gk-emacs-lisp-mode-hook ()
   (imenu-add-to-menubar "Definitions"))
