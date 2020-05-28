@@ -5265,7 +5265,7 @@ new frame is created."
   (add-hook 'after-make-frame-functions #'gk-setup-frame-looks)
 
   ;; Set up cursors:
-  (setq-default cursor-type 'bar)
+  (setq-default cursor-type 'box)
   (setq-default cursor-in-non-selected-windows 'hollow)
 
   (dolist (hook '(special-mode-hook dired-mode-hook rmail-mode-hook rmail-summary-mode-hook))
