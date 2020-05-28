@@ -61,6 +61,9 @@ export R_LIBS_USER="$HOME/.local/share/R/site-library"
 export SYSTEMD_PAGER=
 
 # GNU Coreutils
-
 # Make numbered backups
 export VERSION_CONTROL=numbered
+
+# Borg Backups
+export BORG_REPO='/media/g/igk-attic/Backups/'
+

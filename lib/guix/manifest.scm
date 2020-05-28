@@ -1,6 +1,6 @@
 ;;; manifest.scm --- packages to be installed for my profile, some customised
 
-(use-package-modules julia haskell haskell-apps mail)
+(use-package-modules julia haskell haskell-apps mail backup)
 
 (packages->manifest
  (list
@@ -10,4 +10,4 @@
 
   ghc cabal-install
 
-  mu))
+  borg mu))
