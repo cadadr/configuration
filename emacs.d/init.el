@@ -1100,22 +1100,21 @@ singleton list."
 (defvar gk-global-modes nil "List of global modes to be enabled.")
 (defvar gk-disabled-modes nil "List of disabled global modes.")
 
-(defun gk-toggle-global-modes (&optional disable)
-  "Enable or disable the modes listed in `gk-global-modes'.
-
-If DISABLE is  non-nil, call each of those modes  with a negative
-integer argument, otherwise positive."
-  (interactive "P")
+(defvar gk-toggle-global-modes nil)
+(defun gk-toggle-global-modes ()
+  "Enable or disable the modes listed in `gk-global-modes' at once."
+  (interactive)
+  (setf gk-toggle-global-modes (not gk-toggle-global-modes))
   (let (errors)
     ;; Enable global modes
     (dolist (mode gk-global-modes)
       (condition-case e
-          (funcall mode (if disable -1 1))
+          (funcall mode (if gk-toggle-global-modes 1 -1))
         (error (push `(,mode ,e) errors))))
     ;; Disable modes in gk-disabled-modes
     (dolist (mode gk-disabled-modes)
       (condition-case e
-          (funcall mode -1)
+          (funcall mode (if gk-toggle-global-modes -1 1))
         (error (push `(,mode ,e) errors))))
     (when errors
       (warn "Following errors occurred when activating global modes:\n%S"
