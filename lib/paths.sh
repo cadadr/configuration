@@ -46,8 +46,8 @@ PKGMANS_PATH="$PKGMANS_PATH:$HOME/.cabal/bin:$HOME/.ghcup/bin"
 # w/o recompilation, and is sort of parallel to how /opt is generally
 # used.
 
-GK_OPT_DIR="$HOME/opt"
-GK_OPT_PATH=""
+GK_OPT_DIR="$HOME/Applications"
+GK_OPT_PATH="$GK_OPT_DIR"
 
 # Finalise binary path.
 
