@@ -8,6 +8,4 @@
 
   julia
 
-  ghc cabal-install
-
   borg mu))
