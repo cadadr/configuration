@@ -2,7 +2,7 @@
 # emacs-load-test.bash --- emacs load test
 
 # bash strict mode
-set -xeuo pipefail
+set -euo pipefail
 IFS=$'\n\t'
 
 # XXX(2020-06-01): ‘-d ''’ doesn’t work for some reason.
