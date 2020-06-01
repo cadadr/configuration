@@ -5,6 +5,8 @@
 set -euo pipefail
 IFS=$'\n\t'
 
+EMACS="${EMACS-emacs}"
+
 # XXX(2020-06-01): ‘-d ''’ doesn’t work for some reason.
 read -r -d ';;;' expression <<END
 (let
@@ -17,4 +19,4 @@ read -r -d ';;;' expression <<END
             (message "-OK-"))))));;;
 END
 
-exec emacs --batch --eval="$expression"
+exec "$EMACS" --batch --eval="$expression"
