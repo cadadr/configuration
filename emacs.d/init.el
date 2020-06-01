@@ -1432,6 +1432,14 @@ Set locally the variable `outline-minor-mode-prefix' to PREFIX."
   (outline-minor-mode +1)
   (local-set-key outline-minor-mode-prefix outline-mode-prefix-map))
 
+;; Mainly for ‘C-c C-u’ in Org mode.
+(define-advice outline-up-heading
+    (:around (fn &rest args) previous-heading-on-toplevel)
+  "Move to previous heading if at toplevel."
+  (condition-case e
+      (funcall fn args)
+    ('error (org-previous-visible-heading (car args)))))
+
 
 
 ;;;; Backups:
