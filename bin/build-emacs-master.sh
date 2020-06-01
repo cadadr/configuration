@@ -29,7 +29,7 @@ echo Build finished, hit RETURN to continue to testing w/ -Q.; read nought
 ./src/emacs -Q
 
 echo Hit RETURN to test w/ configuration.; read nought
-./src/emacs
+emacs-load-test.bash
 
 echo Hit RETURN to install...; read nought
 rm -rf ~/local/emacs && make install
