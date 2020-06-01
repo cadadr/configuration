@@ -35,7 +35,8 @@ device-aliases
 numlock-state
 volume
 volume-sound-enabled
-num-workspaces"
+num-workspaces
+location-mode"
 
 /usr/bin/dconf dump / \
     | grep -Ev "^($(echo $filter | tr ' ' '|'))=" \

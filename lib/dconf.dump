@@ -358,7 +358,6 @@ show-hidden=false
 sort-directories-first=true
 date-format='regular'
 sort-order='ascending'
-location-mode='path-bar'
 
 [org/gtk/settings/color-chooser]
 selected-color=(true, 0.28627450980392155, 0.6588235294117647, 0.20784313725490197, 1.0)
