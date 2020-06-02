@@ -5106,7 +5106,7 @@ fragments"
 
 ;;;;; GUI:
 
-(defvar gk-gui-theme 'tango-dark
+(defvar gk-gui-theme 'paper
   "The default theme's name to load at startup.")
 
 (defun gk-setup-frame-looks (&optional frame)
@@ -5117,6 +5117,10 @@ new frame is created."
   (interactive)
 
   (ignore frame)
+
+  (setf paper-tint-factor 70
+        paper-base-font-size 70
+        paper-use-varying-heights-for-org-title-headlines t)
 
   (when gk-gui-theme
     (load-theme gk-gui-theme t))
