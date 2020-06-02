@@ -5021,8 +5021,9 @@ fragments"
   (when (boundp goto-address-mode)
     (goto-address-mode -1))
   (org-zotxt-mode +1)
+  (org-variable-pitch-minor-mode +1)
   (imenu-add-to-menubar "Entries")
-  (setq-local truncate-lines t)
+  (setq-local truncate-lines nil)
   (setq-local indent-tabs-mode nil)
   (setq-local post-command-hook (cons #'gk-org-auto-toggle-fragment-display
                                       post-command-hook)))
