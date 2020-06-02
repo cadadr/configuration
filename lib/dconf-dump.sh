@@ -36,7 +36,10 @@ numlock-state
 volume
 volume-sound-enabled
 num-workspaces
-location-mode"
+location-mode
+last-node-selected
+last-window-state
+saved-view"
 
 /usr/bin/dconf dump / \
     | grep -Ev "^($(echo $filter | tr ' ' '|'))=" \

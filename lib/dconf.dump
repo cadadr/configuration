@@ -200,8 +200,6 @@ default-view-mode=1
 last-vpane-pos=170
 last-wpane-pos=517
 startup-feed-action=0
-last-node-selected='vaaovqa'
-last-window-state=0
 browser='x-www-browser %s'
 folder-display-mode=1
 last-zoomlevel=100
@@ -417,6 +415,5 @@ flatpak-remotes=['flathub::https://dl.flathub.org/repo/::False']
 search-in-description=true
 
 [ca/desrt/dconf-editor]
-saved-view='/com/canonical/'
 show-warning=false
 window-is-maximized=false
