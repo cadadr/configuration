@@ -4362,33 +4362,6 @@ Prevent comments inline in paragraphs from splitting them."
 
 ;;;;;; LaTeX->PDF:
 
-(defconst gk-org-latex-classes-default-value
-  (copy-list org-latex-classes)
-  "Default value of `org-latex-classes'.")
-
-(setf org-latex-toc-command "\\iftoggle{compact}{}{\\newpage}\\gktoc\n\n")
-
-(defun gk-org-latex-set-classes (backend)
-  (when (equal backend 'latex)
-    (let ((sect '(("\\section{%s}" . "\\section*{%s}")
-                  ("\\subsection{%s}" . "\\subsection*{%s}")
-                  ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-                  ("\\paragraph{%s}" . "\\paragraph*{%s}")
-                  ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))))
-      (setf org-latex-classes
-            `(,@gk-org-latex-classes-default-value
-              ;; From not/tex/*.tex.
-              ,@(mapcar
-                 (lambda (x)
-                   (let ((snam (symbol-name x)))
-                     `(,(concat "gk-" snam)
-                       ,(gk-get-file-contents
-                         (gk-org-dir-file (format "Templates/org/%s.tex" snam)))
-                       ,@sect)))
-                 '(article beamer)))))))
-
-(add-hook 'org-export-before-parsing-hook 'gk-org-latex-set-classes)
-
 (setf org-latex-pdf-process (list "latexmk -f -silent -bibtex-cond -xelatex %f")
       ;; Do remove many sorts of files the process generates...
       org-latex-remove-logfiles t
