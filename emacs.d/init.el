@@ -4368,7 +4368,13 @@ Prevent comments inline in paragraphs from splitting them."
       ;; ...but keep some important log files.
       org-latex-logfiles-extensions
       (cl-remove-if ($ (member $1 (list "log" "blg")))
-                    org-latex-logfiles-extensions))
+                    org-latex-logfiles-extensions)
+      ;; Latex fragment previews produce and use SVG files.  They look
+      ;; better.
+      org-preview-latex-default-process 'dvisvgm)
+
+;; Scale latex fragment previews up, 1.0 scale is barely legible.
+(plist-put org-format-latex-options :scale 1.5)
 
 (defun gk-org-pdf-subtree (arg)
   "Export subtree under point to pdf, show the output.
