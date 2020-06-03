@@ -377,7 +377,7 @@ scheme='tango'
 statusbar-visible=true
 
 [org/x/editor/plugins/filebrowser/on-load]
-tree-view=true
+tree-view=false
 root='file:///'
 
 [org/x/editor/plugins]
