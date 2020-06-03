@@ -159,3 +159,6 @@ dotfiles/config/borg/
 dotfiles/config/liferea/cookies.txt
 dotfiles/config/liferea/feedlist.opml
 dotfiles/config/liferea/feedlist.opml.backup
+dotfiles/config/sublime-text-3/Cache
+dotfiles/config/sublime-text-3/Index
+dotfiles/config/sublime-text-3/Local/*.sublime_session
