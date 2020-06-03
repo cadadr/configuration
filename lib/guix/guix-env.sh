@@ -2,7 +2,7 @@
 
 export GUIX_PROFILE="$HOME/.guix-profile"
 
-if [ -d "$GUIX_PROFILE"]; then
+if [ -d "$GUIX_PROFILE" ]; then
     . "$GUIX_PROFILE/etc/profile"
 
     export MY_GUIX_LIB="$MYLIB/guix/"
