@@ -2,5 +2,17 @@
 # xsessionrc --- x session environment -*- shell-script -*-
 
 . $HOME/.profile
-. $MYLIB/xcommon.sh
+
+# Inform systemd
+systemctl --user import-environment DISPLAY
+
+# Ensure correct user dirs configuration
+xdg-user-dirs-update
+
+### X resources:
+xrdb -merge $MEINE/Xdefaults
+
+### Input:
+#### Keyboard:
+setxkbmap -option "ctrl:nocaps"
 
