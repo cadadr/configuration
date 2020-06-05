@@ -39,7 +39,7 @@ pandas~=1.0
 sympy~=1.5                      # symbolic maths
 # installed initially for haslwanter stats intro
 xlrd~=1.2                       # read in Excel files
-pymc~=2.3                       # markov chain monte carlo, bayesian stats
+# pymc~=2.3                       # markov chain monte carlo, bayesian stats
 scikit-learn~=0.22
 scikits.bootstrap~=1.0
 lifelines~=0.24                 # survival analysis?
