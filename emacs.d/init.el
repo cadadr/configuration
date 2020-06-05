@@ -5120,7 +5120,7 @@ new frame is created."
 
   (setf paper-tint-factor 70
         paper-base-font-size 70
-        paper-use-varying-heights-for-org-title-headlines t)
+        paper-use-varying-heights-for-org-title-headlines nil)
 
   (when gk-gui-theme
     (load-theme gk-gui-theme t))
