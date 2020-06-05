@@ -196,7 +196,7 @@ folder-display-hide-read=false
 default-update-interval=0
 social-bm-site='Blinklist'
 last-hpane-pos=199
-default-view-mode=1
+default-view-mode=0
 last-vpane-pos=170
 last-wpane-pos=517
 startup-feed-action=1
@@ -358,8 +358,6 @@ date-format='regular'
 sort-order='ascending'
 
 [org/gtk/settings/color-chooser]
-selected-color=(true, 0.28627450980392155, 0.6588235294117647, 0.20784313725490197, 1.0)
-custom-colors=[(0.28627450980392155, 0.6588235294117647, 0.20784313725490197, 1.0), (0.56862745098039214, 0.41960784313725491, 0.33725490196078434, 1.0), (0.57000000000000006, 0.41982454873646219, 0.3363000000000001, 1.0), (0.20000000000000001, 0.20000000000000001, 0.20000000000000001, 1.0)]
 
 [org/x/reader]
 
@@ -399,6 +397,8 @@ sidebar-bookmark-breakpoint=5
 
 [org/nemo/desktop]
 trash-icon-visible=true
+
+[com/github/maoschanz/drawing]
 
 [com/linuxmint/updates]
 hide-systray=true

@@ -39,7 +39,13 @@ num-workspaces
 location-mode
 last-node-selected
 last-window-state
-saved-view"
+saved-view
+selected-color
+custom-colors
+last-active-tool
+last-right-rgba
+last-size
+last-left-rgba"
 
 /usr/bin/dconf dump / \
     | grep -Ev "^($(echo $filter | tr ' ' '|'))=" \
