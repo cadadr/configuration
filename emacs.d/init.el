@@ -1403,10 +1403,10 @@ Try to find a potential window containing a document to be read
         :forecast-moon-phase "Quivira")
   "A plist, default fonts.")
 
-;; Set up so that there's 75-80 chars width for half-sized horizontal
+;; Set up so that there's 80-85 chars width for half-sized horizontal
 ;; windows.
-(defconst gk-font-default-height 90)
-(defconst gk-font-variable-pitch-height 100)
+(defconst gk-font-default-height 105)
+(defconst gk-font-variable-pitch-height 120)
 
 (defun gk-font (type)
   "Get default font for TYPE, a keyword.
