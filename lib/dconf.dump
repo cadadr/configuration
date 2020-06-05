@@ -118,7 +118,7 @@ switch-to-workspace-left=['<Primary><Super>Tab']
 
 [org/cinnamon/desktop/media-handling]
 autorun-x-content-start-app=@as []
-autorun-never=false
+autorun-never=true
 autorun-x-content-ignore=@as []
 autorun-x-content-open-folder=@as []
 
