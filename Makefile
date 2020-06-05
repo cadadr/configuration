@@ -20,7 +20,7 @@ help:
 ### System initialisation:
 .PHONY: setup setup-light fetch-config.m4 install-doc-packages
 
-setup: fetch-config.m4 build dotfiles invade
+setup: fetch-config.m4 dotfiles invade
 	sh lib/setup.sh
 
 setup-light: fetch-config.m4 dotfiles invade
