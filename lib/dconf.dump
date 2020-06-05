@@ -393,6 +393,7 @@ show-location-entry=true
 
 [org/nemo/window-state]
 start-with-sidebar=true
+devices-expanded=true
 sidebar-bookmark-breakpoint=5
 
 [org/nemo/desktop]
