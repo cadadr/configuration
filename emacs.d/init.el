@@ -5021,7 +5021,6 @@ fragments"
   (when (boundp goto-address-mode)
     (goto-address-mode -1))
   (org-zotxt-mode +1)
-  (org-variable-pitch-minor-mode +1)
   (imenu-add-to-menubar "Entries")
   (setq-local truncate-lines nil)
   (setq-local indent-tabs-mode nil)
