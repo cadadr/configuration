@@ -1624,6 +1624,12 @@ Useful when using dired-subtree."
 (advice-add 'dired-next-line :after #'gk-dired-update-default-directory-from-current-line)
 
 
+(defun gk-dired-find-file-other-frame ()
+  "In Dired, visit this file or directory in another frame."
+  (interactive)
+  (find-file-other-frame (dired-get-file-for-visit)))
+
+
 
 
 ;;;;; Customisations:
