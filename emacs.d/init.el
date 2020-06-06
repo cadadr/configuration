@@ -1658,6 +1658,7 @@ Useful when using dired-subtree."
 
 (define-key dired-mode-map (kbd "W") 'wdired-change-to-wdired-mode)
 (define-key dired-mode-map (kbd "w") 'gk-dired-copy-marked-file-paths-as-kill)
+(define-key dired-mode-map (kbd "f") #'gk-dired-find-file-other-frame)
 
 
 
