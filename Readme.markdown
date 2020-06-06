@@ -77,7 +77,7 @@ $ make setup
 The following commands set up Guix, an experimental addition.
 
 ```
-$ sudo sh lib/guix-install.sh
+$ sudo sh lib/guix/guix-install.sh
 $ sudo systemctl enable guix-daemon
 $ guix pull && guix package -u
 $ guix package -m lib/guix/manifest.scm
