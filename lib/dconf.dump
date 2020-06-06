@@ -410,6 +410,9 @@ refresh-minutes=10
 window-pane-position=303
 default-repo-is-ok=true
 
+[com/linuxmint/report]
+ignored-reports=['timeshift-no-setup']
+
 [com/linuxmint/install]
 search-in-summary=true
 flatpak-remotes=['flathub::https://dl.flathub.org/repo/::False']
