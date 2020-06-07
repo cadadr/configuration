@@ -54,6 +54,14 @@ to install all the packages from `linuxmint.packages.list`:
 but I haven’t tested this yet, there may be some packages that are not
 available on Ubuntu, or whatever Ubuntu-based distro you’re using.
 
+After this, you might want to install documentation for the installed
+packages.  There is a script for that:
+
+    # sh lib/install-doc-packages.sh
+
+This will inspect the dpkg database and find out all the relevant
+`-doc` packages, and install them.
+
 If you want to reproduce this setup on a Debian based OS, then it’s a
 bit more involved given there are some differing package names.  You
 might want to go through the package list and find those
