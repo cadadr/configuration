@@ -3,4 +3,10 @@
 # Case-insensitive completion.
 set completion-ignore-case on
 set completion-map-case on
+# Show completions w/ just one TAB, not double.
+set show-all-if-ambiguous on
+# Indicate filetypes with a trailing cahracter.
+set visible-stats on
+# A la Emacs.
+set blink-matching-paren on
 
