@@ -414,9 +414,9 @@ default-repo-is-ok=true
 ignored-reports=['timeshift-no-setup']
 
 [com/linuxmint/install]
-search-in-summary=true
+search-in-summary=false
 flatpak-remotes=['flathub::https://dl.flathub.org/repo/::False']
-search-in-description=true
+search-in-description=false
 
 [ca/desrt/dconf-editor]
 show-warning=false
