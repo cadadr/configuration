@@ -170,7 +170,8 @@
             "org.gnome.Terminal.desktop",
             "gnome-system-monitor.desktop",
             "whatsappdesktop.desktop",
-            "spotify.desktop"
+            "spotify.desktop",
+            "mintupdate.desktop"
         ]
     },
     "group-apps": {
