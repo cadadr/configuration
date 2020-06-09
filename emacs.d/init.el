@@ -43,7 +43,9 @@
 (add-hook 'emacs-startup-hook
           (lambda ()
             "Restore defalut values after init."
-            (setq file-name-handler-alist default-file-name-handler-alist)
+            (setq file-name-handler-alist
+                  (concat file-name-handler-alist
+                          default-file-name-handler-alist))
             (setq gc-cons-threshold 800000)
             (setq inhibit-redisplay nil)
             (redisplay t)
