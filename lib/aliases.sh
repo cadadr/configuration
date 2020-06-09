@@ -156,6 +156,13 @@ qr() {
     rm "$out"
 }
 
+hist() {
+    history | awk 'match($0,/\s+([0-9]+)\s+([0-9]{,10})(.+)/,m) {
+        "date -d @" m[2] | getline date;
+        printf "\033[1m" date "\n\033[0m" m[3] "\n"
+    }'
+}
+
 ###
 alias listall="alias | cut -d= -f1 && declare -F | cut -d ' '  -f 3 | sed 's,^,function ,'"
 alias edit="$EDITOR"
