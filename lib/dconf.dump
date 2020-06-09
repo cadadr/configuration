@@ -72,7 +72,8 @@ delay=uint32 500
 
 [org/cinnamon/settings-daemon/peripherals/mouse]
 drag-threshold=8
-motion-threshold=1
+motion-threshold=7
+custom-threshold=true
 double-click=400
 middle-button-enabled=false
 
