@@ -46,7 +46,8 @@ last-active-tool
 last-right-rgba
 last-size
 last-left-rgba
-current-tab"
+current-tab
+window-pane-position"
 
 /usr/bin/dconf dump / \
     | grep -Ev "^($(echo $filter | tr ' ' '|'))=" \

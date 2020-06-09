@@ -406,7 +406,6 @@ refresh-schedule-enabled=false
 show-welcome-page=false
 autorefresh-hours=2
 refresh-minutes=10
-window-pane-position=303
 default-repo-is-ok=true
 
 [com/linuxmint/report]
