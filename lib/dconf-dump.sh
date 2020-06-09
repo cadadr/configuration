@@ -45,7 +45,8 @@ custom-colors
 last-active-tool
 last-right-rgba
 last-size
-last-left-rgba"
+last-left-rgba
+current-tab"
 
 /usr/bin/dconf dump / \
     | grep -Ev "^($(echo $filter | tr ' ' '|'))=" \

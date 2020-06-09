@@ -326,7 +326,6 @@ ignore-phase2-ca-cert=false
 ignore-ca-cert=false
 
 [org/gnome/gnome-system-monitor]
-current-tab='resources'
 show-whose-processes='user'
 show-dependencies=false
 
