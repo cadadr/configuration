@@ -117,3 +117,4 @@ rofi	install
 whatsapp-desktop	install
 ruby-dev	install
 libcurl4-gnutls-dev	install
+libssl-dev	install
