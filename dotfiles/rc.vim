@@ -39,3 +39,5 @@ nmap <Leader>f {V}:'<,'>!fmt<CR>
 nmap <Leader>F :0,$!fmt<CR>
 " Copy to clipboard as markdown code snippet
 noremap <Leader>M :s/^/    /<CR>gv"+yu
+nmap <Leader>z :w<CR>
+
