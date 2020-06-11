@@ -27,7 +27,7 @@ git log --graph --oneline HEAD..FETCH_HEAD
 
 echo 'Continue with build (RETURN to continue, ^C to quit)?'; read nought
 
-git pull --ff
+git pull --ff-only
 git clean -dfx
 
 # Run the configure script.  If you are copying this script, make sure
