@@ -92,9 +92,9 @@ cursor-size=24
 cursor-theme='DMZ-Black'
 toolkit-accessibility=false
 cursor-blink-time=1200
-icon-theme='Mint-Y-Blue'
+icon-theme='Mint-Y-Dark-Purple'
 gtk-overlay-scrollbars=false
-gtk-theme='Mint-Y-Blue'
+gtk-theme='Mint-Y-Dark-Purple'
 
 [org/cinnamon/desktop/keybindings/custom-keybindings/custom1]
 binding=['<Super>p']
@@ -134,7 +134,7 @@ exec='gnome-terminal'
 
 [org/cinnamon/desktop/wm/preferences]
 mouse-button-modifier='<Super>'
-theme='Mint-Y'
+theme='Mint-Y-Dark'
 action-scroll-titlebar='none'
 focus-mode='sloppy'
 min-window-opacity=30
@@ -180,7 +180,7 @@ workspace-cycle=true
 
 [org/cinnamon/theme]
 theme-cache-updated=1587749413
-name='Mint-Y-Dark-Blue'
+name='Mint-Y-Purple'
 
 [org/cinnamon/cinnamon-session]
 quit-time-delay=60
