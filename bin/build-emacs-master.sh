@@ -10,11 +10,11 @@ git branch | grep '^\* master' >/dev/null || exit 'Not on branch master!'
 git fetch
 
 echo News since HEAD:
-git news
+git diff HEAD..FETCH_HEAD -- etc/NEWS
 
 echo
 echo Commits since HEAD:
-git wut
+git log --graph --oneline HEAD..FETCH_HEAD
 
 echo 'Continue with build (RETURN to continue, ^C to quit)?'; read nought
 
