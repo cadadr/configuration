@@ -1,6 +1,9 @@
 # env.sh --- Shell environment.
 
-export MYFS=/igk
+if [ "$GK_PATHS_LOADED" != "yes" ]; then
+    echo "$MYLIB/paths.sh should be loaded before $MYLIB/env.sh"
+    exit 1
+fi
 
 export EMAIL=$USER@localhost
 export MAILDIR=$HOME/posta
@@ -22,10 +25,6 @@ esac
 # This made me spend months trying to download the CVS repo of
 # OpenBSD...
 export CVS_RSH=ssh
-
-export CVSROOT=$MYFS/cvsroot
-export GITROOT=/var/git
-export HGROOT=/var/mercurial
 
 # Email
 export NOTMUCH_CONFIG=$MEINE/mail/notmuch.ini
@@ -52,6 +51,12 @@ export GO=$GOPATH/bin
 # Python
 export PYTHONSTARTUP=$MEINE/python-init.py
 export DJANGO_COLORS="nocolor"
+# Pyenv
+export PYENV_ROOT="$MY/share/pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
 
 # R
 export R_LIBS_USER="$HOME/.local/share/R/site-library"

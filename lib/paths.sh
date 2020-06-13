@@ -64,3 +64,6 @@ export PATH
 systemctl --user import-environment PATH
 systemctl --user import-environment GEM_HOME
 systemctl --user import-environment GEM_PATH
+
+# Finalise
+export GK_PATHS_LOADED=yes
