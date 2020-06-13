@@ -1,0 +1,5 @@
+# linuxmint.packages.flatpaks --- flatpaks to be installed.
+
+io.lmms.LMMS
+org.jamovi.jamovi
+org.zotero.Zotero

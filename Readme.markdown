@@ -1,5 +1,3 @@
-![docker-build](https://github.com/cadadr/configuration/workflows/docker-build/badge.svg)
-
 Introduction
 ============
 
@@ -15,10 +13,10 @@ anything in any way.
 
 This repo contains the following:
 
--   My GNU Emacs configuration tree (`emacs.d/`)
--   My dotfiles (`dotfiles/`)
--   My GNU/Linux configuration
--   And some other stuff.
+- My GNU Emacs configuration tree (`emacs.d/`)
+- My dotfiles (`dotfiles/`)
+- My GNU/Linux configuration
+- And some other stuff.
 
 I've re-created this repository from scratch, removing some secrets
 for publishing. If you want to use any part of my configurations,
@@ -37,22 +35,15 @@ Installation
 System setup
 ------------
 
-As of recent I’ve moved to Linux Mint to have a simpler config setup
-(after commit a68595e).  At the time of writing this there is not much
-that is specific to Linux Mint, but I make use of the Backup Tool to
-install all my packages.  In order to use it, run the app, click the
-Restore under Software Selection, and select `linuxmint.packages.list`
-file.  It’ll take a while to install all the packages.
+The file `linuxmint.packages.apt` contains a listing of Debian-formatted
+packages to be installed, in a format usable with Linux Mint's Backup
+Tool. However, a command like the one below should be able to install
+all of those:
 
-If you want to use this setup with Ubuntu, first check `invasion` and
-then `dotfiles/config` to see if there is anything that you’d want to
-disable or remove.  Then, a command like the one below should be able
-to install all the packages from `linuxmint.packages.list`:
+    # apt-get install $(grep install$ linuxmint.packages.apt | awk '{print $1}')
 
-    # apt-get install $(awk '{print $1}' < linuxmint.packages.list)
-
-but I haven’t tested this yet, there may be some packages that are not
-available on Ubuntu, or whatever Ubuntu-based distro you’re using.
+but I haven’t tested this yet.  This should work on any Ubuntu-based
+distribution.
 
 After this, you might want to install documentation for the installed
 packages.  There is a script for that:
@@ -61,6 +52,23 @@ packages.  There is a script for that:
 
 This will inspect the dpkg database and find out all the relevant
 `-doc` packages, and install them.
+
+I've also recently added a list of Flatpaks to be installed in
+`linuxmint.packages.flatpak`.  These can be installed using a command
+like:
+
+    $ flatpak install flathub $(grep -v ^# linuxmint.packages.flatpak)
+
+On my system I have to follow this up with the below commands to make
+the Zotero Flatpak work:
+
+    $ flatpak override --user --filesystem=$(readlink ~/.zotero) org.zotero.Zotero
+    $ flatpak override --user --filesystem=$(readlink ~/.zotarc) org.zotero.Zotero
+
+because those symlinks point to directories outside my `$HOME`
+directory.
+
+---
 
 If you want to reproduce this setup on a Debian based OS, then it’s a
 bit more involved given there are some differing package names.  You
