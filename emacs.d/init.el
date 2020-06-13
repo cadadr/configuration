@@ -5136,8 +5136,26 @@ fragments"
 
 ;;;;; GUI:
 
-(defvar gk-gui-theme 'tsdh-light
+(defvar gk-preferred-themes '( :light tsdh-light
+                               :dark wombat
+                               ;; just being explicit...
+                               :no-preference nil)
+  "Light and dark theme preferences.")
+
+
+(defvar gk-gui-theme nil
   "The default theme's name to load at startup.")
+
+
+;; TODO(2020-06-13): stub
+(defun gk-preferred-colour-scheme ()
+  "Find out the system’s preferred colour scheme.
+
+Returns :light if the preferred colour scheme is light,
+:no-preference if no preference is set, or :dark if the user
+prefers dark themes."
+  :dark)
+
 
 (defun gk-setup-frame-looks (&optional frame)
   "Customisations that modify frame behaviour.
@@ -5151,6 +5169,9 @@ new frame is created."
   (setf paper-tint-factor 70
         paper-base-font-size 70
         paper-use-varying-heights-for-org-title-headlines nil)
+
+  (setf gk-gui-theme (plist-get gk-preferred-themes
+                                (gk-preferred-colour-scheme)))
 
   (when gk-gui-theme
     (load-theme gk-gui-theme t))
@@ -5263,7 +5284,7 @@ new frame is created."
   (set-face-attribute 'parenthesis nil :foreground nil :inherit 'font-lock-keyword-face)
   (set-face-attribute 'show-paren-match nil :background nil  :inverse-video t)
   (set-face-attribute 'show-paren-mismatch nil :inherit 'warning)
-  (set-face-attribute 'hl-paren-face nil :inverse-video t)
+  (set-face-attribute 'hl-paren-face nil :underline t)
 
   ;; Adapts ‘highlight-parentheses-mode’ colours to theme.
   (let ((c (face-attribute 'font-lock-keyword-face :foreground)))
