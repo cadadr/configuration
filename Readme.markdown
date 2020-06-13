@@ -73,6 +73,12 @@ the Zotero Flatpak work:
 because those symlinks point to directories outside my `$HOME`
 directory.
 
+In order to finalise package installation before setting up the
+dotfiles, the build dependencies for GUI Emacs and Python 3 are
+necessary:
+
+    # apt-get build-dep python3 emacs25 emacs-pdf-tools
+
 ---
 
 If you want to reproduce this setup on a Debian based OS, then it’s a
