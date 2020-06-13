@@ -34,7 +34,7 @@ Installation
 
 The first thing after cloning this repo is to initialise the submodules
 
-    $ git submodule init
+    $ git submodule update --init
 
 
 System setup
