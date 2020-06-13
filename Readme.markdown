@@ -32,6 +32,11 @@ them in public domain.
 Installation
 ============
 
+The first thing after cloning this repo is to initialise the submodules
+
+    $ git submodule init
+
+
 System setup
 ------------
 
