@@ -153,6 +153,7 @@
 (require 'magit-todos)
 (require 'mail-source)
 (require 'mairix)
+(require 'markdown-mode)
 (require 'message)
 (require 'mm-url)
 (require 'mu4e)
@@ -2232,6 +2233,17 @@ backwards."
    (intern (format "textile-h%d-face" (1+ i)))
    nil :foreground nil :inherit
    (intern (format "org-level-%d" (1+ i)))))
+
+
+
+
+;;;;; Markdown:
+
+;; Org-mode like movement.
+(define-key markdown-mode-map (kbd "M-n")
+  (gk-interactively (markdown-next-heading)))
+(define-key markdown-mode-map (kbd "M-p")
+  (gk-interactively (markdown-previous-heading)))
 
 
 
