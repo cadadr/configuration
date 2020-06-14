@@ -10,6 +10,7 @@
 export MY="$HOME/cf"
 export MEINE="$MY/dotfiles"
 export MYLIB="$MY/lib"
+export MYFS="/igk"
 export SYSTEM=$(uname)
 
 ###
