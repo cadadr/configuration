@@ -4656,7 +4656,8 @@ numerals which regularly appear in texts."
 (defun gk-org-visuals-hook ()
   "Set up how an Org buffer look."
   ;; (org-variable-pitch-minor-mode +1)
-  (set-face-attribute 'org-footnote nil :underline nil))
+  (set-face-attribute 'org-footnote nil :underline nil)
+  (setq-local truncate-lines t))
 
 (add-hook 'org-mode-hook 'gk-org-visuals-hook)
 
