@@ -379,7 +379,7 @@ tree-view=false
 root='file:///'
 
 [org/x/editor/plugins]
-active-plugins=['spell', 'textsize', 'time', 'modelines', 'open-uri-context-menu', 'sort', 'filebrowser', 'docinfo']
+active-plugins=['open-uri-context-menu', 'modelines', 'spell', 'filebrowser', 'docinfo', 'time', 'textsize', 'sort']
 
 [org/x/editor/state/history-entry]
 
