@@ -4806,7 +4806,8 @@ Generates a "
  'org-babel-load-languages
  '((emacs-lisp . t)
    (shell . t)
-   (python . t)))
+   (python . t)
+   (R . t)))
 
 (setq org-babel-python-command "run-python.sh")
 
