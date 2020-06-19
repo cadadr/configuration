@@ -357,6 +357,8 @@ sort-directories-first=true
 date-format='regular'
 sort-order='ascending'
 
+[org/gtk/settings/emoji-chooser]
+
 [org/gtk/settings/color-chooser]
 
 [org/x/reader]
