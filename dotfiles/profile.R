@@ -41,17 +41,22 @@ l <- dir
 
 # Adapted from: https://stackoverflow.com/a/1357432/6999086
 
-my.histfile.default <- file.path(Sys.getenv('HOME'), '.Rhistory')
-my.histfile <- Sys.getenv('R_HISTFILE', my.histfile.default)
+if (interactive()) {
+    my.histfile.default <- file.path(Sys.getenv('HOME'), '.Rhistory')
+    my.histfile <- Sys.getenv('R_HISTFILE', my.histfile.default)
 
-utils::loadhistory(my.histfile)
+    if ( ! file.exists(my.histfile) ) {
+        file.create(my.histfile)
+    }
 
-Sys.setenv('R_HISTSIZE' = '10000')
+    utils::loadhistory(my.histfile)
 
-.Last <- function() {
-  if (!any(commandArgs()=='--no-readline') && interactive()){
-    require(utils)
-    try(savehistory(my.histfile))
-  }
+    Sys.setenv('R_HISTSIZE' = '10000')
+
+    .Last <- function() {
+        if (!any(commandArgs()=='--no-readline') && interactive()){
+            require(utils)
+            try(savehistory(my.histfile))
+        }
+    }
 }
-
