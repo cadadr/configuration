@@ -4802,6 +4802,10 @@ Generates a "
 
 ;;;;; Babel:
 
+(setf
+ ;; Just do it™.
+ org-confirm-babel-evaluate nil)
+
 (org-babel-do-load-languages
  'org-babel-load-languages
  '((emacs-lisp . t)
@@ -4834,17 +4838,6 @@ Generates a "
   (cons
    (gk-org-python-clean-spurious-indentation (car args))
    (cdr args)))
-
-(defun gk-org-confirm-babel-evaluate (&rest ignore)
-  "Evaluate code blocks straight away if they are in the ‘org-directory’.
-
-Ask otherwise."
-  (not
-   (member
-    (expand-file-name (buffer-file-name))
-    (mapcar #'expand-file-name (directory-files-recursively org-directory "\\.org$")))))
-
-(setf org-confirm-babel-evaluate #'gk-org-confirm-babel-evaluate)
 
 (add-hook 'org-babel-after-execute-hook 'org-display-inline-images)
 
