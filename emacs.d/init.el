@@ -5331,7 +5331,7 @@ new frame is created."
  ;; Display buffers in current window.
  display-buffer-alist
  '(("\\*Quail Completions" . (display-buffer-in-side-window))
-   ("\\*.*Completions\\*" . (display-buffer-in-side-window . ((side . right))))
+   ("\\*.*Completions\\*" . (display-buffer-in-side-window . ((side . bottom))))
    ("\\*Help\\*" . (display-buffer-reuse-window))
    ("Checkdoc" . (display-buffer-pop-up-window))
    (".*" . (display-buffer-same-window)))
