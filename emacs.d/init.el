@@ -4222,6 +4222,38 @@ PDF is opened in many windows continuously, hit
                      (other-window 1))
                    (setf gk-org-async-export-this-tree nil)))))))))
 
+
+(defun gk-open-reading-note ()
+  "Find a reading note and open it in a popup frame.
+
+Narrow to the relevant heading.  Reading notes are toplevel headings in ‘gk-reading-notes-file’."
+  (interactive)
+  (with-current-buffer (find-file-noselect gk-reading-notes-file)
+    (save-excursion
+      (save-restriction
+        (widen)
+        (goto-char (point-min))
+        (let* ((entries (org-map-entries
+                         ($ (let ((el (org-element-at-point)))
+                              (when (and (eq 'headline (car el))
+                                         (= 1 (plist-get (cadr el) :level)))
+                                (cadr el))))))
+               (hash (make-hash-table :test 'equal)))
+          (dolist (e entries)
+            (puthash (plist-get e :title) e hash))
+          (let* ((pick (gethash
+                        (completing-read
+                         "Select reading note to view: " hash) hash))
+                 (newnam (format "%s::%s" (buffer-name) (plist-get pick :title)))
+                 (newbuf
+                  (if-let* ((buf (get-buffer newnam)))
+                      buf
+                    (clone-indirect-buffer newnam nil t))))
+            (with-current-buffer newbuf
+              (goto-char (plist-get pick :begin))
+              (org-narrow-to-subtree))
+            (display-buffer-pop-up-frame newbuf nil)))))))
+
 
 
 ;;;;; Variables:
