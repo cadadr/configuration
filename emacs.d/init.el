@@ -5374,8 +5374,9 @@ new frame is created."
  ;; Focus follows mouse in Emacs too. Focus 100ms after the mouse
  ;; stops in a window.
  mouse-autoselect-window -0.1
-;; Disable interaction with clipboard manager, can cause freezes.
+ ;; Disable interaction with clipboard manager, can cause freezes.
  x-select-enable-clipboard-manager nil)
+
 
 (setq-default save-place t)
 
