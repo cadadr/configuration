@@ -336,12 +336,10 @@ columns-order=[0, 1, 2, 3, 4, 6, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 2
 sort-order=0
 col-10-width=70
 col-8-visible=true
-sort-col=8
 col-8-width=66
 
 [org/gnome/gnome-system-monitor/memmapstree]
 sort-order=0
-sort-col=0
 
 [org/gnome/gnome-system-monitor/disktreenew]
 col-6-visible=true

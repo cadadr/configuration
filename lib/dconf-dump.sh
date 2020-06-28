@@ -48,7 +48,8 @@ last-size
 last-left-rgba
 current-tab
 window-pane-position
-recent-emoji"
+recent-emoji
+sort-col"
 
 /usr/bin/dconf dump / \
     | grep -Ev "^($(echo $filter | tr ' ' '|'))=" \
