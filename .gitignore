@@ -17,6 +17,7 @@ icons.*.rc
 *.gz
 *.tgz
 *.plstore
+*.pem
 *.tmp
 *.lock
 *~
