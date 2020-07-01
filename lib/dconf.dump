@@ -362,9 +362,11 @@ visible-name='cadadr'
 date-format='regular'
 show-hidden=false
 show-size-column=true
+show-type-column=true
 sort-column='name'
 sort-directories-first=true
 sort-order='ascending'
+type-format='category'
 
 [org/nemo/desktop]
 trash-icon-visible=true
