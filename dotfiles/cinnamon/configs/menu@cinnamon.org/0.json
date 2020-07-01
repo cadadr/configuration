@@ -27,6 +27,7 @@
             "keys": [
                 "menu-custom",
                 "menu-icon",
+                "menu-icon-size",
                 "menu-label"
             ]
         },
@@ -45,8 +46,11 @@
             "title": "Layout and content",
             "keys": [
                 "show-category-icons",
+                "category-icon-size",
                 "show-application-icons",
+                "application-icon-size",
                 "favbox-show",
+                "fav-icon-size",
                 "favbox-min-height",
                 "show-places",
                 "show-recents",
@@ -77,10 +81,10 @@
     },
     "menu-icon": {
         "type": "iconfilechooser",
-        "default": "linuxmint-logo-filled-ring",
+        "default": "linuxmint-logo-ring-symbolic",
         "description": "Icon",
         "tooltip": "Select an icon to show in the panel.",
-        "default_icon": "linuxmint-logo-filled-ring",
+        "default_icon": "linuxmint-logo-ring-symbolic",
         "dependency": "menu-custom",
         "indent": true,
         "icon_categories": [
@@ -113,6 +117,18 @@
         "default_category": "Linux Mint",
         "value": "linuxmint-logo-filled-ring"
     },
+    "menu-icon-size": {
+        "type": "spinbutton",
+        "default": 32,
+        "min": 16,
+        "max": 96,
+        "step": 1,
+        "units": "px",
+        "description": "Icon size",
+        "dependency": "menu-custom",
+        "indent": true,
+        "value": 32
+    },
     "menu-label": {
         "type": "entry",
         "default": "",
@@ -141,6 +157,18 @@
         "tooltip": "Choose whether or not to show icons on categories.",
         "value": true
     },
+    "category-icon-size": {
+        "type": "spinbutton",
+        "default": 22,
+        "min": 16,
+        "max": 48,
+        "step": 1,
+        "units": "px",
+        "description": "Categories icon size",
+        "dependency": "show-category-icons",
+        "indent": true,
+        "value": 22
+    },
     "show-application-icons": {
         "type": "switch",
         "default": true,
@@ -148,12 +176,36 @@
         "tooltip": "Choose whether or not to show icons on applications.",
         "value": true
     },
+    "application-icon-size": {
+        "type": "spinbutton",
+        "default": 22,
+        "min": 16,
+        "max": 48,
+        "step": 1,
+        "units": "px",
+        "description": "Applications icon size",
+        "dependency": "show-application-icons",
+        "indent": true,
+        "value": 22
+    },
     "favbox-show": {
         "type": "switch",
         "default": true,
         "description": "Show favorites and session buttons",
         "tooltip": "Choose whether or not to show the left pane of the menu.",
         "value": true
+    },
+    "fav-icon-size": {
+        "type": "spinbutton",
+        "default": 32,
+        "min": 16,
+        "max": 64,
+        "step": 1,
+        "units": "px",
+        "description": "Favorites icon size",
+        "dependency": "favbox-show",
+        "indent": true,
+        "value": 32
     },
     "show-places": {
         "type": "switch",
@@ -215,5 +267,5 @@
         "callback": "_launch_editor",
         "tooltip": "Press this button to customize your menu entries."
     },
-    "__md5__": "cdf1aadcba32c461f6e1b3b7647f8411b899c7f9a6067037eeeabecd7e9fa0d8"
+    "__md5__": "9fef899d7c11697066b5f3c4d8479daf0a188a8ff9c3d3f4fa2c1cd14fe0d0a0"
 }

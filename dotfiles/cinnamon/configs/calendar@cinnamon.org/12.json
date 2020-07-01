@@ -34,5 +34,16 @@
         "callback": "on_custom_format_button_pressed",
         "tooltip": "Click this button to know more about the syntax for date formats."
     },
-    "__md5__": "5a6bfd03cf382a77b9ded0499e12325a"
+    "section2": {
+        "type": "section",
+        "description": "Keyboard shortcuts"
+    },
+    "keyOpen": {
+        "type": "keybinding",
+        "description": "Show calendar",
+        "default": "<Super>c",
+        "tooltip": "Set keybinding(s) to show the calendar.",
+        "value": "<Super>c"
+    },
+    "__md5__": "630b424730fcba4718d867a7442c6b3b"
 }

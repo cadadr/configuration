@@ -77,7 +77,7 @@ In order to finalise package installation before setting up the
 dotfiles, the build dependencies for GUI Emacs and Python 3 are
 necessary:
 
-    # apt-get build-dep python3 emacs25 emacs-pdf-tools
+    # apt-get build-dep python3 emacs-gtk emacs-pdf-tools
 
 ---
 

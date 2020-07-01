@@ -61,9 +61,6 @@ git	install
 git-cvs	install
 git-email	install
 mercurial	install
-python-hglib	install
-python-dulwich	install
-python-fastimport	install
 python3-pip	install
 quilt	install
 rcs	install
@@ -79,7 +76,6 @@ libswitch-perl	install
 cpanminus	install
 liblocal-lib-perl	install
 perlbrew	install
-python-pip	install
 python3-tk	install
 python3-venv	install
 ipython3	install
@@ -118,3 +114,12 @@ whatsapp-desktop	install
 ruby-dev	install
 libcurl4-gnutls-dev	install
 libssl-dev	install
+r-cran-tidyverse	install
+r-cran-rio	install
+pdfarranger	install
+krop	install
+pdftk	install
+python3-hglib	install
+python3-dulwich	install
+python3-fastimport	install
+python3-pip	install

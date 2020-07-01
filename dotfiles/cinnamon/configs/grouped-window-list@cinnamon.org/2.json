@@ -65,7 +65,8 @@
             "keys": [
                 "cycleMenusHotkey",
                 "show-apps-order-hotkey",
-                "show-apps-order-timeout"
+                "show-apps-order-timeout",
+                "super-num-hotkeys"
             ]
         },
         "thumbnailsSection": {
@@ -224,6 +225,12 @@
         "description": "Duration of the apps order display on hotkey press",
         "value": 2500
     },
+    "super-num-hotkeys": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Enable Super+<number> shortcut to switch/open apps",
+        "value": true
+    },
     "thumbnail-timeout": {
         "dependency": "!onclick-thumbnails",
         "type": "combobox",
@@ -358,5 +365,5 @@
         "description": "Window opacity",
         "value": 100
     },
-    "__md5__": "c17a25f344a109cb1388da44a67375e8"
+    "__md5__": "a8bd266f01474817e50162d841192d67"
 }

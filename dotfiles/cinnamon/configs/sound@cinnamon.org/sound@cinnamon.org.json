@@ -17,6 +17,13 @@
         "indent": true,
         "value": false
     },
+    "keyOpen": {
+        "type": "keybinding",
+        "description": "Show menu",
+        "default": "<Shift><Super>s",
+        "tooltip": "Set keybinding(s) to show the sound applet menu.",
+        "value": "<Shift><Super>s"
+    },
     "_knownPlayers": {
         "type": "generic",
         "default": [
@@ -94,5 +101,5 @@
         "default": true,
         "value": true
     },
-    "__md5__": "cd4c072c97ce55f6107a61403597ba54"
+    "__md5__": "bd55910c1cad0cda19a01bffe9767935"
 }
