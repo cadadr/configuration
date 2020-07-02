@@ -4,8 +4,8 @@ window-is-maximized=false
 
 [com/linuxmint/install]
 flatpak-remotes=['flathub::https://dl.flathub.org/repo/::False']
-search-in-description=false
-search-in-summary=false
+search-in-description=true
+search-in-summary=true
 
 [com/linuxmint/report]
 ignored-reports=['timeshift-no-setup']
@@ -59,6 +59,7 @@ enabled-applets=['panel1:left:0:menu@cinnamon.org:0', 'panel1:left:1:show-deskto
 enabled-desklets=@as []
 hotcorner-layout=['scale:true:0', 'scale:false:0', 'expo:true:0', 'desktop:false:0']
 next-applet-id=13
+panel-edit-mode=false
 panel-zone-symbolic-icon-sizes='[{"panelId": 1, "left": 28, "center": 28, "right": 16}]'
 panels-height=['1:40']
 startup-animation=false
@@ -283,10 +284,12 @@ show-hidden=false
 
 [org/gnome/file-roller/listing]
 list-mode='as-folder'
-name-column-width=250
+name-column-width=394
 show-path=false
 sort-method='name'
 sort-type='ascending'
+
+[org/gnome/file-roller/ui]
 
 [org/gnome/gnome-system-monitor]
 show-dependencies=false
