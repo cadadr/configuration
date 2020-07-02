@@ -9,7 +9,8 @@ set nocompatible
 filetype plugin on
 
 " basic text editing settings
-set textwidth=72
+set textwidth=72	" 72 chars per line
+set formatoptions-=tc	" don't auto hardwrap tho
 set noexpandtab
 
 " completion
