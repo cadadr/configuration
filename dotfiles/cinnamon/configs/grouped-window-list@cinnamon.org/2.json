@@ -164,8 +164,9 @@
             "nemo.desktop"
         ],
         "value": [
-            "firefox.desktop",
             "emacs.desktop",
+            "zotero.desktop",
+            "firefox.desktop",
             "nemo.desktop",
             "org.gnome.Terminal.desktop",
             "gnome-system-monitor.desktop",
