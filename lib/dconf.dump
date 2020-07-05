@@ -177,6 +177,7 @@ motion-threshold=7
 
 [org/cinnamon/settings-daemon/peripherals/touchpad]
 clickpad-click=2
+custom-acceleration=false
 horizontal-scrolling=true
 motion-threshold=1
 tap-to-click=false
@@ -300,6 +301,9 @@ col-6-visible=true
 col-6-width=0
 
 [org/gnome/gnome-system-monitor/memmapstree]
+sort-order=0
+
+[org/gnome/gnome-system-monitor/openfilestree]
 sort-order=0
 
 [org/gnome/gnome-system-monitor/proctree]
