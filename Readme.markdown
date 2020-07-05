@@ -101,6 +101,13 @@ system flavour:
 $ make setup
 ```
 
+If you’ll use msmtp, the following command makes AppArmor quit its
+stupid bullshit.  I’ve tried aliases to no avail.
+
+```
+sudo aa-complain usr.bin.msmtp
+```
+
 The following commands set up Guix, an experimental addition.
 
 ```
