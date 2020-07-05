@@ -108,8 +108,8 @@ cursor-blink-time=1200
 cursor-size=24
 cursor-theme='DMZ-Black'
 gtk-overlay-scrollbars=false
-gtk-theme='Mint-Y-Dark-Blue'
-icon-theme='Mint-Y-Dark-Blue'
+gtk-theme='Mint-Y-Blue'
+icon-theme='Mint-Y-Blue'
 scaling-factor=uint32 0
 text-scaling-factor=1.0
 toolkit-accessibility=false
@@ -154,7 +154,7 @@ button-layout=':minimize,maximize,close'
 focus-mode='sloppy'
 min-window-opacity=30
 mouse-button-modifier='<Super>'
-theme='Mint-Y-Dark'
+theme='Mint-Y'
 workspace-names=@as []
 
 [org/cinnamon/muffin]
@@ -204,7 +204,7 @@ tile-enabled=false
 unplug-enabled=false
 
 [org/cinnamon/theme]
-name='Mint-Y-Blue'
+name='Mint-Y-Dark-Blue'
 theme-cache-updated=1587749413
 
 [org/gnome/calculator]
