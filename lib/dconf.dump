@@ -97,11 +97,13 @@ exec='gnome-terminal'
 
 [org/cinnamon/desktop/background]
 picture-options='zoom'
-picture-uri='file:///usr/share/backgrounds/linuxmint-ulyana/sezgin_tulip.jpg'
+picture-uri='file:///home/g/Pictures/wlp/simpledesktops.com/orion.png'
 
 [org/cinnamon/desktop/background/slideshow]
-delay=15
-image-source='xml:///usr/share/cinnamon-background-properties/linuxmint-ulyana.xml'
+delay=5
+image-source='directory:///home/g/Pictures/wlp/simpledesktops.com'
+random-order=true
+slideshow-enabled=true
 
 [org/cinnamon/desktop/interface]
 cursor-blink-time=1200
