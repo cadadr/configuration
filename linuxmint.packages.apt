@@ -125,3 +125,4 @@ python3-fastimport	install
 python3-pip	install
 borgbackup	install
 julia	install
+qutebrowser	install
