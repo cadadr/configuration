@@ -146,7 +146,19 @@ autorun-x-content-open-folder=@as []
 autorun-x-content-start-app=@as []
 
 [org/cinnamon/desktop/screensaver]
+allow-keyboard-shortcuts=true
+allow-media-control=true
+floating-widgets=true
 layout-group=0
+lock-delay=uint32 2
+lock-enabled=true
+show-album-art=true
+show-clock=true
+show-info-panel=true
+use-custom-format=false
+
+[org/cinnamon/desktop/session]
+idle-delay=uint32 900
 
 [org/cinnamon/desktop/sound]
 event-sounds=false
@@ -194,6 +206,7 @@ idle-dim-battery=false
 idle-dim-time=30
 lid-close-ac-action='suspend'
 lid-close-battery-action='suspend'
+lock-on-suspend=true
 sleep-display-ac=1800
 sleep-display-battery=300
 sleep-inactive-ac-timeout=0
@@ -412,3 +425,5 @@ side-panel-size=200
 [org/x/viewer/view]
 background-color='rgb(0,0,0)'
 use-background-color=true
+
+[org/x/viewer/window]
