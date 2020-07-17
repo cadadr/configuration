@@ -167,6 +167,7 @@
             "emacs.desktop",
             "zotero.desktop",
             "firefox.desktop",
+            "org.qutebrowser.qutebrowser.desktop",
             "nemo.desktop",
             "org.gnome.Terminal.desktop",
             "gnome-system-monitor.desktop",
