@@ -6407,7 +6407,6 @@ Does various tasks after saving a file, see it's definition."
                         (call-interactively #'mu4e-update-mail-and-index)))
 
 (gk-prefix-binding ">" #'gk-runq)
-(gk-prefix-binding "/" #'mairix-search)
 (gk-prefix-binding "?" #'mairix-widget-search)
 
 
