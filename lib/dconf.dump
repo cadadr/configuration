@@ -99,7 +99,6 @@ exec='gnome-terminal'
 
 [org/cinnamon/desktop/background]
 picture-options='zoom'
-picture-uri='file:///home/g/Pictures/wlp/simpledesktops.com/orion.png'
 
 [org/cinnamon/desktop/background/slideshow]
 delay=5
@@ -308,6 +307,13 @@ sort-method='name'
 sort-type='ascending'
 
 [org/gnome/file-roller/ui]
+
+[org/gnome/gnome-screenshot]
+border-effect='none'
+delay=10
+include-border=true
+include-pointer=false
+last-save-directory='file:///home/g/co/pomodorino/assets/screenshots'
 
 [org/gnome/gnome-system-monitor]
 show-dependencies=false
