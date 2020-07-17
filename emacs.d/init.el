@@ -3689,7 +3689,10 @@ Wonder why this is not the default."
 
  ;; Use mu4e to compose mail from links. See also:
  ;; <~/cf/candy/emacsclient-mailto.desktop>.
- mail-user-agent 'mu4e-user-agent)
+ mail-user-agent 'mu4e-user-agent
+
+ ;; Show email addresses b/c why the fuck not?
+ mu4e-view-show-addresses t)
 
 (add-to-list 'mu4e-view-actions
              '("ViewInBrowser" . mu4e-action-view-in-browser) t)
