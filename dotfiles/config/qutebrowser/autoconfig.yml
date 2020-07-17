@@ -10,3 +10,17 @@ settings:
     global: true
   backend:
     global: webengine
+  content.autoplay:
+    global: false
+  hints.uppercase:
+    global: true
+  tabs.background:
+    global: true
+  tabs.position:
+    global: bottom
+  tabs.wrap:
+    global: false
+  url.default_page:
+    global: about:blank
+  url.start_pages:
+    global: about:blank
