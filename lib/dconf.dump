@@ -330,6 +330,8 @@ sort-order=0
 sort-order=0
 
 [org/gnome/gnome-system-monitor/proctree]
+col-0-visible=true
+col-0-width=317
 col-10-visible=true
 col-10-width=70
 col-8-visible=true
