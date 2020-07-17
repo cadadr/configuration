@@ -26,6 +26,7 @@ command! MkTags !/usr/bin/ctags -R .
 nmap Y y$
 
 " visuals
+colorscheme lithochromatic
 set lbr			" word wrap
 let &sbr = '\ '		" illustrate logical line breaks
 set relativenumber      " line numbers relative to current line

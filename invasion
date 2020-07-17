@@ -29,5 +29,6 @@
 .signature						dotfiles/signature
 .xsessionrc						dotfiles/xsessionrc
 .vimrc							dotfiles/rc.vim
+.vim							dotfiles/vim
 bin							bin
 
