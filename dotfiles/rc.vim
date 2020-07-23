@@ -8,8 +8,6 @@
 
 " UI/UX {{{
 set nocompatible
-syntax enable
-filetype plugin on
 filetype plugin indent on
 set encoding=utf8
 set backspace=eol,start,indent	" backspace over newline too
