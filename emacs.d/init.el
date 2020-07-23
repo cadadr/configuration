@@ -6434,7 +6434,8 @@ Does various tasks after saving a file, see it's definition."
 (unless noninteractive
   ;; Start the server.
   (server-start)
-  (add-hook 'server-switch-hook 'raise-frame))
+  (add-hook 'server-switch-hook 'raise-frame)
+  (setf initial-buffer-choice (gk-org-dir-file "Todo.org")))
 
 (gk-load (file-name-sans-extension custom-file))
 
