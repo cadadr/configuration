@@ -5397,6 +5397,8 @@ new frame is created."
  search-default-mode t
  ;; Only search in visible part.
  search-invisible nil
+ ;; Case insensitive search.
+ case-fold-search t
  ;; Move to trash instead of unlinking.
  delete-by-moving-to-trash t
  ;; Save abbrevs silently
