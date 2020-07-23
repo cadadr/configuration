@@ -4307,8 +4307,10 @@ Narrow to the relevant heading.  Reading notes are toplevel headings in ‘gk-re
   "List of files that contain per-project TODO items.")
 
 (setf
- gk-org-agenda-files (gk-org-dir-files "planner.org")
- org-agenda-files gk-org-agenda-files)
+ gk-org-agenda-files (gk-org-dir-files "Todo.org")
+ org-agenda-files gk-org-agenda-files
+ org-agenda-custom-commands '(("p" "Planner"
+                               ((tags "TODO=\"TODO\"-vault")))))
 
 
 
