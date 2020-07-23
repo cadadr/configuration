@@ -363,9 +363,7 @@ startup-feed-action=1
 [org/gnome/liferea/plugins]
 active-plugins=['bold-unread', 'media-player']
 
-[org/gnome/nm-applet/eap/20d0a475-848a-4533-8128-f9e3554219cc]
-ignore-ca-cert=false
-ignore-phase2-ca-cert=false
+
 
 [org/gnome/power-manager]
 info-history-type='charge'
