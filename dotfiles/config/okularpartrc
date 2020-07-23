@@ -16,7 +16,7 @@ ShowOSD=false
 SplitterSizes=352,929
 
 [PageView]
-EditToolBarPlacement=2
+EditToolBarPlacement=3
 ViewColumns=1
 
 [Reviews]
