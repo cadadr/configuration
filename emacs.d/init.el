@@ -4300,15 +4300,8 @@ Narrow to the relevant heading.  Reading notes are toplevel headings in ‘gk-re
       org-icalendar-combined-agenda-file (expand-file-name "ajanda.ics" gk-syndir)
       org-id-locations-file (locate-user-emacs-file "etc/org-id-locations.el"))
 
-(defvar gk-org-agenda-files nil
-  "My agenda files.")
-
-(defvar gk-org-project-agenda-files nil
-  "List of files that contain per-project TODO items.")
-
 (setf
- gk-org-agenda-files (gk-org-dir-files "Todo.org")
- org-agenda-files gk-org-agenda-files
+ org-agenda-files (gk-org-dir-files "Todo.org")
  org-agenda-custom-commands '(("p" "Planner"
                                ((tags "TODO=\"TODO\"-vault")))))
 
@@ -6142,31 +6135,7 @@ the body of the entry, and the cdr is the score, an integer.")
   "Göktuğ's After Save™, a man's best companion.
 
 Does various tasks after saving a file, see it's definition."
-  ;; Export agenda files when edited.
-  (when-let* ((file (ignore-errors      ;expand-file-name signals if
-                                        ;its first argument is nil.
-                      (expand-file-name (buffer-file-name)))))
-    (when (and (not gk-after-save-org-timer) ;check if there is an
-                                        ;active timer, the timer
-                                        ;callback nulls this
-                                        ;variable
-               (eq major-mode 'org-mode)
-               (member file (mapcar #'expand-file-name gk-org-agenda-files)))
-      (message "Wrote an agenda file and there were no active\
- timers, will export ICS files when Emacs is idle for %d seconds"
-               gk-after-save-org-idle-seconds)
-      ;; Do not rush, query only if Emacs is idle.
-      (setf
-       gk-after-save-org-timer
-       (run-with-idle-timer
-        gk-after-save-org-idle-seconds nil
-        (lambda ()
-          (message "Regenerating ICS files...")
-          (let ((org-icalendar-include-todo nil))
-            (org-icalendar-export-agenda-files))
-          (message "Done regenerating ICS files!")
-          ;; Reset the timer.
-          (setf gk-after-save-org-timer nil)))))))
+  )
 
 (add-hook 'after-save-hook 'gk-after-save-hook)
 
