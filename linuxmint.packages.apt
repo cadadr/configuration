@@ -126,3 +126,4 @@ python3-pip	install
 borgbackup	install
 julia	install
 qutebrowser	install
+r-cran-car	install
