@@ -4305,6 +4305,12 @@ Narrow to the relevant heading.  Reading notes are toplevel headings in ‘gk-re
  org-agenda-custom-commands '(("p" "Planner"
                                ((tags "TODO=\"TODO\"-vault")))))
 
+(add-variable-watcher
+ 'org-agenda-files
+ (lambda (&rest wut)
+   (message "Who’s messing with my agenda: %S" wut)
+   (debug)))
+
 
 
 ;;;;; Mobile (obsolete):
