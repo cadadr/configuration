@@ -4654,6 +4654,11 @@ numerals which regularly appear in texts."
 (set-face-attribute 'org-agenda-dimmed-todo-face nil
                     :foreground nil :slant 'italic)
 
+;; Make some links look more distinct.
+(org-link-set-parameters
+ "file"
+ :face '(:inherit font-lock-keyword-face :underline t))
+
 
 
 ;;;;;; Variable pitch:
