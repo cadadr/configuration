@@ -5162,7 +5162,7 @@ fragments"
 
 ;;;;; GUI:
 
-(defvar gk-preferred-themes '( :light tsdh-light
+(defvar gk-preferred-themes '( :light nil
                                :dark wombat
                                ;; just being explicit...
                                :no-preference nil)
