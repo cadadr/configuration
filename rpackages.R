@@ -10,4 +10,5 @@ if(!dir.exists(libdir)) {
 
 install.packages("rio", libdir)
 install.packages("tidyverse", libdir)
-
+install.packages("lintr", libdir)
+install.packages("gridExtra", libdir)
