@@ -25,6 +25,12 @@ options(showWarnCalls=T, showErrorCalls=T)
 my.describe <- psych::describe
 my.import <- rio::import
 my.export <- rio::export
+my.factorify <- function(x, ...) {
+    for(col in list(...)) {
+        x[col] <- as.factor(x[col])
+    }
+    return(x)
+}
 
 
 
