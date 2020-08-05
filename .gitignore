@@ -67,6 +67,7 @@ emacs.d/eshell/history
 emacs.d/eshell/lastdir
 emacs.d/anaconda-mode/
 emacs.d/request/
+emacs.d/smex-items
 
 emacs.d/extras/*.el
 emacs.d/.trash_emacs/
