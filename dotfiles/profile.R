@@ -18,7 +18,7 @@ options(showWarnCalls=T, showErrorCalls=T)
 
 ### Load some useful functions by default:
 
-# The idea with ‘G.’ prefix here is that using those, I won’t be
+# The idea with ‘my.’ prefix here is that using those, I won’t be
 # fooled by my default environment and forget to import packages when
 # publishing code.
 
