@@ -4270,7 +4270,8 @@ Narrow to the relevant heading.  Reading notes are toplevel headings in ‘gk-re
  org-tags-column 0
  ;; If an #+attr_*: :width xxx available, use xxx, else, car of this
  ;; value.
- org-image-actual-width (list 300)
+ org-image-actual-width
+ (list (* 48 (aref (font-info (face-attribute 'default :family)) 10)))
  ;; The minibuffer prompt is enough.
  org-popup-calendar-for-date-prompt nil
  ;; The couple settings below are adapted from
