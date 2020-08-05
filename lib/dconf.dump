@@ -118,7 +118,7 @@ text-scaling-factor=1.0
 toolkit-accessibility=false
 
 [org/cinnamon/desktop/keybindings]
-custom-list=['custom0', 'custom1']
+custom-list=['custom2', 'custom1', 'custom0']
 
 [org/cinnamon/desktop/keybindings/custom-keybindings/custom0]
 binding=['<Super>w']
@@ -129,6 +129,11 @@ name='Firefox profile switcher'
 binding=['<Super>p']
 command='passmenu.sh'
 name='Pass menu'
+
+[org/cinnamon/desktop/keybindings/custom-keybindings/custom2]
+binding=['<Super>r']
+command='qrclip.sh'
+name='Clipboard to QR Code'
 
 [org/cinnamon/desktop/keybindings/media-keys]
 terminal=@as []
