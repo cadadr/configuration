@@ -5377,6 +5377,7 @@ new frame is created."
    ("\\*.*Completions\\*" . (display-buffer-in-side-window . ((side . bottom))))
    ("\\*Help\\*" . (display-buffer-reuse-window))
    ("Checkdoc" . (display-buffer-pop-up-window))
+   ("help\\[R\\]" . (display-buffer-pop-up-window))
    (".*" . (display-buffer-same-window)))
  ;; With C-v and M-v, scroll to beginning or end of buffer if at top
  ;; or bottom respectively, or if at beginning or end of buffer,
