@@ -23,6 +23,7 @@ icons.*.rc
 *~
 *.#*
 tmp.patch
+__pycache__
 
 arch/etc/netctl/home
 arch/aur/*/src
