@@ -4316,6 +4316,13 @@ Narrow to the relevant heading.  Reading notes are toplevel headings in ‘gk-re
 
 
 
+;;;;; Apps:
+
+;; Use system app to handle PDFs.
+(setcdr (assoc "\\.pdf\\'" org-file-apps) 'system)
+
+
+
 ;;;;; Mobile (obsolete):
 
 (setf
