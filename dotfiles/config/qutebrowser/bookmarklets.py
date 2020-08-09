@@ -50,15 +50,15 @@ c.aliases.update({
 # Uncheck all checkboxes
 c.aliases.update({
     'uncheckall':
-    "javascript:document.querySelectorAll('input[type=checkbox]').forEach((elem) "
-    '=> {elem.checked=false;})'
+    "jseval javascript:document.querySelectorAll('input[type=checkbox]').forEach("
+    '(elem) => {elem.checked=false;})'
 })
 
 
 # IDK if this’d work with qutebrowser but just copying it over...
 c.aliases.update({
     'connect-to-skewer':
-    'javascript:(function(){var d=document;var '
+    'jseval javascript:(function(){var d=document;var '
     "s=d.createElement('script');s.src='http://localhost:8080/skewer';"
     "d.body.appendChild(s);})()"
 })
