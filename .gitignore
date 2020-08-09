@@ -170,6 +170,4 @@ dotfiles/config/sublime-text-3/Index
 dotfiles/config/sublime-text-3/Local/*.sublime_session
 dotfiles/config/VSCodium/rapid_render.json
 dotfiles/config/kdeconnect
-dotfiles/config/qutebrowser/bookmarks/urls
-dotfiles/config/qutebrowser/quickmarks
 dotfiles/config/qutebrowser/qsettings/QtProject.conf
