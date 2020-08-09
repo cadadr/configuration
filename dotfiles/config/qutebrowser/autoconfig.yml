@@ -10,6 +10,11 @@ settings:
     global: true
   backend:
     global: webengine
+  bindings.commands:
+    global:
+      normal:
+        ',i': save-to-instapaper
+        ',s': org-storelink
   content.autoplay:
     global: false
   hints.uppercase:
