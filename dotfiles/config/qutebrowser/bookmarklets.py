@@ -63,3 +63,12 @@ c.aliases.update({
     "d.body.appendChild(s);})()"
 })
 
+
+# Adapted from https://www.zotero.org/downloadbookmarklet.
+# But doesn’t seem to work...
+c.aliases.update({
+    'save-to-zotero':
+    "jseval javascript:var%20d=document,s=d.createElement('script');"
+    "s.src='https://www.zotero.org/bookmarklet/loader.js';"
+    "(d.body?d.body:d.documentElement).appendChild(s);void(0);"
+})
