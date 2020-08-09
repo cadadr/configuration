@@ -13,6 +13,7 @@ settings:
   bindings.commands:
     global:
       normal:
+        ',d': bookmark-add
         ',i': save-to-instapaper
         ',s': org-storelink
   content.autoplay:
