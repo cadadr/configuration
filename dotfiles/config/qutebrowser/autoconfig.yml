@@ -15,6 +15,7 @@ settings:
       normal:
         ',d': bookmark-add
         ',i': save-to-instapaper
+        ',r': config-source
         ',s': org-storelink
   content.autoplay:
     global: false
