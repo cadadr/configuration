@@ -127,3 +127,4 @@ borgbackup	install
 julia	install
 qutebrowser	install
 r-cran-car	install
+sqlite3	install
