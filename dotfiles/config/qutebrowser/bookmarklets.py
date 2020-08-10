@@ -65,10 +65,10 @@ c.aliases.update({
 
 
 # Adapted from https://www.zotero.org/downloadbookmarklet.
-# But doesn’t seem to work...
 c.aliases.update({
     'save-to-zotero':
-    "jseval javascript:var%20d=document,s=d.createElement('script');"
-    "s.src='https://www.zotero.org/bookmarklet/loader.js';"
-    "(d.body?d.body:d.documentElement).appendChild(s);void(0);"
+    "jseval javascript:function save2zotero(){"
+    "var d=document; var s=d.createElement('scr'+'ipt');"
+    "s.setAttribute('src', 'https://www.zotero.org/bookmarklet/loader.js');"
+    "(d.body?d.body:d.documentElement).appendChild(s);};save2zotero();void(0);"
 })

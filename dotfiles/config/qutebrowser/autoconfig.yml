@@ -17,6 +17,7 @@ settings:
         ',i': save-to-instapaper
         ',r': config-source
         ',s': org-storelink
+        ',z': save-to-zotero
   content.autoplay:
     global: false
   hints.uppercase:
