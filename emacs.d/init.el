@@ -5958,7 +5958,7 @@ provided."
 ;;;;;; Variables:
 
 ;; Set the default filter.
-(defvar gk-elfeed-default-filter "@1-week-old +unread ")
+(defvar gk-elfeed-default-filter "+unread ")
 (setq-default elfeed-search-filter gk-elfeed-default-filter)
 
 ;; Set up the url-queue variables for swift and complete operation. The
@@ -6149,7 +6149,8 @@ the body of the entry, and the cdr is the score, an integer.")
       (elfeed-tag entry 'important))
     entry))
 
-(add-hook 'elfeed-new-entry-hook 'gk-score-elfeed-entry)
+;; Uncomment to enable
+;; (remove-hook 'elfeed-new-entry-hook 'gk-score-elfeed-entry)
 
 
 
@@ -6168,7 +6169,7 @@ the body of the entry, and the cdr is the score, an integer.")
 ;;;;;; Feeds:
 
 ;; Load feeds from external source.
-(gk-load (dropbox "feeds") t)
+(gk-load (dropbox "feeds2") t)
 
 
 
