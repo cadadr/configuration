@@ -131,6 +131,19 @@ epub2pdf () {
     esac
 }
 
+# Use pandoc to convert org to docx
+# Adapted from
+# http://blog.lujun9972.win/emacs-document/blog/2020/02/19/convert-.org-to-.docx-with-citations/index.html
+#
+# Needs working tho
+org2docxWIP() {
+        pandoc \
+            --bibliography=$1 \
+            --csl=/home/g/co/External/github-citation-style-language-styles$2.csl \
+            --reference-docx=$3 \
+            -i $4 -o $4-pandoc.docx
+}
+
 para() {
     export LEDGER_FILE="$HOME/Documents/finans/$(date +'%Y-%m').dat"
     if [ -z "$@" ]; then
