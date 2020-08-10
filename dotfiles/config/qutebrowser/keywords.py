@@ -112,3 +112,6 @@ c.url.searchengines['#rseek'] = \
 
 c.url.searchengines['#cran'] = \
     'https://www.r-pkg.org/search.html?q={}'
+
+c.url.searchengines['/r'] = \
+    'https://reddit.com/r/{}'
