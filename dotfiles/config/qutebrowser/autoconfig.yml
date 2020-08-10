@@ -17,6 +17,10 @@ settings:
         ',i': save-to-instapaper
         ',r': config-source
         ',s': org-storelink
+        ',tb': set tabs.position bottom
+        ',tl': set tabs.position left
+        ',tr': set tabs.position right
+        ',tt': set tabs.position top
         ',z': save-to-zotero
   content.autoplay:
     global: false
@@ -25,7 +29,7 @@ settings:
   tabs.background:
     global: true
   tabs.position:
-    global: bottom
+    global: left
   tabs.wrap:
     global: false
   url.default_page:
