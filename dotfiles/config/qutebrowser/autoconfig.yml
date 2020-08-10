@@ -29,7 +29,7 @@ settings:
   tabs.background:
     global: true
   tabs.position:
-    global: left
+    global: bottom
   tabs.wrap:
     global: false
   url.default_page:
