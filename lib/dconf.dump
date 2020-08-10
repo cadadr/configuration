@@ -321,7 +321,7 @@ include-pointer=false
 last-save-directory='file:///home/g/co/pomodorino/assets/screenshots'
 
 [org/gnome/gnome-system-monitor]
-show-dependencies=false
+show-dependencies=true
 show-whose-processes='user'
 
 [org/gnome/gnome-system-monitor/disktreenew]
