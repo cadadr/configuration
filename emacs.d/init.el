@@ -115,6 +115,7 @@
 (require 'ibuffer)
 (require 'ibuffer-vc)
 (require 'ido)
+(require 'ido-vertical-mode)
 (require 'image)
 (require 'image-dired)
 (require 'imenu)
@@ -5651,7 +5652,8 @@ So that the reader knows where to continue reading."
 ;;;;; Ido and Smex:
 
 (cl-pushnew 'ido-mode gk-global-modes)
-(cl-pushnew 'ido-mode gk-global-modes)
+(cl-pushnew 'ido-everywhere gk-global-modes)
+(cl-pushnew 'ido-vertical-mode gk-global-modes)
 
 (smex-initialize)
 
@@ -5670,11 +5672,7 @@ So that the reader knows where to continue reading."
  (defun gk-ido-disable-line-truncation ()
    (set (make-local-variable 'truncate-lines) nil)))
 
-(add-hook
- 'ido-setup-hook
- (defun gk-ido-define-keys () ;; C-n/p is more intuitive in vertical layout
-   (define-key ido-completion-map (kbd "C-n") 'ido-next-match)
-   (define-key ido-completion-map (kbd "C-p") 'ido-prev-match)))
+(setq ido-vertical-define-keys 'C-n-and-C-p-only)
 
 
 
