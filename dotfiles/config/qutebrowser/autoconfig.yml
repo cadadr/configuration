@@ -22,6 +22,8 @@ settings:
         ',tr': set tabs.position right
         ',tt': set tabs.position top
         ',z': save-to-zotero
+        gJ: tab-move +
+        gK: tab-move -
   content.autoplay:
     global: false
   hints.uppercase:
