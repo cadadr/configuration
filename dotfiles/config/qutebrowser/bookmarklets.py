@@ -43,14 +43,17 @@ c.aliases.update({
 
 # Just adding this because it used to be there...
 c.aliases.update({
-    'post-to-hn': 'jseval javascript:window.location=%22http://news.ycombinator.com/submitlink?u=%22+encodeURIComponent(document.location)+%22&t=%22+encodeURIComponent(document.title)'
+    'post-to-hn': 'jseval --quiet'
+    'window.location="http://news.ycombinator.com/submitlink?u="'
+    '+encodeURIComponent(document.location)+"&t="'
+    '+encodeURIComponent(document.title)'
 })
 
 
 # Uncheck all checkboxes
 c.aliases.update({
     'uncheckall':
-    "jseval javascript:document.querySelectorAll('input[type=checkbox]').forEach("
+    "jseval --quiet document.querySelectorAll('input[type=checkbox]').forEach("
     '(elem) => {elem.checked=false;})'
 })
 
@@ -58,7 +61,7 @@ c.aliases.update({
 # IDK if this’d work with qutebrowser but just copying it over...
 c.aliases.update({
     'connect-to-skewer':
-    'jseval javascript:(function(){var d=document;var '
+    'jseval (function(){var d=document;var '
     "s=d.createElement('script');s.src='http://localhost:8080/skewer';"
     "d.body.appendChild(s);})()"
 })
@@ -67,8 +70,8 @@ c.aliases.update({
 # Adapted from https://www.zotero.org/downloadbookmarklet.
 c.aliases.update({
     'save-to-zotero':
-    "jseval javascript:function save2zotero(){"
-    "var d=document; var s=d.createElement('scr'+'ipt');"
-    "s.setAttribute('src', 'https://www.zotero.org/bookmarklet/loader.js');"
-    "(d.body?d.body:d.documentElement).appendChild(s);};save2zotero();void(0);"
+    "jseval --quiet var d=document,s=d.createElement('script');"
+    "s.src='https://www.zotero.org/bookmarklet/loader.js';"
+    "(d.body?d.body:d.documentElement).appendChild(s);void(0);"
 })
+
