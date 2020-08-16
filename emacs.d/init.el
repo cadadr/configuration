@@ -5172,7 +5172,7 @@ fragments"
 ;;;;; GUI:
 
 (defvar gk-preferred-themes '( :light nil
-                               :dark wombat
+                               :dark dracula
                                ;; just being explicit...
                                :no-preference nil)
   "Light and dark theme preferences.")
