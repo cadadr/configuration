@@ -140,7 +140,7 @@ terminal=@as []
 video-outputs=['XF86Display']
 
 [org/cinnamon/desktop/keybindings/wm]
-switch-to-workspace-left=['<Primary><Super>Tab']
+switch-to-workspace-left=['<Shift><Super>Tab']
 switch-to-workspace-right=['<Super>Tab']
 
 [org/cinnamon/desktop/media-handling]
