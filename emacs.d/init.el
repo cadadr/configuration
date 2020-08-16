@@ -4674,7 +4674,7 @@ numerals which regularly appear in texts."
 ;; Make some links look more distinct.
 (org-link-set-parameters
  "file"
- :face '(:inherit font-lock-keyword-face :underline t))
+ :face '(:inherit font-lock-string-face :underline t))
 
 
 
