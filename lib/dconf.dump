@@ -402,9 +402,9 @@ date-format='regular'
 show-hidden=false
 show-size-column=true
 show-type-column=true
-sort-column='name'
+sort-column='modified'
 sort-directories-first=true
-sort-order='ascending'
+sort-order='descending'
 type-format='category'
 
 [org/nemo/desktop]
