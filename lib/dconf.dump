@@ -200,7 +200,7 @@ clickpad-click=2
 custom-acceleration=false
 horizontal-scrolling=true
 motion-threshold=1
-tap-to-click=true
+tap-to-click=false
 touchpad-enabled=true
 
 [org/cinnamon/settings-daemon/plugins/power]
