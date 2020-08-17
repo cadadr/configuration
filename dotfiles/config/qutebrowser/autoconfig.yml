@@ -22,6 +22,7 @@ settings:
         ',tr': set --temp tabs.position right
         ',tt': set --temp tabs.position top
         ',z': save-to-zotero
+        g1: tab-focus 1
         gJ: tab-move +
         gK: tab-move -
   content.autoplay:
