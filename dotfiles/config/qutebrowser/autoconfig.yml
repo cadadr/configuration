@@ -14,6 +14,7 @@ settings:
     global:
       normal:
         ',d': bookmark-add
+        ',e': edit-url
         ',i': save-to-instapaper
         ',r': config-source
         ',s': org-storelink
