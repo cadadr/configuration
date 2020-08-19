@@ -19,6 +19,14 @@ set history=10000	" hard disks are bigger these days...
 set mouse=a		" enable mouse support
 set ignorecase		" case fold search
 
+" guioptions:
+" a: write visual selection to X selection
+" i: set window icon
+" e: use GUI tabs for 'showtabline'
+"
+" toolbar, menubar, and scrollbars are turned off.
+set guioptions=aie
+
 " }}}
 
 
