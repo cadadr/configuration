@@ -48,7 +48,7 @@ command! MkTags !/usr/bin/ctags -R .
 
 
 " visuals {{{
-colorscheme lithochromatic
+colorscheme zenburn
 set lbr			" word wrap
 let &sbr = '\ '		" illustrate logical line breaks
 set termguicolors	" use GUI colors in terminal
