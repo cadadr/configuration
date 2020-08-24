@@ -85,6 +85,7 @@
 (require 'dollar)
 (require 'eldoc)
 (require 'elfeed)
+(require 'elpher)
 (require 'epa)
 (require 'epa-mail)
 (require 'epg)
