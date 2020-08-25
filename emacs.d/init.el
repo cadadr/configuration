@@ -5978,6 +5978,10 @@ provided."
 
 ;;;;; Elpher:
 
+(setf
+ ;; Move bookmarks file to a private location.
+ elpher-bookmarks-file (gk-org-dir-file "elpher-bookmarks.el"))
+
 ;; Some more emacsy keybindings.
 (define-key elpher-mode-map "n" #'elpher-next-link)
 (define-key elpher-mode-map "p" #'elpher-prev-link)
