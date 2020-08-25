@@ -198,6 +198,7 @@
 (require 'smex)
 (require 'smtpmail)
 (require 'subr-x)
+(require 'switch-window)
 (require 'textile-mode)
 (require 'thingatpt)
 (require 'thinks)
@@ -5452,15 +5453,37 @@ new frame is created."
 
 
 
-;;;;; Winner and windmove:
+;;;;; Winner, windmove, and switch-window:
 
 (setq winner-dont-bind-my-keys t)
 
 (add-to-list 'gk-global-modes 'winner-mode)
 
+
+
 (windmove-default-keybindings)
 (when (fboundp 'windmove-delete-default-keybindings)
  (windmove-delete-default-keybindings))
+
+
+
+(setf
+ ;; Use alphanumeric shortcuts.
+ switch-window-shortcut-style 'qwerty
+
+ ;; Automatically and slightly enlarge active window.
+ switch-window-auto-resize-window t
+ switch-window-default-window-size 0.51
+
+ ;; Read input from minibuffer, instead of using ‘read-event’, in
+ ;; order to preemptively prevent predictably preposterous problems
+ ;; when using the preponderant program predicted to be pronounced
+ ;; precisely as EXWM.
+ switch-window-input-style 'minibuffer)
+
+;; Most notably makes ‘switch-window-auto-resize-window’ apply to
+;; mouse movement too, whether via clicking or ‘focus-follows-mouse’.
+(cl-pushnew switch-window-mouse-mode gk-global-modes)
 
 
 
@@ -6276,6 +6299,22 @@ Does various tasks after saving a file, see it's definition."
 (gk-prefix-binding (kbd "M-x") #'smex-major-mode-commands)
 (gk-prefix-binding (kbd "C-M-x") #'execute-extended-command)
 
+;; switch-window
+(gk-global-binding (kbd "C-x o") #'switch-window)
+(gk-global-binding (kbd "C-x 1") #'switch-window-then-maximize)
+(gk-global-binding (kbd "C-x 2") #'switch-window-then-split-below)
+(gk-global-binding (kbd "C-x 3") #'switch-window-then-split-right)
+(gk-global-binding (kbd "C-x 0") #'switch-window-then-delete)
+
+(gk-global-binding (kbd "C-x 4 d") #'switch-window-then-dired)
+(gk-global-binding (kbd "C-x 4 f") #'switch-window-then-find-file)
+(gk-global-binding (kbd "C-x 4 m") #'switch-window-then-compose-mail)
+(gk-global-binding (kbd "C-x 4 r") #'switch-window-then-find-file-read-only)
+
+(gk-global-binding (kbd "C-x 4 C-f") #'switch-window-then-find-file)
+(gk-global-binding (kbd "C-x 4 C-o") #'switch-window-then-display-buffer)
+
+(gk-global-binding (kbd "C-x 4 0") #'switch-window-then-kill-buffer)
 
 
 
