@@ -1358,6 +1358,75 @@ Try to find a potential window containing a document to be read
 
 
 
+;;;; Screenshots:
+
+;; Adapted from: https://www.reddit.com/r/emacs/comments/idz35e/g2c2c6y/
+(defvar gk-save-screenshot-dir
+  (expand-file-name
+   "emacs-screenshots"
+   (if (fboundp 'xdg-user-dir)
+       (xdg-user-dir "PICTURES")
+     (expand-file-name "~/Pictures")))
+  "Where to save screenshots.")
+
+
+(defvar gk-save-screenshot-default-output-file-name-template
+  "%F%T%z.png"
+  "Default basename template for ‘gk-save-screenshot’.
+
+This string is passed to ‘format-time-string’ and then
+concatenated to ‘gk-save-screenshot-dir’.")
+
+
+(defun gk-save-screenshot (output-file)
+  "Save a screenshot of the selected frame as an SVG image.
+
+Save the output to OUTPUT-FILE. When called interactively, this
+is read from the minibuffer, and a default value using the date
+and time is provided.
+
+Output file type is inferred from OUTPUT-FILE’s extension, which
+must be one of ‘svg’, ‘pdf’, ‘ps’, ‘png’.
+
+The default file path is constructed using
+‘gk-save-screenshot-dir’ to determine the directory to save and
+‘gk-save-screenshot-default-output-file-name-template’ to
+generate a default file name."
+  (interactive
+   (list (read-file-name
+          "Screenshot file base name (i.e. sans extension): "
+          gk-save-screenshot-dir
+          nil nil
+          (format-time-string
+           gk-save-screenshot-default-output-file-name-template))))
+  ;; deps check
+  (unless (fboundp 'x-export-frames)
+    (user-error
+     "This function depends on `x-export-frames’ which not available"))
+  ;; ensure output directory
+  (unless (file-directory-p gk-save-screenshot-dir)
+    (make-directory gk-save-screenshot-dir t))
+  ;; guess output file type
+  (let ((type (downcase (file-name-extension output-file)))
+        data)
+    (setq type
+          (cond ((string= type "svg") 'svg)
+                ((string= type "pdf") 'pdf)
+                ((string= type "ps")  'postscript)
+                ((string= type "png") 'png)
+                (t
+                 (user-error
+                  "Output file’s extension should be one of svg, pdf, ps or png"
+                  type))))
+    ;; write data
+    (setq data (x-export-frames nil type))
+    (with-temp-file output-file
+      (insert data))
+    (kill-new output-file)
+    (message output-file)))
+
+
+
 ;;; The GK minor mode:
 
 ;; The GK minor mode is at the heart of this configuration.  Almost
