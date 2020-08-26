@@ -4756,8 +4756,6 @@ numerals which regularly appear in texts."
 ;; represent text in Org mode, while retaining monospace where necessary,
 ;; i.e. for source code, verbatim text, and structure and indentation.
 
-(setf org-variable-pitch-fixed-font (gk-font :mono))
-
 ;; Links in tables mess with alignment.
 (pushnew 'org-link org-variable-pitch-fixed-faces)
 (pushnew 'org-footnote org-variable-pitch-fixed-faces)
@@ -4772,13 +4770,14 @@ numerals which regularly appear in texts."
 
 (diminish 'org-variable-pitch-minor-mode "~")
 
+(add-hook 'after-init-hook #'org-variable-pitch-setup)
+
 
 
 ;;;;;; The hook:
 
 (defun gk-org-visuals-hook ()
   "Set up how an Org buffer look."
-  ;; (org-variable-pitch-minor-mode +1)
   (set-face-attribute 'org-footnote nil :underline nil)
   (setq-local truncate-lines t))
 
