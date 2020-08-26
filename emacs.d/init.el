@@ -1375,7 +1375,8 @@ Try to find a potential window containing a document to be read
   "Default basename template for ‘gk-save-screenshot’.
 
 This string is passed to ‘format-time-string’ and then
-concatenated to ‘gk-save-screenshot-dir’.")
+concatenated to ‘gk-save-screenshot-dir’ using
+‘expand-file-name’.")
 
 
 (defun gk-save-screenshot (output-file)
@@ -1394,7 +1395,7 @@ The default file path is constructed using
 generate a default file name."
   (interactive
    (list (read-file-name
-          "Screenshot file base name (i.e. sans extension): "
+          "Screenshot file name: "
           gk-save-screenshot-dir
           nil nil
           (format-time-string
