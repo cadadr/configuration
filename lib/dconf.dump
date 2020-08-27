@@ -269,6 +269,7 @@ secondary-click-time=1.2
 show-weekdate=false
 
 [org/gnome/desktop/interface]
+monospace-font-name='Monospace 10'
 toolkit-accessibility=false
 
 [org/gnome/devhelp/state/main/contents]
