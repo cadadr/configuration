@@ -13,6 +13,7 @@ moreutils	install
 mpv	install
 openssh-server	install
 qemu	install
+qemu-system	install
 skypeforlinux	install
 smartmontools	install
 spotify-client	install
