@@ -97,6 +97,7 @@ nmap <Leader>p "*p
 nmap <Leader>P "*P
 nmap <Leader>y "*y
 nmap <Leader>Y "*Y
+nmap <Leader>w :w<CR><C-z>
 
 " }}}
 
