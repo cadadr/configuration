@@ -246,6 +246,10 @@ word-size=64
 [org/gnome/calendar]
 active-view='week'
 
+[org/gnome/charmap]
+
+[org/gnome/charmap/window-state]
+
 [org/gnome/cheese]
 burst-delay=1000
 camera='USB2.0 HD UVC WebCam: USB2.0 HD'

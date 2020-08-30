@@ -52,7 +52,8 @@ recent-emoji
 sort-col
 picture-uri
 ignore-ca-cert
-ignore-phase2-ca-cert"
+ignore-phase2-ca-cert
+last-char"
 
 /usr/bin/dconf dump / \
     | grep -Ev "^($(echo $filter | tr ' ' '|'))=" \
