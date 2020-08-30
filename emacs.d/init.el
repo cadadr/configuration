@@ -3760,7 +3760,9 @@ Wonder why this is not the default."
 
  mu4e-get-mail-command "mpop -Q -a"
 
+ ;; No fuss please, dwim.
  mu4e-confirm-quit nil
+ mu4e-headers-leave-behavior 'apply
 
  ;; Use mu4e to compose mail from links. See also:
  ;; <~/cf/candy/emacsclient-mailto.desktop>.
