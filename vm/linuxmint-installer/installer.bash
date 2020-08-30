@@ -10,6 +10,6 @@ INSTALL_IMG="${INSTALL_IMG-/media/g/igk-attic/Installation Images/linuxmint-20-c
 INSTALL_DEVICE="${INSTALL_DEVICE-/dev/sdb}"
 
 exec "$QEMU" \
-	-boot order=d -m 1024 -enable-kvm -smp 2 \
+	-boot order=d -m 1024 -enable-kvm -smp 2 -cpu host \
 	-cdrom "$INSTALL_IMG" \
 	-hda "$INSTALL_DEVICE"
