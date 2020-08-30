@@ -3781,6 +3781,11 @@ Wonder why this is not the default."
 
 (define-key mu4e-main-mode-map [?<] #'mu4e-update-mail-and-index)
 
+(defun gk-mu4e-view-mode-hook ()
+  (setq-local word-wrap t))
+
+(add-hook 'mu4e-view-mode-hook #'gk-mu4e-view-mode-hook)
+
 
 
 ;;;; Org mode:
