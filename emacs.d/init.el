@@ -3778,6 +3778,9 @@ Wonder why this is not the default."
 (add-to-list 'mu4e-view-actions
              '("ViewInBrowser" . mu4e-action-view-in-browser) t)
 
+
+(define-key mu4e-main-mode-map [?<] #'mu4e-update-mail-and-index)
+
 
 
 ;;;; Org mode:
