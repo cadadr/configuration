@@ -3769,7 +3769,11 @@ Wonder why this is not the default."
  mail-user-agent 'mu4e-user-agent
 
  ;; Show email addresses b/c why the fuck not?
- mu4e-view-show-addresses t)
+ mu4e-view-show-addresses t
+
+ ;; Only include threads when I explicitly ask to do so. Otherwise
+ ;; there’s just too much stuff to look at.
+ mu4e-headers-include-related nil)
 
 (add-to-list 'mu4e-view-actions
              '("ViewInBrowser" . mu4e-action-view-in-browser) t)
