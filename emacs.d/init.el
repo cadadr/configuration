@@ -5774,7 +5774,9 @@ So that the reader knows where to continue reading."
  ido-enable-dot-prefix t
  ido-confirm-unique-completion t
  ;; Show in the current frame, change window's buffer if necessary.
- ido-default-buffer-method 'selected-window)
+ ido-default-buffer-method 'selected-window
+ ;; Include ‘.’ in completions for opening directory via dired.
+ ido-show-dot-for-dired t)
 
 (setf ido-enable-flex-matching t)
 
