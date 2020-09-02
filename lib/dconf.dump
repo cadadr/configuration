@@ -320,7 +320,7 @@ sort-type='ascending'
 
 [org/gnome/gnome-screenshot]
 border-effect='none'
-delay=10
+delay=5
 include-border=true
 include-pointer=false
 last-save-directory='file:///home/g/co/pomodorino/assets/screenshots'
