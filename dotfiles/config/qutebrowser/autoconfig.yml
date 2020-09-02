@@ -13,6 +13,7 @@ settings:
   bindings.commands:
     global:
       normal:
+        ',,': open-editor
         ',d': bookmark-add
         ',e': edit-url
         ',i': save-to-instapaper
