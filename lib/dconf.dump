@@ -175,7 +175,7 @@ focus-mode='sloppy'
 min-window-opacity=30
 mouse-button-modifier='<Super>'
 theme='Mint-Y-Dark'
-workspace-names=@as []
+workspace-names=['home', 'reading', 'watching']
 
 [org/cinnamon/muffin]
 desktop-effects=false
