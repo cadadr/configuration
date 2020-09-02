@@ -1538,7 +1538,9 @@ Set locally the variable `outline-minor-mode-prefix' to PREFIX."
  ;; ‘vc-make-backup-files’.
  kept-old-versions 10000
  kept-new-versions kept-old-versions
- backup-directory-alist `(("." . ,(expand-file-name "~/.backups"))))
+ backup-directory-alist
+ `(("/ssh:.*" . ".")
+   ("." . ,(expand-file-name "~/.backups"))))
 
 
 
