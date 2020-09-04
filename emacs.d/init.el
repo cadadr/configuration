@@ -5258,7 +5258,7 @@ fragments"
 
 ;;;;; GUI:
 
-(defvar gk-preferred-themes '( :light nil
+(defvar gk-preferred-themes '( :light modus-operandi
                                :dark zenburn
                                ;; just being explicit...
                                :no-preference nil)
@@ -5276,7 +5276,7 @@ fragments"
 Returns :light if the preferred colour scheme is light,
 :no-preference if no preference is set, or :dark if the user
 prefers dark themes."
-  :dark)
+  :light)
 
 
 (defun gk-setup-frame-looks (&optional frame)
