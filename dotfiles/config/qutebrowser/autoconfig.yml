@@ -29,6 +29,12 @@ settings:
         gK: tab-move -
   content.autoplay:
     global: false
+  editor.command:
+    global:
+    - emacsclient
+    - -c
+    - +{line}:{column}
+    - '{file}'
   hints.uppercase:
     global: true
   tabs.background:
