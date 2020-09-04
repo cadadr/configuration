@@ -64,6 +64,7 @@ panel-zone-symbolic-icon-sizes='[{"panelId": 1, "left": 28, "center": 28, "right
 panels-autohide=['1:false']
 panels-enabled=['1:0:bottom']
 panels-height=['1:24']
+show-tile-hud=true
 startup-animation=false
 workspace-expo-view-as-grid=true
 workspace-osd-duration=400
