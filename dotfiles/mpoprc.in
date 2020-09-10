@@ -7,7 +7,7 @@ tls on
 tls_starttls off
 tls_trust_file /etc/ssl/certs/ca-certificates.crt
 keep off
-delivery maildir "~/posta/maildir"
+delivery mda /usr/bin/procmail -f '%F'
 password
 
 # IUmail

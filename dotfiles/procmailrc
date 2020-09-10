@@ -10,30 +10,13 @@ LOGABSTRACT=yes
 DROPPRIVS=yes
 
 ### Rules:
-#### Spam check:
-# Takes too long, for some reason.
-#:0fw
-#| /usr/bin/spamc
-
-# Discard if spam-score ≥ 10 stars.
-#:0
-#* ^X-Spam-Level: \*\*\*\*\*\*\*\*\*\*
-#/dev/null
-
-# Put into spam mailbox otherwise.
-#:0:
-#* ^X-Spam-Status: Yes
-#spam
-
-### Delivery:
-# Deliver non-spam messages.
 
 # Mailing lists
 :0:
-* ^List-Id: .*python-list.python.org>$
-lists
+* ^List-Id: .*emacs-devel\.gnu\.org.*$
+lists/emacs-devel/
 
 # Catch-all for the rest
 :0:
-inbox
+maildir/
 

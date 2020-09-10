@@ -3760,6 +3760,23 @@ Wonder why this is not the default."
  mu4e-trash-folder  "/trash"      ;; trashed messages
  mu4e-refile-folder "/maildir"    ;; saved messages
 
+ mu4e-bookmarks
+ '(("flag:unread AND NOT flag:trashed AND NOT maildir:/lists/emacs-devel"
+    "Unread messages"
+    ?u)
+
+   ("maildir:/lists/emacs-devel/ AND flag:unread AND NOT flag:trashed"
+    "Unread messages in emacs-devel"
+    ?e)
+
+   ("date:today..now"
+    "Today's messages"
+    ?t)
+
+   ("date:7d..now"
+    "Last 7 days"
+    ?w))
+
  mu4e-get-mail-command "mpop -Q -a"
 
  ;; No fuss please, dwim.
