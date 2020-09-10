@@ -5779,11 +5779,11 @@ So that the reader knows where to continue reading."
 
 ;;;;; Ido and Smex:
 
-(cl-pushnew 'ido-mode gk-global-modes)
-(cl-pushnew 'ido-everywhere gk-global-modes)
-(cl-pushnew 'ido-vertical-mode gk-global-modes)
+;; (cl-pushnew 'ido-mode gk-global-modes)
+;; (cl-pushnew 'ido-everywhere gk-global-modes)
+;; (cl-pushnew 'ido-vertical-mode gk-global-modes)
 
-(smex-initialize)
+;; (smex-initialize)
 
 (setf
  ido-use-filename-at-point nil
@@ -6415,9 +6415,9 @@ Does various tasks after saving a file, see it's definition."
                                            (display-buffer "*Help*")))
 
 ;; Smex
-(gk-global-binding (kbd "M-x") #'smex)
-(gk-prefix-binding (kbd "M-x") #'smex-major-mode-commands)
-(gk-prefix-binding (kbd "C-M-x") #'execute-extended-command)
+;; (gk-global-binding (kbd "M-x") #'smex)
+;; (gk-prefix-binding (kbd "M-x") #'smex-major-mode-commands)
+;; (gk-prefix-binding (kbd "C-M-x") #'execute-extended-command)
 
 ;; switch-window
 (gk-global-binding (kbd "C-x o") #'switch-window)
