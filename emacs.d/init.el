@@ -5679,11 +5679,25 @@ An adaptation and simplification of ‘mode-line-modes’.")
                                  (gk-copy-buffer-file-name)))))))))
 (put 'gk-mode-line-buffer-file-name 'risky-local-variable t)
 
+
+(defvar gk-mode-line-toggle-display-line-numbers-mode
+  '(:eval
+    (propertize
+     "# "
+     'help-echo  "mouse-1: Toggle line number display"
+     'mouse-face 'mode-line-highlight
+
+     'local-map
+     (make-mode-line-mouse-map
+      'mouse-1 #'display-line-numbers-mode))))
+(put 'gk-mode-line-toggle-display-line-numbers-mode 'risky-local-variable t)
+
 (defun gk-build-mode-line-format ()
   (-replace-first
    'mode-line-modes 'gk-mode-line-modes
-   (append gk-mode-line-base
-           gk-mode-line-buffer-file-name)))
+   (cons gk-mode-line-toggle-display-line-numbers-mode
+         (append gk-mode-line-base
+                 gk-mode-line-buffer-file-name))))
 
 (setq-default mode-line-format (gk-build-mode-line-format))
 
