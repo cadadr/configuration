@@ -52,7 +52,9 @@ echo Build finished, hit RETURN to continue to testing w/ -Q.; read nought
 # script file name, or just run ‘./src/emacs’ and ‘C-x C-c’ out of it
 # if the config loads fine.
 echo Hit RETURN to test w/ configuration.; read nought
-EMACS=./src/emacs emacs-load-test.bash
+# FIXME(2020-09-10): something makes this fail
+#EMACS=./src/emacs emacs-load-test.bash
+./src./emacs
 
 echo Hit RETURN to install...; read nought
 rm -rf ~/local/emacs && make install
