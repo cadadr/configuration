@@ -5574,7 +5574,7 @@ new frame is created."
  switch-window-shortcut-style 'qwerty
 
  ;; Automatically and slightly enlarge active window.
- switch-window-auto-resize-window t
+ switch-window-auto-resize-window nil
  switch-window-default-window-size 0.51
 
  ;; Read input from minibuffer, instead of using ‘read-event’, in
