@@ -327,7 +327,7 @@ include-pointer=false
 last-save-directory='file:///home/g/co/pomodorino/assets/screenshots'
 
 [org/gnome/gnome-system-monitor]
-show-dependencies=true
+show-dependencies=false
 show-whose-processes='user'
 
 [org/gnome/gnome-system-monitor/disktreenew]
@@ -429,7 +429,7 @@ active-plugins=['open-uri-context-menu', 'docinfo', 'spell', 'time', 'sort', 'mo
 
 [org/x/editor/plugins/filebrowser/on-load]
 root='file:///'
-tree-view=false
+tree-view=true
 
 [org/x/editor/preferences/editor]
 scheme='tango'
