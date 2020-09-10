@@ -6126,11 +6126,10 @@ provided."
    playlist-id))
 
 (defun gk-elfeed-browse-article ()
-  "View elfeed article with EWW."
+  "View elfeed article with browser."
   (interactive)
   (let ((link (elfeed-entry-link elfeed-show-entry)))
-    (message "elfeed: Opened in browser: %s" link)
-    (eww link)))
+    (browse-url link)))
 
 (defun gk-elfeed-catch-up ()
   "C-x h, r, g in *elfeed-search* buffer."
