@@ -16,6 +16,10 @@ DROPPRIVS=yes
 * ^List-Id: .*emacs-devel\.gnu\.org.*$
 lists/emacs-devel/
 
+:0:
+* ^List-Id: .*help-gnu-emacs\.gnu\.org.*$
+lists/help-gnu-emacs/
+
 # Catch-all for the rest
 :0:
 maildir/

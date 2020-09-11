@@ -3769,6 +3769,10 @@ Wonder why this is not the default."
     "Unread messages in emacs-devel"
     ?e)
 
+   ("maildir:/lists/help-gnu-emacs/ AND flag:unread AND NOT flag:trashed"
+    "Unread messages in help-gnu-emacs"
+    ?h)
+
    ("date:today..now"
     "Today's messages"
     ?t)
