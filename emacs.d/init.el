@@ -3761,25 +3761,21 @@ Wonder why this is not the default."
  mu4e-refile-folder "/maildir"    ;; saved messages
 
  mu4e-bookmarks
- '(("flag:unread AND NOT flag:trashed AND NOT maildir:/lists/emacs-devel"
-    "Unread messages"
-    ?u)
+ (let* ((unread
+         "flag:unread AND NOT flag:trashed")
+        (mailing-list
+         ($ [l k] (list (concat "maildir:/lists/" l "/ AND " unread)
+                        (concat "Unread messages in " l)
+                        k))))
 
-   ("maildir:/lists/emacs-devel/ AND flag:unread AND NOT flag:trashed"
-    "Unread messages in emacs-devel"
-    ?e)
+   `((,(concat unread " AND NOT maildir:/lists/*") "Unread messages" ?u)
 
-   ("maildir:/lists/help-gnu-emacs/ AND flag:unread AND NOT flag:trashed"
-    "Unread messages in help-gnu-emacs"
-    ?h)
+     ,(funcall mailing-list "emacs-devel" ?e)
+     ,(funcall mailing-list "help-gnu-emacs" ?h)
 
-   ("date:today..now"
-    "Today's messages"
-    ?t)
+     ("date:today..now" "Today's messages" ?t)
 
-   ("date:7d..now"
-    "Last 7 days"
-    ?w))
+     ("date:7d..now" "Last 7 days" ?w)))
 
  mu4e-get-mail-command "mpop -Q -a"
 
