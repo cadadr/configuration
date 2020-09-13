@@ -429,7 +429,7 @@ active-plugins=['open-uri-context-menu', 'docinfo', 'spell', 'time', 'sort', 'mo
 
 [org/x/editor/plugins/filebrowser/on-load]
 root='file:///'
-tree-view=true
+tree-view=false
 
 [org/x/editor/preferences/editor]
 scheme='tango'
