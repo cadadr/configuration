@@ -3769,6 +3769,8 @@ Wonder why this is not the default."
                         k))))
 
    `((,(concat unread " AND NOT maildir:/lists/*") "Unread messages" ?u)
+     (,(concat unread " AND maildir:/lists/*")
+      "Unread messages in mailing lists" ?l)
 
      ,(funcall mailing-list "emacs-devel" ?e)
      ,(funcall mailing-list "help-gnu-emacs" ?h)
