@@ -4438,17 +4438,6 @@ modified slightly before it’s used e.g. when posting to Reddit."
       org-icalendar-combined-agenda-file (expand-file-name "ajanda.ics" gk-syndir)
       org-id-locations-file (locate-user-emacs-file "etc/org-id-locations.el"))
 
-(setf
- org-agenda-files (gk-org-dir-files "Todo.org")
- org-agenda-custom-commands '(("p" "Planner"
-                               ((tags "TODO=\"TODO\"-vault")))))
-
-(add-variable-watcher
- 'org-agenda-files
- (lambda (&rest wut)
-   (message "Who’s messing with my agenda: %S" wut)
-   (debug)))
-
 
 
 ;;;;; Apps:
@@ -4524,8 +4513,73 @@ modified slightly before it’s used e.g. when posting to Reddit."
 
 (setf org-agenda-block-separator nil)
 
+;; Custom agenda setup
+(setf
+ org-agenda-files (gk-org-dir-files "Todo.org")
+ org-agenda-hide-tags-regexp "."
+ org-agenda-custom-commands
+ `(("p" "Planner"
+    (;; Today’s scheduled items
+     (agenda "" ((org-agenda-overriding-header
+                  ,(with-temp-buffer
+                     (insert "P L A N N E R\n\n")
+                     (goto-char (point-min))
+                     (center-line)
+                     (goto-char (point-max))
+                     (insert "T O D A Y ’ S   S C H E D U L E :")
+                     (newline)
+                     (buffer-substring (point-min) (point-max))))
+                 (org-agenda-skip-function '(org-agenda-skip-entry-if 'deadline))
+                 (org-deadline-warning-days 0)
+                 (org-agenda-span 1)))
+
+     ;; Approaching deadlines
+     (agenda nil ((org-agenda-overriding-header
+                   "\n\nA P P R O A C H I N G   D E A D L I N E S :")
+                  (org-agenda-entry-types '(:deadline))
+                  (org-agenda-format-date "")
+                  (org-deadline-warning-days 21)
+                  (org-agenda-span 1)))
+
+     ;; Reading
+     (todo "READING|READ" ((org-agenda-overriding-header
+                            "\n\nR E A D I N G :")
+                           (org-agenda-sorting-strategy '(todo-state-down))
+                           (org-agenda-skip-function
+                            '(org-agenda-skip-entry-if 'deadline))))
+
+     ;; Research related stuff
+     (tags-todo "research+TODO=\"TODO\""
+                ((org-agenda-overriding-header
+                  "\n\nR E S E A R C H :")
+                 (org-agenda-skip-function
+                  '(org-agenda-skip-entry-if 'deadline 'scheduled))
+                 (org-default-priority org-lowest-priority)))
+
+     ;; Unsorted TODO items
+     (tags-todo "-vault-research+TODO=\"TODO\""
+                ((org-agenda-overriding-header
+                  "\n\nS T R A Y   T O D O s :")
+                 (org-agenda-skip-function
+                  '(org-agenda-skip-entry-if 'deadline 'scheduled))
+                 (org-default-priority org-lowest-priority)))))))
+
+
+(add-variable-watcher
+ 'org-agenda-files
+ (lambda (&rest wut)
+   (message "Who’s messing with my agenda: %S" wut)
+   (debug
+    nil
+    "Watching who’s messing with org-agenda-files, cont. if you eval’ed")))
+
 (defun gk-org-agenda-mode-hook ()
-  (hl-line-mode +1))
+  (hl-line-mode +1)
+  (setq-local word-wrap t)
+  (setq-local truncate-lines nil)
+  (olivetti-mode +1)
+  (setq-local olivetti-body-width 90)
+  (gk-turn-on-outline-minor-mode "^[A-Z] " " :$" "C-'"))
 
 (add-hook 'org-agenda-mode-hook #'gk-org-agenda-mode-hook)
 
