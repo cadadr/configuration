@@ -6048,7 +6048,7 @@ provided."
 ;;;;;; Set the browse-url functions:
 
 (setf browse-url-generic-program
-      (executable-find "firefox")
+      (executable-find "xdg-open")
       browse-url-handlers
       `(("\\(youtube\\.com\\|youtu\\.be\\)/" . gk-urls-browse-mpv)
         ("invidio\\.us/" . gk-urls-browse-mpv)
