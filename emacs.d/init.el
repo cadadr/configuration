@@ -3753,6 +3753,16 @@ Wonder why this is not the default."
 
 ;;;;; Mu4e:
 
+(define-advice mu4e-make-temp-file
+    (:override (ext) fuck-you-mu4e-dont-delete-my-tmpfiles)
+  "Create a temporary file with extension EXT.
+
+The file will *not* self-destruct in a few seconds, because why
+the fuck?"
+  (let* ((temporary-file-directory (expand-file-name "tmp" gk-mail-home))
+         (tmpfile (make-temp-file "mu4e-" nil (concat "." ext))))
+    tmpfile))
+
 (setq
  mu4e-maildir       "~/posta"     ;; top-level Maildir
  mu4e-sent-folder   "/sent"       ;; folder for sent messages
