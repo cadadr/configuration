@@ -4367,6 +4367,23 @@ Narrow to the relevant heading.  Reading notes are toplevel headings in ‘gk-re
               (org-narrow-to-subtree))
             (display-buffer-pop-up-frame newbuf nil)))))))
 
+
+(defun gk-org-export-region-as-markdown (beg end)
+  "Use ‘ox-hugo’ to translate the region to markdown.
+
+Does not break current restrictions and does not write the output
+to a file.  Just pops up a buffer with Markdown in Hugo format.
+
+Beware: this means hard newlines are not expressed as two
+consecutive spaces but with a <br/>, and the buffer has some
+front matter added.  This means the output may beed to be
+modified slightly before it’s used e.g. when posting to Reddit."
+  ;; FIXME(2020-09-14): transform/eliminate hugo artefacts
+  (interactive "r")
+  (save-restriction
+    (narrow-to-region beg end)
+    (org-hugo-export-as-md nil nil t)))
+
 
 
 ;;;;; Variables:
