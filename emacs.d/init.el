@@ -5538,10 +5538,9 @@ new frame is created."
  completion-styles '(basic substring partial-completion initials flex)
  ;; Add ‘<’ as a delimiter, and update the relevant regexp.
  completion-pcm-word-delimiters
- (progn
-   (let ((re "-_./:|< "))
-     (completion-pcm--prepare-delim-re re)
-     re))
+ (let ((re "-_./:|< "))
+   (completion-pcm--prepare-delim-re re)
+   re)
  ;; Do not  ring the bell  when killing  in r/o buffers,  put the
  ;; kill in the kill ring but do not modify the buffer.
  kill-read-only-ok t
