@@ -5144,10 +5144,12 @@ Generates a "
 
 ;; Adapted from https://gist.github.com/cvcore/760008a4dfb2eadf42afdc9cf01ef979
 
-(defvar gk-org-last-fragment nil
-  "Holds the type and position of last valid fragment we were on. Format: (FRAGMENT_TYPE FRAGMENT_POINT_BEGIN)")
+(defvar-local gk-org-last-fragment nil
+  "Holds the type and position of last valid fragment we were on.
+Format: (FRAGMENT_TYPE FRAGMENT_POINT_BEGIN)")
 
-(setq gk-org-valid-fragment-type '(latex-fragment latex-environment link))
+(defvar gk-org-valid-fragment-type
+  '(latex-fragment latex-environment link))
 
 (defun gk-org-curr-fragment ()
   "Returns the type and position of the current fragment.
@@ -5161,6 +5163,11 @@ fragments"
       (list fr-type
             (org-element-property :begin fr)))))
 
+(defun gk-org--list-latex-overlays (&optional beg end)
+  (cl-remove-if-not
+   (lambda (o) (eq (overlay-get o 'org-overlay-type) 'org-latex-overlay))
+   (overlays-in (or beg (point-min)) (or end (point-max)))))
+
 (defun gk-org-remove-fragment-overlay (fr)
   "Remove fragment overlay at FR."
   (let ((fr-type (nth 0 fr))
@@ -5168,7 +5175,7 @@ fragments"
     (goto-char fr-begin)
     (cond ((or (eq 'latex-fragment fr-type)
                (eq 'latex-environment fr-type))
-           (let ((ov (loop for ov in (org--list-latex-overlays)
+           (let ((ov (loop for ov in (gk-org--list-latex-overlays)
                            if
                            (and
                             (<= (overlay-start ov) (point))
