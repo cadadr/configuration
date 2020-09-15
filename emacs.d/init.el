@@ -4539,7 +4539,15 @@ modified slightly before it’s used e.g. when posting to Reddit."
 
 ;; Custom agenda setup
 (setf
- org-agenda-files (gk-org-dir-files "Todo.org")
+ ;; Make space alloc’d prefixes slightly larger, my categories are a
+ ;; bit descriptive.
+ org-agenda-prefix-format
+ '((agenda . " %i %-16:c%?-16t% s")
+   (todo . " %i %-16:c")
+   (tags . " %i %-16:c")
+   (search . " %i %-16:c"))
+ org-agenda-files
+ (gk-org-dir-files "Todo.org" "Linguistics.org" "Statistics.org")
  org-agenda-hide-tags-regexp "."
  org-agenda-custom-commands
  `(("p" "Planner"
@@ -4578,24 +4586,68 @@ modified slightly before it’s used e.g. when posting to Reddit."
                   "\n\nR E S E A R C H :")
                  (org-agenda-skip-function
                   '(org-agenda-skip-entry-if 'deadline 'scheduled))
-                 (org-default-priority org-lowest-priority)))
-
-     ;; Unsorted TODO items
-     (tags-todo "-vault-research+TODO=\"TODO\""
+                 (org-default-priority org-lowest-priority)))))
+   ("u" "Unsorted TODOs"
+    ;; Unsorted TODO items
+    ((tags-todo "-vault-research+TODO=\"TODO\""
                 ((org-agenda-overriding-header
-                  "\n\nS T R A Y   T O D O s :")
-                 (org-agenda-skip-function
-                  '(org-agenda-skip-entry-if 'deadline 'scheduled))
-                 (org-default-priority org-lowest-priority)))))))
+                  ,(with-temp-buffer
+                     (insert "P L A N N E R\n\n")
+                     (goto-char (point-min))
+                     (center-line)
+                     (goto-char (point-max))
+                     (insert "S T R A Y   T O D O s :")
+                     (newline)
+                     (buffer-substring (point-min) (point-max)))))
+                (org-agenda-skip-function
+                 '(org-agenda-skip-entry-if 'deadline 'scheduled))
+                (org-default-priority org-lowest-priority))))))
 
 
-(add-variable-watcher
- 'org-agenda-files
- (lambda (&rest wut)
-   (message "Who’s messing with my agenda: %S" wut)
-   (debug
-    nil
-    "Watching who’s messing with org-agenda-files, cont. if you eval’ed")))
+(defun gk-org-display-single-pane-agenda-view (&optional arg)
+  "Display a single pane planner agenda view.
+
+If called with a prefix argument, or ARG is non-nil, delete other
+windows and show the agenda window as the sole window.
+
+This is coupled with custom agendas in
+‘org-agenda-custom-commands’."
+  (interactive "P")
+  (when arg
+   (delete-other-windows))
+  ;; Show planner
+  (let ((org-agenda-buffer-name "*Org Agenda: Planner*"))
+    (org-agenda nil "p")))
+
+
+(defun gk-org-display-two-pane-agenda-view ()
+  "Display a two pane agenda view.
+
+On the left is the actual agenda view, on the right a list of
+TODOs.  This is coupled with custom agendas in
+‘org-agenda-custom-commands’."
+  (interactive)
+  (gk-org-display-single-pane-agenda-view t)
+  (split-window-horizontally)
+  (other-window 1)
+  ;; Show TODOs.
+  (let ((org-agenda-buffer-name "*Org Agenda: Stray TODOs"))
+    (org-agenda nil "u"))
+  ;; Put cursor in planner
+  (other-window 1))
+
+(defun gk-org-display-planner-frame (&optional arg)
+  "Open new frame with single pane agenda view.
+
+When called with a prefix argument, or when ARG is non-nil,
+display a two pane view in a maximised frame."
+  (interactive "P")
+  (gk-with-new-frame nil
+    (if (not arg)
+        (gk-org-display-single-pane-agenda-view)
+      (toggle-frame-maximized)
+      (gk-org-display-two-pane-agenda-view))))
+
 
 (defun gk-org-agenda-mode-hook ()
   (hl-line-mode +1)
@@ -6691,12 +6743,23 @@ Does various tasks after saving a file, see it's definition."
 (gk-prefix-binding "os" 'org-store-link)
 (gk-prefix-binding "oe" 'gk-org-pdf-subtree)
 (gk-prefix-binding "od" 'gk-org-decrypt-element)
-(gk-prefix-binding "oa" 'org-agenda)
-(gk-prefix-binding "a" 'org-agenda)
 (gk-prefix-binding "c" 'org-capture)
-(gk-prefix-binding "oo" (gk-interactively (org-agenda nil "p")))
 (gk-prefix-binding "oj" #'org-babel-tangle-jump-to-org)
 (gk-prefix-binding "o." #'gk-org-export-this-tree)
+
+;; Agenda:
+
+;; no surprises
+(gk-prefix-binding "oa" 'org-agenda)
+(gk-prefix-binding "a" 'org-agenda)
+
+;; Custom views
+(gk-prefix-binding "o1" #'gk-org-display-single-pane-agenda-view)
+(gk-prefix-binding "o2" #'gk-org-display-two-pane-agenda-view)
+(gk-prefix-binding "oo" #'gk-org-display-single-pane-agenda-view)
+
+(gk-global-binding (kbd "C-M-o") #'gk-org-display-planner-frame)
+
 
 
 
