@@ -646,15 +646,18 @@ BUFFER defaults to current buffer, and SECONDS to 1."
        (point)))))
 
 (defvar gk-insert-todo-comment--history nil)
-(defvar gk-insert-todo-comment-default "TODO")
+(defvar gk-insert-todo-comment-keywords '("TODO" "XXX" "HACK" "FIXME"))
+(defvar gk-insert-todo-comment-default (car gk-insert-todo-comment-keywords))
 
 (defun gk-insert-todo-comment (keyword)
+  "Insert a TODO comment with date."
   (interactive
    (list
-    (read-string
+    (completing-read
      (format "Todo keyword to use (default: %s): "
              gk-insert-todo-comment-default)
-     nil 'gk-insert-todo-comment--history "TODO" t)))
+     gk-insert-todo-comment-keywords
+     nil nil nil 'gk-insert-todo-comment--history "TODO" t)))
   (gk-comment-dwim nil)
   (insert keyword)
   (insert (format-time-string "(%F): ")))
