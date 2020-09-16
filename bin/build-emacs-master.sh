@@ -54,7 +54,7 @@ echo Build finished, hit RETURN to continue to testing w/ -Q.; read nought
 echo Hit RETURN to test w/ configuration.; read nought
 # FIXME(2020-09-10): something makes this fail
 #EMACS=./src/emacs emacs-load-test.bash
-./src./emacs
+./src/emacs
 
 echo Hit RETURN to install...; read nought
 rm -rf ~/local/emacs && make install
