@@ -3806,8 +3806,8 @@ the fuck?"
      (,(concat unread " AND maildir:/lists/*")
       "Unread messages in mailing lists" ?l)
 
-     ,(funcall mailing-list "emacs-devel" ?e)
-     ,(funcall mailing-list "help-gnu-emacs" ?h)
+     ;; ,(funcall mailing-list "emacs-devel" ?e)
+     ;; ,(funcall mailing-list "help-gnu-emacs" ?h)
 
      ("date:today..now" "Today's messages" ?t)
 
