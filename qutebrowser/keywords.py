@@ -115,3 +115,8 @@ c.url.searchengines['#cran'] = \
 
 c.url.searchengines['/r'] = \
     'https://reddit.com/r/{}'
+
+youtube = "https://www.youtube.com/results?search_query={}"
+
+c.url.searchengines['#yt'] = youtube
+c.url.searchengines['#youtube'] = youtube
