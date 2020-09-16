@@ -230,6 +230,8 @@ unplug-enabled=false
 name='Mint-Y'
 theme-cache-updated=1587749413
 
+[org/gnome/baobab/ui]
+
 [org/gnome/calculator]
 accuracy=9
 angle-units='degrees'
