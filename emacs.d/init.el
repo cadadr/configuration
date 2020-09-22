@@ -206,6 +206,7 @@
 (require 'tramp)
 (require 'tramp-cache)
 (require 'turkish)
+(require 'undo-tree)
 (require 'uniquify)
 (require 'url)
 (require 'vc)
@@ -5983,6 +5984,13 @@ So that the reader knows where to continue reading."
    (set (make-local-variable 'truncate-lines) nil)))
 
 (setq ido-vertical-define-keys 'C-n-and-C-p-only)
+
+
+
+;;;;; Undo:
+
+;; Enable undo-tree.
+(cl-pushnew 'global-undo-tree-mode gk-global-modes)
 
 
 
