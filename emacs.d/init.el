@@ -4601,10 +4601,11 @@ modified slightly before it’s used e.g. when posting to Reddit."
                      (goto-char (point-max))
                      (insert "S T R A Y   T O D O s :")
                      (newline)
-                     (buffer-substring (point-min) (point-max)))))
-                (org-agenda-skip-function
-                 '(org-agenda-skip-entry-if 'deadline 'scheduled))
-                (org-default-priority org-lowest-priority))))))
+                     (buffer-substring (point-min) (point-max))))
+                 (org-agenda-skip-function
+                  '(org-agenda-skip-entry-if 'deadline 'scheduled))
+                 (org-default-priority org-lowest-priority)
+                 (org-agenda-sorting-strategy '(priority-down alpha-up))))))))
 
 
 (defun gk-org-display-single-pane-agenda-view (&optional arg)
