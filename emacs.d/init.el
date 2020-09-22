@@ -6761,8 +6761,6 @@ Does various tasks after saving a file, see it's definition."
 
 (gk-prefix-binding "\M-i" #'gk-visit-user-init-file)
 
-(gk-prefix-binding "\C-q" #'save-buffers-kill-emacs)
-
 (gk-prefix-binding (kbd "R") #'gk-reading-setup)
 
 (gk-global-binding "\C-xw" #'gk-jump-to-window)
