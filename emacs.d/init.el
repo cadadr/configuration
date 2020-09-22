@@ -4590,6 +4590,7 @@ modified slightly before it’s used e.g. when posting to Reddit."
                  (org-agenda-skip-function
                   '(org-agenda-skip-entry-if 'deadline 'scheduled))
                  (org-default-priority org-lowest-priority)))))
+
    ("u" "Unsorted TODOs"
     ;; Unsorted TODO items
     ((tags-todo "-vault-research+TODO=\"TODO\""
