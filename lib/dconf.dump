@@ -204,6 +204,9 @@ motion-threshold=1
 tap-to-click=false
 touchpad-enabled=true
 
+[org/cinnamon/settings-daemon/peripherals/touchscreen]
+orientation-lock=true
+
 [org/cinnamon/settings-daemon/plugins/power]
 button-power='suspend'
 idle-brightness=5
