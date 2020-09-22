@@ -37,8 +37,12 @@ settings:
     - '{file}'
   hints.uppercase:
     global: true
+  scrolling.smooth:
+    global: true
   tabs.background:
     global: true
+  tabs.mousewheel_switching:
+    global: false
   tabs.position:
     global: bottom
   tabs.wrap:
