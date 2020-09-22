@@ -211,6 +211,7 @@
 (require 'undo-tree)
 (require 'uniquify)
 (require 'url)
+(require 'valign)
 (require 'vc)
 (require 'vc-cvs)
 (require 'vc-rcs)
@@ -4975,8 +4976,6 @@ numerals which regularly appear in texts."
 ;; represent text in Org mode, while retaining monospace where necessary,
 ;; i.e. for source code, verbatim text, and structure and indentation.
 
-;; Links in tables mess with alignment.
-(pushnew 'org-link org-variable-pitch-fixed-faces)
 (pushnew 'org-footnote org-variable-pitch-fixed-faces)
 (pushnew 'highlight-indent-guides-even-face org-variable-pitch-fixed-faces)
 (pushnew 'highlight-indent-guides-odd-face org-variable-pitch-fixed-faces)
@@ -4997,6 +4996,7 @@ numerals which regularly appear in texts."
 
 (defun gk-org-visuals-hook ()
   "Set up how an Org buffer look."
+  (valign-mode +1)
   (set-face-attribute 'org-footnote nil :underline nil)
   (setq-local truncate-lines t))
 
