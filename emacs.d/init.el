@@ -84,6 +84,7 @@
 (require 'dired-x)
 (require 'doc-view)
 (require 'dollar)
+(require 'eglot)
 (require 'eldoc)
 (require 'elfeed)
 (require 'elpher)
@@ -3282,9 +3283,7 @@ symbol)."
                                    (plist-get gk-python-version :minor))))
 
 (defun gk-python-mode-hook ()
-  (anaconda-mode +1)
-  (anaconda-eldoc-mode +1)
-  (flymake-python-pyflakes-load))
+  (eglot-ensure))
 
 (add-hook 'python-mode-hook 'gk-algol-like-hook)
 (add-hook 'python-mode-hook 'gk-python-mode-hook)
