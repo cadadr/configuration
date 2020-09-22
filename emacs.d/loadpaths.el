@@ -44,6 +44,8 @@ Exclude dot-files, don't sort, and return full paths by default."
                 (locate-user-emacs-file p))))
 
 (defun gk-update-user-site-paths ()
+  "Update ‘load-path’ with new subdirs from ‘gk-elisp-site-dir’."
+  (interactive)
   (let ((dirs (cl-remove-if-not
                #'file-directory-p
                (gk-directory-files gk-elisp-site-dir))))

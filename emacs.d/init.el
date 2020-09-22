@@ -476,19 +476,8 @@ insert the numeronym at point."
 (defun // (&rest args)
   (apply #'/ (mapcar #'float args)))
 
-(defun gk-update-package-load-paths ()
-  "Clean up the ‘load-path’, find and add new packages."
-  (interactive)
-  (setf load-path (seq-uniq load-path #'string=))
-  (let ((packages (directory-files (locate-user-emacs-file "packages")
-                                   directory-files-no-dot-files-regexp))
-        new)
-    (if (dolist (package packages new)
-          (let ((l (length load-path)))
-            (unless (= l (length (pushnew package load-path :test #'string=)))
-              (push package new))))
-        (message "New package(s): %S" new)
-      (message "No new packages were found"))))
+(define-obsolete-function-alias 'gk-update-package-load-paths
+  'gk-update-user-site-paths "2020-09-23")
 
 (defun gk-send-desktop-notification (summary message &optional icon)
   "Show a notification on the desktop."
