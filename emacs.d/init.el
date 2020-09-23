@@ -6518,6 +6518,22 @@ the body of the entry, and the cdr is the score, an integer.")
 
 
 
+;;;;;; Update completion notification:
+
+(defun gk-elfeed-notify-update-completion (url)
+  (ignore url)
+  (when
+      (and (null elfeed-curl-queue)
+           (zerop elfeed-curl-queue-active))
+    (gk-send-desktop-notification
+     "elfeed: updated all feeds"
+     "All feeds have been updated"
+     "application-rss+xml")))
+
+(add-hook 'elfeed-update-hooks #'gk-elfeed-notify-update-completion)
+
+
+
 ;;;;;; Feeds:
 
 ;; Load feeds from external source.
