@@ -81,7 +81,7 @@ settings:
   tabs.select_on_remove:
     global: next
   tabs.show:
-    global: switching
+    global: always
   tabs.show_switching_delay:
     global: 1000
   tabs.undo_stack_size:
