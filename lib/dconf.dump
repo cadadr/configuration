@@ -383,6 +383,7 @@ active-plugins=['bold-unread', 'media-player']
 
 
 
+
 [org/gnome/power-manager]
 info-history-type='charge'
 info-last-device='wakeups'
