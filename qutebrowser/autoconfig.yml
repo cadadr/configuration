@@ -24,29 +24,70 @@ settings:
         ',tr': set --temp tabs.position right
         ',tt': set --temp tabs.position top
         ',z': save-to-zotero
+        co: null
+        d: null
         g1: tab-focus 1
         gJ: tab-move +
         gK: tab-move -
   content.autoplay:
     global: false
+  content.pdfjs:
+    global: true
   editor.command:
     global:
     - emacsclient
     - -c
     - +{line}:{column}
     - '{file}'
+  hints.auto_follow:
+    global: never
+  hints.prev_regexes:
+    global:
+    - \bprev(ious)?\b
+    - \bback\b
+    - \bolder\b
+    - \b[<←≪]\b
+    - \b(<<|«)\b
   hints.uppercase:
     global: true
+  input.forward_unbound_keys:
+    global: none
+  input.insert_mode.auto_enter:
+    global: false
+  input.insert_mode.auto_leave:
+    global: false
+  input.insert_mode.leave_on_load:
+    global: false
+  input.partial_timeout:
+    global: 50000
+  keyhint.delay:
+    global: 0
+  messages.timeout:
+    global: 0
   scrolling.smooth:
     global: true
   tabs.background:
     global: true
+  tabs.close_mouse_button:
+    global: none
+  tabs.focus_stack_size:
+    global: -1
+  tabs.mode_on_change:
+    global: normal
   tabs.mousewheel_switching:
     global: false
   tabs.position:
-    global: bottom
+    global: left
+  tabs.select_on_remove:
+    global: next
+  tabs.show:
+    global: switching
+  tabs.show_switching_delay:
+    global: 1000
+  tabs.undo_stack_size:
+    global: -1
   tabs.wrap:
-    global: false
+    global: true
   url.default_page:
     global: about:blank
   url.start_pages:
