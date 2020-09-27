@@ -5156,9 +5156,8 @@ Generates a "
 ;; Editing source code elements.
 
 (setf
- ;; Normally, org indents the src block after editing source code with
- ;; C-c ', disable that behaviour.
- org-src-preserve-indentation t
+ ;; Don’t indent content’s of souce blocks.
+ org-edit-src-content-indentation 0
  ;; Don't change the window layout when editing source blocks, open
  ;; them instead in the current window.
  org-src-window-setup 'current-window)
