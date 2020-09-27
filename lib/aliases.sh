@@ -254,6 +254,9 @@ alias slrn="NNTPSERVER='news.gmane.io' HOME='$HOME/posta/news' slrn -i \
 alias pdf2doc='soffice --infilter="writer_pdf_import" --convert-to doc'
 alias pdf2odt='soffice --infilter="writer_pdf_import" --convert-to odt'
 
+# raspberry pi
+alias pi="ssh pi@pi.local"
+alias pi_temp="ssh pi@pi.local vcgencmd measure_temp"
 
 ### OS specific aliases:
 
