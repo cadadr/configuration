@@ -70,8 +70,6 @@ settings:
     global: true
   tabs.close_mouse_button:
     global: none
-  tabs.focus_stack_size:
-    global: -1
   tabs.mode_on_change:
     global: normal
   tabs.mousewheel_switching:
