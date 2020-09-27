@@ -131,3 +131,4 @@ r-cran-car	install
 sqlite3	install
 pandoc-citeproc	install
 libjs-pdf	install
+libreply-perl	install
