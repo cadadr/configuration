@@ -435,7 +435,7 @@ active-plugins=['open-uri-context-menu', 'docinfo', 'spell', 'time', 'sort', 'mo
 
 [org/x/editor/plugins/filebrowser/on-load]
 root='file:///'
-tree-view=false
+tree-view=true
 
 [org/x/editor/preferences/editor]
 scheme='tango'
