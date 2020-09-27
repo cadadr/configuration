@@ -171,3 +171,4 @@ dotfiles/config/sublime-text-3/Local/*.sublime_session
 dotfiles/config/VSCodium/rapid_render.json
 dotfiles/config/kdeconnect
 dotfiles/config/qutebrowser/qsettings/QtProject.conf
+dotfiles/vim/.netrwhist
