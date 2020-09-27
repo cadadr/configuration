@@ -77,7 +77,7 @@ settings:
   tabs.position:
     global: left
   tabs.select_on_remove:
-    global: next
+    global: last-used
   tabs.show:
     global: always
   tabs.show_switching_delay:
@@ -85,7 +85,7 @@ settings:
   tabs.undo_stack_size:
     global: -1
   tabs.wrap:
-    global: true
+    global: false
   url.default_page:
     global: about:blank
   url.start_pages:
