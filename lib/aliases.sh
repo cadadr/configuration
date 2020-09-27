@@ -244,7 +244,8 @@ alias undocker='docker ps -a -f status=exited | sed "1d" | cut -d " " -f 1 | xar
 # Suppress interactive progress reporting.
 curl='curl -s'
 # The backup command string
-alias do-backup="borg create --stats --progress --compression lz4 ::{user}-{now} $MYFS/"
+# alias do-backup="borg create --stats --progress --compression lz4 ::{user}-{now} $MYFS/"
+alias do-backup="bash ~/co/pi/scripts/make-backup.bash"
 alias vialiases="$EDITOR $MYLIB/aliases.sh"
 alias envgrep="env | grep -i"
 alias openpdfs="pgrep -af '\.pdf' | cut --complement -d ' ' -f1,2"
