@@ -2910,6 +2910,30 @@ Set by ‘gk-algol-like-hook’, don’t manually set.")
 
 
 
+;;;;; Eglot / LSP:
+
+(setf
+ ;; Shut down if no buffers need it.
+ eglot-autoshutdown t)
+
+
+
+;;;;; Flymake:
+
+(setf
+ ;; Don’t bother me unless I save.
+ flymake-no-changes-timeout nil
+ flymake-start-on-flymake-mode nil)
+
+;; Colour backgrounds of error regions instead of squiggly lines,
+;; because they are annoying.
+(dolist (face '(flymake-error flymake-warning flymake-note))
+  (let ((c (plist-get (face-attribute face :underline) :color)))
+    (set-face-attribute face nil :background (color-lighten-name c 50))
+    (set-face-attribute face nil :underline nil)))
+
+
+
 ;;;;; Lisps:
 
 
