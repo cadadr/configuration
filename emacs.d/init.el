@@ -2846,6 +2846,9 @@ unlocked, offer to lock it before pasting."
       (setenv "SSH_ASKPASS" (expand-file-name "sshpass.sh" (getenv "MYLIB")))
       (shell-command "ssh-add" (generate-new-buffer "*ssh-add*")))))
 
+;; Disable with-editor stuff.
+(gk-deadvice 'server-switch-buffer)
+
 
 
 ;;;;; Mercurial:
