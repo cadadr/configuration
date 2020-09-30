@@ -4611,8 +4611,7 @@ modified slightly before it’s used e.g. when posting to Reddit."
                      (goto-char (point-min))
                      (center-line)
                      (goto-char (point-max))
-                     (insert "T O D A Y ’ S   S C H E D U L E :")
-                     (newline)
+                     (insert "T O D A Y ’ S   S C H E D U L E :\n")
                      (buffer-substring (point-min) (point-max))))
                  (org-agenda-skip-function '(org-agenda-skip-entry-if 'deadline))
                  (org-deadline-warning-days 0)
@@ -4628,7 +4627,7 @@ modified slightly before it’s used e.g. when posting to Reddit."
 
      ;; Reading
      (todo "READING|READ" ((org-agenda-overriding-header
-                            "\n\nR E A D I N G :")
+                            "\n\nR E A D I N G :\n")
                            (org-agenda-sorting-strategy '(todo-state-down))
                            (org-agenda-skip-function
                             '(org-agenda-skip-entry-if 'deadline))))
@@ -4636,7 +4635,7 @@ modified slightly before it’s used e.g. when posting to Reddit."
      ;; Research related stuff
      (tags-todo "research+TODO=\"TODO\""
                 ((org-agenda-overriding-header
-                  "\n\nR E S E A R C H :")
+                  "\n\nR E S E A R C H :\n")
                  (org-agenda-skip-function
                   '(org-agenda-skip-entry-if 'deadline 'scheduled))
                  (org-default-priority org-lowest-priority)))))
