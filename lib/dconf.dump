@@ -152,6 +152,9 @@ autorun-x-content-ignore=@as []
 autorun-x-content-open-folder=@as []
 autorun-x-content-start-app=@as []
 
+[org/cinnamon/desktop/notifications]
+bottom-notifications=true
+
 [org/cinnamon/desktop/screensaver]
 allow-keyboard-shortcuts=true
 allow-media-control=true
