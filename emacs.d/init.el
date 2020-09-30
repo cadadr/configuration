@@ -1533,7 +1533,7 @@ Set locally the variable `outline-minor-mode-prefix' to PREFIX."
     (:around (fn &rest args) previous-heading-on-toplevel)
   "Move to previous heading if at toplevel."
   (condition-case e
-      (funcall fn args)
+      (call-interactively fn)
     ('error (org-previous-visible-heading (car args)))))
 
 
