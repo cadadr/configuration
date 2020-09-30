@@ -63,7 +63,7 @@ settings:
   keyhint.delay:
     global: 0
   messages.timeout:
-    global: 0
+    global: 3000
   scrolling.smooth:
     global: true
   tabs.background:
