@@ -73,6 +73,9 @@ emacs.d/smex-items
 emacs.d/extras/*.el
 emacs.d/.trash_emacs/
 
+# Qutebrowser
+qutebrowser/qsettings/QtProject.conf
+
 # XDG stuff
 dotfiles/config/chromium/
 dotfiles/config/evince/
@@ -170,5 +173,4 @@ dotfiles/config/sublime-text-3/Index
 dotfiles/config/sublime-text-3/Local/*.sublime_session
 dotfiles/config/VSCodium/rapid_render.json
 dotfiles/config/kdeconnect
-dotfiles/config/qutebrowser/qsettings/QtProject.conf
 dotfiles/vim/.netrwhist
