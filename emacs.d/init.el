@@ -6046,6 +6046,15 @@ So that the reader knows where to continue reading."
 
 
 
+;;;;; Saving files:
+
+(define-advice write-file
+    (:filter-args (args) always-confirm)
+  "Make sure ‘write-file’ confirms overrides and asks to create directories."
+  (list (car args) t))
+
+
+
 ;;;; Internet:
 ;;;;; URLs:
 
