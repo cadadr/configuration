@@ -187,7 +187,7 @@ workspace-names=['home', 'away']
 desktop-effects=false
 resize-threshold=24
 tile-hud-threshold=25
-tile-maximize=false
+tile-maximize=true
 workspace-cycle=true
 
 [org/cinnamon/settings-daemon/peripherals/keyboard]
