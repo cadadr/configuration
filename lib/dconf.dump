@@ -145,6 +145,8 @@ switch-to-workspace-left=['<Shift><Super>Tab']
 switch-to-workspace-right=['<Super>Tab']
 
 [org/cinnamon/desktop/media-handling]
+automount=false
+automount-open=false
 autorun-never=true
 autorun-x-content-ignore=@as []
 autorun-x-content-open-folder=@as []
