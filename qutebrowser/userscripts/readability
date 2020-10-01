@@ -1,0 +1,63 @@
+#!/usr/bin/env python
+
+# Adapted from:
+# https://github.com/qutebrowser/qutebrowser/blob/master/misc/userscripts/readability
+
+# Executes python-readability on current page and opens the summary as new tab.
+#
+# Depends on the python-readability package, or its fork:
+#
+#   - https://github.com/buriy/python-readability
+#   - https://github.com/bookieio/breadability
+#
+# Usage:
+#   :spawn --userscript readability
+
+import codecs
+import os
+
+import readability
+
+
+tmpfile = os.path.join(
+    os.environ.get('QUTE_DATA_DIR',
+                   os.path.expanduser('~/.local/share/qutebrowser')),
+    'userscripts/readability.html')
+
+if not os.path.exists(os.path.dirname(tmpfile)):
+    os.makedirs(os.path.dirname(tmpfile))
+
+# Styling for dynamic window margin scaling and line height
+HEADER = """
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>%s</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <style type="text/css">
+        body {
+            margin: 40px auto;
+            max-width: 650px;
+            line-height: 1.4;
+            padding: 0 10px;
+        }
+        h1, h2, h3 {
+            line-height: 1.2;
+        }
+    </style>
+</head>
+"""
+
+with codecs.open(os.environ['QUTE_HTML'], 'r', 'utf-8') as source:
+    data = source.read()
+
+    doc = readability.Document(data)
+    title = doc.title()
+    content = doc.summary().replace('<html>', HEADER % title)
+
+    with codecs.open(tmpfile, 'w', 'utf-8') as target:
+        target.write(content.lstrip())
+
+    with open(os.environ['QUTE_FIFO'], 'w') as fifo:
+        fifo.write('open -t %s' % tmpfile)

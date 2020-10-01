@@ -53,3 +53,7 @@ rpy2~=3.3                       # R bridge
 #    python -m nltk.downloader all
 nltk~=3.4
 
+### Qutebrowser:
+
+# For readability userscript.
+readability-lxml~=0.8
