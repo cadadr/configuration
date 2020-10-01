@@ -1,5 +1,6 @@
 # config.py --- qutebrowser configuration
 
+from qutebrowser.api import interceptor
 
 ### STFU, linters:
 
@@ -18,6 +19,22 @@ config.source(config.configdir / "bookmarklets.py")
 ### Search keywords:
 
 config.source(config.configdir / "keywords.py")
+
+
+### Redirects:
+
+def rewrite(request):
+    # thank u, turkey!
+    if request.request_url.host().endswith('imgur.com'):
+        request.request_url.setHost('imgurp.com')
+
+    try:
+        request.redirect(request.request_url)
+    except:  # noqa
+        pass
+
+
+interceptor.register(rewrite)
 
 
 ### Visuals:
