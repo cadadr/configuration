@@ -1,6 +1,5 @@
 # config.py --- qutebrowser configuration
 
-import dracula
 
 ### STFU, linters:
 
@@ -22,10 +21,6 @@ config.source(config.configdir / "keywords.py")
 
 
 ### Visuals:
-
-# Load dracula theme:
-
-dracula.blood(c)
 
 
 ### Load autoconfig:
