@@ -39,6 +39,8 @@ settings:
     global: no-3rdparty
   content.pdfjs:
     global: true
+  content.windowed_fullscreen:
+    global: true
   content.xss_auditing:
     global: true
   downloads.remove_finished:
