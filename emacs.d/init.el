@@ -2451,7 +2451,7 @@ file extension.")
 
 
 
-;;;;; Deft
+;;;;; Deft:
 
 (setf
  ;; Finding the files to be searched.
