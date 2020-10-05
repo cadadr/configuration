@@ -14,6 +14,7 @@ settings:
     global:
       normal:
         ',,': open-editor
+        ',0': :open about:home
         ',R': :spawn --userscript readability
         ',d': bookmark-add
         ',e': edit-url
