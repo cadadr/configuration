@@ -33,7 +33,13 @@ settings:
         gK: tab-move -
   content.autoplay:
     global: false
+  content.canvas_reading:
+    global: false
+  content.cookies.accept:
+    global: no-3rdparty
   content.pdfjs:
+    global: true
+  content.xss_auditing:
     global: true
   editor.command:
     global:
