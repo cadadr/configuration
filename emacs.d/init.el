@@ -5511,7 +5511,7 @@ fragments"
 Returns :light if the preferred colour scheme is light,
 :no-preference if no preference is set, or :dark if the user
 prefers dark themes."
-  :light)
+  :dark)
 
 
 (defun gk-setup-frame-looks (&optional frame)
