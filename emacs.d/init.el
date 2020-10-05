@@ -5030,6 +5030,32 @@ numerals which regularly appear in texts."
 
 
 
+;;;;;; LaTeX previews:
+
+(define-advice org-format-latex
+    (:around (fn &rest args) take-theme-into-account)
+  "Adapt LaTeX previews to current theme.
+
+The LaTeX preview image file names are generated using a hash
+that takes various variables into account, including
+‘org-format-latex-header’.  This advice prepends the value of
+that variable, a string that contains some LaTeX prelude for
+generating images from fragments, with the list of currently
+active themes, thus allowing the currently active theme(s) to
+influence which images are picked.  Thus, after the theme
+changes, there’s no need to manually regenerate these images.
+You can just run \\[org-mode] in the buffer after switching the
+theme.  If necessary, new images will be created."
+  (let ((org-format-latex-header
+         (concat
+          (format
+           "%%%% Enabled themes: %S\n\n\n\n"
+           custom-enabled-themes)
+          org-format-latex-header)))
+    (apply fn args)))
+
+
+
 ;;;;; Custom links:
 
 
