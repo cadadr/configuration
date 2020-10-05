@@ -199,6 +199,7 @@ repeat-interval=uint32 30
 custom-threshold=true
 double-click=400
 drag-threshold=8
+locate-pointer=true
 middle-button-enabled=false
 motion-threshold=7
 
