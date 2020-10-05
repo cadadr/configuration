@@ -189,6 +189,7 @@ resize-threshold=24
 tile-hud-threshold=25
 tile-maximize=true
 workspace-cycle=true
+workspaces-only-on-primary=true
 
 [org/cinnamon/settings-daemon/peripherals/keyboard]
 delay=uint32 500
