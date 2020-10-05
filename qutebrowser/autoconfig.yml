@@ -72,6 +72,8 @@ settings:
     global: true
   tabs.close_mouse_button:
     global: none
+  tabs.last_close:
+    global: default-page
   tabs.mode_on_change:
     global: normal
   tabs.mousewheel_switching:
