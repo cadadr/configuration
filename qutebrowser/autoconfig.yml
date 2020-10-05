@@ -41,6 +41,8 @@ settings:
     global: true
   content.xss_auditing:
     global: true
+  downloads.remove_finished:
+    global: 10000
   editor.command:
     global:
     - emacsclient
