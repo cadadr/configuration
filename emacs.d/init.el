@@ -6082,7 +6082,7 @@ So that the reader knows where to continue reading."
 
 ;;;;; Fill column:
 
-(setf display-fill-column-indicator-character nil)
+(setf display-fill-column-indicator-character ?|)
 
 (let ((c (face-attribute 'highlight-indent-guides-even-face
                          :background)))
