@@ -419,12 +419,13 @@ date-format='regular'
 show-hidden=false
 show-size-column=true
 show-type-column=true
-sort-column='modified'
+sort-column='name'
 sort-directories-first=true
-sort-order='descending'
+sort-order='ascending'
 type-format='category'
 
 [org/nemo/desktop]
+desktop-layout='true::true'
 trash-icon-visible=true
 
 [org/nemo/preferences]
