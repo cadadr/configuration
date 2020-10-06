@@ -3853,9 +3853,14 @@ the fuck?"
                         (concat "Unread messages in " l)
                         k))))
 
-   `((,(concat unread " AND NOT maildir:/lists/*") "Unread messages" ?u)
+   `((,(concat
+        unread
+        " AND NOT maildir:/lists/* AND NOT maildir:/github/")
+      "Unread messages in inbox" ?i)
      (,(concat unread " AND maildir:/lists/*")
       "Unread messages in mailing lists" ?l)
+     (,(concat unread " AND maildir:/github/")
+      "Unread Github notifications" ?g)
 
      ;; ,(funcall mailing-list "emacs-devel" ?e)
      ;; ,(funcall mailing-list "help-gnu-emacs" ?h)
