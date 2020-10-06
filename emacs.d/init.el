@@ -2917,7 +2917,9 @@ Set by ‘gk-algol-like-hook’, don’t manually set.")
 
 (setf
  ;; Shut down if no buffers need it.
- eglot-autoshutdown t)
+ eglot-autoshutdown t
+ ;; Don’t mess up echo area with full documentation.
+ eglot-put-doc-in-help-buffer t)
 
 
 
