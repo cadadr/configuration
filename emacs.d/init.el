@@ -4635,7 +4635,7 @@ modified slightly before it’s used e.g. when posting to Reddit."
      ;; Reading
      (todo "READING|READ" ((org-agenda-overriding-header
                             "\n\nR E A D I N G :\n")
-                           (org-agenda-sorting-strategy '(todo-state-down))
+                           (org-agenda-sorting-strategy '(priority-down todo-state-down))
                            (org-agenda-skip-function
                             '(org-agenda-skip-entry-if 'deadline))))
 
