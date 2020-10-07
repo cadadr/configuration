@@ -6204,6 +6204,8 @@ Redirect to the raw file url."
 ;; To add a new adapter, simply: =(gk-urls-make-file-adapter "ext")=
 ;; where =ext= is the filename extension.
 
+(defvar gk-urls-file-adapters nil)
+
 (defun gk-urls-browse-file (url &optional ext cb)
   "Browse a file with the given extension.
 
@@ -6259,7 +6261,7 @@ provided."
     `(progn
        (pushnew
         '(,reg . ,funsym)
-        browse-url-handlers
+        gk-urls-file-adapters
         :test 'equal)
        (defun ,funsym (url &rest args)
          (ignore args)
@@ -6305,7 +6307,8 @@ provided."
         ("^https?://github\\.com/.*?/.*?/blob/" . gk-urls-browse-github-file)
         ("^https?://raw\\.github\\.com/" . gk-urls-browse-github-raw)
         ("^http://www.cornucopia\\.local/" . gk-urls-browse-cornucopia)
-        ("file:///home/.+/co/lisp/doc/HyperSpec/" . gk-browse-url)))
+        ("file:///home/.+/co/lisp/doc/HyperSpec/" . gk-browse-url)
+        ,@gk-urls-file-adapters))
 
 
 
