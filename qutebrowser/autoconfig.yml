@@ -6,6 +6,25 @@
 
 config_version: 2
 settings:
+  aliases:
+    global:
+      connect-to-skewer: jseval (function(){var d=document;var s=d.createElement('script');s.src='http://localhost:8080/skewer';d.body.appendChild(s);})()
+      org-capture: open javascript:location.href='org-protocol://capture?template=N'+'&url='+encodeURIComponent(window.location.href)+'&title='+encodeURIComponent(document.title)+'&body='+encodeURIComponent(window.getSelection());
+      org-storelink: open javascript:location.href='org-protocol://store-link?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title);
+      post-to-hn: jseval --quietwindow.location="http://news.ycombinator.com/submitlink?u="+encodeURIComponent(document.location)+"&t="+encodeURIComponent(document.title)
+      q: close
+      qa: quit
+      remove-fixed-elements: jseval javascript:(function()%7B(function%20()%20%7Bvar%20i%2C%20elements%20%3D%20document.querySelectorAll('body%20*')%3Bfor%20(i%20%3D%200%3B%20i%20%3C%20elements.length%3B%20i%2B%2B)%20%7Bif%20(getComputedStyle(elements%5Bi%5D).position%20%3D%3D%3D%20'fixed')%20%7Belements%5Bi%5D.parentNode.removeChild(elements%5Bi%5D)%3B%7D%7D%7D)()%7D)()
+      save-to-instapaper: jseval javascript:function iprl5(){var d=document,z=d.createElement('scr'+'ipt'),b=d.body,l=d.location;try{if(!b)throw(0);d.title='(Saving...)
+        '+d.title;z.setAttribute('src',l.protocol+'//www.instapaper.com/j/0YCsBKAiKza1?a=read-later&u='+encodeURIComponent(l.href)+'&t='+(new
+        Date().getTime()));b.appendChild(z);}catch(e){alert('Please wait until the
+        page has loaded.');}}iprl5();void(0)
+      save-to-zotero: jseval --quiet var d=document,s=d.createElement('script');s.src='https://www.zotero.org/bookmarklet/loader.js';(d.body?d.body:d.documentElement).appendChild(s);void(0);
+      uncheckall: jseval --quiet document.querySelectorAll('input[type=checkbox]').forEach((elem)
+        => {elem.checked=false;})
+      w: session-save
+      wq: quit --save
+      wqa: quit --save
   auto_save.session:
     global: true
   backend:
