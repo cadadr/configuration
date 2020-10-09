@@ -53,7 +53,7 @@ settings:
   content.autoplay:
     global: false
   content.canvas_reading:
-    global: false
+    global: true
   content.cookies.accept:
     global: no-3rdparty
   content.pdfjs:
