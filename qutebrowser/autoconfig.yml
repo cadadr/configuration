@@ -72,6 +72,8 @@ settings:
     - '{file}'
   hints.auto_follow:
     global: never
+  hints.chars:
+    global: asdfjkl;
   hints.prev_regexes:
     global:
     - \bprev(ious)?\b
