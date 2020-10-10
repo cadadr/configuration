@@ -407,6 +407,7 @@ info-stats-type='discharge-accuracy'
 
 [org/gnome/simple-scan]
 document-type='photo'
+jpeg-quality=100
 
 [org/gnome/terminal/legacy]
 schema-version=uint32 3
