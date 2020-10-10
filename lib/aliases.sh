@@ -202,6 +202,8 @@ alias lr='ls -lR'
 alias mo=pg
 YOUDL=$HOME/co/External/youtube-dl
 alias ydl="PYTHONPATH=$YOUDL python3 $YOUDL/bin/youtube-dl"
+# Medium quality
+alias ydl720="ydl -f 'bestvideo[height<=720]+bestaudio/best[height<=720]'"
 alias mpv="PYTHONPATH=$YOUDL mpv"
 alias pg="$PAGER"
 alias o=xdg-open
