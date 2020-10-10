@@ -7,6 +7,8 @@ flatpak-remotes=['flathub::https://dl.flathub.org/repo/::False']
 search-in-description=true
 search-in-summary=true
 
+[com/linuxmint/mintmenu/plugins/applications]
+
 [com/linuxmint/report]
 ignored-reports=['timeshift-no-setup']
 
