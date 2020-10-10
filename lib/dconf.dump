@@ -117,6 +117,9 @@ cursor-theme='DMZ-White'
 gtk-overlay-scrollbars=false
 gtk-theme='Mint-Y-Dark-Brown'
 icon-theme='Mint-Y-Dark-Brown'
+keyboard-layout-prefer-variant-names=false
+keyboard-layout-show-flags=false
+keyboard-layout-use-upper=true
 scaling-factor=uint32 0
 text-scaling-factor=1.0
 toolkit-accessibility=false
@@ -367,7 +370,8 @@ columns-order=[0, 1, 2, 3, 4, 6, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 2
 sort-order=0
 
 [org/gnome/libgnomekbd/keyboard]
-layouts=['gb', 'tr\talt']
+layouts=['gb', 'tr\talt', 'tr']
+options=['grp\tgrp:shift_caps_toggle', 'caps\tcaps:ctrl_modifier']
 
 [org/gnome/liferea]
 browser='x-www-browser %s'
