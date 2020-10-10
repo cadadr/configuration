@@ -185,7 +185,7 @@ focus-new-windows='strict'
 min-window-opacity=30
 mouse-button-modifier='<Super>'
 theme='Mint-Y-Dark'
-workspace-names=['home', 'away', 'neutral']
+workspace-names=['home', 'away', 'neutral', 'classroom']
 
 [org/cinnamon/muffin]
 desktop-effects=false
