@@ -53,7 +53,10 @@ sort-col
 picture-uri
 ignore-ca-cert
 ignore-phase2-ca-cert
-last-char"
+last-char
+favorite-apps-list
+looking-glass-history
+saved-pathbar-path"
 
 /usr/bin/dconf dump / \
     | grep -Ev "^($(echo $filter | tr ' ' '|'))=" \
