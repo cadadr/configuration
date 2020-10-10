@@ -145,6 +145,7 @@
 (require 'nsm)
 (require 'olivetti)
 (require 'org)
+(require 'org-attach-screenshot)
 (require 'org-capture)
 (require 'org-checklist)
 (require 'org-inlinetask)
@@ -5327,6 +5328,24 @@ which correspond to homonymous fields listed in
 
 
 
+;;;;; Attachments:
+
+(setf
+ ;; Use relative paths for attachment links.
+ org-attach-dir-relative t)
+
+(defun gk-org-attach-screenshot ()
+  "Little wrapper around ‘org-attach-screenshot’.
+
+Don’t hide the frame and don’t ask me shit."
+  (interactive)
+  (org-attach-screenshot
+   (list 4)
+   (format-time-string "screenshot-%Y%m%d-%H%M%S.png")))
+
+
+
+
 ;;;;; Icalendar:
 
 ;; Do not sync deadlines and schedules.
@@ -5484,6 +5503,9 @@ fragments"
 ;; Translation
 (define-key org-mode-map (kbd "C-c M-t") #'gk-org-trans-show-paragraph)
 (define-key org-mode-map (kbd "C-@") #'gk-org-trans-insert-sentence-reference)
+
+;; Attachments
+(define-key org-mode-map (kbd "C-c C-M-s") #'gk-org-attach-screenshot)
 
 
 
