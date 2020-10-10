@@ -5554,14 +5554,12 @@ fragments"
 ;; ‘p’ keys are pressed to navigate them. ‘=’ manually fits the image to
 ;; the window, and ‘N’ and ‘P’ navigates images wihout resizing.
 
-(defun gk-fit-image-to-window ()
-  "Ensure all of the current image is visible in the current window."
-  (interactive)
-  (image-transform-set-scale nil))
+(define-obsolete-function-alias 'gk-fit-image-to-window
+  'image-transform-fit-both)
 
 (define-key image-mode-map "=" #'gk-fit-image-to-window)
 (define-key image-mode-map "n" (gk-interactively
-                                (image-next-file)
+                                (image-next-file 1)
                                 (gk-fit-image-to-window)))
 (define-key image-mode-map "p" (gk-interactively
                                 (image-previous-file 1)
