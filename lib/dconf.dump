@@ -454,7 +454,8 @@ root='file:///'
 tree-view=true
 
 [org/x/editor/preferences/editor]
-scheme='tango'
+prefer-dark-theme=true
+scheme='oblivion'
 use-default-font=true
 
 [org/x/editor/preferences/ui]
