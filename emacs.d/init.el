@@ -5506,6 +5506,7 @@ fragments"
 
 ;; Attachments
 (define-key org-mode-map (kbd "C-c C-M-s") #'gk-org-attach-screenshot)
+(define-key org-mode-map (kbd "<f2>") #'gk-org-attach-screenshot)
 
 
 
