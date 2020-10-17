@@ -2452,39 +2452,6 @@ file extension.")
 
 
 
-;;;;; Deft:
-
-(setf
- ;; Finding the files to be searched.
- deft-directory org-directory
- ;; Search recursively from ‘deft-directory’.
- deft-recursive t
- ;; The ‘car’ of this list is the default extension when creating
- ;; files from Deft.
- deft-extensions '("org" "txt" "md" "markdown" "textile")
- ;; Destination for ‘C-c C-a’ in deft.
- deft-archive-directory "Attic/deft/"
- ;; Disable auto save.
- deft-auto-save-interval 0)
-
-(defun gk-deft (&optional arg)
-  "Run ‘deft’.
-
-With no prefix arguments, just run ‘deft’; it’ll open in the
-current window.
-
-With one prefix argument, it’ll open in a new frame.
-
-With two prefix arguments, it’ll open in the current frame and
-will become the only window."
-  (interactive "p")
-  (cl-case arg
-    (1 (deft))
-    (4 (gk-with-new-frame nil (deft)))
-    (16 (delete-other-windows) (deft))))
-
-
-
 ;;;;; Secrets:
 
 (gk-load (dropbox "secrets") t)
@@ -5527,6 +5494,40 @@ fragments"
 ;;;;; Private settings:
 
 (gk-load (gk-org-dir-file "settings") t)
+
+
+
+;;;; Deft:
+;; Gotta be set up after Org mode, depends on ‘org-directory’.
+
+(setf
+ ;; Finding the files to be searched.
+ deft-directory org-directory
+ ;; Search recursively from ‘deft-directory’.
+ deft-recursive t
+ ;; The ‘car’ of this list is the default extension when creating
+ ;; files from Deft.
+ deft-extensions '("org" "txt" "md" "markdown" "textile")
+ ;; Destination for ‘C-c C-a’ in deft.
+ deft-archive-directory "Attic/deft/"
+ ;; Disable auto save.
+ deft-auto-save-interval 0)
+
+(defun gk-deft (&optional arg)
+  "Run ‘deft’.
+
+With no prefix arguments, just run ‘deft’; it’ll open in the
+current window.
+
+With one prefix argument, it’ll open in a new frame.
+
+With two prefix arguments, it’ll open in the current frame and
+will become the only window."
+  (interactive "p")
+  (cl-case arg
+    (1 (deft))
+    (4 (gk-with-new-frame nil (deft)))
+    (16 (delete-other-windows) (deft))))
 
 
 
