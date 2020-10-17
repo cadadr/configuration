@@ -3864,6 +3864,7 @@ the fuck?"
       "Unread messages in mailing lists" ?l)
      (,(concat unread " AND maildir:/github/")
       "Unread Github notifications" ?g)
+     (,unread "All unread messages" ?u)
 
      ;; ,(funcall mailing-list "emacs-devel" ?e)
      ;; ,(funcall mailing-list "help-gnu-emacs" ?h)
