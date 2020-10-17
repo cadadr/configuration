@@ -4608,8 +4608,7 @@ modified slightly before it’s used e.g. when posting to Reddit."
    (search . " %i %-16:c"))
  org-agenda-files
  (gk-org-dir-files
-  "Todo.org" "Linguistics.org" "Statistics.org"
-  "HacettLingMA/2020-2021/Fall/Notlar.org")
+  "Todo.org" "Linguistics.org" "Statistics.org")
  org-agenda-hide-tags-regexp "."
  org-agenda-custom-commands
  `(("p" "Planner"
