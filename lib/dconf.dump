@@ -208,12 +208,14 @@ delay=uint32 500
 repeat-interval=uint32 30
 
 [org/cinnamon/settings-daemon/peripherals/mouse]
-custom-threshold=true
+custom-acceleration=false
+custom-threshold=false
 double-click=400
 drag-threshold=8
 locate-pointer=true
 middle-button-enabled=false
-motion-threshold=7
+motion-acceleration=10.0
+motion-threshold=3
 
 [org/cinnamon/settings-daemon/peripherals/touchpad]
 clickpad-click=2
