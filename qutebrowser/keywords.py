@@ -120,3 +120,5 @@ youtube = "https://www.youtube.com/results?search_query={}"
 
 c.url.searchengines['#yt'] = youtube
 c.url.searchengines['#youtube'] = youtube
+
+c.url.searchengines['#sci'] = "https://sci-hub.se/{}"
