@@ -99,6 +99,8 @@ settings:
     global: 3000
   scrolling.smooth:
     global: true
+  session.lazy_restore:
+    global: true
   tabs.background:
     global: true
   tabs.close_mouse_button:
