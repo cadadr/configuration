@@ -450,9 +450,10 @@ trash-icon-visible=true
 show-location-entry=true
 
 [org/nemo/window-state]
+bookmarks-expanded=true
 devices-expanded=true
 sidebar-bookmark-breakpoint=4
-start-with-sidebar=true
+start-with-sidebar=false
 
 [org/x/editor/plugins]
 active-plugins=['open-uri-context-menu', 'docinfo', 'spell', 'time', 'sort', 'modelines', 'filebrowser', 'joinlines', 'textsize']
