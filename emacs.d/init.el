@@ -6851,6 +6851,12 @@ Does various tasks after saving a file, see it's definition."
 (gk-global-binding (kbd "C-M-s") #'gk-search-forward-1)
 (gk-global-binding (kbd "C-M-r") #'gk-search-backward-1)
 
+;; Windmove
+(gk-global-binding (kbd "<up>") #'windmove-up)
+(gk-global-binding (kbd "<down>") #'windmove-down)
+(gk-global-binding (kbd "<right>") #'windmove-right)
+(gk-global-binding (kbd "<left>") #'windmove-left)
+
 
 
 ;;;; Editing:
