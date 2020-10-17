@@ -57,7 +57,7 @@ settings:
   content.cookies.accept:
     global: no-3rdparty
   content.pdfjs:
-    global: true
+    global: false
   content.windowed_fullscreen:
     global: true
   content.xss_auditing:
