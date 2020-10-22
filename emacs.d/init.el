@@ -741,6 +741,11 @@ argument as t, so refer to that command for further details."
       (completing-read "Window with buffer: " winbufs)
       winbufs))))
 
+(defun gk-append-to-list (list-name elt)
+  "Append ELT to list names LIST-NAME."
+  (set list-name (apply #'append (symbol-value list-name) (list elt))))
+
+
 
 
 ;;;; Generic advices:
