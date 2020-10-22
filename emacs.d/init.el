@@ -5248,17 +5248,23 @@ plist, which in addition to all the ‘additional options’
 them accordingly: :keys, :description, :type, :target, :template;
 which correspond to homonymous fields listed in
 ‘org-capture-template’s docstring (which see)."
-  (cl-pushnew
-   (append  (list (plist-get args :keys)
-                  (plist-get args :description)
-                  (plist-get args :type)
-                  (plist-get args :target)
-                  (plist-get args :template))
-            (cl-loop for i from 0 below (length args) by 2
-                     unless (member (nth i args)
-                                    (list :keys :description :type :target :template))
-                     append (list (nth i args) (plist-get args (nth i args)))))
-   org-capture-templates))
+  (setf org-capture-templates
+        (append org-capture-templates
+                (list
+                 (append
+                  (list (plist-get args :keys)
+                        (plist-get args :description)
+                        (plist-get args :type)
+                        (plist-get args :target)
+                        (plist-get args :template))
+                  (cl-loop for i from 0 below (length args) by 2
+                           unless
+                           (member (nth i args)
+                                   (list :keys :description
+                                         :type :target :template))
+                           append (list (nth i args)
+                                        (plist-get
+                                         args (nth i args)))))))))
 
 
 (gk-org-define-capture-template
