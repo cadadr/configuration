@@ -5895,7 +5895,10 @@ new frame is created."
  ;; stops in a window.
  mouse-autoselect-window -0.1
  ;; Disable interaction with clipboard manager, can cause freezes.
- x-select-enable-clipboard-manager nil)
+ x-select-enable-clipboard-manager nil
+ ;; Indicate unused lines at the end of the buffer with marks in left
+ ;; fringe.
+ indicate-unused-lines t)
 
 
 (setq-default save-place t)
