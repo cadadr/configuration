@@ -5170,7 +5170,9 @@ Generates a "
 
 (setf
  ;; Just do it™.
- org-confirm-babel-evaluate nil)
+ org-confirm-babel-evaluate nil
+ ;; Always wrap output in blocks.
+ org-babel-min-lines-for-block-output 0)
 
 (org-babel-do-load-languages
  'org-babel-load-languages
