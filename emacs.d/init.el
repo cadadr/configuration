@@ -5726,6 +5726,16 @@ new frame is created."
      'mode-line nil :box t :foreground nil :background nil :inherit 'mode-line)
     (set-face-attribute 'region nil :background "black"))
 
+  (when (eq gk-gui-theme 'modus-operandi)
+    (let ((bg (face-attribute 'org-block-begin-line :background))
+          (fg (face-attribute 'org-block-begin-line :foreground)))
+      (dolist (f '(org-block-begin-line org-block-end-line))
+        (set-face-attribute f nil :background bg :extend t :foreground fg))
+      (set-face-attribute 'org-block-begin-line nil :overline t)
+      (set-face-attribute 'org-block-end-line nil :overline nil)
+      (set-face-attribute 'org-block-end-line nil :underline t)
+      (set-face-attribute 'org-block nil :background bg :extend t)))
+
   ;; Settings for when using default theme specifically.
   (unless gk-gui-theme
     (set-face-attribute 'region nil :background "yellow green")
