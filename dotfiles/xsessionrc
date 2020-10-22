@@ -5,6 +5,7 @@
 
 # Inform systemd
 systemctl --user import-environment DISPLAY
+systemctl --user import-environment DESKTOP_SESSION
 
 # Ensure correct user dirs configuration
 xdg-user-dirs-update

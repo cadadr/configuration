@@ -58,6 +58,11 @@ favorite-apps-list
 looking-glass-history
 saved-pathbar-path"
 
+# This pops up sometimes for some reason
+if [ "$DESKTOP_SESSION" = "cinnamon" ]; then
+    dconf reset -f /org/mate/
+fi
+
 /usr/bin/dconf dump / \
     | grep -Ev "^($(echo $filter | tr ' ' '|'))=" \
     | grep -v 'nm-applet' \
