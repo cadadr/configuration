@@ -222,7 +222,7 @@ clickpad-click=2
 custom-acceleration=false
 horizontal-scrolling=true
 motion-threshold=1
-tap-to-click=false
+tap-to-click=true
 touchpad-enabled=true
 
 [org/cinnamon/settings-daemon/peripherals/touchscreen]
