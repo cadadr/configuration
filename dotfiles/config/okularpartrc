@@ -14,6 +14,7 @@ ShowOSD=false
 ttsEngine=flite
 
 [Main View]
+ShowLeftPanel=false
 SplitterSizes=352,929
 
 [PageView]
