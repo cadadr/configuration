@@ -4500,6 +4500,15 @@ modified slightly before it’s used e.g. when posting to Reddit."
     (narrow-to-region beg end)
     (org-hugo-export-as-md nil nil t)))
 
+
+(define-advice org-list-separating-blank-lines-number
+    (:override (pos struct prevs) do-it-my-way)
+  "One line separates top level list items and none for other levels."
+  (if (zerop (cadar (last struct)))
+      1
+    0))
+
+
 
 
 ;;;;; Variables:
