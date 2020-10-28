@@ -50,6 +50,7 @@ settings:
         g1: tab-focus 1
         gJ: tab-move +
         gK: tab-move -
+        yh: hint all yank
   content.autoplay:
     global: false
   content.canvas_reading:
