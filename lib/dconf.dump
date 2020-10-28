@@ -383,7 +383,7 @@ sort-order=0
 
 [org/gnome/libgnomekbd/keyboard]
 layouts=['gb', 'tr\talt', 'tr']
-options=['grp\tgrp:shift_caps_toggle', 'caps\tcaps:ctrl_modifier']
+options=['grp\tgrp:shift_caps_toggle', 'nbsp\tnbsp:level3s', 'ctrl\tctrl:nocaps', 'compat\tshift:both_capslock_cancel', 'Compose key\tcompose:menu']
 
 [org/gnome/liferea]
 browser='x-www-browser %s'
