@@ -5693,7 +5693,17 @@ will become the only window."
 Returns :light if the preferred colour scheme is light,
 :no-preference if no preference is set, or :dark if the user
 prefers dark themes."
-  :light)
+  (cond
+   ((string= (getenv "DESKTOP_SESSION") "cinnamon")
+    (and
+     (save-match-data
+       (string-match
+        "Dark"
+        (shell-command-to-string
+         "dconf read /org/cinnamon/desktop/interface/gtk-theme")))
+     :dark))
+   (t
+    :light)))
 
 
 (defun gk-setup-frame-looks (&optional frame)
