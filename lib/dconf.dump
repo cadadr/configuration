@@ -114,10 +114,10 @@ slideshow-enabled=true
 [org/cinnamon/desktop/interface]
 cursor-blink-time=1200
 cursor-size=24
-cursor-theme='DMZ-Black'
+cursor-theme='DMZ-White'
 gtk-overlay-scrollbars=false
-gtk-theme='Mint-Y-Teal'
-icon-theme='Mint-Y-Teal'
+gtk-theme='Mint-Y-Dark-Teal'
+icon-theme='Mint-Y-Dark-Teal'
 keyboard-layout-prefer-variant-names=false
 keyboard-layout-show-flags=false
 keyboard-layout-use-upper=true
@@ -194,7 +194,7 @@ focus-mode='click'
 focus-new-windows='strict'
 min-window-opacity=30
 mouse-button-modifier='<Super>'
-theme='Mint-Y'
+theme='Mint-Y-Dark'
 workspace-names=['home', 'away']
 
 [org/cinnamon/muffin]
