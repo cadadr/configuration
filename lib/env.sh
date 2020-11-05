@@ -70,5 +70,5 @@ export SYSTEMD_PAGER=
 export VERSION_CONTROL=numbered
 
 # Borg Backups
-export BORG_REPO='/media/g/igk-attic/Backups/'
+export BORG_REPO=pi@pi.local:/mnt/Backups
 
