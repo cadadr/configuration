@@ -65,7 +65,7 @@ next-applet-id=15
 panel-edit-mode=false
 panel-zone-symbolic-icon-sizes='[{"panelId": 1, "left": 28, "center": 28, "right": 16}]'
 panels-autohide=['1:false']
-panels-enabled=['1:0:bottom']
+panels-enabled=['1:0:top']
 panels-height=['1:24']
 prevent-focus-stealing=true
 show-tile-hud=true
@@ -165,7 +165,7 @@ autorun-x-content-open-folder=@as []
 autorun-x-content-start-app=@as []
 
 [org/cinnamon/desktop/notifications]
-bottom-notifications=true
+bottom-notifications=false
 
 [org/cinnamon/desktop/screensaver]
 allow-keyboard-shortcuts=true
