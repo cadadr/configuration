@@ -47,8 +47,9 @@ settings:
         ',tr': set --temp tabs.position right
         ',tt': set --temp tabs.position top
         ',z': save-to-zotero
+        D: hint links userscript ~/.config/qutebrowser/userscripts/doi
         co: null
-        d: null
+        d: spawn -u ~/.config/qutebrowser/userscripts/doi
         g1: tab-focus 1
         gJ: tab-move +
         gK: tab-move -
