@@ -8,7 +8,7 @@
           <width>1366</width>
           <height>768</height>
           <rate>59,989000</rate>
-          <x>0</x>
+          <x>1920</x>
           <y>0</y>
           <rotation>normal</rotation>
           <reflect_x>no</reflect_x>
@@ -24,7 +24,7 @@
           <width>1920</width>
           <height>1080</height>
           <rate>60,000000</rate>
-          <x>1366</x>
+          <x>0</x>
           <y>0</y>
           <rotation>normal</rotation>
           <reflect_x>no</reflect_x>
