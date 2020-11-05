@@ -361,7 +361,7 @@ show-whose-processes='user'
 
 [org/gnome/gnome-system-monitor/disktreenew]
 col-6-visible=true
-col-6-width=0
+col-6-width=725
 
 [org/gnome/gnome-system-monitor/memmapstree]
 sort-order=0
