@@ -5939,7 +5939,9 @@ new frame is created."
  ;; Add ‘<’ as a delimiter, and update the relevant regexp.
  completion-pcm-word-delimiters
  (let ((re "-_./:|< "))
+   ;; Update an internal variable.
    (completion-pcm--prepare-delim-re re)
+   ;; Return pristine regexp to be set.
    re)
  ;; Do not  ring the bell  when killing  in r/o buffers,  put the
  ;; kill in the kill ring but do not modify the buffer.
