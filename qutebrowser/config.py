@@ -11,13 +11,9 @@ c = c  # noqa: F821 pylint: disable=E0602,C0103
 config = config  # noqa: F821 pylint: disable=E0602,C0103
 
 
-### Bookmarklets:
+### Load stuff:
 
 config.source(config.configdir / "bookmarklets.py")
-
-
-### Search keywords:
-
 config.source(config.configdir / "keywords.py")
 
 
