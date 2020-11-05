@@ -4662,7 +4662,7 @@ modified slightly before it’s used e.g. when posting to Reddit."
                   (org-agenda-entry-types '(:deadline))
                   (org-agenda-format-date "")
                   (org-deadline-warning-days 21)
-                  (org-agenda-sorting-strategy '(deadline-up priority-down todo-state-down))
+                  (org-agenda-sorting-strategy '( priority-down deadline-up todo-state-down))
                   (org-agenda-span 1)))
 
      ;; Reading
