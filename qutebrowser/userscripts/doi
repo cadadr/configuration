@@ -1,6 +1,21 @@
 #!/usr/bin/env python3
 # doi --- DOI to Sci-Hub
 
+"""
+Usage note
+
+In order to use this script you need to have a search engine like
+
+  c.url.searchengines['#sci'] = "https://sci-hub.se/{}"
+
+in your config.py.  This is intended to make it easier to update the
+Sci-Hub domain should it change again later.  At a later date I plan
+to write a userscript or addon Aaron Janse’s ‘DNS over Wikipedia’
+extension for Firefox which can look up Wikipedia to find the latest
+domain of activist projects like Sci-Hub, Libgen, etc.
+"""
+
+
 import os
 import re
 
@@ -30,7 +45,10 @@ doi_re = re.compile(
 match = doi_re.match(text)
 
 if match is None:
-    fifo.write(f"message-warning \"`{text}' is probably not a DOI, or update regexp\"")
+    fifo.write(
+        f"message-warning \"`{text}' is probably"
+        f" not a DOI, or update regexp\""
+    )
 
 else:
     doi = match['meat']
