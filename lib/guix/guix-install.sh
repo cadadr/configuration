@@ -4,6 +4,8 @@
 # Copyright © 2018 Ricardo Wurmus <rekado@elephly.net>
 # Copyright © 2018 Efraim Flashner <efraim@flashner.co.il>
 # Copyright © 2019, 2020 Tobias Geerinckx-Rice <me@tobias.gr>
+# Copyright © 2020 Morgan Smith <Morgan.J.Smith@outlook.com>
+# Copyright © 2020 Simon Tournier <zimon.toutoune@gmail.com>
 #
 # This file is part of GNU Guix.
 #
@@ -53,6 +55,7 @@ REQUIRE=(
 
 PAS=$'[ \033[32;1mPASS\033[0m ] '
 ERR=$'[ \033[31;1mFAIL\033[0m ] '
+WAR=$'[ \033[33;1mWARN\033[0m ] '
 INF="[ INFO ] "
 
 DEBUG=0
@@ -111,7 +114,7 @@ chk_gpg_keyring()
     # systems where gpg has never been used, causing errors and confusion.
     gpg --dry-run --list-keys ${OPENPGP_SIGNING_KEY_ID} >/dev/null 2>&1 || (
         _err "${ERR}Missing OpenPGP public key.  Fetch it with this command:"
-        echo "  wget https://sv.gnu.org/people/viewgpg.php?user_id=15145 -qO - | gpg --import -"
+        echo "  wget 'https://sv.gnu.org/people/viewgpg.php?user_id=15145' -qO - | sudo -i gpg --import -"
         exit 1
     )
 }
@@ -149,6 +152,10 @@ chk_init_sys()
     elif [[ -f /etc/init.d/cron && ! -h /etc/init.d/cron ]]; then
         _msg "${INF}init system is: sysv-init"
         INIT_SYS="sysv-init"
+        return 0
+    elif [[ $(openrc --version 2>/dev/null) =~ \(OpenRC\) ]]; then
+        _msg "${INF}init system is: OpenRC"
+        INIT_SYS="openrc"
         return 0
     else
         INIT_SYS="NA"
@@ -194,6 +201,19 @@ chk_sys_arch()
     ARCH_OS="${arch}-${os}"
 }
 
+chk_sys_nscd()
+{ # Check if nscd is up and suggest to start it or install it
+    if [ "$(type -P pidof)" ]; then
+        if [ ! "$(pidof nscd)" ]; then
+            _msg "${WAR}We recommend installing and/or starting your distribution 'nscd' service"
+            _msg "${WAR}Please read 'info guix \"Application Setup\"' about \"Name Service Switch\""
+        fi
+    else
+        _msg "${INF}We cannot determine if your distribution 'nscd' service is running"
+        _msg "${INF}Please read 'info guix \"Application Setup\"' about \"Name Service Switch\""
+    fi
+}
+
 # ------------------------------------------------------------------------------
 #+MAIN
 
@@ -212,7 +232,7 @@ guix_get_bin_list()
         | sort -Vu)")
 
     latest_ver="$(echo "$bin_ver_ls" \
-                       | grep -oP "([0-9]{1,2}\.){2}[0-9]{1,2}" \
+                       | grep -oE "([0-9]{1,2}\.){2}[0-9]{1,2}" \
                        | tail -n1)"
 
     default_ver="guix-binary-${latest_ver}.${ARCH_OS}"
@@ -268,8 +288,7 @@ sys_create_store()
     _debug "--- [ $FUNCNAME ] ---"
 
     cd "$tmp_path"
-    tar --warning=no-timestamp \
-        --extract \
+    tar --extract \
         --file "$pkg" &&
     _msg "${PAS}unpacked archive"
 
@@ -350,6 +369,8 @@ sys_enable_guix_daemon()
                   cp "${ROOT_HOME}/.config/guix/current/lib/systemd/system/gnu-store.mount" \
                      /etc/systemd/system/;
                   chmod 664 /etc/systemd/system/gnu-store.mount;
+                  systemctl daemon-reload &&
+                      systemctl enable gnu-store.mount;
               fi
 
               cp "${ROOT_HOME}/.config/guix/current/lib/systemd/system/guix-daemon.service" \
@@ -367,8 +388,8 @@ sys_enable_guix_daemon()
 	      fi;
 
               systemctl daemon-reload &&
-                  systemctl start  gnu-store.mount guix-daemon &&
-                  systemctl enable gnu-store.mount guix-daemon; } &&
+                  systemctl enable guix-daemon &&
+                  systemctl start  guix-daemon; } &&
                 _msg "${PAS}enabled Guix daemon via systemd"
             ;;
         sysv-init)
@@ -381,6 +402,16 @@ sys_enable_guix_daemon()
                   update-rc.d guix-daemon enable &&
                   service guix-daemon start; } &&
                 _msg "${PAS}enabled Guix daemon via sysv"
+            ;;
+        openrc)
+            { mkdir -p /etc/init.d;
+              cp "${ROOT_HOME}/.config/guix/current/etc/openrc/guix-daemon" \
+                 /etc/init.d/guix-daemon;
+              chmod 775 /etc/init.d/guix-daemon;
+
+              rc-update add guix-daemon default &&
+                  rc-service guix-daemon start; } &&
+                _msg "${PAS}enabled Guix daemon via OpenRC"
             ;;
         NA|*)
             _msg "${ERR}unsupported init system; run the daemon manually:"
@@ -416,6 +447,7 @@ sys_authorize_build_farms()
 
 sys_create_init_profile()
 { # Create /etc/profile.d/guix.sh for better desktop integration
+  # This will not take effect until the next shell or desktop session!
     [ -d "/etc/profile.d" ] || mkdir /etc/profile.d # Just in case
     cat <<"EOF" > /etc/profile.d/guix.sh
 # _GUIX_PROFILE: `guix pull` profile
@@ -441,6 +473,26 @@ export GUIX_PROFILE GUIX_LOCPATH
 export XDG_DATA_DIRS="$GUIX_PROFILE/share:${XDG_DATA_DIRS:-/usr/local/share/:/usr/share/}"
 EOF
 }
+
+sys_create_shell_completion()
+{ # Symlink supported shell completions system-wide
+
+    var_guix=/var/guix/profiles/per-user/root/current-guix
+    bash_completion=/etc/bash_completion.d
+    zsh_completion=/usr/share/zsh/site-functions
+    fish_completion=/usr/share/fish/vendor_completions.d
+
+    { # Just in case
+        for dir_shell in $bash_completion $zsh_completion $fish_completion; do
+            [ -d "$dir_shell" ] || mkdir -p $dir_shell
+        done;
+
+        ln -sf ${var_guix}/etc/bash_completion.d/* "$bash_completion";
+        ln -sf ${var_guix}/share/zsh/site-functions/* "$zsh_completion";
+        ln -sf ${var_guix}/share/fish/vendor_completions.d/* "$fish_completion"; } &&
+        _msg "${PAS}installed shell completion"
+}
+
 
 welcome()
 {
@@ -485,6 +537,7 @@ main()
     chk_gpg_keyring
     chk_init_sys
     chk_sys_arch
+    chk_sys_nscd
 
     _msg "${INF}system is ${ARCH_OS}"
 
@@ -499,12 +552,16 @@ main()
     sys_enable_guix_daemon
     sys_authorize_build_farms
     sys_create_init_profile
+    sys_create_shell_completion
 
     _msg "${INF}cleaning up ${tmp_path}"
     rm -r "${tmp_path}"
 
     _msg "${PAS}Guix has successfully been installed!"
     _msg "${INF}Run 'info guix' to read the manual."
+
+    # Required to source /etc/profile in desktop environments.
+    _msg "${INF}Please log out and back in to complete the installation."
  }
 
 main "$@"
