@@ -17,19 +17,19 @@ export SYSTEM=$(uname)
 
 ### Locale and time zone:
 
-. $MYLIB/loctz.sh
+. $MYLIB/profile/loctz.sh
 
 ###
 
 ### Paths:
 
-. $MYLIB/paths.sh
+. $MYLIB/profile/paths.sh
 
 ###
 
 ### Environment:
 
-. $MYLIB/env.sh
+. $MYLIB/profile/env.sh
 
 ###
 

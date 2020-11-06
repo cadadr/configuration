@@ -353,7 +353,7 @@ border-effect='none'
 delay=5
 include-border=true
 include-pointer=false
-last-save-directory='file:///home/g/co/pomodorino/assets/screenshots'
+last-save-directory='file:///home/g/Pictures'
 
 [org/gnome/gnome-system-monitor]
 show-dependencies=false

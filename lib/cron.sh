@@ -11,4 +11,4 @@ else
 fi
 
 # Load profile environment
-. $HOME/cf/lib/env.sh
+. $HOME/cf/lib/profile/env.sh

@@ -5,7 +5,7 @@ path () {
 }
 
 repath () {
-    . $MYLIB/paths.sh
+    . $MYLIB/profile/paths.sh
 }
 
 refresh () {
