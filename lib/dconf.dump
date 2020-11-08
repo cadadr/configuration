@@ -188,10 +188,10 @@ maximum-volume=150
 
 [org/cinnamon/desktop/wm/preferences]
 action-scroll-titlebar='none'
-auto-raise=true
+auto-raise=false
 button-layout=':minimize,maximize,close'
-focus-mode='click'
-focus-new-windows='strict'
+focus-mode='sloppy'
+focus-new-windows='smart'
 min-window-opacity=30
 mouse-button-modifier='<Super>'
 theme='Mint-Y-Dark'
