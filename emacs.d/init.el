@@ -5703,14 +5703,13 @@ Returns :light if the preferred colour scheme is light,
 :no-preference if no preference is set, or :dark if the user
 prefers dark themes."
   (cond
-   ((string= (getenv "DESKTOP_SESSION") "cinnamon")
-    (and
-     (save-match-data
-       (string-match
-        "Dark"
-        (shell-command-to-string
-         "dconf read /org/cinnamon/desktop/interface/gtk-theme")))
-     :dark))
+   ((and (string= (getenv "DESKTOP_SESSION") "cinnamon")
+         (save-match-data
+           (string-match
+            "Dark"
+            (shell-command-to-string
+             "dconf read /org/cinnamon/desktop/interface/gtk-theme")))
+         :dark))
    (t
     :light)))
 
