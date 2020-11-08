@@ -306,6 +306,9 @@ show-weekdate=false
 monospace-font-name='Monospace 10'
 toolkit-accessibility=false
 
+[org/gnome/desktop/privacy]
+disable-microphone=false
+
 [org/gnome/devhelp/state/main/contents]
 group-books-by-language=false
 
@@ -315,6 +318,8 @@ width=1000
 
 [org/gnome/epiphany/state]
 is-maximized=false
+
+[org/gnome/evince/default]
 
 [org/gnome/evolution-data-server]
 migrated=true
@@ -361,7 +366,7 @@ show-whose-processes='user'
 
 [org/gnome/gnome-system-monitor/disktreenew]
 col-6-visible=true
-col-6-width=725
+col-6-width=0
 
 [org/gnome/gnome-system-monitor/memmapstree]
 sort-order=0
@@ -435,6 +440,8 @@ use-theme-colors=true
 use-theme-transparency=false
 visible-name='cadadr'
 
+[org/gtk/settings/color-chooser]
+
 [org/gtk/settings/emoji-chooser]
 
 [org/gtk/settings/file-chooser]
@@ -481,6 +488,8 @@ side-panel-active-page=827629879
 side-panel-size=200
 
 [org/x/reader]
+
+[org/x/reader/default]
 
 [org/x/viewer/view]
 background-color='rgb(0,0,0)'
