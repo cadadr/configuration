@@ -34,7 +34,7 @@ settings:
       normal:
         ',,': open-editor
         ',0': :open about:home
-        ',R': :spawn --userscript readability
+        ',R': :spawn --userscript ~/.config/qutebrowser/userscripts/readability
         ',[': :set -t tabs.select_on_remove next
         ',]': :set -t tabs.select_on_remove last-used
         ',d': bookmark-add
