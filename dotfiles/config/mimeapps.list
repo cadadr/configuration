@@ -46,6 +46,7 @@ text/x-sql=emacsclient.desktop;
 text/x-vb=emacsclient.desktop;
 text/yaml=emacsclient.desktop;
 text/plain=emacsclient.desktop;
+image/vnd.djvu+multipage=okularApplication_djvu.desktop;
 
 [Default Applications]
 application/pdf=okularApplication_pdf.desktop
@@ -133,3 +134,4 @@ text/x-sql=emacsclient.desktop
 text/x-vb=emacsclient.desktop
 text/yaml=emacsclient.desktop
 text/plain=emacsclient.desktop
+image/vnd.djvu+multipage=okularApplication_djvu.desktop
