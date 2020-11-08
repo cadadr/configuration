@@ -5730,7 +5730,10 @@ new frame is created."
   (setf gk-gui-theme (plist-get gk-preferred-themes
                                 (gk-preferred-colour-scheme)))
 
-  (when gk-gui-theme
+  (when (and gk-gui-theme
+             (not (equal custom-enabled-themes
+                         (list gk-gui-theme))))
+    (mapc #'disable-theme custom-enabled-themes)
     (load-theme gk-gui-theme t))
 
   ;; Customise wombat
