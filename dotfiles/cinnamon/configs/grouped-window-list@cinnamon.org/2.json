@@ -172,7 +172,8 @@
             "gnome-system-monitor.desktop",
             "whatsappdesktop.desktop",
             "spotify.desktop",
-            "mintupdate.desktop"
+            "mintupdate.desktop",
+            "blueberry.desktop"
         ]
     },
     "group-apps": {
