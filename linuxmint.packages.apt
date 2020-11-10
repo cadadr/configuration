@@ -134,4 +134,6 @@ libjs-pdf	install
 libreply-perl	install
 racket	install
 guile-3.0	install
+kdenlive	install
+simplescreenrecorder	install
 
