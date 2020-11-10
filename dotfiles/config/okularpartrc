@@ -15,10 +15,11 @@ ShowOSD=false
 ttsEngine=flite
 
 [Main View]
-SplitterSizes=352,929
+SplitterSizes=282,435
 
 [PageView]
 EditToolBarPlacement=3
+MouseMode=TextSelect
 ShowScrollBars=false
 ViewColumns=1
 
