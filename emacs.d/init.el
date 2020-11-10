@@ -4663,6 +4663,7 @@ modified slightly before it’s used e.g. when posting to Reddit."
                   (org-agenda-format-date "")
                   (org-deadline-warning-days 21)
                   (org-agenda-sorting-strategy '( priority-down deadline-up todo-state-down))
+                  (org-default-priority org-lowest-priority)
                   (org-agenda-span 1)))
 
      ;; Reading
