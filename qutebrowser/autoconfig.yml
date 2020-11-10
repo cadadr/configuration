@@ -102,6 +102,8 @@ settings:
     global: 0
   messages.timeout:
     global: 3000
+  new_instance_open_target:
+    global: tab-bg-silent
   scrolling.smooth:
     global: true
   session.lazy_restore:
