@@ -8,7 +8,7 @@
         "default": true,
         "description": "Ignore transient notifications",
         "tooltip": "Check this to ignore transient notifications.",
-        "value": true
+        "value": false
     },
     "section2": {
         "type": "section",
