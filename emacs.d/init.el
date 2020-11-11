@@ -4509,6 +4509,14 @@ modified slightly before it’s used e.g. when posting to Reddit."
     0))
 
 
+(defun gk-org-insert-list-of-stored-links ()
+  "Insert ‘org-stored-links’ as a bulleted list."
+  (interactive)
+  (unless (= (point) (line-beginning-position))
+    (newline))
+  (dolist (link org-stored-links)
+    (insert (apply #'format "- [[%s][%s]]\n" link))))
+
 
 
 ;;;;; Variables:
