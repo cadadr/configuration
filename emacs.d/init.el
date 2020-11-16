@@ -4662,6 +4662,14 @@ modified slightly before it’s used e.g. when posting to Reddit."
                      (buffer-substring (point-min) (point-max))))
                  (org-agenda-skip-function '(org-agenda-skip-entry-if 'deadline))
                  (org-deadline-warning-days 0)
+                 (org-agenda-sorting-strategy '(priority-down
+                                                time-up
+                                                category-up
+                                                deadline-up
+                                                scheduled-up
+                                                tag-up
+                                                habit-down))
+                 (org-default-priority org-lowest-priority)
                  (org-agenda-span 1)))
 
      ;; Approaching deadlines
