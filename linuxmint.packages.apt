@@ -136,4 +136,4 @@ racket	install
 guile-3.0	install
 kdenlive	install
 simplescreenrecorder	install
-
+dh-python	install
