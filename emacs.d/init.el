@@ -150,6 +150,7 @@
 (require 'org-checklist)
 (require 'org-inlinetask)
 (require 'org-mobile)
+(require 'org-num)
 (require 'org-protocol)
 (require 'org-tempo)                    ; <s, <q &c
 (require 'org-variable-pitch)
@@ -5585,6 +5586,7 @@ fragments"
   (when (boundp goto-address-mode)
     (goto-address-mode -1))
   (org-zotxt-mode +1)
+  (org-num-mode +1)
   (imenu-add-to-menubar "Entries")
   (setq-local truncate-lines nil)
   (setq-local indent-tabs-mode nil)
