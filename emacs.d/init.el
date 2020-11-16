@@ -6292,21 +6292,6 @@ So that the reader knows where to continue reading."
 
 
 
-;;;;; Fill column:
-
-(setf display-fill-column-indicator-character ?|)
-
-(let ((c (face-attribute 'highlight-indent-guides-even-face
-                         :background)))
-  (set-face-attribute 'fill-column-indicator nil
-                      :background c
-                      :foreground c))
-
-(when (gk-gui-p)
-  (add-hook 'prog-mode-hook ($ (display-fill-column-indicator-mode t))))
-
-
-
 ;;;; Internet:
 ;;;;; URLs:
 
