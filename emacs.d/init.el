@@ -4566,7 +4566,7 @@ modified slightly before it’s used e.g. when posting to Reddit."
 ;;;;; Apps:
 
 ;; Use system app to handle PDFs.
-(setcdr (assoc "\\.pdf\\'" org-file-apps) 'system)
+(setcdr (assoc "\\.pdf\\'" org-file-apps) "okular %s")
 
 
 
