@@ -40,6 +40,8 @@ settings:
         ',d': bookmark-add
         ',e': edit-url
         ',i': save-to-instapaper
+        ',jd': set -t content.javascript.enabled false
+        ',je': set -t content.javascript.enabled true
         ',r': config-source
         ',s': org-storelink
         ',tb': set --temp tabs.position bottom
