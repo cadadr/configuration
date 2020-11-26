@@ -1,0 +1,4 @@
+# Set DNS nameservers
+
+# CloudFlare DNS and Google DNS, respectively.
+dns-nameservers 1.1.1.1 8.8.8.8
