@@ -49,7 +49,7 @@ below for more details.
 
 - [GNU/Linux desktop workstation](systems/mergen/) (`mergen`) (TBD).
 
-- [Raspberry Pi](systems/mergen/) (`ayata`) backup and print/scan
+- [Raspberry Pi](systems/ayata/) (`ayata`) backup and print/scan
   server.
 
 Post-install
