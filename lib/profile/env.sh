@@ -70,5 +70,5 @@ export SYSTEMD_PAGER=
 export VERSION_CONTROL=numbered
 
 # Borg Backups
-export BORG_REPO=pi@pi.local:/mnt/Backups
+export BORG_REPO=pi@ayata.local:/mnt/Backups
 

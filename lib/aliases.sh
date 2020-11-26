@@ -258,8 +258,8 @@ alias du="du -h"
 alias df="df -h"
 
 # raspberry pi
-alias pi="ssh pi@pi.local"
-alias pi_temp="ssh pi@pi.local vcgencmd measure_temp"
+alias pi="ssh pi@ayata.local"
+alias pi_temp="ssh pi@ayata.local vcgencmd measure_temp"
 
 ### OS specific aliases:
 
