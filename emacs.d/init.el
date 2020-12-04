@@ -5064,6 +5064,8 @@ numerals which regularly appear in texts."
  "file"
  :face '(:inherit font-lock-string-face :underline t))
 
+(setf org-num-face 'org-verbatim)
+
 
 
 ;;;;;; Variable pitch:
