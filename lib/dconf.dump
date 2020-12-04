@@ -216,17 +216,19 @@ custom-acceleration=false
 custom-threshold=false
 double-click=400
 drag-threshold=8
-locate-pointer=true
+locate-pointer=false
 middle-button-enabled=false
 motion-acceleration=10.0
 motion-threshold=3
+natural-scroll=true
 
 [org/cinnamon/settings-daemon/peripherals/touchpad]
 clickpad-click=2
 custom-acceleration=false
 horizontal-scrolling=true
 motion-threshold=1
-tap-to-click=true
+natural-scroll=true
+tap-to-click=false
 touchpad-enabled=true
 
 [org/cinnamon/settings-daemon/peripherals/touchscreen]
