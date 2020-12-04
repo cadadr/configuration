@@ -61,8 +61,6 @@ settings:
     global: rgba(0, 0, 0, 100%)
   completion.delay:
     global: 1500
-  completion.web_history.max_items:
-    global: -1
   content.autoplay:
     global: false
   content.canvas_reading:
@@ -140,8 +138,6 @@ settings:
     global: true
   tabs.close_mouse_button:
     global: none
-  tabs.focus_stack_size:
-    global: -1
   tabs.last_close:
     global: default-page
   tabs.mode_on_change:
