@@ -173,7 +173,8 @@
             "whatsappdesktop.desktop",
             "spotify.desktop",
             "mintupdate.desktop",
-            "blueberry.desktop"
+            "blueberry.desktop",
+            "steam.desktop"
         ]
     },
     "group-apps": {
