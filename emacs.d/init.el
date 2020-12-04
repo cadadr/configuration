@@ -4551,8 +4551,6 @@ modified slightly before it’s used e.g. when posting to Reddit."
  ;; value.
  org-image-actual-width
  (list (* 48 (aref (font-info (face-attribute 'default :family)) 10)))
- ;; The minibuffer prompt is enough.
- org-popup-calendar-for-date-prompt nil
  ;; The couple settings below are adapted from
  ;; https://yiufung.net/post/org-mode-hidden-gems-pt1/.
  ;;
@@ -5963,6 +5961,7 @@ new frame is created."
    ("\\*.*Completions\\*" . (display-buffer-in-side-window . ((side . bottom))))
    ("\\*Help\\*" . (display-buffer-reuse-window))
    ("Checkdoc" . (display-buffer-pop-up-window))
+   ("Calendar" . (display-buffer-in-side-window . ((side . bottom))))
    ("help\\[R\\]" . (display-buffer-pop-up-window))
    (".*" . (display-buffer-same-window)))
  ;; With C-v and M-v, scroll to beginning or end of buffer if at top
