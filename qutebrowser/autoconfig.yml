@@ -57,12 +57,20 @@ settings:
         gJ: tab-move +
         gK: tab-move -
         yh: hint all yank
+  colors.keyhint.bg:
+    global: rgba(0, 0, 0, 100%)
+  completion.delay:
+    global: 1500
+  completion.web_history.max_items:
+    global: -1
   content.autoplay:
     global: false
   content.canvas_reading:
-    global: true
+    global: false
   content.cookies.accept:
     global: no-3rdparty
+  content.default_encoding:
+    global: utf-8
   content.pdfjs:
     global: false
   content.windowed_fullscreen:
@@ -77,10 +85,20 @@ settings:
     - -c
     - +{line}:{column}
     - '{file}'
+  fonts.default_family:
+    global: Sans-serif
+  fonts.default_size:
+    global: 12pt
+  fonts.hints:
+    global: bold 14pt monospace
+  fonts.keyhint:
+    global: 14pt default_family
+  fonts.web.size.minimum:
+    global: 10
   hints.auto_follow:
     global: never
   hints.chars:
-    global: asdfjkl;
+    global: asdfjklqweruio
   hints.prev_regexes:
     global:
     - \bprev(ious)?\b
@@ -89,18 +107,26 @@ settings:
     - \b[<←≪]\b
     - \b(<<|«)\b
   hints.uppercase:
-    global: true
+    global: false
   input.forward_unbound_keys:
     global: none
   input.insert_mode.auto_enter:
-    global: false
+    global: true
   input.insert_mode.auto_leave:
-    global: false
+    global: true
+  input.insert_mode.auto_load:
+    global: true
   input.insert_mode.leave_on_load:
     global: false
   input.partial_timeout:
     global: 50000
+  input.rocker_gestures:
+    global: false
+  input.spatial_navigation:
+    global: true
   keyhint.delay:
+    global: 0
+  keyhint.radius:
     global: 0
   messages.timeout:
     global: 3000
@@ -114,20 +140,26 @@ settings:
     global: true
   tabs.close_mouse_button:
     global: none
+  tabs.focus_stack_size:
+    global: -1
   tabs.last_close:
     global: default-page
   tabs.mode_on_change:
     global: normal
   tabs.mousewheel_switching:
-    global: false
+    global: true
   tabs.position:
     global: bottom
   tabs.select_on_remove:
     global: last-used
   tabs.show:
-    global: always
+    global: multiple
   tabs.show_switching_delay:
     global: 1000
+  tabs.title.format:
+    global: '{audio}{index}: {current_title}'
+  tabs.title.format_pinned:
+    global: '* {audio}{index}: {current_title}'
   tabs.undo_stack_size:
     global: -1
   tabs.wrap:
