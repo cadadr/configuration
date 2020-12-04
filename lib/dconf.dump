@@ -195,8 +195,8 @@ focus-mode='sloppy'
 focus-new-windows='smart'
 min-window-opacity=30
 mouse-button-modifier='<Super>'
-workspace-names=['home', 'away']
 theme='Mint-Y'
+workspace-names=['home']
 
 [org/cinnamon/muffin]
 attach-modal-dialogs=false
