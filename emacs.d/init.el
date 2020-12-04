@@ -747,6 +747,26 @@ argument as t, so refer to that command for further details."
   (set list-name (apply #'append (symbol-value list-name) (list elt))))
 
 
+(defun concise (search-term)
+  "Search in The Concise Oxford Dictionary of Linguistics (Matthews, 2003).
+
+The file (a plain text extract of the ebook or PDF) is assumed to
+be bookmarked as \"concise\".  SEARCH-TERM is used to run an
+‘occur’ search in the file.
+
+Matthews, P. H. (2003). The Concise Oxford Dictionary of
+Linguistics (2nd ed.). Oxford University Press."
+  (interactive
+   (list
+    (string-trim
+     (read-string
+      "Search term (in the Concise Dictionary (Matthews, 2003): "))))
+  (when (string-empty-p search-term)
+    (user-error "Empty search"))
+  (with-current-buffer
+      (find-file-noselect (bookmark-get-filename "concise"))
+    (occur search-term)))
+
 
 
 ;;;; Generic advices:
