@@ -122,3 +122,8 @@ c.url.searchengines['#yt'] = youtube
 c.url.searchengines['#youtube'] = youtube
 
 c.url.searchengines['#sci'] = "https://sci-hub.se/{}"
+
+emoji = 'https://emojipedia.org/search/?q={}'
+c.url.searchengines['#emo'] = emoji
+c.url.searchengines['#emoji'] = emoji
+c.url.searchengines['#emojipedia'] = emoji
