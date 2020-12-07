@@ -121,7 +121,7 @@ settings:
   input.rocker_gestures:
     global: false
   input.spatial_navigation:
-    global: true
+    global: false
   keyhint.delay:
     global: 0
   keyhint.radius:
