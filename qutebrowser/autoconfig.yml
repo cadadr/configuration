@@ -113,7 +113,7 @@ settings:
   input.insert_mode.auto_leave:
     global: true
   input.insert_mode.auto_load:
-    global: true
+    global: false
   input.insert_mode.leave_on_load:
     global: false
   input.partial_timeout:
