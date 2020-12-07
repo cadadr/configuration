@@ -88,7 +88,7 @@ settings:
   fonts.default_size:
     global: 12pt
   fonts.hints:
-    global: bold 14pt monospace
+    global: bold 14pt default_family
   fonts.keyhint:
     global: 14pt default_family
   fonts.web.size.minimum:
