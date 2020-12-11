@@ -265,6 +265,7 @@ name='Mint-Y-Dark'
 theme-cache-updated=1606583546
 
 [org/gnome/baobab/ui]
+active-chart='treemap'
 
 [org/gnome/calculator]
 accuracy=9
@@ -472,7 +473,7 @@ show-size-column=true
 show-type-column=true
 sort-column='name'
 sort-directories-first=true
-sort-order='ascending'
+sort-order='descending'
 type-format='category'
 
 [org/nemo/desktop]
