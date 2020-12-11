@@ -7116,6 +7116,10 @@ Does various tasks after saving a file, see it's definition."
 
 (gk-global-binding "\C-xw" #'gk-jump-to-window)
 
+;; Undo with mouse buttons
+(gk-global-binding [mouse-8] #'scroll-down-command)
+(gk-global-binding [mouse-9] #'scroll-up-command)
+
 
 
 ;;;; Multiple cursors:
