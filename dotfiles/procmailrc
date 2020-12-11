@@ -11,21 +11,7 @@ DROPPRIVS=yes
 
 ### Rules:
 
-# Mailing lists
+# Catch-all
 :0:
-* ^List-Id: .*emacs-devel\.gnu\.org.*$
-lists/emacs-devel/
-
-:0:
-* ^List-Id: .*help-gnu-emacs\.gnu\.org.*$
-lists/help-gnu-emacs/
-
-:0:
-* ^From: .*notifications@github.com>$
-github/
-
-
-# Catch-all for the rest
-:0:
-maildir/
+inbox
 

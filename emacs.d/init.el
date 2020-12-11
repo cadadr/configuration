@@ -3671,9 +3671,7 @@ and special ones sepatarely."
  message-citation-line-format "On %Y-%m-%d %R %Z, %f wrote:")
 
 (setf
- ;; Save a copy of outgoing messages to an mbox.
- ;; XXX(2020-05-16): mu4e takes care of that.
- ;; message-default-headers (format "Fcc: %s/outbox" gk-mail-home)
+ message-default-headers (format "Fcc: %s/outbox" gk-mail-home)
 
  ;; Drafts directory.
  message-auto-save-directory (expand-file-name "drafts" gk-mail-home)
@@ -3917,7 +3915,7 @@ the fuck?"
 
  ;; Use mu4e to compose mail from links. See also:
  ;; <~/cf/candy/emacsclient-mailto.desktop>.
- mail-user-agent 'mu4e-user-agent
+ ;; mail-user-agent 'mu4e-user-agent
 
  ;; Show email addresses b/c why the fuck not?
  mu4e-view-show-addresses t
@@ -6947,8 +6945,6 @@ Does various tasks after saving a file, see it's definition."
 ;; So that it doesnt override special-mode and the like.
 ;; (global-set-key [? ] 'gk-maybe-expand-abbrev-or-space)
 
-(gk-global-binding "\C-xm" #'mu4e-compose-new)
-
 ;; Unset unused keys.
 (global-unset-key (kbd "C-M-%"))  ; Now same as M-%
 (global-unset-key (kbd "C-z"))    ; Has no utility
@@ -7176,11 +7172,7 @@ Does various tasks after saving a file, see it's definition."
 
 ;;;; Mail:
 
-(gk-global-binding "\C-xm" #'mu4e-compose-new)
-
-(gk-prefix-binding "<" (gk-interactively
-                        (call-interactively #'mu4e)
-                        (call-interactively #'mu4e-update-mail-and-index)))
+(gk-prefix-binding "<" #'gk-fetch-mail)
 
 (gk-prefix-binding ">" #'gk-runq)
 (gk-prefix-binding "?" #'mairix-widget-search)
