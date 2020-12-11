@@ -4644,7 +4644,9 @@ modified slightly before it’s used e.g. when posting to Reddit."
  org-agenda-dim-blocked-tasks nil
  ;; Don’t colour unless deadline
  org-agenda-deadline-faces '((1.0 . org-warning)
-                             (0.0 . default)))
+                             (0.0 . default))
+ ;; Compact display for scheduled items.
+ org-agenda-use-time-grid nil)
 
 (setf org-agenda-block-separator nil)
 
