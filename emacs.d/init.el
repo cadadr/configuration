@@ -6672,6 +6672,54 @@ It is rather slow to do so."
 
 
 
+
+;;;;;; Print entry function:
+
+(defun gk-elfeed-search-print-entry (entry)
+  "Print ENTRY to the buffer, with style."
+  (let* ((date (elfeed-search-format-date (elfeed-entry-date entry)))
+         (title (or (elfeed-meta entry :title) (elfeed-entry-title entry) ""))
+         (title-faces (elfeed-search--faces (elfeed-entry-tags entry)))
+         (feed (elfeed-entry-feed entry))
+         (feed-title
+          (when feed
+            (or (elfeed-meta feed :title) (elfeed-feed-title feed))))
+         (tags (mapcar #'symbol-name (elfeed-entry-tags entry)))
+         (tags-str (mapconcat
+                    (lambda (s) (propertize s 'face 'elfeed-search-tag-face))
+                    (cl-remove-if ($ (string= $1 "unread")) tags)
+                    ","))
+         (title-width (* (window-width)  .7))
+         (title-column (elfeed-format-column
+                        title (elfeed-clamp
+                               elfeed-search-title-min-width
+                               title-width
+                               (window-width))
+                        :left)))
+    (insert (propertize date 'face 'elfeed-search-date-face) " ")
+    (let ((f (split-string
+              (buffer-local-value
+               'elfeed-search-filter (get-buffer "*elfeed-search*"))
+              " " t)))
+      ;; If we’re not looking at a stored search, hide tags and don’t
+      ;; limit title length.  Otherwise print the truncated title and
+      ;; include the filtered tags.
+      (cond ((and (string= (car f) "+unread")
+                  (member (cadr f) gk-elfeed-search-ring-tags))
+             (setq-local word-wrap t)
+             (setq-local truncate-lines nil)
+             (insert (propertize title 'face title-faces 'kbd-help title) " "))
+            (t
+             (setq-local truncate-lines t)
+             (insert (propertize title-column 'face title-faces 'kbd-help title) " ")
+             (when tags
+               (insert "(" tags-str ")")))))))
+
+
+(setf elfeed-search-print-entry-function #'gk-elfeed-search-print-entry)
+
+
+
 ;;;;;; Keys:
 
 (define-key elfeed-show-mode-map (kbd "v") #'gk-elfeed-browse-article)
