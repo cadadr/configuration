@@ -6303,8 +6303,10 @@ So that the reader knows where to continue reading."
 
 (define-advice write-file
     (:filter-args (args) always-confirm)
-  "Make sure ‘write-file’ confirms overrides and asks to create directories."
-  (list (car args) t))
+  "Make sure ‘write-file’ confirms overrides and asks to create directories.
+
+When called interactively."
+  (list (car args) (called-interactively-p)))
 
 
 
