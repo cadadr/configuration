@@ -42,6 +42,8 @@ settings:
         ',i': save-to-instapaper
         ',jd': set -t content.javascript.enabled false
         ',je': set -t content.javascript.enabled true
+        ',l': 'jseval document.querySelectorAll(''a'').forEach(function (a) { a.style=''color:blue
+          !important; text-decoration: underline !important''; })'
         ',r': config-source
         ',s': org-storelink
         ',tb': set --temp tabs.position bottom
