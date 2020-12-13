@@ -24,7 +24,7 @@
         "indent": true,
         "dependency": "use-custom-format",
         "tooltip": "Set your custom format here.",
-        "value": "%H:%M"
+        "value": "%d %B %Y %A, %H:%M"
     },
     "format-button": {
         "type": "button",
