@@ -768,6 +768,21 @@ Linguistics (2nd ed.). Oxford University Press."
       (find-file-noselect (bookmark-get-filename "concise"))
     (occur search-term)))
 
+
+(defun gk-maximize (&optional buffer)
+  "Make maximized frame with a sole window displaying BUFFER."
+  (interactive
+   (list
+    (read-buffer "Select buffer to maximise in new frame: "
+                 (current-buffer))))
+  (let* ((buf (or buffer (current-buffer)))
+         (frame (make-frame))
+         (win (car (window-list frame))))
+    (set-window-buffer win buf)
+    (toggle-frame-maximized frame)
+    (raise-frame frame)))
+
+
 
 
 ;;;; Generic advices:
@@ -7164,6 +7179,8 @@ Does various tasks after saving a file, see it's definition."
 ;; Undo with mouse buttons
 (gk-global-binding [mouse-8] #'scroll-down-command)
 (gk-global-binding [mouse-9] #'scroll-up-command)
+
+(gk-prefix-binding "x" #'gk-maximize)
 
 
 
