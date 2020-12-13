@@ -6744,6 +6744,12 @@ It is rather slow to do so."
 
 ;;;;;; Print entry function:
 
+(defface gk-elfeed-feed-host
+  '()
+  "Face for displaying URLs’ host parts in Elfeed.")
+
+(set-face-attribute 'gk-elfeed-feed-host nil :height .7 :italic nil)
+
 (defun gk-elfeed-search-print-entry (entry)
   "Print ENTRY to the buffer, with style."
   (let* ((date (elfeed-search-format-date (elfeed-entry-date entry)))
@@ -6777,7 +6783,14 @@ It is rather slow to do so."
                   (member (cadr f) gk-elfeed-search-ring-tags))
              (setq-local word-wrap t)
              (setq-local truncate-lines nil)
-             (insert (propertize title 'face title-faces 'kbd-help title) " "))
+             (insert (propertize title 'face title-faces 'kbd-help (concat title ": " feed-title)) " ")
+             (insert (propertize (concat
+                                  "("
+                                  (url-host
+                                   (url-generic-parse-url
+                                    (elfeed-feed-url feed)))
+                                  ")")
+                                 'face 'gk-elfeed-feed-host)))
             (t
              (setq-local truncate-lines t)
              (insert (propertize title-column 'face title-faces 'kbd-help title) " ")
