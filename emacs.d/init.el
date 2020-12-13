@@ -6372,6 +6372,24 @@ When called interactively."
 xdg-open is a desktop utility that calls your preferred web browser."
   (and window-system (executable-find "xdg-open")))
 
+
+(defvar browse-url-qutebrowser-program "qutebrowser")
+(defvar browse-url-qutebrowser-arguments nil)
+
+(defun browse-url-qutebrowser (url &optional new-window)
+  "Ask Qutebrowser to load URL. "
+  (interactive (browse-url-interactive-arg "URL: "))
+  (setq url (browse-url-encode-url url))
+  (let* ((process-environment (browse-url-process-environment)))
+    (apply 'start-process
+           (concat "qutebrowser " url) nil
+           browse-url-qutebrowser-program
+           (append
+            browse-url-qutebrowser-arguments
+            (when new-window
+              '("--target=window"))
+            (list url)))))
+
 
 
 ;;;;;; Browser functions:
