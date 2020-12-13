@@ -3643,6 +3643,12 @@ and special ones sepatarely."
  message-sendmail-envelope-from 'header
  sendmail-program (gk-executable-ensure "msmtp"))
 
+
+;; Spammers are everywhere.
+(setf user-mail-address (concat "self" "@" "gkayaalp" "." "com")
+      user-full-name "Göktuğ Kayaalp")
+
+
 (defun gk-mail-set-msmtp-account ()
   "Find account name for email address in From: line."
   (let ((from (save-excursion
@@ -3672,9 +3678,6 @@ and special ones sepatarely."
   (interactive)
   (async-shell-command "msmtp-listqueue.sh" "*listq*"))
 
-;; Spammers are everywhere.
-(setf user-mail-address (concat "self" "@" "gkayaalp" "." "com")
-      user-full-name "Göktuğ Kayaalp")
 
 
 
