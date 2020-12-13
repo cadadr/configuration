@@ -165,6 +165,7 @@
 (require 'ox-publish)
 (require 'paredit)
 (require 'paren-face)
+(require 'parse-time)
 (require 'pass-listing)
 (require 'pdf-tools)
 (require 'pdf-annot)
@@ -3934,6 +3935,36 @@ the fuck?"
   (setq-local word-wrap t))
 
 (add-hook 'mu4e-view-mode-hook #'gk-mu4e-view-mode-hook)
+
+
+
+
+;;;; Parse-time:
+
+;; Add Turkish month and day names, mainly for ‘org-time-stamp’ and
+;; ‘org-time-stamp-inactive’.
+
+(setf
+ parse-time-months
+ (append
+  '(("oca" . 1) ("sub" . 2) ("mar" . 3) ("nis" . 4)  ("may" . 5)  ("haz" . 6)
+    ("tem" . 7) ("agu" . 8) ("eyl" . 9) ("eki" . 10) ("kas" . 11) ("ara" . 12)
+
+    ("ocak" . 1)   ("subat" . 2)   ("mart" . 3)  ("nisan" . 4) ("mayis" . 6)
+    ("temmuz" . 7) ("agustos" . 8) ("eylul" . 9) ("ekim" . 10) ("kasim" . 11)
+    ("aralik" . 12))
+  parse-time-months)
+
+ parse-time-weekdays
+ (append
+  '(("paz" . 0) ("pzt" . 1) ("sal" . 2) ("crs" . 3) ("prs" . 4) ("cum" . 5) ("cts" . 6)
+
+    ("pazar" . 0) ("pazartesi" . 1) ("sali" . 2) ("carsamba" . 3) ("persembe" . 4)
+    ("cuma" . 5)  ("cumartesi" . 6))
+  parse-time-weekdays))
+
+
+
 
 
 
