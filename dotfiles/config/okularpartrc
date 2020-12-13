@@ -11,7 +11,6 @@ HighlightLinks=true
 [General]
 DisplayDocumentNameOrPath=Path
 DisplayDocumentTitle=false
-ShellOpenFileInTabs=true
 ShowOSD=false
 ttsEngine=flite
 
