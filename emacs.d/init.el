@@ -3832,7 +3832,7 @@ This is the reverse counterpart of
 (define-key rmail-mode-map (kbd "<backtab>") #'gk-rmail-backward-link-or-button)
 
 
-;; ‘q’ is normally bound to #'rmail-summary-quit, which is simply
+;; ‘q’ is normally bound to ‘rmail-summary-quit’, which is simply
 ;; useless.
 (define-key rmail-summary-mode-map "q" #'bury-buffer)
 
