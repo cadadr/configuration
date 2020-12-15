@@ -1,5 +1,9 @@
 # Setup recipe for `ulgen`
 
+First of all, install `ulgen`’s specific dotfiles:
+
+    $ invade -v $HOME
+
 The file `linuxmint.packages.apt` contains a listing of Debian-formatted
 packages to be installed, in a format usable with Linux Mint's Backup
 Tool. However, a command like the one below should be able to install
