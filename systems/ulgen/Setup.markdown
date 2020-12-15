@@ -61,4 +61,4 @@ become more easily reproduced between installs.
 
 ---
 
-![screen cap](/candy/scr.png)
+![screen cap](/candy/scr-ulgen.png)

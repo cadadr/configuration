@@ -2,10 +2,8 @@ bind9utils	install
 bridge-utils	install
 cheese	install
 devhelp	install
-docker.io	install
 entr	install
 gimp	install
-google-earth-pro-stable	install
 gparted	install
 lftp	install
 linux-generic-hwe-18.04	install
@@ -14,7 +12,6 @@ mpv	install
 openssh-server	install
 qemu	install
 qemu-system	install
-skypeforlinux	install
 smartmontools	install
 spotify-client	install
 traceroute	install
@@ -25,7 +22,6 @@ audacity	install
 dconf-editor	install
 inkscape	install
 pdfsam	install
-slrn	install
 calibre	install
 libjansson-dev	install
 libpoppler-glib-dev	install

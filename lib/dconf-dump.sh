@@ -56,7 +56,9 @@ ignore-phase2-ca-cert
 last-char
 favorite-apps-list
 looking-glass-history
-saved-pathbar-path"
+saved-pathbar-path
+night-light-last-coordinates
+last-refresh-time"
 
 # This pops up sometimes for some reason
 if [ "$DESKTOP_SESSION" = "cinnamon" ]; then

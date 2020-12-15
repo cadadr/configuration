@@ -5806,8 +5806,15 @@ prefers dark themes."
            (string-match
             "Dark"
             (shell-command-to-string
-             "dconf read /org/cinnamon/desktop/interface/gtk-theme")))
-         :dark))
+             "dconf read /org/cinnamon/desktop/interface/gtk-theme"))))
+    :dark)
+   ((and (string= (getenv "DESKTOP_SESSION") "pop")
+         (save-match-data
+           (string-match
+            "dark"
+            (shell-command-to-string
+             "dconf read /org/gnome/desktop/interface/gtk-theme"))))
+    :dark)
    (t
     :light)))
 
