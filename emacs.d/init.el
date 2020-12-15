@@ -5482,6 +5482,14 @@ Don’t hide the frame and don’t ask me shit."
 
 
 
+;;;;; org-zotxt:
+
+(setf
+ org-zotxt-default-search-method :title-creator-year
+ org-zotxt-link-description-style :betterbibtexkey)
+
+
+
 ;;;;; Icalendar:
 
 ;; Do not sync deadlines and schedules.
