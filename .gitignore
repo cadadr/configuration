@@ -37,7 +37,7 @@ bin/dwm
 config.m4
 
 dotfiles/praat/pid
-dotfiles/cinnamon/spices.cache
+systems/*/cinnamon/spices.cache
 dotfiles/cabal/packages/
 dotfiles/cabal/lib/
 dotfiles/cabal/share/
@@ -177,3 +177,4 @@ dotfiles/vim/.netrwhist
 dotfiles/config/zoomus.conf
 dotfiles/config/Unknown Organization/zoom.conf
 dotfiles/config/toot/config.json
+dotfiles/config/cinnamon-monitors.xml
