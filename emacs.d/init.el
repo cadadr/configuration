@@ -336,7 +336,15 @@ For the format, see `format-time-string'."
 
 (defun gk-deadvice (sym)
   "Remove all the advice functions from the function named SYM."
-  (interactive "aRemove advices from function: ")
+  (interactive
+   (list
+    (let* ((sym (ignore-errors (intern (thing-at-point 'symbol))))
+           (fn (and (fboundp sym) sym)))
+      (read-command (concat "Remove advices from function"
+                            (if fn
+                                (format " (default: %S): " sym)
+                              ": "))
+                    fn))))
   (advice-mapc
    (lambda (x y)
      (ignore y)
