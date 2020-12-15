@@ -291,10 +291,11 @@ active-view='week'
 [org/gnome/cheese]
 burst-delay=1000
 camera='USB2.0 HD UVC WebCam: USB2.0 HD'
-photo-x-resolution=640
-photo-y-resolution=480
-video-x-resolution=640
-video-y-resolution=480
+photo-x-resolution=1280
+photo-y-resolution=720
+selected-effect='Flip'
+video-x-resolution=1280
+video-y-resolution=720
 
 [org/gnome/desktop/a11y/applications]
 screen-keyboard-enabled=false
