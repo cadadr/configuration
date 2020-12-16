@@ -5815,6 +5815,13 @@ prefers dark themes."
             (shell-command-to-string
              "dconf read /org/gnome/desktop/interface/gtk-theme"))))
     :dark)
+   ((and (string= (getenv "DESKTOP_SESSION") "xfce")
+         (save-match-data
+           (string-match
+            "Dark"
+            (shell-command-to-string
+             "xfconf-query --channel xsettings --property /Net/ThemeName"))))
+    :dark)
    (t
     :light)))
 

@@ -50,6 +50,7 @@ clean-bin:
 invade: dotfiles
 	./bin/invade -v $(HOME) &&\
 		update-desktop-database ~/.local/share/applications/
+	cd systems/$(shell hostname)/ && ../../bin/invade -v $(HOME)
 
 dotfiles:
 	$(MAKE) -C dotfiles -$(MAKEFLAGS)

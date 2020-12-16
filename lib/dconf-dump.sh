@@ -68,4 +68,4 @@ fi
 /usr/bin/dconf dump / \
     | grep -Ev "^($(echo $filter | tr ' ' '|'))=" \
     | grep -v 'nm-applet' \
-           > $HOME/cf/lib/dconf.$(hostname).dump
+           > $HOME/cf/systems/$(hostname)/dconf.dump
