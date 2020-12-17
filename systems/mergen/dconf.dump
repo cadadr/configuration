@@ -20,6 +20,7 @@ show-welcome-page=false
 migrated=true
 network-monitor-gio-name=''
 
+
 [org/gtk/settings/file-chooser]
 date-format='regular'
 show-hidden=false
