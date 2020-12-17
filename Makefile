@@ -27,7 +27,9 @@ setup-light: fetch-config.m4 dotfiles invade
 	@echo === Done, consider running make setup later
 
 fetch-config.m4:
-	if [ -e ../store/config.m4 ]; then      \
+	if [  -e config.m4 ]; then              \
+		:;                              \
+	elif [ -e ../store/config.m4 ]; then    \
 		cp ../store/config.m4 .        ;\
 	elif [ -e $(HOME)/fil/config.m4 ]; then \
 		cp $(HOME)/fil/config.m4 .     ;\
