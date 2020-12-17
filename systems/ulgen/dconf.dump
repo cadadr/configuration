@@ -7,8 +7,6 @@ flatpak-remotes=['flathub::https://dl.flathub.org/repo/::False']
 search-in-description=true
 search-in-summary=true
 
-[com/linuxmint/mintmenu/plugins/applications]
-
 [com/linuxmint/report]
 ignored-reports=['timeshift-no-setup']
 
@@ -67,8 +65,8 @@ panel-zone-icon-sizes='[{"panelId":1,"left":0,"center":0,"right":24}]'
 panel-zone-symbolic-icon-sizes='[{"panelId": 1, "left": 28, "center": 28, "right": 16}]'
 panel-zone-text-sizes='[{"panelId":1,"left":0,"center":0,"right":0}]'
 panels-autohide=['1:false', '2:false']
-panels-enabled=['1:0:top']
-panels-height=['1:24', '2:24']
+panels-enabled=['1:0:bottom']
+panels-height=['1:32', '2:24']
 panels-hide-delay=['1:0', '2:0']
 panels-show-delay=['1:0', '2:0']
 prevent-focus-stealing=true
@@ -284,10 +282,6 @@ word-size=64
 [org/gnome/calendar]
 active-view='week'
 
-[org/gnome/charmap]
-
-[org/gnome/charmap/window-state]
-
 [org/gnome/cheese]
 burst-delay=1000
 camera='USB2.0 HD UVC WebCam: USB2.0 HD'
@@ -328,10 +322,6 @@ width=1000
 [org/gnome/epiphany/state]
 is-maximized=false
 
-[org/gnome/evince]
-
-[org/gnome/evince/default]
-
 [org/gnome/evolution-data-server]
 migrated=true
 network-monitor-gio-name=''
@@ -361,8 +351,6 @@ name-column-width=394
 show-path=false
 sort-method='name'
 sort-type='ascending'
-
-[org/gnome/file-roller/ui]
 
 [org/gnome/gnome-screenshot]
 border-effect='none'
@@ -435,10 +423,6 @@ startup-feed-action=1
 active-plugins=['bold-unread', 'media-player']
 
 
-
-
-
-
 [org/gnome/power-manager]
 info-history-type='charge'
 info-last-device='wakeups'
@@ -462,10 +446,6 @@ foreground-color='rgb(211,215,207)'
 use-theme-colors=true
 use-theme-transparency=false
 visible-name='cadadr'
-
-[org/gtk/settings/color-chooser]
-
-[org/gtk/settings/emoji-chooser]
 
 [org/gtk/settings/file-chooser]
 date-format='regular'
@@ -510,12 +490,6 @@ bottom-panel-size=140
 side-panel-active-page=827629879
 side-panel-size=200
 
-[org/x/reader]
-
-[org/x/reader/default]
-
 [org/x/viewer/view]
 background-color='rgb(0,0,0)'
 use-background-color=true
-
-[org/x/viewer/window]
