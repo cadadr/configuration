@@ -133,3 +133,5 @@ guile-3.0	install
 kdenlive	install
 simplescreenrecorder	install
 dh-python	install
+mu4e	install
+apparmor-utils	install
