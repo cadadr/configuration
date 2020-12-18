@@ -1597,7 +1597,8 @@ Tries to preserve the order of window buffers and active window."
   (list :serif "DejaVu Serif Condensed"
         :sans "DejaVu Sans Condensed"
         :mono "DejaVu Sans Mono"
-        :forecast-moon-phase (or (font-info "Quivira") "DejaVu Sans"))
+        :forecast-moon-phase (or (and (font-info "Quivira") "Quivira")
+                                 "DejaVu Sans"))
   "A plist, default fonts.")
 
 ;; Set up so that there's 80-85 chars width for half-sized horizontal
