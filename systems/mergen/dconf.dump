@@ -198,7 +198,7 @@ idle-delay=uint32 900
 
 [org/cinnamon/desktop/sound]
 event-sounds=false
-maximum-volume=150
+maximum-volume=100
 
 [org/cinnamon/desktop/wm/preferences]
 action-scroll-titlebar='none'
@@ -362,6 +362,8 @@ name-column-width=394
 show-path=false
 sort-method='name'
 sort-type='ascending'
+
+[org/gnome/file-roller/ui]
 
 [org/gnome/gnome-screenshot]
 border-effect='none'
