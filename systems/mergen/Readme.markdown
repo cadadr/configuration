@@ -45,7 +45,7 @@ installed, which can be installed as follows:
 If you’ll use msmtp, the following command makes AppArmor quit its
 stupid bullshit.  I’ve tried aliases to no avail.
 
-    # sudo aa-complain usr.bin.msmtp
+    # aa-complain usr.bin.msmtp
 
 Finally, we'll enable the GRUB menu with a sensible timeout and
 configure resume from hibernation.
