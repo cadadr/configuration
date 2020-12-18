@@ -484,7 +484,7 @@ sidebar-bookmark-breakpoint=4
 start-with-sidebar=true
 
 [org/x/editor/plugins]
-active-plugins=['open-uri-context-menu', 'docinfo', 'spell', 'time', 'sort', 'modelines', 'filebrowser', 'joinlines', 'textsize']
+active-plugins=['textsize', 'sort', 'filebrowser', 'spell', 'joinlines', 'docinfo', 'time', 'open-uri-context-menu', 'modelines']
 
 [org/x/editor/plugins/filebrowser/on-load]
 root='file:///'
