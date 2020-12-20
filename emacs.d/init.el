@@ -5496,6 +5496,17 @@ Don’t hide the frame and don’t ask me shit."
  org-zotxt-default-search-method :title-creator-year
  org-zotxt-link-description-style :betterbibtexkey)
 
+
+(define-advice org-zotxt-insert-reference-links-to-items
+    (:override (items) dont-fucking-insert-new-fucking-lines-ffs)
+  "Insert links to Zotero ITEMS in buffer, without fucking everything up."
+  (mapc (lambda (item)
+          (org-zotxt-insert-reference-link-to-item item)
+          (insert ", "))
+        items)
+  (delete-backward-char 2))
+
+
 
 
 ;;;;; Icalendar:
