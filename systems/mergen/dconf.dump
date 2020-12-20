@@ -41,7 +41,7 @@ width=640
 
 [org/cinnamon]
 alttab-minimized-aware=true
-alttab-switcher-delay=100
+alttab-switcher-delay=0
 alttab-switcher-show-all-workspaces=false
 alttab-switcher-style='icons+thumbnails'
 desklet-snap-interval=25
