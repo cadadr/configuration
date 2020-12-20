@@ -6103,7 +6103,9 @@ new frame is created."
  x-select-enable-clipboard-manager nil
  ;; Indicate unused lines at the end of the buffer with marks in left
  ;; fringe.
- indicate-unused-lines t)
+ indicate-unused-lines t
+ ;; Draw underlines lower.
+ underline-minimum-offset 7)
 
 
 (setq-default save-place t)
