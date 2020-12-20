@@ -86,6 +86,7 @@ show-tile-hud=true
 startup-animation=false
 workspace-expo-view-as-grid=true
 workspace-osd-duration=400
+workspace-osd-visible=true
 workspace-osd-x=50
 workspace-osd-y=50
 
