@@ -204,7 +204,7 @@ maximum-volume=100
 [org/cinnamon/desktop/wm/preferences]
 action-scroll-titlebar='opacity'
 auto-raise=false
-button-layout=':minimize,maximize,close'
+button-layout='close:minimize,maximize'
 focus-mode='sloppy'
 focus-new-windows='smart'
 min-window-opacity=30
