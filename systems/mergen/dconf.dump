@@ -202,7 +202,7 @@ event-sounds=false
 maximum-volume=100
 
 [org/cinnamon/desktop/wm/preferences]
-action-scroll-titlebar='none'
+action-scroll-titlebar='opacity'
 auto-raise=false
 button-layout=':minimize,maximize,close'
 focus-mode='sloppy'
