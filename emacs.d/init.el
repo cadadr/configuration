@@ -3863,6 +3863,11 @@ This is the reverse counterpart of
 ;; useless.
 (define-key rmail-summary-mode-map "q" #'bury-buffer)
 
+;; Quick search
+(define-key rmail-mode-map "/" #'mairix-search)
+(define-key rmail-summary-mode-map "/" #'mairix-search)
+
+
 (add-hook
  'rmail-mode-hook
  (defun gk-rmail-mode-hook ()
