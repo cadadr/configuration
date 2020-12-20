@@ -1,0 +1,154 @@
+{
+    "headerKeys": {
+        "type": "header",
+        "description": "Hotkeys:"
+    },
+    "hotkey": {
+        "type": "keybinding",
+        "default": "<Super>g",
+        "description": "Global Hotkey for gTile",
+        "value": "<Super>q::"
+    },
+    "seperator1": {
+        "type": "separator"
+    },
+    "header1": {
+        "type": "header",
+        "description": "Button 1:"
+    },
+    "gridbutton1x": {
+        "type": "spinbutton",
+        "indent": "true",
+        "default": 2,
+        "min": 1,
+        "max": 20,
+        "units": "x ",
+        "step": 1,
+        "description": "Cols ",
+        "value": 2
+    },
+    "gridbutton1y": {
+        "type": "spinbutton",
+        "indent": "true",
+        "default": 2,
+        "min": 1,
+        "max": 20,
+        "units": "y ",
+        "step": 1,
+        "description": "Rows",
+        "value": 2
+    },
+    "seperator2": {
+        "type": "separator"
+    },
+    "header2": {
+        "type": "header",
+        "description": "Button 2:"
+    },
+    "gridbutton2x": {
+        "type": "spinbutton",
+        "indent": "true",
+        "default": 3,
+        "min": 1,
+        "max": 20,
+        "units": "x ",
+        "step": 1,
+        "description": "Cols ",
+        "value": 3
+    },
+    "gridbutton2y": {
+        "type": "spinbutton",
+        "indent": "true",
+        "default": 2,
+        "min": 1,
+        "max": 20,
+        "units": "y ",
+        "step": 1,
+        "description": "Rows",
+        "value": 2
+    },
+    "seperator3": {
+        "type": "separator"
+    },
+    "header3": {
+        "type": "header",
+        "description": "Button 3:"
+    },
+    "gridbutton3x": {
+        "type": "spinbutton",
+        "indent": "true",
+        "default": 4,
+        "min": 1,
+        "max": 20,
+        "units": "x ",
+        "step": 1,
+        "description": "Cols ",
+        "value": 6
+    },
+    "gridbutton3y": {
+        "type": "spinbutton",
+        "indent": "true",
+        "default": 4,
+        "min": 1,
+        "max": 20,
+        "units": "y ",
+        "step": 1,
+        "description": "Rows",
+        "value": 4
+    },
+    "seperator4": {
+        "type": "separator"
+    },
+    "header4": {
+        "type": "header",
+        "description": "Button 4:"
+    },
+    "gridbutton4x": {
+        "type": "spinbutton",
+        "indent": "true",
+        "default": 6,
+        "min": 1,
+        "max": 20,
+        "units": "x ",
+        "step": 1,
+        "description": "Cols ",
+        "value": 6
+    },
+    "gridbutton4y": {
+        "type": "spinbutton",
+        "indent": "true",
+        "default": 6,
+        "min": 1,
+        "max": 20,
+        "units": "y ",
+        "step": 1,
+        "description": "Rows",
+        "value": 6
+    },
+    "seperator5": {
+        "type": "separator"
+    },
+    "autoclose": {
+        "type": "checkbox",
+        "default": "true",
+        "description": "Auto-Close",
+        "value": "true"
+    },
+    "animation": {
+        "type": "checkbox",
+        "default": "true",
+        "description": "Animation",
+        "value": "true"
+    },
+    "lastGridCols": {
+        "type": "generic",
+        "default": 4,
+        "value": 4
+    },
+    "lastGridRows": {
+        "type": "generic",
+        "default": 4,
+        "value": 6
+    },
+    "__md5__": "1c6674fd3fdd5938efee40a30d634959"
+}
