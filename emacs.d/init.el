@@ -5802,7 +5802,7 @@ will become the only window."
 ;;;;; GUI:
 
 (defvar gk-preferred-themes '( :light modus-operandi
-                               :dark zenburn
+                               :dark wombat
                                ;; just being explicit...
                                :no-preference nil)
   "Light and dark theme preferences.")
@@ -5988,9 +5988,9 @@ new frame is created."
   (set-face-attribute 'hl-paren-face nil :underline t :bold t)
 
   ;; Adapts ‘highlight-parentheses-mode’ colours to theme.
-  (let ((c (if (eq gk-gui-theme 'zenburn)
-               "#ff4500"                ;orange red
-             (face-attribute 'font-lock-keyword-face :foreground))))
+  (let ((c (cond ((eq gk-gui-theme 'zenburn) "#ff4500") ;orange red
+                 ((eq gk-gui-theme 'wombat)  "#b22222") ;firebrick
+                 (t (face-attribute 'font-lock-keyword-face :foreground)))))
     (setf hl-paren-colors
           (list
            (color-lighten-name c 10)
