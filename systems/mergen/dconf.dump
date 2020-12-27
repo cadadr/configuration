@@ -212,7 +212,7 @@ idle-delay=uint32 900
 
 [org/cinnamon/desktop/sound]
 event-sounds=false
-maximum-volume=100
+maximum-volume=150
 
 [org/cinnamon/desktop/wm/preferences]
 action-scroll-titlebar='opacity'
