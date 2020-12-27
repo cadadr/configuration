@@ -47,6 +47,10 @@ stupid bullshit.  I’ve tried aliases to no avail.
 
     # aa-complain usr.bin.msmtp
 
+Disable PulseAudio power management:
+
+    # sed -i -E 's/^(load-module module-suspend-on-idle)$/# \1/' /etc/pulse/default.pa
+
 Finally, we'll enable the GRUB menu with a sensible timeout and
 configure resume from hibernation.
 
