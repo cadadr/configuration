@@ -171,10 +171,10 @@
             "org.gnome.Terminal.desktop",
             "gnome-system-monitor.desktop",
             "whatsappdesktop.desktop",
-            "spotify.desktop",
             "mintupdate.desktop",
             "blueberry.desktop",
-            "steam.desktop"
+            "steam.desktop",
+            "com.spotify.Client.desktop"
         ]
     },
     "group-apps": {
