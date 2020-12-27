@@ -15,7 +15,7 @@
         "description": "Show Loop and Shuffle controls",
         "dependency": "playerControl",
         "indent": true,
-        "value": false
+        "value": true
     },
     "keyOpen": {
         "type": "keybinding",
@@ -49,7 +49,7 @@
         "default": false,
         "description": "Show song information on the panel",
         "dependency": "playerControl",
-        "value": false
+        "value": true
     },
     "truncatetext": {
         "type": "spinbutton",
@@ -87,7 +87,7 @@
         "default": false,
         "description": "Show album art as icon",
         "dependency": "playerControl",
-        "value": false
+        "value": true
     },
     "keepAlbumAspectRatio": {
         "type": "switch",
