@@ -61,9 +61,10 @@ fi
 # R
 export R_LIBS_USER="$HOME/.local/share/R/site-library"
 
-# SystemD
-# Don't cut my fucking lines in half, you bastard.
+# SystemDee
+# Behave, you fuck.
 export SYSTEMD_PAGER=
+export SYSTEMD_COLORS=0
 
 # GNU Coreutils
 # Make numbered backups
