@@ -142,6 +142,7 @@ toolkit-accessibility=false
 
 [org/cinnamon/desktop/keybindings]
 custom-list=['custom2', 'custom1', 'custom0', 'custom3']
+looking-glass-keybinding=['<Super>d']
 
 [org/cinnamon/desktop/keybindings/custom-keybindings/custom0]
 binding=['<Super>w']
@@ -164,12 +165,23 @@ command="emacsclient -c -e '(deft)'"
 name='Start Deft search'
 
 [org/cinnamon/desktop/keybindings/media-keys]
+screensaver=['<Super>l', 'XF86ScreenSaver']
 terminal=@as []
 video-outputs=['XF86Display']
 
 [org/cinnamon/desktop/keybindings/wm]
+maximize=@as []
+minimize=['<Super>Down']
+push-tile-down=@as []
+push-tile-up=@as []
+show-desktop=@as []
+switch-to-workspace-1=@as []
+switch-to-workspace-2=@as []
 switch-to-workspace-left=['<Shift><Super>Tab']
 switch-to-workspace-right=['<Super>Tab']
+toggle-above=['<Super>t']
+toggle-maximized=['<Super>Up']
+toggle-on-all-workspaces=['<Super>a']
 
 [org/cinnamon/desktop/media-handling]
 automount=false
