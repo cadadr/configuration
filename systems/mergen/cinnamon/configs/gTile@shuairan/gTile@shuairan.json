@@ -54,7 +54,7 @@
         "units": "x ",
         "step": 1,
         "description": "Cols ",
-        "value": 3
+        "value": 5
     },
     "gridbutton2y": {
         "type": "spinbutton",
@@ -65,7 +65,7 @@
         "units": "y ",
         "step": 1,
         "description": "Rows",
-        "value": 2
+        "value": 1
     },
     "seperator3": {
         "type": "separator"
@@ -83,7 +83,7 @@
         "units": "x ",
         "step": 1,
         "description": "Cols ",
-        "value": 6
+        "value": 5
     },
     "gridbutton3y": {
         "type": "spinbutton",
@@ -94,7 +94,7 @@
         "units": "y ",
         "step": 1,
         "description": "Rows",
-        "value": 4
+        "value": 2
     },
     "seperator4": {
         "type": "separator"
@@ -123,7 +123,7 @@
         "units": "y ",
         "step": 1,
         "description": "Rows",
-        "value": 6
+        "value": 8
     },
     "seperator5": {
         "type": "separator"
@@ -143,12 +143,12 @@
     "lastGridCols": {
         "type": "generic",
         "default": 4,
-        "value": 4
+        "value": 2
     },
     "lastGridRows": {
         "type": "generic",
         "default": 4,
-        "value": 6
+        "value": 5
     },
     "__md5__": "1c6674fd3fdd5938efee40a30d634959"
 }
