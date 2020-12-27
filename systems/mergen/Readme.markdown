@@ -54,7 +54,7 @@ Disable PulseAudio power management:
 Finally, we'll enable the GRUB menu with a sensible timeout and
 configure resume from hibernation.
 
-    # cat boot-setup.bash
+    # bash boot-setup.bash
 
 Now it's time to go back to repo root and run `make setup` or
 similar, while still on the virtual console.  It might be opportune
