@@ -109,7 +109,7 @@ picture-options='zoom'
 
 [org/cinnamon/desktop/background/slideshow]
 delay=5
-image-source='directory:///home/g/Pictures/wlp/simpledesktops.com'
+image-source='xml:///usr/share/cinnamon-background-properties/linuxmint-ulyana.xml'
 random-order=true
 slideshow-enabled=true
 
