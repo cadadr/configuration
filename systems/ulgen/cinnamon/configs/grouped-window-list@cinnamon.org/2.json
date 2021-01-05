@@ -165,7 +165,7 @@
         ],
         "value": [
             "emacs.desktop",
-            "zotero.desktop",
+            "firefox.desktop",
             "org.qutebrowser.qutebrowser.desktop",
             "nemo.desktop",
             "org.gnome.Terminal.desktop",
@@ -173,8 +173,7 @@
             "whatsappdesktop.desktop",
             "spotify.desktop",
             "mintupdate.desktop",
-            "blueberry.desktop",
-            "steam.desktop"
+            "blueberry.desktop"
         ]
     },
     "group-apps": {
