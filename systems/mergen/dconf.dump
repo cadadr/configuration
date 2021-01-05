@@ -131,8 +131,8 @@ cursor-blink-time=1200
 cursor-size=24
 cursor-theme='DMZ-Black'
 gtk-overlay-scrollbars=true
-gtk-theme='Mint-Y-Dark-Teal'
-icon-theme='Mint-Y-Dark-Teal'
+gtk-theme='Mint-Y-Aqua'
+icon-theme='Mint-Y-Dark-Aqua'
 keyboard-layout-prefer-variant-names=false
 keyboard-layout-show-flags=false
 keyboard-layout-use-upper=true
@@ -222,8 +222,8 @@ focus-mode='sloppy'
 focus-new-windows='smart'
 min-window-opacity=30
 mouse-button-modifier='<Super>'
-theme='Mint-Y-Dark'
-workspace-names=['home', 'away', 'reading']
+theme='Mint-Y'
+workspace-names=['home']
 
 [org/cinnamon/muffin]
 attach-modal-dialogs=false
@@ -259,7 +259,7 @@ tap-to-click=false
 touchpad-enabled=true
 
 [org/cinnamon/settings-daemon/peripherals/touchscreen]
-orientation-lock=true
+orientation-lock=false
 
 [org/cinnamon/settings-daemon/plugins/power]
 button-power='suspend'
@@ -284,7 +284,7 @@ tile-enabled=false
 unplug-enabled=false
 
 [org/cinnamon/theme]
-name='Mint-Y-Dark-Teal'
+name='Mint-Y-Aqua'
 theme-cache-updated=1606583546
 
 [org/gnome/baobab/ui]
@@ -516,6 +516,8 @@ statusbar-visible=true
 bottom-panel-size=140
 side-panel-active-page=827629879
 side-panel-size=200
+
+[org/x/reader]
 
 [org/x/viewer/view]
 background-color='rgb(0,0,0)'
