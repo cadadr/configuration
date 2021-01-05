@@ -36,7 +36,8 @@
             "vlc",
             "rhythmbox",
             "io.github.celluloid_player.Celluloid",
-            "spotify"
+            "spotify",
+            "firefox"
         ]
     },
     "section2": {
