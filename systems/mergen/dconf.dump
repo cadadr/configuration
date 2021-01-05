@@ -70,7 +70,7 @@ enable-vfade=false
 enabled-applets=['panel1:left:0:menu@cinnamon.org:0', 'panel1:left:1:show-desktop@cinnamon.org:1', 'panel1:left:2:grouped-window-list@cinnamon.org:2', 'panel1:right:2:systray@cinnamon.org:3', 'panel1:right:3:xapp-status@cinnamon.org:4', 'panel1:right:4:notifications@cinnamon.org:5', 'panel1:right:5:printers@cinnamon.org:6', 'panel1:right:6:removable-drives@cinnamon.org:7', 'panel1:right:7:keyboard@cinnamon.org:8', 'panel1:right:8:network@cinnamon.org:9', 'panel1:right:9:sound@cinnamon.org:10', 'panel1:right:10:power@cinnamon.org:11', 'panel1:right:12:calendar@cinnamon.org:12', 'panel1:right:1:workspace-switcher@cinnamon.org:13', 'panel1:right:11:inhibit@cinnamon.org:15']
 enabled-desklets=@as []
 enabled-extensions=['gTile@shuairan']
-hotcorner-layout=['expo:false:0', 'expo:false:0', 'expo:true:0', 'desktop:false:0']
+hotcorner-layout=['rofi -show window:false:0', 'scale:true:0', 'expo:false:0', 'expo:true:0']
 next-applet-id=16
 panel-edit-mode=false
 panel-zone-icon-sizes='[{"panelId":1,"left":0,"center":0,"right":24}]'
@@ -141,7 +141,7 @@ text-scaling-factor=1.0
 toolkit-accessibility=false
 
 [org/cinnamon/desktop/keybindings]
-custom-list=['custom2', 'custom1', 'custom0', 'custom3']
+custom-list=['custom2', 'custom1', 'custom0', 'custom3', 'custom4']
 looking-glass-keybinding=['<Super>d']
 
 [org/cinnamon/desktop/keybindings/custom-keybindings/custom0]
@@ -164,6 +164,11 @@ binding=['<Super>j']
 command="emacsclient -c -e '(deft)'"
 name='Start Deft search'
 
+[org/cinnamon/desktop/keybindings/custom-keybindings/custom4]
+binding=['<Alt>Tab']
+command='rofi -show window'
+name='Rofi Window Switcher'
+
 [org/cinnamon/desktop/keybindings/media-keys]
 screensaver=['<Super>l', 'XF86ScreenSaver']
 terminal=@as []
@@ -175,10 +180,15 @@ minimize=['<Super>Down']
 push-tile-down=@as []
 push-tile-up=@as []
 show-desktop=@as []
+switch-group=['<Shift><Super>Page_Down']
+switch-group-backward=['<Shift><Super>Page_Up']
 switch-to-workspace-1=@as []
 switch-to-workspace-2=@as []
+switch-to-workspace-down=['<Super>Tab']
 switch-to-workspace-left=['<Shift><Super>Tab']
-switch-to-workspace-right=['<Super>Tab']
+switch-to-workspace-right=@as []
+switch-windows=['<Super>Page_Down']
+switch-windows-backward=['<Super>Page_Up']
 toggle-above=['<Super>t']
 toggle-maximized=['<Super>Up']
 toggle-on-all-workspaces=['<Super>a']
