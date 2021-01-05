@@ -4661,31 +4661,23 @@ modified slightly before it’s used e.g. when posting to Reddit."
 (defalias 'org-release-buffers #'ignore)
 
 (define-advice org-agenda-switch-to
-    (:around (fn &rest args) in-other-window)
+    (:around (fn arg) in-other-window)
   "Show the buffer in a bottom side window and switch to it."
+  (interactive "P")
   (let (buf ret pos)
     (setq buf (save-window-excursion
-                (setq ret (apply fn args)
+                (setq ret (funcall fn)
                       pos (point))
                 (message (buffer-name))
                 (current-buffer)))
-    (display-buffer-in-side-window buf '((side . bottom)))
+    (if arg
+        (display-buffer buf)
+      (display-buffer-in-side-window buf '((side . bottom))))
     (select-window (get-buffer-window buf))
     (goto-char pos)
     (org-back-to-heading)
     (recenter-top-bottom 0)
     ret))
-
-(define-advice org-agenda-goto
-    (:around (fn &rest args) display-here)
-  "Display buffer in current window, unless called with prefix arg."
-  (if current-prefix-arg
-      (funcall fn args)
-   (let (buf)
-     (save-window-excursion
-       (funcall fn args)
-       (setq buf (current-buffer)))
-     (display-buffer buf))))
 
 (setf
  ;; Don't show done items.
