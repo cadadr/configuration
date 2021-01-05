@@ -6276,8 +6276,8 @@ An adaptation and simplification of ‘mode-line-modes’.")
 
 (diminish 'goto-address-mode "⚓")
 
-;; RET on an adress follows it.
-(define-key goto-address-highlight-keymap (kbd "RET") #'goto-address-at-point)
+;; C-Return on an adress follows it.
+(define-key goto-address-highlight-keymap (kbd "<C-return>") #'goto-address-at-point)
 
 
 
