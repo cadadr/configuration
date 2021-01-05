@@ -5153,7 +5153,8 @@ numerals which regularly appear in texts."
   "Set up how an Org buffer look."
   ;; (valign-mode +1)
   (set-face-attribute 'org-footnote nil :underline nil)
-  (setq-local truncate-lines t))
+  ;; (setq-local truncate-lines t)
+  )
 
 (add-hook 'org-mode-hook 'gk-org-visuals-hook)
 

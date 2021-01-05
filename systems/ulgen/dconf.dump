@@ -109,7 +109,7 @@ picture-options='zoom'
 
 [org/cinnamon/desktop/background/slideshow]
 delay=5
-image-source='directory:///home/g/Pictures/wlp/simpledesktops.com'
+image-source='xml:///usr/share/cinnamon-background-properties/linuxmint-ulyana.xml'
 random-order=true
 slideshow-enabled=true
 
@@ -192,7 +192,7 @@ maximum-volume=150
 [org/cinnamon/desktop/wm/preferences]
 action-scroll-titlebar='none'
 auto-raise=false
-button-layout=':minimize,maximize,close'
+button-layout='close:minimize,maximize'
 focus-mode='sloppy'
 focus-new-windows='smart'
 min-window-opacity=30
@@ -493,3 +493,5 @@ side-panel-size=200
 [org/x/viewer/view]
 background-color='rgb(0,0,0)'
 use-background-color=true
+
+[org/x/viewer/window]
