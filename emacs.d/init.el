@@ -4737,8 +4737,8 @@ modified slightly before it’s used e.g. when posting to Reddit."
                      (buffer-substring (point-min) (point-max))))
                  (org-agenda-skip-function '(org-agenda-skip-entry-if 'deadline))
                  (org-deadline-warning-days 0)
-                 (org-agenda-sorting-strategy '(priority-down
-                                                time-up
+                 (org-agenda-sorting-strategy '(time-up
+                                                priority-down
                                                 category-up
                                                 deadline-up
                                                 scheduled-up
