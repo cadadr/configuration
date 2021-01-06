@@ -151,6 +151,7 @@
 (require 'org-inlinetask)
 (require 'org-mobile)
 (require 'org-num)
+(require 'org-phscroll)
 (require 'org-protocol)
 (require 'org-tempo)                    ; <s, <q &c
 (require 'org-variable-pitch)
