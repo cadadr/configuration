@@ -7270,6 +7270,7 @@ Does various tasks after saving a file, see it's definition."
 (gk-global-binding [mouse-9] #'scroll-up-command)
 
 (gk-prefix-binding "x" #'gk-maximize)
+(gk-prefix-binding (kbd "C-f") #'gk-flip)
 
 
 
