@@ -13,6 +13,8 @@ width=600
 show-warning=false
 window-is-maximized=false
 
+[com/github/maoschanz/drawing]
+
 [com/linuxmint/install]
 flatpak-remotes=['flathub::https://dl.flathub.org/repo/::False']
 search-in-description=true
@@ -94,7 +96,7 @@ workspace-osd-y=50
 quit-time-delay=60
 
 [org/cinnamon/desktop/a11y/applications]
-screen-keyboard-enabled=false
+screen-keyboard-enabled=true
 screen-reader-enabled=false
 
 [org/cinnamon/desktop/a11y/keyboard]
@@ -138,11 +140,12 @@ keyboard-layout-show-flags=false
 keyboard-layout-use-upper=true
 scaling-factor=uint32 0
 text-scaling-factor=1.0
-toolkit-accessibility=false
+toolkit-accessibility=true
 
 [org/cinnamon/desktop/keybindings]
-custom-list=['custom2', 'custom1', 'custom0', 'custom3', 'custom4']
-looking-glass-keybinding=['<Super>d']
+custom-list=['custom4', 'custom3', 'custom0', 'custom1', 'custom2']
+looking-glass-keybinding=['<Super>grave']
+show-desklets=@as []
 
 [org/cinnamon/desktop/keybindings/custom-keybindings/custom0]
 binding=['<Super>w']
@@ -155,7 +158,7 @@ command='passmenu.sh'
 name='Pass menu'
 
 [org/cinnamon/desktop/keybindings/custom-keybindings/custom2]
-binding=['<Super>r']
+binding=['<Super>q']
 command='qrclip.sh'
 name='Clipboard to QR Code'
 
@@ -165,33 +168,56 @@ command="emacsclient -c -e '(deft)'"
 name='Start Deft search'
 
 [org/cinnamon/desktop/keybindings/custom-keybindings/custom4]
-binding=['<Alt>Tab']
+binding=['Search']
 command='rofi -show window'
 name='Rofi Window Switcher'
 
 [org/cinnamon/desktop/keybindings/media-keys]
-screensaver=['<Super>l', 'XF86ScreenSaver']
-terminal=@as []
+hibernate=['<Super>h', 'XF86Hibernate']
+logout=@as []
+restart-cinnamon=['<Super>g']
+screensaver=['<Super>x', 'XF86ScreenSaver']
+search=@as []
+shutdown=['XF86PowerOff']
+terminal=['<Super>Return']
 video-outputs=['XF86Display']
+video-rotation-lock=@as []
 
 [org/cinnamon/desktop/keybindings/wm]
+activate-window-menu=@as []
+begin-move=['<Super>m']
+begin-resize=@as []
+close=['<Super>k']
 maximize=@as []
 minimize=['<Super>Down']
+move-to-center=['<Super>l']
+move-to-workspace-1=['<Shift><Super>F1']
+move-to-workspace-2=['<Shift><Super>F2']
+move-to-workspace-3=['<Shift><Super>F3']
+move-to-workspace-4=['<Shift><Super>F4']
+move-to-workspace-left=@as []
+move-to-workspace-right=@as []
+panel-run-dialog=['<Super>r']
 push-tile-down=@as []
 push-tile-up=@as []
-show-desktop=@as []
-switch-group=['<Shift><Super>Page_Down']
-switch-group-backward=['<Shift><Super>Page_Up']
-switch-to-workspace-1=@as []
-switch-to-workspace-2=@as []
-switch-to-workspace-down=['<Super>Tab']
-switch-to-workspace-left=['<Shift><Super>Tab']
+show-desktop=['<Super>d']
+switch-group=['<Shift><Super>f']
+switch-group-backward=['<Shift><Super>b']
+switch-to-workspace-1=['<Super>F1']
+switch-to-workspace-2=['<Super>F2']
+switch-to-workspace-3=['<Super>F3']
+switch-to-workspace-4=['<Super>F4']
+switch-to-workspace-down=['<Alt><Super>space']
+switch-to-workspace-left=@as []
 switch-to-workspace-right=@as []
-switch-windows=['<Super>Page_Down']
-switch-windows-backward=['<Super>Page_Up']
+switch-to-workspace-up=['<Shift><Super>space']
+switch-windows=['<Super>f', '<Super>Tab']
+switch-windows-backward=['<Shift><Super>Tab', '<Super>b']
 toggle-above=['<Super>t']
+toggle-fullscreen=['<Super>F11']
 toggle-maximized=['<Super>Up']
 toggle-on-all-workspaces=['<Super>a']
+unmaximize=@as []
 
 [org/cinnamon/desktop/media-handling]
 automount=false
@@ -327,7 +353,7 @@ video-x-resolution=1280
 video-y-resolution=720
 
 [org/gnome/desktop/a11y/applications]
-screen-keyboard-enabled=false
+screen-keyboard-enabled=true
 screen-reader-enabled=false
 
 [org/gnome/desktop/a11y/mouse]
@@ -342,7 +368,7 @@ show-weekdate=false
 
 [org/gnome/desktop/interface]
 monospace-font-name='Monospace 10'
-toolkit-accessibility=false
+toolkit-accessibility=true
 
 [org/gnome/desktop/privacy]
 disable-microphone=false
@@ -373,7 +399,7 @@ recreate-folders=true
 skip-newer=false
 
 [org/gnome/file-roller/dialogs/new]
-default-extension='.tar.gz'
+default-extension='.zip'
 encrypt-header=false
 volume-size=0
 
@@ -399,6 +425,7 @@ last-save-directory='file:///home/g/Pictures'
 [org/gnome/gnome-system-monitor]
 show-dependencies=false
 show-whose-processes='user'
+swap-color='rgb(78,154,6)'
 
 [org/gnome/gnome-system-monitor/disktreenew]
 col-6-visible=true
@@ -484,6 +511,8 @@ use-theme-colors=true
 use-theme-transparency=false
 visible-name='cadadr'
 
+[org/gtk/settings/color-chooser]
+
 [org/gtk/settings/file-chooser]
 date-format='regular'
 show-hidden=false
@@ -491,7 +520,7 @@ show-size-column=true
 show-type-column=true
 sort-column='name'
 sort-directories-first=true
-sort-order='descending'
+sort-order='ascending'
 type-format='category'
 
 [org/nemo/desktop]
@@ -528,6 +557,9 @@ side-panel-active-page=827629879
 side-panel-size=200
 
 [org/x/reader]
+
+[org/x/viewer/ui]
+sidebar=false
 
 [org/x/viewer/view]
 background-color='rgb(0,0,0)'
