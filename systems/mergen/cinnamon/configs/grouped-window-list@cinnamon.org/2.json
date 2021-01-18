@@ -174,7 +174,8 @@
             "mintupdate.desktop",
             "blueberry.desktop",
             "steam.desktop",
-            "com.spotify.Client.desktop"
+            "telegramdesktop.desktop",
+            "com.spotify.Client.desktop:flatpak"
         ]
     },
     "group-apps": {
