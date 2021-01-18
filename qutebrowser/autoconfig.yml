@@ -64,7 +64,7 @@ settings:
   colors.keyhint.bg:
     global: rgba(0, 0, 0, 100%)
   completion.delay:
-    global: 1500
+    global: 0
   content.autoplay:
     global: false
   content.canvas_reading:
