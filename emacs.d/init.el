@@ -5608,7 +5608,7 @@ will become the only window."
 ;; the window, and ‘N’ and ‘P’ navigates images wihout resizing.
 
 (define-obsolete-function-alias 'gk-fit-image-to-window
-  'image-transform-fit-both)
+  'image-transform-fit-both "idk (g@)")
 
 (define-key image-mode-map "=" #'gk-fit-image-to-window)
 (define-key image-mode-map "n" (gk-interactively
