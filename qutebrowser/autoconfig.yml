@@ -54,6 +54,7 @@ settings:
         ',z': save-to-zotero
         .: nop
         D: hint links userscript ~/.config/qutebrowser/userscripts/doi
+        b: set-cmd-text -s :buffer
         co: null
         d: spawn -u ~/.config/qutebrowser/userscripts/doi
         g1: tab-focus 1
