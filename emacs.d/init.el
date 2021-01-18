@@ -138,7 +138,6 @@
 (require 'markdown-mode)
 (require 'message)
 (require 'mm-url)
-(require 'mu4e)
 (require 'multiple-cursors)
 (require 'netrc)
 (require 'nnfolder)
@@ -2006,49 +2005,6 @@ Useful when using dired-subtree."
 
 
 
-;;;;; Unicode input minor mode (obsolete?):
-
-(defvar gk-ucins-entry-mode-map
-  (make-sparse-keymap))
-
-(define-minor-mode gk-ucins-entry-mode
-  "Minor mode for definition of some shortcuts for UTF8 characters."
-  nil " Ucins"
-  gk-ucins-entry-mode-map)
-
-(defvar gk-ucins-combining-diacritic-keybindings-alist nil)
-(defvar gk-ucins-combining-diacritic-keybindings-prefix nil)
-(defvar gk-ucins-character-shortcuts-alist nil)
-(defvar gk-ucins-character-shortcuts-prefix nil)
-
-(defun gk-ucins-set-bindings (prefix binding-alist)
-  "Set Ucins bindings.
-
-Use PREFIX as prefix key.
-Bindings come from BINDING-ALIST."
-  (dolist (i binding-alist)
-    (let* ((key (car i))
-           (char (cdr i))
-           (binding (concat prefix " " key))
-           (fun `(lambda ()
-                   (interactive)
-                   (insert-char ,char))))
-      (define-key gk-ucins-entry-mode-map
-        (kbd binding) (eval fun)))))
-
-(defun gk-ucins--update-hook ()
-  "Hook for updating Ucins binding definitions."
-  (gk-ucins-set-bindings
-   gk-ucins-character-shortcuts-prefix
-   gk-ucins-character-shortcuts-alist)
-  (gk-ucins-set-bindings
-   gk-ucins-combining-diacritic-keybindings-prefix
-   gk-ucins-combining-diacritic-keybindings-alist))
-
-(add-hook 'gk-ucins-entry-mode-hook #'gk-ucins--update-hook)
-
-
-
 ;;;;; Utilites:
 
 (defun gk-join-nl ()
@@ -2235,7 +2191,6 @@ will receive the region if active, or the entire buffer."
 ;; Settings common to all major/minor modes that edit text.
 
 (diminish 'visual-line-mode "¬")
-(diminish 'gk-ucins-entry-mode)
 (diminish 'olivetti-mode "𝍌")
 ;; i.e. ‘auto-fill-mode’, but diminish does not like that.
 (diminish 'auto-fill-function "=")
@@ -2246,7 +2201,6 @@ will receive the region if active, or the entire buffer."
   "Hook for `text-mode'."
   (setq-local truncate-lines nil)
   (visual-line-mode 1)
-  (gk-ucins-entry-mode 1)
   (set-input-method default-input-method)
   (olivetti-mode 1)
   (setq indent-tabs-mode nil)
@@ -2359,40 +2313,6 @@ backwards."
     ;; namely English.
     (when im
       (setcdr im "unilat-gk"))))
-
-
-
-;;;;; Unicode input minor mode configuration:
-
-;; This section configures the Unicode entry minor mode from above.
-
-(setf gk-ucins-combining-diacritic-keybindings-alist
-      '(("," . 807) ; COMBINING CEDILLA
-        ("p" . 801) ; COMBINING PALATALIZED HOOK BELOW
-        ("-" . 772) ; COMBINING MACRON
-        (":" . 776) ; COMBINING DIAERESIS
-        ))
-
-(setf gk-ucins-character-shortcuts-alist
-      '(("s" . ?ʃ) ; IPA Voiceless palato-alveolar sibilan fricative
-        ("z" . ?ʒ) ; IPA Voiced palato-alveolar sibilan fricative
-        ("!" . ?ʔ) ; IPA Glottal stop
-        ("v" . ?✓)
-        ("x" . ?❌)
-        ("n" . ?№)
-        ("h" . ?♥)
-        ("t" . ?₺)
-        ("+" . ?±)
-        ("S" . ?§)
-        ("P" . ?¶)
-        ))
-
-(setf gk-ucins-character-shortcuts-prefix
-      "C-c 8")
-(setf gk-ucins-combining-diacritic-keybindings-prefix
-      gk-ucins-character-shortcuts-prefix)
-
-(add-hook 'gk-minor-mode-hook #'gk-ucins-entry-mode)
 
 
 
@@ -2568,7 +2488,6 @@ file extension.")
         pixel-scroll-mode))
 
 ;; Diminish global modes that are always on.
-(diminish 'gk-ucins-entry-mode)
 (diminish 'whole-line-or-region-mode)
 (diminish 'buffer-face-mode "☺")
 (diminish 'which-key-mode "⁈")
@@ -3925,81 +3844,6 @@ Wonder why this is not the default."
 
 
 
-;;;;; Mu4e:
-
-(define-advice mu4e-make-temp-file
-    (:override (ext) fuck-you-mu4e-dont-delete-my-tmpfiles)
-  "Create a temporary file with extension EXT.
-
-The file will *not* self-destruct in a few seconds, because why
-the fuck?"
-  (let* ((temporary-file-directory (expand-file-name "tmp" gk-mail-home))
-         (tmpfile (make-temp-file "mu4e-" nil (concat "." ext))))
-    tmpfile))
-
-(setq
- mu4e-maildir       "~/posta"     ;; top-level Maildir
- mu4e-sent-folder   "/sent"       ;; folder for sent messages
- mu4e-drafts-folder "/drafts"     ;; unfinished messages
- mu4e-trash-folder  "/trash"      ;; trashed messages
- mu4e-refile-folder "/maildir"    ;; saved messages
-
- mu4e-bookmarks
- (let* ((unread
-         "flag:unread AND NOT flag:trashed")
-        (mailing-list
-         ($ [l k] (list (concat "maildir:/lists/" l "/ AND " unread)
-                        (concat "Unread messages in " l)
-                        k))))
-
-   `((,(concat
-        unread
-        " AND NOT maildir:/lists/* AND NOT maildir:/github/")
-      "Unread messages in inbox" ?i)
-     (,(concat unread " AND maildir:/lists/*")
-      "Unread messages in mailing lists" ?l)
-     (,(concat unread " AND maildir:/github/")
-      "Unread Github notifications" ?g)
-     (,unread "All unread messages" ?u)
-
-     ;; ,(funcall mailing-list "emacs-devel" ?e)
-     ;; ,(funcall mailing-list "help-gnu-emacs" ?h)
-
-     ("date:today..now" "Today's messages" ?t)
-
-     ("date:7d..now" "Last 7 days" ?w)))
-
- mu4e-get-mail-command "mpop -Q -a"
-
- ;; No fuss please, dwim.
- mu4e-confirm-quit nil
- mu4e-headers-leave-behavior 'apply
-
- ;; Use mu4e to compose mail from links. See also:
- ;; <~/cf/candy/emacsclient-mailto.desktop>.
- ;; mail-user-agent 'mu4e-user-agent
-
- ;; Show email addresses b/c why the fuck not?
- mu4e-view-show-addresses t
-
- ;; Only include threads when I explicitly ask to do so. Otherwise
- ;; there’s just too much stuff to look at.
- mu4e-headers-include-related nil)
-
-(add-to-list 'mu4e-view-actions
-             '("ViewInBrowser" . mu4e-action-view-in-browser) t)
-
-
-(define-key mu4e-main-mode-map [?<] #'mu4e-update-mail-and-index)
-
-(defun gk-mu4e-view-mode-hook ()
-  (setq-local word-wrap t))
-
-(add-hook 'mu4e-view-mode-hook #'gk-mu4e-view-mode-hook)
-
-
-
-
 ;;;; Parse-time:
 
 ;; Add Turkish month and day names, mainly for ‘org-time-stamp’ and
@@ -4669,18 +4513,6 @@ modified slightly before it’s used e.g. when posting to Reddit."
 
 ;; Use system app to handle PDFs.
 (setcdr (assoc "\\.pdf\\'" org-file-apps) "okular %s")
-
-
-
-;;;;; Mobile (obsolete):
-
-(setf
- ;; Files to sync.
- org-mobile-files '("listeler.org")
- ;; Remote for org-mobile
- org-mobile-directory (gk-org-dir-file "mobile")
- ;; Buffer file for Android app
- org-mobile-inbox-for-pull (gk-org-dir-file "buffer.org"))
 
 
 
