@@ -792,6 +792,34 @@ Linguistics (2nd ed.). Oxford University Press."
     (raise-frame frame)))
 
 
+(defun gk-flip--1 (fn buf)
+  "Subroutine of ‘gk-flip’."
+  (delete-other-windows)
+  (funcall fn)
+  (other-window 1)
+  (switch-to-buffer buf)
+  (other-window 1))
+
+(defun gk-flip--2 (&rest dirs)
+  "Subroutine of ‘gk-flip’."
+  (when-let* ((w (cl-remove-if #'null (mapcar #'window-in-direction dirs))))
+    (apply #'window-buffer w)))
+
+(defun gk-flip ()
+  "Flip horizontal and vertical split when there are two windows."
+  (interactive)
+  (unless (= 2 (length (window-list)))
+    (user-error "Can’t flip unless there are exactly two windows"))
+  ;; Attempt flipping horizontal to vertical.
+  (if-let* ((other-buffer (gk-flip--2 'left 'right)))
+      (gk-flip--1 #'split-window-vertically
+                  other-buffer)
+    ;; If not possible, attempt vertical to horizontal.
+    (let* ((other-buffer (gk-flip--2 'above 'below)))
+      (gk-flip--1 #'split-window-horizontally
+                  other-buffer))))
+
+
 
 
 ;;;; Generic advices:
