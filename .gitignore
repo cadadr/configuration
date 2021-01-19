@@ -180,4 +180,5 @@ dotfiles/config/toot/config.json
 dotfiles/config/cinnamon-monitors.xml
 dotfiles/config/cef_user_data/Dictionaries/
 
+# mergen
 systems/mergen/xfce4/xfce4-screenshooter
