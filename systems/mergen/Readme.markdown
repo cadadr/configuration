@@ -33,7 +33,7 @@ After this, you might want to install documentation for the installed
 packages.  There is a script for that:
 
     # sh ../../lib/install-doc-packages.sh
-  
+
 This will inspect the dpkg database and find out all the relevant
 `-doc` packages, and install them.
 

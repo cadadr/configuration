@@ -4,12 +4,16 @@ This tree contains system-level configurations specific to my computers.
 
 ## `mergen`: desktop workstation
 
-TBD.
+A Linux Mint Cinnamon based desktop workstation.  Someday might be
+ported to GuixSD or NixOS.
+
+`ulgen` and `mergen` should be mostly compatible.
 
 ## `ulgen`: laptop
 
-A Linux Mint based laptop setup.  I use Linux Mint here because manually
-configuring power management and plug-n-play is a PITA.
+A Linux Mint Cinnamon based laptop setup.  I use Linux Mint here
+because manually configuring power management and plug-n-play is a
+PITA.
 
 ## `ayata`: Raspberry Pi
 
