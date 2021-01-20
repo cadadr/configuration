@@ -5908,8 +5908,7 @@ new frame is created."
    ("\\*Help\\*" . (display-buffer-reuse-window))
    ("Checkdoc" . (display-buffer-pop-up-window))
    ("Calendar" . (display-buffer-in-side-window . ((side . bottom))))
-   ("help\\[R\\]" . (display-buffer-pop-up-window))
-   (".*" . (display-buffer-same-window)))
+   ("help\\[R\\]" . (display-buffer-pop-up-window)))
  ;; With C-v and M-v, scroll to beginning or end of buffer if at top
  ;; or bottom respectively, or if at beginning or end of buffer,
  ;; error.
