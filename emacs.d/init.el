@@ -2574,6 +2574,15 @@ For use in `add-log-current-defun-function'."
 
 (add-hook 'diff-mode-hook 'gk-diff-mode-hook)
 
+;; Ediff:
+
+(setf
+ ;; Single frame setup.
+ ediff-window-setup-function #'ediff-setup-windows-plain
+ ediff-split-window-function #'split-window-horizontally
+ ;; Use unified diffs for output.
+ ediff-custom-diff-options "-uNp")
+
 
 
 ;;;;; RCS:
