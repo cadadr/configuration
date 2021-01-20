@@ -3812,6 +3812,9 @@ This is the reverse counterpart of
 (define-key rmail-mode-map (kbd "<tab>") #'gk-rmail-forward-link-or-button)
 (define-key rmail-mode-map (kbd "<backtab>") #'gk-rmail-backward-link-or-button)
 
+;; Unbind this
+(define-key rmail-mode-map (kbd "C-M-f") nil)
+
 
 ;; ‘q’ is normally bound to ‘rmail-summary-quit’, which is simply
 ;; useless.
