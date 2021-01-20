@@ -3797,6 +3797,14 @@ This is the reverse counterpart of
 (dolist (f '(rmail-summary-previous-msg rmail-summary-next-msg))
  (advice-add f :around #'gk-ad-stay-here))
 
+(defun gk-rmail-mode-hook ()
+   (goto-address-mode +1)
+   (olivetti-mode +1)
+   (setq-local word-wrap t))
+
+(add-hook 'rmail-mode-hook #'gk-rmail-mode-hook)
+
+
 (define-key rmail-mode-map "<" #'gk-fetch-mail)
 (define-key rmail-mode-map "N" #'gk-rmail-advance)
 (define-key rmail-mode-map "S" #'gk-rmail-force-expunge-and-save)
@@ -3814,13 +3822,6 @@ This is the reverse counterpart of
 ;; Quick search
 (define-key rmail-mode-map "/" #'mairix-search)
 (define-key rmail-summary-mode-map "/" #'mairix-search)
-
-
-(add-hook
- 'rmail-mode-hook
- (defun gk-rmail-mode-hook ()
-   (goto-address-mode +1)
-   (setq-local word-wrap t)))
 
 
 
