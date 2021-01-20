@@ -5906,12 +5906,17 @@ new frame is created."
  pop-up-frames nil
  ;; Display buffers in current window.
  display-buffer-alist
- '(("\\*Quail Completions" . (display-buffer-in-side-window))
+ `(("\\*Quail Completions" . (display-buffer-in-side-window))
    ("\\*.*Completions\\*" . (display-buffer-in-side-window . ((side . bottom))))
    ("\\*Help\\*" . (display-buffer-reuse-window))
    ("Checkdoc" . (display-buffer-pop-up-window))
    ("Calendar" . (display-buffer-in-side-window . ((side . bottom))))
-   ("help\\[R\\]" . (display-buffer-pop-up-window)))
+   ("help\\[R\\]" . (display-buffer-pop-up-window))
+   (,($ [b _] (not (memq (buffer-local-value 'major-mode (get-buffer b))
+                         '(rmail-mode
+                           rmail-summary-mode))))
+    .
+    (display-buffer-same-window)))
  ;; With C-v and M-v, scroll to beginning or end of buffer if at top
  ;; or bottom respectively, or if at beginning or end of buffer,
  ;; error.
