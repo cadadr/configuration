@@ -3794,8 +3794,6 @@ This is the reverse counterpart of
         (goto-char (car (last positions)))
       (goto-char (car (last (cl-remove-if ($ (>= $1 p)) positions)))))))
 
-(dolist (f '(rmail-summary-previous-msg rmail-summary-next-msg))
- (advice-add f :around #'gk-ad-stay-here))
 
 (defun gk-rmail-mode-hook ()
    (goto-address-mode +1)
