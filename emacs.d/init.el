@@ -5998,6 +5998,33 @@ new frame is created."
  (windmove-delete-default-keybindings))
 
 
+(define-minor-mode gk-switch-window-minor-mode
+  "Simple minor mode for ‘switch-window’ keybindings.
+
+\\{gk-switch-window-minor-mode-map}"
+  nil ""
+  (let ((map (make-sparse-keymap)))
+    (prog1 map
+      (define-key map [remap other-window] #'switch-window)
+      (define-key map [remap delete-other-windows] #'switch-window-then-maximize)
+      (define-key map [remap split-window-below] #'switch-window-then-split-below)
+      (define-key map [remap split-window-right] #'switch-window-then-split-right)
+      (define-key map [remap delete-window] #'switch-window-then-delete)
+      (define-key map [remap dired-other-window] #'switch-window-then-dired)
+      (define-key map [remap find-file-other-window] #'switch-window-then-find-file)
+      (define-key map [remap compose-mail-other-window] #'switch-window-then-compose-mail)
+      (define-key map [remap find-file-read-only-other-window] #'switch-window-then-find-file-read-only)
+      (define-key map [remap display-buffer] #'switch-window-then-display-buffer)
+      (define-key map [remap kill-buffer-and-window] #'switch-window-then-kill-buffer)))
+  (if gk-switch-window-minor-mode
+      ;; Most notably makes ‘switch-window-auto-resize-window’ apply to
+      ;; mouse movement too, whether via clicking or ‘focus-follows-mouse’.
+      (switch-window-mouse-mode +1)
+    (switch-window-mouse-mode -1)))
+
+
+(define-globalized-minor-mode global-gk-switch-window-minor-mode
+  gk-switch-window-minor-mode gk-switch-window-minor-mode)
 
 (setf
  ;; Use alphanumeric shortcuts.
@@ -6012,10 +6039,6 @@ new frame is created."
  ;; when using the preponderant program predicted to be pronounced
  ;; precisely as EXWM.
  switch-window-input-style 'minibuffer)
-
-;; Most notably makes ‘switch-window-auto-resize-window’ apply to
-;; mouse movement too, whether via clicking or ‘focus-follows-mouse’.
-(cl-pushnew switch-window-mouse-mode gk-global-modes)
 
 
 
@@ -6223,11 +6246,30 @@ So that the reader knows where to continue reading."
 
 ;;;;; Ido and Smex:
 
-;; (cl-pushnew 'ido-mode gk-global-modes)
-;; (cl-pushnew 'ido-everywhere gk-global-modes)
-;; (cl-pushnew 'ido-vertical-mode gk-global-modes)
+(define-minor-mode gk-ido-smex-mode
+  "Minor mode to govern ‘ido-mode’ and ‘smex-mode’.
 
-;; (smex-initialize)
+\\{gk-ido-smex-mode-map}"
+  nil ""
+  (let ((map (make-sparse-keymap)))
+    (prog1 map
+      (define-key map [remap execute-extended-command] #'smex)
+      (define-key map (kbd (concat gk-minor-mode-prefix "M-x")) #'smex-major-mode-commands)
+      (define-key map (kbd (concat gk-minor-mode-prefix "C-M-x")) #'execute-extended-command)))
+  (if gk-ido-smex-mode
+      (progn
+        (ido-mode +1)
+        (ido-everywhere +1)
+        (ido-vertical-mode +1)
+        (smex-initialize))
+    (ido-mode -1)
+    (ido-everywhere -1)
+    (ido-vertical-mode -1)
+    ;; To revert ‘smex-initialize’ fully.
+    (remove-hook 'minibuffer-setup-hook 'ido-minibuffer-setup)))
+
+(define-globalized-minor-mode global-gk-ido-smex-mode
+  gk-ido-smex-mode gk-ido-smex-mode)
 
 (setf
  ido-use-filename-at-point nil
@@ -6237,16 +6279,14 @@ So that the reader knows where to continue reading."
  ;; Show in the current frame, change window's buffer if necessary.
  ido-default-buffer-method 'selected-window
  ;; Include ‘.’ in completions for opening directory via dired.
- ido-show-dot-for-dired t)
-
-(setf ido-enable-flex-matching t)
+ ido-show-dot-for-dired t
+ ido-enable-flex-matching t
+ ido-vertical-define-keys 'C-n-and-C-p-only)
 
 (add-hook
  'ido-minibuffer-setup-hook
  (defun gk-ido-disable-line-truncation ()
    (set (make-local-variable 'truncate-lines) nil)))
-
-(setq ido-vertical-define-keys 'C-n-and-C-p-only)
 
 
 
@@ -6965,28 +7005,6 @@ Does various tasks after saving a file, see it's definition."
 
 (define-key help-map "h" (gk-interactively "Go to the *Help* buffer"
                                            (display-buffer "*Help*")))
-
-;; Smex
-;; (gk-global-binding (kbd "M-x") #'smex)
-;; (gk-prefix-binding (kbd "M-x") #'smex-major-mode-commands)
-;; (gk-prefix-binding (kbd "C-M-x") #'execute-extended-command)
-
-;; switch-window
-(gk-global-binding (kbd "C-x o") #'switch-window)
-(gk-global-binding (kbd "C-x 1") #'switch-window-then-maximize)
-(gk-global-binding (kbd "C-x 2") #'switch-window-then-split-below)
-(gk-global-binding (kbd "C-x 3") #'switch-window-then-split-right)
-(gk-global-binding (kbd "C-x 0") #'switch-window-then-delete)
-
-(gk-global-binding (kbd "C-x 4 d") #'switch-window-then-dired)
-(gk-global-binding (kbd "C-x 4 f") #'switch-window-then-find-file)
-(gk-global-binding (kbd "C-x 4 m") #'switch-window-then-compose-mail)
-(gk-global-binding (kbd "C-x 4 r") #'switch-window-then-find-file-read-only)
-
-(gk-global-binding (kbd "C-x 4 C-f") #'switch-window-then-find-file)
-(gk-global-binding (kbd "C-x 4 C-o") #'switch-window-then-display-buffer)
-
-(gk-global-binding (kbd "C-x 4 0") #'switch-window-then-kill-buffer)
 
 (gk-global-binding (kbd "C-M-j") #'gk-deft)
 
