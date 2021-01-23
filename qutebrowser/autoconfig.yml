@@ -61,6 +61,7 @@ settings:
         g1: tab-focus 1
         gJ: tab-move +
         gK: tab-move -
+        gl: tab-focus last
         yh: hint all yank
   colors.keyhint.bg:
     global: rgba(0, 0, 0, 100%)
@@ -152,7 +153,7 @@ settings:
   tabs.position:
     global: bottom
   tabs.select_on_remove:
-    global: last-used
+    global: next
   tabs.show:
     global: multiple
   tabs.show_switching_delay:
