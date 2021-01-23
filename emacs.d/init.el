@@ -1757,6 +1757,33 @@ that instead."
                       '((side . bottom)))))
       (select-window win))))
 
+
+;; Adapted from: https://www.emacswiki.org/emacs/ShellDirtrackByProcfs
+(defun gk-procfs-dirtrack (str)
+  (prog1 str
+    (when (string-match comint-prompt-regexp str)
+      (let ((directory (file-symlink-p
+                        (format "/proc/%s/cwd"
+                                (process-id
+                                 (get-buffer-process
+                                  (current-buffer)))))))
+        (when (file-directory-p directory)
+          (cd directory))))))
+
+(define-minor-mode gk-procfs-dirtrack-mode
+  "Track shell directory by inspecting procfs."
+  nil nil nil
+  (cond (shell-procfs-dirtrack-mode
+         (when (bound-and-true-p shell-dirtrack-mode)
+           (shell-dirtrack-mode 0))
+         (when (bound-and-true-p dirtrack-mode)
+           (dirtrack-mode 0))
+         (add-hook 'comint-preoutput-filter-functions
+                   'gk-procfs-dirtrack nil t))
+        (t
+         (remove-hook 'comint-preoutput-filter-functions
+                      'gk-procfs-dirtrack t))))
+
 (defun gk-display-shell (arg)
   "Pop a shell in a side window.
 
@@ -1776,7 +1803,10 @@ that instead."
     (setq-local comint-process-echoes t))
   ;; Compilation shell minor mode activates certain parts of command
   ;; output as clickable links to parts of files (e.g. grep -Hn).
-  (compilation-shell-minor-mode 1))
+  (compilation-shell-minor-mode 1)
+  ;; ‘shell-dirtrack-mode’ fails a lot.
+  (shell-dirtrack-mode -1)
+  (gk-procfs-dirtrack-mode +1))
 
 (add-hook 'shell-mode-hook 'gk-shell-mode-hook)
 
