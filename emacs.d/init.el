@@ -5958,7 +5958,7 @@ new frame is created."
  focus-follows-mouse t
  ;; Focus follows mouse in Emacs too. Focus 100ms after the mouse
  ;; stops in a window.
- mouse-autoselect-window -0.1
+ ;; mouse-autoselect-window -0.1
  ;; Disable interaction with clipboard manager, can cause freezes.
  x-select-enable-clipboard-manager nil
  ;; Indicate unused lines at the end of the buffer with marks in left
