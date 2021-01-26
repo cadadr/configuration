@@ -6783,8 +6783,27 @@ It is rather slow to do so."
               " " t)))
       ;; If we’re not looking at a stored search, hide tags and don’t
       ;; limit title length.  Otherwise print the truncated title and
-      ;; include the filtered tags.
-      (cond ((and (string= (car f) "+unread")
+      ;; include the filtered tags.  Commit logs and VCS releases get
+      ;; special treatment.
+      (cond ((cl-member "logiciels" tags :test #'string=)
+             (setq-local word-wrap t)
+             (setq-local truncate-lines nil)
+             (let* ((url (elfeed-feed-url feed))
+                    (host (url-host (url-generic-parse-url url)))
+                    (path (url-filename (url-generic-parse-url url))))
+               (insert
+                (cond ((cl-member "commits" tags :test #'string=)  "Commit  ")
+                      ((cl-member "releases" tags :test #'string=) "Release ")
+                      (t                                           "News    ")))
+               (insert
+                (cond ((string= host "github.com")
+                       (format "gh:%-27s"
+                               (mapconcat #'identity (butlast (split-string path "/" t)) "/")))
+                      (t
+                       (format "%30s" url)))
+                " ")
+               (insert (propertize title 'face title-faces 'kbd-help title))))
+            ((and (string= (car f) "+unread")
                   (member (cadr f) gk-elfeed-search-ring-tags))
              (setq-local word-wrap t)
              (setq-local truncate-lines nil)
