@@ -397,25 +397,6 @@ When ARG is a positive number, repeat that many times."
         (replace-match "    "))
       (clipboard-kill-ring-save (point-min) (point-max)))))
 
-(defun gk-home ()
-  "Take me to the home view."
-  (interactive)
-  ;; Close side windows off first because they can’t be the only
-  ;; window.
-  (when (window-with-parameter 'window-side)
-    (window-toggle-side-windows))
-  (delete-other-windows)
-  (if (assoca 'gk-project-shell (frame-parameters))
-      (let* ((fparam (frame-parameters))
-             (vcs (assoca 'gk-project-vcs fparam))
-             (dir (assoca 'gk-project-dir fparam)))
-        (dired dir)
-        (split-window-sensibly)
-        (other-window 1)
-        (funcall vcs dir))
-    (other-window 1)
-    (gk-flash-current-line)))
-
 (defun gk-maybe-expand-abbrev-or-space ()
   (interactive)
   (when (null (expand-abbrev))
@@ -1380,6 +1361,60 @@ creating a new one."
    ($ (s-starts-with? "gk-" (symbol-name (car $1))))
    (frame-parameters)))
 
+;; Popup shell:
+(defun gk--get-shell-for-frame (&optional arg-for-shell frame)
+  "Get a shell for current frame, depending on whether it’s a project frame.
+
+Subroutine for ‘gk-pop-shell’ and ‘gk-display-shell’."
+  (save-window-excursion
+    (let ((prefix-arg arg-for-shell))
+      ;; If can find a project shell, show that
+      ;; instead.
+      (if-let* ((project-shell
+                 (ignore-errors
+                   (get-buffer
+                    (assoca
+                     'gk-project-shell (frame-parameters frame))))))
+          project-shell
+        (call-interactively #'shell)))))
+
+(defun gk-pop-shell (arg)
+  "Pop a shell in a side window.
+
+Pass arg to ‘shell’.  If already in a side window that displays a
+shell, toggle the side window.
+
+If there is a project shell associated to the frame, just show
+that instead."
+  (interactive "P")
+  (if (and (assoca 'window-side (window-parameters))
+           (equal major-mode 'shell-mode))
+      (window-toggle-side-windows)
+    (when-let* ((win (display-buffer-in-side-window
+                      (gk--get-shell-for-frame arg)
+                      '((side . bottom)))))
+      (select-window win))))
+
+;; Home view
+(defun gk-home ()
+  "Take me to the home view."
+  (interactive)
+  ;; Close side windows off first because they can’t be the only
+  ;; window.
+  (when (window-with-parameter 'window-side)
+    (window-toggle-side-windows))
+  (delete-other-windows)
+  (if (assoca 'gk-project-shell (frame-parameters))
+      (let* ((fparam (frame-parameters))
+             (vcs (assoca 'gk-project-vcs fparam))
+             (dir (assoca 'gk-project-dir fparam)))
+        (dired dir)
+        (split-window-sensibly)
+        (other-window 1)
+        (funcall vcs dir))
+    (other-window 1)
+    (gk-flash-current-line)))
+
 
 
 ;;;; i3wm:
@@ -1724,39 +1759,6 @@ Set locally the variable `outline-minor-mode-prefix' to PREFIX."
 
 
 ;;;;; Shell mode:
-(defun gk--get-shell-for-frame (&optional arg-for-shell frame)
-  "Get a shell for current frame, depending on whether it’s a project frame.
-
-Subroutine for ‘gk-pop-shell’ and ‘gk-display-shell’."
-  (save-window-excursion
-    (let ((prefix-arg arg-for-shell))
-      ;; If can find a project shell, show that
-      ;; instead.
-      (if-let* ((project-shell
-                 (ignore-errors
-                   (get-buffer
-                    (assoca
-                     'gk-project-shell (frame-parameters frame))))))
-          project-shell
-        (call-interactively #'shell)))))
-
-(defun gk-pop-shell (arg)
-  "Pop a shell in a side window.
-
-Pass arg to ‘shell’.  If already in a side window that displays a
-shell, toggle the side window.
-
-If there is a project shell associated to the frame, just show
-that instead."
-  (interactive "P")
-  (if (and (assoca 'window-side (window-parameters))
-           (equal major-mode 'shell-mode))
-      (window-toggle-side-windows)
-    (when-let* ((win (display-buffer-in-side-window
-                      (gk--get-shell-for-frame arg)
-                      '((side . bottom)))))
-      (select-window win))))
-
 
 ;; Adapted from: https://www.emacswiki.org/emacs/ShellDirtrackByProcfs
 (defun gk-procfs-dirtrack (str)
