@@ -11,6 +11,15 @@ DROPPRIVS=yes
 
 ### Rules:
 
+# Deal with duplicates
+# Adapted from http://ramblings.narrabilis.com/filtering-duplicate-emails-with-procmail
+#  and https://serverfault.com/questions/650023/#650040
+:0 Whc: msgid.lock
+| formail -D 8192 msgid.cache
+:0 a:
+duplicates
+
+
 # Catch-all
 :0:
 inbox
