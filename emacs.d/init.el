@@ -2421,13 +2421,26 @@ file extension.")
 
 ;;;;; Dictionary and spell checking:
 
-(setq-default ispell-program-name "aspell")
+;; Partially adapted from:
+;; https://200ok.ch/posts/2020-08-22_setting_up_spell_checking_with_multiple_dictionaries.html
 
-(defun gk-ispell-hook ()
+(setf ispell-program-name "hunspell"
+      ispell-dictionary "en_GB,tr_TR,it_IT"
+      ispell-personal-dictionary (dropbox "hunspell-personal-dictionary"))
+
+(defun gk-spellcheck-hook ()
   "Hook to start spell-check in buffers."
+  (ispell-set-spellchecker-params)
+  ;; This uses ‘cl-pushnew’ so it should be okay to call this multiple
+  ;; times.
+  (ispell-hunspell-add-multi-dic ispell-dictionary)
+  ;; The personal dictionary file has to exist, otherwise hunspell will
+  ;; silently not use it.
+  (unless (file-exists-p ispell-personal-dictionary)
+    (f-touch ispell-personal-dictionary))
   (flyspell-mode +1))
 
-;; (add-hook 'text-mode-hook 'gk-ispell-hook)
+(add-hook 'text-mode-hook 'gk-spellcheck-hook)
 
 
 
