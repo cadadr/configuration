@@ -49,7 +49,9 @@ settings:
         ',r': config-source
         ',s': org-storelink
         ',tb': set --temp tabs.position bottom
+        ',th': set --temp tabs.show never
         ',tl': set --temp tabs.position left
+        ',tm': set --temp tabs.show multiple
         ',tr': set --temp tabs.position right
         ',tt': set --temp tabs.position top
         ',z': save-to-zotero
