@@ -75,6 +75,8 @@ settings:
     global: no-3rdparty
   content.default_encoding:
     global: utf-8
+  content.headers.referer:
+    global: same-domain
   content.pdfjs:
     global: false
   content.windowed_fullscreen:
