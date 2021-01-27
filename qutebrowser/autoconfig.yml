@@ -145,7 +145,7 @@ settings:
   tabs.background:
     global: true
   tabs.close_mouse_button:
-    global: none
+    global: middle
   tabs.last_close:
     global: default-page
   tabs.mode_on_change:
