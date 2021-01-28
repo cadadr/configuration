@@ -3631,8 +3631,11 @@ and special ones sepatarely."
 
 ;;;;; Utilities:
 
-(defun gk-fetch-mail ()
-  "Run mail retrieval scripts."
+(defun gk-fetch-mail (&optional callback)
+  "Run mail retrieval scripts.
+
+If CALLBACK is non-nil, it’s called with a single argument, which
+is non nil if there’s new mail."
   (interactive)
   (make-process
    :name "gk-fetch-mail" :buffer (get-buffer-create "*Fetch Mail*")
@@ -3647,8 +3650,10 @@ and special ones sepatarely."
                (when (> f 0)
                  (setf msg "You have unread mail! "))))
            (when (and (gk-gui-p) (not (string-empty-p msg)))
-               (gk-send-desktop-notification "New mail" msg "mail-message-new")))
-         (message "%sFetch mail process %s" msg (string-trim event)))))))
+             (gk-send-desktop-notification "New mail" msg "mail-message-new")))
+         (message "%sFetch mail process %s" msg (string-trim event))
+         (when (functionp callback)
+           (funcall callback (string-empty-p msg))))))))
 
 
 
