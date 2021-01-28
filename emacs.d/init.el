@@ -5995,7 +5995,10 @@ new frame is created."
    ("Checkdoc" . (display-buffer-pop-up-window))
    ("Calendar" . (display-buffer-in-side-window . ((side . bottom))))
    ("help\\[R\\]" . (display-buffer-pop-up-window))
+   ;; Use ‘display-buffer-same-window’ as a catch-all for everything
+   ;; but...
    (,($ [b _] (not (memq (buffer-local-value 'major-mode (get-buffer b))
+                         ;; ... these bad bois.
                          '(rmail-mode
                            rmail-summary-mode))))
     .
