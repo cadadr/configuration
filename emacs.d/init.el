@@ -3870,6 +3870,16 @@ This is the reverse counterpart of
         (goto-char (car (last positions)))
       (goto-char (car (last (cl-remove-if ($ (>= $1 p)) positions)))))))
 
+(defun posta ()
+  "Set up and display an Rmail frame."
+  (interactive)
+  (gk-fetch-mail
+   (lambda (_)
+     (gk-with-new-frame nil
+       (rmail)
+       (rmail-summary)
+       (window-resize (selected-window) -10)
+       (other-window 1)))))
 
 (defun gk-rmail-mode-hook ()
    (goto-address-mode +1)
