@@ -1108,6 +1108,7 @@ at the centre of the newly created frame.  This only happens when
     `(let ((,frame (make-frame ,parameters)))
        (raise-frame ,frame)
        (select-frame-set-input-focus ,frame)
+       (select-window (frame-first-window ,frame))
        (when (display-graphic-p)
          ;; Center frame
          (set-frame-position
