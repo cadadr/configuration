@@ -1776,7 +1776,7 @@ Set locally the variable `outline-minor-mode-prefix' to PREFIX."
 (define-minor-mode gk-procfs-dirtrack-mode
   "Track shell directory by inspecting procfs."
   nil nil nil
-  (cond (shell-procfs-dirtrack-mode
+  (cond (gk-procfs-dirtrack-mode
          (when (bound-and-true-p shell-dirtrack-mode)
            (shell-dirtrack-mode 0))
          (when (bound-and-true-p dirtrack-mode)
