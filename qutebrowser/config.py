@@ -1,6 +1,7 @@
 # config.py --- qutebrowser configuration
 
 from qutebrowser.api import interceptor
+from qutebrowser import __version__ as qver
 
 ### STFU, linters:
 
@@ -9,6 +10,15 @@ from qutebrowser.api import interceptor
 # pylint: disable=C0111
 c = c  # noqa: F821 pylint: disable=E0602,C0103
 config = config  # noqa: F821 pylint: disable=E0602,C0103
+
+majv, minv, patch = map(int, qver.split("."))
+
+
+# v2.x requires explicit suppression of loading autoconfig.yml. We
+# will do that, but at the end of the config file, to give its
+# settings precedence.
+if majv >= 2:
+    config.load_autoconfig(False)
 
 
 ### Load stuff:

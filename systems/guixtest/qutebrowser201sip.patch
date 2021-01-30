@@ -1,0 +1,11 @@
+--- a/qutebrowser/qt.py	2021-01-30 03:20:36.623204794 +0300
++++ b/qutebrowser/qt.py	2021-01-30 03:22:04.068829873 +0300
+@@ -20,4 +20,7 @@
+ """Wrappers around Qt/PyQt code."""
+ 
+ # pylint: disable=unused-import
+-from PyQt5 import sip
++try:
++    from PyQt5 import sip
++except:
++    import sip # type: ignore[import, no-redef]
