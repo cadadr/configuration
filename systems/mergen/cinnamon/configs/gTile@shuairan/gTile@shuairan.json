@@ -7,7 +7,7 @@
         "type": "keybinding",
         "default": "<Super>g",
         "description": "Global Hotkey for gTile",
-        "value": "<Super>q::"
+        "value": "<Super>g::"
     },
     "seperator1": {
         "type": "separator"
