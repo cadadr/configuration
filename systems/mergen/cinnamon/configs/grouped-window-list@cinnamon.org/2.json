@@ -311,7 +311,7 @@
         "type": "checkbox",
         "default": false,
         "description": "Show autostart option",
-        "value": false
+        "value": true
     },
     "launch-new-instance-menu-item": {
         "type": "checkbox",
