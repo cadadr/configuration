@@ -176,6 +176,10 @@ hist() {
     }'
 }
 
+do-backup() {
+    borg create --stats --progress --compression lz4 ::{user}-{now} $MYFS/
+}
+
 ###
 alias listall="alias | cut -d= -f1 && declare -F | cut -d ' '  -f 3 | sed 's,^,function ,'"
 alias edit="$EDITOR"
@@ -246,8 +250,6 @@ alias yarn=yarnpkg
 alias undocker='docker ps -a -f status=exited | sed "1d" | cut -d " " -f 1 | xargs docker rm'
 # Suppress interactive progress reporting.
 curl='curl -s'
-# The backup command string
-alias do-backup="borg create --stats --progress --compression lz4 ::{user}-{now} $MYFS/"
 alias vialiases="$EDITOR $MYLIB/aliases.sh"
 alias envgrep="env | grep -i"
 alias openpdfs="pgrep -af '\.pdf' | cut --complement -d ' ' -f1,2"

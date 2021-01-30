@@ -143,7 +143,7 @@ text-scaling-factor=1.0
 toolkit-accessibility=true
 
 [org/cinnamon/desktop/keybindings]
-custom-list=['custom4', 'custom3', 'custom0', 'custom1', 'custom2']
+custom-list=['custom5', 'custom4', 'custom3', 'custom0', 'custom1', 'custom2']
 looking-glass-keybinding=['<Super>grave']
 show-desklets=@as []
 
@@ -171,6 +171,11 @@ name='Start Deft search'
 binding=['Search']
 command='rofi -show window'
 name='Rofi Window Switcher'
+
+[org/cinnamon/desktop/keybindings/custom-keybindings/custom5]
+binding=['<Primary><Super>b']
+command="xterm -T 'Backup' -e 'echo Start backup process ; echo ; bash -lc do-backup ; echo ; echo Hit Return to continue... ; read'"
+name='Run "do-backup" in a terminal'
 
 [org/cinnamon/desktop/keybindings/media-keys]
 hibernate=['<Super>h', 'XF86Hibernate']
