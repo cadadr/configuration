@@ -168,7 +168,7 @@ command="emacsclient -c -e '(deft)'"
 name='Start Deft search'
 
 [org/cinnamon/desktop/keybindings/custom-keybindings/custom4]
-binding=['Search']
+binding=['<Super>Return']
 command='rofi -show window'
 name='Rofi Window Switcher'
 
@@ -184,7 +184,7 @@ restart-cinnamon=['<Super>g']
 screensaver=['<Super>x', 'XF86ScreenSaver']
 search=@as []
 shutdown=['XF86PowerOff']
-terminal=['<Super>Return']
+terminal=@as []
 video-outputs=['XF86Display']
 video-rotation-lock=@as []
 
