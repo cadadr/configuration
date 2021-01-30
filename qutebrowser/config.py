@@ -17,6 +17,12 @@ config.source(config.configdir / "bookmarklets.py")
 config.source(config.configdir / "keywords.py")
 
 
+### Some settings:
+
+c.url.searchengines['DEFAULT'] = \
+    'https://duckduckgo.com/lite/?q={}'
+
+
 ### Redirects:
 
 def rewrite(request):
