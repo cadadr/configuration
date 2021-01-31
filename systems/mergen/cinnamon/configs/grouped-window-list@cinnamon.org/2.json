@@ -211,13 +211,13 @@
         "type": "keybinding",
         "default": "<Super>space",
         "description": "Global hotkey for cycling through thumbnail menus",
-        "value": "<Super>space"
+        "value": "::"
     },
     "show-apps-order-hotkey": {
         "type": "keybinding",
         "default": "<Super>grave",
         "description": "Global hotkey to show the order of apps",
-        "value": "<Super>grave"
+        "value": "::"
     },
     "show-apps-order-timeout": {
         "type": "spinbutton",
