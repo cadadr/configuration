@@ -4,11 +4,14 @@
 . $HOME/.profile
 
 # Inform systemd
-systemctl --user import-environment DISPLAY
-systemctl --user import-environment DESKTOP_SESSION
+if [ -z "$GUIX_PROFILE" ]; then
+    systemctl --user import-environment DISPLAY
+    systemctl --user import-environment DESKTOP_SESSION
 
-# Ensure correct user dirs configuration
-xdg-user-dirs-update
+    # Ensure correct user dirs configuration
+    xdg-user-dirs-update
+fi
+
 
 ### X resources:
 xrdb -merge $MEINE/Xdefaults
@@ -19,5 +22,8 @@ setxkbmap -option "ctrl:nocaps"
 
 #### Mouse:
 
-# Use more logical forward and backward buttons.
-xinput set-button-map "USB Optical Mouse" 1 2 3 4 5 6 7 9 8
+case $(hostname) in
+    # Use more logical forward and backward buttons.
+    mergen) xinput set-button-map "USB Optical Mouse" 1 2 3 4 5 6 7 9 8 ;;
+    *) ;;
+esac

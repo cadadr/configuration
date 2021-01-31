@@ -60,10 +60,12 @@ PATH="$(echo $PATH | sed -E s,/+,/,g)"
 PATH="$(echo $PATH | sed -E s,:+\$,,g)"
 export PATH
 
-# Update systemd paths.
-systemctl --user import-environment PATH
-systemctl --user import-environment GEM_HOME
-systemctl --user import-environment GEM_PATH
+if [ -z "$GUIX_PROFILE" ]; then
+    # Update systemd paths.
+    systemctl --user import-environment PATH
+    systemctl --user import-environment GEM_HOME
+    systemctl --user import-environment GEM_PATH
+fi
 
 # Finalise
 export GK_PATHS_LOADED=yes
