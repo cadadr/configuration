@@ -15,6 +15,15 @@ export SYSTEM=$(uname)
 
 ###
 
+### Guix:
+
+# guix.sh nows what to do when it's not on a Guix(SD) system,
+# so no need for conditional inclusion here.
+. $MYLIB/profile/guix.sh
+
+###
+
+
 ### Locale and time zone:
 
 . $MYLIB/profile/loctz.sh
@@ -30,12 +39,6 @@ export SYSTEM=$(uname)
 ### Environment:
 
 . $MYLIB/profile/env.sh
-
-###
-
-### Guix:
-
-. $MYLIB/guix/guix-env.sh
 
 ###
 
