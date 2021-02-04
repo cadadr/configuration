@@ -30,7 +30,7 @@ config.source(config.configdir / "keywords.py")
 ### Some settings:
 
 c.url.searchengines['DEFAULT'] = \
-    'https://duckduckgo.com/lite/?q={}'
+    'https://duckduckgo.com/?q={}'
 
 
 ### Redirects:
