@@ -4687,6 +4687,13 @@ modified slightly before it’s used e.g. when posting to Reddit."
                  (org-default-priority org-lowest-priority)
                  (org-agenda-span 1)))
 
+     (tags-todo "CATEGORY=\"Tez@MALing\""
+                ((org-agenda-overriding-header
+                  "\n\nT H E S I S :")
+                 (org-agenda-skip-function '(org-agenda-skip-entry-if 'scheduled))
+                 (org-default-priority org-lowest-priority)
+                 (org-agenda-span 1)))
+
      ;; Approaching deadlines
      (agenda nil ((org-agenda-overriding-header
                    "\n\nA P P R O A C H I N G   D E A D L I N E S :")
