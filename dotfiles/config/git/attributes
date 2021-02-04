@@ -1,0 +1,6 @@
+# gitattributes -*- mode: conf-unix -*-
+
+# Adapted from: https://protesilaos.com/codelog/2021-01-26-git-diff-hunk-elisp-org/
+*.lisp  diff=lisp
+*.el    diff=lisp
+*.org   diff=org
