@@ -134,8 +134,8 @@ cursor-blink-time=1200
 cursor-size=24
 cursor-theme='DMZ-Black'
 gtk-overlay-scrollbars=true
-gtk-theme='Mint-Y'
-icon-theme='Mint-Y'
+gtk-theme='Mint-Y-Dark-Red'
+icon-theme='Mint-Y-Dark-Red'
 keyboard-layout-prefer-variant-names=false
 keyboard-layout-show-flags=false
 keyboard-layout-use-upper=true
@@ -264,7 +264,7 @@ focus-mode='sloppy'
 focus-new-windows='smart'
 min-window-opacity=30
 mouse-button-modifier='<Super>'
-theme='Mint-Y'
+theme='Mint-Y-Dark'
 workspace-names=['home']
 
 [org/cinnamon/muffin]
@@ -326,7 +326,7 @@ tile-enabled=false
 unplug-enabled=false
 
 [org/cinnamon/theme]
-name='Mint-Y'
+name='Mint-Y-Dark-Red'
 theme-cache-updated=1606583546
 
 [org/gnome/baobab/ui]
