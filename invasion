@@ -26,6 +26,7 @@
 .praat-dir						dotfiles/praat
 .procmailrc						dotfiles/procmailrc
 .profile						dotfiles/profile.sh
+.bash_profile						dotfiles/profile.sh
 .signature						dotfiles/signature
 .xsessionrc						dotfiles/xsessionrc
 .xprofile						dotfiles/xsessionrc
