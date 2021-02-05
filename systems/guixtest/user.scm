@@ -87,13 +87,26 @@
    ;; system utilities
    smartmontools strace)))
 
-;; The following names are of Debian / Ubuntu packages from old `mergen' config that were not available or necessary under the new GuixSD configuration.
+;; The following names are of Debian / Ubuntu packages from old
+;; `mergen' config that were not available or necessary under the new
+;; GuixSD configuration.
 
 ;; very important missing: mairix
 
-;; missing packages: bmake cpanminus diffpdf fbi feedgnuplot git-cvs git-email krop pdfsam ri hunspell-{el,es} liblocal-lib-perl psychopy
+;; missing packages: bmake cpanminus diffpdf fbi feedgnuplot git-cvs
+;; git-email krop pdfsam ri hunspell-{el,es} liblocal-lib-perl
+;; psychopy
 
-;; omitted packages: calibre dconf-editor devhelp dh-python exuberant-ctags guile ipython3 kdenlive lftp mu4e perlbrew perl-tk racket redis vim-gtk xpra
+;; omitted packages: calibre dconf-editor devhelp dh-python
+;; exuberant-ctags guile ipython3 kdenlive lftp mu4e perlbrew perl-tk
+;; racket redis vim-gtk xpra
 
-;; libraries omitted: libcurl4-gnutls-dev libfuse-dev libgirepository1.0-dev libimage-exiftool-perl libjansson-dev libjs-pdf liblocal-lib-perl libpoppler-glib-dev libpoppler-private-dev libreply-perl libssl-dev libswitch-perl libuniversal-isa-perl linux-generic-hwe-18.04 python3-dev python3-dulwich python3-fastimport python3-hglib python3-notify2 python3-pip python3-pip python3-pyqt5 python3-pyqt5.qtsvg python3-tk python3-venv python3-wheel
+;; libraries omitted: libcurl4-gnutls-dev libfuse-dev
+;; libgirepository1.0-dev libimage-exiftool-perl libjansson-dev
+;; libjs-pdf liblocal-lib-perl libpoppler-glib-dev
+;; libpoppler-private-dev libreply-perl libssl-dev libswitch-perl
+;; libuniversal-isa-perl linux-generic-hwe-18.04 python3-dev
+;; python3-dulwich python3-fastimport python3-hglib python3-notify2
+;; python3-pip python3-pip python3-pyqt5 python3-pyqt5.qtsvg
+;; python3-tk python3-venv python3-wheel
 
