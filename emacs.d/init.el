@@ -6297,7 +6297,16 @@ So that the reader knows where to continue reading."
 
 (setf
  ;; Errors and warnings only.
- tramp-verbose 1)
+ tramp-verbose 1
+
+ ;; Make TRAMP work with GuixSD machines.
+ ;; Adapted from: https://lists.gnu.org/archive/html/help-guix/2016-10/msg00049.html
+ tramp-remote-path
+ (append tramp-remote-path
+         (list "~/.guix-profile/bin"
+               "~/.guix-profile/sbin"
+               "/run/current-system/profile/bin"
+               "/run/current-system/profile/sbin")))
 
 
 
