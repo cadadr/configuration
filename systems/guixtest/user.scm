@@ -89,9 +89,9 @@
 
 ;; The following names are of Debian / Ubuntu packages from old `mergen' config that were not available or necessary under the new GuixSD configuration.
 
-;; very important missing: mairix psychopy
+;; very important missing: mairix
 
-;; missing packages: bmake cpanminus diffpdf fbi feedgnuplot git-cvs git-email krop pdfsam ri hunspell-{el,es} liblocal-lib-perl
+;; missing packages: bmake cpanminus diffpdf fbi feedgnuplot git-cvs git-email krop pdfsam ri hunspell-{el,es} liblocal-lib-perl psychopy
 
 ;; omitted packages: calibre dconf-editor devhelp dh-python exuberant-ctags guile ipython3 kdenlive lftp mu4e perlbrew perl-tk racket redis vim-gtk xpra
 
