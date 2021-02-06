@@ -35,8 +35,8 @@
    lynx mutt tmux w3m
    ;; xorg / desktop utilities
    clipit rofi simplescreenrecorder xclip desktop-file-utils
-   xfce4-pulseaudio-plugin pavucontrol xsettingsd flameshot
    xinput xrdb setxkbmap kdeconnect (list redshift "gtk") dunst
+   gk-volctl pavucontrol xsettingsd flameshot
    ;; network utilities
    (list isc-bind "utils") bridge-utils ndisc6
    ;; encryption, privacy & security
