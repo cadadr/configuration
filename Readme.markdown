@@ -24,11 +24,6 @@ you're free to do so, but **do not** try to use it as a whole, it's
 complex and personal, and some additional secret stuff is not
 included, so it won't work reliably. Just cherry-pick what you want.
 
-Lots of files created by other people are included in this repository,
-most of the time verbatim. Any file that does not include a statement
-for its licence terms is probably written by me, and I hereby put all of
-them in public domain.
-
 Installation
 ============
 
@@ -63,3 +58,23 @@ system flavour:
 ```
 $ make setup
 ```
+
+Licenses
+========
+
+Lots of files created by other people are included in this repository,
+most of the time verbatim. Any file that does not include a statement
+for its licence terms is probably written by me, and I hereby put all of
+them in public domain.
+
+The sound at `candy/radio.wav` is (C) 2012 Kijadzel, licensed under
+the [CC-BY 3.0 License]. Obtained from
+<https://freesound.org/s/170608/>.
+
+The sound at `candy/bleep.wav` is (C) 2015 pan14, licensed under the
+[CC0 License]. Obtained from
+<https://freesound.org/people/pan14/sounds/263133/>.
+
+
+[CC-BY 3.0 License]: http://creativecommons.org/licenses/by/3.0/
+[CC0 License]: http://creativecommons.org/publicdomain/zero/1.0/
