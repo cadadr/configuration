@@ -1,4 +1,3 @@
-#!/usr/bin/env bash
 # desktop-setup.bash --- initialisation for desktop session
 
 # bash strict mode
@@ -10,8 +9,9 @@ dunst                    &
 redshift-gtk             &
 kdeconnect-indicator     &
 clipit                   &
-xfce4-pulseaudio-plugin  &
-pavucontrol              &
+volctl                   &
 xsettingsd               &
 flameshot                &
 # gpg-agent, ssh-agent?
+
+exec i3 2>&1 >> $XERRORS_FILE

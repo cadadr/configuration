@@ -1,6 +1,10 @@
 #!/bin/sh
 # xsessionrc --- x session environment -*- shell-script -*-
 
+export XERRORS_FILE="$HOME/.xerrors"
+
+exec 2>&1 > $XERRORS_FILE
+
 . $HOME/.profile
 
 # Inform systemd
@@ -23,5 +27,5 @@ setxkbmap -option "ctrl:nocaps"
 ### System specific desktop setup:
 
 if [ -e "$MYSYSTEM/desktop-setup.bash" ]; then
-    bash $MYSYSTEM/desktop-setup.bash
+    exec bash $MYSYSTEM/desktop-setup.bash 2>&1 >> $XERRORS_FILE
 fi
