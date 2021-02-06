@@ -22,6 +22,6 @@ setxkbmap -option "ctrl:nocaps"
 
 ### System specific desktop setup:
 
-if [ -f "$MYSYSTEM/desktop-setup.bash" ]; then
+if [ -e "$MYSYSTEM/desktop-setup.bash" ]; then
     bash $MYSYSTEM/desktop-setup.bash
 fi
