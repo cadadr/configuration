@@ -20,10 +20,8 @@ xrdb -merge $MEINE/Xdefaults
 #### Keyboard:
 setxkbmap -option "ctrl:nocaps"
 
-#### Mouse:
+### System specific desktop setup:
 
-case $(hostname) in
-    # Use more logical forward and backward buttons.
-    mergen) xinput set-button-map "USB Optical Mouse" 1 2 3 4 5 6 7 9 8 ;;
-    *) ;;
-esac
+if [ -e "$MYSYSTEM/desktop-setup.bash" ]; then
+    bash $MYSYSTEM/desktop-setup.bash
+fi

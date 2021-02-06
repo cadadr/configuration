@@ -11,14 +11,15 @@ export MY="$HOME/cf"
 export MEINE="$MY/dotfiles"
 export MYLIB="$MY/lib"
 export MYFS="/igk"
-export SYSTEM=$(uname)
+export SYSTEM="$(uname)"
+export MYSYSTEM="$MY/systems/$(hostname)"
 
 ###
 
 ### Guix:
 
-# guix.sh nows what to do when it's not on a Guix(SD) system,
-# so no need for conditional inclusion here.
+# guix.sh knows what to do when it's not on a Guix(SD) system, so no
+# need for conditional inclusion here.
 . $MYLIB/profile/guix.sh
 
 ###

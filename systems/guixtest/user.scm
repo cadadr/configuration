@@ -3,37 +3,19 @@
 (use-modules (gnu)
              (guix download)
              (guix packages)
+             (gk guix-packages)
              (srfi srfi-1))
 
 (use-package-modules
  admin aidc aspell astronomy audio backup cmake
- commencement cran disk dns djvu emacs emacs-xyz entr
+ commencement cran disk dns djvu dunst emacs emacs-xyz entr
  freedesktop gdb gimp gnome gnupg graphviz gtk haskell-xyz
- hunspell inkscape julia kde kde-frameworks language libreoffice
- linux m4 mail maths moreutils networking password-utils
- patchutils perl pdf photo pv python python-xyz qt ruby
- sqlite statistics suckless tex tmux version-control video
- virtualization vim w3m web web-browsers wm xdisorg
- xorg)
-
-(define gk-qutebrowser
-  (package
-   (inherit qutebrowser)
-   (version "2.0.1")
-   (source
-    (origin
-     (method url-fetch)
-     (uri (string-append "https://github.com/qutebrowser/"
-                         "qutebrowser/releases/download/v"
-                         version "/qutebrowser-" version
-                         ".tar.gz"))
-     (patches (list "qutebrowser201sip.patch"))
-     (sha256
-      (base32 "0hmj19bp5dihzpphxz77377yfmygj498am0h23kxg5m3y5hqv65a"))))
-   (inputs
-    (cons* (list "python-importlib-resources" python-importlib-resources)
-           (alist-delete "python-pypeg2"
-                         (package-inputs qutebrowser))))))
+ hunspell inkscape image julia kde kde-frameworks language
+ libreoffice linux m4 mail maths moreutils networking
+ password-utils patchutils perl pdf photo pv python
+ python-xyz pulseaudio qt ruby sqlite statistics suckless
+ tex tmux version-control video virtualization vim w3m
+ web web-browsers wm xdisorg xfce xorg)
 
 ;; emacs will need libjansson, also check emacs-telega for telegram
 (packages->manifest
@@ -47,14 +29,14 @@
    ;; linguistics
    praat
    ;; desktop apps
-   ;; XXX okular
-   audacity gk-qutebrowser cheese gimp gparted inkscape
-   mpv stellarium libreoffice xpdf
+   okular audacity gk-qutebrowser cheese gimp gparted inkscape
+   mpv stellarium libreoffice xpdf ristretto
    ;; tui apps
    lynx mutt tmux w3m
    ;; xorg / desktop utilities
    clipit rofi simplescreenrecorder xclip desktop-file-utils
-   xinput xrdb setxkbmap
+   xinput xrdb setxkbmap kdeconnect redshift dunst
+   xfce4-pulseaudio-plugin pavucontrol xsettingsd flameshot
    ;; network utilities
    (list isc-bind "utils") bridge-utils ndisc6
    ;; encryption, privacy & security
@@ -81,7 +63,7 @@
    entr inotify-tools jq mailutils mb2md moreutils pv
    qrencode youtube-dl vim-full
    ;; e-mail
-   mpop msmtp procmail
+   mpop msmtp procmail gk-mairix
    ;; virtualisation
    qemu
    ;; system utilities
@@ -90,8 +72,6 @@
 ;; The following names are of Debian / Ubuntu packages from old
 ;; `mergen' config that were not available or necessary under the new
 ;; GuixSD configuration.
-
-;; very important missing: mairix
 
 ;; missing packages: bmake cpanminus diffpdf fbi feedgnuplot git-cvs
 ;; git-email krop pdfsam ri hunspell-{el,es} liblocal-lib-perl
