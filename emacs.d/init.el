@@ -92,6 +92,8 @@
 (require 'epa-mail)
 (require 'epg)
 (require 'eros)
+(require 'eshell)
+(require 'em-hist)
 (require 'ess-r-mode)
 (require 'etags)
 (require 'eval-sexp-fu)
