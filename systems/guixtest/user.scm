@@ -8,14 +8,14 @@
 
 (use-package-modules
  admin aidc aspell astronomy audio backup cmake
- commencement cran disk dns djvu emacs emacs-xyz entr
+ commencement cran disk dns djvu dunst emacs emacs-xyz entr
  freedesktop gdb gimp gnome gnupg graphviz gtk haskell-xyz
- hunspell inkscape julia kde kde-frameworks language libreoffice
- linux m4 mail maths moreutils networking password-utils
- patchutils perl pdf photo pv python python-xyz qt ruby
- sqlite statistics suckless tex tmux version-control video
- virtualization vim w3m web web-browsers wm xdisorg
- xorg)
+ hunspell inkscape image julia kde kde-frameworks language
+ libreoffice linux m4 mail maths moreutils networking
+ password-utils patchutils perl pdf photo pv python
+ python-xyz pulseaudio qt ruby sqlite statistics suckless
+ tex tmux version-control video virtualization vim w3m
+ web web-browsers wm xdisorg xfce xorg)
 
 ;; emacs will need libjansson, also check emacs-telega for telegram
 (packages->manifest
@@ -29,14 +29,14 @@
    ;; linguistics
    praat
    ;; desktop apps
-   ;; XXX okular
-   audacity gk-qutebrowser cheese gimp gparted inkscape
-   mpv stellarium libreoffice xpdf
+   okular audacity gk-qutebrowser cheese gimp gparted inkscape
+   mpv stellarium libreoffice xpdf ristretto
    ;; tui apps
    lynx mutt tmux w3m
    ;; xorg / desktop utilities
    clipit rofi simplescreenrecorder xclip desktop-file-utils
-   xinput xrdb setxkbmap
+   xinput xrdb setxkbmap kdeconnect redshift dunst
+   xfce4-pulseaudio-plugin pavucontrol xsettingsd flameshot
    ;; network utilities
    (list isc-bind "utils") bridge-utils ndisc6
    ;; encryption, privacy & security
