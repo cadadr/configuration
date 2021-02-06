@@ -118,7 +118,7 @@ secondary-click-time=1.2
 exec='gnome-calculator'
 
 [org/cinnamon/desktop/applications/terminal]
-exec='uxterm'
+exec='gnome-terminal'
 
 [org/cinnamon/desktop/background]
 picture-options='zoom'
@@ -144,7 +144,7 @@ text-scaling-factor=1.0
 toolkit-accessibility=false
 
 [org/cinnamon/desktop/keybindings]
-custom-list=['custom5', 'custom4', 'custom3', 'custom0', 'custom1', 'custom2']
+custom-list=['custom2', 'custom1', 'custom0', 'custom3', 'custom4', 'custom5']
 looking-glass-keybinding=['<Super>grave']
 show-desklets=@as []
 
@@ -175,7 +175,7 @@ name='Rofi Window Switcher'
 
 [org/cinnamon/desktop/keybindings/custom-keybindings/custom5]
 binding=['<Primary><Super>b']
-command="xterm -T 'Backup' -e 'echo Start backup process ; echo ; bash -lc do-backup ; echo ; echo Hit Return to continue... ; read'"
+command="xterm -T 'Backup' -e 'echo Start backup process ; echo ; bash -lc do_backup ; echo ; echo Hit Return to continue... ; read'"
 name='Run "do-backup" in a terminal'
 
 [org/cinnamon/desktop/keybindings/media-keys]
