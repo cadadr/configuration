@@ -27,5 +27,5 @@ setxkbmap -option "ctrl:nocaps"
 ### System specific desktop setup:
 
 if [ -e "$MYSYSTEM/desktop-setup.bash" ]; then
-    exec bash $MYSYSTEM/desktop-setup.bash 2>&1 >> $XERRORS_FILE
+    bash $MYSYSTEM/desktop-setup.bash 2>&1 >> $XERRORS_FILE
 fi
