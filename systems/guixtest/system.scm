@@ -5,7 +5,8 @@
              (gnu system nss)
              (srfi srfi-1))
 
-(use-service-modules desktop networking ssh xorg)
+(use-service-modules cups desktop networking ssh xorg)
+(use-package-modules cups)
 
 (operating-system
  (locale "en_GB.utf8")
@@ -34,10 +35,22 @@
  (name-service-switch %mdns-host-lookup-nss)
  (services
   (cons* (service openssh-service-type)
+         (service cups-service-type
+                  (cups-configuration
+                   (extensions
+                    (list cups-filters hplip-minimal))))
+         (service sane-service-type)
+         (geoclue-service #:applications
+                          (cons* (geoclue-application "redshift-gtk")
+                                 (geoclue-application "emacs")
+                                 %standard-geoclue-applications))
          (service slim-service-type
                   (slim-configuration
                    (xorg-configuration (xorg-configuration (keyboard-layout keyboard-layout)))))
-         (remove (lambda (s) (eq? (service-kind s) gdm-service-type))
+         (remove (lambda (s) (or (eq? (service-kind s) gdm-service-type)
+                                 (eq? (service-kind s) geoclue-service-type)
+                                 (eq? (service-kind s) slim-service-type)
+                                 (eq? (service-kind s) sane-service-type)))
                  %desktop-services)))
  (bootloader
   (bootloader-configuration
