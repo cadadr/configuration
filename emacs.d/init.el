@@ -1816,6 +1816,19 @@ that instead."
 
 
 
+;;;;; Eshell:
+
+(setf
+ eshell-ls-initial-args
+ (list "--group-directories-first" "-Fh"))
+
+(dolist (key '(up down left right))
+  (define-key eshell-hist-mode-map `[,key] nil))
+(define-key eshell-hist-mode-map (kbd "M-p") #'eshell-previous-matching-input-from-input)
+(define-key eshell-hist-mode-map (kbd "M-n") #'eshell-next-matching-input-from-input)
+
+
+
 ;;;; Dired:
 
 
