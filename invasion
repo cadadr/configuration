@@ -7,6 +7,8 @@
 .emacs.d						emacs.d
 .flutter						dotfiles/flutter.json
 .gitconfig						dotfiles/gitconfig.ini
+.gdbinit						dotfiles/gdbinit
+.guile							dotfiles/guile.scm
 .hgrc							dotfiles/hgrc.ini
 .irbrc							dotfiles/irbrc.rb
 .inputrc						dotfiles/inputrc
@@ -29,6 +31,8 @@
 .bash_profile						dotfiles/profile.sh
 .signature						dotfiles/signature
 .xsessionrc						dotfiles/xsessionrc
+.xsession						dotfiles/xsessionrc
+.xsettingsd						dotfiles/xsettings.conf
 .xprofile						dotfiles/xsessionrc
 .vimrc							dotfiles/rc.vim
 .vim							dotfiles/vim

@@ -10,8 +10,8 @@
  admin aidc aspell astronomy audio backup cmake
  commencement cran disk dns djvu dunst emacs emacs-xyz entr
  freedesktop gdb gimp gnome gnupg graphviz gtk haskell-xyz
- hunspell inkscape image julia kde kde-frameworks language
- libreoffice linux m4 mail maths moreutils networking
+ hunspell inkscape image image-viewers julia kde kde-frameworks
+ language libreoffice linux m4 mail maths moreutils networking
  password-utils patchutils perl pdf photo pv python
  python-xyz pulseaudio qt ruby sqlite statistics suckless
  tex tmux version-control video virtualization vim w3m
@@ -30,13 +30,15 @@
    praat
    ;; desktop apps
    okular audacity gk-qutebrowser cheese gimp gparted inkscape
-   mpv stellarium libreoffice xpdf ristretto
+   mpv stellarium libreoffice xpdf ristretto simple-scan
    ;; tui apps
    lynx mutt tmux w3m
    ;; xorg / desktop utilities
    clipit rofi simplescreenrecorder xclip desktop-file-utils
-   xinput xrdb setxkbmap kdeconnect redshift dunst
-   xfce4-pulseaudio-plugin pavucontrol xsettingsd flameshot
+   xinput xrdb setxkbmap kdeconnect (list redshift "gtk") dunst
+   gk-volctl pavucontrol xsettingsd flameshot geoclue
+   gnome-themes-standard hicolor-icon-theme breeze-icons
+   xsetroot feh
    ;; network utilities
    (list isc-bind "utils") bridge-utils ndisc6
    ;; encryption, privacy & security
@@ -68,25 +70,3 @@
    qemu
    ;; system utilities
    smartmontools strace)))
-
-;; The following names are of Debian / Ubuntu packages from old
-;; `mergen' config that were not available or necessary under the new
-;; GuixSD configuration.
-
-;; missing packages: bmake cpanminus diffpdf fbi feedgnuplot git-cvs
-;; git-email krop pdfsam ri hunspell-{el,es} liblocal-lib-perl
-;; psychopy
-
-;; omitted packages: calibre dconf-editor devhelp dh-python
-;; exuberant-ctags guile ipython3 kdenlive lftp mu4e perlbrew perl-tk
-;; racket redis vim-gtk xpra
-
-;; libraries omitted: libcurl4-gnutls-dev libfuse-dev
-;; libgirepository1.0-dev libimage-exiftool-perl libjansson-dev
-;; libjs-pdf liblocal-lib-perl libpoppler-glib-dev
-;; libpoppler-private-dev libreply-perl libssl-dev libswitch-perl
-;; libuniversal-isa-perl linux-generic-hwe-18.04 python3-dev
-;; python3-dulwich python3-fastimport python3-hglib python3-notify2
-;; python3-pip python3-pip python3-pyqt5 python3-pyqt5.qtsvg
-;; python3-tk python3-venv python3-wheel
-

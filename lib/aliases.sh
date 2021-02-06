@@ -176,9 +176,11 @@ hist() {
     }'
 }
 
-do-backup() {
+do_backup() {
     borg create --stats --progress --compression lz4 ::{user}-{now} $MYFS/
 }
+# Some versions of (Ba)sh doesn’t like a hyphen in function names.
+alias do-backup=do_backup
 
 ###
 alias listall="alias | cut -d= -f1 && declare -F | cut -d ' '  -f 3 | sed 's,^,function ,'"
