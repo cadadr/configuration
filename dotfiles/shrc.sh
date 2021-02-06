@@ -33,11 +33,8 @@ else
     PAGER=$HOME/.emacs.d/extras/eless.sh
 fi
 
-if which $EDITOR 2>&1 >/dev/null; then
-    true
-else
-    echo WARNING: no suitable editor found...
-fi
+
+which $EDITOR 2>&1 >/dev/null || echo WARNING: no suitable editor found...
 
 export EDITOR
 export PAGER
