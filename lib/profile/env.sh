@@ -61,6 +61,16 @@ fi
 # R
 export R_LIBS_USER="$HOME/.local/share/R/site-library"
 
+# Guile
+export GUILE_LOAD_PATH=$MYLIB/scheme:$GUILE_LOAD_PATH
+
+# Guix
+#
+# This has to happen here instead of $MYLIB/guix.sh because in there
+# we don’t have the proper $GUILE_LOAD_PATH yet, for which we need
+# $MYLIB.
+export GUIX_PACKAGE_PATH=$MYLIB/scheme
+
 # SystemDee
 # Behave, you fuck.
 export SYSTEMD_PAGER=

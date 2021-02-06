@@ -17,8 +17,8 @@ export SYSTEM=$(uname)
 
 ### Guix:
 
-# guix.sh nows what to do when it's not on a Guix(SD) system,
-# so no need for conditional inclusion here.
+# guix.sh knows what to do when it's not on a Guix(SD) system, so no
+# need for conditional inclusion here.
 . $MYLIB/profile/guix.sh
 
 ###
