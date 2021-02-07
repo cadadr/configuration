@@ -261,6 +261,7 @@ alias pdf2doc='soffice --infilter="writer_pdf_import" --convert-to doc'
 alias pdf2odt='soffice --infilter="writer_pdf_import" --convert-to odt'
 alias du="du -h"
 alias df="df -h"
+alias tmux='TERM=screen-256color-bce tmux'
 
 # raspberry pi
 alias pi="ssh pi@ayata.local"
