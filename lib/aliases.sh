@@ -324,8 +324,8 @@ gx(){
             echo This action requires root privileges. ;
             sudo guix system reconfigure $MYSYSTEM/system.scm ;;
 
-        rp) Upgrading profile from manifest: $MYSYSTEM/user.scm ;
-            guix install --manifest=$MYSYSTEM/user.scm ;;
+        rp) echo Upgrading profile from manifest: $MYSYSTEM/user.scm ;
+            guix package --manifest=$MYSYSTEM/user.scm ;;
 
         up) echo Upgrading system: $MYSYSTEM/system.scm ;
             echo This action requires root privileges. ;
