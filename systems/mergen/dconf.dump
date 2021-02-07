@@ -507,14 +507,17 @@ jpeg-quality=100
 schema-version=uint32 3
 
 [org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9]
-background-color='rgb(46,52,54)'
+background-color='rgb(237,236,236)'
+bold-color-same-as-fg=true
 cursor-background-color='rgb(255,255,255)'
 cursor-colors-set=false
 cursor-foreground-color='rgb(145,107,86)'
 exit-action='hold'
-foreground-color='rgb(211,215,207)'
-use-theme-colors=true
+foreground-color='rgb(0,0,0)'
+palette=['rgb(0,0,0)', 'rgb(205,0,0)', 'rgb(0,205,0)', 'rgb(205,205,0)', 'rgb(0,0,238)', 'rgb(205,0,205)', 'rgb(0,205,205)', 'rgb(229,229,229)', 'rgb(127,127,127)', 'rgb(255,0,0)', 'rgb(0,255,0)', 'rgb(255,255,0)', 'rgb(92,92,255)', 'rgb(255,0,255)', 'rgb(0,255,255)', 'rgb(255,255,255)']
+use-theme-colors=false
 use-theme-transparency=false
+use-transparent-background=false
 visible-name='cadadr'
 
 [org/gtk/settings/color-chooser]
