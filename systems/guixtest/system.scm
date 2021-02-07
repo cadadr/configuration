@@ -34,7 +34,9 @@
    %base-packages))
  (name-service-switch %mdns-host-lookup-nss)
  (services
-  (cons* (service openssh-service-type)
+  (cons* (service openssh-service-type
+				  (openssh-configuration
+					(x11-forwarding? #t)))
          (service cups-service-type
                   (cups-configuration
                    (extensions
@@ -44,6 +46,7 @@
                           (cons* (geoclue-application "redshift-gtk")
                                  (geoclue-application "emacs")
                                  %standard-geoclue-applications))
+		 (service gnome-keyring-service-type)
          (service slim-service-type
                   (slim-configuration
                    (xorg-configuration (xorg-configuration (keyboard-layout keyboard-layout)))))
