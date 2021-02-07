@@ -317,6 +317,49 @@ __gk_freebsd_aliases(){
                             sudo service routing restart'
 }
 
+# Guix(SD) shortcut commands
+gx(){
+    case $1 in
+        rs) echo Reconfiguring system: $MYSYSTEM/system.scm ;
+            echo This action requires root privileges. ;
+            sudo guix system reconfigure $MYSYSTEM/system.scm ;;
+
+        rp) Upgrading profile from manifest: $MYSYSTEM/user.scm ;
+            guix install --manifest=$MYSYSTEM/user.scm ;;
+
+        up) echo Upgrading system: $MYSYSTEM/system.scm ;
+            echo This action requires root privileges. ;
+            sudo bash -c "guix pull && guix package -u && guix system reconfigure $MYSYSTEM/system.scm" ;;
+
+        p) shift; guix package $@ ;;
+        s) shift; guix package -s $@ ;;
+        i) shift; guix package --show=$@ ;;
+        I) shift; guix package -I $@ ;;
+
+        h|help|-h|--help|-help|'')
+           echo 'usage: gx COMMAND [OPTIONS]' ;
+           echo ;
+           echo "Göktuğ's Guix(SD) Shortcuts" ;
+           echo ;
+           echo Commands:
+           printf "\trs\treconfigure system*\n" ;
+           printf "\trp\tupdate user's profile from manifest\n" ;
+           printf "\tup\trun 'guix pull' then upgrade system\n" ;
+           echo
+           printf "\tp\talias for 'guix package'\n" ;
+           printf "\ts\talias for 'guix package -s' (search)\n" ;
+           printf "\ti\talias for 'guix package --show=' (package info)\n" ;
+           printf "\tI\talias for 'guix package -I' (check installed)\n" ;
+           echo
+           printf "\th\tshow this help message\n" ;
+           echo ;
+           echo "* requires superuser privileges" ;;
+
+
+        *) echo unknown subcommand: $@ ; gx h ;;
+    esac
+}
+
 case $SYSTEM in
     Linux) __gk_linux_aliases ;;
     FreeBSD) __gk_freebsd_aliases ;;
