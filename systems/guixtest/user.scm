@@ -10,10 +10,10 @@
  admin aidc aspell astronomy audio backup cmake commencement
  cran disk dns djvu dunst emacs emacs-xyz entr fonts fontutils
  freedesktop gdb gimp gnome gnupg graphviz gtk haskell-xyz
- hunspell inkscape image image-viewers javascript julia kde
- kde-frameworks language libreoffice linux m4 mail maths
- moreutils networking password-utils patchutils perl pdf
- photo pv python python-xyz pulseaudio qt ruby sqlite
+ hunspell inkscape image imagemagick image-viewers javascript
+ julia kde kde-frameworks language libreoffice linux m4 mail
+ maths moreutils networking password-utils patchutils perl
+ pdf photo pv python python-xyz pulseaudio qt ruby sqlite
  statistics suckless tex tmux version-control video
  virtualization vim w3m web web-browsers wm xdisorg
  xfce xorg)
@@ -39,7 +39,7 @@
    xinput xrdb setxkbmap kdeconnect (list redshift "gtk") dunst
    gk-volctl pavucontrol xsettingsd flameshot geoclue
    gnome-themes-standard hicolor-icon-theme breeze-icons
-   xsetroot feh xprop
+   xsetroot feh xprop imagemagick xauth
    ;; fonts and font utilities
    fontconfig font-gnu-unifont font-gnu-freefont xfontsel
    font-libertinus font-google-roboto font-ubuntu font-terminus
