@@ -39,7 +39,8 @@
    xinput xrdb setxkbmap kdeconnect (list redshift "gtk") dunst
    gk-volctl pavucontrol xsettingsd flameshot geoclue
    gnome-themes-standard hicolor-icon-theme breeze-icons
-   xsetroot feh xprop imagemagick xauth
+   xsetroot feh xprop imagemagick xauth pulseaudio alsa-plugins
+   libnotify
    ;; fonts and font utilities
    fontconfig font-gnu-unifont font-gnu-freefont xfontsel
    font-libertinus font-google-roboto font-ubuntu font-terminus
