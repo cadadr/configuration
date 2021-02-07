@@ -9,6 +9,8 @@
 " UI/UX {{{
 set nocompatible
 filetype plugin indent on
+syntax enable
+set tabstop=4 shiftwidth=4 expandtab
 set encoding=utf8
 set backspace=eol,start,indent	" backspace over newline too
 set incsearch

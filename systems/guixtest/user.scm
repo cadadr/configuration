@@ -1,4 +1,4 @@
-;;; manifest.scm --- packages to be installed for my profile, some customised
+;;; user.scm --- packages to be installed for my profile, some customised
 
 (use-modules (gnu)
              (guix download)
@@ -7,15 +7,16 @@
              (srfi srfi-1))
 
 (use-package-modules
- admin aidc aspell astronomy audio backup cmake
- commencement cran disk dns djvu dunst emacs emacs-xyz entr
+ admin aidc aspell astronomy audio backup cmake commencement
+ cran disk dns djvu dunst emacs emacs-xyz entr fonts fontutils
  freedesktop gdb gimp gnome gnupg graphviz gtk haskell-xyz
- hunspell inkscape image image-viewers julia kde kde-frameworks
- language libreoffice linux m4 mail maths moreutils networking
- password-utils patchutils perl pdf photo pv python
- python-xyz pulseaudio qt ruby sqlite statistics suckless
- tex tmux version-control video virtualization vim w3m
- web web-browsers wm xdisorg xfce xorg)
+ hunspell inkscape image image-viewers javascript julia kde
+ kde-frameworks language libreoffice linux m4 mail maths
+ moreutils networking password-utils patchutils perl pdf
+ photo pv python python-xyz pulseaudio qt ruby sqlite
+ statistics suckless tex tmux version-control video
+ virtualization vim w3m web web-browsers wm xdisorg
+ xfce xorg)
 
 ;; emacs will need libjansson, also check emacs-telega for telegram
 (packages->manifest
@@ -38,7 +39,16 @@
    xinput xrdb setxkbmap kdeconnect (list redshift "gtk") dunst
    gk-volctl pavucontrol xsettingsd flameshot geoclue
    gnome-themes-standard hicolor-icon-theme breeze-icons
-   xsetroot feh
+   xsetroot feh xprop
+   ;; fonts and font utilities
+   fontconfig font-gnu-unifont font-gnu-freefont xfontsel
+   font-libertinus font-google-roboto font-ubuntu font-terminus
+   font-liberation font-google-noto font-dseg font-dejavu
+   xlsfonts font-sil-gentium font-sil-charis font-sil-andika
+   font-openmoji font-opendyslexic font-inconsolata
+   font-comic-neue font-adobe-source-code-pro font-util
+   font-mathjax font-alias font-linuxlibertine font-public-sans
+   font-blackfoundry-inria font-bitstream-vera kbd
    ;; network utilities
    (list isc-bind "utils") bridge-utils ndisc6
    ;; encryption, privacy & security
@@ -55,7 +65,8 @@
    cvs mercurial rcs subversion
    ;; documents & authoring
    djvulibre pandoc pandoc-citeproc pdfarranger stapler
-   texlive hunspell
+   texlive texlive-latex-polyglossia texlive-latex-fontspec
+   texlive-microtype hunspell
    (specification->package "hunspell-dict-fr-toutesvariantes")
    hunspell-dict-it-it
    hunspell-dict-en hunspell-dict-en-us hunspell-dict-en-gb

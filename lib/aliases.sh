@@ -261,6 +261,7 @@ alias pdf2doc='soffice --infilter="writer_pdf_import" --convert-to doc'
 alias pdf2odt='soffice --infilter="writer_pdf_import" --convert-to odt'
 alias du="du -h"
 alias df="df -h"
+alias tmux='TERM=screen-256color-bce tmux'
 
 # raspberry pi
 alias pi="ssh pi@ayata.local"
@@ -314,6 +315,55 @@ __gk_freebsd_aliases(){
     alias describe='pkg search -Q description'
     alias netrestart='sudo service netif restart ; sleep 3 ;\
                             sudo service routing restart'
+}
+
+# Guix(SD) shortcut commands
+gx(){
+    case $1 in
+        rs) echo Reconfiguring system: $MYSYSTEM/system.scm ;
+            echo This action requires root privileges. ;
+            sudo guix system reconfigure $MYSYSTEM/system.scm ;;
+
+        rp) Upgrading profile from manifest: $MYSYSTEM/user.scm ;
+            guix install --manifest=$MYSYSTEM/user.scm ;;
+
+        up) echo Upgrading system: $MYSYSTEM/system.scm ;
+            echo This action requires root privileges. ;
+            sudo bash -c "guix pull && guix package -u && guix system reconfigure $MYSYSTEM/system.scm" ;;
+
+        p) shift; guix package $@ ;;
+        s) shift; guix package -s $@ ;;
+        i) shift; guix package --show=$@ ;;
+        I) shift; guix package -I $@ ;;
+
+        vu) edit $MYSYSTEM/user.scm ;;
+        vs) edit $MYSYSTEM/system.scm ;;
+
+        h|help|-h|--help|-help|'')
+           echo 'usage: gx COMMAND [OPTIONS]' ;
+           echo ;
+           echo "Göktuğ's Guix(SD) Shortcuts" ;
+           echo ;
+           echo Commands:
+           printf "\trs\treconfigure system*\n" ;
+           printf "\trp\tupdate user's profile from manifest\n" ;
+           printf "\tup\trun 'guix pull' then upgrade system\n" ;
+           echo
+           printf "\tp\talias for 'guix package'\n" ;
+           printf "\ts\talias for 'guix package -s' (search)\n" ;
+           printf "\ti\talias for 'guix package --show=' (package info)\n" ;
+           printf "\tI\talias for 'guix package -I' (check installed)\n" ;
+           echo ;
+           printf "\tvu\tedit user configuration ($MYSYSTEM/user.scm)\n" ;
+           printf "\tvs\tedit system configuration ($MYSYSTEM/system.scm)\n" ;
+           echo
+           printf "\th\tshow this help message\n" ;
+           echo ;
+           echo "* requires superuser privileges" ;;
+
+
+        *) echo unknown subcommand: $@ ; gx h ;;
+    esac
 }
 
 case $SYSTEM in

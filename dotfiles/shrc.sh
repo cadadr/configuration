@@ -17,7 +17,7 @@ fi
 EDITOR=NONE
 if [ "x$INSIDE_EMACS" = x ]; then
     # Find a sensible editor.
-    for EDITOR in vi vim zile nano ex ed; do
+    for EDITOR in vim vi zile nano ex ed; do
         if which $EDITOR >/dev/null 2>&1; then
 	    export EDITOR;
 	    [ $EDITOR = vim ] && alias vi=vim

@@ -32,9 +32,10 @@
 .signature						dotfiles/signature
 .xsessionrc						dotfiles/xsessionrc
 .xsession						dotfiles/xsessionrc
-.xsettingsd						dotfiles/xsettings.conf
+.xsettingsd						dotfiles/xsettingsd.conf
 .xprofile						dotfiles/xsessionrc
 .vimrc							dotfiles/rc.vim
 .vim							dotfiles/vim
+.tmux.conf						dotfiles/tmux.conf
 bin							bin
 
