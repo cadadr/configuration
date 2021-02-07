@@ -336,6 +336,9 @@ gx(){
         i) shift; guix package --show=$@ ;;
         I) shift; guix package -I $@ ;;
 
+        vu) edit $MYSYSTEM/user.scm ;;
+        vs) edit $MYSYSTEM/system.scm ;;
+
         h|help|-h|--help|-help|'')
            echo 'usage: gx COMMAND [OPTIONS]' ;
            echo ;
@@ -350,6 +353,9 @@ gx(){
            printf "\ts\talias for 'guix package -s' (search)\n" ;
            printf "\ti\talias for 'guix package --show=' (package info)\n" ;
            printf "\tI\talias for 'guix package -I' (check installed)\n" ;
+           echo ;
+           printf "\tvu\tedit user configuration ($MYSYSTEM/user.scm)\n" ;
+           printf "\tvs\tedit system configuration ($MYSYSTEM/system.scm)\n" ;
            echo
            printf "\th\tshow this help message\n" ;
            echo ;
