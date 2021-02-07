@@ -92,6 +92,8 @@
 (require 'epa-mail)
 (require 'epg)
 (require 'eros)
+(require 'eshell)
+(require 'em-hist)
 (require 'ess-r-mode)
 (require 'etags)
 (require 'eval-sexp-fu)
@@ -601,33 +603,44 @@ BUFFER defaults to current buffer, and SECONDS to 1."
 (defun gk-bol ()
   "Alternate between the first and the indentation on a line."
   (interactive)
-  (let ((bolf (if visual-line-mode #'beginning-of-visual-line
-                #'beginning-of-line))
-        (p  (point)))
-    ;; We do this to prevent any flicker happening between
-    ;; ‘back-to-indentation’ and ‘bolf‘ when going to
-    ;; ‘beginning-of-line’.
-    (goto-char
-     (save-excursion
-       ;; If visual-line-mode is on and we're on a continuation line,
-       ;; go to the beginning of the continuation line.
-       ;;
-       ;; XXX: sometimes this goes to the previous line because of
-       ;; word-wrapping
-       (if (and visual-line-mode
-                (>= (- p (line-beginning-position))
-                    (window-width)))
-           (funcall bolf)
-         ;; Else, do the toggling.
-         (progn
-           ;; Go back to indentation.
-           (back-to-indentation)
-           ;; If we didn't move, we were already at the indentation.
-           ;; Go to the beginning of the line.
-           (when (= p (point))
-             (funcall bolf))))
-       ;; Return the point.
-       (point)))))
+  (cond
+   ;; If this is an eshell buffer and we’re at a prompt line, jump to
+   ;; prompt position.
+   ((and (eq major-mode 'eshell-mode)
+         (save-excursion
+           (goto-char (line-beginning-position))
+           (looking-at eshell-prompt-regexp)))
+    (goto-char (line-end-position))
+    (eshell-previous-prompt 0))
+   ;; Otherwise, alternate bol/indentation.
+   (t
+    (let ((bolf (if visual-line-mode #'beginning-of-visual-line
+                  #'beginning-of-line))
+          (p  (point)))
+      ;; We do this to prevent any flicker happening between
+      ;; ‘back-to-indentation’ and ‘bolf‘ when going to
+      ;; ‘beginning-of-line’.
+      (goto-char
+       (save-excursion
+         ;; If visual-line-mode is on and we're on a continuation line,
+         ;; go to the beginning of the continuation line.
+         ;;
+         ;; XXX: sometimes this goes to the previous line because of
+         ;; word-wrapping
+         (if (and visual-line-mode
+                  (>= (- p (line-beginning-position))
+                      (window-width)))
+             (funcall bolf)
+           ;; Else, do the toggling.
+           (progn
+             ;; Go back to indentation.
+             (back-to-indentation)
+             ;; If we didn't move, we were already at the indentation.
+             ;; Go to the beginning of the line.
+             (when (= p (point))
+               (funcall bolf))))
+         ;; Return the point.
+         (point)))))))
 
 (defvar gk-insert-todo-comment--history nil)
 (defvar gk-insert-todo-comment-keywords '("TODO" "XXX" "HACK" "FIXME"))
@@ -1254,6 +1267,11 @@ singleton list."
 (defvar gk-projects-directory (expand-file-name "~/co")
   "Directory where software projects are located.")
 
+(defvar gk-projects-use-eshell nil
+  "Whether to use ‘eshell’ for project shells.
+
+If nil, use ‘shell’ instead.")
+
 (defvar gk-project-compile--hist nil)
 
 (defvar gk-project-compile-default-command "make test"
@@ -1326,8 +1344,9 @@ creating a new one."
             #'magit-status)
            ((or (mapcar #'vc-backend (gk-directory-files path)))
             #'vc-dir)))
-         (project-name (file-name-base
-                        (replace-regexp-in-string "/+\\'" "" path)))
+         (project-name (generate-new-buffer-name ;uniquify
+                        (file-name-base
+                         (replace-regexp-in-string "/+\\'" "" path))))
          (shell-name (format "*%s shell*" project-name))
          (frame-params `((fullscreen . maximized)
                          (gk-project . ,project-name)
@@ -1349,12 +1368,7 @@ creating a new one."
   (dired path)
   (split-window-sensibly)
   (other-window 1)
-  (funcall vcs path)
-  (save-window-excursion
-    (let ((buf (get-buffer-create shell-name))
-          (default-directory path))
-      (unless (get-buffer-process buf)
-        (shell buf)))))
+  (funcall vcs path))
 
 (defun gk-frame-parameters ()
   "Get my frame parameters."
@@ -1368,16 +1382,15 @@ creating a new one."
 
 Subroutine for ‘gk-pop-shell’ and ‘gk-display-shell’."
   (save-window-excursion
-    (let ((prefix-arg arg-for-shell))
-      ;; If can find a project shell, show that
-      ;; instead.
-      (if-let* ((project-shell
-                 (ignore-errors
-                   (get-buffer
-                    (assoca
-                     'gk-project-shell (frame-parameters frame))))))
-          project-shell
-        (call-interactively #'shell)))))
+    (let* ((prefix-arg arg-for-shell)
+           (project-shell (frame-parameter frame 'gk-project-shell))
+           (eshell-buffer-name (or project-shell
+                                   eshell-buffer-name))
+           (default-directory (or (frame-parameter frame 'gk-project-dir)
+                                  default-directory)))
+      (if gk-projects-use-eshell
+          (eshell)
+        (shell project-shell)))))
 
 (defun gk-pop-shell (arg)
   "Pop a shell in a side window.
@@ -1389,7 +1402,10 @@ If there is a project shell associated to the frame, just show
 that instead."
   (interactive "P")
   (if (and (assoca 'window-side (window-parameters))
-           (equal major-mode 'shell-mode))
+           (equal major-mode
+                  (if gk-projects-use-eshell
+                      'eshell-mode
+                    'shell-mode)))
       (window-toggle-side-windows)
     (when-let* ((win (display-buffer-in-side-window
                       (gk--get-shell-for-frame arg)
@@ -1813,6 +1829,19 @@ that instead."
 
 (add-hook 'shell-mode-hook 'gk-shell-mode-hook)
 
+
+
+
+;;;;; Eshell:
+
+(setf
+ eshell-ls-initial-args
+ (list "--group-directories-first" "-Fh"))
+
+(dolist (key '(up down left right))
+  (define-key eshell-hist-mode-map `[,key] nil))
+(define-key eshell-hist-mode-map (kbd "M-p") #'eshell-previous-matching-input-from-input)
+(define-key eshell-hist-mode-map (kbd "M-n") #'eshell-next-matching-input-from-input)
 
 
 

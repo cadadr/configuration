@@ -167,7 +167,7 @@
             "emacs.desktop",
             "zotero.desktop",
             "org.qutebrowser.qutebrowser.desktop",
-            "debian-uxterm.desktop",
+            "org.gnome.Terminal.desktop",
             "nemo.desktop",
             "gnome-system-monitor.desktop",
             "whatsappdesktop.desktop",
