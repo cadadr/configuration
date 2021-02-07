@@ -9,6 +9,7 @@
 " UI/UX {{{
 set nocompatible
 filetype plugin indent on
+syntax on
 set encoding=utf8
 set backspace=eol,start,indent	" backspace over newline too
 set incsearch
