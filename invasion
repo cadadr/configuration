@@ -36,5 +36,6 @@
 .xprofile						dotfiles/xsessionrc
 .vimrc							dotfiles/rc.vim
 .vim							dotfiles/vim
+.tmux.conf						dotfiles/tmux.conf
 bin							bin
 
