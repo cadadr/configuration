@@ -20,6 +20,11 @@ PITA.
 A config for an RPi that acts as a networked printer / scanner /
 backup server.
 
+## `guixtest`: GuixSD workstation
+
+This is an experimental configuration that tries to replicate `mergen`,
+but built on the Guix System Distribution.
+
 ## `tamag`: Windows desktop
 
 TBD.

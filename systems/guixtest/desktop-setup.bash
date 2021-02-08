@@ -12,6 +12,7 @@ clipit                   &
 volctl                   &
 xsettingsd               &
 flameshot                &
+nm-applet                &
 # gpg-agent, ssh-agent?
 
 exec dbus-launch --exit-with-session i3 2>&1 >> $XERRORS_FILE

@@ -42,18 +42,26 @@
                    (extensions
                     (list cups-filters hplip-minimal))))
          (service sane-service-type)
-         (geoclue-service #:applications
-                          (cons* (geoclue-application "redshift-gtk" #:allowed? #t #:system? #t)
-                                 (geoclue-application "redshift" #:allowed? #t #:system? #t)
-                                 (geoclue-application "emacs" #:allowed? #t)
-                                 %standard-geoclue-applications))
+         (geoclue-service
+		  #:applications
+		  (cons* (geoclue-application "redshift-gtk" #:allowed? #t #:system? #t)
+				 (geoclue-application "redshift" #:allowed? #t #:system? #t)
+				 (geoclue-application "emacs" #:allowed? #t)
+				 %standard-geoclue-applications))
 		 (service gnome-keyring-service-type)
          (service slim-service-type
                   (slim-configuration
                    (xorg-configuration (xorg-configuration (keyboard-layout keyboard-layout)))))
+		 (service elogind-service-type
+				  (elogind-configuration
+				   ;; hibernation is not implemented in GuixSD yet.
+				   ;; (handle-power-key 'hibernate)
+				   (handle-power-key 'suspend)
+				   (handle-lid-switch-external-power 'suspend)))
          (remove (lambda (s) (or (eq? (service-kind s) gdm-service-type)
                                  (eq? (service-kind s) geoclue-service-type)
                                  (eq? (service-kind s) slim-service-type)
+                                 (eq? (service-kind s) elogind-service-type)
                                  (eq? (service-kind s) sane-service-type)))
                  %desktop-services)))
  (bootloader
