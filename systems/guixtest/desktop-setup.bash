@@ -14,4 +14,4 @@ xsettingsd               &
 flameshot                &
 # gpg-agent, ssh-agent?
 
-exec i3 2>&1 >> $XERRORS_FILE
+exec dbus-launch --exit-with-session i3 2>&1 >> $XERRORS_FILE
