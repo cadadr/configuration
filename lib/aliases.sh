@@ -321,11 +321,18 @@ __gk_freebsd_aliases(){
 gx(){
     case $1 in
         rs) echo Reconfiguring system: $MYSYSTEM/system.scm ;
-            echo This action requires root privileges. ;
+            echo This action requires superuser privileges. ;
             sudo guix system reconfigure $MYSYSTEM/system.scm ;;
 
-        rp) echo Upgrading profile from manifest: $MYSYSTEM/user.scm ;
+        ru) echo Upgrading profile from manifest: $MYSYSTEM/user.scm ;
             guix package --manifest=$MYSYSTEM/user.scm ;;
+
+		su|both)
+			echo Reconfigure system \($MYSYSTEM/system.scm\) and upgrade ;
+			echo user profile \($MYSYSTEM/user\). ;
+			echo The first step of this action requires superuser privileges. ;
+            sudo guix system reconfigure $MYSYSTEM/system.scm && \
+                 guix package --manifest=$MYSYSTEM/user.scm ;;
 
         up) echo Upgrading system: $MYSYSTEM/system.scm ;
             echo This action requires root privileges. ;
@@ -346,8 +353,10 @@ gx(){
            echo ;
            echo Commands:
            printf "\trs\treconfigure system*\n" ;
-           printf "\trp\tupdate user's profile from manifest\n" ;
+           printf "\tru\tupdate user's profile from manifest\n" ;
            printf "\tup\trun 'guix pull' then upgrade system\n" ;
+		   printf "\tsu\treconfigure system then update user profile\n" ;
+		            "\t\tfrom manifest (alias: both)\n" ;
            echo
            printf "\tp\talias for 'guix package'\n" ;
            printf "\ts\talias for 'guix package -s' (search)\n" ;
