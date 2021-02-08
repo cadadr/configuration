@@ -43,8 +43,9 @@
                     (list cups-filters hplip-minimal))))
          (service sane-service-type)
          (geoclue-service #:applications
-                          (cons* (geoclue-application "redshift-gtk")
-                                 (geoclue-application "emacs")
+                          (cons* (geoclue-application "redshift-gtk" #:allowed? #t #:system? #t)
+                                 (geoclue-application "redshift" #:allowed? #t #:system? #t)
+                                 (geoclue-application "emacs" #:allowed? #t)
                                  %standard-geoclue-applications))
 		 (service gnome-keyring-service-type)
          (service slim-service-type
