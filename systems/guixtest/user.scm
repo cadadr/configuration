@@ -8,7 +8,7 @@
 
 (use-package-modules
  admin aidc aspell astronomy audio backup cmake commencement
- cran disk dns djvu dunst emacs emacs-xyz entr fonts fontutils
+ cran curl disk dns djvu dunst emacs emacs-xyz entr fonts fontutils
  freedesktop gdb gimp gnome gnupg graphviz gtk haskell-xyz
  hunspell inkscape image imagemagick image-viewers javascript
  julia kde kde-frameworks language libreoffice linux m4 mail
@@ -51,7 +51,7 @@
    font-mathjax font-alias font-linuxlibertine font-public-sans
    font-blackfoundry-inria font-bitstream-vera kbd
    ;; network utilities
-   (list isc-bind "utils") bridge-utils ndisc6
+   (list isc-bind "utils") bridge-utils ndisc6 curl
    ;; encryption, privacy & security
    gnupg password-store pwgen
    ;; programming
