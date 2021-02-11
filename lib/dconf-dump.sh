@@ -58,7 +58,9 @@ favorite-apps-list
 looking-glass-history
 saved-pathbar-path
 night-light-last-coordinates
-last-refresh-time"
+last-refresh-time
+last-active-shape
+last-font-name"
 
 # This pops up sometimes for some reason
 if [ "$DESKTOP_SESSION" = "cinnamon" ]; then
