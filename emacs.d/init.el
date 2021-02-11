@@ -148,6 +148,7 @@
 (require 'org-attach-screenshot)
 (require 'org-capture)
 (require 'org-checklist)
+(require 'org-habit)
 (require 'org-inlinetask)
 (require 'org-mobile)
 (require 'org-num)
@@ -4689,6 +4690,9 @@ modified slightly before it’s used e.g. when posting to Reddit."
    (todo . " %i %-16:c")
    (tags . " %i %-16:c")
    (search . " %i %-16:c"))
+ ;; More room for habit titles.
+ org-habit-preceding-days 21
+ org-habit-graph-column 59
  org-agenda-files
  (gk-org-dir-files
   "Todo.org" "Linguistics.org" "Statistics.org")
@@ -4697,14 +4701,9 @@ modified slightly before it’s used e.g. when posting to Reddit."
  `(("p" "Planner"
     (;; Today’s scheduled items
      (agenda "" ((org-agenda-overriding-header
-                  ,(with-temp-buffer
-                     (insert "P L A N N E R\n\n")
-                     (goto-char (point-min))
-                     (center-line)
-                     (goto-char (point-max))
-                     (insert "T O D A Y ’ S   S C H E D U L E :\n")
-                     (buffer-substring (point-min) (point-max))))
-                 (org-agenda-skip-function '(org-agenda-skip-entry-if 'deadline))
+                  "* Today’s schedule:")
+                 (org-agenda-skip-function '(org-agenda-skip-entry-if
+                                             'deadline 'todo '("HABIT")))
                  (org-deadline-warning-days 0)
                  (org-agenda-sorting-strategy '(time-up
                                                 priority-down
@@ -4716,16 +4715,19 @@ modified slightly before it’s used e.g. when posting to Reddit."
                  (org-default-priority org-lowest-priority)
                  (org-agenda-span 1)))
 
-     (tags-todo "CATEGORY=\"Tez@MALing\""
-                ((org-agenda-overriding-header
-                  "\n\nT H E S I S :")
-                 (org-agenda-skip-function '(org-agenda-skip-entry-if 'scheduled))
+     ;; Habit tracker
+     (agenda "" ((org-agenda-overriding-header
+                  "\n* Habits:")
+                 (org-agenda-skip-function
+                  '(org-agenda-skip-entry-if 'nottodo '("HABIT")))
                  (org-default-priority org-lowest-priority)
-                 (org-agenda-span 1)))
+                 (org-agenda-span 1)
+                                        ;(org-agenda-compact-blocks t)
+                 ))
 
      ;; Approaching deadlines
      (agenda nil ((org-agenda-overriding-header
-                   "\n\nA P P R O A C H I N G   D E A D L I N E S :")
+                   "\n* Approaching  deadlines:")
                   (org-agenda-entry-types '(:deadline))
                   (org-agenda-format-date "")
                   (org-deadline-warning-days 21)
@@ -4733,9 +4735,16 @@ modified slightly before it’s used e.g. when posting to Reddit."
                   (org-default-priority org-lowest-priority)
                   (org-agenda-span 1)))
 
+     (tags-todo "CATEGORY=\"Tez@MALing\""
+                ((org-agenda-overriding-header
+                  "\n* Thesis:")
+                 (org-agenda-skip-function '(org-agenda-skip-entry-if 'scheduled))
+                 (org-default-priority org-lowest-priority)
+                 (org-agenda-span 1)))
+
      ;; Reading
      (todo "READING|READ" ((org-agenda-overriding-header
-                            "\n\nR E A D I N G :\n")
+                            "\n* Reading:")
                            (org-agenda-sorting-strategy '(priority-down todo-state-down))
                            (org-default-priority org-lowest-priority)
                            (org-agenda-skip-function
@@ -4744,7 +4753,7 @@ modified slightly before it’s used e.g. when posting to Reddit."
      ;; Research related stuff
      (tags-todo "research+TODO=\"TODO\""
                 ((org-agenda-overriding-header
-                  "\n\nR E S E A R C H :\n")
+                  "\n* Research:")
                  (org-agenda-skip-function
                   '(org-agenda-skip-entry-if 'deadline 'scheduled))
                  (org-default-priority org-lowest-priority)))))
@@ -4753,14 +4762,7 @@ modified slightly before it’s used e.g. when posting to Reddit."
     ;; Unsorted TODO items
     ((tags-todo "-vault-research+TODO=\"TODO\""
                 ((org-agenda-overriding-header
-                  ,(with-temp-buffer
-                     (insert "P L A N N E R\n\n")
-                     (goto-char (point-min))
-                     (center-line)
-                     (goto-char (point-max))
-                     (insert "S T R A Y   T O D O s :")
-                     (newline)
-                     (buffer-substring (point-min) (point-max))))
+                  "* Stray  TODOs:")
                  (org-agenda-skip-function
                   '(org-agenda-skip-entry-if 'deadline 'scheduled))
                  (org-default-priority org-lowest-priority)
@@ -4816,7 +4818,7 @@ display a two pane view in a maximised frame."
   (hl-line-mode +1)
   (setq-local word-wrap t)
   (setq-local truncate-lines nil)
-  (gk-turn-on-outline-minor-mode "^[A-Z] " " :$" "C-'"))
+  (gk-turn-on-outline-minor-mode "^\\*" ":$" "C-'"))
 
 (add-hook 'org-agenda-mode-hook #'gk-org-agenda-mode-hook)
 
