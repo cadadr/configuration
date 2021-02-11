@@ -14,6 +14,7 @@ show-warning=false
 window-is-maximized=false
 
 [com/github/maoschanz/drawing]
+use-antialiasing=true
 
 [com/linuxmint/install]
 flatpak-remotes=['flathub::https://dl.flathub.org/repo/::False']
@@ -40,6 +41,9 @@ playlist-width=250
 show-controls=true
 show-playlist=false
 width=640
+
+[org/blueberry]
+obex-enabled=true
 
 [org/cinnamon]
 alttab-minimized-aware=true
