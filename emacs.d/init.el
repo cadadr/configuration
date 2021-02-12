@@ -5779,7 +5779,7 @@ will become the only window."
 ;;;;; GUI:
 
 (defvar gk-preferred-themes '( :light modus-operandi
-                               :dark zenburn
+                               :dark yoshi
                                ;; just being explicit...
                                :no-preference nil)
   "Light and dark theme preferences.")
@@ -5927,6 +5927,11 @@ new frame is created."
       (set-face-attribute 'org-block nil
                           :background (color-lighten-name color 40)
                           :inherit 'normal :extend t)))
+
+  (when (eq gk-gui-theme 'yoshi)
+    (set-face-attribute 'org-level-1 nil :underline nil)
+    (set-face-attribute 'org-level-2 nil :weight 'regular)
+    (set-face-attribute 'org-level-3 nil :italic nil))
 
   ;; Region should not have a foreground colour.
   (set-face-attribute 'region nil :foreground nil)
