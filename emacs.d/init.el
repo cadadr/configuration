@@ -5399,51 +5399,69 @@ which correspond to homonymous fields listed in
                                          args (nth i args)))))))))
 
 
-(gk-org-define-capture-template
- :keys "t"
- :description "Random task (not scheduled)"
- :type 'entry
- :target `(file+olp ,(car org-agenda-files) "Tasks")
- :template "* TODO %?"
- :prepend t
- :empty-lines-after 1
- :unnarrowed t)
+(progn
+  ;; Zero it out, the populate.
+  (setf org-capture-templates nil)
 
-(gk-org-define-capture-template
- :keys "r"
- :description "Reading task"
- :type 'entry
- :target `(file+olp ,(car org-agenda-files) "Tasks")
- :template "* READ %?\n"
- :prepend t
- :empty-lines-after 1
- :unnarrowed t)
+  (gk-org-define-capture-template
+   :keys "t"
+   :description "Random task (not scheduled)"
+   :type 'entry
+   :target `(file+olp ,(car org-agenda-files) "Tasks")
+   :template "* TODO %?"
+   :prepend t
+   :empty-lines-after 1
+   :unnarrowed t)
 
-(gk-org-define-capture-template
- :keys "R"
- :description "Reading task (make active)"
- :type 'entry
- :target `(file+olp ,(car org-agenda-files) "Tasks")
- :template "* READING %?\n"
- :prepend t
- :empty-lines-after 1
- :unnarrowed t)
+  (gk-org-define-capture-template
+   :keys "r"
+   :description "Reading task"
+   :type 'entry
+   :target `(file+olp ,(car org-agenda-files) "Tasks")
+   :template "* READ %?\n"
+   :prepend t
+   :empty-lines-after 1
+   :unnarrowed t)
 
-(gk-append-to-list
- 'org-capture-templates
- (list (list "c" "Coursework")))
+  (gk-org-define-capture-template
+   :keys "R"
+   :description "Reading task (make active)"
+   :type 'entry
+   :target `(file+olp ,(car org-agenda-files) "Tasks")
+   :template "* READING %?\n"
+   :prepend t
+   :empty-lines-after 1
+   :unnarrowed t)
 
-(gk-org-define-capture-template
- :keys "cr"
- :description "Coursework: reading"
- :type 'entry
- :target `(file+olp ,(car org-agenda-files)
-                    "Current semester"
-                    "Readings")
- :template "* TODO %?\nDEADLINE:%^{Deadline}t"
- :prepend t
- :empty-lines-after 1
- :unnarrowed t)
+  (gk-append-to-list
+   'org-capture-templates
+   (list (list "c" "Coursework")))
+
+  (gk-org-define-capture-template
+   :keys "cr"
+   :description "Coursework: reading"
+   :type 'entry
+   :target `(file+olp ,(car org-agenda-files)
+                      "Current semester"
+                      "Readings")
+   :template "* TODO %?\nDEADLINE:%^{Deadline}t"
+   :prepend t
+   :empty-lines-after 1
+   :unnarrowed t)
+
+  (gk-append-to-list
+   'org-capture-templates
+   (list (list "T" "Thesis")))
+
+  (gk-org-define-capture-template
+   :keys "Tt"
+   :description "Thesis: task"
+   :type 'entry
+   :target `(file+olp ,(car org-agenda-files) "MA thesis")
+   :template "* TODO %?"
+   :prepend t
+   :empty-lines-after 1
+   :unnarrowed t))
 
 
 
