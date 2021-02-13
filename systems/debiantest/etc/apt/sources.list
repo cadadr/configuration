@@ -16,6 +16,6 @@ deb-src http://deb.debian.org/debian/ stable-updates main
 deb http://debug.mirrors.debian.org/debian-debug/ stable-debug main
 
 # virtualbox
-deb [arch=amd64] https://download.virtualbox.org/virtualbox/debian buster contrib
+# deb [arch=amd64] https://download.virtualbox.org/virtualbox/debian buster contrib
 # in order to add their key:
 # wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | sudo apt-key add -
