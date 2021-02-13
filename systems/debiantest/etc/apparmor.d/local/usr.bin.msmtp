@@ -1,0 +1,6 @@
+owner @{HOME}/log/msmtp.log wk,
+owner @{HOME}/.msmtprc r,
+owner @{HOME}/cf/dotfiles/msmtprc r,
+owner /igk/log/msmtp.log wk,
+owner /igk/config/dotfiles/msmtprc r,
+owner /dev/shm/g-netrc r,
