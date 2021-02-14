@@ -34,4 +34,4 @@ nm-applet                &
 pcmanfm --daemon-mode    &
 # gpg-agent, ssh-agent?
 
-exec dbus-launch --exit-with-session i3
+exec dbus-launch --exit-with-session i3 -V -d all
