@@ -157,3 +157,7 @@ Generate locales:
 
 At this point the system should be ready for the installation of my
 dotfiles, for which see `../../Readme.markdown`.
+
+---
+
+![screen cap](/candy/scr-kayra.png)
