@@ -5096,7 +5096,11 @@ numerals which regularly appear in texts."
  "file"
  :face '(:inherit font-lock-string-face :underline t))
 
-(setf org-num-face 'org-verbatim)
+(set-face-attribute 'org-ellipsis nil :underline nil :height .5 :bold t)
+
+(setf
+ org-num-face 'org-verbatim
+ org-ellipsis "  ⋱")
 
 
 
