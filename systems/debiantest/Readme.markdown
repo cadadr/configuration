@@ -128,8 +128,7 @@ This will inspect the dpkg database and find out all the relevant
 
 Modify the user `g` to make it a member of some useful groups:
 
-    # GROUPS=sudo,cdrom,docker,floppy,audio,dip,video,plugdev,netdev,bluetooth,lpadmin,scanner
-    # /sbin/ usermod -a -G $GROUPS -s /bin/bash g
+    # /sbin/usermod -a -G sudo,cdrom,floppy,audio,dip,video,plugdev,netdev,bluetooth,lpadmin,scanner -s /bin/bash g
 
 Generate locales:
 
