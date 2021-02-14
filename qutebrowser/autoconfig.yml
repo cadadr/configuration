@@ -95,10 +95,6 @@ settings:
     - -c
     - +{line}:{column}
     - '{file}'
-  fonts.default_family:
-    global: Sans-serif
-  fonts.default_size:
-    global: 12pt
   fonts.hints:
     global: bold 14pt default_family
   fonts.keyhint:
@@ -165,11 +161,9 @@ settings:
   tabs.show_switching_delay:
     global: 1000
   tabs.title.format:
-    global: '{audio}{index}: {current_title}'
+    global: '{audio}{index}: {title}'
   tabs.title.format_pinned:
-    global: '* {audio}{index}: {current_title}'
-  tabs.undo_stack_size:
-    global: -1
+    global: '* {audio}{index}: {title}'
   tabs.wrap:
     global: false
   url.default_page:
