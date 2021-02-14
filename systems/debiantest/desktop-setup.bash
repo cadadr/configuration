@@ -26,7 +26,7 @@ redshift-gtk             &
 kdeconnect-indicator     &
 clipit                   &
 # volctl                   &
-xsettingsd               &
+# xsettingsd               &
 # if flameshot starts too quickly, the icon doesn't go to the
 # system tray.
 (sleep 5; flameshot)     &
