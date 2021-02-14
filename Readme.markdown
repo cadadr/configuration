@@ -39,7 +39,7 @@ The configuration on this repo works with multiple OS / hardware
 setups, which have their own set up instructions.  Follow the links
 below for more details.
 
-- [GNU/Linux desktop workstation](systems/kayra/) (`mergen`) with
+- [GNU/Linux desktop workstation](systems/kayra/) (`kayra`) with
   Debian Stable and i3 window manager.
 
 - [GNU/Linux laptop](systems/ulgen/) (`ulgen`) using the
