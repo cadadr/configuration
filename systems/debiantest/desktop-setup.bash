@@ -15,7 +15,9 @@ kdeconnect-indicator     &
 clipit                   &
 # volctl                   &
 xsettingsd               &
-flameshot                &
+# if flameshot starts too quickly, the icon doesn't go to the
+# system tray.
+(sleep 5; flameshot)     &
 nm-applet                &
 pcmanfm --daemon-mode    &
 # gpg-agent, ssh-agent?
