@@ -227,3 +227,4 @@ xserver-xorg-input-libinput
 kdeconnect
 lm-sensors
 libjson-perl
+dconf-cli
