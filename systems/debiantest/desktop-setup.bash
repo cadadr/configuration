@@ -7,7 +7,7 @@ IFS=$'\n\t'
 ### Start background processes:
 dunst                    &
 redshift-gtk             &
-# kdeconnect-indicator     &
+kdeconnect-indicator     &
 clipit                   &
 # volctl                   &
 xsettingsd               &
