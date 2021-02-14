@@ -2961,6 +2961,10 @@ line numbers that match the beginning and the end of the region."
 ;; Disable with-editor stuff.
 (gk-deadvice 'server-switch-buffer)
 
+(add-hook 'magit-mode-hook
+          ($ (when (eq gk-gui-theme 'yoshi)
+               (hl-line-mode +1))))
+
 
 
 ;;;;; Mercurial:
