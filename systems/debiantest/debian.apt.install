@@ -225,3 +225,4 @@ youtube-dl
 xsettingsd
 xserver-xorg-input-libinput
 kdeconnect
+libjson-perl
