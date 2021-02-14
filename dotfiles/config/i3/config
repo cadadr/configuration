@@ -185,7 +185,7 @@ client.urgent		#333333	#ffffff		#C20000	#ffffff		#dedede
 bar {
 	font $fnt
 	position top
-	status_command i3status | $MYLIB/i3statusx.pl
+	status_command i3status -c $MYSYSTEM/i3status.config | $MYLIB/i3/statusx.pl
 	colors {
 		separator		#C20000
 		background		#dddddd
