@@ -13,6 +13,7 @@ clipit                   &
 xsettingsd               &
 flameshot                &
 nm-applet                &
+pcmanfm --daemon-mode    &
 # gpg-agent, ssh-agent?
 
 exec dbus-launch --exit-with-session i3
