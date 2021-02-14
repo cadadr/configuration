@@ -2,6 +2,11 @@
 
 This tree contains system-level configurations specific to my computers.
 
+## `kayra`: desktop workstation
+
+A workstation setup with Debian Stable and i3 window manager.  Partly
+a port of `mergen`, partly a revival of my former Debian/i3 setup.
+
 ## `mergen`: desktop workstation
 
 A Linux Mint Cinnamon based desktop workstation.  Someday might be

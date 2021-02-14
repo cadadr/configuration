@@ -1,7 +1,5 @@
 # Setup recipe for `kayra`
 
-Porting `mergen` to Debian Testing.
-
 ## Debian installation
 
 The Debian [netinst](https://www.debian.org/distrib/netinst) image

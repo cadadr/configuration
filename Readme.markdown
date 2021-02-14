@@ -39,11 +39,11 @@ The configuration on this repo works with multiple OS / hardware
 setups, which have their own set up instructions.  Follow the links
 below for more details.
 
+- [GNU/Linux desktop workstation](systems/kayra/) (`mergen`) with
+  Debian Stable and i3 window manager.
+
 - [GNU/Linux laptop](systems/ulgen/) (`ulgen`) using the
   latest stable Linux Mint Cinnamon.
-
-- [GNU/Linux desktop workstation](systems/mergen/) (`mergen`) with
-  Linux Mint XFCE.
 
 - [Raspberry Pi](systems/ayata/) (`ayata`) backup and print/scan
   server.
