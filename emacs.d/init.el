@@ -5840,6 +5840,8 @@ prefers dark themes."
             (shell-command-to-string
              "xfconf-query --channel xsettings --property /Net/ThemeName"))))
     :dark)
+   ((string= (getenv "DESKTOP_SESSION") "i3wm")
+    (intern (concat ":" (getenv "GK_COLOUR_SCHEME_PREFERENCE"))))
    (t
     :light)))
 

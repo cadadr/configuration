@@ -173,25 +173,11 @@ mode "$mod_volume" {
 }
 bindsym $mod+Control+s mode "$mod_volume"
 
-# Visuals:
-## Colour theme:
-# colorclass		border	background	text 	indicator	child_border
-client.focused		#0087af	#0087af		#ffffff	#0087af		#0087af
-client.focused_inactive	#666666	#dedede		#333333	#333333		#dedede
-client.unfocused	#666666	#dddddd		#333333	#ffffff		#dedede
-client.urgent		#333333	#ffffff		#C20000	#ffffff		#dedede
-
 ## The bar:
 bar {
-	font $fnt
-	position top
-	status_command i3status -c $MYSYSTEM/i3status.config | $MYLIB/i3/statusx.pl
-	colors {
-		separator		#C20000
-		background		#dddddd
-		statusline		#000000
-		inactive_workspace	#dddddd #000000
-	}
+        font $fnt
+        position top
+        status_command i3status -c $MYSYSTEM/i3status.config | $MYLIB/i3/statusx.pl
 }
 
 # Rules:
