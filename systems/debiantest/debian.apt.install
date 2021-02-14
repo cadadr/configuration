@@ -225,4 +225,5 @@ youtube-dl
 xsettingsd
 xserver-xorg-input-libinput
 kdeconnect
+lm-sensors
 libjson-perl
