@@ -105,6 +105,10 @@ user not as superuser:
 on the local network, or just use the working directory in the /igk
 partition).
 
+Install system-wide configuration files:
+
+    # bash install-configs.bash
+
 The file `debian.apt.install` contains a listing of Debian packages to
 be installed, and the file `debian.apt.build-dep` contains a listing
 of packages for which to fetch build dependencies.  The could be
@@ -121,3 +125,15 @@ packages.  There is a script for that:
 
 This will inspect the dpkg database and find out all the relevant
 `-doc` packages, and install them.
+
+Modify the user `g` to make it a member of some useful groups:
+
+    # GROUPS=sudo,cdrom,docker,floppy,audio,dip,video,plugdev,netdev,bluetooth,lpadmin,scanner
+    # /sbin/ usermod -a -G $GROUPS -s /bin/bash g
+
+Generate locales:
+
+    # locale-gen
+
+At this point the system should be ready for the installation of my
+dotfiles, for which see `../../Readme.markdown`.
