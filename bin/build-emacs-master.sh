@@ -40,7 +40,7 @@ git clean -dfx
 # ./configure ...
 #
 # passing the ./configure script whatever flags you like.
-TK=gtk3 configure-emacs.sh
+TK=lucid configure-emacs.sh
 
 make -j$(lscpu | awk '/^CPU\(s\):/ {print $2}')
 

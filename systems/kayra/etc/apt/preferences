@@ -8,6 +8,6 @@ Package: guix
 Pin: release a=testing
 Pin-Priority: 1001
 
-Package: qutebrowser
-Pin: release a=testing
-Pin-Priority: 1001
+# Package: qutebrowser
+# Pin: release a=testing
+# Pin-Priority: 1001
