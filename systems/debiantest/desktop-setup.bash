@@ -4,6 +4,9 @@
 set -euo pipefail
 IFS=$'\n\t'
 
+export DESKTOP_SESSION=i3wm
+export GK_COLOUR_SCHEME_PREFERENCE=light
+
 ### Start background processes:
 dunst                    &
 redshift-gtk             &
