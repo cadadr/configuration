@@ -4696,7 +4696,7 @@ modified slightly before it’s used e.g. when posting to Reddit."
    (search . " %i %-16:c"))
  ;; More room for habit titles.
  org-habit-preceding-days 21
- org-habit-graph-column 59
+ org-habit-graph-column 49
  org-agenda-files
  (gk-org-dir-files
   "Todo.org" "Linguistics.org" "Statistics.org")
