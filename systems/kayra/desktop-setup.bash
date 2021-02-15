@@ -15,6 +15,9 @@ xset s off
 # Disable bell
 xset -b
 
+# Swap mouse back/forward buttons around.
+xinput set-button-map "USB Optical Mouse" 1 2 3 4 5 6 7 9 8
+
 # Use XToolkit in java applications
 export AWT_TOOLKIT=XToolkit
 
