@@ -1,0 +1,7 @@
+[org/gtk/settings/file-chooser]
+sort-column='name'
+show-size-column=true
+show-hidden=false
+sort-directories-first=false
+date-format='regular'
+sort-order='ascending'
