@@ -26,6 +26,7 @@ ulimit -c unlimited
 
 
 ### Start background processes:
+export $(gnome-keyring-daemon --start --components=ssh) &
 /usr/lib/geoclue-2.0/demos/agent & # required for access to geoclue2
 dunst                    &
 redshift-gtk             &
