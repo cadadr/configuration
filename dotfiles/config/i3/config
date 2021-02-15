@@ -202,4 +202,7 @@ for_window [class="Nm-connection-editor"] floating enable
 for_window [class="Pavucontrol"] floating enable
 ## R
 for_window [class="R_x11"] floating enable
-
+## xterm
+for_window [class="UXTerm"] floating enable move position center
+# pcmanfm
+for_window [class="Pcmanfm"] floating enable move position center
