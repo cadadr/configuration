@@ -12,6 +12,9 @@ export GK_COLOUR_SCHEME_PREFERENCE=dark
 xset -dpms
 xset s off
 
+# Disable bell
+xset -b
+
 # Use XToolkit in java applications
 export AWT_TOOLKIT=XToolkit
 
