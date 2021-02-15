@@ -29,7 +29,8 @@ ulimit -c unlimited
 export $(gnome-keyring-daemon --start --components=ssh) &
 /usr/lib/geoclue-2.0/demos/agent & # required for access to geoclue2
 dunst                    &
-redshift-gtk             &
+# Wait for geoclue agent.
+( sleep 10; redshift-gtk ) &
 kdeconnect-indicator     &
 clipit                   &
 # volctl                   &
