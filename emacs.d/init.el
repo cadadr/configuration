@@ -3921,8 +3921,7 @@ This is the reverse counterpart of
 
 (add-hook 'rmail-mode-hook #'gk-rmail-mode-hook)
 
-
-(define-key rmail-mode-map "<" #'gk-fetch-mail)
+(define-key rmail-mode-map (kbd "RET") nil) ;was: rmail-mime-toggle-hidden, brutally useless
 (define-key rmail-mode-map "N" #'gk-rmail-advance)
 (define-key rmail-mode-map "S" #'gk-rmail-force-expunge-and-save)
 (define-key rmail-mode-map "b"
