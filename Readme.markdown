@@ -62,7 +62,7 @@ system flavour:
 
 
 ```
-$ make setup
+$ make setup build
 ```
 
 Licenses
