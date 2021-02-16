@@ -104,7 +104,7 @@ settings:
   hints.auto_follow:
     global: never
   hints.chars:
-    global: asdfjklqweruio
+    global: qweruopasdfjkzxvm
   hints.prev_regexes:
     global:
     - \bprev(ious)?\b
