@@ -76,6 +76,8 @@ settings:
     global: no-3rdparty
   content.default_encoding:
     global: utf-8
+  content.headers.accept_language:
+    global: en-GB,en
   content.headers.referer:
     global: same-domain
   content.pdfjs:
