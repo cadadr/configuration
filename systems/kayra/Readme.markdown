@@ -108,7 +108,7 @@ block device file that can be used to mount the partition:
 The following commands allow to mount this partition at boot:
 
     # blkid
-    # echo igk-disk /dev/sdb2 none luks > /etc/crypttab
+    # echo igk-disk /dev/sdb2 none luks >> /etc/crypttab
     # echo /dev/disk/by-label/igk-store /igk ext4 defaults 0 0 >> /etc/fstab
 
 As it is now, this requires manually entering the decryption password

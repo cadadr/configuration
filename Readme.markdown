@@ -42,6 +42,12 @@ below for more details.
 - [GNU/Linux desktop workstation](systems/mergen/) (`mergen`) with
   latest stable Linux Mint Cinnamon.
 
+- [Experimental GNU/Linux desktop workstation](systems/guixtest/)
+  (`guixtest`) with GuixSD and i3wm.
+
+- [GNU/Linux desktop workstation](systems/kayra/) (`kayra`) with
+  Debian and i3wm.
+
 - [GNU/Linux laptop](systems/ulgen/) (`ulgen`) using the
   latest stable Linux Mint Cinnamon.
 
