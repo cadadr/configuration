@@ -262,6 +262,7 @@ alias pdf2odt='soffice --infilter="writer_pdf_import" --convert-to odt'
 alias du="du -h"
 alias df="df -h"
 alias tmux='TERM=screen-256color-bce tmux'
+alias etcup="( cd $MYSYSTEM && sudo bash $MYLIB/install-configs.bash )"
 
 # raspberry pi
 alias pi="ssh pi@ayata.local"
