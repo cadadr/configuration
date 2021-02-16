@@ -2,6 +2,7 @@
 
 from qutebrowser.api import interceptor
 from qutebrowser import __version__ as qver
+from dracula import blood
 
 ### STFU, linters:
 
@@ -25,6 +26,10 @@ if majv >= 2:
 
 config.source(config.configdir / "bookmarklets.py")
 config.source(config.configdir / "keywords.py")
+
+
+### Theme:
+blood(c)
 
 
 ### Some settings:
