@@ -128,7 +128,7 @@ partition).
 
 Install system-wide configuration files:
 
-    # bash install-configs.bash
+    # bash ../../lib/install-configs.bash
 
 The file `debian.apt.install` contains a listing of Debian packages to
 be installed, and the file `debian.apt.build-dep` contains a listing
