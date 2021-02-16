@@ -88,9 +88,12 @@ settings:
     global: 10000
   editor.command:
     global:
-    - emacsclient
-    - -c
-    - +{line}:{column}
+    - xterm
+    - -class
+    - qtbedit
+    - -e
+    - vim
+    - +call cursor({line}, {column})
     - '{file}'
   fonts.hints:
     global: bold 14pt default_family
