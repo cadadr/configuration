@@ -16,6 +16,9 @@ fi
 ### X resources:
 xrdb -merge $MEINE/Xdefaults
 
+### DConf database:
+dconf load / < $MYSYSTEM/dconf.dump
+
 ### Input:
 #### Keyboard:
 setxkbmap -option "ctrl:nocaps"
