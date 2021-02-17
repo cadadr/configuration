@@ -138,8 +138,8 @@ cursor-blink-time=1200
 cursor-size=24
 cursor-theme='DMZ-Black'
 gtk-overlay-scrollbars=true
-gtk-theme='Mint-Y-Dark'
-icon-theme='Mint-Y-Dark'
+gtk-theme='Mint-Y-Dark-Red'
+icon-theme='Mint-Y-Dark-Red'
 keyboard-layout-prefer-variant-names=false
 keyboard-layout-show-flags=false
 keyboard-layout-use-upper=true
@@ -330,7 +330,7 @@ tile-enabled=false
 unplug-enabled=false
 
 [org/cinnamon/theme]
-name='Mint-Y-Dark'
+name='Mint-Y-Dark-Red'
 theme-cache-updated=1606583546
 
 [org/gnome/baobab/ui]
