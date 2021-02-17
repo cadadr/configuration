@@ -1,14 +1,21 @@
 {
-    "display_type": {
+    "display-type": {
         "type": "combobox",
+        "default": "visual",
         "description": "Type of display",
         "tooltip": "Note that the visual representation will only work if your panel is large enough to display it properly, otherwise the simple style will be used.",
-        "default": "visual",
         "options": {
             "A visual representation of the workspaces": "visual",
             "Simple buttons": "buttons"
         },
         "value": "visual"
     },
-    "__md5__": "26180345de73ee47ebcf203d45716f90"
+    "reverse-scrolling": {
+        "type": "switch",
+        "default": false,
+        "description": "Reverse scrolling direction",
+        "tooltip": "Reverse the direction of the scroll in the workspace list.",
+        "value": false
+    },
+    "__md5__": "32c4073e3c75656cae20a1ac53ebd0c3"
 }
