@@ -1,8 +1,3 @@
 # linuxmint.packages.flatpaks --- flatpaks to be installed.
 
-io.lmms.LMMS
-org.jamovi.jamovi
-org.zotero.Zotero
-com.play0ad.zeroad
-com.github.bleakgrey.tootle
-org.gabmus.giara
+us.zoom.Zoom
