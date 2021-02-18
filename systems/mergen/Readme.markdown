@@ -8,17 +8,39 @@ does, trust me)
 
 and then enable source repositories using the "Software Sources" GUI
 tool.  Preferably also install any updates Linux Mint may ask you to install
-and then log out of the GUI session.  Switch to a virtual console
-(`Ctrl+Alt+F1-6`) and start a root shell.
+and then start a root shell:
 
     $ sudo su
     #
 
-The following commands can be run from inside vi(1) using `y$` for yanking
-a command, and `:! Ctrl+R " <CR>` to paste it to the command line and
-execute it.
+The following commands can be run from inside vi(1)/vim(1) using `y$`
+for yanking a command, and `:! Ctrl+R " <CR>` to paste it to the
+command line and execute it.
 
-Now it's time to go.
+In my personal setup, I keep my files in a dedicated ext4 partition
+encrypted with LUKS.  In order to mount it, first unlock the encrypted
+device:
+
+    # lsblk
+    # udisksctl unlock -b /dev/...
+
+The output from this command lists the path to the newly created
+block device file that can be used to mount the partition:
+
+    # mkdir /igk
+    # mount /dev/dm-0 /igk
+
+The following commands allow to mount this partition at boot:
+
+    # blkid
+    # echo igk-disk /dev/sdb2 none luks >> /etc/crypttab
+    # echo /dev/disk/by-label/igk-store /igk ext4 defaults 0 0 >> /etc/fstab
+
+As it is now, this requires manually entering the decryption password
+every boot.
+
+
+Now it's time to get going with the installation process.
 
 
 The file `mint.apt.install` contains a listing of Debian packages to be
@@ -47,7 +69,8 @@ stupid bullshit.  I’ve tried aliases to no avail.
 
     # aa-complain usr.bin.msmtp
 
-Disable PulseAudio power management:
+Disable PulseAudio power management (insert `\\` before `#` in the
+command below to escape it when calling from vi/vim command line):
 
     # sed -i -E 's/^(load-module module-suspend-on-idle)$/# \1/' /etc/pulse/default.pa
 
@@ -57,8 +80,8 @@ configure resume from hibernation.
     # bash boot-setup.bash
 
 Now it's time to go back to repo root and run `make setup` or
-similar, while still on the virtual console.  It might be opportune
-to run
+similar. **Log out of the graphical session for this and switch
+to a virtual console.**  It might be opportune to run
 
     $ git clean -dfx
 
@@ -73,9 +96,6 @@ bit more involved given there are some differing package names.  You
 might want to go through the package list and find those
 discrepancies, fix them, and run the above command, possibly with a
 different file name.
-
-Because this setup is rather new, it may require some time for it to
-become more easily reproduced between installs.
 
 ---
 

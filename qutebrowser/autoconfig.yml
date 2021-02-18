@@ -79,6 +79,8 @@ settings:
     global: no-3rdparty
   content.default_encoding:
     global: utf-8
+  content.headers.accept_language:
+    global: en-GB,en
   content.headers.referer:
     global: same-domain
   content.pdfjs:
@@ -91,9 +93,12 @@ settings:
     global: 10000
   editor.command:
     global:
-    - emacsclient
-    - -c
-    - +{line}:{column}
+    - xterm
+    - -class
+    - qtbedit
+    - -e
+    - vim
+    - +call cursor({line}, {column})
     - '{file}'
   fonts.hints:
     global: bold 14pt default_family
@@ -104,7 +109,7 @@ settings:
   hints.auto_follow:
     global: never
   hints.chars:
-    global: asdfjklqweruio
+    global: qweruopasdfjkzxvm
   hints.prev_regexes:
     global:
     - \bprev(ious)?\b
@@ -161,9 +166,9 @@ settings:
   tabs.show_switching_delay:
     global: 1000
   tabs.title.format:
-    global: '{audio}{index}: {title}'
+    global: '{audio}{index}: {current_title}'
   tabs.title.format_pinned:
-    global: '* {audio}{index}: {title}'
+    global: '* {audio}{index}: {current_title}'
   tabs.wrap:
     global: false
   url.default_page:

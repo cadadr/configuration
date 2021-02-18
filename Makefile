@@ -10,15 +10,13 @@ help:
 	echo "Targets:";\
 	echo "	setup		set up $$HOME and $$USER after system initialisation";\
 	echo "	setup-light	like above, but skip building binaries";\
-	echo "	install-doc-packages";\
-	echo "			install all relevant documentation packages";\
 	echo "	invade		run invasion";\
 	echo "	build		build utilites and emacs.d";\
 	echo "	dotfiles	build dotfiles";\
 	echo "	clean		delete build artefacts";\
 
 ### System initialisation:
-.PHONY: setup setup-light fetch-config.m4 install-doc-packages
+.PHONY: setup setup-light fetch-config.m4 etc
 
 setup: fetch-config.m4 dotfiles invade
 	sh lib/setup.sh
@@ -36,9 +34,6 @@ fetch-config.m4:
 	else                                    \
 		touch config.m4                ;\
 	fi
-
-install-doc-packages:
-	sudo sh lib/install-doc-packages.sh
 
 ### Build rules:
 build: emacs

@@ -1,7 +1,7 @@
 # apt_preferences(5)
 
 Package: *
-Pin: release a=stable
+Pin: release a=buster
 Pin-Priority: 999
 
 Package: guix

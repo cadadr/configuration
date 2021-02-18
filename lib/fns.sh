@@ -13,6 +13,11 @@ say () {
     fi
 }
 
+die () {
+    say $@
+    exit 1
+}
+
 # Log function for xinit scripts
 logx () {
 	echo \[$(date)\] $* >> ~/.xinit.errors

@@ -202,4 +202,9 @@ for_window [class="Nm-connection-editor"] floating enable
 for_window [class="Pavucontrol"] floating enable
 ## R
 for_window [class="R_x11"] floating enable
-
+## U?XTerm
+for_window [class="UXTerm"] floating enable move position center
+## PCManFM
+for_window [class="Pcmanfm"] floating enable move position center
+## Editor command for Qutebrowser
+for_window [class="qtbedit"] floating enable move position centeR

@@ -138,8 +138,8 @@ cursor-blink-time=1200
 cursor-size=24
 cursor-theme='DMZ-Black'
 gtk-overlay-scrollbars=true
-gtk-theme='Mint-Y-Dark'
-icon-theme='Mint-Y-Dark'
+gtk-theme='Mint-Y-Dark-Red'
+icon-theme='Mint-Y-Dark-Red'
 keyboard-layout-prefer-variant-names=false
 keyboard-layout-show-flags=false
 keyboard-layout-use-upper=true
@@ -330,7 +330,7 @@ tile-enabled=false
 unplug-enabled=false
 
 [org/cinnamon/theme]
-name='Mint-Y-Dark'
+name='Mint-Y-Dark-Red'
 theme-cache-updated=1606583546
 
 [org/gnome/baobab/ui]
@@ -423,8 +423,6 @@ show-path=false
 sort-method='name'
 sort-type='ascending'
 
-[org/gnome/file-roller/ui]
-
 [org/gnome/gnome-screenshot]
 border-effect='none'
 delay=5
@@ -496,7 +494,6 @@ startup-feed-action=1
 [org/gnome/liferea/plugins]
 active-plugins=['bold-unread', 'media-player']
 
-
 [org/gnome/power-manager]
 info-history-type='charge'
 info-last-device='wakeups'
@@ -524,16 +521,14 @@ use-theme-transparency=false
 use-transparent-background=false
 visible-name='cadadr'
 
-[org/gtk/settings/color-chooser]
-
 [org/gtk/settings/file-chooser]
 date-format='regular'
 show-hidden=false
 show-size-column=true
 show-type-column=true
-sort-column='modified'
+sort-column='name'
 sort-directories-first=true
-sort-order='descending'
+sort-order='ascending'
 type-format='category'
 
 [org/nemo/desktop]
@@ -569,13 +564,9 @@ bottom-panel-size=140
 side-panel-active-page=827629879
 side-panel-size=200
 
-[org/x/reader]
-
 [org/x/viewer/ui]
 sidebar=false
 
 [org/x/viewer/view]
 background-color='rgb(0,0,0)'
 use-background-color=true
-
-[org/x/viewer/window]

@@ -182,6 +182,38 @@ do_backup() {
 # Some versions of (Ba)sh doesn’t like a hyphen in function names.
 alias do-backup=do_backup
 
+pdf_monofy() {
+    [ "$1" = "-h" ] || [ -z "$1" ] \
+        && echo "usage: pdf_monofy INPUT [DENSITY] [SUFFIX]" \
+        && echo "defaults:                300       _monofied" \
+        && return 1
+    # better dumb than sorry:
+    echo $1 | grep ".pdf$" >/dev/null || { echo "not a PDF file: $1" && return 1; }
+    outnam="${1/.pdf}${3-_monofied}.pdf"
+    convert -monochrome -density ${2-300} "$1" "$outnam"  2>&1 | \
+        (
+            xit=$?
+            read output
+            echo $output | grep "operation not allowed by the security policy \`PDF'" 1>/dev/null 2>/dev/null
+            if [ "$?" -ne 1 ]; then
+                echo "ImageMagick can't operate on PDF files probably because"
+                echo "your version of it is affected by CVE-2020-29599 and your"
+                echo "distribution has disabled the PDF coder.  If you so wish,"
+                echo "you can enable it temporarily by modifying the file:"
+                echo "    " /etc/ImageMagick-*/policy.xml
+                echo "Specifically, find a line that looks like"
+                echo '    <policy domain="coder" rights="none" pattern="PDF" />'
+                echo "and comment it out."
+                echo "For more info, viz. https://security-tracker.debian.org/tracker/CVE-2020-29599."
+                return 3
+            else
+                print $output >&2
+                [ "$xit" = "0" ] && echo "Wrote $outnam"
+                return $xit
+            fi
+        )
+}
+
 ###
 alias listall="alias | cut -d= -f1 && declare -F | cut -d ' '  -f 3 | sed 's,^,function ,'"
 alias edit="$EDITOR"
@@ -262,6 +294,7 @@ alias pdf2odt='soffice --infilter="writer_pdf_import" --convert-to odt'
 alias du="du -h"
 alias df="df -h"
 alias tmux='TERM=screen-256color-bce tmux'
+alias etcup="( cd $MYSYSTEM && sudo bash $MYLIB/install-configs.bash )"
 
 # raspberry pi
 alias pi="ssh pi@ayata.local"

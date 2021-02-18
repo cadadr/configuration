@@ -12,6 +12,12 @@ export GK_COLOUR_SCHEME_PREFERENCE=dark
 xset -dpms
 xset s off
 
+# Disable bell
+xset -b
+
+# Swap mouse back/forward buttons around.
+xinput set-button-map "USB Optical Mouse" 1 2 3 4 5 6 7 9 8
+
 # Use XToolkit in java applications
 export AWT_TOOLKIT=XToolkit
 
@@ -20,9 +26,11 @@ ulimit -c unlimited
 
 
 ### Start background processes:
+export $(gnome-keyring-daemon --start --components=ssh) &
 /usr/lib/geoclue-2.0/demos/agent & # required for access to geoclue2
 dunst                    &
-redshift-gtk             &
+# Wait for geoclue agent.
+( sleep 10; redshift-gtk ) &
 kdeconnect-indicator     &
 clipit                   &
 # volctl                   &
