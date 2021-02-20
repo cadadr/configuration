@@ -2836,6 +2836,11 @@ line numbers that match the beginning and the end of the region."
   (interactive (list (buffer-file-name)
                      (not (not current-prefix-arg))))
   (unless file (user-error "Buffer not visiting a file"))
+  (when (buffer-modified-p)
+    (user-error
+     "Buffer modified, save and commit before using this function"))
+  (when (save-window-excursion (vc-diff))
+    (user-error "This file has uncommitted changes, commit first"))
   (when line-or-region
     (setq line-or-region
           (if (not (region-active-p))
