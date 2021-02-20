@@ -85,6 +85,8 @@ settings:
     global: same-domain
   content.pdfjs:
     global: false
+  content.webgl:
+    global: false
   content.windowed_fullscreen:
     global: true
   content.xss_auditing:
