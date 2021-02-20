@@ -6126,7 +6126,9 @@ new frame is created."
  ;; fringe.
  indicate-unused-lines t
  ;; Draw underlines lower.
- underline-minimum-offset 7)
+ underline-minimum-offset 7
+ ;; Properly maximise frames in non-DE window managers.
+ frame-resize-pixelwise t)
 
 
 (setq-default save-place t)
