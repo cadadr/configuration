@@ -175,5 +175,7 @@ settings:
     global: false
   url.default_page:
     global: about:blank
+  url.open_base_url:
+    global: true
   url.start_pages:
     global: about:blank
