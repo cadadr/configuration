@@ -4574,14 +4574,6 @@ modified slightly before it’s used e.g. when posting to Reddit."
     (org-hugo-export-as-md nil nil t)))
 
 
-(define-advice org-list-separating-blank-lines-number
-    (:override (pos struct prevs) do-it-my-way)
-  "One line separates top level list items and none for other levels."
-  (if (zerop (cadar (last struct)))
-      1
-    0))
-
-
 (defun gk-org-insert-list-of-stored-links ()
   "Insert ‘org-stored-links’ as a bulleted list."
   (interactive)
@@ -5002,6 +4994,53 @@ unlocked, offer to lock it before pasting."
 
 ;; Required after setting ‘org-list-allow-alphabetical’.
 (org-element-update-syntax)
+
+
+
+
+;;;;;; Automatic insertion of blank lines between list items:
+;; Org uses a complex heuristic to determine whether or not to insert
+;; blank lines between list items.  I instead want to have a strict
+;; style.  The advices below replace this heuristic with a regular
+;; system:
+;;
+;; - Top level items are separated by a blank line.
+;; - Non-top-level items are not separated.
+;;
+;; Besides, I advice list item indent/dedent functions to add a blank
+;; line if dedenting to toplevel or remove it if indenting from
+;; toplevel.
+
+(define-advice org-list-separating-blank-lines-number
+    (:override (pos struct prevs) do-it-my-way)
+  "One line separates top level list items and none for other levels."
+  (if (zerop (org-list-get-ind (point-at-bol) struct))
+      1
+    0))
+
+
+(defun gk-org-after-indent-outdent-item ()
+  "Insert/remove separating line like if ‘org-insert-item’ would."
+  (let* ((struct (org-list-struct))
+         (prevs  (org-list-prevs-alist struct))
+         (p      (point))
+         (nblank (org-list-separating-blank-lines-number p struct prevs))
+         ;; Is the previous line blank?
+         (blankp (save-excursion
+                   (forward-line -1)
+                   (zerop (- (line-end-position) (line-beginning-position))))))
+    (cond ((and (zerop nblank) blankp)
+           (save-excursion (goto-char (line-beginning-position))
+                           (delete-backward-char 1)))
+          ((and (/= 0 nblank) (not blankp))
+           (save-excursion (goto-char (line-beginning-position))
+                           (open-line 1))))))
+
+(add-function :after (symbol-function 'org-indent-item) #'gk-org-after-indent-outdent-item
+              '((name . fix-separator-line)))
+(add-function :after (symbol-function 'org-outdent-item) #'gk-org-after-indent-outdent-item
+              '((name . fix-separator-line)))
+
 
 
 
