@@ -4748,15 +4748,7 @@ modified slightly before it’s used e.g. when posting to Reddit."
                            (org-agenda-sorting-strategy '(priority-down todo-state-down))
                            (org-default-priority org-lowest-priority)
                            (org-agenda-skip-function
-                            '(org-agenda-skip-entry-if 'deadline))))
-
-     ;; Research related stuff
-     (tags-todo "research+TODO=\"TODO\""
-                ((org-agenda-overriding-header
-                  "\n* Research:")
-                 (org-agenda-skip-function
-                  '(org-agenda-skip-entry-if 'deadline 'scheduled))
-                 (org-default-priority org-lowest-priority)))))
+                            '(org-agenda-skip-entry-if 'deadline))))))
 
    ("u" "Unsorted TODOs"
     ;; Unsorted TODO items
