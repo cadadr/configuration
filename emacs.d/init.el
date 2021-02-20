@@ -2841,6 +2841,7 @@ line numbers that match the beginning and the end of the region."
      "Buffer modified, save and commit before using this function"))
   (when (save-window-excursion (vc-diff))
     (user-error "This file has uncommitted changes, commit first"))
+  (revert-buffer)
   (when line-or-region
     (setq line-or-region
           (if (not (region-active-p))
