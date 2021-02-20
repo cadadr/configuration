@@ -4727,7 +4727,7 @@ modified slightly before it’s used e.g. when posting to Reddit."
 
      ;; Approaching deadlines
      (agenda nil ((org-agenda-overriding-header
-                   "\n* Approaching  deadlines:")
+                   "\n* Approaching deadlines:")
                   (org-agenda-entry-types '(:deadline))
                   (org-agenda-format-date "")
                   (org-deadline-warning-days 21)
@@ -4821,6 +4821,22 @@ display a two pane view in a maximised frame."
   (gk-turn-on-outline-minor-mode "^\\*" ":$" "C-'"))
 
 (add-hook 'org-agenda-mode-hook #'gk-org-agenda-mode-hook)
+
+(defun gk-org-agenda-finalize-hook ()
+  ;; Remove deadlines section if it’s empty.
+  (save-excursion
+    (goto-char (point-min))
+    (save-match-data
+      (re-search-forward (rx (and bol "* Approaching deadlines:" eol))))
+    (when-let* ((next-heading-beg-pos (save-excursion
+                                        (outline-next-visible-heading 1)
+                                        (point)))
+                (_ (string-empty-p (string-trim
+                                    (buffer-substring (point)
+                                                      next-heading-beg-pos)))))
+      (delete-region (line-beginning-position) next-heading-beg-pos))))
+
+(add-hook 'org-agenda-finalize-hook #'gk-org-agenda-finalize-hook)
 
 
 
