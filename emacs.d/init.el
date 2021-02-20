@@ -5360,8 +5360,8 @@ Generates a "
 (push
  '((org-mode . "Org-mode document")
    nil
-   "# $Id$\n#+title: " - n
-   "#+date: \\today\n#+options: toc:nil\n#+latex_class: gk-article")
+   "#+title: " - n
+   "#+date: \\today\n#+options: toc:nil\n")
  auto-insert-alist)
 
 
