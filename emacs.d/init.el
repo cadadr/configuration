@@ -4702,8 +4702,7 @@ modified slightly before it’s used e.g. when posting to Reddit."
     (;; Today’s scheduled items
      (agenda "" ((org-agenda-overriding-header
                   "* Today’s schedule:")
-                 (org-agenda-skip-function '(org-agenda-skip-entry-if
-                                             'deadline 'todo '("HABIT")))
+                 (org-agenda-skip-function '(org-agenda-skip-entry-if 'deadline))
                  (org-deadline-warning-days 0)
                  (org-agenda-sorting-strategy '(time-up
                                                 priority-down
@@ -4714,16 +4713,6 @@ modified slightly before it’s used e.g. when posting to Reddit."
                                                 habit-down))
                  (org-default-priority org-lowest-priority)
                  (org-agenda-span 1)))
-
-     ;; Habit tracker
-     (agenda "" ((org-agenda-overriding-header
-                  "\n* Habits:")
-                 (org-agenda-skip-function
-                  '(org-agenda-skip-entry-if 'nottodo '("HABIT")))
-                 (org-default-priority org-lowest-priority)
-                 (org-agenda-span 1)
-                                        ;(org-agenda-compact-blocks t)
-                 ))
 
      ;; Approaching deadlines
      (agenda nil ((org-agenda-overriding-header
