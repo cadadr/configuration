@@ -69,6 +69,8 @@ settings:
         yh: hint all yank
   colors.keyhint.bg:
     global: rgba(0, 0, 0, 100%)
+  colors.webpage.bg:
+    global: white
   completion.delay:
     global: 0
   content.autoplay:
