@@ -105,6 +105,7 @@
 (require 'flymake-python-pyflakes)
 (require 'flyspell)
 (require 'forecast)
+(require 'gemini-mode)
 (require 'geoclue)
 (require 'git-commit)
 (require 'git-gutter)
