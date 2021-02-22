@@ -73,11 +73,11 @@ desktop-effects-unmaximize-time=100
 desktop-effects-unmaximize-transition='easeNone'
 enable-indicators=true
 enable-vfade=false
-enabled-applets=['panel1:left:0:menu@cinnamon.org:0', 'panel1:left:1:show-desktop@cinnamon.org:1', 'panel1:left:2:grouped-window-list@cinnamon.org:2', 'panel1:right:2:systray@cinnamon.org:3', 'panel1:right:3:xapp-status@cinnamon.org:4', 'panel1:right:4:notifications@cinnamon.org:5', 'panel1:right:5:printers@cinnamon.org:6', 'panel1:right:6:removable-drives@cinnamon.org:7', 'panel1:right:7:keyboard@cinnamon.org:8', 'panel1:right:8:network@cinnamon.org:9', 'panel1:right:9:sound@cinnamon.org:10', 'panel1:right:10:power@cinnamon.org:11', 'panel1:right:12:calendar@cinnamon.org:12', 'panel1:right:1:workspace-switcher@cinnamon.org:13', 'panel1:right:11:inhibit@cinnamon.org:15']
+enabled-applets=['panel1:left:0:menu@cinnamon.org:0', 'panel1:left:1:show-desktop@cinnamon.org:1', 'panel1:left:2:grouped-window-list@cinnamon.org:2', 'panel1:right:2:systray@cinnamon.org:3', 'panel1:right:4:xapp-status@cinnamon.org:4', 'panel1:right:5:notifications@cinnamon.org:5', 'panel1:right:6:printers@cinnamon.org:6', 'panel1:right:7:removable-drives@cinnamon.org:7', 'panel1:right:9:network@cinnamon.org:9', 'panel1:right:10:sound@cinnamon.org:10', 'panel1:right:11:power@cinnamon.org:11', 'panel1:right:13:calendar@cinnamon.org:12', 'panel1:right:1:workspace-switcher@cinnamon.org:13', 'panel1:right:12:inhibit@cinnamon.org:15', 'panel1:right:3:keyboard@cinnamon.org:16']
 enabled-desklets=@as []
 enabled-extensions=['gTile@shuairan']
 hotcorner-layout=['rofi -show window:false:0', 'scale:false:0', 'expo:false:0', 'expo:false:0']
-next-applet-id=16
+next-applet-id=17
 panel-edit-mode=false
 panel-zone-icon-sizes='[{"panelId":1,"left":0,"center":0,"right":24}]'
 panel-zone-symbolic-icon-sizes='[{"panelId": 1, "left": 28, "center": 28, "right": 16}]'
@@ -469,6 +469,9 @@ col-9-width=80
 columns-order=[0, 1, 2, 3, 4, 6, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26]
 sort-order=0
 
+[org/gnome/libgnomekbd/desktop]
+load-extra-items=false
+
 [org/gnome/libgnomekbd/keyboard]
 layouts=['gb', 'tr\talt', 'tr']
 options=['grp\tgrp:shift_caps_toggle', 'nbsp\tnbsp:level3s', 'ctrl\tctrl:nocaps', 'compat\tshift:both_capslock_cancel', 'Compose key\tcompose:menu']
@@ -570,3 +573,5 @@ sidebar=false
 [org/x/viewer/view]
 background-color='rgb(0,0,0)'
 use-background-color=true
+
+[org/x/viewer/window]
