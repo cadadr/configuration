@@ -5312,10 +5312,24 @@ BEGIN and END are bounds of the region."
 
 ;;;;;; Mairix:
 
-(defun gk-org-mail-open (path)
-  (mairix-search path nil))
+(org-link-set-parameters
+   "mairix"
+   :follow 'gk-org-mairix-open
+   :store  'gk-org-mairix-store)
 
-(org-add-link-type "mairix" 'gk-org-mail-open)
+(defun gk-org-mairix-open (path arg)
+  (mairix-search path arg))
+
+(defun gk-org-mairix-store ()
+  (when-let* ((_ (eq major-mode 'rmail-mode))
+              (id (rmail-get-header "Message-ID"))
+              (subj (or (rmail-get-header "Subject")
+                        "")))
+    (org-store-link-props
+     :type "mairix"
+     :link (concat "mairix:m:" (string-trim id "<" ">"))
+     :description subj)
+    t))
 
 
 
