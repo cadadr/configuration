@@ -295,6 +295,10 @@ alias du="du -h"
 alias df="df -h"
 alias tmux='TERM=screen-256color-bce tmux'
 alias etcup="( cd $MYSYSTEM && sudo bash $MYLIB/install-configs.bash )"
+pwd_to_emacspath(){
+    emacsclient -eval "(add-to-list 'load-path \"$PWD\")"
+}
+alias pwd2emacspath=pwd_to_emacspath
 
 # raspberry pi
 alias pi="ssh pi@ayata.local"
