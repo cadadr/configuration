@@ -84,6 +84,7 @@
 (require 'dired-x)
 (require 'doc-view)
 (require 'dollar)
+(require 'ebib)
 (require 'eglot)
 (require 'eldoc)
 (require 'elfeed)
