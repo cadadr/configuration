@@ -4718,6 +4718,7 @@ modified slightly before it’s used e.g. when posting to Reddit."
  (gk-org-dir-files
   "Todo.org" "Linguistics.org" "Statistics.org")
  org-agenda-hide-tags-regexp "."
+ org-agenda-sticky t
  org-agenda-custom-commands
  `(("p" "Planner"
     (;; Today’s scheduled items
