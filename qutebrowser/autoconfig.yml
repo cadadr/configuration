@@ -56,6 +56,7 @@ settings:
         ',tm': set --temp tabs.show multiple
         ',tr': set --temp tabs.position right
         ',tt': set --temp tabs.position top
+        ',xrs': jseval document.querySelector("div.side").hidden =true
         ',z': save-to-zotero
         .: nop
         D: hint links userscript ~/.config/qutebrowser/userscripts/doi
