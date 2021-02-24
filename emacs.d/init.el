@@ -5906,7 +5906,7 @@ will become the only window."
 
 ;;;;; GUI:
 
-(defvar gk-preferred-themes '( :light modus-operandi
+(defvar gk-preferred-themes '( :light dichromacy
                                :dark yoshi
                                ;; just being explicit...
                                :no-preference nil)
