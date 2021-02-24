@@ -1149,17 +1149,26 @@ at the centre of the newly created frame.  This only happens when
 
 ;; Helper functions for association lists.
 
-(defun dissoc (key list &optional arg)
-  "Delete pairs whose car is `equal' to KEY from LIST.
+(defun dissoc (key list &optional test-fn)
+  "Delete pairs whose car is equal to KEY from LIST.
 
-ARG is an internal argument."
+TEST-FN defaults to ‘equal’."
+  (dissoc--1 key list (or test-fn #'equal) nil))
+
+(defun dissoc--1 (key list test-fn arg)
   (let ((p (car list))
         (r (cdr list)))
     (if list
-        (if (equal (car p) key)
-            (dissoc key r arg)
-          (dissoc key r (append arg (list p))))
+        (if (funcall test-fn (car p) key)
+            (dissoc--1 key r test-fn arg)
+          (dissoc--1 key r test-fn (append arg (list p))))
       arg)))
+
+
+(defmacro dissoc! (key sym test-fn)
+  "Call ‘dissoc’ with args and set SYM to result."
+  `(setq ,sym (dissoc ,key ,sym ,test-fn)))
+
 
 (defun assoca (keyseq list)
   "Arbitrary depth multi-level alist query.
