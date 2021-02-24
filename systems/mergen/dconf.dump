@@ -538,6 +538,7 @@ type-format='category'
 
 [org/nemo/desktop]
 desktop-layout='true::true'
+font='Ubuntu 10'
 trash-icon-visible=true
 
 [org/nemo/preferences]
