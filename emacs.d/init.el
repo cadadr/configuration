@@ -5225,6 +5225,28 @@ theme.  If necessary, new images will be created."
 ;;;;; Custom links:
 
 
+;;;;;; Gemini and Gopher links:
+
+(dolist (proto (list "gopher" "gemini"))
+  (org-link-set-parameters
+   proto
+   :follow 'gk-org-elpher-follow
+   :store  'gk-org-elpher-store))
+
+(defun gk-org-elpher-follow (path arg)
+  (ignore arg)
+  (elpher-go path))
+
+(defun gk-org-elpher-store ()
+  (when (and (eq major-mode 'elpher-mode))
+    (let ((proto (elpher-address-protocol (cadr elpher-current-page))))
+      (org-link-store-props
+       :type proto
+       :link (elpher-address-to-url (cadr elpher-current-page))
+       :description (car elpher-current-page))
+      t)))
+
+
 
 ;;;;;; Annotations:
 
@@ -6376,6 +6398,9 @@ An adaptation and simplification of ‘mode-line-modes’.")
   (add-hook m 'gk-start-global-address-mode))
 
 (diminish 'goto-address-mode "⚓")
+
+(cl-pushnew "gemini://" goto-address-uri-schemes :test #'string=)
+(cl-pushnew "gopher://" goto-address-uri-schemes :test #'string=)
 
 ;; C-Return on an adress follows it.
 (define-key goto-address-highlight-keymap (kbd "<C-return>") #'goto-address-at-point)
