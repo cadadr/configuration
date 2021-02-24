@@ -5321,6 +5321,8 @@ BEGIN and END are bounds of the region."
 
 ;;;;;; Mairix:
 
+(dissoc! "rmail" org-link-parameters #'string=)
+
 (org-link-set-parameters
    "mairix"
    :follow 'gk-org-mairix-open
