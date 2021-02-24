@@ -6226,7 +6226,9 @@ new frame is created."
  ;; Draw underlines lower.
  underline-minimum-offset 7
  ;; Properly maximise frames in non-DE window managers.
- frame-resize-pixelwise t)
+ frame-resize-pixelwise t
+ ;; Split vertically in general
+ split-width-threshold 140)
 
 
 (setq-default save-place t)
