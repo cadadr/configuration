@@ -138,9 +138,10 @@ slideshow-enabled=true
 cursor-blink-time=1200
 cursor-size=24
 cursor-theme='DMZ-Black'
+font-name='Ubuntu 10'
 gtk-overlay-scrollbars=true
-gtk-theme='Mint-Y-Dark-Red'
-icon-theme='Mint-Y-Dark-Teal'
+gtk-theme='Mint-Y-Teal'
+icon-theme='Mint-Y-Teal'
 keyboard-layout-prefer-variant-names=false
 keyboard-layout-show-flags=false
 keyboard-layout-use-upper=true
@@ -331,7 +332,7 @@ tile-enabled=false
 unplug-enabled=false
 
 [org/cinnamon/theme]
-name='Mint-Y-Dark-Red'
+name='Mint-Y-Teal'
 theme-cache-updated=1606583546
 
 [org/gnome/baobab/ui]
