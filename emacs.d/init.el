@@ -2451,6 +2451,16 @@ file extension.")
 
 
 
+;;;;; LaTeX / AuCTeX:
+
+(setenv "TEXINPUTS" (concat "::" (expand-file-name "auctex/texmf" gk-elisp-site-dir)))
+
+(require 'auctex)
+(require 'preview-latex)
+
+
+
+
 ;;;;; Dictionary and spell checking:
 
 ;; Partially adapted from:
