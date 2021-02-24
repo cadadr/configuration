@@ -5332,14 +5332,16 @@ BEGIN and END are bounds of the region."
   (mairix-search path arg))
 
 (defun gk-org-mairix-store ()
-  (when-let* ((_ (eq major-mode 'rmail-mode))
+  (when-let* ((_ (memq major-mode '(rmail-mode rmail-summary-mode)))
               (id (rmail-get-header "Message-ID"))
               (subj (or (rmail-get-header "Subject")
-                        "")))
+                        ""))
+              (from (or (rmail-get-header "From")
+                        "{Unknown}")))
     (org-store-link-props
      :type "mairix"
      :link (concat "mairix:m:" (string-trim id "<" ">"))
-     :description subj)
+     :description (concat "Message from " from ": «" subj "»"))
     t))
 
 
