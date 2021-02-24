@@ -322,6 +322,9 @@ sleep-display-battery=300
 sleep-inactive-ac-timeout=0
 sleep-inactive-battery-timeout=600
 
+[org/cinnamon/settings-daemon/plugins/xsettings]
+hinting='full'
+
 [org/cinnamon/sounds]
 login-enabled=false
 logout-enabled=false
