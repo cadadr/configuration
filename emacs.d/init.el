@@ -6185,6 +6185,8 @@ new frame is created."
    ("Checkdoc" . (display-buffer-pop-up-window))
    ("Calendar" . (display-buffer-in-side-window . ((side . bottom))))
    ("help\\[R\\]" . (display-buffer-pop-up-window))
+   ("\\*pager\\*.*" . (display-buffer-pop-up-window
+                       . ((inhibit-same-window . t))))
    ;; Use ‘display-buffer-same-window’ as a catch-all for everything
    ;; but...
    (,($ [b _] (not (memq (buffer-local-value 'major-mode (get-buffer b))
