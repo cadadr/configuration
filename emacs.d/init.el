@@ -952,7 +952,7 @@ up-to-date."
      :name "gk-pager" :buffer buf :command `("cat" ,fifo)
      :sentinel #'gk-less--proc-sentinel
      :filter #'gk-less--proc-filter)
-    (view-buffer buf 'kill-buffer)))
+    (display-buffer buf)))
 
 (setenv "PAGER" (locate-user-emacs-file "extras/eless.sh"))
 
