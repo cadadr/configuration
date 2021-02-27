@@ -2468,6 +2468,22 @@ file extension.")
 (require 'auctex)
 (require 'preview-latex)
 
+(defun gk-ebib-set-bibtex-dialect (dialect)
+  "Set the default dialect for Ebib and bibtex.el.
+
+This sets the values of ‘bibtex-dialect’ and
+‘ebib-bibtex-dialect’ and calls ‘bibtex-set-dialect’.
+
+The value of DIALECT should be one of the symbols in
+‘bibtex-dialect-list’.  The symbol ‘bibtex’ is synonymous with
+‘BibTeX’."
+  (let ((d (or (and (eq dialect 'bibtex) 'BibTeX)
+               dialect)))
+    (setq bibtex-dialect d
+          ebib-bibtex-dialect d)
+    (bibtex-set-dialect d)))
+
+(gk-ebib-set-bibtex-dialect 'biblatex)
 
 
 
