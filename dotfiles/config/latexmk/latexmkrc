@@ -1,0 +1,3 @@
+# -*- mode: perl -*-
+
+$xdvipdfmx = "xdvipdfmx -z3 -o %D %O %S";
