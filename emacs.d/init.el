@@ -6119,6 +6119,7 @@ new frame is created."
   ;; Adapts ‘highlight-parentheses-mode’ colours to theme.
   (let ((c (cond ((eq gk-gui-theme 'zenburn) "#ff4500") ;orange red
                  ((eq gk-gui-theme 'wombat)  "#b22222") ;firebrick
+                 ((eq gk-gui-theme 'dichromacy) "#8b008b") ;navy
                  (t (face-attribute 'font-lock-keyword-face :foreground)))))
     (setf hl-paren-colors
           (list
