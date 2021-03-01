@@ -1941,6 +1941,8 @@ Useful when using dired-subtree."
  (rx (or (or (and bol (or "." "#") (optional (1+ ".")))
              (and (or "~" ",v") eol))
          (and bol (or "__pycache__"))))
+ dired-omit-extensions (cl-remove-if ($ (string= $1 ".mo"))
+                                     dired-omit-extensions)
  ;; Show symlinks' targets: it's useful, and dired-subtree is stupid
  ;; otherwise.
  dired-hide-details-hide-symlink-targets nil)
