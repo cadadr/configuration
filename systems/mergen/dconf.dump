@@ -16,6 +16,13 @@ window-is-maximized=false
 [com/github/maoschanz/drawing]
 use-antialiasing=true
 
+[com/gkayaalp/pomodorino]
+desktop-notifications-enabled=true
+ease-in-mode-enabled=true
+long-break-duration=15
+pomodoro-duration=25
+short-break-duration=5
+
 [com/linuxmint/install]
 flatpak-remotes=['flathub::https://dl.flathub.org/repo/::False']
 search-in-description=true

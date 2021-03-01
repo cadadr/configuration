@@ -166,6 +166,7 @@
         "value": [
             "emacs.desktop",
             "org.qutebrowser.qutebrowser.desktop",
+            "pomodorino.desktop",
             "org.gnome.Terminal.desktop",
             "nemo.desktop",
             "gnome-system-monitor.desktop",
