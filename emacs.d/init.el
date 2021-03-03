@@ -2531,7 +2531,16 @@ The value of DIALECT should be one of the symbols in
   "\C-c\C-s" 'ebib-save-from-multiline-buffer)
 
 (define-key ebib-index-mode-map (kbd "C-x b") nil)
+(define-key ebib-entry-mode-map (kbd "C-x b") nil) ;just stay where you are.  It’s going to be alright.  Don’t
+                                                   ;run away.
+
 (define-key ebib-index-mode-map [g] #'ebib-reload-current-database)
+
+;; Switch databases
+(define-key ebib-index-mode-map (kbd "C-n") #'ebib-next-database)
+(define-key ebib-index-mode-map (kbd "C-p") #'ebib-prev-database)
+(define-key ebib-entry-mode-map (kbd "C-n") #'ebib-next-database)
+(define-key ebib-entry-mode-map (kbd "C-p") #'ebib-prev-database)
 
 
 
