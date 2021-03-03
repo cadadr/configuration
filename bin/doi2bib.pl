@@ -21,6 +21,7 @@ use strict;
 use warnings;
 use v5.24;
 use File::Basename qw(basename);
+use HTTP::Tiny;
 use List::MoreUtils qw(uniq);
 
 my $progname = basename $0;
@@ -28,12 +29,25 @@ my $usage = "usage: $progname DOI [DOI...]";
 
 unless (1 <= @ARGV) { say $usage; exit 1 }
 
-my $accept = 'Accept: application/x-bibtex; charset=utf-8';
+my $accept = 'application/x-bibtex; charset=utf-8';
 my $doiurl = 'https://doi.org/';
 
 sub bail { say @_; exit 1 }
 
-sub fetch { system "curl", "-sLH", $accept, $doiurl . $_ }
+sub fetch {
+    my $doi = shift;
+    my $http = HTTP::Tiny->new;
+    my $uri = $doiurl . $doi;
+    my %headers = ( 'Accept' => $accept );
+    my %options = ( 'headers' => \%headers );
+    my $response = $http->get($uri, \%options);
+
+    if ($response->{success}) {
+        print $response->{content};
+    } else {
+        warn "could not fetch $uri: $response->{status}: $response->{reason}";
+    }
+}
 
 my @dois = uniq @ARGV;
 
@@ -43,7 +57,7 @@ while (($i, $_) = each @dois) {
     s/^ doi: | (https?:\/\/)? doi\.org\/ //x;
     # http://www.doi.org/doi_handbook/2_Numbering.html
     bail "Malformed DOI: $_" unless /^ 10 (\.\d+)+ \/ .+ /x;
-    fetch;
+    fetch $_;
     print "\n";
     print "\n" unless $i == $#dois; # don't output a trailing empty line.
 }
