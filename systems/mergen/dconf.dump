@@ -147,8 +147,8 @@ cursor-size=24
 cursor-theme='DMZ-Black'
 font-name='Ubuntu 10'
 gtk-overlay-scrollbars=true
-gtk-theme='Mint-Y-Teal'
-icon-theme='Mint-Y-Teal'
+gtk-theme='Mint-Y-Dark-Red'
+icon-theme='Mint-Y-Dark-Red'
 keyboard-layout-prefer-variant-names=false
 keyboard-layout-show-flags=false
 keyboard-layout-use-upper=true
@@ -277,7 +277,7 @@ focus-mode='click'
 focus-new-windows='smart'
 min-window-opacity=30
 mouse-button-modifier='<Super>'
-theme='Mint-Y'
+theme='Mint-Y-Dark'
 workspace-names=['home', 'nook']
 
 [org/cinnamon/muffin]
@@ -342,7 +342,7 @@ tile-enabled=false
 unplug-enabled=false
 
 [org/cinnamon/theme]
-name='Mint-Y-Teal'
+name='Mint-Y-Dark-Red'
 theme-cache-updated=1606583546
 
 [org/gnome/baobab/ui]
