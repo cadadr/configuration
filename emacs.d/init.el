@@ -7498,7 +7498,6 @@ Does various tasks after saving a file, see it's definition."
 (gk-prefix-binding "=" #'menu-bar-mode) ;toggle
 (gk-prefix-binding "g" #'magit-status)
 (gk-prefix-binding "M-." #'repeat-complex-command)
-(gk-prefix-binding (kbd "<C-backspace>") #'delete-frame)
 (gk-prefix-binding "\C-f" #'project-find-file)
 (gk-prefix-binding "\C-p" #'gk-open-project)
 (gk-prefix-binding (kbd "C-+") #'gk-create-project)
