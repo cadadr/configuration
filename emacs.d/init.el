@@ -6977,9 +6977,8 @@ provided."
 ;; Some more emacsy keybindings.
 (define-key elpher-mode-map "n" #'elpher-next-link)
 (define-key elpher-mode-map "p" #'elpher-prev-link)
-(define-key elpher-mode-map "h" #'elpher-back)
+(define-key elpher-mode-map "l" #'elpher-back)
 (define-key elpher-mode-map "^" #'elpher-back-to-start)
-
 
 
 
