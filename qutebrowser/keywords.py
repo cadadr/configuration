@@ -98,6 +98,9 @@ c.url.searchengines['#hoog'] = \
 c.url.searchengines['#define'] = \
     'https://www.collinsdictionary.com/search/?dictCode=english&q={}'
 
+c.url.searchengines['#like'] = \
+    'https://www.collinsdictionary.com/dictionary/english-thesaurus/{}'
+
 c.url.searchengines['#urban'] = \
     'https://www.urbandictionary.com/define.php?term={}'
 
