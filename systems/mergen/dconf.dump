@@ -435,6 +435,8 @@ show-path=false
 sort-method='name'
 sort-type='ascending'
 
+[org/gnome/file-roller/ui]
+
 [org/gnome/gnome-screenshot]
 border-effect='none'
 delay=5
