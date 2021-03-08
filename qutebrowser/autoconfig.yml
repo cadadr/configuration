@@ -59,6 +59,7 @@ settings:
         ',xrs': jseval document.querySelector("div.side").hidden =true
         ',z': save-to-zotero
         .: nop
+        <Ctrl+a>: null
         <Ctrl+x>: null
         D: hint links userscript ~/.config/qutebrowser/userscripts/doi
         b: set-cmd-text -s :buffer
