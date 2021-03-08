@@ -6342,7 +6342,13 @@ new frame is created."
  ;; Properly maximise frames in non-DE window managers.
  frame-resize-pixelwise t
  ;; Split vertically in general
- split-width-threshold 140)
+ split-width-threshold 140
+ ;; «Skip ‘fontification_functions‘ when there is input pending.»
+ redisplay-skip-fontification-on-input t
+ ;; Each buffer has its own goto-line history.
+ goto-line-history-local t
+ ;; Scale header lines with buffer when zooming.
+ text-scale-remap-header-line t)
 
 
 (setq-default save-place t)
@@ -6445,6 +6451,10 @@ new frame is created."
 
 
 ;;;;; Mode line:
+
+(setf
+ ;; If mode line is too long, compact it.
+ mode-line-compact 'long)
 
 (defconst gk-mode-line-pristine-format
   (copy-list mode-line-format)
