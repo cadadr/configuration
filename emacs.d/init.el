@@ -1858,6 +1858,10 @@ that instead."
 
 ;;;; Dired:
 
+(setf
+ ;; Show ls switches in modeline
+ dired-switches-in-mode-line 'as-is)
+
 
 
 ;;;;; The hook:
