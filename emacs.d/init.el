@@ -6308,6 +6308,8 @@ new frame is created."
    (completion-pcm--prepare-delim-re re)
    ;; Return pristine regexp to be set.
    re)
+ ;; Display completion details.
+ completions-detailed t
  ;; Do not  ring the bell  when killing  in r/o buffers,  put the
  ;; kill in the kill ring but do not modify the buffer.
  kill-read-only-ok t
