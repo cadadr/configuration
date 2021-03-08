@@ -2618,6 +2618,19 @@ The value of DIALECT should be one of the symbols in
 
 
 
+;;;;; Date time:
+
+(setf
+ ;; Time zones for ‘world-clock’.
+ world-clock-list '(("Europe/Istanbul" "Istanbul")
+                    ("Europe/London" "London")
+                    ("Europe/Rome" "Rome")
+                    ("America/New_York" "US East (NY)")
+                    ("America/Los_Angeles" "US Pacific (Seattle)")
+                    ("Asia/Hong_Kong" "Hong Kong")))
+
+
+
 ;;;;; forecast.el:
 
 (setq forecast-language 'en
