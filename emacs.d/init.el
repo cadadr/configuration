@@ -4741,6 +4741,20 @@ of change will be 23:59 on that day"
         (org-agenda-todo arg)
       (org-todo arg))))
 
+(define-advice org-agenda-redo-all
+    (:around (fn &rest args) always-go-to-top-but-push-mark-before-movement)
+  "Go to the top of the buffer after, but push mark before redoing.
+
+Use \[pop-to-mark-command] to go back to where you were."
+  (let ((p (point)))
+    ;; This does go to the beginning of the buffer, but I don’t really
+    ;; understand why exactly it does that, so...
+    (save-mark-and-excursion
+      (funcall fn args))
+    ;; ... I’ll be redundant.
+    (goto-char (point-min))
+    (push-mark p)))
+
 
 
 ;;;;; Variables:
