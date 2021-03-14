@@ -144,11 +144,11 @@ slideshow-enabled=true
 [org/cinnamon/desktop/interface]
 cursor-blink-time=1200
 cursor-size=24
-cursor-theme='DMZ-Black'
+cursor-theme='DMZ-White'
 font-name='Ubuntu 10'
 gtk-overlay-scrollbars=true
-gtk-theme='Mint-Y-Dark-Red'
-icon-theme='Mint-Y-Dark-Red'
+gtk-theme='Mint-X-Teal'
+icon-theme='Mint-X-Teal'
 keyboard-layout-prefer-variant-names=false
 keyboard-layout-show-flags=false
 keyboard-layout-use-upper=true
@@ -247,7 +247,7 @@ autorun-x-content-open-folder=@as []
 autorun-x-content-start-app=@as []
 
 [org/cinnamon/desktop/notifications]
-bottom-notifications=false
+bottom-notifications=true
 display-notifications=true
 
 [org/cinnamon/desktop/screensaver]
@@ -277,7 +277,7 @@ focus-mode='click'
 focus-new-windows='smart'
 min-window-opacity=30
 mouse-button-modifier='<Super>'
-theme='Mint-Y-Dark'
+theme='Mint-X'
 workspace-names=['home', 'nook']
 
 [org/cinnamon/muffin]
@@ -330,6 +330,7 @@ sleep-inactive-ac-timeout=0
 sleep-inactive-battery-timeout=600
 
 [org/cinnamon/settings-daemon/plugins/xsettings]
+buttons-have-icons=true
 hinting='full'
 
 [org/cinnamon/sounds]
@@ -342,8 +343,8 @@ tile-enabled=false
 unplug-enabled=false
 
 [org/cinnamon/theme]
-name='Mint-Y-Dark-Red'
-theme-cache-updated=1606583546
+name='Mint-X-Teal'
+theme-cache-updated=1615227053
 
 [org/gnome/baobab/ui]
 active-chart='treemap'
@@ -511,6 +512,8 @@ startup-feed-action=1
 [org/gnome/liferea/plugins]
 active-plugins=['bold-unread', 'media-player']
 
+
+
 [org/gnome/power-manager]
 info-history-type='charge'
 info-last-device='wakeups'
@@ -525,15 +528,15 @@ jpeg-quality=100
 schema-version=uint32 3
 
 [org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9]
-background-color='rgb(46,52,54)'
+background-color='rgb(255,255,221)'
 bold-color-same-as-fg=true
 cursor-background-color='rgb(255,255,255)'
 cursor-colors-set=false
 cursor-foreground-color='rgb(145,107,86)'
-exit-action='hold'
-foreground-color='rgb(211,215,207)'
+exit-action='close'
+foreground-color='rgb(0,0,0)'
 palette=['rgb(46,52,54)', 'rgb(204,0,0)', 'rgb(78,154,6)', 'rgb(196,160,0)', 'rgb(52,101,164)', 'rgb(117,80,123)', 'rgb(6,152,154)', 'rgb(211,215,207)', 'rgb(85,87,83)', 'rgb(239,41,41)', 'rgb(138,226,52)', 'rgb(252,233,79)', 'rgb(114,159,207)', 'rgb(173,127,168)', 'rgb(52,226,226)', 'rgb(238,238,236)']
-use-theme-colors=true
+use-theme-colors=false
 use-theme-transparency=false
 use-transparent-background=false
 visible-name='cadadr'
