@@ -1355,9 +1355,14 @@ creating a new one."
             #'magit-status)
            ((or (mapcar #'vc-backend (gk-directory-files path)))
             #'vc-dir)))
-         (project-name (generate-new-buffer-name ;uniquify
-                        (file-name-base
-                         (replace-regexp-in-string "/+\\'" "" path))))
+         ;; This should be fairly duplicate-proof...
+         (project-name (concat
+                        (user-login-name)
+                        "@"
+                        (system-name)
+                        ":"
+                        ;; remove trailing slash(es)
+                        (replace-regexp-in-string "/+\\'" "" path)))
          (shell-name (format "*%s shell*" project-name))
          (frame-params `((fullscreen . maximized)
                          (gk-project . ,project-name)
