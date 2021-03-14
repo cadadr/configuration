@@ -8,6 +8,11 @@ repath () {
     . $MYLIB/profile/paths.sh
 }
 
+# remove from path
+unpath () {
+	export PATH="$(path | grep -v $@ | tr '\n' ':' | sed s,:\$,,)"
+}
+
 refresh () {
     . $ENV
 }
