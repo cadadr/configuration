@@ -6059,7 +6059,7 @@ will become the only window."
 
 ;;;;; GUI:
 
-(defvar gk-preferred-themes '( :light dichromacy
+(defvar gk-preferred-themes '( :light modus-operandi
                                :dark yoshi
                                ;; just being explicit...
                                :no-preference nil)
