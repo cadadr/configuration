@@ -117,7 +117,7 @@ c.url.searchengines['#cran'] = \
     'https://www.r-pkg.org/search.html?q={}'
 
 c.url.searchengines['/r'] = \
-    'https://reddit.com/r/{}'
+    'https://old.reddit.com/r/{}'
 
 youtube = "https://www.youtube.com/results?search_query={}"
 
