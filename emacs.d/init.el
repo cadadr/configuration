@@ -2553,6 +2553,31 @@ The value of DIALECT should be one of the symbols in
 
 
 
+;;;;; Gemini:
+
+(define-key gemini-mode-map (kbd "C-c C-s")
+  (lambda (arg)
+    (interactive "P")
+    (if arg (insert "[**]") (insert "[*]"))))
+(define-key gemini-mode-map (kbd "C-c C-d")
+  (lambda (arg)
+    (interactive "P")
+    (if arg (insert "[††]") (insert "[†]"))))
+(define-key gemini-mode-map (kbd "C-c C-S-d")
+  (lambda (arg)
+    (interactive "P")
+    (if arg (insert "[‡‡]") (insert "[‡]"))))
+(define-key gemini-mode-map (kbd "C-c C-k")
+  (gk-interactively (insert "``` \n```")
+                    (forward-line -1)
+                    (goto-char (line-end-position))))
+
+
+(define-key gemini-mode-map (kbd "C-c C-l") (gk-interactively (insert "=> ")))
+
+
+
+
 ;;;;; Dictionary and spell checking:
 
 ;; Partially adapted from:
