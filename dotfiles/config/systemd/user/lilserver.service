@@ -1,0 +1,11 @@
+[Unit]
+Description=User HTTP server
+
+[Service]
+ExecStart=%h/bin/lilserver.py
+Restart=on-failure
+SuccessExitStatus=0
+RestartForceExitStatus=1
+
+[Install]
+WantedBy=default.target
