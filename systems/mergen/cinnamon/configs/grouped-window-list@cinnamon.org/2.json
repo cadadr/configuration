@@ -173,7 +173,8 @@
             "whatsappdesktop.desktop",
             "mintupdate.desktop",
             "blueberry.desktop",
-            "telegramdesktop.desktop"
+            "telegramdesktop.desktop",
+            "fi.skyjake.Lagrange.desktop:flatpak"
         ]
     },
     "group-apps": {
