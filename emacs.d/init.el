@@ -814,6 +814,18 @@ Linguistics (2nd ed.). Oxford University Press."
                   other-buffer))))
 
 
+(defun gk-news ()
+  "Open ‘rmail’ and ‘elfeed’, update both."
+  (interactive)
+  (delete-other-windows)
+  (rmail)
+  (split-window-sensibly)
+  (other-window 1)
+  (elfeed)
+  (elfeed-search-fetch nil)
+  (gk-fetch-mail))
+
+
 
 
 ;;;; Generic advices:
