@@ -59,25 +59,25 @@ def rewrite(request):
     if request.request_url.host().endswith('imgur.com'):
         request.request_url.setHost('imgurp.com')
 
-    try:
-        for name, pattern in spacing_patterns.items():
-            url = request.request_url.toString()
-            if re.match(pattern, url) is not None:
-                last = last_visited.get(name)
-                if last is not None:
-                    space = spacing_minutes[name]
-                    delta = timedelta(minutes=space)
-                    now   = datetime.now()
-                    since = now - last
-                    if since < delta:
-                        frag = "{};{}".format(delta - since, url)
-                        newurl = f"http://localhost:1993/spaced.html#{frag}"
-                        request.request_url.setUrl(newurl)
+    for name, pattern in spacing_patterns.items():
+        url = request.request_url.toString()
+        if re.match(pattern, url) is not None:
+            last = last_visited.get(name)
+            if last is not None:
+                space = spacing_minutes[name]
+                delta = timedelta(minutes=space)
+                now   = datetime.now()
+                since = now - last
+                if since < delta:
+                    frag = "{};{}".format(delta - since, url)
+                    newurl = f"http://localhost:1993/spaced.html#{frag}"
+                    request.request_url.setUrl(newurl)
+                else:       # clear if block time elapsed
+                    last_visited[name] = None
 
-                else:
-                    last_visited[name] = datetime.now()
-    except Exception as e:
-        print(e)
+            else:
+                last_visited[name] = datetime.now()
+
 
     try:
         request.redirect(request.request_url)
