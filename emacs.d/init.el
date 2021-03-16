@@ -7531,7 +7531,6 @@ Does various tasks after saving a file, see it's definition."
 (gk-prefix-binding "u" 'gk-upcase-this-or-previous-word)
 (gk-prefix-binding "l" 'gk-lowercase-this-or-previous-word)
 (gk-global-binding "\C-z" 'gk-cycle-input-methods)
-(gk-prefix-binding "e" "\C-xe")
 
 ;;(gk-prefix-binding (kbd "L") gk-lingua-prefix-map)
 (gk-global-binding (kbd "\M-\ ") (gk-interactively (insert " ")))
@@ -7595,12 +7594,13 @@ Does various tasks after saving a file, see it's definition."
 
 (gk-global-binding "\C-xw" #'gk-jump-to-window)
 
-;; Undo with mouse buttons
 (gk-global-binding [mouse-8] #'scroll-down-command)
 (gk-global-binding [mouse-9] #'scroll-up-command)
 
 (gk-prefix-binding "x" #'gk-maximize)
 (gk-prefix-binding (kbd "C-f") #'gk-flip)
+
+(gk-prefix-binding "e" #'ebib)
 
 
 
