@@ -46,12 +46,15 @@ spacing_patterns = {}
 spacing_patterns["mastodon"] = \
     re.compile(r"https?://mastodon\.sdf\.org/web/getting-started")
 spacing_patterns["reddit"] = \
-    re.compile(r"https?://((www|old)\.)?reddit\.com/")
+    re.compile(r"https?://((www|old)\.)?reddit\.com/$")
+spacing_patterns["multireddits"] = \
+    re.compile(r"https?://((www|old)\.)?reddit\.com/user/gkayaalp/m/.*")
 
 last_visited = {}
 spacing_minutes = {}
 spacing_minutes["mastodon"] = 180
-spacing_minutes["reddit"]   = 300
+spacing_minutes["reddit"] = 300
+spacing_minutes["multireddits"] = 300
 
 
 def rewrite(request):
