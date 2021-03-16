@@ -2555,7 +2555,9 @@ The value of DIALECT should be one of the symbols in
 (define-key ebib-entry-mode-map (kbd "C-x b") nil) ;just stay where you are.  It’s going to be alright.  Don’t
                                                    ;run away.
 
-(define-key ebib-index-mode-map [g] #'ebib-reload-current-database)
+(define-key ebib-index-mode-map [?g] #'ebib-reload-current-database)
+(define-key ebib-index-mode-map [?q] #'ebib-lower)
+(define-key ebib-entry-mode-map [?q] #'ebib-lower)
 
 ;; Switch databases
 (define-key ebib-index-mode-map (kbd "C-n") #'ebib-next-database)
