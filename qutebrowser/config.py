@@ -1,6 +1,7 @@
 # config.py --- qutebrowser configuration
 
 from qutebrowser.api import interceptor
+from qutebrowser.api import message
 from qutebrowser import __version__ as qver
 from dracula import blood
 
@@ -57,38 +58,69 @@ spacing_minutes["reddit"] = 300
 spacing_minutes["multireddits"] = 300
 
 
-def rewrite(request):
-    # thank u, turkey!
-    if request.request_url.host().endswith('imgur.com'):
-        request.request_url.setHost('imgurp.com')
+def do_redir(request):
+    try:
+        request.redirect(request.request_url)
+    except Exception as e:
+        message.warning("Error in config.py/do_redir(req):", e)
 
+
+# If within block period, redirect to block page, else, register.
+def do_redirect_for_spacing(request, url, last, name):
+    if last is not None:
+        space = spacing_minutes[name]
+        delta = timedelta(minutes=space)
+        now = datetime.now()
+        since = now - last
+        if since < delta:
+            frag = "{};{}".format(delta - since, url)
+            newurl = f"http://localhost:1993/spaced.html#{frag}"
+            request.request_url.setUrl(newurl)
+            do_redir(request)
+            return True
+    return False
+
+
+# Match against spaced browsing patterns, if match, register if first
+# visit, ask to block otherwise.
+def maybe_redirect_for_spacing(request):
     for name, pattern in spacing_patterns.items():
         url = request.request_url.toString()
         if re.match(pattern, url) is not None:
             last = last_visited.get(name)
-            if last is not None:
-                space = spacing_minutes[name]
-                delta = timedelta(minutes=space)
-                now   = datetime.now()
-                since = now - last
-                if since < delta:
-                    frag = "{};{}".format(delta - since, url)
-                    newurl = f"http://localhost:1993/spaced.html#{frag}"
-                    request.request_url.setUrl(newurl)
-                else:       # clear if block time elapsed
-                    last_visited[name] = None
-
+            did_redirect = do_redirect_for_spacing(request, url, last, name)
+            if did_redirect:
+                return True
             else:
                 last_visited[name] = datetime.now()
+                break
+    return False
 
 
-    try:
-        request.redirect(request.request_url)
-    except:  # noqa
-        pass
+def maybe_redirect_to_imgurp(request):
+    # thank u, turkey!
+    if request.request_url.host().endswith('imgur.com'):
+        request.request_url.setHost('imgurp.com')
+        do_redir(request)
+        return True
+    return False
 
 
-interceptor.register(rewrite)
+# These functions should return True if they did a redirect.  The
+# first match will be applied only.
+redirect_fns = [
+    maybe_redirect_to_imgurp,
+    maybe_redirect_for_spacing,
+]
+
+
+def redirect(request):
+    for fn in redirect_fns:
+        if fn(request):
+            break
+
+
+interceptor.register(redirect)
 
 
 ### Visuals:
