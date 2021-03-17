@@ -2524,6 +2524,8 @@ The value of DIALECT should be one of the symbols in
  ;; See: ‘bibtex-generate-autokey’.
  bibtex-autokey-year-length 4
  bibtex-autokey-year-title-separator ""
+ bibtex-autokey-titleword-length 10
+ bibtex-autokey-titlewords-stretch 0
  bibtex-autokey-titlewords 1
  ;; Manually maintain a list of canonical keywords.
  ebib-keywords '()
