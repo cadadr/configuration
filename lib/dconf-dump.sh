@@ -62,7 +62,8 @@ last-refresh-time
 last-active-shape
 last-font-name
 sort-order
-sort-column"
+sort-column
+col-[0-9]+-width"
 
 # This pops up sometimes for some reason
 if [ "$DESKTOP_SESSION" = "cinnamon" ]; then
