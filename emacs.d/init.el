@@ -2491,7 +2491,7 @@ file extension.")
 (require 'auctex)
 (require 'preview-latex)
 
-(defvar gk-bib-dir (expand-file-name "~/Bibliography")
+(defvar gk-bib-dir (gk-org-dir-file "Library")
   "Location for global Bib(La)TeX files.")
 
 (defvar gk-bib-attachments-dir
