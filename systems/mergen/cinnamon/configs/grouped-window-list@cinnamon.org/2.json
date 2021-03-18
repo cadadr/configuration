@@ -170,10 +170,10 @@
             "org.gnome.Terminal.desktop",
             "nemo.desktop",
             "gnome-system-monitor.desktop",
+            "telegramdesktop.desktop",
             "whatsappdesktop.desktop",
             "mintupdate.desktop",
             "blueberry.desktop",
-            "telegramdesktop.desktop",
             "fi.skyjake.Lagrange.desktop:flatpak"
         ]
     },
