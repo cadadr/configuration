@@ -2560,6 +2560,9 @@ The value of DIALECT should be one of the symbols in
 (define-key ebib-index-mode-map [?g] #'ebib-reload-current-database)
 (define-key ebib-index-mode-map [?q] #'ebib-lower)
 (define-key ebib-entry-mode-map [?q] #'ebib-lower)
+(define-key ebib-index-mode-map [?Q] #'ebib-quit)
+(define-key ebib-entry-mode-map [?Q] #'ebib-quit)
+
 
 ;; Switch databases
 (define-key ebib-index-mode-map (kbd "C-n") #'ebib-next-database)
