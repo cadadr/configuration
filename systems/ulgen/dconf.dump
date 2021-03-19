@@ -1,6 +1,27 @@
+[apps/light-locker]
+idle-hint=false
+late-locking=false
+lock-after-screensaver=uint32 5
+lock-on-lid=false
+lock-on-suspend=true
+
+[apps/seahorse/windows/key-manager]
+height=476
+width=600
+
 [ca/desrt/dconf-editor]
 show-warning=false
 window-is-maximized=false
+
+[com/github/maoschanz/drawing]
+use-antialiasing=true
+
+[com/gkayaalp/pomodorino]
+desktop-notifications-enabled=true
+ease-in-mode-enabled=true
+long-break-duration=15
+pomodoro-duration=25
+short-break-duration=5
 
 [com/linuxmint/install]
 flatpak-remotes=['flathub::https://dl.flathub.org/repo/::False']
@@ -28,11 +49,15 @@ show-controls=true
 show-playlist=false
 width=640
 
+[org/blueberry]
+obex-enabled=true
+
 [org/cinnamon]
 alttab-minimized-aware=true
-alttab-switcher-delay=100
+alttab-switcher-delay=0
 alttab-switcher-show-all-workspaces=false
-alttab-switcher-style='icons+thumbnails'
+alttab-switcher-style='coverflow'
+applet-cache-updated=1614088057
 desklet-snap-interval=25
 desktop-effects-close-effect='traditional'
 desktop-effects-close-time=120
@@ -56,10 +81,11 @@ desktop-effects-unmaximize-time=100
 desktop-effects-unmaximize-transition='easeNone'
 enable-indicators=true
 enable-vfade=false
-enabled-applets=['panel1:left:0:menu@cinnamon.org:0', 'panel1:left:1:show-desktop@cinnamon.org:1', 'panel1:left:2:grouped-window-list@cinnamon.org:2', 'panel1:right:2:systray@cinnamon.org:3', 'panel1:right:3:xapp-status@cinnamon.org:4', 'panel1:right:4:notifications@cinnamon.org:5', 'panel1:right:5:printers@cinnamon.org:6', 'panel1:right:6:removable-drives@cinnamon.org:7', 'panel1:right:7:keyboard@cinnamon.org:8', 'panel1:right:8:network@cinnamon.org:9', 'panel1:right:9:sound@cinnamon.org:10', 'panel1:right:10:power@cinnamon.org:11', 'panel1:right:12:calendar@cinnamon.org:12', 'panel1:right:1:workspace-switcher@cinnamon.org:13', 'panel1:right:11:inhibit@cinnamon.org:15']
+enabled-applets=['panel1:left:0:menu@cinnamon.org:0', 'panel1:left:2:show-desktop@cinnamon.org:1', 'panel1:left:5:grouped-window-list@cinnamon.org:2', 'panel1:right:1:systray@cinnamon.org:3', 'panel1:right:3:xapp-status@cinnamon.org:4', 'panel1:right:4:notifications@cinnamon.org:5', 'panel1:right:5:printers@cinnamon.org:6', 'panel1:right:6:removable-drives@cinnamon.org:7', 'panel1:right:7:network@cinnamon.org:9', 'panel1:right:9:sound@cinnamon.org:10', 'panel1:right:10:power@cinnamon.org:11', 'panel1:right:12:calendar@cinnamon.org:12', 'panel1:right:0:workspace-switcher@cinnamon.org:13', 'panel1:right:8:inhibit@cinnamon.org:15', 'panel1:right:2:keyboard@cinnamon.org:16', 'panel1:left:4:expo@cinnamon.org:17', 'panel1:left:3:scale@cinnamon.org:19']
 enabled-desklets=@as []
-hotcorner-layout=['expo:false:0', 'expo:false:0', 'expo:true:0', 'desktop:false:0']
-next-applet-id=16
+enabled-extensions=['gTile@shuairan']
+hotcorner-layout=['rofi -show window:false:0', 'scale:false:0', 'expo:false:0', 'expo:false:0']
+next-applet-id=20
 panel-edit-mode=false
 panel-zone-icon-sizes='[{"panelId":1,"left":0,"center":0,"right":24}]'
 panel-zone-symbolic-icon-sizes='[{"panelId": 1, "left": 28, "center": 28, "right": 16}]'
@@ -74,6 +100,7 @@ show-tile-hud=true
 startup-animation=false
 workspace-expo-view-as-grid=true
 workspace-osd-duration=400
+workspace-osd-visible=true
 workspace-osd-x=50
 workspace-osd-y=50
 
@@ -86,9 +113,10 @@ screen-reader-enabled=false
 
 [org/cinnamon/desktop/a11y/keyboard]
 bouncekeys-delay=300
-mousekeys-accel-time=300
-mousekeys-init-delay=300
-mousekeys-max-speed=10
+mousekeys-accel-time=288
+mousekeys-enable=false
+mousekeys-init-delay=231
+mousekeys-max-speed=457
 slowkeys-delay=300
 
 [org/cinnamon/desktop/a11y/mouse]
@@ -111,15 +139,16 @@ picture-options='zoom'
 delay=5
 image-source='xml:///usr/share/cinnamon-background-properties/linuxmint-ulyana.xml'
 random-order=true
-slideshow-enabled=true
+slideshow-enabled=false
 
 [org/cinnamon/desktop/interface]
 cursor-blink-time=1200
 cursor-size=24
-cursor-theme='DMZ-Black'
+cursor-theme='DMZ-White'
+font-name='Ubuntu 10'
 gtk-overlay-scrollbars=true
-gtk-theme='Mint-Y'
-icon-theme='Mint-Y'
+gtk-theme='Mint-X-Teal'
+icon-theme='Mint-X-Teal'
 keyboard-layout-prefer-variant-names=false
 keyboard-layout-show-flags=false
 keyboard-layout-use-upper=true
@@ -128,7 +157,9 @@ text-scaling-factor=1.0
 toolkit-accessibility=false
 
 [org/cinnamon/desktop/keybindings]
-custom-list=['custom2', 'custom1', 'custom0', 'custom3']
+custom-list=['custom2', 'custom1', 'custom0', 'custom3', 'custom4', 'custom5']
+looking-glass-keybinding=['<Super>grave']
+show-desklets=@as []
 
 [org/cinnamon/desktop/keybindings/custom-keybindings/custom0]
 binding=['<Super>w']
@@ -141,7 +172,7 @@ command='passmenu.sh'
 name='Pass menu'
 
 [org/cinnamon/desktop/keybindings/custom-keybindings/custom2]
-binding=['<Super>r']
+binding=['<Super>q']
 command='qrclip.sh'
 name='Clipboard to QR Code'
 
@@ -150,13 +181,62 @@ binding=['<Super>j']
 command="emacsclient -c -e '(deft)'"
 name='Start Deft search'
 
+[org/cinnamon/desktop/keybindings/custom-keybindings/custom4]
+binding=['<Super>Return']
+command='rofi -show window'
+name='Rofi Window Switcher'
+
+[org/cinnamon/desktop/keybindings/custom-keybindings/custom5]
+binding=['<Primary><Super>b']
+command="xterm -T 'Backup' -e 'echo Start backup process ; echo ; bash -lc do_backup ; echo ; echo Hit Return to continue... ; read'"
+name='Run "do-backup" in a terminal'
+
 [org/cinnamon/desktop/keybindings/media-keys]
+hibernate=['<Super>h', 'XF86Hibernate']
+logout=@as []
+restart-cinnamon=['<Super>g']
+screensaver=['<Super>x', 'XF86ScreenSaver']
+search=@as []
+shutdown=['XF86PowerOff']
 terminal=@as []
 video-outputs=['XF86Display']
+video-rotation-lock=@as []
 
 [org/cinnamon/desktop/keybindings/wm]
-switch-to-workspace-left=['<Shift><Super>Tab']
-switch-to-workspace-right=['<Super>Tab']
+activate-window-menu=@as []
+begin-move=['<Super>m']
+begin-resize=@as []
+close=['<Super>k']
+maximize=@as []
+minimize=['<Super>Down']
+move-to-center=['<Super>l']
+move-to-workspace-1=['<Shift><Super>F1']
+move-to-workspace-2=['<Shift><Super>F2']
+move-to-workspace-3=['<Shift><Super>F3']
+move-to-workspace-4=['<Shift><Super>F4']
+move-to-workspace-left=@as []
+move-to-workspace-right=@as []
+panel-run-dialog=['<Super>r']
+push-tile-down=@as []
+push-tile-up=@as []
+show-desktop=['<Super>d']
+switch-group=['<Shift><Super>f']
+switch-group-backward=['<Shift><Super>b']
+switch-to-workspace-1=['<Super>F1']
+switch-to-workspace-2=['<Super>F2']
+switch-to-workspace-3=['<Super>F3']
+switch-to-workspace-4=['<Super>F4']
+switch-to-workspace-down=['<Alt><Super>space']
+switch-to-workspace-left=@as []
+switch-to-workspace-right=@as []
+switch-to-workspace-up=['<Shift><Super>space']
+switch-windows=['<Super>f', '<Super>Tab']
+switch-windows-backward=['<Shift><Super>Tab', '<Super>b']
+toggle-above=['<Super>t']
+toggle-fullscreen=['<Super>F11']
+toggle-maximized=['<Super>Up']
+toggle-on-all-workspaces=['<Super>a']
+unmaximize=@as []
 
 [org/cinnamon/desktop/media-handling]
 automount=false
@@ -167,7 +247,7 @@ autorun-x-content-open-folder=@as []
 autorun-x-content-start-app=@as []
 
 [org/cinnamon/desktop/notifications]
-bottom-notifications=false
+bottom-notifications=true
 display-notifications=true
 
 [org/cinnamon/desktop/screensaver]
@@ -190,18 +270,18 @@ event-sounds=false
 maximum-volume=150
 
 [org/cinnamon/desktop/wm/preferences]
-action-scroll-titlebar='none'
+action-scroll-titlebar='opacity'
 auto-raise=false
 button-layout='close:minimize,maximize'
-focus-mode='sloppy'
+focus-mode='click'
 focus-new-windows='smart'
 min-window-opacity=30
 mouse-button-modifier='<Super>'
-theme='Mint-Y'
-workspace-names=['home']
+theme='Mint-X'
+workspace-names=['home', 'nook']
 
 [org/cinnamon/muffin]
-attach-modal-dialogs=false
+attach-modal-dialogs=true
 desktop-effects=false
 resize-threshold=24
 tile-hud-threshold=25
@@ -234,7 +314,7 @@ tap-to-click=false
 touchpad-enabled=true
 
 [org/cinnamon/settings-daemon/peripherals/touchscreen]
-orientation-lock=true
+orientation-lock=false
 
 [org/cinnamon/settings-daemon/plugins/power]
 button-power='suspend'
@@ -249,6 +329,10 @@ sleep-display-battery=300
 sleep-inactive-ac-timeout=0
 sleep-inactive-battery-timeout=600
 
+[org/cinnamon/settings-daemon/plugins/xsettings]
+buttons-have-icons=true
+hinting='full'
+
 [org/cinnamon/sounds]
 login-enabled=false
 logout-enabled=false
@@ -259,8 +343,8 @@ tile-enabled=false
 unplug-enabled=false
 
 [org/cinnamon/theme]
-name='Mint-Y-Dark'
-theme-cache-updated=1606583546
+name='Mint-X-Teal'
+theme-cache-updated=1615227053
 
 [org/gnome/baobab/ui]
 active-chart='treemap'
@@ -338,7 +422,7 @@ recreate-folders=true
 skip-newer=false
 
 [org/gnome/file-roller/dialogs/new]
-default-extension='.tar.gz'
+default-extension='.zip'
 encrypt-header=false
 volume-size=0
 
@@ -362,40 +446,31 @@ last-save-directory='file:///home/g/Pictures'
 [org/gnome/gnome-system-monitor]
 show-dependencies=false
 show-whose-processes='user'
+swap-color='rgb(78,154,6)'
 
 [org/gnome/gnome-system-monitor/disktreenew]
 col-6-visible=true
-col-6-width=0
 
 [org/gnome/gnome-system-monitor/memmapstree]
-sort-order=1
 
 [org/gnome/gnome-system-monitor/openfilestree]
-sort-order=0
 
 [org/gnome/gnome-system-monitor/proctree]
 col-0-visible=true
-col-0-width=317
+col-1-visible=true
 col-10-visible=true
-col-10-width=70
 col-11-visible=true
-col-11-width=48
 col-20-visible=false
-col-20-width=59
 col-22-visible=true
-col-22-width=111
 col-3-visible=true
-col-3-width=123
 col-4-visible=true
-col-4-width=128
 col-6-visible=true
-col-6-width=137
 col-8-visible=true
-col-8-width=66
 col-9-visible=true
-col-9-width=80
 columns-order=[0, 1, 2, 3, 4, 6, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26]
-sort-order=0
+
+[org/gnome/libgnomekbd/desktop]
+load-extra-items=false
 
 [org/gnome/libgnomekbd/keyboard]
 layouts=['gb', 'tr\talt', 'tr']
@@ -422,7 +497,6 @@ startup-feed-action=1
 [org/gnome/liferea/plugins]
 active-plugins=['bold-unread', 'media-player']
 
-
 [org/gnome/power-manager]
 info-history-type='charge'
 info-last-device='wakeups'
@@ -437,14 +511,17 @@ jpeg-quality=100
 schema-version=uint32 3
 
 [org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9]
-background-color='rgb(46,52,54)'
+background-color='rgb(255,255,221)'
+bold-color-same-as-fg=true
 cursor-background-color='rgb(255,255,255)'
 cursor-colors-set=false
 cursor-foreground-color='rgb(145,107,86)'
-exit-action='hold'
-foreground-color='rgb(211,215,207)'
-use-theme-colors=true
+exit-action='close'
+foreground-color='rgb(0,0,0)'
+palette=['rgb(46,52,54)', 'rgb(204,0,0)', 'rgb(78,154,6)', 'rgb(196,160,0)', 'rgb(52,101,164)', 'rgb(117,80,123)', 'rgb(6,152,154)', 'rgb(211,215,207)', 'rgb(85,87,83)', 'rgb(239,41,41)', 'rgb(138,226,52)', 'rgb(252,233,79)', 'rgb(114,159,207)', 'rgb(173,127,168)', 'rgb(52,226,226)', 'rgb(238,238,236)']
+use-theme-colors=false
 use-theme-transparency=false
+use-transparent-background=false
 visible-name='cadadr'
 
 [org/gtk/settings/file-chooser]
@@ -452,13 +529,12 @@ date-format='regular'
 show-hidden=false
 show-size-column=true
 show-type-column=true
-sort-column='name'
 sort-directories-first=true
-sort-order='descending'
 type-format='category'
 
 [org/nemo/desktop]
 desktop-layout='true::true'
+font='Ubuntu 10'
 trash-icon-visible=true
 
 [org/nemo/preferences]
@@ -471,7 +547,7 @@ sidebar-bookmark-breakpoint=4
 start-with-sidebar=true
 
 [org/x/editor/plugins]
-active-plugins=['open-uri-context-menu', 'docinfo', 'spell', 'time', 'sort', 'modelines', 'filebrowser', 'joinlines', 'textsize']
+active-plugins=['textsize', 'sort', 'filebrowser', 'spell', 'joinlines', 'docinfo', 'time', 'open-uri-context-menu', 'modelines']
 
 [org/x/editor/plugins/filebrowser/on-load]
 root='file:///'
@@ -490,8 +566,9 @@ bottom-panel-size=140
 side-panel-active-page=827629879
 side-panel-size=200
 
+[org/x/viewer/ui]
+sidebar=false
+
 [org/x/viewer/view]
 background-color='rgb(0,0,0)'
 use-background-color=true
-
-[org/x/viewer/window]
