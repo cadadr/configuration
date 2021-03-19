@@ -2483,95 +2483,6 @@ file extension.")
 
 
 
-;;;;; LaTeX, AuCTeX, Ebib:
-
-;; TODO(2021-02-28): move these to appropriate sections.
-;; Accomodate AuCTeX.
-(setenv "TEXINPUTS" (concat "::" (expand-file-name "auctex/texmf" gk-elisp-site-dir)))
-(require 'auctex)
-(require 'preview-latex)
-
-(defvar gk-bib-dir (gk-org-dir-file "Library")
-  "Location for global Bib(La)TeX files.")
-
-(defvar gk-bib-attachments-dir
-  (expand-file-name "Attachments" gk-bib-dir)
-  "Global store for bibliography attachments.")
-
-
-(defun gk-ebib-set-bibtex-dialect (dialect)
-  "Set the default dialect for Ebib and bibtex.el.
-
-This sets the values of ‘bibtex-dialect’ and
-‘ebib-bibtex-dialect’ and calls ‘bibtex-set-dialect’.
-
-The value of DIALECT should be one of the symbols in
-‘bibtex-dialect-list’.  The symbol ‘bibtex’ is synonymous with
-‘BibTeX’."
-  (let ((d (or (and (eq dialect 'bibtex) 'BibTeX)
-               dialect)))
-    (setq bibtex-dialect d
-          ebib-bibtex-dialect d)
-    (bibtex-set-dialect d)))
-
-(gk-ebib-set-bibtex-dialect 'biblatex)
-
-(setf
- ebib-file-associations nil
- ebib-preload-bib-files (list (expand-file-name "All.bib" gk-bib-dir))
- ebib-file-search-dirs (list gk-bib-attachments-dir)
- ebib-index-columns '(("Entry Key" 20 t) ("Author/Editor" 40 t) ("Year" 6 t) ("Title" 50 t))
- ;; See: ‘bibtex-generate-autokey’.
- bibtex-autokey-year-length 4
- bibtex-autokey-year-title-separator ""
- bibtex-autokey-titleword-length 10
- bibtex-autokey-titlewords-stretch 0
- bibtex-autokey-titlewords 1
- ;; Manually maintain a list of canonical keywords.
- ebib-keywords '()
- ebib-keywords-add-new-to-canonical nil
- ebib-keywords-save-on-exit nil
- ;; Record when new entries are added.
- ebib-use-timestamp t
- ;; Split the current window into two.
- ebib-layout 'window
-
- ;; see ‘ebib-extra-fields’, can be used to mark collections; ‘a’ adds
- ;; extra fields in entry buffer.
-
- ;; see ‘ebib-hidden-fields’, and kbd ‘H’
-
- ;; see ‘ebib-citation-description-function’ for org mode links
- ;; and org-ebib.el
- )
-
-
-(define-key ebib-multiline-mode-map
-  "\C-c\C-c" 'ebib-quit-multiline-buffer-and-save)
-(define-key ebib-multiline-mode-map
-  "\C-c\C-k" 'ebib-cancel-multiline-buffer)
-(define-key ebib-multiline-mode-map
-  "\C-c\C-s" 'ebib-save-from-multiline-buffer)
-
-(define-key ebib-index-mode-map (kbd "C-x b") nil)
-(define-key ebib-entry-mode-map (kbd "C-x b") nil) ;just stay where you are.  It’s going to be alright.  Don’t
-                                                   ;run away.
-
-(define-key ebib-index-mode-map [?g] #'ebib-reload-current-database)
-(define-key ebib-index-mode-map [?q] #'ebib-lower)
-(define-key ebib-entry-mode-map [?q] #'ebib-lower)
-(define-key ebib-index-mode-map [?Q] #'ebib-quit)
-(define-key ebib-entry-mode-map [?Q] #'ebib-quit)
-
-
-;; Switch databases
-(define-key ebib-index-mode-map (kbd "C-n") #'ebib-next-database)
-(define-key ebib-index-mode-map (kbd "C-p") #'ebib-prev-database)
-(define-key ebib-entry-mode-map (kbd "C-n") #'ebib-next-database)
-(define-key ebib-entry-mode-map (kbd "C-p") #'ebib-prev-database)
-
-
-
 ;;;;; Gemini:
 
 (define-key gemini-mode-map (kbd "C-c C-s")
@@ -5974,6 +5885,95 @@ fragments"
 ;;;;; Private settings:
 
 (gk-load (gk-org-dir-file "settings") t)
+
+
+
+;;;;; LaTeX, AuCTeX, Ebib:
+
+;; TODO(2021-02-28): move these to appropriate sections.
+;; Accomodate AuCTeX.
+(setenv "TEXINPUTS" (concat "::" (expand-file-name "auctex/texmf" gk-elisp-site-dir)))
+(require 'auctex)
+(require 'preview-latex)
+
+(defvar gk-bib-dir (gk-org-dir-file "Library")
+  "Location for global Bib(La)TeX files.")
+
+(defvar gk-bib-attachments-dir
+  (expand-file-name "Attachments" gk-bib-dir)
+  "Global store for bibliography attachments.")
+
+
+(defun gk-ebib-set-bibtex-dialect (dialect)
+  "Set the default dialect for Ebib and bibtex.el.
+
+This sets the values of ‘bibtex-dialect’ and
+‘ebib-bibtex-dialect’ and calls ‘bibtex-set-dialect’.
+
+The value of DIALECT should be one of the symbols in
+‘bibtex-dialect-list’.  The symbol ‘bibtex’ is synonymous with
+‘BibTeX’."
+  (let ((d (or (and (eq dialect 'bibtex) 'BibTeX)
+               dialect)))
+    (setq bibtex-dialect d
+          ebib-bibtex-dialect d)
+    (bibtex-set-dialect d)))
+
+(gk-ebib-set-bibtex-dialect 'biblatex)
+
+(setf
+ ebib-file-associations nil
+ ebib-preload-bib-files (list (expand-file-name "All.bib" gk-bib-dir))
+ ebib-file-search-dirs (list gk-bib-attachments-dir)
+ ebib-index-columns '(("Entry Key" 20 t) ("Author/Editor" 40 t) ("Year" 6 t) ("Title" 50 t))
+ ;; See: ‘bibtex-generate-autokey’.
+ bibtex-autokey-year-length 4
+ bibtex-autokey-year-title-separator ""
+ bibtex-autokey-titleword-length 10
+ bibtex-autokey-titlewords-stretch 0
+ bibtex-autokey-titlewords 1
+ ;; Manually maintain a list of canonical keywords.
+ ebib-keywords '()
+ ebib-keywords-add-new-to-canonical nil
+ ebib-keywords-save-on-exit nil
+ ;; Record when new entries are added.
+ ebib-use-timestamp t
+ ;; Split the current window into two.
+ ebib-layout 'window
+
+ ;; see ‘ebib-extra-fields’, can be used to mark collections; ‘a’ adds
+ ;; extra fields in entry buffer.
+
+ ;; see ‘ebib-hidden-fields’, and kbd ‘H’
+
+ ;; see ‘ebib-citation-description-function’ for org mode links
+ ;; and org-ebib.el
+ )
+
+
+(define-key ebib-multiline-mode-map
+  "\C-c\C-c" 'ebib-quit-multiline-buffer-and-save)
+(define-key ebib-multiline-mode-map
+  "\C-c\C-k" 'ebib-cancel-multiline-buffer)
+(define-key ebib-multiline-mode-map
+  "\C-c\C-s" 'ebib-save-from-multiline-buffer)
+
+(define-key ebib-index-mode-map (kbd "C-x b") nil)
+(define-key ebib-entry-mode-map (kbd "C-x b") nil) ;just stay where you are.  It’s going to be alright.  Don’t
+                                                   ;run away.
+
+(define-key ebib-index-mode-map [?g] #'ebib-reload-current-database)
+(define-key ebib-index-mode-map [?q] #'ebib-lower)
+(define-key ebib-entry-mode-map [?q] #'ebib-lower)
+(define-key ebib-index-mode-map [?Q] #'ebib-quit)
+(define-key ebib-entry-mode-map [?Q] #'ebib-quit)
+
+
+;; Switch databases
+(define-key ebib-index-mode-map (kbd "C-n") #'ebib-next-database)
+(define-key ebib-index-mode-map (kbd "C-p") #'ebib-prev-database)
+(define-key ebib-entry-mode-map (kbd "C-n") #'ebib-next-database)
+(define-key ebib-entry-mode-map (kbd "C-p") #'ebib-prev-database)
 
 
 
