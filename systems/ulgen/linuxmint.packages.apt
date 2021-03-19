@@ -135,3 +135,17 @@ simplescreenrecorder	install
 dh-python	install
 mu4e	install
 apparmor-utils	install
+hunspell
+hunspell-tr
+hunspell-pt-pt
+hunspell-en-med
+hunspell-fr-comprehensive
+hunspell-it
+hunspell-es
+hunspell-en-us
+hunspell-en-us
+hunspell-en-au
+hunspell-en-ca
+hunspell-en-gb
+hunspell-el
+hunspell-de-de-frami
