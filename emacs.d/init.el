@@ -3837,6 +3837,8 @@ and special ones sepatarely."
 If CALLBACK is non-nil, it’s called with a single argument, which
 is non nil if there’s new mail."
   (interactive)
+  (unless (string= "mergen" (system-name))
+    (user-error "Won’t fetch mail on this device"))
   (make-process
    :name "gk-fetch-mail" :buffer (get-buffer-create "*Fetch Mail*")
    :command (list "mpop" "-Q" "-a")
