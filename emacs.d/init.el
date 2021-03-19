@@ -84,6 +84,7 @@
 (require 'dired-x)
 (require 'doc-view)
 (require 'dollar)
+(require 'ebib)
 (require 'eglot)
 (require 'eldoc)
 (require 'elfeed)
@@ -105,6 +106,7 @@
 (require 'flymake-python-pyflakes)
 (require 'flyspell)
 (require 'forecast)
+(require 'gemini-mode)
 (require 'geoclue)
 (require 'git-commit)
 (require 'git-gutter)
@@ -152,7 +154,6 @@
 (require 'org-inlinetask)
 (require 'org-mobile)
 (require 'org-num)
-(require 'org-phscroll)
 (require 'org-protocol)
 (require 'org-tempo)                    ; <s, <q &c
 (require 'org-variable-pitch)
@@ -813,6 +814,18 @@ Linguistics (2nd ed.). Oxford University Press."
                   other-buffer))))
 
 
+(defun gk-news ()
+  "Open ‘rmail’ and ‘elfeed’, update both."
+  (interactive)
+  (delete-other-windows)
+  (rmail)
+  (split-window-sensibly)
+  (other-window 1)
+  (elfeed)
+  (elfeed-search-fetch nil)
+  (gk-fetch-mail))
+
+
 
 
 ;;;; Generic advices:
@@ -950,7 +963,7 @@ up-to-date."
      :name "gk-pager" :buffer buf :command `("cat" ,fifo)
      :sentinel #'gk-less--proc-sentinel
      :filter #'gk-less--proc-filter)
-    (view-buffer buf 'kill-buffer)))
+    (display-buffer buf)))
 
 (setenv "PAGER" (locate-user-emacs-file "extras/eless.sh"))
 
@@ -1148,17 +1161,26 @@ at the centre of the newly created frame.  This only happens when
 
 ;; Helper functions for association lists.
 
-(defun dissoc (key list &optional arg)
-  "Delete pairs whose car is `equal' to KEY from LIST.
+(defun dissoc (key list &optional test-fn)
+  "Delete pairs whose car is equal to KEY from LIST.
 
-ARG is an internal argument."
+TEST-FN defaults to ‘equal’."
+  (dissoc--1 key list (or test-fn #'equal) nil))
+
+(defun dissoc--1 (key list test-fn arg)
   (let ((p (car list))
         (r (cdr list)))
     (if list
-        (if (equal (car p) key)
-            (dissoc key r arg)
-          (dissoc key r (append arg (list p))))
+        (if (funcall test-fn (car p) key)
+            (dissoc--1 key r test-fn arg)
+          (dissoc--1 key r test-fn (append arg (list p))))
       arg)))
+
+
+(defmacro dissoc! (key sym test-fn)
+  "Call ‘dissoc’ with args and set SYM to result."
+  `(setq ,sym (dissoc ,key ,sym ,test-fn)))
+
 
 (defun assoca (keyseq list)
   "Arbitrary depth multi-level alist query.
@@ -1345,9 +1367,14 @@ creating a new one."
             #'magit-status)
            ((or (mapcar #'vc-backend (gk-directory-files path)))
             #'vc-dir)))
-         (project-name (generate-new-buffer-name ;uniquify
-                        (file-name-base
-                         (replace-regexp-in-string "/+\\'" "" path))))
+         ;; This should be fairly duplicate-proof...
+         (project-name (concat
+                        (user-login-name)
+                        "@"
+                        (system-name)
+                        ":"
+                        ;; remove trailing slash(es)
+                        (replace-regexp-in-string "/+\\'" "" path)))
          (shell-name (format "*%s shell*" project-name))
          (frame-params `((fullscreen . maximized)
                          (gk-project . ,project-name)
@@ -1683,8 +1710,8 @@ Tries to preserve the order of window buffers and active window."
 
 ;; Set up so that there's 80-85 chars width for half-sized horizontal
 ;; windows.
-(defconst gk-font-default-height 105)
-(defconst gk-font-variable-pitch-height 120)
+(defconst gk-font-default-height 100)
+(defconst gk-font-variable-pitch-height 110)
 
 (defun gk-font (type)
   "Get default font for TYPE, a keyword.
@@ -1848,6 +1875,10 @@ that instead."
 
 ;;;; Dired:
 
+(setf
+ ;; Show ls switches in modeline
+ dired-switches-in-mode-line 'as-is)
+
 
 
 ;;;;; The hook:
@@ -1930,6 +1961,8 @@ Useful when using dired-subtree."
  (rx (or (or (and bol (or "." "#") (optional (1+ ".")))
              (and (or "~" ",v") eol))
          (and bol (or "__pycache__"))))
+ dired-omit-extensions (cl-remove-if ($ (string= $1 ".mo"))
+                                     dired-omit-extensions)
  ;; Show symlinks' targets: it's useful, and dired-subtree is stupid
  ;; otherwise.
  dired-hide-details-hide-symlink-targets nil)
@@ -2450,6 +2483,120 @@ file extension.")
 
 
 
+;;;;; LaTeX, AuCTeX, Ebib:
+
+;; TODO(2021-02-28): move these to appropriate sections.
+;; Accomodate AuCTeX.
+(setenv "TEXINPUTS" (concat "::" (expand-file-name "auctex/texmf" gk-elisp-site-dir)))
+(require 'auctex)
+(require 'preview-latex)
+
+(defvar gk-bib-dir (gk-org-dir-file "Library")
+  "Location for global Bib(La)TeX files.")
+
+(defvar gk-bib-attachments-dir
+  (expand-file-name "Attachments" gk-bib-dir)
+  "Global store for bibliography attachments.")
+
+
+(defun gk-ebib-set-bibtex-dialect (dialect)
+  "Set the default dialect for Ebib and bibtex.el.
+
+This sets the values of ‘bibtex-dialect’ and
+‘ebib-bibtex-dialect’ and calls ‘bibtex-set-dialect’.
+
+The value of DIALECT should be one of the symbols in
+‘bibtex-dialect-list’.  The symbol ‘bibtex’ is synonymous with
+‘BibTeX’."
+  (let ((d (or (and (eq dialect 'bibtex) 'BibTeX)
+               dialect)))
+    (setq bibtex-dialect d
+          ebib-bibtex-dialect d)
+    (bibtex-set-dialect d)))
+
+(gk-ebib-set-bibtex-dialect 'biblatex)
+
+(setf
+ ebib-file-associations nil
+ ebib-preload-bib-files (list (expand-file-name "All.bib" gk-bib-dir))
+ ebib-file-search-dirs (list gk-bib-attachments-dir)
+ ebib-index-columns '(("Entry Key" 20 t) ("Author/Editor" 40 t) ("Year" 6 t) ("Title" 50 t))
+ ;; See: ‘bibtex-generate-autokey’.
+ bibtex-autokey-year-length 4
+ bibtex-autokey-year-title-separator ""
+ bibtex-autokey-titleword-length 10
+ bibtex-autokey-titlewords-stretch 0
+ bibtex-autokey-titlewords 1
+ ;; Manually maintain a list of canonical keywords.
+ ebib-keywords '()
+ ebib-keywords-add-new-to-canonical nil
+ ebib-keywords-save-on-exit nil
+ ;; Record when new entries are added.
+ ebib-use-timestamp t
+ ;; Split the current window into two.
+ ebib-layout 'window
+
+ ;; see ‘ebib-extra-fields’, can be used to mark collections; ‘a’ adds
+ ;; extra fields in entry buffer.
+
+ ;; see ‘ebib-hidden-fields’, and kbd ‘H’
+
+ ;; see ‘ebib-citation-description-function’ for org mode links
+ ;; and org-ebib.el
+ )
+
+
+(define-key ebib-multiline-mode-map
+  "\C-c\C-c" 'ebib-quit-multiline-buffer-and-save)
+(define-key ebib-multiline-mode-map
+  "\C-c\C-k" 'ebib-cancel-multiline-buffer)
+(define-key ebib-multiline-mode-map
+  "\C-c\C-s" 'ebib-save-from-multiline-buffer)
+
+(define-key ebib-index-mode-map (kbd "C-x b") nil)
+(define-key ebib-entry-mode-map (kbd "C-x b") nil) ;just stay where you are.  It’s going to be alright.  Don’t
+                                                   ;run away.
+
+(define-key ebib-index-mode-map [?g] #'ebib-reload-current-database)
+(define-key ebib-index-mode-map [?q] #'ebib-lower)
+(define-key ebib-entry-mode-map [?q] #'ebib-lower)
+(define-key ebib-index-mode-map [?Q] #'ebib-quit)
+(define-key ebib-entry-mode-map [?Q] #'ebib-quit)
+
+
+;; Switch databases
+(define-key ebib-index-mode-map (kbd "C-n") #'ebib-next-database)
+(define-key ebib-index-mode-map (kbd "C-p") #'ebib-prev-database)
+(define-key ebib-entry-mode-map (kbd "C-n") #'ebib-next-database)
+(define-key ebib-entry-mode-map (kbd "C-p") #'ebib-prev-database)
+
+
+
+;;;;; Gemini:
+
+(define-key gemini-mode-map (kbd "C-c C-s")
+  (lambda (arg)
+    (interactive "P")
+    (if arg (insert "[**]") (insert "[*]"))))
+(define-key gemini-mode-map (kbd "C-c C-d")
+  (lambda (arg)
+    (interactive "P")
+    (if arg (insert "[††]") (insert "[†]"))))
+(define-key gemini-mode-map (kbd "C-c C-S-d")
+  (lambda (arg)
+    (interactive "P")
+    (if arg (insert "[‡‡]") (insert "[‡]"))))
+(define-key gemini-mode-map (kbd "C-c C-k")
+  (gk-interactively (insert "``` \n```")
+                    (forward-line -1)
+                    (goto-char (line-end-position))))
+
+
+(define-key gemini-mode-map (kbd "C-c C-l") (gk-interactively (insert "=> ")))
+
+
+
+
 ;;;;; Dictionary and spell checking:
 
 ;; Partially adapted from:
@@ -2517,6 +2664,19 @@ file extension.")
           desc)
         calendar-latitude lat
         calendar-longitude long))
+
+
+
+;;;;; Date time:
+
+(setf
+ ;; Time zones for ‘world-clock’.
+ world-clock-list '(("Europe/Istanbul" "Istanbul")
+                    ("Europe/London" "London")
+                    ("Europe/Rome" "Rome")
+                    ("America/New_York" "US East (NY)")
+                    ("America/Los_Angeles" "US Pacific (Seattle)")
+                    ("Asia/Hong_Kong" "Hong Kong")))
 
 
 
@@ -2836,6 +2996,12 @@ line numbers that match the beginning and the end of the region."
   (interactive (list (buffer-file-name)
                      (not (not current-prefix-arg))))
   (unless file (user-error "Buffer not visiting a file"))
+  (when (buffer-modified-p)
+    (user-error
+     "Buffer modified, save and commit before using this function"))
+  (when (save-window-excursion (vc-diff))
+    (user-error "This file has uncommitted changes, commit first"))
+  (revert-buffer)
   (when line-or-region
     (setq line-or-region
           (if (not (region-active-p))
@@ -3682,7 +3848,8 @@ is non nil if there’s new mail."
            (dolist (f gk-mail-inboxes)
              (when-let* ((f (file-attribute-size (file-attributes f))))
                (when (> f 0)
-                 (setf msg "You have unread mail! "))))
+                 (setf msg "You have unread mail! ")
+                 (mairix-update-database))))
            (when (and (gk-gui-p) (not (string-empty-p msg)))
              (gk-send-desktop-notification "New mail" msg "mail-message-new")))
          (message "%sFetch mail process %s" msg (string-trim event))
@@ -4569,14 +4736,6 @@ modified slightly before it’s used e.g. when posting to Reddit."
     (org-hugo-export-as-md nil nil t)))
 
 
-(define-advice org-list-separating-blank-lines-number
-    (:override (pos struct prevs) do-it-my-way)
-  "One line separates top level list items and none for other levels."
-  (if (zerop (cadar (last struct)))
-      1
-    0))
-
-
 (defun gk-org-insert-list-of-stored-links ()
   "Insert ‘org-stored-links’ as a bulleted list."
   (interactive)
@@ -4584,6 +4743,36 @@ modified slightly before it’s used e.g. when posting to Reddit."
     (newline))
   (dolist (link org-stored-links)
     (insert (apply #'format "- [[%s][%s]]\n" link))))
+
+
+;; From: https://stackoverflow.com/a/28130043
+(defun gk-org-todo-delayed-done (&optional arg)
+  "Like org-todo-yesterday, but prompt the user for a date. The time
+of change will be 23:59 on that day"
+  (interactive "P")
+  (let* ((hour (nth 2 (decode-time
+                       (org-current-time))))
+         (daysback (- (date-to-day (current-time-string))
+                      (org-time-string-to-absolute (org-read-date))))
+         (org-extend-today-until (+ 1 (* 24 (- daysback 1)) hour))
+         (org-use-effective-time t)) ; use the adjusted timestamp for logging
+    (if (eq major-mode 'org-agenda-mode)
+        (org-agenda-todo arg)
+      (org-todo arg))))
+
+(define-advice org-agenda-redo-all
+    (:around (fn &rest args) always-go-to-top-but-push-mark-before-movement)
+  "Go to the top of the buffer after, but push mark before redoing.
+
+Use \[pop-to-mark-command] to go back to where you were."
+  (let ((p (point)))
+    ;; This does go to the beginning of the buffer, but I don’t really
+    ;; understand why exactly it does that, so...
+    (save-mark-and-excursion
+      (funcall fn args))
+    ;; ... I’ll be redundant.
+    (goto-char (point-min))
+    (push-mark p)))
 
 
 
@@ -4700,13 +4889,13 @@ modified slightly before it’s used e.g. when posting to Reddit."
  (gk-org-dir-files
   "Todo.org" "Linguistics.org" "Statistics.org")
  org-agenda-hide-tags-regexp "."
+ org-agenda-sticky t
  org-agenda-custom-commands
  `(("p" "Planner"
     (;; Today’s scheduled items
      (agenda "" ((org-agenda-overriding-header
                   "* Today’s schedule:")
-                 (org-agenda-skip-function '(org-agenda-skip-entry-if
-                                             'deadline 'todo '("HABIT")))
+                 (org-agenda-skip-function '(org-agenda-skip-entry-if 'deadline))
                  (org-deadline-warning-days 0)
                  (org-agenda-sorting-strategy '(time-up
                                                 priority-down
@@ -4718,19 +4907,9 @@ modified slightly before it’s used e.g. when posting to Reddit."
                  (org-default-priority org-lowest-priority)
                  (org-agenda-span 1)))
 
-     ;; Habit tracker
-     (agenda "" ((org-agenda-overriding-header
-                  "\n* Habits:")
-                 (org-agenda-skip-function
-                  '(org-agenda-skip-entry-if 'nottodo '("HABIT")))
-                 (org-default-priority org-lowest-priority)
-                 (org-agenda-span 1)
-                                        ;(org-agenda-compact-blocks t)
-                 ))
-
      ;; Approaching deadlines
      (agenda nil ((org-agenda-overriding-header
-                   "\n* Approaching  deadlines:")
+                   "\n* Approaching deadlines:")
                   (org-agenda-entry-types '(:deadline))
                   (org-agenda-format-date "")
                   (org-deadline-warning-days 21)
@@ -4751,15 +4930,7 @@ modified slightly before it’s used e.g. when posting to Reddit."
                            (org-agenda-sorting-strategy '(priority-down todo-state-down))
                            (org-default-priority org-lowest-priority)
                            (org-agenda-skip-function
-                            '(org-agenda-skip-entry-if 'deadline))))
-
-     ;; Research related stuff
-     (tags-todo "research+TODO=\"TODO\""
-                ((org-agenda-overriding-header
-                  "\n* Research:")
-                 (org-agenda-skip-function
-                  '(org-agenda-skip-entry-if 'deadline 'scheduled))
-                 (org-default-priority org-lowest-priority)))))
+                            '(org-agenda-skip-entry-if 'deadline))))))
 
    ("u" "Unsorted TODOs"
     ;; Unsorted TODO items
@@ -4825,6 +4996,22 @@ display a two pane view in a maximised frame."
 
 (add-hook 'org-agenda-mode-hook #'gk-org-agenda-mode-hook)
 
+(defun gk-org-agenda-finalize-hook ()
+  ;; Remove deadlines section if it’s empty.
+  (save-excursion
+    (goto-char (point-min))
+    (save-match-data
+      (re-search-forward (rx (and bol "* Approaching deadlines:" eol))))
+    (when-let* ((next-heading-beg-pos (save-excursion
+                                        (outline-next-visible-heading 1)
+                                        (point)))
+                (_ (string-empty-p (string-trim
+                                    (buffer-substring (point)
+                                                      next-heading-beg-pos)))))
+      (delete-region (line-beginning-position) next-heading-beg-pos))))
+
+(add-hook 'org-agenda-finalize-hook #'gk-org-agenda-finalize-hook)
+
 
 
 ;;;;; Exporting:
@@ -4853,7 +5040,8 @@ Prevent comments inline in paragraphs from splitting them."
 
 ;;;;;; LaTeX->PDF:
 
-(setf org-latex-pdf-process (list "latexmk -f -silent -bibtex-cond -xelatex %f")
+(setf org-latex-compiler "xelatex"
+      org-latex-pdf-process (list "latexmk -f -silent -bibtex-cond -xelatex %f")
       ;; Do remove many sorts of files the process generates...
       org-latex-remove-logfiles t
       ;; ...but keep some important log files.
@@ -4997,6 +5185,53 @@ unlocked, offer to lock it before pasting."
 
 ;; Required after setting ‘org-list-allow-alphabetical’.
 (org-element-update-syntax)
+
+
+
+
+;;;;;; Automatic insertion of blank lines between list items:
+;; Org uses a complex heuristic to determine whether or not to insert
+;; blank lines between list items.  I instead want to have a strict
+;; style.  The advices below replace this heuristic with a regular
+;; system:
+;;
+;; - Top level items are separated by a blank line.
+;; - Non-top-level items are not separated.
+;;
+;; Besides, I advice list item indent/dedent functions to add a blank
+;; line if dedenting to toplevel or remove it if indenting from
+;; toplevel.
+
+(define-advice org-list-separating-blank-lines-number
+    (:override (pos struct prevs) do-it-my-way)
+  "One line separates top level list items and none for other levels."
+  (if (zerop (org-list-get-ind (point-at-bol) struct))
+      1
+    0))
+
+
+(defun gk-org-after-indent-outdent-item ()
+  "Insert/remove separating line like if ‘org-insert-item’ would."
+  (let* ((struct (org-list-struct))
+         (prevs  (org-list-prevs-alist struct))
+         (p      (point))
+         (nblank (org-list-separating-blank-lines-number p struct prevs))
+         ;; Is the previous line blank?
+         (blankp (save-excursion
+                   (forward-line -1)
+                   (zerop (- (line-end-position) (line-beginning-position))))))
+    (cond ((and (zerop nblank) blankp)
+           (save-excursion (goto-char (line-beginning-position))
+                           (delete-backward-char 1)))
+          ((and (/= 0 nblank) (not blankp))
+           (save-excursion (goto-char (line-beginning-position))
+                           (open-line 1))))))
+
+(add-function :after (symbol-function 'org-indent-item) #'gk-org-after-indent-outdent-item
+              '((name . fix-separator-line)))
+(add-function :after (symbol-function 'org-outdent-item) #'gk-org-after-indent-outdent-item
+              '((name . fix-separator-line)))
+
 
 
 
@@ -5172,6 +5407,28 @@ theme.  If necessary, new images will be created."
 ;;;;; Custom links:
 
 
+;;;;;; Gemini and Gopher links:
+
+(dolist (proto (list "gopher" "gemini"))
+  (org-link-set-parameters
+   proto
+   :follow 'gk-org-elpher-follow
+   :store  'gk-org-elpher-store))
+
+(defun gk-org-elpher-follow (path arg)
+  (ignore arg)
+  (elpher-go path))
+
+(defun gk-org-elpher-store ()
+  (when (and (eq major-mode 'elpher-mode))
+    (let ((proto (elpher-address-protocol (cadr elpher-current-page))))
+      (org-link-store-props
+       :type proto
+       :link (elpher-address-to-url (cadr elpher-current-page))
+       :description (car elpher-current-page))
+      t)))
+
+
 
 ;;;;;; Annotations:
 
@@ -5237,10 +5494,28 @@ BEGIN and END are bounds of the region."
 
 ;;;;;; Mairix:
 
-(defun gk-org-mail-open (path)
-  (mairix-search path nil))
+(dissoc! "rmail" org-link-parameters #'string=)
 
-(org-add-link-type "mairix" 'gk-org-mail-open)
+(org-link-set-parameters
+   "mairix"
+   :follow 'gk-org-mairix-open
+   :store  'gk-org-mairix-store)
+
+(defun gk-org-mairix-open (path arg)
+  (mairix-search path arg))
+
+(defun gk-org-mairix-store ()
+  (when-let* ((_ (memq major-mode '(rmail-mode rmail-summary-mode)))
+              (id (rmail-get-header "Message-ID"))
+              (subj (or (rmail-get-header "Subject")
+                        ""))
+              (from (or (rmail-get-header "From")
+                        "{Unknown}")))
+    (org-store-link-props
+     :type "mairix"
+     :link (concat "mairix:m:" (string-trim id "<" ">"))
+     :description (concat "Message from " from ": «" subj "»"))
+    t))
 
 
 
@@ -5355,8 +5630,8 @@ Generates a "
 (push
  '((org-mode . "Org-mode document")
    nil
-   "# $Id$\n#+title: " - n
-   "#+date: \\today\n#+options: toc:nil\n#+latex_class: gk-article")
+   "#+title: " - n
+   "#+date: \\today\n#+options: toc:nil\n")
  auto-insert-alist)
 
 
@@ -5999,6 +6274,7 @@ new frame is created."
   ;; Adapts ‘highlight-parentheses-mode’ colours to theme.
   (let ((c (cond ((eq gk-gui-theme 'zenburn) "#ff4500") ;orange red
                  ((eq gk-gui-theme 'wombat)  "#b22222") ;firebrick
+                 ((eq gk-gui-theme 'dichromacy) "#8b008b") ;navy
                  (t (face-attribute 'font-lock-keyword-face :foreground)))))
     (setf hl-paren-colors
           (list
@@ -6065,6 +6341,8 @@ new frame is created."
    ("Checkdoc" . (display-buffer-pop-up-window))
    ("Calendar" . (display-buffer-in-side-window . ((side . bottom))))
    ("help\\[R\\]" . (display-buffer-pop-up-window))
+   ("\\*pager\\*.*" . (display-buffer-pop-up-window
+                       . ((inhibit-same-window . t))))
    ;; Use ‘display-buffer-same-window’ as a catch-all for everything
    ;; but...
    (,($ [b _] (not (memq (buffer-local-value 'major-mode (get-buffer b))
@@ -6093,6 +6371,8 @@ new frame is created."
    (completion-pcm--prepare-delim-re re)
    ;; Return pristine regexp to be set.
    re)
+ ;; Display completion details.
+ completions-detailed t
  ;; Do not  ring the bell  when killing  in r/o buffers,  put the
  ;; kill in the kill ring but do not modify the buffer.
  kill-read-only-ok t
@@ -6121,7 +6401,17 @@ new frame is created."
  ;; fringe.
  indicate-unused-lines t
  ;; Draw underlines lower.
- underline-minimum-offset 7)
+ underline-minimum-offset 7
+ ;; Properly maximise frames in non-DE window managers.
+ frame-resize-pixelwise t
+ ;; Split vertically in general
+ split-width-threshold 140
+ ;; «Skip ‘fontification_functions‘ when there is input pending.»
+ redisplay-skip-fontification-on-input t
+ ;; Each buffer has its own goto-line history.
+ goto-line-history-local t
+ ;; Scale header lines with buffer when zooming.
+ text-scale-remap-header-line t)
 
 
 (setq-default save-place t)
@@ -6225,6 +6515,10 @@ new frame is created."
 
 ;;;;; Mode line:
 
+(setf
+ ;; If mode line is too long, compact it.
+ mode-line-compact 'long)
+
 (defconst gk-mode-line-pristine-format
   (copy-list mode-line-format)
   "Modeline before my modifications.")
@@ -6321,6 +6615,9 @@ An adaptation and simplification of ‘mode-line-modes’.")
   (add-hook m 'gk-start-global-address-mode))
 
 (diminish 'goto-address-mode "⚓")
+
+(cl-pushnew "gemini://" goto-address-uri-schemes :test #'string=)
+(cl-pushnew "gopher://" goto-address-uri-schemes :test #'string=)
 
 ;; C-Return on an adress follows it.
 (define-key goto-address-highlight-keymap (kbd "<C-return>") #'goto-address-at-point)
@@ -6772,9 +7069,8 @@ provided."
 ;; Some more emacsy keybindings.
 (define-key elpher-mode-map "n" #'elpher-next-link)
 (define-key elpher-mode-map "p" #'elpher-prev-link)
-(define-key elpher-mode-map "h" #'elpher-back)
+(define-key elpher-mode-map "l" #'elpher-back)
 (define-key elpher-mode-map "^" #'elpher-back-to-start)
-
 
 
 
@@ -7240,7 +7536,6 @@ Does various tasks after saving a file, see it's definition."
 (gk-prefix-binding "u" 'gk-upcase-this-or-previous-word)
 (gk-prefix-binding "l" 'gk-lowercase-this-or-previous-word)
 (gk-global-binding "\C-z" 'gk-cycle-input-methods)
-(gk-prefix-binding "e" "\C-xe")
 
 ;;(gk-prefix-binding (kbd "L") gk-lingua-prefix-map)
 (gk-global-binding (kbd "\M-\ ") (gk-interactively (insert " ")))
@@ -7294,7 +7589,6 @@ Does various tasks after saving a file, see it's definition."
 (gk-prefix-binding "=" #'menu-bar-mode) ;toggle
 (gk-prefix-binding "g" #'magit-status)
 (gk-prefix-binding "M-." #'repeat-complex-command)
-(gk-prefix-binding (kbd "<C-backspace>") #'delete-frame)
 (gk-prefix-binding "\C-f" #'project-find-file)
 (gk-prefix-binding "\C-p" #'gk-open-project)
 (gk-prefix-binding (kbd "C-+") #'gk-create-project)
@@ -7305,12 +7599,13 @@ Does various tasks after saving a file, see it's definition."
 
 (gk-global-binding "\C-xw" #'gk-jump-to-window)
 
-;; Undo with mouse buttons
 (gk-global-binding [mouse-8] #'scroll-down-command)
 (gk-global-binding [mouse-9] #'scroll-up-command)
 
 (gk-prefix-binding "x" #'gk-maximize)
 (gk-prefix-binding (kbd "C-f") #'gk-flip)
+
+(gk-prefix-binding "e" #'ebib)
 
 
 

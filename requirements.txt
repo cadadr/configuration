@@ -57,3 +57,8 @@ nltk~=3.4
 
 # For readability userscript.
 readability-lxml~=0.8
+
+
+### Utilities:
+
+pomodoro-calculator~=1.0        # get-pomodori CLI tool

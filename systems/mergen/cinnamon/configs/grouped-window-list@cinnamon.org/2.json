@@ -165,17 +165,16 @@
         ],
         "value": [
             "emacs.desktop",
-            "zotero.desktop",
             "org.qutebrowser.qutebrowser.desktop",
+            "pomodorino.desktop",
             "org.gnome.Terminal.desktop",
             "nemo.desktop",
             "gnome-system-monitor.desktop",
+            "telegramdesktop.desktop",
             "whatsappdesktop.desktop",
             "mintupdate.desktop",
             "blueberry.desktop",
-            "steam.desktop",
-            "telegramdesktop.desktop",
-            "com.spotify.Client.desktop:flatpak"
+            "fi.skyjake.Lagrange.desktop:flatpak"
         ]
     },
     "group-apps": {

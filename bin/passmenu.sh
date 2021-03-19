@@ -5,10 +5,10 @@ set +e
 
 prefix=${PASSWORD_STORE_DIR-~/.password-store}
 prompt="Select password store enty"
-password=$(pass list | tail -n+2 | cut -d\  -f 2 \
-	| rofi -dmenu -p "$prompt :" -i)
+password="$(pass git ls-files | grep -v ^\\. | sed s/.gpg\$// \
+                 | rofi -dmenu -p "$prompt" -i)"
 
-if [ x$password = x ]; then exit 1; fi
+[ -z "$password" ] && exit 1
 
 pass show -c "$password"
 notify-send "“$password” copied" \

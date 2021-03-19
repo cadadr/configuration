@@ -17,12 +17,10 @@ ShowOSD=false
 ttsEngine=flite
 
 [Main View]
-ShowLeftPanel=false
-SplitterSizes=221,845
+SplitterSizes=414,650
 
 [PageView]
 EditToolBarPlacement=3
-MouseMode=TextSelect
 ScrollOverlap=10
 ViewColumns=4
 

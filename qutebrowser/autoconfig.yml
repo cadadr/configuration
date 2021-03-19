@@ -56,8 +56,11 @@ settings:
         ',tm': set --temp tabs.show multiple
         ',tr': set --temp tabs.position right
         ',tt': set --temp tabs.position top
+        ',xrs': jseval document.querySelector("div.side").hidden =true
         ',z': save-to-zotero
         .: nop
+        <Ctrl+a>: null
+        <Ctrl+x>: null
         D: hint links userscript ~/.config/qutebrowser/userscripts/doi
         b: set-cmd-text -s :buffer
         co: null
@@ -69,6 +72,8 @@ settings:
         yh: hint all yank
   colors.keyhint.bg:
     global: rgba(0, 0, 0, 100%)
+  colors.webpage.bg:
+    global: white
   completion.delay:
     global: 0
   content.autoplay:
@@ -84,6 +89,8 @@ settings:
   content.headers.referer:
     global: same-domain
   content.pdfjs:
+    global: false
+  content.webgl:
     global: false
   content.windowed_fullscreen:
     global: true
@@ -173,5 +180,7 @@ settings:
     global: false
   url.default_page:
     global: about:blank
+  url.open_base_url:
+    global: true
   url.start_pages:
     global: about:blank

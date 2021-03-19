@@ -21,10 +21,13 @@ printf "GRUB_TIMEOUT_STYLE=menu\nGRUB_TIMEOUT=30\n" \
     | tee /etc/default/grub.d/99_showmenu.cfg > /dev/null
 
 
-# Enable resuming from hibernation
+# Enable resuming from hibernation, and do not quieten boot nor
+# display boot splash (sometimes causes problems with decoding
+# encrypted disks in /etc/fstab.
+#
 # Adapted from: https://askubuntu.com/a/1241902
 swapuuid="$(grep ^UUID=.*swap /etc/fstab | cut -d ' ' -f 1)"
-echo "GRUB_CMDLINE_LINUX_DEFAULT=\"quiet splash resume=$swapuuid\"" \
+echo "GRUB_CMDLINE_LINUX_DEFAULT=\"resume=$swapuuid\"" \
     | tee /etc/default/grub.d/99_resume-from-hibernation.cfg \
           > /dev/null
 

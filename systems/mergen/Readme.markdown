@@ -59,11 +59,6 @@ packages.  There is a script for that:
 This will inspect the dpkg database and find out all the relevant
 `-doc` packages, and install them.
 
-The file `mint.flatpak.install` contains a listing of Flatpaks to be
-installed, which can be installed as follows:
-
-    # xargs flatpak install -y < mint.flatpak.install
-
 If you’ll use msmtp, the following command makes AppArmor quit its
 stupid bullshit.  I’ve tried aliases to no avail.
 
@@ -74,10 +69,23 @@ command below to escape it when calling from vi/vim command line):
 
     # sed -i -E 's/^(load-module module-suspend-on-idle)$/# \1/' /etc/pulse/default.pa
 
-Finally, we'll enable the GRUB menu with a sensible timeout and
-configure resume from hibernation.
+Finally for the system setup, we'll enable the GRUB menu with a
+sensible timeout and configure resume from hibernation.
 
     # bash boot-setup.bash
+
+The last step is to install flatpaks, which should be done after
+exiting the root shell, i.e. without superuser privileges.
+
+The file `mint.flatpak.install` contains a listing of Flatpaks to be
+installed, which can be installed as follows:
+
+    $ xargs flatpak install -y < mint.flatpak.install
+
+The following command will allow the Lagrance flatpak to gain access
+to the external file I keep its bookmarks at:
+
+    $ flatpak override fi.skyjake.Lagrange --user --filesystem=$HOME/Notes/Lagrange-bookmarks.txt 
 
 Now it's time to go back to repo root and run `make setup` or
 similar. **Log out of the graphical session for this and switch

@@ -60,7 +60,10 @@ saved-pathbar-path
 night-light-last-coordinates
 last-refresh-time
 last-active-shape
-last-font-name"
+last-font-name
+sort-order
+sort-column
+col-[0-9]+-width"
 
 # This pops up sometimes for some reason
 if [ "$DESKTOP_SESSION" = "cinnamon" ]; then
