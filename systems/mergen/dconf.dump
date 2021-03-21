@@ -552,8 +552,26 @@ devices-expanded=true
 sidebar-bookmark-breakpoint=4
 start-with-sidebar=true
 
+[org/virt-manager/virt-manager]
+manager-window-height=550
+manager-window-width=550
+
+[org/virt-manager/virt-manager/connections]
+autoconnect=['qemu:///system']
+uris=['qemu:///system']
+
+[org/virt-manager/virt-manager/new-vm]
+graphics-type='system'
+
+[org/virt-manager/virt-manager/urls]
+isos=['/media/g/igk-public/Installation Images/Solus-4.2-Budgie.iso']
+
+[org/virt-manager/virt-manager/vmlist-fields]
+disk-usage=false
+network-traffic=false
+
 [org/x/editor/plugins]
-active-plugins=['textsize', 'sort', 'filebrowser', 'spell', 'joinlines', 'docinfo', 'time', 'open-uri-context-menu', 'modelines']
+active-plugins=['filebrowser', 'time', 'spell', 'docinfo', 'modelines', 'sort', 'textsize', 'open-uri-context-menu', 'joinlines']
 
 [org/x/editor/plugins/filebrowser/on-load]
 root='file:///'
