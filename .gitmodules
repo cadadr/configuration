@@ -1,3 +1,0 @@
-[submodule "share/pyenv"]
-	path = share/pyenv
-	url = https://github.com/pyenv/pyenv
