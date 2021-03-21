@@ -53,9 +53,11 @@ export PYTHONSTARTUP=$MEINE/python-init.py
 export DJANGO_COLORS="nocolor"
 # Pyenv
 export PYENV_ROOT="$MY/share/pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init -)"
+if [ -d "$PYENV_ROOT" ]; then
+    export PATH="$PYENV_ROOT/bin:$PATH"
+    if command -v pyenv 1>/dev/null 2>&1; then
+        eval "$(pyenv init -)"
+    fi
 fi
 
 # R
