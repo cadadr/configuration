@@ -1,5 +1,0 @@
-image: debian:stable
-
-init_alpha:
-  script:
-    - sh systems/alpha/scripts/test.sh
