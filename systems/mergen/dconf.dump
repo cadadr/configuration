@@ -539,7 +539,7 @@ sort-directories-first=true
 type-format='category'
 
 [org/nemo/desktop]
-desktop-layout='true::true'
+desktop-layout='true::false'
 font='Ubuntu 10'
 trash-icon-visible=true
 
