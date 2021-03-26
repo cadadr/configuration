@@ -5640,6 +5640,46 @@ which correspond to homonymous fields listed in
    :unnarrowed t)
 
   (gk-org-define-capture-template
+   :keys "e"
+   :description "Add selected entry in ebib to reading list"
+   :type 'item
+   :template '(function
+               (lambda ()
+                 (unless (memq major-mode '(ebib-index-mode
+                                            ebib-entry-mode))
+                   (user-error "This template (e) should be called from within Ebib"))
+                 (with-current-buffer
+                     (or (assoca 'index ebib--buffer-alist)
+                         ;; XXX(2021-03-26): this can be replaced with
+                         ;; an interactive search maybe?
+                         (user-error "Ebib not running, can’t use ebib capture template"))
+                   (let* ((key (progn (ebib-copy-key-as-kill)
+                                      (pop kill-ring)))
+                          (maybe-pdf
+                           (if-let*
+                               ((attch (gk-existing-file-name-or-nil
+                                        (expand-file-name (concat key ".pdf")
+                                                          gk-bib-attachments-dir))))
+                               (format " [[file:%s][(pdf)]]" attch)
+                             ""))
+                          (newitem (concat "- [ ] " key maybe-pdf "\n"
+                                           "  - " (replace-regexp-in-string
+                                                   "\n" " "
+                                                   (progn (ebib-copy-reference-as-kill)
+                                                          (pop kill-ring))))))
+                     (with-temp-buffer
+                       (org-mode)
+                       (setq-local fill-column 70)
+                       (insert newitem)
+                       (org-fill-paragraph)
+                       (buffer-substring-no-properties (point-min)
+                                                       (point-max)))))))
+   :target `(file+olp ,(car org-agenda-files) "reading inbox")
+   :prepend t
+   :empty-lines-after 1
+   :unnarrowed t)
+
+  (gk-org-define-capture-template
    :keys "R"
    :description "Reading task (make active)"
    :type 'entry
