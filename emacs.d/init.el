@@ -5610,6 +5610,16 @@ which correspond to homonymous fields listed in
   (setf org-capture-templates nil)
 
   (gk-org-define-capture-template
+   :keys "b"
+   :description "New blurb"
+   :type 'item
+   :target `(file ,(gk-org-dir-file "Blurbs.org"))
+   :template "- %?"
+   :prepend nil
+   :empty-lines-before 1
+   :unnarrowed t)
+
+  (gk-org-define-capture-template
    :keys "t"
    :description "Random task (not scheduled)"
    :type 'entry
