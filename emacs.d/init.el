@@ -3933,7 +3933,7 @@ Return the file name, expanded."
   (set-buffer-modified-p t)
   (rmail-expunge-and-save))
 
-(defun gk-rmail-advance ()
+(defun gk-rmail-advance (&optional arg)
   "Advance to the next message in default mbox.
 
 This command will not run unless in an RMAIL buffer visiting
@@ -3941,12 +3941,23 @@ This command will not run unless in an RMAIL buffer visiting
 ‘gk-rmail-archive-file’ and delete it, advancing to the next
 message in the RMAIL file.  This is a utility for the email
 workflow where a temporary inbox is used for working with current
-email and archiving read mail in another file."
-  (interactive)
-  (unless (string= (buffer-file-name) rmail-file-name)
+email and archiving read mail in another file.
+
+If ARG is non-nil, or called interactively with a prefix
+argument, prompt for which mailbox to output to."
+  (interactive "P")
+  (unless (and (eq major-mode 'rmail-mode)
+               (string= (buffer-file-name) rmail-file-name))
     (user-error
      "This is not your default RMAIL file, won't run ‘gk-rmail-advance’ here"))
-  (rmail-output gk-rmail-archive-file)
+  (let ((outfil (if (null arg)
+                    gk-rmail-archive-file
+                  (read-file-name
+                   "Move to mailbox: " (concat gk-mail-home "/")
+                   nil nil nil
+                   ;; Exclude numbered split mbox files.
+                   ($ (save-match-data (not (string-match "-[0-9]+\\'" $1))))))))
+    (rmail-output outfil))
   (rmail-delete-forward))
 
 (defun gk-rmail-forward-link-or-button (p)
