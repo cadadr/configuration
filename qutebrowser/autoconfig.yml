@@ -167,7 +167,7 @@ settings:
   tabs.position:
     global: bottom
   tabs.select_on_remove:
-    global: next
+    global: prev
   tabs.show:
     global: multiple
   tabs.show_switching_delay:
