@@ -6142,7 +6142,7 @@ will become the only window."
 ;;;;; GUI:
 
 (defvar gk-preferred-themes '( :light modus-operandi
-                               :dark dracula
+                               :dark modus-vivendi
                                ;; just being explicit...
                                :no-preference nil)
   "Light and dark theme preferences.")
