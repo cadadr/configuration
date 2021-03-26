@@ -2044,6 +2044,30 @@ Useful when using dired-subtree."
 (define-key pdf-view-mode-map (kbd "M-w") #'pdf-view-kill-ring-save)
 (define-key pdf-view-mode-map "q" #'bury-buffer)
 
+(define-key pdf-view-mode-map (kbd "M-1")
+  (gk-interactively
+   (pdf-annot-add-highlight-markup-annotation
+    (pdf-view-active-region t)
+    "yellow")))
+
+(define-key pdf-view-mode-map (kbd "M-2")
+  (gk-interactively
+   (pdf-annot-add-highlight-markup-annotation
+    (pdf-view-active-region t)
+    "medium spring green")))
+
+(define-key pdf-view-mode-map (kbd "M-3")
+  (gk-interactively
+   (pdf-annot-add-highlight-markup-annotation
+    (pdf-view-active-region t)
+    "coral")))
+
+(define-key pdf-view-mode-map (kbd "M-4")
+  (gk-interactively
+   (pdf-annot-add-highlight-markup-annotation
+    (pdf-view-active-region t)
+    "dark turquoise")))
+
 
 
 ;;;; Input methods:
