@@ -162,6 +162,10 @@ Generate locales:
 
     # /sbin/locale-gen
 
+Use default Xorg muse cursors:
+
+    # echo >> /etc/alternatives/x-cursor-theme
+
 At this point the system should be ready for the installation of my
 dotfiles, for which see `../../Readme.markdown`.
 
