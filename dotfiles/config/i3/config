@@ -26,6 +26,7 @@ bindsym $mod+Shift+semicolon exec i3-input -P 'i3 command: '
 bindsym $mod+w exec --no-startup-id i3switch.rb
 bindsym $mod+BackSpace exec --no-startup-id python3 $MYLIB/i3/focus-last.py --switch
 bindsym $mod+Control+t exec --no-startup-id sh $MYLIB/toggle-tapping.sh
+bindsym $mod+Control+b exec backup-popup.bash
 
 bindsym $mod+b focus left
 bindsym $mod+n focus down
@@ -135,7 +136,7 @@ mode "$mode_brightness" {
     bindsym Escape mode "default"
     bindsym Control+g mode "default"
 }
-bindsym $mod+Control+b mode "$mode_brightness"
+# bindsym $mod+Control+b mode "$mode_brightness"
 
 set $mode_pass Passthrough, Return / Escape / Ctrl+G to exit
 mode "$mode_pass" {
@@ -231,6 +232,7 @@ for_window [class="Pavucontrol"] floating enable
 for_window [class="R_x11"] floating enable
 ## U?XTerm
 for_window [class="UXTerm"] floating enable move position center
+for_window [class="XTerm" title="Backup"] floating enable move position center
 ## PCManFM
 for_window [class="Pcmanfm"] floating enable move position center
 ## Editor command for Qutebrowser
