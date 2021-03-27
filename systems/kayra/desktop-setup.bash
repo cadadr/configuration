@@ -30,20 +30,18 @@ ulimit -c unlimited
 
 
 ### Start background processes:
-export $(gnome-keyring-daemon --start --components=ssh) &
 /usr/lib/geoclue-2.0/demos/agent & # required for access to geoclue2
 dunst                    &
 # Wait for geoclue agent.
 ( sleep 10; redshift-gtk ) &
 kdeconnect-indicator     &
 clipit                   &
-# volctl                   &
-# xsettingsd               &
 # if flameshot starts too quickly, the icon doesn't go to the
 # system tray.
 (sleep 5; flameshot)     &
 nm-applet                &
 pcmanfm --daemon-mode    &
+pasystray                &
 # gpg-agent, ssh-agent?
 
 exec dbus-launch --exit-with-session i3 -V -d all
