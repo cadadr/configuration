@@ -27,11 +27,6 @@ included, so it won't work reliably. Just cherry-pick what you want.
 Installation
 ============
 
-The first thing after cloning this repo is to initialise the submodules
-
-    $ git submodule update --init
-
-
 System setup
 ------------
 
