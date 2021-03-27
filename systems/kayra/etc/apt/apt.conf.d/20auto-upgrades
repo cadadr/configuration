@@ -1,4 +1,4 @@
-# Automatically download upgrades.
+# Automatically update lists.
 APT::Periodic::Update-Package-Lists "1";
 # But don't download them.
 APT::Periodic::Download-Upgradeable-Packages "0";

@@ -9,8 +9,8 @@ deb http://ftp.uk.debian.org/debian/ buster-backports main contrib non-free
 deb-src http://ftp.uk.debian.org/debian/ buster-backports main contrib non-free
 
 # testing
-deb http://ftp.uk.debian.org/debian/ testing main contrib non-free
-deb-src http://ftp.uk.debian.org/debian/ testing main contrib non-free
+#deb http://ftp.uk.debian.org/debian/ testing main contrib non-free
+#deb-src http://ftp.uk.debian.org/debian/ testing main contrib non-free
 
 # security
 deb http://security.debian.org/debian-security buster/updates main
@@ -24,6 +24,6 @@ deb-src http://deb.debian.org/debian/ buster-updates main
 deb http://debug.mirrors.debian.org/debian-debug/ buster-debug main
 
 # virtualbox
-# deb [arch=amd64] https://download.virtualbox.org/virtualbox/debian buster contrib
+#deb [arch=amd64] https://download.virtualbox.org/virtualbox/debian buster contrib
 # in order to add their key:
 # wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | sudo apt-key add -
