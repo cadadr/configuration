@@ -21,9 +21,6 @@ you reboot into the newly installed operating system.
 
 ## `kayra` preparation
 
-We use the newly installed Debian stable environment to set up a
-testing system.
-
 Open the system and log in as the superuser.
 
 The following commands can be run from inside vi(1) using `y$` for yanking
@@ -138,6 +135,16 @@ installed by the following commands:
     # apt-get update
     # xargs apt-get install -y   < debian.apt.install
     # xargs apt-get build-dep -y < debian.apt.build-dep
+
+It might be the case that errors are reported for some packages, most
+probably because of a clash with the config files we installed into
+`etc`.  Normally, `dpkg` prompts for these clashes, but because output
+will not be a TTY here, those prompts will be skipped.  If you find
+yourself in this situation, run
+
+    # apt-get install -f
+
+in order to reconfigure these packages interactively.
 
 After this, you might want to install documentation for the installed
 packages.  There is a script for that:
