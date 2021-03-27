@@ -173,9 +173,9 @@ settings:
   tabs.show_switching_delay:
     global: 1000
   tabs.title.format:
-    global: '{audio}{index}: {current_title}'
+    global: '{audio}{index}: {title}'
   tabs.title.format_pinned:
-    global: '* {audio}{index}: {current_title}'
+    global: '* {audio}{index}: {title}'
   tabs.wrap:
     global: false
   url.default_page:
