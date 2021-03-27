@@ -8,6 +8,17 @@ IFS=$'\n\t'
 export DESKTOP_SESSION=i3wm
 export GK_COLOUR_SCHEME_PREFERENCE=dark
 
+# Manually set lat and long from zone.tab, geoclue is unreliable
+# because FUCK GNOME FUCK GNOME FUCK GNOME.
+latlong="$(grep $TZ /usr/share/zoneinfo/zone.tab | awk '{print $2}')"
+_lat="$(echo $latlong | cut -d+ -f2)"
+_long="$(echo $latlong | cut -d+ -f3)"
+
+export LOCATION_LAT="$(echo 2 k $_lat 100 / p | dc)"
+export LOCATION_LONG="$(echo 2 k $_long 100 / p | dc)"
+
+unset _lat _long latlong
+
 # Disable DPMS turning off the screen
 xset -dpms
 xset s off
@@ -30,10 +41,8 @@ ulimit -c unlimited
 
 
 ### Start background processes:
-/usr/lib/geoclue-2.0/demos/agent & # required for access to geoclue2
 dunst                    &
-# Wait for geoclue agent.
-( sleep 10; redshift-gtk ) &
+redshift-gtk -l $LOCATION_LAT:$LOCATION_LONG &
 kdeconnect-indicator     &
 clipit                   &
 # if flameshot starts too quickly, the icon doesn't go to the
