@@ -1,0 +1,9 @@
+#!/usr/bin/env perl
+# bibtex --- fetch BibTeX from DOI/ISBN/...
+
+use v5.30;
+
+use strict;
+use warnings;
+
+
