@@ -18,6 +18,10 @@ xset -b
 # Swap mouse back/forward buttons around.
 xinput set-button-map "USB Optical Mouse" 1 2 3 4 5 6 7 9 8
 
+# Hold middle button to scroll in all directions.
+xinput set-prop "USB Optical Mouse" \
+	'libinput Scroll Method Enabled' {0,0,1}
+
 # Use XToolkit in java applications
 export AWT_TOOLKIT=XToolkit
 
