@@ -110,7 +110,8 @@ def maybe_redirect_to_imgurp(request):
 # first match will be applied only.
 redirect_fns = [
     maybe_redirect_to_imgurp,
-    maybe_redirect_for_spacing,
+    # XXX(2021-03-27): seems to not work with qutebrowser 1.6.x
+    # maybe_redirect_for_spacing,
 ]
 
 
