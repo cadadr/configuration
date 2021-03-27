@@ -234,4 +234,6 @@ for_window [class="UXTerm"] floating enable move position center
 ## PCManFM
 for_window [class="Pcmanfm"] floating enable move position center
 ## Editor command for Qutebrowser
-for_window [class="qtbedit"] floating enable move position centeR
+for_window [class="qtbedit"] floating enable move position center
+## Telegram client
+for_window [title="Telegram( \(\d+\))?"] floating enable move position center
