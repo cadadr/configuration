@@ -1,12 +1,8 @@
 #!/bin/sh
 # lockscr.sh --- lock screen in X session
 
-img="$HOME/.lockscr.png"
+bg="${GK_XBGIMG-$HOME/.xbg.png}"
 
-if [ ! -e "$img" ]; then
-    s="$(xdpyinfo | grep dimensions: | sed -E 's,.*([0-9]{4}x[0-9]{3}).*,\1,')"
-    convert "$XBGIMG" -gravity center -resize "$s" "$img"
-fi
-
-i3lock -p default -f -e -i "$img" && sleep 1
+# if image not found, display a gray screen
+exec i3lock -p default -f -n -e -i "x$bg" -c 333333
 

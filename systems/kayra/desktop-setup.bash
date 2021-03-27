@@ -7,6 +7,9 @@ IFS=$'\n\t'
 ### Environment:
 export DESKTOP_SESSION=i3wm
 export GK_COLOUR_SCHEME_PREFERENCE=dark
+export GK_XBGIMG="$HOME/.xbg.png"
+export GK_XBG_SLIDESHOW_DIR="$HOME/Pictures/wlp/simpledesktops.com"
+export GK_XBG_SLIDESHOW_INTERVAL_MINS=5
 
 # Manually set lat and long from zone.tab, geoclue is unreliable
 # because FUCK GNOME FUCK GNOME FUCK GNOME.
@@ -41,6 +44,7 @@ ulimit -c unlimited
 
 
 ### Start background processes:
+setbg.bash               &
 dunst                    &
 redshift-gtk -l $LOCATION_LAT:$LOCATION_LONG &
 kdeconnect-indicator     &
