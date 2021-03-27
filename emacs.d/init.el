@@ -1988,6 +1988,8 @@ Useful when using dired-subtree."
 ;;;;; Subtrees:
 
 (define-key dired-mode-map "i" 'dired-subtree-toggle)
+(define-key dired-mode-map "<" 'dired-subtree-up)
+(define-key dired-mode-map ">" 'dired-subtree-down)
 
 (setf dired-subtree-use-backgrounds nil)
 
