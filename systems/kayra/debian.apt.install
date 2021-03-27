@@ -234,5 +234,5 @@ firmware-amd-graphics
 mesa-vulkan-drivers
 xserver-xorg-video-all
 firefox-esr
-gnome-keyring
-lightdm
+bluez
+blueman
