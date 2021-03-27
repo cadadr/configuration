@@ -4,5 +4,5 @@
 bg="${GK_XBGIMG-$HOME/.xbg.png}"
 
 # if image not found, display a gray screen
-exec i3lock -p default -f -n -e -i "x$bg" -c 333333
+i3lock -p default -f -e -i "$bg" -c 333333 && sleep 1 || exit 2
 
