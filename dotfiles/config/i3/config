@@ -157,15 +157,16 @@ mode "$mode_kbdselect" {
 bindsym $mod+Control+k mode "$mode_kbdselect"
 
 # Pulse Audio controls
-bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 0 +5%; exec notify-send -i audio-speakers -u low -t 300 volume "$(pacmd dump-volumes | awk 'NR==1{print $8}' | sed 's/\%//')"%
-bindsym XF86AudioLowerVolume exec pactl set-sink-volume 0 -5%; exec notify-send -i audio-speakers -u low -t 300 volume "$(pacmd dump-volumes | awk 'NR==1{print $8}' | sed 's/\%//')"%
-bindsym XF86AudioMute exec pactl set-sink-mute 0 toggle
+bindsym XF86AudioRaiseVolume exec volset.bash up
+bindsym XF86AudioLowerVolume exec volset.bash down
+bindsym XF86AudioMute        exec volset.bash toggle-mute
 
 set $mod_volume Set volume (i)ncrease / (d)ecrease / (m)ute
 mode "$mod_volume" {
-    bindsym i exec pactl set-sink-volume 0 +5%; exec notify-send -i audio-speakers -u low -t 300 volume "$(pacmd dump-volumes | awk 'NR==1{print $8}' | sed 's/\%//')"%
-    bindsym d exec pactl set-sink-volume 0 -5%; exec notify-send -i audio-speakers -u low -t 300 volume "$(pacmd dump-volumes | awk 'NR==1{print $8}' | sed 's/\%//')"%
-    bindsym m exec pactl set-sink-mute 0 toggle
+    bindsym i exec volset.bash up
+    bindsym d exec volset.bash down
+    bindsym f exec volset.bash full
+    bindsym m exec volset.bash toggle-mute
 
     bindsym Return mode "default"
     bindsym Escape mode "default"
