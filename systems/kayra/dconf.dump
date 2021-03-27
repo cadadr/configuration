@@ -1,7 +1,12 @@
 [org/gtk/settings/file-chooser]
-date-format='regular'
 show-size-column=true
+date-format='regular'
 show-hidden=false
-sort-column='name'
-sort-order='ascending'
 sort-directories-first=false
+
+[com/gkayaalp/pomodorino]
+ease-in-mode-enabled=true
+desktop-notifications-enabled=true
+short-break-duration=5
+long-break-duration=15
+pomodoro-duration=25
