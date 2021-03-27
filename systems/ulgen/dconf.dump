@@ -137,9 +137,9 @@ picture-options='zoom'
 
 [org/cinnamon/desktop/background/slideshow]
 delay=5
-image-source='xml:///usr/share/cinnamon-background-properties/linuxmint-ulyana.xml'
+image-source='directory:///home/g/Pictures/wlp/simpledesktops.com'
 random-order=true
-slideshow-enabled=false
+slideshow-enabled=true
 
 [org/cinnamon/desktop/interface]
 cursor-blink-time=1200
@@ -147,8 +147,8 @@ cursor-size=24
 cursor-theme='DMZ-White'
 font-name='Ubuntu 10'
 gtk-overlay-scrollbars=true
-gtk-theme='Mint-X-Teal'
-icon-theme='Mint-X-Teal'
+gtk-theme='Mint-Y-Dark-Purple'
+icon-theme='Mint-Y-Dark-Purple'
 keyboard-layout-prefer-variant-names=false
 keyboard-layout-show-flags=false
 keyboard-layout-use-upper=true
@@ -277,7 +277,7 @@ focus-mode='click'
 focus-new-windows='smart'
 min-window-opacity=30
 mouse-button-modifier='<Super>'
-theme='Mint-X'
+theme='Mint-Y-Dark'
 workspace-names=['home', 'nook']
 
 [org/cinnamon/muffin]
@@ -343,7 +343,7 @@ tile-enabled=false
 unplug-enabled=false
 
 [org/cinnamon/theme]
-name='Mint-X-Teal'
+name='Mint-Y-Dark-Purple'
 theme-cache-updated=1615227053
 
 [org/gnome/baobab/ui]
@@ -533,12 +533,17 @@ sort-directories-first=true
 type-format='category'
 
 [org/nemo/desktop]
-desktop-layout='true::true'
+desktop-layout='true::false'
 font='Ubuntu 10'
 trash-icon-visible=true
 
 [org/nemo/preferences]
 show-location-entry=true
+tooltips-in-icon-view=true
+tooltips-show-birth-date=true
+tooltips-show-file-type=true
+tooltips-show-mod-date=true
+tooltips-show-path=true
 
 [org/nemo/window-state]
 bookmarks-expanded=true
@@ -546,8 +551,26 @@ devices-expanded=true
 sidebar-bookmark-breakpoint=4
 start-with-sidebar=true
 
+[org/virt-manager/virt-manager]
+manager-window-height=550
+manager-window-width=550
+
+[org/virt-manager/virt-manager/connections]
+autoconnect=['qemu:///system']
+uris=['qemu:///system']
+
+[org/virt-manager/virt-manager/new-vm]
+graphics-type='system'
+
+[org/virt-manager/virt-manager/urls]
+isos=['/media/g/igk-public/Installation Images/Solus-4.2-Budgie.iso']
+
+[org/virt-manager/virt-manager/vmlist-fields]
+disk-usage=false
+network-traffic=false
+
 [org/x/editor/plugins]
-active-plugins=['textsize', 'sort', 'filebrowser', 'spell', 'joinlines', 'docinfo', 'time', 'open-uri-context-menu', 'modelines']
+active-plugins=['filebrowser', 'time', 'spell', 'docinfo', 'modelines', 'sort', 'textsize', 'open-uri-context-menu', 'joinlines']
 
 [org/x/editor/plugins/filebrowser/on-load]
 root='file:///'
