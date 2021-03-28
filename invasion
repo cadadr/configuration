@@ -30,8 +30,6 @@
 .profile						dotfiles/profile.sh
 .bash_profile						dotfiles/profile.sh
 .signature						dotfiles/signature
-.xsessionrc						dotfiles/xsessionrc
-.xsession						dotfiles/xsessionrc
 .xsettingsd						dotfiles/xsettingsd.conf
 .xprofile						dotfiles/xsessionrc
 .vimrc							dotfiles/rc.vim
