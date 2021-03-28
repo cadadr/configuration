@@ -9,6 +9,15 @@ floating_modifier $mod
 workspace_layout default
 focus_follows_mouse no
 focus_on_window_activation urgent
+title_align center
+hide_edge_borders none
+
+# show title bars
+for_window [class=".*"] border normal
+
+# hide title bars
+# for_window [class=".*"] border pixel 3
+
 
 ### Launchers:
 bindsym F12 exec --no-startup-id i3-dmenu-desktop
@@ -206,13 +215,63 @@ mode "$mod_resize" {
 }
 bindsym $mod+r mode "$mod_resize"
 
+### Colour defs:
+# bg
+set $colourbg1 #27408b
+set $colourfg1 #cae1ff
+set $colourhl1 #1e90ff
 
+# focused
+set $colourbg2 #afeeee
+set $colourfg2 #000080
+set $colourhl2 #8a2be2
+
+# inactive
+set $colourbg3 #191970
+set $colourfg3 #6495ed
+set $colourhl3 #708090
+
+# active (not focused but visible)
+set $colourbg4 #dda0dd
+set $colourfg4 #191970
+set $colourhl4 #c71585
+
+# urgent
+set $colourbg5 #ff6347
+set $colourfg5 #191970
+set $colourhl5 #ff1493
+
+# binding mode
+set $colourbg6 #9932cc
+set $colourfg6 #fffafa
+set $colourhl6 #fffafa
+
+
+### i3 colours:
+
+# class                 border     backgr.    text       indicator    child_border
+client.focused          $colourbg2 $colourbg2 $colourfg2 $colourbg2   $colourbg2
+client.focused_inactive $colourbg4 $colourbg4 $colourfg4 $colourbg4   $colourbg4
+client.unfocused        $colourbg3 $colourbg3 $colourfg3 $colourbg3   $colourbg3
+client.urgent           $colourbg5 $colourbg5 $colourfg5 $colourbg5   $colourbg5
+client.background       $colourbg1
 
 ### The bar:
 bar {
         font $fnt
         position top
         status_command i3status -c $MYSYSTEM/i3status.config | $MYLIB/i3/statusx.pl
+        colors {
+               background $colourbg1
+               statusline $colourfg1
+               separator  $colourhl1
+
+               focused_workspace  $colourhl2 $colourbg2 $colourfg2
+               inactive_workspace $colourhl3 $colourbg3 $colourfg3
+               active_workspace   $colourhl4 $colourbg4 $colourfg4
+               urgent_workspace   $colourhl5 $colourbg5 $colourfg5
+               binding_mode       $colourhl6 $colourbg6 $colourfg6
+        }
 }
 
 # Rules:
