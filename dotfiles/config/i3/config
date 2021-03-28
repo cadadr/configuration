@@ -1,5 +1,6 @@
 # i3 configuration
 
+### General settings:
 set $mod Mod4
 set $hyp Mod3
 set $fnt pango:DejaVu Sans Mono 10
@@ -9,6 +10,7 @@ workspace_layout default
 focus_follows_mouse no
 focus_on_window_activation urgent
 
+### Launchers:
 bindsym F12 exec --no-startup-id i3-dmenu-desktop
 bindsym Shift+F12 exec --no-startup-id dmenu_run
 bindsym $mod+Return exec emacsclient -c
@@ -28,6 +30,8 @@ bindsym $mod+BackSpace exec --no-startup-id python3 $MYLIB/i3/focus-last.py --sw
 bindsym $mod+Control+t exec --no-startup-id sh $MYLIB/toggle-tapping.sh
 bindsym $mod+Control+b exec backup-popup.bash
 
+
+### Window management keybindings:
 bindsym $mod+b focus left
 bindsym $mod+n focus down
 bindsym $mod+p focus up
@@ -60,7 +64,11 @@ bindsym $mod+space focus mode_toggle
 bindsym $mod+u focus parent
 bindsym $mod+c focus child
 
-# Workspaces
+bindsym $mod+g reload
+bindsym $mod+Shift+g restart
+bindsym $mod+k kill
+
+### Workspaces:
 set $ws_home "1:home"
 set $ws_read "2:read"
 set $ws_rsc "3:rsc"
@@ -77,10 +85,8 @@ bindsym Shift+F3 move container to workspace $ws_rsc
 bindsym Shift+F4 move container to workspace 4
 bindsym Shift+F5 move container to workspace 5
 
-bindsym $mod+g reload
-bindsym $mod+Shift+g restart
-bindsym $mod+k kill
 
+### Modes:
 # power management
 # from: https://wiki.archlinux.org/index.php/I3
 set $Locker lockscr.sh
@@ -201,7 +207,8 @@ mode "$mod_resize" {
 bindsym $mod+r mode "$mod_resize"
 
 
-## The bar:
+
+### The bar:
 bar {
         font $fnt
         position top
@@ -218,24 +225,34 @@ for_window [class="Praat" title="VowelEditor"] floating enable
 for_window [class="Praat" title="Praat Info"] floating enable
 for_window [class="Praat" title="^Script"] floating enable
 for_window [class="Praat" title="untitled script"] floating enable
-## Zotero:
+
+#### Zotero:
 for_window [title="Quick Format Citation"] floating enable
-## TeXDoctk
+
+#### TeXDoctk:
 for_window [title="File search results for .*"] floating enable
-## Matplotlib
+
+#### Matplotlib:
 for_window [class="Matplotlib"] floating enable
-## Network Manager
+
+#### Network Manager:
 for_window [class="Nm-connection-editor"] floating enable
-## PulseAudio controller
+
+#### PulseAudio controller:
 for_window [class="Pavucontrol"] floating enable
-## R
+
+#### R:
 for_window [class="R_x11"] floating enable
-## U?XTerm
+
+#### U?XTerm:
 for_window [class="UXTerm"] floating enable move position center
 for_window [class="XTerm" title="Backup"] floating enable move position center
-## PCManFM
+
+#### PCManFM:
 for_window [class="Pcmanfm"] floating enable move position center
-## Editor command for Qutebrowser
+
+#### Editor command for Qutebrowser:
 for_window [class="qtbedit"] floating enable move position center
-## Telegram client
+
+#### Telegram client:
 for_window [title="Telegram( \(\d+\))?"] floating enable move position center
