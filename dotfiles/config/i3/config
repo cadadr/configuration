@@ -5,7 +5,7 @@ set $hyp Mod3
 set $fnt pango:DejaVu Mono 10
 font $fnt
 floating_modifier $mod
-workspace_layout tabbed
+workspace_layout default
 focus_follows_mouse no
 focus_on_window_activation urgent
 
