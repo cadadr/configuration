@@ -32,7 +32,7 @@ bindsym $mod+Control+w exec --no-startup-id ffprofile.sh
 bindsym $mod+Control+p exec --no-startup-id passmenu.sh
 bindsym $mod+Control+e exec xterm -e 'less /run/user/$UID/i3/errorlog.*'
 bindsym $mod+Control+x exec xterm -e 'less ~/.xsession-errors'
-bindsym $mod+Control+q exec "i3-nagbar -t warning -m 'Bye?' -b 'Yes' 'i3-msg exit'"
+bindsym $mod+Control+Shift+q exec i3-msg exit
 bindsym $mod+Shift+semicolon exec i3-input -P 'i3 command: '
 bindsym $mod+w exec --no-startup-id i3switch.rb
 bindsym $mod+BackSpace exec --no-startup-id python3 $MYLIB/i3/focus-last.py --switch
