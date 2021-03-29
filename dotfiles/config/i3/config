@@ -7,7 +7,7 @@ set $fnt pango:DejaVu Sans Mono 10
 font $fnt
 floating_modifier $mod
 workspace_layout default
-focus_follows_mouse no
+focus_follows_mouse yes
 focus_on_window_activation urgent
 title_align center
 hide_edge_borders none
