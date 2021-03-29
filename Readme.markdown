@@ -49,6 +49,20 @@ below for more details.
 - [Raspberry Pi](systems/ayata/) (`ayata`) backup and print/scan
   server.
 
+<table>
+  <tr>
+    <td>
+      <img src="candy/scr-kayra.png" alt="screenshot for kayra"/>
+    </td>
+    <td>
+      <img src="candy/scr-mergen.png" alt="screenshot for mergen"/>
+    </td>
+    <td>
+      <img src="candy/scr-ulgen.png" alt="screenshot for ulgen"/>
+    </td>
+  </tr>
+</table>
+
 Post-install
 ------------
 
