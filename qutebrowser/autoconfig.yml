@@ -86,6 +86,8 @@ settings:
     global: en-GB,en
   content.headers.referer:
     global: same-domain
+  content.headers.user_agent:
+    global: Mozilla/5.0 (X11; Linux x86_64; rv:57.0) Gecko/20100101 Firefox/57.0
   content.pdfjs:
     global: false
   content.webgl:
