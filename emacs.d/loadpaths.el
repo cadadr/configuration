@@ -63,7 +63,10 @@ Exclude dot-files, don't sort, and return full paths by default."
   (info-initialize)
   (add-to-list
    'Info-directory-list
-   (expand-file-name "docs" gk-elisp-site-dir)))
+   (expand-file-name "docs" gk-elisp-site-dir))
+  (add-to-list
+   'Info-directory-list
+   (expand-file-name "docs/gcl-clhs" gk-elisp-site-dir)))
 
 ;; Custom themes:
 (add-to-list 'custom-theme-load-path
