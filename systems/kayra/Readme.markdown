@@ -87,7 +87,7 @@ We will need to use git, make, m4, GNU awk, and Perl in order to
 continue the setup.  Optionally, udisksctl from udisk2 may come
 in handy.
 
-    # apt-get install git make gawk perl m4 udisks2
+    # apt-get install git make gawk perl m4 udisks2 flatpak
 
 In my personal setup, I keep my files in a dedicated ext4 partition
 encrypted with LUKS.  In order to mount it, first unlock the encrypted
@@ -166,8 +166,55 @@ Use default Xorg muse cursors:
 
     # echo >> /etc/alternatives/x-cursor-theme
 
+The last step is to install flatpaks, which should be done after
+exiting the root shell, i.e. without superuser privileges.
+
+The file `mint.flatpak.install` contains a listing of Flatpaks to be
+installed, which can be installed as follows:
+
+    # flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+    # glib-compile-schemas /usr/share/glib-2.0/schemas/
+    # su g
+    $ xargs flatpak install -y < debian.flatpak.install
+
+The following commands will allow flatpaks to access outside their
+containers for some data files:
+
+    $ flatpak override fi.skyjake.Lagrange --user --filesystem=$HOME/Notes/Lagrange-bookmarks.txt
+    $ exit
+
+Now we can log out as root and log back in as `g` (or, preferably, reboot):
+
+    # exit
+    Debian GNU/Linux 10 kayra tty1
+
+    kayra login: g
+    Password: ****************************************************************
+    [... motd output ...]
+    Login profile script is loading shell setup...
+    [In: ~; Sal Mar 30 11:14; ^1]
+    [0] g@kayra (0)$
+
+Qutebrowser is going to fail to keep login sessions because different
+versions of WebEngine databases are incompatible
+(viz. <https://github.com/qutebrowser/qutebrowser/issues/5847#issuecomment-718985559>),
+so we need to delete the old database if it exists:
+
+    $ rm -r $HOME/.local/share/qutebrowser/webengine
+
+Now it's time to go back to repo root and run `make setup` or similar
+(see `../../Readme.markdown`). **Log out of the graphical session for
+this and switch to a virtual console.** It might be opportune to run
+
+    $ git clean -dfx
+
+before that step to rid of useless files, but **make sure to** commit
+or stash changes you made during this installation process before
+that, in order to not lose your modifications.
+
+
 At this point the system should be ready for the installation of my
-dotfiles, for which see `../../Readme.markdown`.
+dotfiles, for which .
 
 ---
 
