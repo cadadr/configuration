@@ -82,10 +82,10 @@ installed, which can be installed as follows:
 
     $ xargs flatpak install -y < mint.flatpak.install
 
-The following command will allow the Lagrance flatpak to gain access
+The following command will allow the Lagrange flatpak to gain access
 to the external file I keep its bookmarks at:
 
-    $ flatpak override fi.skyjake.Lagrange --user --filesystem=$HOME/Notes/Lagrange-bookmarks.txt 
+    $ flatpak override fi.skyjake.Lagrange --user --filesystem=$HOME/Notes/Lagrange-bookmarks.txt
 
 Now it's time to go back to repo root and run `make setup` or
 similar. **Log out of the graphical session for this and switch
