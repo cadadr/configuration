@@ -33,7 +33,7 @@ config.source(config.configdir / "keywords.py")
 
 
 ### Theme:
-blood(c)
+# blood(c)
 
 
 ### Some settings:
