@@ -6764,7 +6764,11 @@ So that the reader knows where to continue reading."
          (list "~/.guix-profile/bin"
                "~/.guix-profile/sbin"
                "/run/current-system/profile/bin"
-               "/run/current-system/profile/sbin")))
+               "/run/current-system/profile/sbin"))
+
+ ;; Do not use ‘auth-sources’ or ‘netrc-file’, which causes an
+ ;; annoying prompt.
+ tramp-completion-use-auth-sources nil)
 
 
 
