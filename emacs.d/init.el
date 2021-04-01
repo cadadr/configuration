@@ -2597,8 +2597,8 @@ file extension.")
           (long (getenv "LOCATION_LONG"))
           (desc (getenv "TZ")))
     (setf calendar-location-name desc
-          calendar-latitude lat
-          calendar-longitude long)
+          calendar-latitude (string-to-number lat)
+          calendar-longitude (string-to-number long))
   ;; ...otherwise, try to use geolocation.
   (let* ((whereami (geoclue-location))
          (lat (assoca 'latitude whereami))
