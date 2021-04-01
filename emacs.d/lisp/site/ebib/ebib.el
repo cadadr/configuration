@@ -1,12 +1,12 @@
 ;;; ebib.el --- a BibTeX database manager  -*- lexical-binding: t -*-
 
-;; Copyright (c) 2003-2020 Joost Kremers
+;; Copyright (c) 2003-2021 Joost Kremers
 ;; All rights reserved.
 
 ;; Author: Joost Kremers <joostkremers@fastmail.fm>
 ;; Maintainer: Joost Kremers <joostkremers@fastmail.fm>
 ;; Created: 2003
-;; Version: 2.29
+;; Version: 2.31
 ;; Keywords: text bibtex
 ;; URL: http://joostkremers.github.io/ebib/
 ;; Package-Requires: ((parsebib "2.3") (emacs "25.1"))
@@ -68,9 +68,15 @@
 (require 'ivy nil 'noerror)
 (require 'helm nil 'noerror)
 
-;;; Silence the byte-compiler
+;;; Silence the byte-compiler.
 (defvar pandoc-mode)
+(defvar selectrum-minibuffer-map)
+(declare-function org-capture "org-capture" (&optional goto keys))
+(declare-function org-capture "org-capture-get" (prop &optional local))
 (declare-function pandoc--get "ext:pandoc-mode-utils.el" (option &optional buffer))
+(declare-function helm-marked-candidates "ext:helm.el" (&optional with-wildcard all-sources))
+(declare-function helm-build-sync-source "ext:helm-source.el" (name &rest args))
+(declare-function helm "ext:helm.el" (&rest plist))
 
 ;;; Helper functions
 
@@ -307,19 +313,20 @@ The return value is a list of strings, each a separate line,
 which can be passed to `ebib--display-multiline-field'."
   (with-temp-buffer
     (cond
-     (ebib-notes-file
-      (let (beg end)
-        (with-current-buffer (ebib--notes-buffer)
-          (run-hooks 'ebib-notes-search-note-before-hook)
-          (let ((location (ebib--notes-locate-note key)))
-            (when location
-              (save-mark-and-excursion
-                (goto-char location)
-                (org-mark-subtree)
-                (setq beg (region-beginning)
-                      end (region-end))))))
-        (insert-buffer-substring (ebib--notes-buffer) beg end)))
-     ((not ebib-notes-file)
+     ((eq ebib-notes-storage 'multiple-notes-per-file)
+      (let* ((location (ebib--notes-goto-note key))
+             (buffer (car location))
+             (position (cdr location))
+             beg end)
+        (when location
+          (with-current-buffer buffer
+            (save-mark-and-excursion
+              (goto-char position)
+              (org-mark-subtree)
+              (setq beg (region-beginning)
+                    end (region-end))))
+          (insert-buffer-substring buffer beg end))))
+     ((eq ebib-notes-storage 'one-file-per-note)
       (let ((filename (expand-file-name (ebib--create-notes-file-name key))))
         (when (file-readable-p filename)
           (insert-file-contents filename)))))
@@ -556,8 +563,8 @@ the field contents."
     (if (window-live-p ebib--note-window)
         (let ((buf (window-buffer ebib--note-window)))
           (delete-window ebib--note-window)
-          (unless ebib-notes-file
-            (kill-buffer buf))
+          (if (eq ebib-notes-storage 'one-file-per-note)
+              (kill-buffer buf))
           (setq ebib--needs-update nil))) ; See below.
     (setq ebib--note-window nil))
   (with-current-ebib-buffer 'entry
@@ -571,13 +578,18 @@ the field contents."
                  (eq ebib-notes-show-note-method 'all)
                  (eq ebib-layout 'full)
                  (ebib--notes-has-note key))
-            (setq ebib--note-window (display-buffer (ebib-open-note (ebib--get-key-at-point) t))
+            (setq ebib--note-window (display-buffer (ebib-open-note (ebib--get-key-at-point)))
                   ;; If Ebib is lowered and then reopened, we need to redisplay
                   ;; the entry buffer, because otherwise the notes buffer isn't
                   ;; redisplayed. So we set the variable `ebib--needs-update' to
                   ;; t, which then causes the command `ebib' to redisplay the
                   ;; buffers. This is a hack, but the simplest way to do it.
                   ebib--needs-update t))))))
+
+(defun ebib--maybe-update-entry-buffer ()
+  "Update the entry buffer if it exists."
+  (if (ebib--buffer 'entry)
+      (ebib--update-entry-buffer)))
 
 (defun ebib--set-modified (mod db &optional main dependents)
   "Set the modified flag MOD on database DB.
@@ -606,7 +618,7 @@ The return value is MOD."
           dependents))
   (when (eq db ebib--cur-db)
     (with-current-ebib-buffer 'index
-                              (force-mode-line-update)))
+      (force-mode-line-update)))
   mod)
 
 (defun ebib--modified-p ()
@@ -678,7 +690,8 @@ loaded, switch to it.  If KEY is given, jump to it."
   ;; Initialize Ebib if required.
   (unless ebib--initialized
     (ebib-init)
-    (setq ebib--needs-update t))
+    (setq ebib--needs-update t)
+    (ebib-check-notes-config))
   ;; Set up the windows.
   (ebib--setup-windows)
   ;; See if we have a file.
@@ -821,6 +834,14 @@ the new buffer."
       (ebib-db-set-buffer buffer db))
     buffer))
 
+(defun ebib-check-notes-config ()
+  "Check the user's notes configuration and adjust if necessary.
+If `ebib-notes-file' is set, `ebib-notes-locations' is set to
+`multiple-notes-per-file' and a warning is issued."
+  (when (and (bound-and-true-p ebib-notes-file))
+    (setq ebib-notes-storage 'multiple-notes-per-file)
+    (ebib--log 'warning "Ebib's handling of external notes has changed.  Please visit the manual and update your configuration.")))
+
 (defun ebib-force-quit ()
   "Force quit Ebib by call `ebib-quit'."
   (interactive)
@@ -943,7 +964,7 @@ keywords before Emacs is killed."
     (define-key map "m" #'ebib-mark-entry) ; prefix
     (define-key map "M" 'ebib-dependent-map)
     (define-key map "n" #'ebib-next-entry)
-    (define-key map "N" #'ebib-open-note)
+    (define-key map "N" #'ebib-popup-note)
     (define-key map [(control n)] #'ebib-next-entry)
     (define-key map [(meta n)] #'ebib-index-scroll-up)
     (define-key map "o" #'ebib-open-bibtex-file)
@@ -1046,7 +1067,7 @@ there for details."
      ["Edit Key" ebib-edit-keyname (ebib--get-key-at-point)]
      ["Autogenerate Key" ebib-generate-autokey (ebib--get-key-at-point)]
      "--"
-     ["Open Note" ebib-open-note (ebib--get-key-at-point)]
+     ["Open Note" ebib-popup-note (ebib--get-key-at-point)]
      ["Show Annotation" ebib-show-annotation (ebib--get-key-at-point)]
      ["Follow Crossref" ebib-follow-crossref (ebib-db-get-field-value "crossref" (ebib--get-key-at-point) ebib--cur-db 'noerror)])
 
@@ -1487,33 +1508,57 @@ interactively."
             (princ contents)
           (princ "[No annotation]"))))))
 
-(defun ebib-open-note (key &optional no-select)
-  "Open the note for KEY or create a new one if none exists.
-KEY defaults to the current entry's key.  Return the buffer
-containing the entry.  If NO-SELECT is nil, select the note
-buffer (using `pop-to-buffer'), otherwise just return the buffer.
-NO-SELECT non-nil also inhibits the creation of a new note.
+(defun ebib-open-note (key)
+  "Open the note for KEY and return its buffer.
+If `ebib-notes-storage' is set to `multiple-notes-per-file', this
+function runs `ebib-notes-open-note-after-hook'."
+  (let ((buf (ebib--notes-goto-note key)))
+    (when buf
+      (with-current-buffer (car buf)
+        (goto-char (cdr buf))
+        (if (eq ebib-notes-storage 'multiple-notes-per-file)
+            (run-hooks 'ebib-notes-open-note-after-hook)))
+      (car buf))))
 
-If `ebib-notes-file' is set, this function runs
-`ebib-notes-open-note-after-hook' for an existing note or
-`ebib-notes-new-note-hook' for a new note."
-  (interactive (list (ebib--get-key-at-point) current-prefix-arg))
+(defun ebib-popup-note (key)
+  "Open the note for KEY or create a new one if none exists.
+KEY defaults to the current entry's key.  Display and select the
+buffer containing the entry using `pop-to-buffer'.
+
+If `ebib-notes-storage' is set to `multiple-notes-per-file', this
+function runs `ebib-notes-open-note-after-hook' for an existing
+note or `ebib-notes-new-note-hook' for a new note."
+  (interactive (list (ebib--get-key-at-point)))
   (ebib--execute-when
     (entries
      (let ((buf (ebib--notes-goto-note key))
            (hook 'ebib-notes-open-note-after-hook))
-       (when (and (not buf)
-                  (not no-select))
+       (when (not buf) ; We need to create a new note.
          (setq buf (ebib--notes-create-new-note key ebib--cur-db)
                hook 'ebib-notes-new-note-hook))
+       ;; If `ebib-notes-use-org-capture' is non-nil, we don't need to pop up
+       ;; the buffer.  `ebib--notes-create-new-note' returns nil in this case,
+       ;; so we can simply check the value of `buf':
        (when buf
          (with-current-buffer (car buf)
            (goto-char (cdr buf))
-           (when ebib-notes-file
+           (when (eq ebib-notes-storage 'multiple-notes-per-file)
              (run-hooks hook)))
-         (unless no-select
-           (pop-to-buffer (car buf)))
-         (car buf))))
+         (pop-to-buffer (car buf)))))
+    (default
+      (beep))))
+
+(defun ebib-org-capture (&optional goto keys)
+  "Call `org-capture' from within Ebib.
+GOTO and KEYS are passed on to `org-capture'.  This function sets
+`ebib--org-current-key' to the current key before calling
+`org-capture', so that `ebib-notes-create-org-template' can
+function properly."
+  (interactive "P")
+  (ebib--execute-when
+    (entries
+     (let ((ebib--org-current-key (ebib--get-key-at-point)))
+       (org-capture goto keys)))
     (default
       (beep))))
 
@@ -2214,9 +2259,9 @@ buffer and switch to it."
   "Jump to an entry.
 Select an entry from any open database using completion and jump
 to it.  By default, completion is performed using only the entry
-keys, but if either `ivy' or `helm' is available, completion is
-more sophisticated, allowing to select an entry using the author,
-year and title.
+keys, but if either `selectrum', `ivy', `helm' or `ido' is
+available, completion is more sophisticated, allowing to select
+an entry using the author, year and title.
 
 If prefix argument ARG is non-nil, only offer selection
 candidates from the current database."
@@ -2227,6 +2272,7 @@ candidates from the current database."
             (entries (cond
                       ((and (boundp 'ivy-mode) ivy-mode) (ebib-read-entry-ivy sources))
                       ((and (boundp 'helm-mode) helm-mode) (ebib-read-entry-helm sources))
+                      ((and (boundp 'ido-mode) ido-mode) (ebib-read-entry-ido sources))
                       (t (ebib-read-entry-single sources))))
             ;; The `ebib-read-entry-*' functions return a list of selected
             ;; entries. We can only jump to one of them, obviously. Jumping to
@@ -2328,6 +2374,23 @@ databases containing them."
           :buffer "*helm ebib*"
           :prompt "Select entry: ")))
 
+(defun ebib-read-entry-ido (databases)
+  "Read an entry from the user using ido.
+Offer the entries in DATABASES (a list of database structs) for
+completion.
+
+For compatibility with the other `ebib-read-entry-*' functions,
+the return value is a list with a single cons cell of the key and
+the database containing the selected entry."
+  (let ((collection (ebib--create-completion-collection databases)))
+    (if collection
+        (let* ((candidates (mapcar #'car collection))
+               (entry (ido-completing-read "Select entry: " candidates nil t nil 'ebib--key-history))
+               (key (cadr (assoc-string entry collection)))
+               (db (caddr (assoc-string entry collection))))
+          (list (cons key db)))
+      (error "[Ebib] No BibTeX entries found"))))
+
 (defun ebib-read-entry-single (databases)
   "Read an entry from the user using default completion.
 Offer the entries in DATABASES (a list of database structs) for
@@ -2354,7 +2417,7 @@ databases containing them."
   (let ((collection (ebib--create-completion-collection databases)))
     (if collection
         (let* ((crm-local-must-match-map (make-composed-keymap '(keymap (32)) crm-local-must-match-map))
-               (crm-separator "[ \t]+" )
+               (crm-separator "\\s-*&\\s-*")
                (keys (completing-read-multiple "Keys to insert: " collection nil t nil 'ebib--key-history)))
           (mapcar (lambda (entry)
                     (cons (cadr (assoc-string entry collection))
@@ -2749,7 +2812,7 @@ new database."
                      (string-equal word ebib-notes-symbol))))
     (cond
      (link (ebib--call-browser link))
-     (notep (ebib-open-note (ebib--get-key-at-point)))
+     (notep (ebib-popup-note (ebib--get-key-at-point)))
      (t (when (eobp)
           (forward-line -1))
         (ebib-select-and-popup-entry)))))
@@ -2822,8 +2885,8 @@ file to choose."
                 (message "Executing `%s %s'" viewer file-full-path)
                 (start-process (concat "ebib " ext " viewer process") nil viewer file-full-path))
             (message "Opening `%s'" file-full-path)
-            (display-buffer-pop-up-frame (find-file-noselect file-full-path)
-                                         nil)))
+            (ebib-lower)
+            (find-file file-full-path)))
       (error "[Ebib] File not found: `%s'" (funcall ebib-file-name-mod-function file nil)))))
 
 (defun ebib-set-dialect (dialect)
@@ -3021,13 +3084,9 @@ the entries of its main database are offered as completion
 candidates and the entry that is selected is added to the
 dependent database if not already there.
 
-This is a front-end for other citation insertion functions: if
-the `ivy' package is loaded, it calls `ebib-read-entry-ivy', if
-the `helm' package is loaded, it calls `ebib-read-entry-helm'.
-If `ebib-citation-insert-multiple' is non-nil, it calls
-`ebib-read-entry-multiple', which uses `completing-read-multiple'.
-Otherwise, it calls `ebib-read-entry-single', which uses standard
-Emacs completion."
+This function uses a dedicated completion framework (selectrum,
+ivy, helm or ido), if available and active.  It also honors the
+option `ebib-citation-insert-multiple'."
   (interactive)
   (unless ebib--initialized
     (ebib-init))
@@ -3045,6 +3104,7 @@ Emacs completion."
                         ((and (boundp 'ivy-mode) ivy-mode) (ebib-read-entry-ivy databases))
                         ((and (boundp 'helm-mode) helm-mode) (ebib-read-entry-helm databases))
                         (ebib-citation-insert-multiple (ebib-read-entry-multiple databases))
+                        ((and (boundp 'ido-mode) ido-mode) (ebib-read-entry-ido databases))
                         (t (ebib-read-entry-single databases))))
               (keys (mapcar #'car entries))
               (db (cdar entries)) ; We only take the database of the first entry.
@@ -3985,7 +4045,7 @@ a special manner."
                   ;; `ebib--current-field' only reads up to the first space, so
                   ;; it just returns "external".
                   ((string= field "external")
-                   (ebib-open-note (ebib--get-key-at-point))
+                   (ebib-popup-note (ebib--get-key-at-point))
                    nil) ; See above.
                   ;; The catch-all edits a field without completion.
                   (t (ebib--edit-normal-field field init-contents)))))
@@ -4482,10 +4542,10 @@ the @String definitions to."
 (define-minor-mode ebib-multiline-mode
   "Minor mode for Ebib's multiline edit buffer."
   :init-value nil :lighter " Ebib/M" :global nil
-  :keymap '(("\C-c|q" . ebib-quit-multiline-buffer-and-save)
-            ("\C-c|c" . ebib-cancel-multiline-buffer)
-            ("\C-c|s" . ebib-save-from-multiline-buffer)
-            ("\C-c|h" . ebib-multiline-help)))
+  :keymap '(("\C-c\C-c" . ebib-quit-multiline-buffer-and-save)
+            ("\C-c\C-k" . ebib-cancel-multiline-buffer)
+            ("\C-c\C-s" . ebib-save-from-multiline-buffer)
+            ("\C-c\C-h" . ebib-multiline-help)))
 
 (easy-menu-define ebib-multiline-menu ebib-multiline-mode-map "Ebib multiline menu"
   '("Ebib"

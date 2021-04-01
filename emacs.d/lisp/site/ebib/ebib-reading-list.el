@@ -1,6 +1,6 @@
 ;;; ebib-reading-list.el --- Part of Ebib, a BibTeX database manager  -*- lexical-binding: t -*-
 
-;; Copyright (c) 2003-2020 Joost Kremers
+;; Copyright (c) 2003-2021 Joost Kremers
 ;; All rights reserved.
 
 ;; Author: Joost Kremers <joostkremers@fastmail.fm>
@@ -39,6 +39,7 @@
 (require 'ebib-utils)
 
 (declare-function org-get-todo-state "org.el")
+(declare-function org-todo "org.el")
 
 (defgroup ebib-reading-list nil "Settings for the reading list." :group 'ebib)
 

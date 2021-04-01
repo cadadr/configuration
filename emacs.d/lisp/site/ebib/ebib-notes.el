@@ -1,6 +1,6 @@
 ;;; ebib-notes.el --- Part of Ebib, a BibTeX database manager  -*- lexical-binding: t -*-
 
-;; Copyright (c) 2003-2020 Joost Kremers
+;; Copyright (c) 2003-2021 Joost Kremers
 ;; All rights reserved.
 
 ;; Author: Joost Kremers <joostkremers@fastmail.fm>
@@ -43,19 +43,6 @@
 
 (defgroup ebib-notes nil "Settings for notes files." :group 'ebib)
 
-(define-obsolete-variable-alias 'ebib-notes-use-single-file 'ebib-notes-file "{Unknown date}")
-
-(defcustom ebib-notes-file nil
-  "Name of the notes file.
-To use a single file for all notes, set this variable to the full
-path of the notes file.  If this variable is nil, Ebib creates
-one file per note, provided `ebib-notes-directory' is set."
-  :group 'ebib-notes
-  :type '(choice (const :tag "Use multiple notes files" nil)
-                 (file :tag "Notes File")))
-
-(define-obsolete-variable-alias 'ebib-notes-file-symbol 'ebib-notes-symbol "{Unknown date}")
-
 (defcustom ebib-notes-symbol "N"
   "Symbol used to indicate the presence of a note for the current entry.
 If there is a note for the current entry, this symbol is
@@ -63,6 +50,21 @@ displayed in the mode line of the entry buffer after the entry
 key."
   :group 'ebib-notes
   :type '(string :tag "Note file symbol"))
+
+(defcustom ebib-notes-storage 'one-file-per-note
+  "Storage location of external notes.
+Possible values are `one-file-per-note' and
+`multiple-notes-per-file'.  If `one-file-per-note', each note is
+stored in a separate file in the directory `ebib-notes-directory'
+or in the first directory listed in `ebib-bib-search-dirs' if
+`ebib-notes-directory' is nil.
+
+If this option is set to `multiple-notes-per-file', notes are
+searched in the files and directories listed in
+`ebib-notes-locations'."
+  :group 'ebib-notes
+  :type '(choice (const :tag "Use one file per note" one-file-per-note)
+                 (const :tag "Use multiple notes per file" multiple-notes-per-file)))
 
 (defcustom ebib-notes-directory nil
   "Directory to save notes files to.
@@ -73,16 +75,41 @@ Ebib creates notes files based on the entry key using the options
 If this option is nil, the first directory in `ebib-file-search-dirs' is
 used.
 
-Note that this option is ignored if `ebib-notes-file' is set."
+Note that this option is ignored if `ebib-notes-storage' is set
+to `multiple-notes-per-file'."
   :group 'ebib-notes
   :type '(choice (const :tag "Use first of `ebib-file-search-dirs'")
                  (directory :tag "Specify directory")))
 
+(defcustom ebib-notes-locations nil
+  "Locations for notes files.
+Entries can be files or directories.  Files should be specified
+with their full path and should have `ebib-notes-file-extension'
+as their extension.  For directories, all files with
+`ebib-notes-file-extension' are searched for notes."
+  :group 'ebib-notes
+  :type '(repeat :tag "Note location (file or directory"))
+
+(define-obsolete-variable-alias 'ebib-notes-use-single-file 'ebib-notes-default-file "Ebib 2.20")
+(define-obsolete-variable-alias 'ebib-notes-file 'ebib-notes-default-file "Ebib 2.30")
+
+(defcustom ebib-notes-default-file nil
+  "Path to the default notes file.
+If `ebib-notes-storage` is set to `multiple-notes-per-file', set
+this option to define the file to which notes should be stored.
+If you leave this option unset, you are prompted for the file to
+store a new note to.
+
+Note that this file does not need to be listed in
+`ebib-notes-locations'."
+  :group 'ebib-notes
+  :type '(file :tag "Default notes file"))
+
 (defcustom ebib-notes-file-extension "org"
   "Extension used for notes files.
 The extension should be specified without a dot.  Note that this
-option is only used for multiple notes files, i.e., when
-`ebib-notes-file' is unset."
+option is only used if `ebib-notes-storage' is set to
+`one-file-per-note'."
   :group 'ebib-notes
   :type '(string :tag "Extension"))
 
@@ -95,22 +122,31 @@ instead."
   :type '(choice (const :tag "Use `ebib-name-transform-function'" nil)
                  (function :tag "Apply function")))
 
-(defcustom ebib-notes-template "* %T\n:PROPERTIES:\n%K\n:END:\n>|<\n"
+(defcustom ebib-notes-template "* %T\n:PROPERTIES:\n%K\n:END:\n%%?\n"
   "Template for a note entry in the notes file.
 New notes are created on the basis of this template.  The
 template can contain format specifiers consisting of a percent
 sign and a character.  These specifiers are defined by
-`ebib-notes-template-specifiers'.  Note that the `%K' specifier
-must be present in the template and should be replaced by an
-identifier that is unique for the entry.  This identifier is used
-to retrieve the note.  Without it, Ebib is not able to determine
-whether an entry has a note or not.
+`ebib-notes-template-specifiers'.
 
-The template can also contain the string \">|<\" to indicate the
+Note that the `%K' specifier must be present in the template and
+should be replaced by an identifier that is unique for the entry.
+This identifier is used to retrieve the note.  Without it, Ebib
+is not able to determine whether an entry has a note or not.
+
+The template can also contain the string \"%%?\" to indicate the
 position where the cursor is to be placed when creating a new
-note."
+note.
+
+If `org-capture' is used to create notes, the template can also
+contain format specifiers for `org-capture'; these need to be
+preceded by an extra `%', which is stripped before the template
+is passed to the `org-capture' mechanism."
   :group 'ebib-notes
-  :type '(string :tag "Note template"))
+  :type '(choice (string :tag "Note template")
+                 (repeat :tag "List of templates"
+                         (cons (string :tag "Key")
+                               (string :tag "Note template")))))
 
 (defcustom ebib-notes-template-specifiers '((?K . ebib-create-org-identifier)
 					    (?T . ebib-create-org-description)
@@ -134,6 +170,34 @@ used to create an identifier for the note."
   :type '(repeat (cons :tag "Specifier"
                        (character :tag "Character")
                        (symbol :tag "Function or variable"))))
+
+(defcustom ebib-notes-use-org-capture nil
+  "If set, use `org-capture' to create new notes.
+If this option is set to a string, it must correspond to a key in
+`org-capture-templates'.  Creating a new note will then
+automatically use the corresponding template and bypass the
+interactive selection."
+  :group 'ebib-notes
+  :type '(choice (const :tag "Use org-capture" t)
+                 (string :tag "Use org-capture template")
+                 (const :tag "Do not use org-capture" nil)))
+
+(defvar ebib--org-current-key nil
+  "Key of the current entry when `org-capture' is called from Ebib.")
+
+(defun ebib-notes-create-org-template ()
+  "Create an `org-capture' template for a note.
+This function should be used in `org-capture-templates' as the
+`template' element.  It takes `ebib-notes-template' and converts
+it into a suitable template for `org-capture' to use."
+  (let* ((key (org-capture-get :key))
+         (template (cond
+                    ((stringp ebib-notes-template)
+                     ebib-notes-template)
+                    ((listp ebib-notes-template)
+                     (cdr (assoc-string key ebib-notes-template)))
+                    (t "* %T\n:PROPERTIES:\n%K\n:END:\n%%?\n"))))
+    (ebib-format-template template ebib-notes-template-specifiers ebib--org-current-key ebib--cur-db)))
 
 (defcustom ebib-notes-search-note-before-hook '(widen)
   "Hook run before searching for a note.
@@ -203,11 +267,34 @@ to be in Org format."
 Return a cons of the new note as a string and a position in this
 string where point should be located."
   (let* ((note (ebib-format-template ebib-notes-template ebib-notes-template-specifiers key db))
-         (pos (string-match-p ">|<" note)))
+         (pos (string-match-p "\\(>|<\\|%\\?\\)" note)))
     (if pos
-        (setq note (replace-regexp-in-string ">|<" "" note))
+        (setq note (replace-regexp-in-string "\\(>|<\\|%\\?\\)" "" note))
       (setq pos 0))
     (cons note pos)))
+
+(defun ebib--notes-list-files ()
+  "Return a list of notes files.
+List all the files in `ebib-notes-locations' and all files in the
+directories in `ebib-notes-locations' that have the extension in
+`ebib-notes-file-extension'."
+  (cond
+   ;; If `ebib-notes-locations' is nil, we don't need to do all this, but we
+   ;; still need to check `ebib-notes-default-file' (see below).
+   (ebib-notes-locations
+    (cl-flet ((list-files (loc)
+                          (cond
+                           ((file-directory-p loc)
+                            (directory-files loc 'full (concat (regexp-quote ebib-notes-file-extension) "\\'") 'nosort))
+                           ((string= (downcase (file-name-extension loc)) "org")
+                            (list loc)))))
+      (seq-reduce (lambda (lst loc)
+                    (append (list-files loc) lst))
+                  ebib-notes-locations (if ebib-notes-default-file
+                                           (list ebib-notes-default-file)
+                                         '()))))
+   (ebib-notes-default-file
+    (list ebib-notes-default-file))))
 
 (defun ebib--notes-locate-note (key)
   "Locate the note identified by KEY in the current buffer.
@@ -223,41 +310,47 @@ buffer."
 (defvar ebib--notes-list nil "List of entry keys for which a note exists.")
 
 (defun ebib--notes-has-note (key)
-  "Return non-nil if entry KEY has an associated note."
+  "Return non-nil if entry KEY has an associated note.
+Unlike `ebib--notes-goto-note', this function does not visit the
+note file if `ebib-notes-storage' is set to `one-note-per-file'."
   (or (member key ebib--notes-list)
       (cond
-       (ebib-notes-file
+       ((eq ebib-notes-storage 'multiple-notes-per-file)
         (unless ebib--notes-list
           ;; We need to initialize `ebib--notes-list'.
-          (if (not (file-writable-p ebib-notes-file))
-              (ebib--log 'error "Could not open the notes file `%s'" ebib-notes-file)
-            (with-current-buffer (ebib--notes-buffer)
-              (setq ebib--notes-list (funcall ebib-notes-get-ids-function)))))
+          (setq ebib--notes-list (seq-reduce (lambda (lst file)
+                                               (if (not (file-writable-p file))
+                                                   (ebib--log 'error "Could not open notes file `%s'" file)
+                                                 (with-current-buffer (ebib--notes-buffer file)
+                                                   (append (funcall ebib-notes-get-ids-function) lst))))
+                                             (ebib--notes-list-files) '())))
         (member key ebib--notes-list))
-       ((not ebib-notes-file)
+       ((eq ebib-notes-storage 'one-file-per-note)
         (if (file-readable-p (ebib--create-notes-file-name key))
             (cl-pushnew key ebib--notes-list))))))
 
 (defun ebib--notes-goto-note (key)
   "Find or create a buffer containing the note for KEY.
-If `ebib-notes-file' is set, run
+If `ebib-notes-storage' is set to `multiple-notes-per-file', run
 `ebib-notes-search-note-before-hook' before locating the note.
 Otherwise just open the note file for KEY.
 
 Return a cons of the buffer and the position of the note in the
-buffer: in `ebib-notes-file', this is the position of the
+buffer: in a multi-note file, this is the position of the
 Custom_ID of the note; if each note has its own file, the
 position is simply 1.
 
 If KEY has no note, return nil."
   (cond
-   (ebib-notes-file
-    (with-current-buffer (ebib--notes-buffer)
-      (run-hooks 'ebib-notes-search-note-before-hook)
-      (let ((location (ebib--notes-locate-note key)))
-        (when location
-          (cons (current-buffer) location)))))
-   ((not ebib-notes-file)
+   ((eq ebib-notes-storage 'multiple-notes-per-file)
+    (catch 'found
+      (dolist (file (ebib--notes-list-files))
+        (with-current-buffer (ebib--notes-buffer file)
+          (run-hooks 'ebib-notes-search-note-before-hook)
+          (let ((location (ebib--notes-locate-note key)))
+            (when location
+              (throw 'found (cons (current-buffer) location))))))))
+   ((eq ebib-notes-storage 'one-file-per-note)
     (let* ((filename (expand-file-name (ebib--create-notes-file-name key)))
            (buf (or
                  ;; In case the user created the note already but didn't save
@@ -270,45 +363,53 @@ If KEY has no note, return nil."
       (when buf (cons buf 1))))))
 
 (defun ebib--notes-create-new-note (key db)
-  "Create a note for KEY in DB and .
-If `ebib-notes-file' is set, add an entry to the bottom of this
-file and leave point there.  Otherwise, create a new note file in
-`ebib-notes-directory'.
+  "Create a note for KEY in DB.
+If `ebib-notes-use-org-capture' is set, call `org-capture' and
+return nil.
 
-Return a cons of the buffer in which the new note is created and
+If `ebib-notes-use-org-capture' is not set, create a new note
+according to the settings of `ebib-notes-storage',
+`ebib-notes-default-file' and/or `ebib-notes-directory' and
+return a cons of the buffer in which the new note is created and
 the position where point should be placed."
-  (let (buf pos)
-    (cond
-     (ebib-notes-file
-      (setq buf (ebib--notes-buffer)
-            pos (1+ (buffer-size buf))))
-     ((not ebib-notes-file)
-      (let ((filename (expand-file-name (ebib--create-notes-file-name key))))
-        (if (file-writable-p filename)
-            (setq buf (ebib--notes-open-single-note-file filename)
-                  pos 1)
-          (error "[Ebib] Could not create note file `%s' " filename)))))
-    (let ((note (ebib--notes-fill-template key db)))
-      (with-current-buffer buf
-        (goto-char pos)
-        (insert (car note))
-        (setq pos (+ pos (cdr note)))
-        (push key ebib--notes-list)))
-    (cons buf pos)))
+  (if ebib-notes-use-org-capture
+      (let ((ebib--org-current-key key))
+        (if (stringp ebib-notes-use-org-capture)
+            (org-capture nil ebib-notes-use-org-capture)
+          (org-capture))
+        (push key ebib--notes-list)
+        nil) ; We must return nil, cf. comment in `ebib-popup-note'.
+    (let (buf pos)
+      (cond
+       ((eq ebib-notes-storage 'multiple-notes-per-file)
+        (setq buf (ebib--notes-buffer (or ebib-notes-default-file
+                                          (completing-read "Save note to file: " (ebib--notes-list-files) nil t)))
+              pos (1+ (buffer-size buf))))
+       ((eq ebib-notes-storage 'one-file-per-note)
+        (let ((filename (expand-file-name (ebib--create-notes-file-name key))))
+          (if (file-writable-p filename)
+              (setq buf (ebib--notes-open-single-note-file filename)
+                    pos 1)
+            (error "[Ebib] Could not create note file `%s' " filename)))))
+      (let ((note (ebib--notes-fill-template key db)))
+        (with-current-buffer buf
+          (goto-char pos)
+          (insert (car note))
+          (setq pos (+ pos (cdr note)))
+          (push key ebib--notes-list)))
+      (cons buf pos))))
 
 (defun ebib-notes-display-note-symbol (_field key _db)
-  "Return the note symbol for displaying if a note exists for KEY."
+  "Return a string to indicate if a note exists for KEY.
+If the entry KEY has an external note, return `ebib-notes-symbol'
+propertized with `ebib-link-face'.  Otherwise, return an empty
+string of the same width as `ebib-notes-symbol'."
   (if (ebib--notes-has-note key)
       (propertize ebib-notes-symbol
                   'face '(:height 0.8 :inherit ebib-link-face)
                   'mouse-face 'highlight)
     (propertize (make-string (string-width ebib-notes-symbol) ?\s)
                 'face '(:height 0.8))))
-
-(defun ebib--notes-maybe-update-entry-buffer ()
-  "Update the entry buffer if it exists."
-  (if (ebib--buffer 'entry)
-      (ebib--update-entry-buffer)))
 
 ;;; One file per note.
 
@@ -331,29 +432,23 @@ name is fully qualified by prepending the directory in
 Return the buffer but do not select it."
   (let ((buf (find-file-noselect file)))
     (with-current-buffer buf
-      (add-hook 'after-save-hook 'ebib--notes-maybe-update-entry-buffer nil t))
+      (add-hook 'after-save-hook 'ebib--maybe-update-entry-buffer nil t))
     buf))
 
 ;;; Common notes file.
 
-(let (notes-buffer)
-  (defun ebib--notes-buffer ()
-    "Return the buffer containing the notes file.
+(defun ebib--notes-buffer (file)
+  "Return the buffer containing the notes file FILE.
 If the file has not been opened yet, open it, creating it if
-necessary.  Note that this function assumes that
-`ebib-notes-file' is set.  An error is raised if it is
-not.  An error is also raised if the location for the notes file
-is not accessible to the user."
-    (if (buffer-live-p notes-buffer)
-        notes-buffer
-      (unless ebib-notes-file
-        (error "[Ebib] No notes file defined"))
-      (unless (file-writable-p ebib-notes-file)
+necessary.  If FILE cannot be opened, an error is raised."
+  (let ((buf (find-buffer-visiting file)))
+    (unless buf
+      (when (not (file-writable-p file))
         (error "[Ebib] Cannot read or create notes file"))
-      (setq notes-buffer (find-file-noselect ebib-notes-file))
-      (with-current-buffer notes-buffer
-        (add-hook 'after-save-hook 'ebib--notes-maybe-update-entry-buffer nil t))
-      notes-buffer)))
+      (setq buf (find-file-noselect file))
+      (with-current-buffer buf
+        (add-hook 'after-save-hook 'ebib--maybe-update-entry-buffer nil t)))
+    buf))
 
 (provide 'ebib-notes)
 

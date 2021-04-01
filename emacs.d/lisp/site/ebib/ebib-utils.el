@@ -1,6 +1,6 @@
 ;;; ebib-utils.el --- Part of Ebib, a BibTeX database manager  -*- lexical-binding: t -*-
 
-;; Copyright (c) 2003-2020 Joost Kremers
+;; Copyright (c) 2003-2021 Joost Kremers
 ;; All rights reserved.
 
 ;; Author: Joost Kremers <joostkremers@fastmail.fm>
@@ -357,9 +357,9 @@ documentation for details."
                                       ("MvCollection"  . "{Editor} ({Date|Year}). {\"Title\".} {Publisher.} {Doi|Url.}")
                                       ("InCollection"  . "{Author} ({Date|Year}). {\"Title\".} In: {Editor}, {\"Booktitle\"}. {Publisher.} {Pages.} {Doi|Url.}")
                                       ("Misc"          . "{Author|Editor} ({Date|Year}). {\"Title\".} {Howpublished.}")
-                                      ("Online"        . "{Author|Editor} {(Date|Year}). {\"Title\".} {Doi|Url.}")
-                                      ("Proceedings"   . "{Editor} {(Date|Year}). {\"Title\".} {Organization.}")
-                                      ("MvProceedings" . "{Editor} {(Date|Year}). {\"Title\".} {Organization.}")
+                                      ("Online"        . "{Author|Editor} ({Date|Year}). {\"Title\".} {Doi|Url.}")
+                                      ("Proceedings"   . "{Editor} ({Date|Year}). {\"Title\".} {Organization.}")
+                                      ("MvProceedings" . "{Editor} ({Date|Year}). {\"Title\".} {Organization.}")
                                       ("InProceedings" . "{Author} ({Date|Year}). {\"Title\".} In: {Editor}, {\"Booktitle\"}. {Publisher.} {Pages.} {Doi|Url.}")
                                       ("Thesis"        . "{Author} ({Date|Year}). {\"Title\".} {Type,} {Institution.} ")
                                       ("Unpublished"   . "{Author} ({Date|Year}). {\"Title\".} {Howpublished.} {Note.}"))
