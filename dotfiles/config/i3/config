@@ -320,3 +320,6 @@ for_window [class="qtbedit"] floating enable move position center
 
 #### Telegram client:
 for_window [title="Telegram( \(\d+\))?"] floating enable move position center
+
+#### Firefox:
+for_window [title="Firefox(-esr)?"] floating enable move position center
