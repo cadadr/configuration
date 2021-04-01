@@ -21,6 +21,7 @@ SplitterSizes=414,650
 
 [PageView]
 EditToolBarPlacement=3
+MouseMode=TextSelect
 ScrollOverlap=10
 ViewColumns=4
 
