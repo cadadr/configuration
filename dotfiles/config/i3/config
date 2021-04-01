@@ -42,7 +42,8 @@ bindsym $mod+w exec --no-startup-id i3switch.rb
 bindsym $mod+BackSpace exec --no-startup-id python3 $MYLIB/i3/focus-last.py --switch
 bindsym $mod+Control+t exec --no-startup-id sh $MYLIB/toggle-tapping.sh
 bindsym $mod+Control+b exec backup-popup.bash
-
+bindsym $mod+Next exec --no-startup-id pkill -USR1 -f setbg.bash
+bindsym $mod+Prior exec --no-startup-id pkill -USR2 -f setbg.bash
 
 ### Window management keybindings:
 bindsym $mod+b focus left
