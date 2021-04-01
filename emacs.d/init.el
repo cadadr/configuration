@@ -5715,6 +5715,16 @@ which correspond to homonymous fields listed in
    :unnarrowed t)
 
   (gk-org-define-capture-template
+   :keys "E"
+   :description "Reading note (ebib)"
+   :type 'entry
+   :target `(file ,(gk-org-dir-file "Reading-2021.org"))
+   :empty-lines-after 1
+   :empty-lines-before 1
+   :prepend t
+   :template '(function ebib-notes-create-org-template))
+
+  (gk-org-define-capture-template
    :keys "R"
    :description "Reading task (make active)"
    :type 'entry
@@ -6019,6 +6029,22 @@ The value of DIALECT should be one of the symbols in
 
 (gk-ebib-set-bibtex-dialect 'biblatex)
 
+(define-advice
+    ebib-create-org-description
+    (:override (key db) my-heading-style)
+  "Customised version of ‘ebib-create-org-description’."
+  (let ((author (replace-regexp-in-string
+                 " and "
+                 "; "
+                 (or (ebib-get-field-value "author" key db 'noerror 'unbraced 'xref)
+                     (ebib-get-field-value "editor" key db 'noerror 'unbraced 'xref)
+                     "")))
+        (title (or (ebib-get-field-value "title" key db 'noerror 'unbraced 'xref)
+                   (user-error "Reading note for item without title disallowed"))))
+    (remove ?\n (format "%s%s" title (if (string-empty-p author)
+                                         ""
+                                       (concat ". " author))))))
+
 (setf
  ebib-file-associations nil
  ebib-preload-bib-files (list (expand-file-name "All.bib" gk-bib-dir))
@@ -6038,6 +6064,20 @@ The value of DIALECT should be one of the symbols in
  ebib-use-timestamp t
  ;; Split the current window into two.
  ebib-layout 'window
+
+ ;; Use org-capture template with the key = E to add reading notes.
+ ebib-notes-use-org-capture "E"
+ ebib-notes-template (mapconcat #'identity
+                                (list "* %T"
+                                      ":PROPERTIES:"
+                                      "%K"
+                                      ":END:"
+                                      "- %C"
+                                      "- %F"
+                                      "- Created at %%U"
+                                      "\n-----\n"
+                                      "%%?\n")
+                                "\n")
 
  ;; see ‘ebib-extra-fields’, can be used to mark collections; ‘a’ adds
  ;; extra fields in entry buffer.
