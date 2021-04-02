@@ -73,4 +73,5 @@ fi
 /usr/bin/dconf dump / \
     | grep -Ev "^($(echo $filter | tr ' ' '|'))=" \
     | grep -v 'nm-applet' \
+    | inirefmt.py \
            > $HOME/cf/systems/$(hostname)/dconf.dump
