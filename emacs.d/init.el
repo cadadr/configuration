@@ -1987,6 +1987,26 @@ Useful when using dired-subtree."
 
 ;;;;; Subtrees:
 
+;; If there arent any open subtrees, behave like < and > do in normal
+;; dired.
+(define-advice dired-subtree-up
+    (:override (&optional arg) prev-dir-if-no-subtree)
+  "Jump up one directory."
+  (interactive "p")
+  (if-let* ((ov (dired-subtree--get-ov)))
+      (progn (goto-char (overlay-start ov))
+             (dired-previous-line 1))
+    (dired-prev-dirline 1)))
+
+(define-advice dired-subtree-down
+    (:override (&optional arg) next-dir-if-no-subtree)
+  "Jump up one directory."
+  (interactive "p")
+  (if-let* ((ov (dired-subtree--get-ov)))
+      (progn (goto-char (overlay-start ov))
+             (dired-previous-line 1))
+    (dired-next-dirline 1)))
+
 (define-key dired-mode-map "i" 'dired-subtree-toggle)
 (define-key dired-mode-map "<" 'dired-subtree-up)
 (define-key dired-mode-map ">" 'dired-subtree-down)
