@@ -1,16 +1,16 @@
-[org/gnome/simple-scan]
-document-type='photo'
+[com/gkayaalp/pomodorino]
+desktop-notifications-enabled = true
+ease-in-mode-enabled = true
+long-break-duration = 15
+pomodoro-duration = 25
+short-break-duration = 5
 
+[org/gnome/simple-scan]
+document-type = 'photo'
 
 [org/gtk/settings/file-chooser]
-show-size-column=true
-date-format='regular'
-show-hidden=false
-sort-directories-first=false
+date-format = 'regular'
+show-hidden = false
+show-size-column = true
+sort-directories-first = false
 
-[com/gkayaalp/pomodorino]
-ease-in-mode-enabled=true
-desktop-notifications-enabled=true
-short-break-duration=5
-long-break-duration=15
-pomodoro-duration=25
