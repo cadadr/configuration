@@ -1,11 +1,12 @@
 [org/gnome/simple-scan]
 document-type='photo'
 
+
 [org/gtk/settings/file-chooser]
 show-size-column=true
+date-format='regular'
 show-hidden=false
 sort-directories-first=false
-date-format='regular'
 
 [com/gkayaalp/pomodorino]
 ease-in-mode-enabled=true
