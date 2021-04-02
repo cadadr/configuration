@@ -4893,13 +4893,15 @@ Use \[pop-to-mark-command] to go back to where you were."
 
    ("u" "Unsorted TODOs"
     ;; Unsorted TODO items
-    ((tags-todo "-vault-research+TODO=\"TODO\""
-                ((org-agenda-overriding-header
-                  "* Stray  TODOs:")
-                 (org-agenda-skip-function
-                  '(org-agenda-skip-entry-if 'deadline 'scheduled))
-                 (org-default-priority org-lowest-priority)
-                 (org-agenda-sorting-strategy '(priority-down alpha-up))))))))
+    ((todo ""
+           ((org-agenda-category-filter-preset
+             (list "+planner" "+linguistics" "+vault"))
+            (org-agenda-overriding-header
+             "* Stray  TODOs:")
+            (org-agenda-skip-function
+             '(org-agenda-skip-entry-if 'deadline 'scheduled))
+            (org-default-priority org-lowest-priority)
+            (org-agenda-sorting-strategy '(priority-down alpha-up))))))))
 
 
 (defun gk-org-display-single-pane-agenda-view (&optional arg)
