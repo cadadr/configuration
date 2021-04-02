@@ -6362,6 +6362,10 @@ new frame is created."
       (set-face-attribute 'org-block-end-line nil :underline t)
       (set-face-attribute 'org-block nil :background bg :extend t)))
 
+  (when (eq gk-gui-theme 'modus-vivendi)
+    (set-face-attribute 'flymake-warning nil :background nil :underline "yellow")
+    (set-face-attribute 'flymake-error nil :background nil :underline "red"))
+
   ;; Settings for when using default theme specifically.
   (unless gk-gui-theme
     (set-face-attribute 'region nil :background "yellow green")
