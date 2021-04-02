@@ -6029,10 +6029,14 @@ The value of DIALECT should be one of the symbols in
 
 (gk-ebib-set-bibtex-dialect 'biblatex)
 
-(define-advice
-    ebib-create-org-description
-    (:override (key db) my-heading-style)
-  "Customised version of ‘ebib-create-org-description’."
+
+;; Add a ‘%G’ specifier that generates the title the way I like it.
+(cl-pushnew
+ '(?G . gk-ebib-create-org-title)
+ ebib-notes-template-specifiers)
+
+(defun gk-ebib-create-org-title (key db)
+  "Modified version of ‘ebib-create-org-title’."
   (let ((author (replace-regexp-in-string
                  " and "
                  "; "
@@ -6044,6 +6048,7 @@ The value of DIALECT should be one of the symbols in
     (remove ?\n (format "%s%s" title (if (string-empty-p author)
                                          ""
                                        (concat ". " author))))))
+
 
 (setf
  ebib-file-associations nil
@@ -6068,7 +6073,7 @@ The value of DIALECT should be one of the symbols in
  ;; Use org-capture template with the key = E to add reading notes.
  ebib-notes-use-org-capture "E"
  ebib-notes-template (mapconcat #'identity
-                                (list "* %T"
+                                (list "* %G"
                                       ":PROPERTIES:"
                                       "%K"
                                       ":END:"
