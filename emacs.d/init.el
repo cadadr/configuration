@@ -1852,8 +1852,9 @@ that instead."
   ;; output as clickable links to parts of files (e.g. grep -Hn).
   (compilation-shell-minor-mode 1)
   ;; ‘shell-dirtrack-mode’ fails a lot.
-  (shell-dirtrack-mode -1)
-  (gk-procfs-dirtrack-mode +1))
+  (shell-dirtrack-mode +1)
+  ;; (gk-procfs-dirtrack-mode +1)
+  )
 
 (add-hook 'shell-mode-hook 'gk-shell-mode-hook)
 
