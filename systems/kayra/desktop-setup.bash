@@ -61,4 +61,6 @@ pcmanfm --daemon-mode    &
 pasystray                &
 # gpg-agent, ssh-agent?
 
+(sleep 10; notify-send welcome "welcome to $(hostname -f)!" ) &
+
 exec dbus-launch --exit-with-session i3 -V -d all
