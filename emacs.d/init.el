@@ -146,7 +146,6 @@
 (require 'netrc)
 (require 'nnfolder)
 (require 'nsm)
-(require 'olivetti)
 (require 'org)
 (require 'org-attach-screenshot)
 (require 'org-capture)
@@ -2333,18 +2332,14 @@ will receive the region if active, or the entire buffer."
 ;; Settings common to all major/minor modes that edit text.
 
 (diminish 'visual-line-mode "¬")
-(diminish 'olivetti-mode "𝍌")
 ;; i.e. ‘auto-fill-mode’, but diminish does not like that.
 (diminish 'auto-fill-function "=")
-
-(setq-default olivetti-body-width 120)
 
 (defun gk-text-editing-modes-hook ()
   "Hook for `text-mode'."
   (setq-local truncate-lines nil)
   (visual-line-mode 1)
   (set-input-method default-input-method)
-  (olivetti-mode 1)
   (setq indent-tabs-mode nil)
   (highlight-indent-guides-mode)
   (git-gutter-mode +1))
@@ -3143,7 +3138,6 @@ Set by ‘gk-algol-like-hook’, don’t manually set.")
 
 (defun gk-prog-mode-hook ()
   "Hook for all programming modes."
-  (olivetti-mode 1)
   (highlight-indent-guides-mode)
   (highlight-parentheses-mode +1)
   (paren-face-mode +1)
@@ -4069,7 +4063,6 @@ This is the reverse counterpart of
 
 (defun gk-rmail-mode-hook ()
    (goto-address-mode +1)
-   (olivetti-mode +1)
    (setq-local word-wrap t))
 
 (add-hook 'rmail-mode-hook #'gk-rmail-mode-hook)
@@ -4980,8 +4973,6 @@ display a two pane view in a maximised frame."
   (hl-line-mode +1)
   (setq-local word-wrap t)
   (setq-local truncate-lines nil)
-  (olivetti-mode +1)
-  (setq-local olivetti-body-width 90)
   (gk-turn-on-outline-minor-mode "^\\*" ":$" "C-'"))
 
 (add-hook 'org-agenda-mode-hook #'gk-org-agenda-mode-hook)
@@ -7235,7 +7226,7 @@ provided."
 
 (defun gk-eww-mode-hook ()
   "Set up `eww' for easier reading."
-  (olivetti-mode +1))
+  )
 
 (add-hook 'eww-mode-hook 'gk-eww-mode-hook)
 
