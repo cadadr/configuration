@@ -85,5 +85,3 @@ export VERSION_CONTROL=numbered
 # Borg Backups
 export BORG_REPO=pi@ayata.local:/mnt/Backups
 
-# Flatpaks
-export XDG_DATA_DIRS="/var/lib/flatpak/exports/share:$HOME/.local/share/flatpak/exports/share"
