@@ -323,3 +323,6 @@ for_window [title="Telegram( \(\d+\))?"] floating enable move position center
 
 #### Firefox:
 for_window [title="Firefox(-esr)?"] floating enable move position center
+
+#### Lagrange:
+for_window [class="lagrange"] floating enable move position center
