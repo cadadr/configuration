@@ -167,7 +167,7 @@ settings:
   tabs.mousewheel_switching:
     global: true
   tabs.position:
-    global: bottom
+    global: left
   tabs.select_on_remove:
     global: prev
   tabs.show:
