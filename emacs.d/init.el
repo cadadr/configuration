@@ -5970,6 +5970,8 @@ fragments"
 (org-defkey org-mode-map (kbd "M-n") 'outline-next-visible-heading)
 (define-key org-mode-map (kbd "C-M-n") #'gk-org-forward-content)
 (define-key org-mode-map (kbd "C-M-p") #'gk-org-backward-content)
+(define-key org-mode-map (kbd "C-S-n") #'org-next-item)
+(define-key org-mode-map (kbd "C-S-p") #'org-previous-item)
 ;; Paragraphs
 (define-key org-mode-map [remap backward-paragraph] nil)
 (define-key org-mode-map [remap forward-paragraph] nil)
