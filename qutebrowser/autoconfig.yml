@@ -32,7 +32,9 @@ settings:
         ',,': open-editor
         ',0': :open about:home
         ',D': hint images delete
-        ',F': spawn firefox -P empty {url}
+        ',Fe': spawn firefox -P empty {url}
+        ',Fd': spawn firefox -P default {url}
+        ',Fs': spawn firefox -P shopping {url}
         ',R': :spawn --userscript ~/.config/qutebrowser/userscripts/readability
         ',[': :set -t tabs.select_on_remove next
         ',]': :set -t tabs.select_on_remove last-used
