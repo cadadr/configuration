@@ -63,4 +63,6 @@ pasystray                &
 
 (sleep 10; notify-send welcome "welcome to $(hostname -f)!" ) &
 
-exec dbus-launch --exit-with-session i3 -V -d all
+# dotfiles/xsession will run $MYSYSTEM/desktop-setup.bash with
+# dbus-launch, so we can just run i3 here.
+exec i3 -V -d all

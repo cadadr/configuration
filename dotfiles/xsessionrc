@@ -26,5 +26,5 @@ setxkbmap -option "ctrl:nocaps"
 ### System specific desktop setup:
 
 if [ -e "$MYSYSTEM/desktop-setup.bash" ]; then
-    bash $MYSYSTEM/desktop-setup.bash
+    exec dbus-launch --exit-with-session bash $MYSYSTEM/desktop-setup.bash
 fi
