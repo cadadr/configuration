@@ -6021,7 +6021,7 @@ fragments"
 
 
 
-;;;;; LaTeX, AuCTeX, Ebib:
+;;;; LaTeX, AuCTeX, Ebib:
 
 ;; TODO(2021-02-28): move these to appropriate sections.
 ;; Accomodate AuCTeX.
