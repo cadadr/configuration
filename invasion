@@ -31,7 +31,6 @@
 .bash_profile						dotfiles/profile.sh
 .signature						dotfiles/signature
 .xsettingsd						dotfiles/xsettingsd.conf
-.xprofile						dotfiles/xsessionrc
 .vimrc							dotfiles/rc.vim
 .vim							dotfiles/vim
 .tmux.conf						dotfiles/tmux.conf
