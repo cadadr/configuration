@@ -5836,6 +5836,33 @@ Don’t hide the frame and don’t ask me shit."
 
 
 
+;;;;; Habits:
+
+(define-advice org-habit-build-graph
+    (:filter-return (ret) dashes-not-spaces)
+  "Invert colours, more readable like that.
+
+I.e., foreground is coloured, instead of the background."
+  (cl-loop
+   for i from 0 to (1- (length ret))
+   with replacement = '()
+   do (let ((face (get-text-property i 'face ret))
+            (hecho (get-text-property i 'help-echo ret))
+            (char (substring ret i (1+ i))))
+        (ignore-errors
+          (set-face-attribute
+           face nil
+           :inverse-video t
+           :foreground (face-attribute 'default :background)
+           :bold t))
+        (push
+         (propertize
+          (if (string= char " ") "-" char)
+          'face face 'help-echo hecho)
+         replacement))
+   finally return (mapconcat #'identity (reverse replacement) "")))
+
+
 
 ;;;;; Dynamic previews for LaTeX fragments:
 
