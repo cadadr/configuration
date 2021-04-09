@@ -3151,6 +3151,12 @@ Set by ‘gk-algol-like-hook’, don’t manually set.")
 
 ;;;;; Snippets:
 
+(define-advice yas-maybe-load-snippet-buffer
+    (:around (fn &rest args) no-jumping)
+  "Do not move the point."
+  (save-excursion
+    (apply fn args)))
+
 (setf yas-snippet-dirs
       (list
        (locate-user-emacs-file "etc/snippets")))
