@@ -8,22 +8,66 @@
 #+author: ${3:`user-full-name`}
 #+date: ${4:`(format-time-string "%d %B %Y")`}
 #+keywords: ${5:Keywords}
-#+language: english
+#+language: ${6:english}
 
+:export-setup:
 #+options: toc:nil tags:nil num:nil todo:nil
 #+exclude_tags: noexport
 
 #+latex_class: article
 #+latex_header_extra: \usepackage{fontspec}
 
-# load biblatex:
+# Linguistics stuff:
 
+# Macros for Dirac bra–ket 〈|〉 notation and sets {|}
+#+latex_header_extra: \usepackage{braket}
+
+# Drawing trees
+#+latex_header_extra: \usepackage{tikz}
+#+latex_header_extra: \usepackage{tikz-qtree}
+#+latex_header_extra: \usepackage{tikz-dependency}
+
+# The command \textipa allows typesetting IPA using X-SAMPA.  There
+# are other stuff too but the manual is in bloomin' German.  Like,
+# this is open source stuff, and a billion people speak English at
+# least, don't be a dick...
+#+latex_header_extra: \usepackage{tipa}
+
+# Like every other effin linguistics LaTeX package, this too has
+# glosses.  Useful stuff in this:  \twodias, \fs, \drs, \sdrs,
+# \either, \sentence, \lexp, \lcon, \lmean, \psr.
+#+latex_header_extra: \usepackage{covington}
+
+# "Example formatting, glosses, and reference"
+#+latex_header_extra: \usepackage{expex}
+
+
+# Optional stuff, uncomment as needed
+
+# Lingmacros is has macros for glossing and examples, I used to use
+# this before switching to expex.
+# +latex_header_extra: \usepackage{lingmacros}
+
+# Another package for examples and glossing, plus some "goodies".
+# Probably conflicts with expex, and causes some troubles even without
+# that.
+# +latex_header_extra: \usepackage{gb4e} %% causes error ‘no \begin{document}’
+
+# Fancy headers and footers for pages, exports \thispagestyle{fancy},
+# \rhead, etc.
+# +latex_header_extra: \usepackage{fancyhdr}
+
+# Useful for a manual reference listing, use with an environment like
+# \begin{hangparas}{0.5cm}{1}.
+# +latex_header_extra: \usepackage{hanging}
+
+
+# load biblatex:
 #+latex_header_extra: \usepackage[style=apa,backend=biber,%
 #+latex_header_extra: doi=false,isbn=false,url=false]{biblatex}
 
 # add a .bib file:
-
-#+latex_header_extra: \addbibresource{${6:./`(car (last (split-string default-directory "/" t)))`}.bib}
+#+latex_header_extra: \addbibresource{${7:`(expand-file-name "All.bib" gk-bib-dir)`}}
 
 # Some macros that map to ‘\*cite*’ family of LaTeX macros:
 
@@ -66,9 +110,10 @@
 %% Bibliography
 \defbibheading{bibliography}{} %% override
 #+end_export
+:end:
 
 #+begin_abstract
-${7:Abstract}
+${8:Abstract}
 #+end_abstract
 
 * Plan [0/1] :noexport:
