@@ -5732,7 +5732,7 @@ which correspond to homonymous fields listed in
                        (org-fill-paragraph)
                        (buffer-substring-no-properties (point-min)
                                                        (point-max)))))))
-   :target `(file+olp ,(car org-agenda-files) "reading inbox")
+   :target `(file ,(gk-org-dir-file "ReadingList.org"))
    :prepend t
    :empty-lines-after 1
    :unnarrowed t)
@@ -7893,7 +7893,7 @@ Does various tasks after saving a file, see it's definition."
   ;; Start the server.
   (server-start)
   (add-hook 'server-switch-hook 'raise-frame)
-  (setf initial-buffer-choice (gk-org-dir-file "Todo.org")))
+  (setf initial-buffer-choice (gk-org-dir-file "MastersThesis/Notes.org")))
 
 (gk-load (file-name-sans-extension custom-file))
 
