@@ -32,10 +32,12 @@ settings:
         ',,': open-editor
         ',0': :open about:home
         ',D': hint images delete
-        ',Fe': spawn firefox -P empty {url}
         ',Fd': spawn firefox -P default {url}
+        ',Fe': spawn firefox -P empty {url}
+        ',Fh': spawn firefox -P hacett-proxy {url}
         ',Fs': spawn firefox -P shopping {url}
         ',R': :spawn --userscript ~/.config/qutebrowser/userscripts/readability
+        ',W': jseval document.body.style='max-width:15cm;margin:auto;'
         ',[': :set -t tabs.select_on_remove next
         ',]': :set -t tabs.select_on_remove last-used
         ',d': bookmark-add
@@ -55,6 +57,7 @@ settings:
         ',tm': set --temp tabs.show multiple
         ',tr': set --temp tabs.position right
         ',tt': set --temp tabs.position top
+        ',w': jseval document.body.style='max-width:15cm;'
         ',xrs': jseval document.querySelector("div.side").hidden =true
         ',z': save-to-zotero
         .: nop
