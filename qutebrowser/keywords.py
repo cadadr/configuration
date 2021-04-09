@@ -26,6 +26,9 @@ c.url.searchengines['#pt'] = \
 c.url.searchengines['#scholar'] = \
     'https://scholar.google.com.tr/scholar?hl=en&as_sdt=0%2C5&q={}'
 
+c.url.searchengines['#ischo'] = \
+    'https://scholar.archive.org/search?q={}'
+
 c.url.searchengines['#sems'] = \
     'https://www.semanticscholar.org/search?=all&q={}'
 
