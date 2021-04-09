@@ -1,0 +1,83 @@
+# -*- mode: snippet -*-
+# name: report
+# key: report
+# --
+
+#+title: ${1:Title}
+#+subtitle: ${2:Subtitle}
+#+author: ${3:`user-full-name`}
+#+date: ${4:`(format-time-string "%d %B %Y")`}
+#+keywords: ${5:Keywords}
+#+language: english
+
+#+options: toc:nil tags:nil num:nil todo:nil
+#+exclude_tags: noexport
+
+#+latex_class: article
+#+latex_header_extra: \usepackage{fontspec}
+
+# load biblatex:
+
+#+latex_header_extra: \usepackage[style=apa,backend=biber,%
+#+latex_header_extra: doi=false,isbn=false,url=false]{biblatex}
+
+# add a .bib file:
+
+#+latex_header_extra: \addbibresource{${6:./`(car (last (split-string default-directory "/" t)))`}.bib}
+
+# Some macros that map to ‘\*cite*’ family of LaTeX macros:
+
+#+macro: autocite1 @@latex:\autocite{\$1}@@
+#+macro: autocite2 @@latex:\autocite[\$2]{\$1}@@
+#+macro: bibs #+latex: \printbibliography[category=inbib]
+#+macro: fullcite @@latex:\fullcite{\$1}@@
+#+macro: textcite1 @@latex:\textcite{\$1}@@
+#+macro: textcite2 @@latex:\textcite[\$2]{\$1}@@
+#+macro: citetitle_auto @@latex:\citetitle{\$1} \autocite{\$1}@@
+#+macro: citetitle_byauto @@latex:\citetitle{\$1} by \textcite{\$1}@@
+
+# Bibliography exclusions
+# Adapted from: https://tex.stackexchange.com/a/420605
+# Excludes items cited with ‘\fullcite’ from the reference listing.
+
+#+latex_header_extra: \DeclareBibliographyCategory{inbib}
+#+latex_header_extra: \makeatletter
+#+latex_header_extra: \AtEveryCitekey{%
+#+latex_header_extra:   \ifcsstring{blx@delimcontext}{fullcite}
+#+latex_header_extra:     {}
+#+latex_header_extra:     {\addtocategory{inbib}{\thefield{entrykey}}}}
+#+latex_header_extra: \makeatother
+
+
+#+begin_export latex
+%% Fonts
+\setsansfont{Liberation Sans}
+\setromanfont[%
+ SmallCapsFont=Linux Libertine O,
+ SmallCapsFeatures={Letters=SmallCaps}
+]{Liberation Serif}
+\setmonofont{Liberation Mono}
+
+\setmainfont[%
+ SmallCapsFont=Linux Libertine O,
+ SmallCapsFeatures={Letters=SmallCaps}
+]{Liberation Serif}
+
+%% Bibliography
+\defbibheading{bibliography}{} %% override
+#+end_export
+
+#+begin_abstract
+${7:Abstract}
+#+end_abstract
+
+* Plan [0/1] :noexport:
+- [ ] $0
+
+* Introduction
+
+* Another section
+
+* References
+
+{{{bibs}}}
