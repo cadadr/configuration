@@ -78,6 +78,28 @@ emacs.d/.trash_emacs/
 # Qutebrowser
 qutebrowser/qsettings/QtProject.conf
 
+# VSCodium
+dotfiles/config/VSCodium/Backups/
+dotfiles/config/VSCodium/blob_storage/
+dotfiles/config/VSCodium/Cache/
+dotfiles/config/VSCodium/CachedData/
+dotfiles/config/VSCodium/CachedExtensions/
+dotfiles/config/VSCodium/GPUCache/
+dotfiles/config/VSCodium/logs/
+dotfiles/config/VSCodium/User/globalStorage/
+dotfiles/config/VSCodium/User/workspaceStorage/
+dotfiles/config/VSCodium/webrtc_event_logs/
+dotfiles/config/VSCodium/Cookies*
+dotfiles/config/VSCodium/machineid
+dotfiles/config/VSCodium/Network*
+dotfiles/config/VSCodium/storage.json
+dotfiles/config/VSCodium/Session\ Storage/
+dotfiles/config/VSCodium/TransportSecurity
+
+# Audacity
+dotfiles/audacity/AutoSave
+dotfiles/audacity/Plug-Ins
+
 # XDG stuff
 dotfiles/config/chromium/
 dotfiles/config/evince/
@@ -102,24 +124,6 @@ dotfiles/config/xfce4/xfconf/xfce-perchannel-xml/displays.xml
 dotfiles/config/xfce4/xfconf/xfce-perchannel-xml/xfce4-settings-manager.xml
 dotfiles/config/xfce4/xfconf/xfce-perchannel-xml/xfce4-settings-editor.xml
 dotfiles/config/GIMP/
-
-# VSCodium
-dotfiles/config/VSCodium/Backups/
-dotfiles/config/VSCodium/blob_storage/
-dotfiles/config/VSCodium/Cache/
-dotfiles/config/VSCodium/CachedData/
-dotfiles/config/VSCodium/CachedExtensions/
-dotfiles/config/VSCodium/GPUCache/
-dotfiles/config/VSCodium/logs/
-dotfiles/config/VSCodium/User/globalStorage/
-dotfiles/config/VSCodium/User/workspaceStorage/
-dotfiles/config/VSCodium/webrtc_event_logs/
-dotfiles/config/VSCodium/Cookies*
-dotfiles/config/VSCodium/machineid
-dotfiles/config/VSCodium/Network*
-dotfiles/config/VSCodium/storage.json
-dotfiles/config/VSCodium/Session\ Storage/
-dotfiles/config/VSCodium/TransportSecurity
 dotfiles/config/kactivitymanagerdrc
 dotfiles/config/kglobalshortcutsrc
 dotfiles/config/okularrc
