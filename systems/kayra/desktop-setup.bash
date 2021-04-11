@@ -61,6 +61,8 @@ pcmanfm --daemon-mode    &
 pasystray                &
 # gpg-agent, ssh-agent?
 
+bash $MYLIB/launch-session-servers.bash
+
 (sleep 10; notify-send welcome "welcome to $(hostname -f)!" ) &
 
 # dotfiles/xsession will run $MYSYSTEM/desktop-setup.bash with

@@ -1,7 +1,0 @@
-[Unit]
-Description=Save a plain-text dump of DConf database to ~/cf/lib/dconf.dump
-
-[Service]
-Type=oneshot
-ExecStart=/bin/sh %h/cf/lib/dconf-dump.sh
-
