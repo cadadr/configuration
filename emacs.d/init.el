@@ -5791,7 +5791,28 @@ which correspond to homonymous fields listed in
    :template "* TODO %?"
    :prepend t
    :empty-lines-after 1
-   :unnarrowed t))
+   :unnarrowed t)
+
+  (gk-org-define-capture-template
+   :keys "S"
+   :description "Sunday Emacs build note"
+   :type 'entry
+   :target `(file+olp ,(gk-org-dir-file "Emacs.org") "New stuff from recent builds")
+   :prepend t
+   :empty-lines-after 1
+   :empty-lines-before 1
+   :template "* build on %u\n- *version*: %^{Version|head}\n- *toolkit*: %^{Toolkit|lucid}\n-----\n\n")
+
+  (gk-org-define-capture-template
+   :keys "s"
+   :description "Add clipboard to the sunday Emacs build note"
+   :type 'item
+   :target `(file+olp ,(gk-org-dir-file "Emacs.org")
+                      "New stuff from recent builds"
+                      ,(format-time-string "build on [%F %a]"))
+   :prepend nil
+   :empty-lines-before 1
+   :template "- %i"))
 
 
 
