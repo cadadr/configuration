@@ -53,7 +53,7 @@ export GPG_TTY=$(tty)
 # $SHELL can’t be trusted, apparently when you run sh from within a
 # bash session, the value from bash leaks into the subshell.
 case "$0" in
-    bash) test -n "$MYLIB" && . $MYLIB/rc.bash ;;
+	*bash) test -n "$MYLIB" && . $MYLIB/rc.bash ;;
     *) ;;
 esac
 
