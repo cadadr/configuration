@@ -18,8 +18,7 @@ case $V in
             --with-cairo \
 	    --with-mailutils \
             --with-imagemagick \
-            \
-            --with-nativecomp ;;
+            --with-native-compilation ;;
     head)
 	./configure \
 	    --prefix=$HOME/local/emacs \
