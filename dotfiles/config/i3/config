@@ -44,6 +44,7 @@ bindsym $mod+Control+t exec --no-startup-id sh $MYLIB/toggle-tapping.sh
 bindsym $mod+Control+b exec backup-popup.bash
 bindsym $mod+Next exec --no-startup-id pkill -USR1 -f setbg.bash
 bindsym $mod+Prior exec --no-startup-id pkill -USR2 -f setbg.bash
+bindsym $mod+q exec --no-startup-id qrclip.sh
 
 ### Window management keybindings:
 bindsym $mod+b focus left
@@ -326,3 +327,6 @@ for_window [title="Firefox(-esr)?"] floating enable move position center
 
 #### Lagrange:
 for_window [class="lagrange"] floating enable move position center
+
+#### ImageMagick
+for_window [class="Display-im[0-9]\.q.*"] floating enable move position center
