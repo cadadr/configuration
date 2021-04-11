@@ -188,3 +188,4 @@ dotfiles/config/kconf_updaterc
 
 # mergen
 systems/mergen/xfce4/xfce4-screenshooter
+emacs.d/eln-cache/
