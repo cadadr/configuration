@@ -826,6 +826,13 @@ Linguistics (2nd ed.). Oxford University Press."
   (gk-fetch-mail))
 
 
+(defun gk-save-string-as-kill (str)
+  "Push STR on kill ring, syncing with the clipboard."
+  (with-temp-buffer
+    (insert str)
+    (clipboard-kill-ring-save (point-min) (point-max))
+    (message "Copied %s" str)))
+
 
 
 ;;;; Generic advices:
@@ -6796,16 +6803,17 @@ An adaptation and simplification of ‘mode-line-modes’.")
      ;; Buffer's file if visiting one, the default directory
      ;; otherwise.  Ellipsise long names.
      (let* ((f (or (buffer-file-name) default-directory))
-            (... (gk-ellipsize-file-or-directory-name f 25)))
+            (... (ignore-errors (gk-ellipsize-file-or-directory-name f 25))))
        (propertize
-        ...
+        (or ... f)
         'help-echo (concat f "\nmouse-1: Copy full path of buffer to clipboard")
         'mouse-face 'mode-line-highlight
         'local-map (make-mode-line-mouse-map
                     'mouse-1 (lambda (event)
                                (interactive "e")
                                (with-selected-window (posn-window (event-start event))
-                                 (gk-copy-buffer-file-name)))))))))
+                                 (or (ignore-errors (gk-copy-buffer-file-name))
+                                     (gk-save-string-as-kill default-directory))))))))))
 (put 'gk-mode-line-buffer-file-name 'risky-local-variable t)
 
 
