@@ -6638,8 +6638,6 @@ new frame is created."
  frame-resize-pixelwise t
  ;; Split vertically in general
  split-width-threshold 140
- ;; «Skip ‘fontification_functions‘ when there is input pending.»
- redisplay-skip-fontification-on-input t
  ;; Each buffer has its own goto-line history.
  goto-line-history-local t
  ;; Scale header lines with buffer when zooming.
