@@ -6318,7 +6318,6 @@ will become the only window."
   "The default theme's name to load at startup.")
 
 
-;; TODO(2020-06-13): stub
 (defun gk-preferred-colour-scheme ()
   "Find out the system’s preferred colour scheme.
 
