@@ -40,7 +40,8 @@ git clean -dfx
 # ./configure ...
 #
 # passing the ./configure script whatever flags you like.
-TK=lucid configure-emacs.sh
+TK=lucid configure-emacs.sh head
+echo Configure script completed, review output and hit RETURN to build; read nought
 
 make -j$(lscpu | awk '/^CPU\(s\):/ {print $2}')
 
