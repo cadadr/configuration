@@ -74,7 +74,7 @@ export GUILE_LOAD_PATH=$MYLIB/scheme:$GUILE_LOAD_PATH
 # This has to happen here instead of $MYLIB/guix.sh because in there
 # we don’t have the proper $GUILE_LOAD_PATH yet, for which we need
 # $MYLIB.
-export GUIX_PACKAGE_PATH=$MYLIB/scheme
+export GUIX_PACKAGE_PATH=$MYLISP/scm
 
 # SystemDee
 # Behave, you fuck.
