@@ -1636,6 +1636,18 @@ Tries to preserve the order of window buffers and active window."
     (select-window (get-buffer-window cbuf))))
 
 
+(defun gk-layouts-3col-and-follow ()
+  "Call ‘gk-layouts-3col’ and then ‘follow-mode’."
+  (interactive)
+  ;; Only extend the current window.
+  (delete-other-windows)
+  (gk-layouts-3col)
+  ;; Go to leftmost window, ‘windmove-left’ will signal on leftmost
+  ;; window.
+  (ignore-errors (while t (windmove-left)))
+  (follow-mode))
+
+
 (defun gk-layouts-main-and-sidekicks ()
   "One horizontal split, the right window split in two.
 
@@ -7841,6 +7853,11 @@ Does various tasks after saving a file, see it's definition."
 (gk-prefix-binding (kbd "C-f") #'gk-flip)
 
 (gk-prefix-binding "e" #'ebib)
+
+;; Layouts
+(gk-prefix-binding (kbd "M-3") #'gk-layouts-3col)
+(gk-prefix-binding (kbd "C-M-3") #'gk-layouts-3col-and-follow)
+(gk-prefix-binding (kbd "M-m") #'gk-layouts-main-and-sidekicks)
 
 
 
