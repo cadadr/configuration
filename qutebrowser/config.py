@@ -63,7 +63,7 @@ def do_redir(request):
     try:
         request.redirect(request.request_url)
     except Exception as e:
-        message.warning("Error in config.py/do_redir(req):", e)
+        message.warning(f"Error in config.py/do_redir(req): {e}")
 
 
 # If within block period, redirect to block page, else, register.
