@@ -63,6 +63,9 @@ fi
 # R
 export R_LIBS_USER="$HOME/.local/share/R/site-library"
 
+# Lisp
+export MYLISP=$MY/lisp
+
 # Guile
 export GUILE_LOAD_PATH=$MYLIB/scheme:$GUILE_LOAD_PATH
 
