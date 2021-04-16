@@ -2,6 +2,7 @@
 
 from qutebrowser.api import interceptor
 from qutebrowser.api import message
+from qutebrowser.extensions.interceptors import ResourceType
 from qutebrowser import __version__ as qver
 from dracula import blood
 
@@ -116,9 +117,10 @@ redirect_fns = [
 
 
 def redirect(request):
-    for fn in redirect_fns:
-        if fn(request):
-            break
+    if request.resource_type == ResourceType.main_frame:
+        for fn in redirect_fns:
+            if fn(request):
+                break
 
 
 interceptor.register(redirect)
