@@ -1723,7 +1723,9 @@ Tries to preserve the order of window buffers and active window."
   (list :serif "DejaVu Serif Condensed"
         :sans "DejaVu Sans Condensed"
         :mono "DejaVu Sans Mono"
-        :forecast-moon-phase (or (and (font-info "Quivira") "Quivira")
+        :forecast-moon-phase (or (and (gk-gui-p)
+                                      (font-info "Quivira")
+                                      "Quivira")
                                  "DejaVu Sans"))
   "A plist, default fonts.")
 
@@ -4784,7 +4786,10 @@ Use \[pop-to-mark-command] to go back to where you were."
  ;; If an #+attr_*: :width xxx available, use xxx, else, car of this
  ;; value.
  org-image-actual-width
- (list (* 48 (aref (font-info (face-attribute 'default :family)) 10)))
+ (if (gk-gui-p)
+     (list (* 48 (aref (font-info (face-attribute 'default :family)) 10)))
+   ;; Do not change if non-gui.
+   org-image-actual-width)
  ;; The couple settings below are adapted from
  ;; https://yiufung.net/post/org-mode-hidden-gems-pt1/.
  ;;
