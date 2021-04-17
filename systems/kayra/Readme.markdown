@@ -166,23 +166,6 @@ Use default Xorg muse cursors:
 
     # echo >> /etc/alternatives/x-cursor-theme
 
-The last step is to install flatpaks, which should be done after
-exiting the root shell, i.e. without superuser privileges.
-
-The file `mint.flatpak.install` contains a listing of Flatpaks to be
-installed, which can be installed as follows:
-
-    # flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-    # glib-compile-schemas /usr/share/glib-2.0/schemas/
-    # su g
-    $ xargs flatpak install -y < debian.flatpak.install
-
-The following commands will allow flatpaks to access outside their
-containers for some data files:
-
-    $ flatpak override fi.skyjake.Lagrange --user --filesystem=$HOME/Notes/Lagrange-bookmarks.txt
-    $ exit
-
 Now we can log out as root and log back in as `g` (or, preferably, reboot):
 
     # exit
