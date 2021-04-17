@@ -49,19 +49,13 @@ c.url.searchengines['DEFAULT'] = \
 
 ### Redirects:
 spacing_patterns = {}
-spacing_patterns["mastodon"] = \
-    re.compile(r"https?://mastodon\.sdf\.org/web/getting-started")
-spacing_patterns["reddit"] = \
-    re.compile(r"https?://((www|old)\.)?reddit\.com/$")
-spacing_patterns["multireddits"] = \
-    re.compile(r"https?://((www|old)\.)?reddit\.com/user/gkayaalp/m/.*")
-
 last_visited = {}
 spacing_minutes = {}
-spacing_minutes["mastodon"] = 180
-spacing_minutes["reddit"] = 300
-spacing_minutes["multireddits"] = 300
 
+
+def add_spacing_pattern(_id, pattern, minutes):
+    spacing_minutes[_id]  = minutes
+    spacing_patterns[_id] = re.compile(pattern)
 
 def do_redir(request):
     try:
@@ -129,6 +123,9 @@ def redirect(request):
 
 interceptor.register(redirect)
 
+add_spacing_pattern("mastodon", r"https?://toot\.cat/web/getting-started", 180)
+add_spacing_pattern("reddit", r"https?://((www|old)\.)?reddit\.com/$", 300)
+add_spacing_pattern("multireddits", r"https?://((www|old)\.)?reddit\.com/user/gkayaalp/m/.*", 300)
 
 ### Visuals:
 
