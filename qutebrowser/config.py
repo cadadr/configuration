@@ -24,7 +24,6 @@ config = config  # noqa: F821 pylint: disable=E0602,C0103
 
 majv, minv, patch = map(int, qver.split("."))
 
-
 # v2.x requires explicit suppression of loading autoconfig.yml. We
 # will do that, but at the end of the config file, to give its
 # settings precedence.

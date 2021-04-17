@@ -178,6 +178,12 @@ Now we can log out as root and log back in as `g` (or, preferably, reboot):
     [In: ~; Sal Mar 30 11:14; ^1]
     [0] g@kayra (0)$
 
+A recent version of Qutebrowser can be installed via
+
+    $ python3 ./scripts/mkvenv.py --venv-dir ~/local/qutebrowser
+
+from inside a recent checkout.
+
 Qutebrowser is going to fail to keep login sessions because different
 versions of WebEngine databases are incompatible
 (viz. <https://github.com/qutebrowser/qutebrowser/issues/5847#issuecomment-718985559>),
