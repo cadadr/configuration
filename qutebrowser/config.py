@@ -2,7 +2,12 @@
 
 from qutebrowser.api import interceptor
 from qutebrowser.api import message
-from qutebrowser.extensions.interceptors import ResourceType
+
+try:
+    from qutebrowser.extensions.interceptors import ResourceType
+except ImportError:
+    pass
+
 from qutebrowser import __version__ as qver
 from dracula import blood
 
@@ -109,11 +114,11 @@ def maybe_redirect_to_imgurp(request):
 
 # These functions should return True if they did a redirect.  The
 # first match will be applied only.
-redirect_fns = [
-    maybe_redirect_to_imgurp,
-    # XXX(2021-03-27): seems to not work with qutebrowser 1.6.x
-    # maybe_redirect_for_spacing,
-]
+redirect_fns = []
+
+if majv >= 2:
+    redirect_fns.append(maybe_redirect_to_imgurp)
+    redirect_fns.append(maybe_redirect_for_spacing)
 
 
 def redirect(request):
