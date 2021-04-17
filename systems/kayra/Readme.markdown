@@ -180,9 +180,12 @@ Now we can log out as root and log back in as `g` (or, preferably, reboot):
 
 A recent version of Qutebrowser can be installed via
 
-    $ python3 ./scripts/mkvenv.py --venv-dir ~/local/qutebrowser
+    $ python3 ./scripts/mkvenv.py --venv-dir ~/local/_qutebrowser
 
-from inside a recent checkout.
+from inside a recent checkout.  The underscore is there in the path
+name in order to tell `lib/profile/paths.sh` to skip adding this three
+to the path, as otherwise it will shadow system’s Python 3
+installation.
 
 Qutebrowser is going to fail to keep login sessions because different
 versions of WebEngine databases are incompatible

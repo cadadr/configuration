@@ -15,8 +15,7 @@ LOCALDIR=$HOME/local
 LOCALPATH=
 
 if [ -d $LOCALDIR ]; then
-    for dir in $(ls $LOCALDIR); do
-	d=$LOCALDIR/$dir
+    for d in $(find $LOCALDIR -maxdepth 1 -mindepth 1 -not -name '_*'); do
 	if [ -d $d/bin ]; then
 	    LOCALPATH=$d/bin:$LOCALPATH
 	fi
