@@ -190,6 +190,9 @@ dotfiles/config/lagrange/idents.lgr
 dotfiles/config/lagrange/state.lgr
 dotfiles/config/lagrange/trusted.txt
 dotfiles/config/lagrange/visited.2.txt
+dotfiles/config/quodlibet/current
+dotfiles/config/quodlibet/songs
+dotfiles/config/quodlibet/faultdump
 
 # mergen
 systems/mergen/xfce4/xfce4-screenshooter
