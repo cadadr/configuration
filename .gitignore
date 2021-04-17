@@ -185,6 +185,11 @@ dotfiles/config/toot/config.json
 dotfiles/config/cinnamon-monitors.xml
 dotfiles/config/cef_user_data/Dictionaries/
 dotfiles/config/kconf_updaterc
+dotfiles/config/lagrange/feeds.txt
+dotfiles/config/lagrange/idents.lgr
+dotfiles/config/lagrange/state.lgr
+dotfiles/config/lagrange/trusted.txt
+dotfiles/config/lagrange/visited.2.txt
 
 # mergen
 systems/mergen/xfce4/xfce4-screenshooter
