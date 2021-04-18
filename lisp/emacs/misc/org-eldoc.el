@@ -59,6 +59,7 @@
   (let ((case-fold-search t) cur)
     (save-excursion
       (beginning-of-line)
+      (org-previous-visible-heading 1)
       (save-match-data
         (when (looking-at org-complex-heading-regexp)
           (setq cur (match-string 4))
