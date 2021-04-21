@@ -7110,7 +7110,9 @@ xdg-open is a desktop utility that calls your preferred web browser."
   (and window-system (executable-find "xdg-open")))
 
 
-(defvar browse-url-qutebrowser-program "qutebrowser")
+(defvar browse-url-qutebrowser-program
+  (or (executable-find "qutebrowser")
+      (executable-find "~/local/_qutebrowser/bin/qutebrowser")))
 (defvar browse-url-qutebrowser-arguments nil)
 
 (defun browse-url-qutebrowser (url &optional new-window)
@@ -7182,7 +7184,11 @@ Redirect to the raw file url."
   "Add an URL to EMMS."
   (emms-add-url url))
 
-(defalias 'gk-browse-url 'browse-url-generic)
+(defun gk-urls-with-elpher (url &rest args)
+  "Visit an URL with Elpher."
+  (elpher-go url))
+
+(defalias 'gk-browse-url 'browse-url-qutebrowser)
 
 
 
