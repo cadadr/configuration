@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=Lagrange
+Exec=/home/g/Applications/Lagrange-1.3.2-x86_64.AppImage %u
+Type=Application
+StartupNotify=false
+Categories=System;
+MimeType=x-scheme-handler/gopher;x-scheme-handler/gemini;

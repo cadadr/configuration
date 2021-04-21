@@ -18,6 +18,7 @@
 .local/share/applications/emacsclient-url.desktop	candy/emacsclient-url.desktop
 .local/share/applications/org-protocol.desktop		candy/org-protocol.desktop
 .local/share/applications/elpher.desktop		candy/elpher.desktop
+.local/share/applications/lagrange.desktop		candy/lagrange.desktop
 .local/share/applications/zotero.desktop		candy/zotero.desktop
 .local/share/applications/qutebrowser.desktop		candy/qute.desktop
 .local/share/applications/mimeapps.list			dotfiles/config/mimeapps.list
