@@ -4519,13 +4519,17 @@ given how page numbers are realised varies in the real world."
   (interactive
    (list
     (let ((def (car gk-org-reading-note--history)))
-     (read-string
-      (format "Page number (default: %s): " def)
-      nil 'gk-org-reading-note--history def t))))
+      (read-string
+       (format
+        "Page number (default: %s, ‘0’ for no page number): "
+        def)
+       nil 'gk-org-reading-note--history def t))))
   (goto-char (line-beginning-position))
   (insert "- ")
-  (insert "p. " page ": «")
+  (unless (string= "0" page)
+    (insert "p. " page ": "))
   (insert
+   "«"
    (with-temp-buffer
      (yank)
      (string-trim
