@@ -221,6 +221,7 @@
 (require 'rx)
 (require 's)
 (require 'saveplace)
+(require 'savehist)
 (require 'scheme)
 (require 'sendmail)
 (require 'seq)
@@ -672,6 +673,7 @@ BUFFER defaults to current buffer, and SECONDS to 1."
          (point)))))))
 
 (defvar gk-insert-todo-comment--history nil)
+(cl-pushnew 'gk-insert-todo-comment--history savehist-additional-variables)
 (defvar gk-insert-todo-comment-keywords '("TODO" "XXX" "HACK" "FIXME"))
 (defvar gk-insert-todo-comment-default (car gk-insert-todo-comment-keywords))
 
@@ -3485,6 +3487,7 @@ symbol)."
 
 (defvar gk-ri-history nil
   "The history list for ‘gk-ri’.")
+(cl-pushnew 'gk-ri-history savehist-additional-variables)
 
 (define-derived-mode gk-ri-mode view-mode "GKRi"
   "GK Ri mode is an adapation of ‘view-mode’ to ‘gk-ri’."
@@ -4477,6 +4480,7 @@ number."
       wc)))
 
 (defvar gk-org-reading-note--history '("0"))
+(cl-pushnew 'gk-org-reading-note--history savehist-additional-variables)
 
 (defun gk-org-refill-reading-note ()
   "Refill a list item when taking reading notes from a PDF.
@@ -6684,6 +6688,9 @@ new frame is created."
  goto-line-history-local t
  ;; Scale header lines with buffer when zooming.
  text-scale-remap-header-line t)
+ ;; Unlimited minibuffer history.
+ history-length t
+ history-delete-duplicates t
 
 
 (setq-default save-place t)
@@ -6691,6 +6698,11 @@ new frame is created."
 (setf frame-title-format
       '("%@%*[" (:eval (or (frame-parameter nil 'gk-project) "main")) "] %b")
       icon-title-format frame-title-format)
+
+(cl-pushnew 'savehist-mode gk-global-modes)
+(setf savehist-additional-variables
+      (append savehist-additional-variables
+              '(search-ring regexp-search-ring)))
 
 
 
@@ -7030,6 +7042,11 @@ So that the reader knows where to continue reading."
 
 
 ;;;;; Undo:
+
+(setf
+ undo-tree-auto-save-history t
+ undo-tree-history-directory-alist
+ '(("." . "~/.undo-tree-hist/")))
 
 ;; Enable undo-tree.
 (cl-pushnew 'global-undo-tree-mode gk-global-modes)
