@@ -5374,11 +5374,16 @@ numerals which regularly appear in texts."
  "file"
  :face '(:inherit font-lock-string-face :underline t))
 
-(set-face-attribute 'org-ellipsis nil :underline nil :height .5 :bold t)
+(add-hook 'org-mode-hook
+          (lambda ()
+            (set-face-attribute 'org-ellipsis nil
+                                :underline nil :height .5 :bold nil
+                                :inherit 'font-lock-builtin-face)))
 
 (setf
  org-num-face 'org-verbatim
- org-ellipsis "  ⋱")
+ ;; Some others possible chars: ⊞ ◢ ⊿ 𝅍
+ org-ellipsis "◢")
 
 
 
