@@ -6993,7 +6993,7 @@ So that the reader knows where to continue reading."
  ;; Save all that's possible.
  persistent-scratch-what-to-save '(major-mode point narrowing text-properties)
  persistent-scratch-save-file (locate-user-emacs-file "etc/+scratch+"))
-(persistent-scratch-setup-default)
+;; (persistent-scratch-setup-default)
 
 
 
