@@ -6696,10 +6696,13 @@ new frame is created."
  ;; Each buffer has its own goto-line history.
  goto-line-history-local t
  ;; Scale header lines with buffer when zooming.
- text-scale-remap-header-line t)
+ text-scale-remap-header-line t
  ;; Unlimited minibuffer history.
  history-length t
  history-delete-duplicates t
+ ;; Potential speedup in some cases that relate to fonts and
+ ;; font-lock. viz. https://github.com/integral-dw/org-bullets.
+ inhibit-compacting-font-caches t)
 
 
 (setq-default save-place t)
