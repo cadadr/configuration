@@ -7288,6 +7288,7 @@ provided."
         ("^https?://raw\\.github\\.com/" . gk-urls-browse-github-raw)
         ("^http://www.cornucopia\\.local/" . gk-urls-browse-cornucopia)
         ("file:///home/.+/co/lisp/doc/HyperSpec/" . gk-browse-url)
+        ("^\\(gemini\\|gopher\\)://" . gk-urls-with-elpher)
         ,@gk-urls-file-adapters))
 
 
