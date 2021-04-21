@@ -98,6 +98,8 @@ settings:
     global: same-domain
   content.headers.user_agent:
     global: Mozilla/5.0 (X11; Linux x86_64; rv:57.0) Gecko/20100101 Firefox/57.0
+  content.javascript.can_access_clipboard:
+    global: false
   content.notifications.enabled:
     https://toot.cat: false
   content.pdfjs:
