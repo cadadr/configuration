@@ -1,6 +1,6 @@
 [Desktop Entry]
 Name=elpher
-Exec=emacsclient -nc -eval (elpher-go\ \"%u\")
+Exec=emacsclient -nc -eval "(gk-urls-with-elpher \"%u\")"
 Type=Application
 StartupNotify=false
 Categories=System;
