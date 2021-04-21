@@ -176,6 +176,7 @@
 (require 'org-attach-screenshot)
 (require 'org-capture)
 (require 'org-checklist)
+(require 'org-eldoc)
 (require 'org-habit)
 (require 'org-inlinetask)
 (require 'org-mobile)
@@ -6093,6 +6094,9 @@ fragments"
 
 ;;;;; Hook:
 
+;; I’ll activate it myself on a buffer basis, thx.
+(remove-hook 'org-mode-hook 'org-eldoc-load)
+
 (defun gk-org-hook ()
   "Default hook for `org-mode' buffers."
   (setq-local default-justification 'left)
@@ -6103,6 +6107,8 @@ fragments"
   (org-zotxt-mode +1)
   (org-num-mode +1)
   (imenu-add-to-menubar "Entries")
+  (org-eldoc-load)
+  (eldoc-mode)
   (setq-local truncate-lines nil)
   (setq-local indent-tabs-mode nil)
   (setq-local post-command-hook (cons #'gk-org-auto-toggle-fragment-display
