@@ -30,6 +30,32 @@
 
 ;;; Prelude:
 
+;; Report load time.
+(defvar gk-emacs-initialisation-started-time nil
+  "Time at which ‘user-init-file’ started loading.")
+(setq gk-emacs-initialisation-started-time (current-time))
+
+(defvar gk-emacs-initialisation-completed-time nil
+  "Time at which ‘user-init-file’ finished loading.")
+
+(unless noninteractive
+  (add-hook
+   'after-init-hook
+   (lambda ()
+     (setq gk-emacs-initialisation-completed-time (current-time)
+           initial-scratch-message (format-time-string
+                                    (concat ";;\n;; Welcome to Emacs, with cadadr’s mutila^Wcustomisations!\n"
+                                            ";; Initialisation completed, took %-S.%3N seconds.\n;;\n")
+                                    (time-subtract
+                                     gk-emacs-initialisation-completed-time
+                                     gk-emacs-initialisation-started-time)))
+     (run-with-timer
+      1.5 nil
+      (lambda () (message
+                  ;; remove the trailing newline
+                  (substring initial-scratch-message
+                             0 (1- (length initial-scratch-message)))))))))
+
 (when (version< emacs-version "28.0")
   (error "This configuration requires a recent build of Emacs master"))
 
@@ -7936,13 +7962,13 @@ Does various tasks after saving a file, see it's definition."
 
 ;;; Finalise initialisation:
 
+(gk-load (file-name-sans-extension custom-file))
+
 (unless noninteractive
   ;; Start the server.
   (server-start)
   (add-hook 'server-switch-hook 'raise-frame)
-  (setf initial-buffer-choice (gk-org-dir-file "MastersThesis/Notes.org")))
-
-(gk-load (file-name-sans-extension custom-file))
+  (setq initial-buffer-choice (gk-org-dir-file "Sidekick.org")))
 
 
 
