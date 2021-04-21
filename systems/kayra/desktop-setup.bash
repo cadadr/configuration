@@ -8,7 +8,7 @@ IFS=$'\n\t'
 export DESKTOP_SESSION=i3wm
 export GK_COLOUR_SCHEME_PREFERENCE=light
 export GK_XBGIMG="$HOME/.xbg.png"
-export GK_XBG_SLIDESHOW_DIR="$HOME/Pictures/wlp/simpledesktops.com"
+export GK_XBG_SLIDESHOW_DIR="$HOME/Pictures/wlp/slideshow/"
 export GK_XBG_SLIDESHOW_INTERVAL_MINS=5
 
 # Manually set lat and long from zone.tab, geoclue is unreliable
