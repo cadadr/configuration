@@ -3,6 +3,7 @@
 ;; Copyright (C) 2021  Göktuğ Kayaalp
 
 ;; Author: Göktuğ Kayaalp <self@gkayaalp.com>
+;; Package-Requires: ((emacs "26") (request "0.3.2") (s "1.9.0") (ebib "2.31"))
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
