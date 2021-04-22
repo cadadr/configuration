@@ -67,4 +67,4 @@ bash $MYLIB/launch-session-servers.bash
 
 # dotfiles/xsession will run $MYSYSTEM/desktop-setup.bash with
 # dbus-launch, so we can just run i3 here.
-exec i3 -V -d all
+exec i3 -V
