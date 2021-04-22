@@ -45,7 +45,7 @@
      (setq gk-emacs-initialisation-completed-time (current-time)
            initial-scratch-message (format-time-string
                                     (concat ";;\n;; Welcome to Emacs, with cadadr’s mutila^Wcustomisations!\n"
-                                            ";; Initialisation completed, took %-S.%3N seconds.\n;;\n")
+                                            ";; Initialisation completed, took %-S.%3N seconds.\n;;\n\n\n")
                                     (time-subtract
                                      gk-emacs-initialisation-completed-time
                                      gk-emacs-initialisation-started-time)))
@@ -54,7 +54,7 @@
       (lambda () (message
                   ;; remove the trailing newline
                   (substring initial-scratch-message
-                             0 (1- (length initial-scratch-message)))))))))
+                             0 (- (length initial-scratch-message) 3))))))))
 
 (when (version< emacs-version "28.0")
   (error "This configuration requires a recent build of Emacs master"))
