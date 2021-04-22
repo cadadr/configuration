@@ -13,11 +13,16 @@ title_align center
 hide_edge_borders none
 
 # show title bars
-for_window [class=".*"] border normal
+# for_window [class=".*"] border normal
 
 # hide title bars
-# for_window [class=".*"] border pixel 3
+for_window [class=".*"] border pixel 3
 
+# i3-gaps
+gaps inner      15
+gaps outer      5
+gaps horizontal 15
+gaps vertical   10
 
 ### i3-specific background processes:
 exec python3 $MYLIB/i3/autotile.py -w 1 3
