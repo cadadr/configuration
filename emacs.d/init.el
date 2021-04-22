@@ -109,6 +109,7 @@
 (require 'dired-subtree)
 (require 'dired-x)
 (require 'doc-view)
+(require 'doifetch)
 (require 'dollar)
 (require 'ebib)
 (require 'eglot)
