@@ -19,6 +19,19 @@ DROPPRIVS=yes
 :0 a:
 duplicates
 
+# Lists
+:0:
+* ^List-Id: Gemini
+lists-gemini
+
+:0:
+* ^List-Id: Discussions about using Emacs in the Humanities
+lists-emacs-humanities
+
+:0:
+* From:.*bugzilla_noreply@kde.org
+lists-kde-bugzilla
+
 
 # Catch-all
 :0:
