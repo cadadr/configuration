@@ -96,11 +96,15 @@ yanked, and/or imported to Ebib."
                (propertize doi 'face 'link)))
       (newline)
       (widget-insert
-       "The following is the bibtex response to the given DOI. You can"
-       "edit the contents as you see fit, and then hit the ‘Yank’ button"
-       "in order to save the current contents of the field to the kill"
-       "ring, or ‘Add to Ebib...’ to start ‘ebib’ and insert it into the"
-       "database, or ‘Quit’ to exit.")
+       (mapconcat
+        #'identity
+        (list
+         "The following is the bibtex response to the given DOI. You can"
+         "edit the contents as you see fit, and then hit the ‘Yank’ button"
+         "in order to save the current contents of the field to the kill"
+         "ring, or ‘Add to Ebib...’ to start ‘ebib’ and insert it into the"
+         "database, or ‘Quit’ to exit.")
+        " "))
       (fill-paragraph)
       (newline 2)
       (setq edit (widget-create 'editable-field :value data))
