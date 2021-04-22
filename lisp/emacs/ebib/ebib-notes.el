@@ -37,7 +37,6 @@
 ;;; Code:
 
 (require 'ebib-utils)
-(require 'ebib-db)
 
 (require 'org-element nil t) ; Load org-element.el if available.
 
@@ -88,7 +87,7 @@ with their full path and should have `ebib-notes-file-extension'
 as their extension.  For directories, all files with
 `ebib-notes-file-extension' are searched for notes."
   :group 'ebib-notes
-  :type '(repeat :tag "Note location (file or directory"))
+  :type '(repeat (file :tag "Notes location (file or directory)")))
 
 (define-obsolete-variable-alias 'ebib-notes-use-single-file 'ebib-notes-default-file "Ebib 2.20")
 (define-obsolete-variable-alias 'ebib-notes-file 'ebib-notes-default-file "Ebib 2.30")
