@@ -1,8 +1,8 @@
 [Desktop Entry]
-Name=Emacs Client for URLs
-Exec=emacsclient %u
-Icon=emacs-icon
-Type=Application
-Terminal=false
-MimeType=x-scheme-handler/org-protocol;
+Comment=Emacs Client for URLs
+Exec=emacs-browse-url.bash %u
+MimeType=x-scheme-handler/org-protocol;x-scheme-handler/mailto;x-scheme-handler/gopher;x-scheme-handler/gemini;
+Name=emacsclient-url
 NoDisplay=true
+Terminal=false
+Type=Application

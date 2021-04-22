@@ -1,7 +1,0 @@
-[Desktop Entry]
-Name=elpher
-Exec=emacsclient -nc -eval "(gk-urls-with-elpher \"%u\")"
-Type=Application
-StartupNotify=false
-Categories=System;
-MimeType=x-scheme-handler/gopher;x-scheme-handler/gemini;

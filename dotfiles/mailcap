@@ -2,4 +2,6 @@
 
 # Stuff that Emacs opens.
 text/*; emacsclient %s
-application/pdf; emacsclient -c %s
+image/*; ristretto %s
+video/*; mpv %s
+application/pdf; okular %s
