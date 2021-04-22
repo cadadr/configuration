@@ -67,8 +67,20 @@ will be fetched synchronously."
 
 
 (defun doifetch--doi-at-point ()
-  (thing-at-point-url-at-point t (cons (line-beginning-position)
-                                       (line-end-position))))
+  (let ((maybe-doi
+         (or (thing-at-point-url-at-point t)
+             ;; XXX(2021-04-22): gotta check doi spec for this, or
+             ;; bin/doi2bib.pl.
+             (when-let* ((thing (thing-at-point 'symbol)))
+               (when (string-match-p (rx (and (1+ numeric) "." (1+ numeric) "/"))
+                                     thing)
+                 thing)))))
+    ;; Could’ve done regex but it’s complex even with ‘rx’...
+    (when (or (s-starts-with? "https://doi.org/" maybe-doi)
+              (s-starts-with? "http://doi.org/" maybe-doi)
+              (s-starts-with? "doi.org/" maybe-doi)
+              (not (s-starts-with? "http" maybe-doi)))
+      maybe-doi)))
 
 
 (defun doifetch--do-fetch (doi &optional sync)
