@@ -305,7 +305,7 @@ pwd_to_emacspath(){
     emacsclient -eval "(add-to-list 'load-path \"$PWD\")"
 }
 alias pwd2emacspath=pwd_to_emacspath
-alias lofi="mpv --no-video 'https://www.youtube.com/watch?v=5qap5aO4i9A'"
+alias lofi="mpv --volume 30 --no-video 'https://www.youtube.com/watch?v=5qap5aO4i9A'"
 alias pgrep="pgrep -fa"
 
 # raspberry pi
