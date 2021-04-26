@@ -31,6 +31,8 @@ settings:
     global: webengine
   bindings.commands:
     global:
+      insert:
+        <Ctrl+e>: null
       normal:
         ',,': open-editor
         ',0': :open about:home
