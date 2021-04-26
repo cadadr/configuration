@@ -30,16 +30,21 @@ echo 'Continue with build (RETURN to continue, ^C to quit)?'; read nought
 git pull --ff-only
 git clean -dfx
 
-# Run the configure script.  If you are copying this script, make sure
-# you copy ‘configure-emacs.sh’ along with it too.  Or, you can
-# replace this line with something like
-#
-# if [ ! -f configure ]; then
-#     ./autogen.sh all
-# fi
-# ./configure ...
-#
-# passing the ./configure script whatever flags you like.
+# Run the configure script.
+if [ ! -f configure ]; then
+    ./autogen.sh all
+fi
+
+./configure --prefix=$HOME/local/emacs    \
+            --with-x-toolkit=lucid        \
+            --with-modules                \
+            --with-file-notification=yes  \
+            --with-gameuser=no            \
+            --with-cairo                  \
+            --with-mailutils              \
+            --with-imagemagick            \
+            --with-native-compilation ;;
+
 TK=lucid configure-emacs.sh head
 echo Configure script completed, review output and hit RETURN to build; read nought
 
