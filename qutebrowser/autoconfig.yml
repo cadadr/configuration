@@ -82,6 +82,8 @@ settings:
     global: rgba(0, 0, 0, 100%)
   colors.webpage.bg:
     global: white
+  colors.webpage.preferred_color_scheme:
+    global: auto
   completion.delay:
     global: 0
   content.autoplay:
