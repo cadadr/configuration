@@ -106,6 +106,7 @@ settings:
     global: true
   content.notifications.enabled:
     https://toot.cat: false
+    https://www.birgun.net: false
   content.pdfjs:
     global: false
   content.webgl:
