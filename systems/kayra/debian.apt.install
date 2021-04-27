@@ -240,3 +240,7 @@ sbcl
 swi-prolog
 gdebi
 dex
+v4l2loopback-dkms
+obs-studio
+neovim
+zsh
