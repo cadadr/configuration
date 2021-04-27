@@ -1,7 +1,7 @@
 [Desktop Entry]
 Version=2.2.0
 Name=Qutebrowser (gk)
-Exec=launch-qutebrowser.bash
+Exec=launch-qutebrowser.bash %u
 Terminal=false
 X-MultipleArgs=false
 Type=Application

@@ -7,4 +7,4 @@ IFS=$'\n\t'
 
 export PATH="$HOME/local/_qutebrowser/bin/:$PATH"
 . $HOME/local/_qutebrowser/bin/activate
-exec qutebrowser
+exec qutebrowser $@
