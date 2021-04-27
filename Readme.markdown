@@ -14,7 +14,7 @@ anything in any way.
 This repo contains the following:
 
 - My dotfiles (`dotfiles/`)
-- My GNU/Linux configuration
+- My Linux configuration
 - And some other stuff.
 
 I've re-created this repository from scratch, removing some secrets
@@ -33,16 +33,16 @@ The configuration on this repo works with multiple OS / hardware
 setups, which have their own set up instructions.  Follow the links
 below for more details.
 
-- [GNU/Linux desktop workstation](systems/mergen/) (`mergen`) with
+- [Linux desktop workstation](systems/mergen/) (`mergen`) with
   latest stable Linux Mint Cinnamon.
 
-- [Experimental GNU/Linux desktop workstation](systems/guixtest/)
+- [Experimental Linux desktop workstation](systems/guixtest/)
   (`guixtest`) with GuixSD and i3wm.
 
-- [GNU/Linux desktop workstation](systems/kayra/) (`kayra`) with
+- [Linux desktop workstation](systems/kayra/) (`kayra`) with
   Debian and i3wm.
 
-- [GNU/Linux laptop](systems/ulgen/) (`ulgen`) using the
+- [Linux laptop](systems/ulgen/) (`ulgen`) using the
   latest stable Linux Mint Cinnamon.
 
 - [Raspberry Pi](systems/ayata/) (`ayata`) backup and print/scan
