@@ -13,7 +13,6 @@ anything in any way.
 
 This repo contains the following:
 
-- My GNU Emacs configuration tree (`emacs.d/`)
 - My dotfiles (`dotfiles/`)
 - My GNU/Linux configuration
 - And some other stuff.
