@@ -1,17 +1,15 @@
 " rc.vim --- vim configuration
 
-" I don't use vim much, but it can be useful to maintain a minimal vimrc, so
-" here is this file.  This one is meant to be symlinked from $HOME/.vimrc.
-
 " some sources I (ab)used way too much to note everywhere:
 " - https://git.sr.ht/~admicos/dot/tree/master/nvim/init.vim
 
 " UI/UX {{{
+colorscheme darkblue
+
 set nocompatible
 filetype plugin indent on
 syntax enable
-set tabstop=4 shiftwidth=4 expandtab
-set encoding=utf8
+
 set backspace=eol,start,indent	" backspace over newline too
 set incsearch
 set undofile		" persistent undo ...
@@ -20,11 +18,21 @@ set hidden		" don't unload buffers
 set history=10000	" hard disks are bigger these days...
 set mouse=a		" enable mouse support
 set ignorecase		" case fold search
+set nu			" show current line number
+			" numbers
 
-" guioptions:
-" a: write visual selection to X selection
-" i: set window icon
-" e: use GUI tabs for 'showtabline'
+" Annotate whitespace
+" ===================
+" trail:    trailing whitespace
+" tab:	    tab stop start and tab shift
+" nbsp:	    non-breaking space
+set list listchars=trail:-,tab:>-,nbsp:_
+
+" GUI options
+" ===========
+" a:	write visual selection to X selection
+" i:	set window icon
+" e:	use GUI tabs for 'showtabline'
 "
 " toolbar, menubar, and scrollbars are turned off.
 set guioptions=aie
@@ -33,8 +41,35 @@ set guioptions=aie
 
 
 " basic text editing settings {{{
+
+" Tab setup
+" =========
+" tabstop:	the size of hard tab (\t).  we keep it at 8 because
+"		it's a sane default.
+"
+" softtabstop:	number of spaces to insert instead of tabs.
+"
+" shiftwidth:	number of spaces to indent with.
+"
+" expandtab:	insert spaces instead of tabs.  Ctrl-V<Tab> inserts
+"		hard tab.
+"
+" smarttab:	in front insert 'shiftwidth blanks, 'ts' or 'sts'
+"		elsewhere
+set ts=8 softtabstop=4 shiftwidth=4 expandtab smarttab
+set encoding=utf8
 set textwidth=72	" 72 chars per line
-set formatoptions-=tc	" don't auto hardwrap tho
+
+" Text formatting
+" ===============
+" -r:	do not insert comment leader after <Enter>
+" -o:	---------------- " --------------- 'o' or 'O'
+" +n:	recognise numbered lists, viz. 'formatlistpat'
+" +j:	remove comment leader when joining if applicable
+" +1:	do not break line after one letter word if possible
+" +p:	do not break line after period and single space
+set formatoptions-=ro
+set formatoptions+=nj1p
 set noexpandtab
 set autoindent
 set foldmethod=marker	" manually inserted markers
@@ -62,7 +97,6 @@ set lbr			" word wrap
 let &sbr = '\ '		" illustrate logical line breaks
 set termguicolors	" use GUI colors in terminal
 set hlsearch
-set nottyfast		" for ssh
 set lazyredraw
 set laststatus=2	" always show status bar
 set scrolloff=2 sidescrolloff=2

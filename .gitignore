@@ -199,3 +199,6 @@ systems/mergen/xfce4/xfce4-screenshooter
 emacs.d/eln-cache/
 dotfiles/config/kritadisplayrc
 dotfiles/config/kritarc
+
+# vim
+dotfiles/vim/undo/
