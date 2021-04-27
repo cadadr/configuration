@@ -353,6 +353,7 @@ __gk_debian_aliases(){
     alias show="apt-cache show"
     alias whose="dpkg-query -S"
     alias what="dpkg-query -L"
+    alias lspkg="dpkg-query -L"
 }
 
 # Aliases for FreeBSD systems
