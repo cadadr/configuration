@@ -234,6 +234,7 @@
 (require 'skewer-html)
 (require 'smex)
 (require 'smtpmail)
+(require 'so-long)
 (require 'subr-x)
 (require 'switch-window)
 (require 'textile-mode)
@@ -2746,6 +2747,31 @@ file extension.")
 ;;;;; Secrets:
 
 (gk-load (dropbox "secrets") t)
+
+
+
+;;;; Long lines:
+;; Adapted from so-long.el documentation.
+
+(cl-pushnew 'global-so-long-mode gk-global-modes)
+
+;; Basic settings.
+(setf so-long-action 'so-long-minor-mode
+      so-long-threshold 1000
+      so-long-max-lines 100)
+
+;; Additional target major modes to trigger for.
+(mapc (apply-partially #'add-to-list 'so-long-target-modes)
+      '(sgml-mode nxml-mode))
+
+;; Additional buffer-local minor modes to disable.
+(mapc (apply-partially #'add-to-list 'so-long-minor-modes)
+      '(diff-hl-mode diff-hl-amend-mode diff-hl-flydiff-mode))
+
+;; Additional variables to override.
+(mapc (apply-partially #'add-to-list 'so-long-variable-overrides)
+      '((show-trailing-whitespace . nil)
+        (truncate-lines . nil)))
 
 
 
