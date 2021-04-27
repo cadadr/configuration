@@ -27,20 +27,22 @@ gaps vertical   10
 ### i3-specific background processes:
 exec python3 $MYLIB/i3/autotile.py -w 1 3
 
+### Global parameters
+set $terminal kitty
 
 ### Launchers:
 bindsym F12 exec --no-startup-id i3-dmenu-desktop
 bindsym Shift+F12 exec --no-startup-id dmenu_run
 bindsym $mod+Shift+Return exec emacsclient -c
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec $terminal
 bindsym $mod+Control+Return exec --no-startup-id firefox-window.sh
 bindsym $mod+h exec --no-startup-id sh $MYLIB/i3/i3cheatsheet.sh
 bindsym $mod+Control+y exec --no-startup-id xtype.sh
 bindsym $mod+Control+f exec --no-startup-id pcmanfm
 bindsym $mod+Control+w exec --no-startup-id ffprofile.sh
 bindsym $mod+Control+p exec --no-startup-id passmenu.sh
-bindsym $mod+Control+e exec xterm -e 'less /run/user/$UID/i3/errorlog.*'
-bindsym $mod+Control+x exec xterm -e 'less ~/.xsession-errors'
+bindsym $mod+Control+e exec $terminal -e 'less /run/user/$UID/i3/errorlog.*'
+bindsym $mod+Control+x exec $terminal -e 'less ~/.xsession-errors'
 bindsym $mod+Control+Shift+q exit
 bindsym $mod+Shift+semicolon exec i3-input -P 'i3 command: '
 bindsym $mod+w exec --no-startup-id i3switch.rb
