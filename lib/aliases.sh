@@ -344,7 +344,7 @@ __gk_debian_aliases(){
     alias fresh='sudo apt-get update && (apt list --upgradable | pg)'
     alias up='sudo apt-get upgrade'
     alias distup='sudo apt-get dist-upgrade'
-    alias haz="dpkg-query -l"
+    alias haz="PAGER=tee dpkg-query -l"
     alias has=__gk_debian_has
     alias like="apt-cache search"
     alias bdeps="sudo apt-get build-dep"
