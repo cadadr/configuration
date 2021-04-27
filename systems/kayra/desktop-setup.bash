@@ -59,6 +59,7 @@ clipit                   &
 nm-applet                &
 pcmanfm --daemon-mode    &
 pasystray                &
+compton                  &
 # gpg-agent, ssh-agent?
 
 bash $MYLIB/launch-session-servers.bash
