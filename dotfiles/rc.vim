@@ -4,7 +4,8 @@
 " - https://git.sr.ht/~admicos/dot/tree/master/nvim/init.vim
 
 " UI/UX {{{
-colorscheme darkblue
+set background=dark
+set termguicolors
 
 set nocompatible
 filetype plugin indent on
