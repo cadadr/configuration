@@ -5409,7 +5409,7 @@ numerals which regularly appear in texts."
 
 (setf
  org-num-face 'org-verbatim
- ;; Some others possible chars: ⊞ ◢ ⊿ 𝅍
+ ;; Some others possible chars: ⊞ ◢ 𝅍
  org-ellipsis "◢")
 
 
