@@ -34,10 +34,9 @@ because those symlinks point to directories outside my `$HOME`
 directory.
 
 In order to finalise package installation before setting up the
-dotfiles, the build dependencies for GUI Emacs and Python 3 are
-necessary:
+dotfiles, the build dependencies for Python 3 are necessary:
 
-    # apt-get build-dep python3 emacs-gtk emacs-pdf-tools
+    # apt-get build-dep python3
 
 If you’ll use msmtp, the following command makes AppArmor quit its
 stupid bullshit.  I’ve tried aliases to no avail.
