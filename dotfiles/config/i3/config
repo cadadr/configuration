@@ -315,7 +315,6 @@ for_window [class="Pavucontrol"] floating enable
 for_window [class="R_x11"] floating enable
 
 #### U?XTerm:
-for_window [class="UXTerm"] floating enable move position center
 for_window [class="XTerm" title="Backup"] floating enable move position center
 
 #### PCManFM:
