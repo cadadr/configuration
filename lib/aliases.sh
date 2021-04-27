@@ -299,6 +299,7 @@ alias undocker='docker ps -a -f status=exited | sed "1d" | cut -d " " -f 1 | xar
 curl='curl -s'
 alias vi="$EDITOR"
 alias vialiases="$EDITOR $MYLIB/aliases.sh"
+alias vi3wm="$EDITOR $HOME/.config/i3/config"
 alias envgrep="env | grep -i"
 alias openpdfs="pgrep -af '\.pdf' | cut --complement -d ' ' -f1,2"
 alias slrn="NNTPSERVER='news.gmane.io' HOME='$HOME/posta/news' slrn -i \
