@@ -193,6 +193,7 @@ dotfiles/config/lagrange/visited.2.txt
 dotfiles/config/quodlibet/current
 dotfiles/config/quodlibet/songs
 dotfiles/config/quodlibet/faultdump
+dotfiles/config/vlc/vlc-qt-interface.conf
 
 # mergen
 systems/mergen/xfce4/xfce4-screenshooter
