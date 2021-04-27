@@ -290,6 +290,7 @@ alias yarn=yarnpkg
 alias undocker='docker ps -a -f status=exited | sed "1d" | cut -d " " -f 1 | xargs docker rm'
 # Suppress interactive progress reporting.
 curl='curl -s'
+alias vi="$EDITOR"
 alias vialiases="$EDITOR $MYLIB/aliases.sh"
 alias envgrep="env | grep -i"
 alias openpdfs="pgrep -af '\.pdf' | cut --complement -d ' ' -f1,2"
