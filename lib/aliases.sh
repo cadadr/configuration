@@ -219,6 +219,13 @@ pdf_monofy() {
         )
 }
 
+_which(){
+    case $SHELL in
+	*zsh)	which -p $@ ;;
+	*)	which $@ ;;
+    esac
+}
+
 ###
 alias listall="alias | cut -d= -f1 && declare -F | cut -d ' '  -f 3 | sed 's,^,function ,'"
 alias edit="$EDITOR"
@@ -231,14 +238,14 @@ alias j=jobs
 # The rest of ‘ls’ aliases will pick up these settings, so make sure
 # the flags here are relevant for all interactive uses of ls(1).
 if ls --version 2>/dev/null | grep -qs GNU; then
-    base="$(which ls) --group-directories-first -Fh"
+    base="$(_which ls) --group-directories-first -Fh"
     if [ -z "$INSIDE_EMACS" ]; then
         alias ls="$base --hyperlink"
     else
         alias ls="$base"
     fi
 else
-    alias ls="$(bin ls) -F"
+    alias ls="$(_which ls) -F"
 fi
 alias la='ls -Al'
 alias lr='ls -lR'

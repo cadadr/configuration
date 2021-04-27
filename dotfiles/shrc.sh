@@ -6,6 +6,14 @@
 export SHRC_VERSION=bobby
 export SHELL
 
+_source (){
+    case $SHELL in
+	*zsh)	source $@ ;;
+	*)	. $@ ;;
+    esac
+}
+
+
 if [ x$FROMLOGINPROFILE = xyes ]; then
     echo Login profile script is loading shell setup...
 fi
@@ -17,7 +25,7 @@ fi
 EDITOR=NONE
 if [ "x$INSIDE_EMACS" = x ]; then
     # Find a sensible editor.
-    for EDITOR in nvim vim vi zile nano ex ed; do
+    for EDITOR in vim vi zile nano ex ed; do
         if which $EDITOR >/dev/null 2>&1; then
 	    export EDITOR;
 	    [ $EDITOR = vim ] && alias vi=vim
@@ -53,14 +61,17 @@ export GPG_TTY=$(tty)
 # $SHELL can’t be trusted, apparently when you run sh from within a
 # bash session, the value from bash leaks into the subshell.
 case "$0" in
-	*bash) test -n "$MYLIB" && . $MYLIB/rc.bash ;;
+    *bash) test -n "$MYLIB" && _source $MYLIB/rc.bash;
+	    alias vishrc="vi $MYLIB/rc.bash" ;;
+    *zsh)  test -n "$MYLIB" && _source $MYLIB/rc.zsh;
+	    alias vishrc="vi $MYLIB/rc.zsh" ;;
     *) ;;
 esac
 
 ###
 
 #### Aliases & functions:
-test -n "$MYLIB" && . $MYLIB/aliases.sh
+test -n "$MYLIB" && _source $MYLIB/aliases.sh
 
 # Rebuild known binary list.
 hash -r

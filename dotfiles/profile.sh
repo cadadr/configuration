@@ -1,7 +1,20 @@
 # profile -- Login shells.
 
+_source (){
+    case $0 in
+	*zsh)	source $@ ;;
+	*)	. $@ ;;
+    esac
+}
+
+case $0 in
+    # remove the `-'
+    -*) export SHELL=${0:1} ;;
+    *)  export SHELL=$0 ;;
+esac
+
 ### Import system settings:
-# . /etc/profile >/dev/null 2>&1 || echo Could not source /etc/profile...
+_source /etc/profile >/dev/null 2>&1 || echo Could not source /etc/profile...
 
 ###
 
@@ -20,26 +33,26 @@ export MYSYSTEM="$MY/systems/$(hostname)"
 
 # guix.sh knows what to do when it's not on a Guix(SD) system, so no
 # need for conditional inclusion here.
-. $MYLIB/profile/guix.sh
+_source $MYLIB/profile/guix.sh
 
 ###
 
 
 ### Locale and time zone:
 
-. $MYLIB/profile/loctz.sh
+_source $MYLIB/profile/loctz.sh
 
 ###
 
 ### Paths:
 
-. $MYLIB/profile/paths.sh
+_source $MYLIB/profile/paths.sh
 
 ###
 
 ### Environment:
 
-. $MYLIB/profile/env.sh
+_source $MYLIB/profile/env.sh
 
 ###
 
@@ -47,6 +60,6 @@ export MYSYSTEM="$MY/systems/$(hostname)"
 # set ENV to a file invoked each time sh is started for interactive use.
 ENV=$HOME/.$(basename $SHELL)rc; export ENV
 export FROMLOGINPROFILE=yes
-. $ENV
+_source $ENV
 unset FROMLOGINPROFILE
 

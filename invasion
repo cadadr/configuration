@@ -2,6 +2,7 @@
 .Rprofile						dotfiles/profile.R
 .Xdefaults						dotfiles/Xdefaults
 .bashrc							dotfiles/shrc.sh
+.zshrc							dotfiles/shrc.sh
 .cabal							dotfiles/cabal
 .config							dotfiles/config
 .cvsrc							dotfiles/cvsrc
@@ -24,6 +25,7 @@
 .praat-dir						dotfiles/praat
 .procmailrc						dotfiles/procmailrc
 .profile						dotfiles/profile.sh
+.zprofile						dotfiles/profile.sh
 .bash_profile						dotfiles/profile.sh
 .sbclrc							lisp/cl/setup.lisp
 .signature						dotfiles/signature
