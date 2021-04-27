@@ -1,7 +1,7 @@
 # mailcap
 
 # Stuff that Emacs opens.
-text/*; emacsclient %s
+text/*; gvim %s
 image/*; ristretto %s
 video/*; mpv %s
 application/pdf; okular %s
