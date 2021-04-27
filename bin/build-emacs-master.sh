@@ -36,16 +36,17 @@ if [ ! -f configure ]; then
 fi
 
 ./configure --prefix=$HOME/local/emacs    \
-            --with-x-toolkit=lucid        \
+            --with-x-toolkit=gtk3         \
             --with-modules                \
             --with-file-notification=yes  \
             --with-gameuser=no            \
             --with-cairo                  \
             --with-mailutils              \
             --with-imagemagick            \
-            --with-native-compilation ;;
+            --disable-build-details       \
+            --with-json                   \
+            --with-native-compilation
 
-TK=lucid configure-emacs.sh head
 echo Configure script completed, review output and hit RETURN to build; read nought
 
 make -j$(lscpu | awk '/^CPU\(s\):/ {print $2}')
@@ -58,9 +59,8 @@ echo Build finished, hit RETURN to continue to testing w/ -Q.; read nought
 # script file name, or just run ‘./src/emacs’ and ‘C-x C-c’ out of it
 # if the config loads fine.
 echo Hit RETURN to test w/ configuration.; read nought
-# FIXME(2020-09-10): something makes this fail
-#EMACS=./src/emacs emacs-load-test.bash
-./src/emacs
+EMACS=./src/emacs emacs-load-test.bash
+
 
 echo Hit RETURN to install...; read nought
 rm -rf ~/local/emacs && make install
