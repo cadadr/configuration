@@ -28,3 +28,6 @@ set edit_headers    = yes
 set envelope_from   = yes
 set sendmail	    = /usr/bin/msmtp
 
+### Neomutt
+set sidebar_visible
+set sidebar_width   = 15
