@@ -166,6 +166,19 @@ Use default Xorg muse cursors:
 
     # echo >> /etc/alternatives/x-cursor-theme
 
+The following enables the 'TearFree' mode on AMD GPUs (see
+[here](https://wiki.debian.org/AtiHowTo#Preventing_screen_tearing)):
+
+    # tee /etc/X11/xorg.conf.d/20-amdgpu.conf <<EOF
+    # Prevent screen tearing on AMD GPUs.
+
+    Section "Device"
+       Identifier  "AMD Graphics"
+       Driver      "amdgpu"
+       Option      "TearFree"  "true"
+    EndSection
+    EOF
+
 Now we can log out as root and log back in as `g` (or, preferably, reboot):
 
     # exit
