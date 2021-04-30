@@ -105,8 +105,7 @@ settings:
   content.javascript.can_access_clipboard:
     global: true
   content.notifications.enabled:
-    https://toot.cat: false
-    https://www.birgun.net: false
+    global: false
   content.pdfjs:
     global: false
   content.webgl:
