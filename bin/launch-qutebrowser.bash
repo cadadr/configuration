@@ -7,4 +7,12 @@ IFS=$'\n\t'
 
 export PATH="$HOME/local/_qutebrowser/bin/:$PATH"
 . $HOME/local/_qutebrowser/bin/activate
-exec qutebrowser $@
+
+
+# Workaround from
+# https://github.com/qutebrowser/qutebrowser/issues/5656#issuecomment-761821220
+
+rm -frv ~/.local/share/qutebrowser/webengine/Service\ Worker/CacheStorage
+
+exec ~/local/_qutebrowser/bin/python3 -m qutebrowser "$@"
+
