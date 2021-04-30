@@ -19,7 +19,7 @@ set record	= +outbox
 # In Emacs I save drafts one per file, so use a separate mbox for Mutt's
 # drafts.
 set postponed	= +drafts/postponed
-mailboxes	= +inbox +archive +current +lists-gemini
+mailboxes	= +archive +current +inbox +lists-gemini
 set move	= yes
 
 ### Sending mail:
@@ -28,6 +28,19 @@ set edit_headers    = yes
 set envelope_from   = yes
 set sendmail	    = /usr/bin/msmtp
 
-### Neomutt
+### Neomutt:
 set sidebar_visible
 set sidebar_width   = 15
+
+### Macros:
+macro index ,c '<change-folder>=current<Return>'
+macro index ,a '<change-folder>=archive<Return>'
+macro index ,i '<change-folder>=inbox<Return>'
+macro index ,g '<change-folder>=lists-gemini<Return>'
+# old habits die hard...
+macro index,pager n '<next-undeleted>'
+macro attach      n '<next-entry>
+macro index,pager p '<previous-undeleted>'
+macro attach      p '<previous-entry>
+
+macro index,pager ,N '<save-message>=archive'
