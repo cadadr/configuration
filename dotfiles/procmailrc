@@ -19,6 +19,11 @@ DROPPRIVS=yes
 :0 a:
 duplicates
 
+# Bullshit
+:0:
+* ^From: "Selyayincilik.com" <noreply@selyayincilik.com>
+spam
+
 # Lists
 :0:
 * ^List-Id: Gemini
