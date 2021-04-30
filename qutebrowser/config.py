@@ -105,12 +105,21 @@ def maybe_redirect_to_imgurp(request):
     return False
 
 
+def maybe_redirect_to_nitter(request):
+    if request.request_url.host().endswith('twitter.com'):
+        request.request_url.setHost('nitter.nixnet.services')
+        do_redir(request)
+        return True
+    return False
+
+
 # These functions should return True if they did a redirect.  The
 # first match will be applied only.
 redirect_fns = []
 
 if majv >= 2:
     redirect_fns.append(maybe_redirect_to_imgurp)
+    redirect_fns.append(maybe_redirect_to_nitter)
     # redirect_fns.append(maybe_redirect_for_spacing)
 
 
