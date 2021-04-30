@@ -1,7 +1,9 @@
 # mailcap
 
 # Stuff that Emacs opens.
-text/*; gvim %s
+text/html; lynx -dump %s; nametemplate=%s.html; copiousoutput;
+# text/*; gvim %s
+text/*; emacsclient -c %s
 image/*; ristretto %s
 video/*; mpv %s
 application/pdf; okular %s
