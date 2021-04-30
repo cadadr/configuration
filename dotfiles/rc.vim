@@ -8,8 +8,6 @@ set background=dark
 set termguicolors
 
 set nocompatible
-filetype plugin indent on
-syntax enable
 
 set backspace=eol,start,indent	" backspace over newline too
 set incsearch
@@ -135,5 +133,21 @@ nmap <Leader>y "*y
 nmap <Leader>Y "*Y
 nmap <Leader>w :w<CR><C-z>
 
+" }}}
+
+" plugins {{{
+call plug#begin('~/.local/share/vim-plugins')
+Plug 'tpope/vim-speeddating'
+Plug 'SirVer/ultisnips'
+Plug 'jceb/vim-orgmode'
+Plug 'chrisbra/unicode.vim'
+call plug#end()
+" }}}
+
+" postamle {{{
+" This should be done after setting up runtimepath.  So guess it's best
+" to put it last.
+filetype plugin indent on
+syntax on
 " }}}
 
