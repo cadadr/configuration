@@ -20,7 +20,7 @@ extras:
 	$(MAKE) -C extras -$(MAKEFLAGS)
 
 packages:
-	$(MAKE) -C lisp/site -$(MAKEFLAGS)
+	$(MAKE) -C ../lisp/emacs/ -$(MAKEFLAGS)
 
 clean-ext:
 	$(MAKE) -C ext -$(MAKEFLAGS) clean
