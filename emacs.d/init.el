@@ -6456,9 +6456,11 @@ new frame is created."
     (mapc #'disable-theme custom-enabled-themes)
     (load-theme gk-gui-theme t))
 
-  (when (and (eq (gk-preferred-colour-scheme) :dark)
-             (string= (getenv "DESKTOP_SESSION") "i3wm"))
-    (set-frame-parameter nil 'alpha 88))
+  (when (string= (getenv "DESKTOP_SESSION") "i3wm")
+    ;; Tad bit more opaque with light themes, looks nicer.
+    (if (and (eq (gk-preferred-colour-scheme) :dark))
+        (add-to-list 'default-frame-alist '(alpha . (88)))
+      (add-to-list 'default-frame-alist '(alpha . (92)))))
 
   ;; Customise wombat
   (when (eq gk-gui-theme 'wombat)
