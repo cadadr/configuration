@@ -22,8 +22,7 @@ export LOCATION_LONG="$(echo 2 k $_long 100 / p | dc)"
 
 unset _lat _long latlong
 
-# set up ssh agent
-eval `ssh-agent -s`
+export $(gnome-keyring-daemon --start)
 
 ### X settings:
 # Disable DPMS turning off the screen
