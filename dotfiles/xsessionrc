@@ -1,10 +1,6 @@
 #!/bin/sh
 # xsessionrc --- x session environment -*- shell-script -*-
 
-type source >/dev/null || source () {
-        . $@
-}
-
 source $HOME/.profile
 
 # Inform systemd
