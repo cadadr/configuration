@@ -1,10 +1,11 @@
 #!/bin/sh
 # xsessionrc --- x session environment -*- shell-script -*-
 
-case $SHELL in
-    *zsh) ;;
-    *) . $HOME/.profile ;;
-esac
+type source >/dev/null || source () {
+        . $@
+}
+
+source $HOME/.profile
 
 # Inform systemd
 if [ -z "$GUIX_PROFILE" ]; then

@@ -6,13 +6,9 @@
 export SHRC_VERSION=bobby
 export SHELL
 
-_source (){
-    case $SHELL in
-	*zsh)	source $@ ;;
-	*)	. $@ ;;
-    esac
+type source >/dev/null || source () {
+        . $@
 }
-
 
 if [ x$FROMLOGINPROFILE = xyes ]; then
     echo Login profile script is loading shell setup...
@@ -61,9 +57,9 @@ export GPG_TTY=$(tty)
 # $SHELL can’t be trusted, apparently when you run sh from within a
 # bash session, the value from bash leaks into the subshell.
 case "$0" in
-    *bash) test -n "$MYLIB" && _source $MYLIB/rc.bash;
+    *bash) test -n "$MYLIB" && source $MYLIB/rc.bash;
 	    alias vishrc="vi $MYLIB/rc.bash" ;;
-    *zsh)  test -n "$MYLIB" && _source $MYLIB/rc.zsh;
+    *zsh)  test -n "$MYLIB" && source $MYLIB/rc.zsh;
 	    alias vishrc="vi $MYLIB/rc.zsh" ;;
     *) ;;
 esac
@@ -71,7 +67,7 @@ esac
 ###
 
 #### Aliases & functions:
-test -n "$MYLIB" && _source $MYLIB/aliases.sh
+test -n "$MYLIB" && source $MYLIB/aliases.sh
 
 # Rebuild known binary list.
 hash -r
