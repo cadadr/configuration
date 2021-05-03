@@ -1,0 +1,26 @@
+
+File: dir,	Node: Top
+
+* Menu:
+
+User Emacs packages
+* BBDB: (bbdb).			The Big Brother DataBase
+* SLIME: (slime).		The Superior Lisp Mode for Emacs
+* EMMS: (emms).			Emacs MultiMedia System
+* Magit: (magit).		Git porcelain for Emacs
+* Evil: (evil).			Emacs Vi emulation
+* Haskell mode: (haskell-mode).	Haskell editing and evaluation
+* ESS: (ess).			Emacs Speaks Statistics
+* Elpher: (elpher).		Browser for gopher, gemini and finger
+* AUCTeX: (auctex).		A sophisticated TeX environment for Emacs.
+* preview-latex: (preview-latex).
+				Preview LaTeX fragments in Emacs
+* Ebib: (ebib).			A BibTeX database manager.
+
+Books and docs
+* On Lisp: (onlisp).		Paul Graham's essay on Lisp
+* SICP: (sicp).			Structure and Implementation of Computer Programs
+* R5RS: (r5rs).			Revised(^5) Report on the Algorithmic Language Scheme
+* Debbugs: (debbugs).		A library for communication with Debbugs
+* Debbugs UG: (debbugs-ug).	Debbugs User Interface in Emacs
+* Common Lisp HyperSpec: (gcl).	CLHS from GNU Common Lisp

@@ -6,6 +6,7 @@
 .cabal							dotfiles/cabal
 .config							dotfiles/config
 .cvsrc							dotfiles/cvsrc
+.emacs.d						emacs.d
 .flutter						dotfiles/flutter.json
 .gitconfig						dotfiles/gitconfig.ini
 .gdbinit						dotfiles/gdbinit
@@ -13,10 +14,16 @@
 .hgrc							dotfiles/hgrc.ini
 .irbrc							dotfiles/irbrc.rb
 .inputrc						dotfiles/inputrc
+.local/share/applications/emacs.desktop			candy/emacs.desktop
+.local/share/applications/emacsclient.desktop		candy/emacsclient.desktop
+.local/share/applications/emacsclient-url.desktop	candy/emacsclient-url.desktop
+.local/share/applications/org-protocol.desktop		candy/org-protocol.desktop
+.local/share/applications/elpher.desktop		candy/elpher.desktop
 .local/share/applications/lagrange.desktop		candy/lagrange.desktop
 .local/share/applications/zotero.desktop		candy/zotero.desktop
 .local/share/applications/qutebrowser.desktop		candy/qute.desktop
 .local/share/applications/mimeapps.list			dotfiles/config/mimeapps.list
+.local/share/applications/emacsclient-mailto.desktop	candy/emacsclient-mailto.desktop
 .mailcap						dotfiles/mailcap
 .mairixrc						dotfiles/mairixrc
 .mpoprc							dotfiles/mpoprc

@@ -1,0 +1,162 @@
+diff --git a/doc/emacs/text.texi b/doc/emacs/text.texi
+index 579f788..74b68dd 100644
+--- a/doc/emacs/text.texi
++++ b/doc/emacs/text.texi
+@@ -412,6 +412,7 @@ beginning of a line.
+ @cindex mode, Electric Quote
+ @cindex curly quotes
+ @cindex curved quotes
++@cindex guillemets
+ @findex electric-quote-mode
+   One common way to quote is the typewriter convention, which quotes
+ using straight apostrophes @t{'like this'} or double-quotes @t{"like
+@@ -420,11 +421,17 @@ left and right single or double quotation marks @t{‘like this’} or
+ @t{“like this”}.  In text files, typewriter quotes are simple and
+ portable; curved quotes are less ambiguous and typically look nicer.
+ 
++@vindex electric-quote-chars
+   Electric Quote mode makes it easier to type curved quotes.  As you
+ type characters it optionally converts @t{`} to @t{‘}, @t{'} to @t{’},
+ @t{``} to @t{“}, and @t{''} to @t{”}.  These conversions are
+ suppressed in buffers whose coding systems cannot represent curved
+-quote characters.
++quote characters.  It's possible to change the default quotes listed
++above, by customizing the variable @code{electric-quote-chars}, a list
++of four characters, where the items correspond to the left single
++quote, the right single quote, the left double quote and the right
++double quote, respectively, whose default value is
++@code{'(?‘ ?’ ?“ ?”)}.
+ 
+ @vindex electric-quote-paragraph
+ @vindex electric-quote-comment
+@@ -445,7 +452,10 @@ type @kbd{C-q `} or @kbd{C-q '} instead of @kbd{`} or @kbd{'}.  To
+ insert a curved quote even when Electric Quote is disabled or
+ inactive, you can type @kbd{C-x 8 [} for @t{‘}, @kbd{C-x 8 ]} for
+ @t{’}, @kbd{C-x 8 @{} for @t{“}, and @kbd{C-x 8 @}} for @t{”}.
+-@xref{Inserting Text}.
++@xref{Inserting Text}.  Note that the value of
++@code{electric-quote-chars} does not affect these keybindings, they
++are not keybindings of @code{electric-quote-mode} but bound in
++@code{global-map}.
+ 
+ @node Filling
+ @section Filling Text
+diff --git a/etc/NEWS b/etc/NEWS
+index bd94c94..323f0b1 100644
+--- a/etc/NEWS
++++ b/etc/NEWS
+@@ -60,6 +60,10 @@ affected by this, as SGI stopped supporting IRIX in December 2013.
+ 
+ 
+ * Changes in Emacs 26.1
+++++
++** The new user variable 'electric-quote-chars' provides a list
++of curved quotes for 'electric-quote-mode', allowing user to choose
++the types of quotes to be used.
+ 
+ +++
+ ** The new function 'call-shell-region' executes a command in an
+diff --git a/lisp/electric.el b/lisp/electric.el
+index 0ec0a1e..a846a78 100644
+--- a/lisp/electric.el
++++ b/lisp/electric.el
+@@ -425,16 +425,26 @@ The variable `electric-layout-rules' says when and how to insert newlines."
+   :version "25.1"
+   :type 'boolean :safe 'booleanp :group 'electricity)
+ 
++(defcustom electric-quote-chars '(?‘ ?’ ?“ ?”)
++  "Curved quote characters for `electric-quote-mode'.
++The items correspond to the left single quote, the right single
++quote, the left double quote, and the right double quote, respectively."
++  :version "25.1"
++  :type 'list :safe 'listp :group 'electricity)
++
+ (defcustom electric-quote-paragraph t
+   "Non-nil means to use electric quoting in text paragraphs."
+   :version "25.1"
+   :type 'boolean :safe 'booleanp :group 'electricity)
+ 
+-(defun electric--insertable-p (string)
+-  (or (not buffer-file-coding-system)
+-      (eq (coding-system-base buffer-file-coding-system) 'undecided)
+-      (not (unencodable-char-position nil nil buffer-file-coding-system
+-                                      nil string))))
++(defun electric--insertable-p (string-or-char)
++  (let ((str (if (characterp string-or-char)
++                 (string string-or-char)
++               string-or-char)))
++    (or (not buffer-file-coding-system)
++        (eq (coding-system-base buffer-file-coding-system) 'undecided)
++        (not (unencodable-char-position nil nil buffer-file-coding-system
++                                        nil str)))))
+ 
+ (defun electric-quote-post-self-insert-function ()
+   "Function that `electric-quote-mode' adds to `post-self-insert-hook'.
+@@ -457,30 +467,33 @@ This requotes when a quoting key is typed."
+                   (derived-mode-p 'text-mode)
+                   (or (eq last-command-event ?\`)
+                       (save-excursion (backward-paragraph) (point)))))))
+-      (when start
+-        (save-excursion
+-          (if (eq last-command-event ?\`)
+-              (cond ((and (electric--insertable-p "“")
+-                          (search-backward "‘`" (- (point) 2) t))
+-                     (replace-match "“")
+-                     (when (and electric-pair-mode
+-                                (eq (cdr-safe
+-                                     (assq ?‘ electric-pair-text-pairs))
+-                                    (char-after)))
+-                       (delete-char 1))
+-                     (setq last-command-event ?“))
+-                    ((and (electric--insertable-p "‘")
+-                          (search-backward "`" (1- (point)) t))
+-                     (replace-match "‘")
+-                     (setq last-command-event ?‘)))
+-            (cond ((and (electric--insertable-p "”")
+-                        (search-backward "’'" (- (point) 2) t))
+-                   (replace-match "”")
+-                   (setq last-command-event ?”))
+-                  ((and (electric--insertable-p "’")
+-                        (search-backward "'" (1- (point)) t))
+-                   (replace-match "’")
+-                   (setq last-command-event ?’)))))))))
++      (pcase electric-quote-chars
++        (`(,q1 ,q2 ,q3 ,q4) 
++         (when start
++           (save-excursion
++             (if (eq last-command-event ?\`)
++                 (cond ((and (electric--insertable-p q3)
++                             (search-backward (string q1 ?`) (- (point) 2) t))
++                        (replace-match (string q3))
++                        (when (and electric-pair-mode
++                                   (eq (cdr-safe
++                                        (assq q1 electric-pair-text-pairs))
++                                       (char-after)))
++                          (delete-char 1))
++                        (setq last-command-event q3))
++                       ((and (electric--insertable-p q1)
++                             (search-backward "`" (1- (point)) t))
++                        (replace-match (string q1))
++                        (setq last-command-event q1)))
++               (cond ((and (electric--insertable-p q4)
++                           (search-backward (string q2 ?') (- (point) 2) t))
++                      (replace-match (string q4))
++                      (setq last-command-event q4))
++                     ((and (electric--insertable-p q2)
++                           (search-backward "'" (1- (point)) t))
++                      (replace-match (string q2))
++                      (setq last-command-event q2)))))))
++        (_ (error "‘electric-quote-chars’ must contain exactly 4 characters."))))))
+ 
+ (put 'electric-quote-post-self-insert-function 'priority 10)
+ 
+@@ -497,6 +510,9 @@ and text paragraphs, and these are selectively controlled with
+ `electric-quote-comment', `electric-quote-string', and
+ `electric-quote-paragraph'.
+ 
++Customize `electric-quote-chars' in order to use quote chars
++other than the ones listed here.
++
+ This is a global minor mode.  To toggle the mode in a single buffer,
+ use `electric-quote-local-mode'."
+   :global t :group 'electricity

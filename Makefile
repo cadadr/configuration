@@ -11,6 +11,7 @@ help:
 	echo "	setup		set up $$HOME and $$USER after system initialisation";\
 	echo "	setup-light	like above, but skip building binaries";\
 	echo "	invade		run invasion";\
+	echo "	build		build utilites and emacs.d";\
 	echo "	dotfiles	build dotfiles";\
 	echo "	clean		delete build artefacts";\
 
@@ -35,6 +36,11 @@ fetch-config.m4:
 	fi
 
 ### Build rules:
+build: emacs
+
+emacs:
+	$(MAKE) -C emacs.d -$(MAKEFLAGS) all
+
 clean-bin:
 	$(MAKE) -C bin -$(MAKEFLAGS) clean
 
@@ -56,4 +62,4 @@ deep-clean:
 	git clean -dfx
 
 ### Postamble:
-.PHONY: all bins dotfiles clean clean-bin clean-dotfiles deep-clean
+.PHONY: all build bins dotfiles clean clean-bin clean-dotfiles deep-clean
