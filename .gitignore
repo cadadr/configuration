@@ -203,3 +203,4 @@ dotfiles/config/kritarc
 
 # vim
 dotfiles/vim/undo/
+dotfiles/config/gtk-3.0/settings.ini
