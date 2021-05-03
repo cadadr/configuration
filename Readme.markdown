@@ -14,8 +14,9 @@ anything in any way.
 This repo contains the following:
 
 - My dotfiles (`dotfiles/`)
+- My Emacs configuration
 - My Linux configuration
-- And some other stuff.
+- And some other stuff
 
 I've re-created this repository from scratch, removing some secrets
 for publishing. If you want to use any part of my configurations,
