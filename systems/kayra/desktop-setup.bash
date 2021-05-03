@@ -59,8 +59,8 @@ clipit                   &
 nm-applet                &
 pcmanfm --daemon-mode    &
 pasystray                &
-compton                  &
-# gpg-agent, ssh-agent?
+# blueish shadow.
+compton --shadow --shadow-red .05 --shadow-blue .7 --shadow-green .1 &
 
 bash $MYLIB/launch-session-servers.bash
 
