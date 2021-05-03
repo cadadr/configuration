@@ -63,6 +63,22 @@ compton --shadow --shadow-red .05 --shadow-blue .7 --shadow-green .1 &
 
 bash $MYLIB/launch-session-servers.bash
 
+### Set up toolkit looks:
+GK_GTK3_SETTINGS_FILE=$HOME/.config/gtk-3.0/settings.ini
+
+case $GK_COLOUR_SCHEME_PREFERENCE in
+    dark) cat <<EOF > $GK_GTK3_SETTINGS_FILE
+[Settings]
+gtk-application-prefer-dark-theme = true
+EOF
+          ;;
+esac
+
+echo 'gtk-decoration-layout = menu:close' >> $GK_GTK3_SETTINGS_FILE
+
+export QT_STYLE_OVERRIDE="adwaita-$GK_COLOUR_SCHEME_PREFERENCE"
+
+### Launch window manager:
 (sleep 10; notify-send welcome "welcome to $(hostname -f)!" ) &
 
 # dotfiles/xsession will run $MYSYSTEM/desktop-setup.bash with

@@ -9,9 +9,9 @@ except ImportError:
     pass
 
 from qutebrowser import __version__ as qver
-from dracula import blood
 
 from datetime import timedelta, datetime
+import os
 import re
 
 ### STFU, linters:
@@ -35,10 +35,6 @@ if majv >= 2:
 
 config.source(config.configdir / "bookmarklets.py")
 config.source(config.configdir / "keywords.py")
-
-
-### Theme:
-# blood(c)
 
 
 ### Some settings:
@@ -138,6 +134,12 @@ add_spacing_pattern("multireddits", r"https?://((www|old)\.)?reddit\.com/user/gk
 
 ### Visuals:
 
+# This is only set in custom sessions so no need to check if this is
+# i3wm or anything.
+colourscheme = os.getenv("GK_COLOUR_SCHEME_PREFERENCE")
+
+if colourscheme and (colourscheme == "dark"):
+    c.colors.webpage.preferred_color_scheme = "dark"
 
 ### Load autoconfig:
 
