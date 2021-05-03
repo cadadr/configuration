@@ -14,7 +14,11 @@ video-x-resolution = 720
 video-y-resolution = 1280
 
 [org/gnome/simple-scan]
+disable-connected-notifications = false
+disable-disconnected-notifications = false
+disable-vpn-notifications = false
 document-type = 'photo'
+suppress-wireless-networks-available = false
 
 [org/gtk/settings/file-chooser]
 date-format = 'regular'
