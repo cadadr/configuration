@@ -6456,6 +6456,10 @@ new frame is created."
     (mapc #'disable-theme custom-enabled-themes)
     (load-theme gk-gui-theme t))
 
+  (when (and (eq (gk-preferred-colour-scheme) :dark)
+             (string= (getenv "DESKTOP_SESSION") "i3wm"))
+    (set-frame-parameter nil 'alpha 88))
+
   ;; Customise wombat
   (when (eq gk-gui-theme 'wombat)
     ;; With wombat the active window is hard to tell.
