@@ -5891,9 +5891,13 @@ which correspond to homonymous fields listed in
    :keys "s"
    :description "Add clipboard to the sunday Emacs build note"
    :type 'item
-   :target `(file+olp ,(gk-org-dir-file "Emacs.org")
-                      "New stuff from recent builds"
-                      ,(format-time-string "build on [%F %a]"))
+   :target `(file+function ,(gk-org-dir-file "Emacs.org")
+                           (lambda ()
+                             (save-restriction
+                               (widen)
+                               (goto-char (point-min))
+                               (re-search-forward
+                                (format-time-string "^\\*\\* build on \\[%F %a\\]")))))
    :prepend nil
    :empty-lines-before 1
    :template "- %i"))
