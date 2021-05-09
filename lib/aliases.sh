@@ -226,6 +226,14 @@ _which(){
     esac
 }
 
+gifify(){
+    if [ $# -ne 2 ]; then
+	echo "usage: gifify INFILE OUTFILE" ;
+	return 2
+    fi
+    ffmpeg -i "$1" -f gif -filter_complex "[0:v] fps=5,scale=w=480:h=-1,split [a][b];[a] palettegen [p];[b][p] paletteuse" "$2"
+}
+
 ###
 alias listall="alias | cut -d= -f1 && declare -F | cut -d ' '  -f 3 | sed 's,^,function ,'"
 alias edit="$EDITOR"
