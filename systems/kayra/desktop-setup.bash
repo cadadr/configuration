@@ -58,8 +58,7 @@ clipit                   &
 nm-applet                &
 pcmanfm --daemon-mode    &
 pasystray                &
-# blueish shadow.
-compton --shadow --shadow-red .05 --shadow-blue .7 --shadow-green .1 &
+compton -co .9 -r 15 -t -20 -l -20  &
 
 bash $MYLIB/launch-session-servers.bash
 
