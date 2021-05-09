@@ -102,6 +102,12 @@ set scrolloff=2 sidescrolloff=2
 
 " }}}
 
+" custom commands {{{
+" write file and sleep
+command Wz norm :w<CR><C-z>
+
+" }}}
+
 
 " keybindings {{{
 
@@ -131,7 +137,7 @@ nmap <Leader>p "*p
 nmap <Leader>P "*P
 nmap <Leader>y "*y
 nmap <Leader>Y "*Y
-nmap <Leader>w :w<CR><C-z>
+nmap <Leader>w :Wz<CR>
 
 " }}}
 
