@@ -6463,8 +6463,8 @@ new frame is created."
   (when (string= (getenv "DESKTOP_SESSION") "i3wm")
     ;; Tad bit more opaque with light themes, looks nicer.
     (if (and (eq (gk-preferred-colour-scheme) :dark))
-        (add-to-list 'default-frame-alist '(alpha . (80)))
-      (add-to-list 'default-frame-alist '(alpha . (92)))))
+        (add-to-list 'default-frame-alist '(alpha . (70)))
+      (add-to-list 'default-frame-alist '(alpha . (73)))))
 
   ;; Customise wombat
   (when (eq gk-gui-theme 'wombat)
