@@ -2891,8 +2891,9 @@ unlocked, offer to lock it before pasting."
   "Always prompt for editing the push command."
   (funcall fn t))
 
-(defun gk-git-commit-mode-hook ()
-  "Set up git commit buffer."
+
+(defun gk-git-commit-message-template ()
+  "Subroutine of ‘gk-git-commit-mode-hook’."
   (catch 'dirty
     (let ((modified-re "^#	modified:")
           (new-re "^#	new file:")
@@ -3028,6 +3029,24 @@ unlocked, offer to lock it before pasting."
                       (re-search-forward "\\+\\*[\\+\\-] TODO" nil t))))
           (goto-char (point-min))
           (insert "; Archive DONE"))))))
+
+
+(defun gk-git-commit-mode-hook ()
+  "Set up git commit buffer."
+  (when (string= (buffer-name) "COMMIT_EDITMSG")
+    (gk-git-commit-message-template))
+  ;; Just won’t work otherwise...
+  (run-with-timer
+   .1 nil
+   ($
+    (when (and (< (car (buffer-line-statistics)) 1000)
+               (save-excursion (re-search-forward "^diff \\-\\-git" nil t)))
+      (save-excursion
+        (while (re-search-forward "^@@ " nil t)
+          (message "refine!")
+          (diff-refine-hunk)
+          (forward-line 1)))))))
+
 
 (add-hook 'git-commit-mode-hook #'gk-git-commit-mode-hook)
 
