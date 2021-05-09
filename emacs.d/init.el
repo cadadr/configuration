@@ -7737,7 +7737,7 @@ the body of the entry, and the cdr is the score, an integer.")
 ;;;;;; Feeds:
 
 ;; Load feeds from external source.
-(gk-load (dropbox "feeds2") t)
+(gk-load (gk-org-dir-file "elfeed-feeds") t)
 
 
 
