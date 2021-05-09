@@ -70,12 +70,12 @@ case $GK_COLOUR_SCHEME_PREFERENCE in
 [Settings]
 gtk-application-prefer-dark-theme = true
 EOF
+          export QT_STYLE_OVERRIDE="adwaita-dark"
           ;;
 esac
 
 echo 'gtk-decoration-layout = menu:close' >> $GK_GTK3_SETTINGS_FILE
 
-export QT_STYLE_OVERRIDE="adwaita-$GK_COLOUR_SCHEME_PREFERENCE"
 
 ### Launch window manager:
 (sleep 10; notify-send welcome "welcome to $(hostname -f)!" ) &
