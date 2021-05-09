@@ -63,7 +63,7 @@ will be fetched synchronously."
                                    (concat "doi.org/" str)))))
                      (not (not current-prefix-arg))))
   (message "Fetching %s" doi)
-  (doifetch-do-fetch doi sync))
+  (doifetch--do-fetch doi sync))
 
 
 (defun doifetch--doi-at-point ()
