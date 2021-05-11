@@ -68,7 +68,7 @@ set textwidth=72	" 72 chars per line
 " +1:	do not break line after one letter word if possible
 " +p:	do not break line after period and single space
 set formatoptions-=ro
-set formatoptions+=nj1p
+set formatoptions+=nj1
 set noexpandtab
 set autoindent
 set foldmethod=marker	" manually inserted markers
