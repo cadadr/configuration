@@ -1,3 +1,0 @@
-protocol unix,inet,inet6,netlink
-ignore seccomp
-seccomp !chroot

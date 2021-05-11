@@ -14,5 +14,5 @@ export PATH="$HOME/local/_qutebrowser/bin/:$PATH"
 
 rm -frv ~/.local/share/qutebrowser/webengine/Service\ Worker/CacheStorage
 
-exec ~/local/_qutebrowser/bin/python3 -m qutebrowser "$@"
+exec ~/local/_qutebrowser/bin/python3 -m qutebrowser --basedir "$MY/qutebrowser" "$@"
 
