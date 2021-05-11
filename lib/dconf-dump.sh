@@ -63,7 +63,13 @@ last-active-shape
 last-font-name
 sort-order
 sort-column
-col-[0-9]+-width"
+col-[0-9]+-width
+api-caches
+focused-document-view[0-9]+
+opened-files-view[0-9]+
+last-folder-uri
+tab-info-list
+tabs"
 
 # This pops up sometimes for some reason
 if [ "$DESKTOP_SESSION" = "cinnamon" ]; then

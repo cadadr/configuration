@@ -1,0 +1,153 @@
+[apps/light-locker]
+idle-hint = false
+late-locking = false
+lock-after-screensaver = uint32 5
+lock-on-lid = false
+lock-on-suspend = true
+
+[io/elementary/appcenter/caches]
+
+[io/elementary/appcenter/settings]
+cached-drivers = @as []
+
+[io/elementary/calendar/saved-state]
+month-page = '2021-05'
+
+[io/elementary/code/saved-state]
+hp1-size = 180
+vp-size = 125
+
+[io/elementary/code/settings]
+
+[io/elementary/desktop/agent-geoclue2]
+remembered-apps = {'emacs': <(true, uint32 4)>}
+
+[io/elementary/desktop/wingpanel/datetime]
+clock-format = '12h'
+clock-show-seconds = false
+clock-show-weekday = true
+
+[io/elementary/desktop/wingpanel/power]
+show-percentage = true
+
+[io/elementary/desktop/wingpanel/sound]
+last-title-info = ['io.elementary.music.desktop', '', '']
+
+[io/elementary/files/file-chooser]
+
+[io/elementary/files/icon-view]
+zoom-level = 'large'
+
+[io/elementary/files/preferences]
+active-tab-position = 0
+default-viewmode = 'icon'
+
+[io/elementary/onboarding]
+viewed = ['welcome', 'location', 'night-light', 'housekeeping', 'appcenter', 'finish']
+
+[io/elementary/photos/preferences/ui]
+display-metadata-sidebar = true
+display-photo-tags = true
+display-sidebar = true
+event-photos-sort-ascending = true
+event-photos-sort-by = 2
+events-sort-ascending = false
+library-photos-sort-ascending = false
+library-photos-sort-by = 2
+metadata-sidebar-position = 636
+photo-thumbnail-scale = 256
+
+[io/elementary/photos/preferences/window]
+library-height = 680
+library-maximize = false
+library-width = 1000
+
+[io/elementary/switchboard/saved-state]
+
+[io/elementary/terminal/saved-state]
+focused-tab = 0
+
+[io/elementary/terminal/settings]
+natural-copy-paste = false
+
+[io/elementary/wingpanel/keyboard]
+capslock = true
+numlock = true
+
+[net/launchpad/plank/docks/dock1]
+alignment = 'center'
+auto-pinning = true
+current-workspace-only = false
+dock-items = ['gala-multitaskingview.dockitem', 'io.elementary.files.dockitem', 'io.elementary.terminal.dockitem', 'org.gnome.Epiphany.dockitem', 'org.pantheon.mail.dockitem', 'io.elementary.calendar.dockitem', 'io.elementary.music.dockitem', 'io.elementary.videos.dockitem', 'io.elementary.photos.dockitem', 'io.elementary.switchboard.dockitem', 'io.elementary.appcenter.dockitem']
+hide-delay = 250
+hide-mode = 'window-dodge'
+icon-size = 48
+items-alignment = 'center'
+lock-items = false
+monitor = ''
+offset = 0
+pinned-only = false
+position = 'bottom'
+pressure-reveal = false
+show-dock-item = false
+theme = 'Gtk+'
+tooltips-enabled = true
+unhide-delay = 0
+zoom-enabled = false
+zoom-percent = 150
+
+[org/gnome/desktop/background]
+
+[org/gnome/desktop/input-sources]
+sources = [('xkb', 'gb')]
+xkb-options = ['ctrl:nocaps', 'grp:shifts_toggle']
+
+[org/gnome/desktop/interface]
+gtk-im-module = 'gtk-im-context-simple'
+
+[org/gnome/desktop/peripherals/mouse]
+natural-scroll = false
+
+[org/gnome/desktop/peripherals/touchpad]
+natural-scroll = true
+tap-to-click = false
+
+[org/gnome/desktop/privacy]
+remove-old-temp-files = true
+
+[org/gnome/epiphany/state]
+is-maximized = false
+
+[org/gnome/evolution-data-server]
+migrated = true
+network-monitor-gio-name = ''
+
+[org/gnome/settings-daemon/peripherals/keyboard]
+
+[org/gnome/settings-daemon/plugins/color]
+night-light-enabled = true
+
+[org/gnome/settings-daemon/plugins/xsettings]
+overrides = {'Gtk/EnablePrimaryPaste': <1>, 'Gtk/DecorationLayout': <'close:menu,maximize'>, 'Gtk/ShellShowsAppMenu': <0>, 'Gtk/DialogsUseHeader': <0>}
+
+[org/gtk/settings/file-chooser]
+date-format = 'regular'
+show-hidden = false
+show-size-column = true
+sort-directories-first = true
+
+[org/pantheon/desktop/gala/behavior]
+dock-names = ['docky', 'Docky', 'plank']
+hotcorner-bottomleft = 'none'
+hotcorner-bottomright = 'none'
+hotcorner-topleft = 'none'
+hotcorner-topright = 'none'
+overlay-action = 'wingpanel --toggle-indicator=app-launcher'
+
+[org/pantheon/desktop/gala/shadows]
+dialog-focused = ['12', '-1', '0', '4', '100']
+dialog-unfocused = ['6', '-1', '0', '4', '80']
+menu = ['6', '-1', '0', '4', '80']
+normal-focused = ['20', '-1', '0', '15', '100']
+normal-unfocused = ['6', '-1', '0', '4', '80']
+
