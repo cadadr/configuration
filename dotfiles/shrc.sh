@@ -4,14 +4,13 @@
 # specific stuff executed only if the $SHELL is bash.
 
 export SHRC_VERSION=bobby
-export SHELL
 
 type source >/dev/null || source () {
         . $@
 }
 
 if [ x$FROMLOGINPROFILE = xyes ]; then
-    echo Login profile script is loading shell setup...
+    echo $ENV is being loaded by $HOME/.profile
 fi
 
 ###
@@ -54,15 +53,8 @@ export GPG_TTY=$(tty)
 ### Shell settings:
 
 #### Load shell-specific stuff:
-# $SHELL can’t be trusted, apparently when you run sh from within a
-# bash session, the value from bash leaks into the subshell.
-case "$0" in
-    *bash) test -n "$MYLIB" && source $MYLIB/rc.bash;
-	    alias vishrc="vi $MYLIB/rc.bash" ;;
-    *zsh)  test -n "$MYLIB" && source $MYLIB/rc.zsh;
-	    alias vishrc="vi $MYLIB/rc.zsh" ;;
-    *) ;;
-esac
+test -n "$MYLIB" && source $MYLIB/rc.$(basename $SHELL)
+alias vishrc="vi $MYLIB/rc.$(basename $SHELL)"
 
 ###
 
@@ -71,5 +63,4 @@ test -n "$MYLIB" && source $MYLIB/aliases.sh
 
 # Rebuild known binary list.
 hash -r
-
 

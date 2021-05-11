@@ -7,12 +7,6 @@ _source (){
     esac
 }
 
-case $0 in
-    # remove the `-'
-    -*) export SHELL=${0:1} ;;
-    *)  export SHELL=$0 ;;
-esac
-
 ### Import system settings:
 _source /etc/profile >/dev/null 2>&1 || echo Could not source /etc/profile...
 
