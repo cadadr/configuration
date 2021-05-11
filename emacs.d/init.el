@@ -2666,23 +2666,24 @@ file extension.")
 
 ;; Try to set lat and long from environment (most probably comes from
 ;; $MYSYSTEM/desktop-setup.bash)...
-(if-let* ((lat  (getenv "LOCATION_LAT"))
-          (long (getenv "LOCATION_LONG"))
-          (desc (getenv "TZ")))
-    (setf calendar-location-name desc
-          calendar-latitude (string-to-number lat)
-          calendar-longitude (string-to-number long))
-  ;; ...otherwise, try to use geolocation.
-  (let* ((whereami (geoclue-location))
-         (lat (assoca 'latitude whereami))
-         (long (assoca 'longitude whereami))
-         (desc (assoca 'description whereami)))
-    (setf calendar-location-name
-          (if (string-empty-p desc)
-              (or (getenv "TZ") "wHEreVer yOu arEeeEEeEe")
-            desc)
-          calendar-latitude lat
-          calendar-longitude long)))
+(ignore-errors
+  (if-let* ((lat  (getenv "LOCATION_LAT"))
+            (long (getenv "LOCATION_LONG"))
+            (desc (getenv "TZ")))
+      (setf calendar-location-name desc
+            calendar-latitude (string-to-number lat)
+            calendar-longitude (string-to-number long))
+    ;; ...otherwise, try to use geolocation.
+    (let* ((whereami (geoclue-location))
+           (lat (assoca 'latitude whereami))
+           (long (assoca 'longitude whereami))
+           (desc (assoca 'description whereami)))
+      (setf calendar-location-name
+            (if (string-empty-p desc)
+                (or (getenv "TZ") "wHEreVer yOu arEeeEEeEe")
+              desc)
+            calendar-latitude lat
+            calendar-longitude long))))
 
 
 
