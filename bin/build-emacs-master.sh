@@ -36,7 +36,7 @@ if [ ! -f configure ]; then
 fi
 
 ./configure --prefix=$HOME/local/emacs    \
-            --with-x-toolkit=gtk3         \
+            --with-x-toolkit=${TK-gtk3}   \
             --with-modules                \
             --with-file-notification=yes  \
             --with-gameuser=no            \
