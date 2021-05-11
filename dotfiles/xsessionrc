@@ -32,7 +32,7 @@ if [ -e "$MYSYSTEM/desktop-setup.bash" ]; then
         tty) exec dbus-launch --exit-with-session bash $MYSYSTEM/desktop-setup.bash ;;
         # GDM etc. sets it like this, which should do the dbus
         # housekeeping itself.
-        x11) exec bash $MYSYSTEM/desktop-setup.bash ;;
+        x11) bash $MYSYSTEM/desktop-setup.bash ;;
         # A wayland session should not run this script but in case
         # that happens by accident it’s nice to have this in the logs
         # somehow.
