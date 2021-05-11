@@ -70,9 +70,12 @@ The following commands help complete the installation, regardless of the
 system flavour:
 
 
-```
-$ make setup build
-```
+    $ make setup build
+
+Afterwards, the junk that `bin/invade` creates can be cleaned up
+like this:
+
+    find . -name '*,invaded~' -exec rm -r \{\} \+
 
 Licenses
 ========
