@@ -76,6 +76,10 @@ esac
 
 echo 'gtk-decoration-layout = menu:close' >> $GK_GTK3_SETTINGS_FILE
 
+### Sound:
+# Do not automatically disable loud speakers when headphone is plugged
+# in. This allows to manually select between them, useful when recording.
+amixer -c 1 set 'Auto-Mute Mode' Disabled
 
 ### Launch window manager:
 (sleep 10; notify-send welcome "welcome to $(hostname -f)!" ) &

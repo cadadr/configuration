@@ -23,11 +23,6 @@ dconf load / < $MYSYSTEM/dconf.dump
 #### Keyboard:
 setxkbmap -option "ctrl:nocaps"
 
-### Sound:
-# Do not automatically disable loud speakers when headphone is plugged
-# in. This allows to manually select between them, useful when recording.
-amixer -c 1 set 'Auto-Mute Mode' Disabled
-
 ### System specific desktop setup:
 
 if [ -e "$MYSYSTEM/desktop-setup.bash" ]; then
