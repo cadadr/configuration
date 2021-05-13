@@ -15,6 +15,7 @@
 .config/gtk-3.0/bookmarks	dotfiles/gtk3.0-bookmarks.txt
 .config/okularpartrc		dotfiles/okular.ini
 .config/clipit/clipitrc		dotfiles/clipitrc.ini
+.config/qutebrowser		qutebrowser
 .emacs.d			emacs.d
 .flutter			dotfiles/flutter.json
 .gitconfig			dotfiles/gitconfig.ini
@@ -47,3 +48,4 @@ bin				bin
 .local/share/applications/zotero.desktop		candy/zotero.desktop
 .local/share/applications/qutebrowser.desktop		candy/qute.desktop
 .local/share/applications/mimeapps.list			dotfiles/config/mimeapps.list
+.local/share/icons/hicolor/scalable/apps/qutebrowser.svg	candy/qute.svg
