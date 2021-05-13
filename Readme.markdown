@@ -130,6 +130,8 @@ The sound at `candy/bleep.wav` is (C) 2015 pan14, licensed under the
 [CC0 License]. Obtained from
 <https://freesound.org/people/pan14/sounds/263133/>.
 
+The design at `candy/qute.svg`, the Qutebrowser logo, is (C) Florian
+Bruhin.
 
 [CC-BY 3.0 License]: http://creativecommons.org/licenses/by/3.0/
 [CC0 License]: http://creativecommons.org/publicdomain/zero/1.0/
