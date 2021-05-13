@@ -7,12 +7,14 @@
 .cvsrc				dotfiles/cvsrc
 .config/git			dotfiles/git
 .config/latexmk			dotfiles/latexmk
+.config/lagrange		dotfiles/lagrange
 .config/libreoffice		~/fil/LibreOfficeProfile
 .config/mimeapps.list		dotfiles/mimeapps.list
 .config/newsboat		dotfiles/newsboat
 .config/pycodestyle		dotfiles/pycodestyle
 .config/gtk-3.0/bookmarks	dotfiles/gtk3.0-bookmarks.txt
 .config/okularpartrc		dotfiles/okular.ini
+.config/clipit/clipitrc		dotfiles/clipitrc.ini
 .emacs.d			emacs.d
 .flutter			dotfiles/flutter.json
 .gitconfig			dotfiles/gitconfig.ini
@@ -41,10 +43,7 @@ bin				bin
 .local/share/applications/emacs.desktop			candy/emacs.desktop
 .local/share/applications/emacsclient.desktop		candy/emacsclient.desktop
 .local/share/applications/emacsclient-url.desktop	candy/emacsclient-url.desktop
-.local/share/applications/org-protocol.desktop		candy/org-protocol.desktop
-.local/share/applications/elpher.desktop		candy/elpher.desktop
 .local/share/applications/lagrange.desktop		candy/lagrange.desktop
 .local/share/applications/zotero.desktop		candy/zotero.desktop
 .local/share/applications/qutebrowser.desktop		candy/qute.desktop
 .local/share/applications/mimeapps.list			dotfiles/config/mimeapps.list
-.local/share/applications/emacsclient-mailto.desktop	candy/emacsclient-mailto.desktop

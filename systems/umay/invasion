@@ -1,0 +1,5 @@
+.cinnamon			cinnamon
+.config/cinnamon-monitors.xml	cinnamon-monitors.xml
+.xsessionrc			../../dotfiles/xsessionrc
+.xsession			../../dotfiles/xsessionrc
+.xprofile			../../dotfiles/xsessionrc
