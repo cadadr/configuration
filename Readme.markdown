@@ -34,8 +34,8 @@ The configuration on this repo works with multiple OS / hardware
 setups, which have their own set up instructions.  Follow the links
 below for more details.
 
-- [Linux desktop workstation](systems/mergen/) (`mergen`) with
-  latest stable Linux Mint Cinnamon.
+- [Linux desktop workstation](systems/umay/) (`umay`) with
+  latest stable Linux Mint Debian Edition with Cinnamon desktop.
 
 - [Experimental Linux desktop workstation](systems/guixtest/)
   (`guixtest`) with GuixSD and i3wm.
@@ -52,10 +52,10 @@ below for more details.
 <table>
   <tr>
     <td>
-      <img src="candy/scr-kayra.png" alt="screenshot for kayra"/>
+      <img src="candy/scr-umay.png" alt="screenshot for umay"/>
     </td>
     <td>
-      <img src="candy/scr-mergen.png" alt="screenshot for mergen"/>
+      <img src="candy/scr-kayra.png" alt="screenshot for kayra"/>
     </td>
     <td>
       <img src="candy/scr-ulgen.png" alt="screenshot for ulgen"/>

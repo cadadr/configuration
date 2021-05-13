@@ -613,3 +613,5 @@ sidebar = false
 background-color = 'rgb(0,0,0)'
 use-background-color = true
 
+[org/x/viewer/window]
+

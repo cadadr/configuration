@@ -2,22 +2,22 @@
 
 This tree contains system-level configurations specific to my computers.
 
-## `mergen`: desktop workstation
+## `umay`: desktop workstation
 
-A Linux Mint Cinnamon based desktop workstation.  Someday might be
-ported to GuixSD or NixOS.
-
-## `guixtest`: GuixSD workstation
-
-This is an experimental configuration that tries to replicate `mergen`,
-but built on the Guix System Distribution.
+A Linux Mint Debian Edition Cinnamon based desktop workstation.
 
 ## `kayra`: desktop workstation
 
 A workstation setup with Debian Stable and i3 window manager.  Partly
-a port of `mergen`, partly a revival of my former Debian/i3 setup.
+a port of `mergen` (now `umay`), partly a revival of my former
+Debian/i3 setup.
 
-`ulgen` and `mergen` should be mostly compatible.
+Someday might be ported to GuixSD or NixOS.
+
+## `guixtest`: GuixSD workstation
+
+This is an experimental configuration that tries to replicate `kayra`,
+but built on the Guix System Distribution.
 
 ## `ulgen`: laptop
 

@@ -1,9 +1,0 @@
-{
-    "activate-on-hover": {
-        "type": "switch",
-        "default": false,
-        "description": "Activate scale on hover",
-        "value": false
-    },
-    "__md5__": "b8cca2b78b83d067f5d0fb8b06b2b1a9"
-}
