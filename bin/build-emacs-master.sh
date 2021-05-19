@@ -45,7 +45,7 @@ fi
             --with-imagemagick            \
             --disable-build-details       \
             --with-json                   \
-            --with-native-compilation
+            --without-native-compilation
 
 echo Configure script completed, review output and hit RETURN to build; read nought
 
