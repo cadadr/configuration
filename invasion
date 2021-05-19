@@ -8,7 +8,6 @@
 .config/git			dotfiles/git
 .config/latexmk			dotfiles/latexmk
 .config/lagrange		dotfiles/lagrange
-.config/libreoffice		~/fil/LibreOfficeProfile
 .config/mimeapps.list		dotfiles/mimeapps.list
 .config/newsboat		dotfiles/newsboat
 .config/pycodestyle		dotfiles/pycodestyle
