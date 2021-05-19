@@ -6843,7 +6843,7 @@ new frame is created."
 
 ;;;;; Minibuffer:
 
-(setf enable-recursive-minibuffers t)
+(setf enable-recursive-minibuffers nil)
 
 (defun gk-minibuf-hook ()
   "Do not fiddle with minibuffer keys."
