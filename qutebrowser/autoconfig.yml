@@ -34,7 +34,7 @@ settings:
       insert:
         <Ctrl+e>: null
       normal:
-        ',,': open-editor
+        ',,': edit-text
         ',0': :open about:home
         ',D': hint images delete
         ',Fd': spawn firefox -P default {url}
@@ -116,12 +116,9 @@ settings:
     global: 10000
   editor.command:
     global:
-    - xterm
-    - -class
-    - qtbedit
-    - -e
-    - vim
-    - +call cursor({line}, {column})
+    - emacsclient
+    - -c
+    - +{line}:{column}
     - '{file}'
   fonts.hints:
     global: bold 14pt default_family
