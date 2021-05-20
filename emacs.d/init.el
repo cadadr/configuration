@@ -4609,14 +4609,14 @@ brackets and an ASCII ellipsis, i.e. three consecutive dots."
              ;; We’re at the last char, right before rquote.  Check if
              ;; there is a period, or add one with ellipsis.
              (when (re-search-forward
-                    "»\n\n" (save-excursion (org-forward-paragraph) (point)))
-               (backward-char 4)
+                    "»\n" (save-excursion (org-forward-paragraph) (point)))
+               (backward-char 3)
                ;; Delete punctuation
                (when (looking-at (rx (any ":;,")))
                  (delete-char 1)
                  (backward-char))
                (when (looking-at (rx (not (any ".!?\"”’"))))
-                 (forward-char)
+                 (forward-char 1)
                  (insert "[... .]"))))))
       ('search-failed
        (user-error "Could not find note delimitation")))))
