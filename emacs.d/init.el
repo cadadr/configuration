@@ -6128,6 +6128,8 @@ fragments"
 (org-defkey org-mode-map (kbd "C-c C-x C-c") nil)
 
 (org-defkey org-mode-map (kbd "C-M-<return>") 'org-insert-subheading)
+(org-defkey org-mode-map (kbd "C-c @") 'ebib-insert-citation)
+
 ;; Heading navigation
 (org-defkey org-mode-map (kbd "M-p") 'outline-previous-visible-heading)
 (org-defkey org-mode-map (kbd "M-n") 'outline-next-visible-heading)
