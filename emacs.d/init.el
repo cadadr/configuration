@@ -6285,11 +6285,13 @@ The value of DIALECT should be one of the symbols in
  ;; Combine author-year and title.
  ebib-citation-description-function
  ($ [key db]
-    (format "%s. (%s). %s {@%s}"
-          (ebib--get-field-value-for-display "Author/Editor" key db)
-          (ebib--get-field-value-for-display "Year" key db)
-          (ebib-get-field-value "Title" key db "(Untitled)" 'unbraced 'xref)
-          key)))
+    (replace-regexp-in-string
+     (rx "\\") (rx "\\\\")
+     (format "%s. (%s). %s {@%s}"
+             (ebib--get-field-value-for-display "Author/Editor" key db)
+             (ebib--get-field-value-for-display "Year" key db)
+             (ebib-get-field-value "Title" key db "(Untitled)" 'unbraced 'xref)
+             key))))
 
 
 (define-key ebib-multiline-mode-map
