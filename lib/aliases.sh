@@ -264,7 +264,7 @@ alias ydl="PYTHONPATH=$YOUDL python3 $YOUDL/bin/youtube-dl"
 alias ydl720="ydl -f 'bestvideo[height<=720]+bestaudio/best[height<=720]'"
 alias mpv="PYTHONPATH=$YOUDL mpv"
 alias ydlup="(cd $YOUDL && git pull)"
-alias ydlmusic="ydlup && ydl --extract-audio --audio-format vorbis --audio-quality 0 --no-progress --batch-file -"
+alias ydlmusic="ydlup && ydl --extract-audio --audio-format vorbis --audio-quality 3 --no-progress --batch-file -"
 alias pg="$PAGER"
 alias o=xdg-open
 # Recursively download a website at a given url.
