@@ -6135,21 +6135,19 @@ fragments"
 (define-key org-mode-map (kbd "C-M-p") #'gk-org-backward-content)
 (define-key org-mode-map (kbd "C-S-n") #'org-next-item)
 (define-key org-mode-map (kbd "C-S-p") #'org-previous-item)
+
 ;; Paragraphs
 (define-key org-mode-map [remap backward-paragraph] nil)
 (define-key org-mode-map [remap forward-paragraph] nil)
 (define-key org-mode-map (kbd "C-c q") #'gk-org-refill-reading-note)
 (define-key org-mode-map (kbd "C-c C-# n") #'gk-org-insert-reading-note)
 (define-key org-mode-map (kbd "C-c C-# b") #'gk-org-insert-reading-bibliograpy-note)
+
 ;; Reading notes
 (define-key org-mode-map (kbd "C-c M-r") #'gk-org-insert-reading-note)
 (define-key org-mode-map (kbd "C-c M-e") #'gk-org-reading-notes-ellipsise-last-note)
 (define-key org-mode-map (kbd "C-c M-b") #'gk-org-insert-reading-bibliograpy-note)
 (define-key org-mode-map (kbd "C-c M-m") #'gk-org-reading-note-merge-last-n-notes)
-
-;; Translation
-(define-key org-mode-map (kbd "C-c M-t") #'gk-org-trans-show-paragraph)
-(define-key org-mode-map (kbd "C-@") #'gk-org-trans-insert-sentence-reference)
 
 ;; Attachments
 (define-key org-mode-map (kbd "C-c C-M-s") #'gk-org-attach-screenshot)
