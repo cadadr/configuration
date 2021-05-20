@@ -7,7 +7,7 @@
     "lastGridRows": {
         "type": "generic",
         "default": 4,
-        "value": 5
+        "value": 7
     },
     "headerKeys": {
         "type": "header",
@@ -83,7 +83,7 @@
         "units": "x",
         "step": 1,
         "description": "Columns",
-        "value": 5
+        "value": 3
     },
     "gridbutton2y": {
         "type": "spinbutton",
@@ -141,7 +141,7 @@
         "units": "x",
         "step": 1,
         "description": "Columns",
-        "value": 6
+        "value": 7
     },
     "gridbutton4y": {
         "type": "spinbutton",
@@ -152,7 +152,7 @@
         "units": "y",
         "step": 1,
         "description": "Rows",
-        "value": 8
+        "value": 2
     },
     "__md5__": "17b8249719c5fc9d2d6c04b108415c21"
 }
