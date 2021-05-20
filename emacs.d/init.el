@@ -177,6 +177,7 @@
 (require 'org-attach-screenshot)
 (require 'org-capture)
 (require 'org-checklist)
+(require 'org-ebib)
 (require 'org-eldoc)
 (require 'org-habit)
 (require 'org-inlinetask)
