@@ -6282,9 +6282,14 @@ The value of DIALECT should be one of the symbols in
 
  ;; see ‘ebib-hidden-fields’, and kbd ‘H’
 
- ;; see ‘ebib-citation-description-function’ for org mode links
- ;; and org-ebib.el
- )
+ ;; Combine author-year and title.
+ ebib-citation-description-function
+ ($ [key db]
+    (format "%s. (%s). %s {@%s}"
+          (ebib--get-field-value-for-display "Author/Editor" key db)
+          (ebib--get-field-value-for-display "Year" key db)
+          (ebib-get-field-value "Title" key db "(Untitled)" 'unbraced 'xref)
+          key)))
 
 
 (define-key ebib-multiline-mode-map
