@@ -48,3 +48,4 @@ bin				bin
 .local/share/applications/mimeapps.list			dotfiles/mimeapps.list
 .local/share/applications/emacsclient-org-protocol.desktop	candy/emacsclient-org-protocol.desktop
 .local/share/icons/hicolor/scalable/apps/qutebrowser.svg	candy/qute.svg
+.local/share/icons/hicolor/128x128/apps/emacs.png		candy/emacs.png
