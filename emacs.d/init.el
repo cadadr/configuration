@@ -6767,7 +6767,9 @@ new frame is created."
  history-delete-duplicates t
  ;; Potential speedup in some cases that relate to fonts and
  ;; font-lock. viz. https://github.com/integral-dw/org-bullets.
- inhibit-compacting-font-caches t)
+ inhibit-compacting-font-caches t
+ ;; Use ‘outline-mode’ in C-h b (‘describe-bindings’)
+ describe-bindings-outline t)
 
 
 (setq-default save-place t)
