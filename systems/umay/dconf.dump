@@ -580,7 +580,6 @@ tooltips-show-path = true
 [org/nemo/window-state]
 bookmarks-expanded = true
 devices-expanded = true
-my-computer-expanded = false
 sidebar-bookmark-breakpoint = 4
 start-with-sidebar = true
 
