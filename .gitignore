@@ -205,3 +205,8 @@ dotfiles/config/kritarc
 dotfiles/vim/undo/
 dotfiles/config/gtk-3.0/settings.ini
 dotfiles/config/kdenliverc
+dotfiles/lagrange/feeds.txt
+dotfiles/lagrange/idents.lgr
+dotfiles/lagrange/state.lgr
+dotfiles/lagrange/trusted.txt
+dotfiles/lagrange/visited.2.txt
