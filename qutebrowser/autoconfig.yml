@@ -112,8 +112,14 @@ settings:
     global: false
   content.xss_auditing:
     global: true
+  downloads.location.suggestion:
+    global: both
+  downloads.open_dispatcher:
+    global: xdg-open {}
+  downloads.position:
+    global: bottom
   downloads.remove_finished:
-    global: 10000
+    global: -1
   editor.command:
     global:
     - emacsclient
