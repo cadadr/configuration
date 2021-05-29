@@ -2,8 +2,8 @@
 Name=GNU Emacs (gk)
 GenericName=Mother of all programs
 Comment=Conquer the world
-Exec=/home/g/local/emacs/bin/emacs --debug-init
-Icon=/home/g/local/emacs/share/icons/hicolor/128x128/apps/emacs.png
+Exec=emacs-maybe-client.bash
+Icon=emacs.png
 Type=Application
 Terminal=false
 Categories=Development;TextEditor;
@@ -13,7 +13,7 @@ Actions=new-window;load-project;
 
 [Desktop Action new-window]
 Name=Open a New Client Frame
-Exec=emacsclient -c %f
+Exec=emacsclient -c
 
 [Desktop Action load-project]
 Name=Open a New Client Frame for Project
