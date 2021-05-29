@@ -5128,8 +5128,8 @@ Prevent comments inline in paragraphs from splitting them."
 
 ;;;;;; LaTeX->PDF:
 
-(setf org-latex-compiler "xelatex"
-      org-latex-pdf-process (list "latexmk -f -silent -bibtex-cond -xelatex %f")
+(setf org-latex-compiler "lualatex"
+      org-latex-pdf-process (list "latexmk -f -silent -bibtex-cond -lualatex %f")
       ;; Do remove many sorts of files the process generates...
       org-latex-remove-logfiles t
       ;; ...but keep some important log files.
