@@ -442,6 +442,8 @@ show-path = false
 sort-method = 'name'
 sort-type = 'ascending'
 
+[org/gnome/file-roller/ui]
+
 [org/gnome/gnome-screenshot]
 border-effect = 'none'
 delay = 5
@@ -639,10 +641,14 @@ catalogs-2-10 = true
 [org/x/pix/general]
 active-extensions = ['23hq', 'bookmarks', 'burn_disc', 'catalogs', 'change_date', 'comments', 'contact_sheet', 'convert_format', 'desktop_background', 'edit_metadata', 'exiv2_tools', 'facebook', 'file_manager', 'file_tools', 'find_duplicates', 'flicker', 'gstreamer_tools', 'gstreamer_utils', 'image_print', 'image_rotation', 'image_viewer', 'importer', 'jpeg_utils', 'list_tools', 'oauth', 'photo_importer', 'photobucket', 'picasaweb', 'raw_files', 'red_eye_removal', 'rename_series', 'resize_images', 'search', 'selections', 'slideshow', 'webalbums']
 
+[org/x/reader/default]
+
 [org/x/viewer/ui]
 sidebar = false
 
 [org/x/viewer/view]
 background-color = 'rgb(0,0,0)'
 use-background-color = true
+
+[org/x/viewer/window]
 
