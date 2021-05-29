@@ -70,7 +70,7 @@ settings:
         <Ctrl+x>: null
         D: hint links userscript ~/.config/qutebrowser/userscripts/doi
         T: tab-focus
-        b: set-cmd-text -s :buffer
+        b: set-cmd-text -s :tab-select
         co: null
         d: spawn -u ~/.config/qutebrowser/userscripts/doi
         g1: tab-focus 1
