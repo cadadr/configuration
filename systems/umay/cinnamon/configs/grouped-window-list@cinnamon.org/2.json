@@ -171,7 +171,8 @@
             "gnome-system-monitor.desktop",
             "telegramdesktop.desktop",
             "mintupdate.desktop",
-            "blueberry.desktop"
+            "blueberry.desktop",
+            "rhythmbox.desktop"
         ]
     },
     "group-apps": {
