@@ -37,6 +37,10 @@ lists-emacs-humanities
 * From:.*bugzilla_noreply@kde.org
 lists-kde-bugzilla
 
+:0:
+* From:.*<notifications@github.com>$
+lists-github
+
 
 # Catch-all
 :0:
