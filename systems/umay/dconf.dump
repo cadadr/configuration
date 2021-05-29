@@ -604,7 +604,7 @@ disk-usage = false
 network-traffic = false
 
 [org/x/editor/plugins]
-active-plugins = ['time', 'open-uri-context-menu', 'sort', 'docinfo', 'spell', 'filebrowser', 'modelines', 'joinlines', 'textsize']
+active-plugins = ['docinfo', 'filebrowser', 'modelines', 'joinlines', 'textsize', 'sort', 'spell', 'time', 'open-uri-context-menu']
 
 [org/x/editor/plugins/filebrowser/on-load]
 root = 'file:///'
