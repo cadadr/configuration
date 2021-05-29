@@ -157,7 +157,7 @@ text-scaling-factor = 1.0
 toolkit-accessibility = false
 
 [org/cinnamon/desktop/keybindings]
-custom-list = ['custom2', 'custom1', 'custom0', 'custom3', 'custom4', 'custom5']
+custom-list = ['custom6', 'custom5', 'custom4', 'custom3', 'custom0', 'custom1', 'custom2']
 looking-glass-keybinding = ['<Super>grave']
 show-desklets = @as []
 
@@ -190,6 +190,11 @@ name = 'Rofi Window Switcher'
 binding = ['<Primary><Super>b']
 command = "xterm -T 'Backup' -e 'echo Start backup process ; echo ; bash -lc do_backup ; echo ; echo Hit Return to continue... ; read'"
 name = 'Run "do-backup" in a terminal'
+
+[org/cinnamon/desktop/keybindings/custom-keybindings/custom6]
+binding = ['F12']
+command = 'rofi -show drun'
+name = 'Application launcher'
 
 [org/cinnamon/desktop/keybindings/media-keys]
 hibernate = ['<Super>h', 'XF86Hibernate']
