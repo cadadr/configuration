@@ -69,7 +69,9 @@ focused-document-view[0-9]+
 opened-files-view[0-9]+
 last-folder-uri
 tab-info-list
-tabs"
+tabs
+position
+my-computer-expanded"
 
 # This pops up sometimes for some reason
 if [ "$DESKTOP_SESSION" = "cinnamon" ]; then
