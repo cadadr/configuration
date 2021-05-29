@@ -30,7 +30,7 @@
         "indent": true,
         "description": "Hover delay",
         "tooltip": "Delay before Peek shows desktop",
-        "value": 400
+        "value": 200.0
     },
     "peek-opacity": {
         "type": "scale",
