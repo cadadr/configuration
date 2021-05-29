@@ -19,7 +19,7 @@ set record	= +outbox
 # In Emacs I save drafts one per file, so use a separate mbox for Mutt's
 # drafts.
 set postponed	= +drafts/postponed
-mailboxes	= +archive +current +inbox +lists-gemini
+mailboxes	= +archive +current +inbox +lists-gemini +lists-github
 set move	= yes
 
 ### Sending mail:
@@ -37,6 +37,7 @@ macro index ,c '<change-folder>=current<Return>'
 macro index ,a '<change-folder>=archive<Return>'
 macro index ,i '<change-folder>=inbox<Return>'
 macro index ,g '<change-folder>=lists-gemini<Return>'
+macro index ,h '<change-folder>=lists-github<Return>'
 # old habits die hard...
 macro index,pager n '<next-undeleted>'
 macro attach      n '<next-entry>
