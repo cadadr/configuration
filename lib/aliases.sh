@@ -234,6 +234,10 @@ gifify(){
     ffmpeg -i "$1" -f gif -filter_complex "[0:v] fps=5,scale=w=480:h=-1,split [a][b];[a] palettegen [p];[b][p] paletteuse" "$2"
 }
 
+texwut(){
+    texdoc $@ 2>/dev/null 1>/dev/null &
+}
+
 ###
 alias listall="alias | cut -d= -f1 && declare -F | cut -d ' '  -f 3 | sed 's,^,function ,'"
 alias edit="$EDITOR"
