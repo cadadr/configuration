@@ -6635,6 +6635,13 @@ new frame is created."
            (color-lighten-name c 30)
            (color-lighten-name c 40))))
 
+  ;; Reset it everywhere it’s found in order to apply the above
+  ;; settings.
+  (dolist (b (buffer-list))
+    (when highlight-parentheses-mode
+      (highlight-parentheses-mode -1)
+      (highlight-parentheses-mode +1)))
+
   ;; Have a bit more line-spacing.
   (setq-default line-spacing 0.2))
 
