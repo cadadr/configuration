@@ -35,7 +35,6 @@
 .bash_profile			dotfiles/profile.sh
 .sbclrc				lisp/cl/setup.lisp
 .signature			dotfiles/signature
-.xsettingsd			dotfiles/xsettingsd.conf
 .vimrc				dotfiles/rc.vim
 .vim				dotfiles/vim
 .tmux.conf			dotfiles/tmux.conf
