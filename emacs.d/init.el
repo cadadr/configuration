@@ -180,6 +180,7 @@
 (require 'org-ebib)
 (require 'org-eldoc)
 (require 'org-habit)
+(require 'org-id)
 (require 'org-inlinetask)
 (require 'org-mobile)
 (require 'org-num)
@@ -5386,6 +5387,43 @@ numerals which regularly appear in texts."
 
 
 ;;;;; Store link:
+
+;; ‘org-store-link’ by default works in misterious ways, collecting
+;; links eagerly, fucking up everything.  The below setup makes sure
+;; only one link is ever stored in an ‘org-mode’ file, and that link
+;; is the sanest option in the context, at least as far as my
+;; preferences are concerned.
+(setf
+ ;; When ‘org-store-link’, create ID and use iff no CUSTOM_ID.
+ org-id-link-to-org-use-id t
+ ;; Store ‘org-id’ locations within ‘org-directory’ (so that it’s
+ ;; VCS’ed), and use paths relative to ‘org-id-locations-file’ itself
+ ;; when saving.
+ org-id-locations-file (gk-org-dir-file ".id-locations")
+ org-id-locations-file-relative t
+ ;; A saner override to how ‘org-store-link’ records context.
+ org-create-file-search-functions
+ (list
+  ;; 1. if region is active, use that.
+  ($ (when (and (eq major-mode 'org-mode)
+                (region-active-p))
+       (buffer-substring-no-properties
+        (region-beginning) (region-end))))
+  ;; 2. if we’re on a target, use that.
+  ($ (when (eq major-mode 'org-mode)
+       (org-in-regexp "[^<]<<\\([^<>]+\\)>>[^>]" 1)
+       (match-string 1)))
+  ;; 3. If CUSTOM_ID available, use that
+  ($ (when-let* ((_ (eq major-mode 'org-mode))
+                 (id (org-entry-get nil "CUSTOM_ID")))
+       id))
+  ;; HACK: 4. If before first heading, return empty string.  This
+  ;; overrides the behaviour of ‘org-id’ which is to add a toplevel
+  ;; :PROPERTIES:  drawer.
+  ($ (unless (and (eq major-mode 'org-mode)
+                  (ignore-errors (org-heading-components)))
+       ""))))
+
 
 (define-advice  org-store-link (:around (fn &rest args) fuck-pdf-version-cruft)
   "Disable context in PDFs and other non-text documents"
