@@ -6242,6 +6242,40 @@ The value of DIALECT should be one of the symbols in
                                          ""
                                        (concat ". " author))))))
 
+(define-advice ebib-create-org-file-link
+    (:override (key db) be-eager)
+  "Eagerly return an associated file or something that can help find one.
+
+Ebib only looks at the file field.  This function looks there, or
+if there’s a file indirectly associated to key it returns that.
+If not found, it attempts a DOI.  Failing that also, the
+associated URL is returned.  Worst case, an error report is
+included in the generated template."
+  (let ((file (ebib--select-file
+               (ebib-get-field-value
+                "file"
+                key db 'noerror 'unbraced 'xref)
+               nil key))
+        (url (ebib-get-field-value
+              "url"
+              key db 'noerror 'unbraced 'xref))
+        (doi (ebib-get-field-value
+              "doi"
+              key db 'noerror 'unbraced 'xref)))
+    (cond ((and file (not (string-empty-p file)))
+           (format "[[file:%s]]"
+                   (ebib--expand-file-name file)))
+          ((and doi (not (string-empty-p doi)))
+           (format "[[doi:%s]]"
+                   ;; Ensure doi does not include a
+                   ;; "https://(dx.)?doi.org/?" prefix.
+                   (replace-regexp-in-string
+                    "^/" ""
+                    (car (url-path-and-query (url-generic-parse-url doi))))))
+          ((and url (nor (string-empty-p url)))
+           (format "[[%s]]" url))
+          (t
+           (format "{no file, DOI, or URL for %s" key)))))
 
 (setf
  ebib-file-associations nil
