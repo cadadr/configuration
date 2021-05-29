@@ -505,6 +505,35 @@ info-last-device = 'wakeups'
 info-page-number = 3
 info-stats-type = 'discharge-accuracy'
 
+[org/gnome/rhythmbox]
+
+[org/gnome/rhythmbox/library/source]
+show-browser = true
+
+[org/gnome/rhythmbox/player]
+
+[org/gnome/rhythmbox/plugins]
+active-plugins = ['tray_icon', 'daap', 'rb', 'audiocd', 'mpris', 'audioscrobbler', 'mtpdevice', 'iradio', 'android', 'dbus-media-server', 'power-manager', 'notification', 'mmkeys', 'artsearch', 'ipod', 'generic-player']
+seen-plugins = ['tray_icon', 'daap', 'rb', 'soundcloud', 'mpris', 'magnatune', 'webremote', 'pythonconsole', 'audioscrobbler', 'mtpdevice', 'replaygain', 'dbus-media-server', 'notification', 'lyrics', 'im-status', 'artsearch', 'sendto', 'ipod', 'fmradio', 'rblirc', 'grilo']
+
+[org/gnome/rhythmbox/plugins/audioscrobbler/Last.fm]
+scrobbling-enabled = true
+
+[org/gnome/rhythmbox/plugins/audioscrobbler/Libre.fm]
+scrobbling-enabled = true
+
+[org/gnome/rhythmbox/plugins/iradio]
+initial-stations-loaded = true
+
+[org/gnome/rhythmbox/plugins/iradio/source]
+show-browser = true
+
+[org/gnome/rhythmbox/podcast/source]
+show-browser = true
+
+[org/gnome/rhythmbox/rhythmdb]
+locations = ['file:///home/g/Music']
+
 [org/gnome/simple-scan]
 document-type = 'photo'
 jpeg-quality = 100
