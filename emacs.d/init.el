@@ -4606,7 +4606,7 @@ brackets and an ASCII ellipsis, i.e. three consecutive dots."
              (when (looking-at (rx lower))
                (let ((char (buffer-substring (point) (1+ (point)))))
                  (delete-char 1)
-                 (insert "[... " (upcase char) "]")))
+                 (insert "[... " (upcase char) "]")))
              ;; We’re at the last char, right before rquote.  Check if
              ;; there is a period, or add one with ellipsis.
              (when (re-search-forward
@@ -4618,7 +4618,7 @@ brackets and an ASCII ellipsis, i.e. three consecutive dots."
                  (backward-char))
                (when (looking-at (rx (not (any ".!?\"”’"))))
                  (forward-char 1)
-                 (insert "[... .]"))))))
+                 (insert "[... .]"))))))
       ('search-failed
        (user-error "Could not find note delimitation")))))
 
