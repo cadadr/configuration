@@ -78,133 +78,18 @@ emacs.d/.trash_emacs/
 # Qutebrowser
 qutebrowser/qsettings/QtProject.conf
 
-# VSCodium
-dotfiles/config/VSCodium/Backups/
-dotfiles/config/VSCodium/blob_storage/
-dotfiles/config/VSCodium/Cache/
-dotfiles/config/VSCodium/CachedData/
-dotfiles/config/VSCodium/CachedExtensions/
-dotfiles/config/VSCodium/GPUCache/
-dotfiles/config/VSCodium/logs/
-dotfiles/config/VSCodium/User/globalStorage/
-dotfiles/config/VSCodium/User/workspaceStorage/
-dotfiles/config/VSCodium/webrtc_event_logs/
-dotfiles/config/VSCodium/Cookies*
-dotfiles/config/VSCodium/machineid
-dotfiles/config/VSCodium/Network*
-dotfiles/config/VSCodium/storage.json
-dotfiles/config/VSCodium/Session\ Storage/
-dotfiles/config/VSCodium/TransportSecurity
-
 # Audacity
 dotfiles/audacity/AutoSave
 dotfiles/audacity/Plug-Ins
 
-# XDG stuff
-dotfiles/config/chromium/
-dotfiles/config/evince/
-dotfiles/config/transmission/
-dotfiles/config/dconf/user
-dotfiles/config/QtProject.conf
-dotfiles/config/libreoffice/
-dotfiles/config/xubuntu/xdg-xubuntu-templates.cfg
-dotfiles/config/pulse/
-dotfiles/config/pavucontrol.ini
-dotfiles/config/enchant/
-dotfiles/config/ibus/
-dotfiles/config/spotify/
-dotfiles/config/VirtualBox/
-dotfiles/config/gtk-2.0/gtkfilechooser.ini
-dotfiles/config/com.github.bleakgrey.tootle/
-dotfiles/config/xfce4/Verve/
-dotfiles/config/xfce4/desktop/*.rc
-# This is rather device specific
-dotfiles/config/xfce4/xfconf/xfce-perchannel-xml/displays.xml
-# Doesn’t have anything useful in it
-dotfiles/config/xfce4/xfconf/xfce-perchannel-xml/xfce4-settings-manager.xml
-dotfiles/config/xfce4/xfconf/xfce-perchannel-xml/xfce4-settings-editor.xml
-dotfiles/config/GIMP/
-dotfiles/config/kactivitymanagerdrc
-dotfiles/config/kglobalshortcutsrc
-dotfiles/config/okularrc
-dotfiles/config/arkrc
-dotfiles/config/discoverrc
-dotfiles/config/kcmshell5rc
-dotfiles/config/krunnerrc
-dotfiles/config/ksmserverrc
-dotfiles/config/session/
-dotfiles/config/trashrc
-dotfiles/config/kdeglobals
-dotfiles/config/khelpcenterrc
-dotfiles/config/vokoscreen/
-dotfiles/config/Trolltech.conf
-dotfiles/config/quodlibet/feeds
-dotfiles/config/quodlibet/queue
-dotfiles/config/hub
-dotfiles/config/arminstraub.com/krop.conf
-dotfiles/config/sengi/
-dotfiles/config/user-dirs.dirs
-dotfiles/config/calibre/
-dotfiles/config/menus/
-dotfiles/config/VSCodium/Code Cache/
-dotfiles/config/nemo/desktop-metadata
-dotfiles/config/balena-etcher-electron/
-dotfiles/config/Atom/
-dotfiles/config/caja/
-dotfiles/config/hexchat/
-dotfiles/config/user-dirs.locale
-dotfiles/config/xed/
-dotfiles/config/monitors.xml
-dotfiles/config/nemo/
-dotfiles/config/skypeforlinux/
-dotfiles/config/Google/
-dotfiles/config/Qtrac\ Ltd./DiffPDF.conf
-dotfiles/config/0ad/
-dotfiles/config/evolution/
-dotfiles/config/keepassxc/
-dotfiles/config/epiphany/
-dotfiles/config/telephant/
-dotfiles/config/RStudio/desktop.ini
-dotfiles/config/Zeal/Zeal.conf
-dotfiles/config/google-chrome/
-dotfiles/config/whatsapp-desktop/
-dotfiles/config/guix/
-dotfiles/config/borg/
-dotfiles/config/liferea/cookies.txt
-dotfiles/config/liferea/feedlist.opml
-dotfiles/config/liferea/feedlist.opml.backup
-dotfiles/config/sublime-text-3/Cache
-dotfiles/config/sublime-text-3/Index
-dotfiles/config/sublime-text-3/Local/*.sublime_session
-dotfiles/config/VSCodium/rapid_render.json
-dotfiles/config/kdeconnect
-dotfiles/vim/.netrwhist
-dotfiles/config/zoomus.conf
-dotfiles/config/Unknown Organization/zoom.conf
-dotfiles/config/toot/config.json
-dotfiles/config/cinnamon-monitors.xml
-dotfiles/config/cef_user_data/Dictionaries/
-dotfiles/config/kconf_updaterc
-dotfiles/config/lagrange/feeds.txt
-dotfiles/config/lagrange/idents.lgr
-dotfiles/config/lagrange/state.lgr
-dotfiles/config/lagrange/trusted.txt
-dotfiles/config/lagrange/visited.2.txt
-dotfiles/config/quodlibet/current
-dotfiles/config/quodlibet/songs
-dotfiles/config/quodlibet/faultdump
-dotfiles/config/vlc/vlc-qt-interface.conf
-
 # mergen
 systems/mergen/xfce4/xfce4-screenshooter
 emacs.d/eln-cache/
-dotfiles/config/kritadisplayrc
-dotfiles/config/kritarc
 
 # vim
 dotfiles/vim/undo/
-dotfiles/config/gtk-3.0/settings.ini
-dotfiles/config/kdenliverc
+
+# lagrange
 dotfiles/lagrange/feeds.txt
 dotfiles/lagrange/idents.lgr
 dotfiles/lagrange/state.lgr
