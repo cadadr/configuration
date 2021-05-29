@@ -6421,7 +6421,7 @@ will become the only window."
 
 ;;;;; GUI:
 
-(defvar gk-preferred-themes '( :light modus-operandi
+(defvar gk-preferred-themes '( :light anti-zenburn
                                :dark modus-vivendi
                                ;; just being explicit...
                                :no-preference nil)
