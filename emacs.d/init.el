@@ -4901,7 +4901,8 @@ Use \[pop-to-mark-command] to go back to where you were."
       org-directory (expand-file-name "~/Notes")
       org-default-notes-file (gk-org-dir-file "Start.org")
       org-icalendar-combined-agenda-file (expand-file-name "ajanda.ics" gk-syndir)
-      org-id-locations-file (locate-user-emacs-file "etc/org-id-locations.el"))
+      org-id-locations-file (locate-user-emacs-file "etc/org-id-locations.el")
+      org-archive-location (gk-org-dir-file "Attic/ArchivedEntries.org::datetree/"))
 
 
 
