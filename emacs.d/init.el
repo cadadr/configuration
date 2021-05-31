@@ -4979,12 +4979,9 @@ Use \[pop-to-mark-command] to go back to where you were."
  org-agenda-hide-tags-regexp "."
  org-agenda-sticky t
  org-agenda-custom-commands
- `(("p" "Planner"
-    (;; Today’s scheduled items
-     (agenda "" ((org-agenda-overriding-header
-                  "* Today’s schedule:")
-                 (org-agenda-skip-function '(org-agenda-skip-entry-if 'deadline))
-                 (org-deadline-warning-days 0)
+ `(("s" "Current month’s events in Sidekick.org"
+    ((agenda "" ((org-agenda-overriding-header "Events of this month\n\n")
+                 (org-agenda-files (list ,(gk-org-dir-file "Sidekick.org")))
                  (org-agenda-sorting-strategy '(time-up
                                                 priority-down
                                                 category-up
@@ -4992,45 +4989,8 @@ Use \[pop-to-mark-command] to go back to where you were."
                                                 scheduled-up
                                                 tag-up
                                                 habit-down))
-                 (org-default-priority org-lowest-priority)
-                 (org-agenda-span 1)))
-
-     ;; Approaching deadlines
-     (agenda nil ((org-agenda-overriding-header
-                   "\n* Approaching deadlines:")
-                  (org-agenda-entry-types '(:deadline))
-                  (org-agenda-format-date "")
-                  (org-deadline-warning-days 21)
-                  (org-agenda-sorting-strategy '( priority-down deadline-up todo-state-down))
-                  (org-default-priority org-lowest-priority)
-                  (org-agenda-span 1)))
-
-     (tags-todo "CATEGORY=\"Tez@MALing\""
-                ((org-agenda-overriding-header
-                  "\n* Thesis:")
-                 (org-agenda-skip-function '(org-agenda-skip-entry-if 'scheduled))
-                 (org-default-priority org-lowest-priority)
-                 (org-agenda-span 1)))
-
-     ;; Reading
-     (todo "READING|READ" ((org-agenda-overriding-header
-                            "\n* Reading:")
-                           (org-agenda-sorting-strategy '(priority-down todo-state-down))
-                           (org-default-priority org-lowest-priority)
-                           (org-agenda-skip-function
-                            '(org-agenda-skip-entry-if 'deadline))))))
-
-   ("u" "Unsorted TODOs"
-    ;; Unsorted TODO items
-    ((todo ""
-           ((org-agenda-category-filter-preset
-             (list "+planner" "+linguistics" "+vault"))
-            (org-agenda-overriding-header
-             "* Stray  TODOs:")
-            (org-agenda-skip-function
-             '(org-agenda-skip-entry-if 'deadline 'scheduled))
-            (org-default-priority org-lowest-priority)
-            (org-agenda-sorting-strategy '(priority-down alpha-up))))))))
+                 (org-agenda-span 'month)
+                 (org-default-priority org-lowest-priority)))))))
 
 
 (defun gk-org-display-single-pane-agenda-view (&optional arg)
