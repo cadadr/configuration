@@ -113,7 +113,7 @@ settings:
   content.xss_auditing:
     global: true
   downloads.location.suggestion:
-    global: both
+    global: path
   downloads.open_dispatcher:
     global: xdg-open {}
   downloads.position:
