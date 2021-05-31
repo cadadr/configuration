@@ -115,7 +115,7 @@ redirect_fns = []
 
 if majv >= 2:
     redirect_fns.append(maybe_redirect_to_imgurp)
-    redirect_fns.append(maybe_redirect_to_nitter)
+    # redirect_fns.append(maybe_redirect_to_nitter)
     # redirect_fns.append(maybe_redirect_for_spacing)
 
 
