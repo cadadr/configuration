@@ -509,9 +509,19 @@ info-page-number = 3
 info-stats-type = 'discharge-accuracy'
 
 [org/gnome/rhythmbox]
+display-page-tree-visible = false
+show-album-art = false
+time-display = false
+
+[org/gnome/rhythmbox/library]
+layout-filename = '%tN - %tt'
+layout-path = '%aa/%at'
+
+[org/gnome/rhythmbox/library/encoding]
+media-type = 'audio/x-vorbis'
 
 [org/gnome/rhythmbox/library/source]
-show-browser = true
+show-browser = false
 
 [org/gnome/rhythmbox/player]
 
@@ -531,11 +541,17 @@ initial-stations-loaded = true
 [org/gnome/rhythmbox/plugins/iradio/source]
 show-browser = true
 
+[org/gnome/rhythmbox/podcast]
+download-location = 'file:///home/g/Music'
+
 [org/gnome/rhythmbox/podcast/source]
 show-browser = true
 
 [org/gnome/rhythmbox/rhythmdb]
 locations = ['file:///home/g/Music']
+
+[org/gnome/rhythmbox/sources]
+visible-columns = ['post-time', 'artist', 'duration', 'track-number']
 
 [org/gnome/simple-scan]
 document-type = 'photo'
