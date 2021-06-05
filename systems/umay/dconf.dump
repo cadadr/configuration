@@ -145,11 +145,11 @@ slideshow-enabled = true
 [org/cinnamon/desktop/interface]
 cursor-blink-time = 1200
 cursor-size = 24
-cursor-theme = 'DMZ-White'
+cursor-theme = 'DMZ-Black'
 font-name = 'Ubuntu 10'
 gtk-overlay-scrollbars = true
-gtk-theme = 'Mint-X-Brown'
-icon-theme = 'gnome'
+gtk-theme = 'Mint-X-Aqua'
+icon-theme = 'Mint-X-Yellow'
 keyboard-layout-prefer-variant-names = false
 keyboard-layout-show-flags = false
 keyboard-layout-use-upper = true
@@ -350,8 +350,8 @@ tile-enabled = false
 unplug-enabled = false
 
 [org/cinnamon/theme]
-name = 'Mint-X-Brown'
-theme-cache-updated = 1615227053
+name = 'Mint-X-Aqua'
+theme-cache-updated = 1622571091
 
 [org/gnome/baobab/ui]
 active-chart = 'treemap'
