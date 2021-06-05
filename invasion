@@ -40,7 +40,7 @@
 .tmux.conf			dotfiles/tmux.conf
 bin				bin
 .local/share/applications/emacs.desktop			candy/emacs.desktop
-.local/share/applications/rstudio.desktop			candy/rstudio.desktop
+.local/share/applications/rstudio.desktop		candy/rstudio.desktop
 .local/share/applications/emacsclient.desktop		candy/emacsclient.desktop
 .local/share/applications/emacsclient-url.desktop	candy/emacsclient-url.desktop
 .local/share/applications/lagrange.desktop		candy/lagrange.desktop
