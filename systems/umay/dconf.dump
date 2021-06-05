@@ -43,11 +43,12 @@ show-welcome-page = false
 settings-migrated = true
 
 [io/github/celluloid-player/celluloid/window-state]
-height = 480
+height = 510
+loop-playlist = false
 playlist-width = 250
 show-controls = true
 show-playlist = false
-width = 640
+width = 858
 
 [org/blueberry]
 obex-enabled = true
@@ -640,6 +641,8 @@ catalogs-2-10 = true
 
 [org/x/pix/general]
 active-extensions = ['23hq', 'bookmarks', 'burn_disc', 'catalogs', 'change_date', 'comments', 'contact_sheet', 'convert_format', 'desktop_background', 'edit_metadata', 'exiv2_tools', 'facebook', 'file_manager', 'file_tools', 'find_duplicates', 'flicker', 'gstreamer_tools', 'gstreamer_utils', 'image_print', 'image_rotation', 'image_viewer', 'importer', 'jpeg_utils', 'list_tools', 'oauth', 'photo_importer', 'photobucket', 'picasaweb', 'raw_files', 'red_eye_removal', 'rename_series', 'resize_images', 'search', 'selections', 'slideshow', 'webalbums']
+
+[org/x/reader]
 
 [org/x/reader/default]
 
