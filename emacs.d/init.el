@@ -2114,7 +2114,7 @@ Useful when using dired-subtree."
  ;; Manually change the page.
  pdf-view-continuous nil
  ;; Resize more granularly.
- pdf-view-resize-factor 1.2)
+ pdf-view-resize-factor 1.1)
 
 (pdf-tools-install-noverify)
 
