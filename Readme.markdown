@@ -133,5 +133,8 @@ The sound at `candy/bleep.wav` is (C) 2015 pan14, licensed under the
 The design at `candy/qute.svg`, the Qutebrowser logo, is (C) Florian
 Bruhin.
 
+The image at `candy/lagrange.png`, the Lagrange logo, is (C) Jaakko
+Keränen.
+
 [CC-BY 3.0 License]: http://creativecommons.org/licenses/by/3.0/
 [CC0 License]: http://creativecommons.org/publicdomain/zero/1.0/
