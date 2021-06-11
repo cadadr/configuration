@@ -53,6 +53,12 @@ command below to escape it when calling from vi/vim command line):
 
     $ sudo sed -i -E 's/^(load-module module-suspend-on-idle)$/# \1/' /etc/pulse/default.pa
 
+My printer/scanner is exposed to LAN through [a Raspberry
+Pi](../ayata).  The following configuration modification allows
+`saned` to access it:
+
+    $ echo ayata.local | sudo tee -a /etc/sane.d/net.conf
+
 Finally, update locales as necessary:
 
     $ printf 'tr_TR.UTF-8 UTF-8\nen_GB.UTF-8 UTF-8\nen_US.UTF-8 UTF-8\n' | sudo tee /etc/locale.gen
