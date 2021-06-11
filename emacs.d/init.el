@@ -866,6 +866,20 @@ Linguistics (2nd ed.). Oxford University Press."
     (clipboard-kill-ring-save (point-min) (point-max))
     (message "Copied %s" str)))
 
+;; Adapted from: https://christiantietze.de/posts/2021/06/emacs-center-window-on-current-monitor/
+
+(defun gk-frame-recenter (&optional frame)
+  "Center a frame on the current display."
+  (interactive)
+  (unless (eq 'maximised (frame-parameter nil 'fullscreen))
+    (let* ((w (frame-pixel-width frame))
+           (h (frame-pixel-height frame))
+           (cw (caddr (frame-monitor-workarea frame)))
+           (ch (cadddr (frame-monitor-workarea frame)))
+           (center (list (/ (- cw w) 2) (/ (- ch h) 2))))
+      (apply 'set-frame-position (flatten-list (list frame center))))))
+
+
 
 
 ;;;; Generic advices:
@@ -6687,8 +6701,10 @@ new frame is created."
   (setf x-frame-normalize-before-maximize t)
 
   (add-hook 'after-init-hook #'gk-setup-frame-looks)
+;;  (add-hook 'after-init-hook #'gk-frame-recenter)
 
   (add-hook 'after-make-frame-functions #'gk-setup-frame-looks)
+  (add-hook 'after-make-frame-functions #'gk-frame-recenter)
 
   ;; Set up cursors:
   (setq-default cursor-type 'box)
