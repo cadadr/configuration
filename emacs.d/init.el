@@ -6751,6 +6751,8 @@ new frame is created."
    ("help\\[R\\]" . (display-buffer-pop-up-window))
    ("\\*pager\\*.*" . (display-buffer-pop-up-window
                        . ((inhibit-same-window . t))))
+   ("\\*\\(Compile-Log\\|Warnings\\)\\*" . (display-buffer-in-direction
+                                            . ((direction . below))))
    ;; Use ‘display-buffer-same-window’ as a catch-all for everything
    ;; but...
    (,($ [b _] (not (memq (buffer-local-value 'major-mode (get-buffer b))
