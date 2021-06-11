@@ -12,7 +12,6 @@ help:
 	echo "	setup-light	like above, but skip building binaries";\
 	echo "	invade		run invasion";\
 	echo "	build		build utilites and emacs.d";\
-	echo "	elisp		full elisp build, with native compilation";\
 	echo "	dotfiles	build dotfiles";\
 	echo "	clean		delete build artefacts";\
 
@@ -42,9 +41,6 @@ build: emacs
 emacs:
 	$(MAKE) -C emacs.d -$(MAKEFLAGS) all
 
-elisp:
-	$(MAKE) -C lisp/emacs -$(MAKEFLAGS) all compile
-
 clean-bin:
 	$(MAKE) -C bin -$(MAKEFLAGS) clean
 
@@ -66,5 +62,5 @@ deep-clean:
 	git clean -dfx
 
 ### Postamble:
-.PHONY: all build emacs elisp bins dotfiles clean
+.PHONY: all build emacs bins dotfiles clean
 .PHONY: clean-bin clean-dotfiles deep-clean
