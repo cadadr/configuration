@@ -2099,7 +2099,7 @@ Useful when using dired-subtree."
 (setf
  pdf-info-epdfinfo-program
  (gk-executable-ensure
-  (locate-user-emacs-file "lisp/site/pdf-tools/server/epdfinfo"))
+  (expand-file-name "pdf-tools/server/epdfinfo" gk-elisp-site-dir))
  pdf-tools-enabled-modes
  '(pdf-isearch-minor-mode
    pdf-links-minor-mode
