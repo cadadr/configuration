@@ -7198,7 +7198,7 @@ So that the reader knows where to continue reading."
 
 
 
-;;;;;; Setup
+;;;;;; Setup:
 
 (cl-pushnew 'gk-icomplete-mode gk-global-modes)
 
