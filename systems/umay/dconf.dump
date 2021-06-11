@@ -43,12 +43,12 @@ show-welcome-page = false
 settings-migrated = true
 
 [io/github/celluloid-player/celluloid/window-state]
-height = 510
+height = 572
 loop-playlist = false
 playlist-width = 250
 show-controls = true
 show-playlist = false
-width = 858
+width = 643
 
 [org/blueberry]
 obex-enabled = true
@@ -453,6 +453,7 @@ include-pointer = false
 last-save-directory = 'file:///home/g/Pictures'
 
 [org/gnome/gnome-system-monitor]
+cpu-colors = [(uint32 0, '#FF6E00'), (1, '#CB0C29'), (2, '#49A835'), (3, '#2D7DB3'), (4, '#f25915e815e8'), (5, '#f25915e815e8'), (6, '#f25915e815e8'), (7, '#f25915e815e8')]
 show-dependencies = false
 show-whose-processes = 'user'
 swap-color = 'rgb(78,154,6)'
@@ -539,6 +540,9 @@ scrobbling-enabled = true
 initial-stations-loaded = true
 
 [org/gnome/rhythmbox/plugins/iradio/source]
+show-browser = true
+
+[org/gnome/rhythmbox/plugins/mtpdevice/source]
 show-browser = true
 
 [org/gnome/rhythmbox/podcast]
