@@ -7132,13 +7132,16 @@ So that the reader knows where to continue reading."
 (setq x-select-request-type '(UTF8_STRING COMPOUND_TEXT TEXT STRING))
 
 
-;;;;; Ido and Smex:
+;;;;; Completions:
+;;;;;; Ido & Smex:
 
 (define-minor-mode gk-ido-smex-mode
   "Minor mode to govern ‘ido-mode’ and ‘smex-mode’.
 
 \\{gk-ido-smex-mode-map}"
-  nil ""
+  :lighter "Gk-Ido/Sx"
+  :global t
+  :keymap
   (let ((map (make-sparse-keymap)))
     (prog1 map
       (define-key map [remap execute-extended-command] #'smex)
@@ -7156,9 +7159,6 @@ So that the reader knows where to continue reading."
     ;; To revert ‘smex-initialize’ fully.
     (remove-hook 'minibuffer-setup-hook 'ido-minibuffer-setup)))
 
-(define-globalized-minor-mode global-gk-ido-smex-mode
-  gk-ido-smex-mode gk-ido-smex-mode)
-
 (setf
  ido-use-filename-at-point nil
  ;; Don't show dotfiles if the prefix of the search string is not ‘.’
@@ -7175,6 +7175,32 @@ So that the reader knows where to continue reading."
  'ido-minibuffer-setup-hook
  (defun gk-ido-disable-line-truncation ()
    (set (make-local-variable 'truncate-lines) nil)))
+
+
+
+;;;;;; Icomplete:
+
+(define-minor-mode gk-icomplete-mode
+  "Minor mode to govern ‘icomplete-mode’.
+
+\\{gk-icomplete-mode-map}"
+  :lighter "Gk-Ic"
+  ;; :global t ; doesn’t work for some reason...
+  (if gk-icomplete-mode
+      (progn
+        (icomplete-mode)
+        (icomplete-vertical-mode))
+    (icomplete-vertical-mode -1)
+    (icomplete-mode -1)))
+
+(setf
+ icomplete-show-matches-on-no-input t)
+
+
+
+;;;;;; Setup
+
+(cl-pushnew 'gk-icomplete-mode gk-global-modes)
 
 
 
