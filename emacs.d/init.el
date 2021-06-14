@@ -4923,7 +4923,16 @@ Use \[pop-to-mark-command] to go back to where you were."
 ;;;;; Apps:
 
 ;; Use system app to handle PDFs.
-(setcdr (assoc "\\.pdf\\'" org-file-apps) "okular %s")
+(setcdr (assoc "\\.pdf\\'" org-file-apps) 'emacs)
+
+(setcdr (assoc 'file org-link-frame-setup)
+        (lambda (&rest args)
+          (apply
+           (save-match-data
+             (if (string-match "\\.org\\(::.*\\)?$" (car args))
+                 #'find-file-other-window
+               #'find-file))
+           args)))
 
 
 
