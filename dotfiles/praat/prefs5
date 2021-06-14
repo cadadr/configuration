@@ -94,8 +94,8 @@ Picture.fontSize: 10
 Picture.mouseSelectsInnerViewport: 0
 PraatShell.batchSessions: 0
 PraatShell.dateOfFirstSession: Wed Nov 20 13:15:12 2019
-PraatShell.interactiveSessions: 16
-PraatShell.memory: 14849230827
+PraatShell.interactiveSessions: 18
+PraatShell.memory: 15095911971
 Printer.allowDirectPostScript: 1
 Printer.fontChoiceStrategy: automatic
 Printer.paperSize: A4
@@ -140,7 +140,7 @@ TimeSoundAnalysisEditor.formant.method: Burg
 TimeSoundAnalysisEditor.formant.numberOfFormants: 5
 TimeSoundAnalysisEditor.formant.picture.garnish: 1
 TimeSoundAnalysisEditor.formant.preemphasisFrom: 50
-TimeSoundAnalysisEditor.formant.show: 0
+TimeSoundAnalysisEditor.formant.show: 1
 TimeSoundAnalysisEditor.formant.windowLength: 0.025
 TimeSoundAnalysisEditor.intensity.averagingMethod: mean energy
 TimeSoundAnalysisEditor.intensity.picture.garnish: 1
@@ -183,7 +183,7 @@ TimeSoundAnalysisEditor.pulses.picture.garnish: 1
 TimeSoundAnalysisEditor.pulses.show: 0
 TimeSoundAnalysisEditor.spectrogram.autoscaling.2: 1
 TimeSoundAnalysisEditor.spectrogram.dynamicCompression.2: 0
-TimeSoundAnalysisEditor.spectrogram.dynamicRange.2: 50
+TimeSoundAnalysisEditor.spectrogram.dynamicRange.2: 70
 TimeSoundAnalysisEditor.spectrogram.frequencySteps.2: 250
 TimeSoundAnalysisEditor.spectrogram.maximum.2: 100
 TimeSoundAnalysisEditor.spectrogram.method.2: Fourier
@@ -193,7 +193,7 @@ TimeSoundAnalysisEditor.spectrogram.show: 1
 TimeSoundAnalysisEditor.spectrogram.timeSteps.2: 1000
 TimeSoundAnalysisEditor.spectrogram.viewFrom.2: 0
 TimeSoundAnalysisEditor.spectrogram.viewTo.2: 5000
-TimeSoundAnalysisEditor.spectrogram.windowLength.2: 0.03
+TimeSoundAnalysisEditor.spectrogram.windowLength.2: 0.005
 TimeSoundAnalysisEditor.spectrogram.windowShape.2: Hanning (sine-squared)
 TimeSoundAnalysisEditor.timeStepStrategy: automatic
 TimeSoundEditor.extract.overlap: 0.01
