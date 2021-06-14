@@ -253,7 +253,7 @@ autorun-x-content-open-folder = @as []
 autorun-x-content-start-app = @as []
 
 [org/cinnamon/desktop/notifications]
-bottom-notifications = true
+bottom-notifications = false
 display-notifications = true
 
 [org/cinnamon/desktop/screensaver]
