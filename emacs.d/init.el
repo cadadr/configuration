@@ -4702,12 +4702,47 @@ N defaults to 1."
   (org-show-entry)
   (recenter 1))
 
-(defun gk-org-insert-all-stored-links ()
+(defun gk-org-insert-all-stored-links (arg)
   "Insert the contents of ‘org-stored-links’, one per line."
-  (interactive)
-  (dolist (link org-stored-links)
-    (insert (apply #'format "[[%s][%s]]" link))
-    (newline 2)))
+  (interactive (list current-prefix-arg))
+  (cond
+   ((null org-stored-links)
+    (user-error "No stored links available"))
+   ;; at indentation but no list, start list
+   ((save-excursion
+      (goto-char (line-beginning-position))
+      (looking-at "^ +$"))
+    (insert "- "))
+   ;; at empty list item, reuse
+   ((let* ((el (org-element-at-point)))
+      (and (eq 'item (car el))))
+    (insert " "))
+   ;; at non-empty list item, add sublist
+   ((let* ((el (org-element-at-point)))
+      (and (eq 'paragraph (car el))
+           (eq 'item (save-excursion
+                       (back-to-indentation)
+                       (car (org-element-at-point))))))
+    (newline-and-indent)
+    (insert "- "))
+   ;; no list item, add new
+   ((eq 'plain-list (car (org-element-at-point)))
+    ;; skip ‘arg’ here, we’ll do it manually on the first time
+    (org-insert-item))
+   ;; not in list, start new
+   (t
+    (insert "- ")))
+  (when arg (insert "[ ] "))
+  ;; for some reason using ‘(last org-stored-links)’ didn’t work, so
+  ;; we’re back to counting with fingers...
+  (let ((n 0))
+    (dolist (link org-stored-links)
+      (insert (apply #'format "[[%s][%s]]" link))
+      (unless (eq (incf n) (length org-stored-links))
+        (org-insert-item arg))))
+  ;; clear the list
+  (when (y-or-n-p "All links inserted, clear stored links?")
+    (setq org-stored-links nil)))
 
 (define-advice org-tree-to-indirect-buffer
     (:around (fn arg) arg-for-dedicated-frame)
@@ -6176,6 +6211,9 @@ fragments"
 ;; Attachments
 (define-key org-mode-map (kbd "C-c C-M-s") #'gk-org-attach-screenshot)
 (define-key org-mode-map (kbd "<f2>") #'gk-org-attach-screenshot)
+
+;; Misc
+(define-key org-mode-map (kbd "C-c C-M-l") #'gk-org-insert-all-stored-links)
 
 
 
