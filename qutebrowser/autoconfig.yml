@@ -183,6 +183,8 @@ settings:
     global: normal
   tabs.mousewheel_switching:
     global: true
+  tabs.new_position.unrelated:
+    global: next
   tabs.position:
     global: left
   tabs.select_on_remove:
