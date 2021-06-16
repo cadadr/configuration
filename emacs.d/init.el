@@ -2481,7 +2481,7 @@ will receive the region if active, or the entire buffer."
 ;; TAB won’t show completion, C-i will.
 (define-key quail-translation-keymap [tab] nil)
 
-(defvar gk-input-methods '("unilat-gk" "ipa-x-sampa"))
+(defvar gk-input-methods '("unilat-gk" "ipa-x-sampa" "japanese"))
 
 (defun gk-cycle-input-methods (arg)
   "Activate the next input method from `gk-input-methods'.
