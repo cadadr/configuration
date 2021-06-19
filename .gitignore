@@ -71,9 +71,9 @@ emacs.d/anaconda-mode/
 emacs.d/request/
 emacs.d/smex-items
 emacs.d/projects
-
 emacs.d/extras/*.el
 emacs.d/.trash_emacs/
+emacs.d/kkcrc
 
 # Qutebrowser
 qutebrowser/qsettings/QtProject.conf
