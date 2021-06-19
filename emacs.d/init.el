@@ -1773,6 +1773,7 @@ column will be split into two instead."
   (list :serif "DejaVu Serif Condensed"
         :sans "DejaVu Sans Condensed"
         :mono "DejaVu Sans Mono"
+        :cjk "Noto Serif CJK JP"
         :forecast-moon-phase (or (and (gk-gui-p)
                                       (font-info "Quivira")
                                       "Quivira")
@@ -6695,6 +6696,19 @@ new frame is created."
   (set-face-attribute 'variable-pitch nil
                       :height gk-font-variable-pitch-height
                       :family (gk-font :sans))
+
+  ;; make CJK text more readable
+  (let ((fs (font-spec
+             :name
+             (format "%s %d" (gk-font :cjk)
+                     (* (/ gk-font-default-height 10) 1.5))))
+        (ranges '(kana han cjk-misc symbol bopomofo)))
+    (dolist (r ranges)
+      ;; set the default
+      (set-fontset-font t r fs)
+      ;; apply to current frames
+      (dolist (f (frame-list))
+        (set-fontset-font nil r fs f))))
 
   (loop for attr in '(mode-line mode-line-inactive) do
         (set-face-attribute attr nil
