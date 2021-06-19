@@ -4,6 +4,7 @@
 " - https://git.sr.ht/~admicos/dot/tree/master/nvim/init.vim
 
 " UI/UX {{{
+colorscheme gruvbox
 set background=dark
 set termguicolors
 
