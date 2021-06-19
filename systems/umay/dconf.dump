@@ -145,11 +145,11 @@ slideshow-enabled = true
 [org/cinnamon/desktop/interface]
 cursor-blink-time = 1200
 cursor-size = 24
-cursor-theme = 'DMZ-Black'
+cursor-theme = 'DMZ-White'
 font-name = 'Ubuntu 10'
 gtk-overlay-scrollbars = true
-gtk-theme = 'Mint-X-Aqua'
-icon-theme = 'Mint-X-Yellow'
+gtk-theme = 'Mint-Y-Dark-Aqua'
+icon-theme = 'Mint-Y-Dark-Yellow'
 keyboard-layout-prefer-variant-names = false
 keyboard-layout-show-flags = false
 keyboard-layout-use-upper = true
@@ -283,7 +283,7 @@ focus-mode = 'sloppy'
 focus-new-windows = 'smart'
 min-window-opacity = 30
 mouse-button-modifier = '<Super>'
-theme = 'Mint-X'
+theme = 'Mint-Y-Dark'
 workspace-names = ['home', 'www']
 
 [org/cinnamon/muffin]
@@ -350,7 +350,7 @@ tile-enabled = false
 unplug-enabled = false
 
 [org/cinnamon/theme]
-name = 'Mint-X-Aqua'
+name = 'Mint-Y-Dark-Aqua'
 theme-cache-updated = 1622571091
 
 [org/gnome/baobab/ui]
