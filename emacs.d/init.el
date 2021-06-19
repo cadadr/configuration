@@ -1695,11 +1695,14 @@ Tries to preserve the order of window buffers and active window."
   (follow-mode))
 
 
-(defun gk-layouts-main-and-sidekicks ()
+(defun gk-layouts-main-and-sidekicks (&optional arg)
   "One horizontal split, the right window split in two.
 
-Tries to preserve the order of window buffers and active window."
-  (interactive)
+Tries to preserve the order of window buffers and active window.
+
+If ARG is non-nil, or if called with a prefix argument, the left
+column will be split into two instead."
+  (interactive "P")
   ;; Record active window buffer.
   (let ((cbuf (current-buffer)))
     ;; Switch to leftmost window.
@@ -1708,7 +1711,7 @@ Tries to preserve the order of window buffers and active window."
            (mapcar #'window-buffer (-take 3 (window-list)))))
       (delete-other-windows)
       (split-window-horizontally)
-      (other-window 1)
+      (unless arg (other-window 1))
       (split-window-vertically)
       (other-window -1)
       (dolist (b buffers)
