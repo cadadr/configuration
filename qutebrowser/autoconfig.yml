@@ -67,6 +67,7 @@ settings:
         ',z': save-to-zotero
         .: nop
         <Ctrl+a>: null
+        <Ctrl+v>: null
         <Ctrl+x>: null
         D: hint links userscript ~/.config/qutebrowser/userscripts/doi
         T: tab-focus
