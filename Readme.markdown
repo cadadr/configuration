@@ -34,6 +34,9 @@ The configuration on this repo works with multiple OS / hardware
 setups, which have their own set up instructions.  Follow the links
 below for more details.
 
+- [Linux desktop workstation](systems/midori) (`midori`) based on Arch
+  Linux and i3wm.
+
 - [Linux desktop workstation](systems/umay/) (`umay`) with
   latest stable Linux Mint Debian Edition with Cinnamon desktop.
 
@@ -51,6 +54,9 @@ below for more details.
 
 <table>
   <tr>
+    <td>
+      <img src="candy/scr-midori.png" alt="screenshot for midori"/>
+    </td>
     <td>
       <img src="candy/scr-umay.png" alt="screenshot for umay"/>
     </td>
@@ -87,7 +93,7 @@ features introuduced on the `master` branch of it.
 
     $ build-emacs-master.sh
 
-A recent version of Qutebrowser can be installed via
+If needed, a recent version of Qutebrowser can be installed via
 
     $ cd ~/co/External/github-qutebrowser-qutebrowser     # where a checkout usually
                                                           # is on my system

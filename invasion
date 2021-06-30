@@ -15,6 +15,14 @@
 .config/okularpartrc		dotfiles/okular.ini
 .config/clipit/clipitrc		dotfiles/clipitrc.ini
 .config/qutebrowser		qutebrowser
+.config/dunst/dunstrc		dotfiles/dunstrc.ini
+.config/flameshot/flameshot.ini	dotfiles/flameshot.ini
+.config/kitty/kitty.conf	dotfiles/kitty.conf
+.config/pcmanfm/default/pcmanfm.conf	dotfiles/pcmanfm.conf
+.config/libfm/libfm.conf	dotfiles/libfm.conf
+.config/ristretto/ristretto.xml	dotfiles/ristretto.xml
+.config/i3/config		dotfiles/i3wm.conf
+.config/i3status/config		dotfiles/i3status.conf
 .emacs.d			emacs.d
 .flutter			dotfiles/flutter.json
 .gitconfig			dotfiles/gitconfig.ini
@@ -45,9 +53,7 @@ bin				bin
 .local/share/applications/emacsclient-url.desktop	candy/emacsclient-url.desktop
 .local/share/applications/lagrange.desktop		candy/lagrange.desktop
 .local/share/applications/zotero.desktop		candy/zotero.desktop
-.local/share/applications/qutebrowser.desktop		candy/qute.desktop
 .local/share/applications/mimeapps.list			dotfiles/mimeapps.list
 .local/share/applications/emacsclient-org-protocol.desktop	candy/emacsclient-org-protocol.desktop
-.local/share/icons/hicolor/scalable/apps/qutebrowser.svg	candy/qute.svg
 .local/share/icons/hicolor/128x128/apps/emacs.png		candy/emacs.png
 .local/share/icons/hicolor/256x256/apps/lagrange.png		candy/lagrange.png

@@ -2,6 +2,10 @@
 
 This tree contains system-level configurations specific to my computers.
 
+## `midori`: desktop workstation
+
+Arch Linux based desktop workstation.
+
 ## `umay`: desktop workstation
 
 A Linux Mint Debian Edition Cinnamon based desktop workstation.

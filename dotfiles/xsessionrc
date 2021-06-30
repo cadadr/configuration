@@ -21,6 +21,7 @@ dconf load / < $MYSYSTEM/dconf.dump
 
 ### Input:
 #### Keyboard:
+setxkbmap gb
 setxkbmap -option "ctrl:nocaps"
 
 ### System specific desktop setup:

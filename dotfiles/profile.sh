@@ -19,7 +19,7 @@ export MEINE="$MY/dotfiles"
 export MYLIB="$MY/lib"
 export MYFS="/igk"
 export SYSTEM="$(uname)"
-export MYSYSTEM="$MY/systems/$(hostname)"
+export MYSYSTEM="$MY/systems/$HOSTNAME"
 
 ###
 

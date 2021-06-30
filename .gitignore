@@ -88,6 +88,7 @@ emacs.d/eln-cache/
 
 # vim
 dotfiles/vim/undo/
+dotfiles/vim/.netrwhist
 
 # lagrange
 dotfiles/lagrange/feeds.txt
@@ -95,3 +96,9 @@ dotfiles/lagrange/idents.lgr
 dotfiles/lagrange/state.lgr
 dotfiles/lagrange/trusted.txt
 dotfiles/lagrange/visited.2.txt
+
+# midori
+systems/midori/pkgbuilds/*/src
+systems/midori/pkgbuilds/*/pkg
+systems/midori/pkgbuilds/*/*.tar.*
+systems/midori/pkgbuilds/*/*.zip

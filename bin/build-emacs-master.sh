@@ -36,16 +36,17 @@ if [ ! -f configure ]; then
 fi
 
 ./configure --prefix=$HOME/local/emacs    \
-            --with-x-toolkit=${TK-athena} \
+            --with-x-toolkit=${TK-gtk3}   \
             --with-modules                \
             --with-file-notification=yes  \
             --with-gameuser=no            \
             --with-cairo                  \
+            --with-harfbuzz               \
             --with-mailutils              \
-            --with-imagemagick            \
             --disable-build-details       \
             --with-json                   \
-            --with-native-compilation
+            --without-compress-install    \
+            --without-native-compilation
 
 echo Configure script completed, review output and hit RETURN to build; read nought
 

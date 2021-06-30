@@ -1,9 +1,13 @@
+AmplitudeTierArea.dataFreeMaximum: 1
+AmplitudeTierArea.dataFreeMinimum: -1
 Audio.inputSoundSystem: ALSA via PortAudio
 Audio.maximumAsynchronicity: asynchronous (anything)
 Audio.outputSoundSystem: PulseAudio
 Audio.silenceAfter2: 0.1
 Audio.silenceBefore2: 0
 Audio.useInternalSpeaker: 1
+DurationTierArea.dataFreeMaximum: 3
+DurationTierArea.dataFreeMinimum: 0.25
 EEGWindow.picture.bottom: 0
 EEGWindow.picture.top: 0
 EEGWindow.showSelectionViewer: 0
@@ -66,6 +70,38 @@ FormantGridEditor.source.pitch.f0Start: 150
 FormantGridEditor.source.pitch.tEnd: 1
 FormantGridEditor.source.pitch.tMid: 0.25
 FormantGridEditor.source.pitch.tStart: 0
+FormantPathEditor.align.allowSilences: 0
+FormantPathEditor.align.includePhonemes: 0
+FormantPathEditor.align.includeWords: 1
+FormantPathEditor.align.language: English
+FormantPathEditor.alignment: centre
+FormantPathEditor.fontSize: 18
+FormantPathEditor.formant.default.colour: blue
+FormantPathEditor.formant.draw.showBandWidths: 0
+FormantPathEditor.formant.path.evenColour: pink
+FormantPathEditor.formant.path.oddColour: red
+FormantPathEditor.formant.selected.colour: pink
+FormantPathEditor.formant.show: 1
+FormantPathEditor.greenMethod: is equal to
+FormantPathEditor.greenString: some text here for green paint
+FormantPathEditor.modeler.draw.estimatedModels: 0
+FormantPathEditor.modeler.draw.maximumFrequency: 5000
+FormantPathEditor.modeler.draw.showAllModels: 1
+FormantPathEditor.modeler.draw.showErrorBars: 1
+FormantPathEditor.modeler.draw.yGridLineEvery.Hz: 1000
+FormantPathEditor.modeler.numberOfParametersPerTrack: 7 7 7
+FormantPathEditor.modeler.numberOfTracks: 3
+FormantPathEditor.modeler.varianceExponent: 1.25
+FormantPathEditor.picture.garnish: 1
+FormantPathEditor.picture.pitch.speckle: 0
+FormantPathEditor.picture.showBoundaries: 1
+FormantPathEditor.shellHeight: 600
+FormantPathEditor.shellWidth: 800
+FormantPathEditor.shiftDragMultiple: 0
+FormantPathEditor.showNumberOf: intervals or points
+FormantPathEditor.showSelectionViewer: 1
+FormantPathEditor.spectrogram.show: 1
+FormantPathEditor.useTextStyles: 0
 FunctionEditor.arrowScrollStep: 0.05
 FunctionEditor.picture.drawSelectionHairs: 1
 FunctionEditor.picture.drawSelectionTimes: 1
@@ -76,30 +112,55 @@ FunctionEditor.synchronizedZoomAndScroll: 1
 Graphics.cjkFontStyle: Chinese
 HyperPage.font: Times
 HyperPage.fontSize: 12
+IntensityTierArea.dataFreeMaximum: 100
+IntensityTierArea.dataFreeMinimum: 50
+KlattGrid.CollisionPhaseTierArea.dataFreeMaximum: 0.1
+KlattGrid.CollisionPhaseTierArea.dataFreeMinimum: 0
+KlattGrid.DecibelTierArea.dataFreeMaximum: 30
+KlattGrid.DecibelTierArea.dataFreeMinimum: -30
+KlattGrid.DoublePulsingTierArea.dataFreeMaximum: 1
+KlattGrid.DoublePulsingTierArea.dataFreeMinimum: 0
+KlattGrid.FlutterTierArea.dataFreeMaximum: 1
+KlattGrid.FlutterTierArea.dataFreeMinimum: 0
+KlattGrid.FricationBypassTierArea.dataFreeMaximum: 10
+KlattGrid.FricationBypassTierArea.dataFreeMinimum: -50
+KlattGrid.IntensityTierArea.dataFreeMaximum: 100
+KlattGrid.IntensityTierArea.dataFreeMinimum: 50
+KlattGrid.OpenPhaseTierArea.dataFreeMaximum: 1
+KlattGrid.OpenPhaseTierArea.dataFreeMinimum: 0
+KlattGrid.PitchTierArea.dataFreeMaximum: 600
+KlattGrid.PitchTierArea.dataFreeMinimum: 50
+KlattGrid.Power1TierArea.dataFreeMaximum: 4
+KlattGrid.Power1TierArea.dataFreeMinimum: 0
+KlattGrid.Power2TierArea.dataFreeMaximum: 5
+KlattGrid.Power2TierArea.dataFreeMinimum: 0
+KlattGrid.SpectralTiltTierArea.dataFreeMaximum: 10
+KlattGrid.SpectralTiltTierArea.dataFreeMinimum: -50
 LongSound.bufferLength: 60
-ManipulationEditor.duration.maximum: 3
-ManipulationEditor.duration.minimum: 0.25
 ManipulationEditor.pitch.draggingStrategy: all
 ManipulationEditor.pitch.interpolateQuadratically.numberOfPointsPerParabola: 4
-ManipulationEditor.pitch.maximum: 300
-ManipulationEditor.pitch.minimum: 50
 ManipulationEditor.pitch.stylize.frequencyResolution: 2
 ManipulationEditor.pitch.stylize.useSemitones: 1
-ManipulationEditor.pitch.units: Hertz
 NoulliGridEditor.arrowScrollStep: 1
 NoulliGridEditor.showCategoryInSelectionViewerAs: picture
 NoulliGridEditor.showSelectionViewer: 1
+OptimalCeilingTierArea.dataFreeMaximum: 6000
+OptimalCeilingTierArea.dataFreeMinimum: 4000
 Picture.font: Times
 Picture.fontSize: 10
 Picture.mouseSelectsInnerViewport: 0
+PitchTierArea.dataFreeMaximum: 300
+PitchTierArea.dataFreeMinimum: 50
 PraatShell.batchSessions: 0
 PraatShell.dateOfFirstSession: Wed Nov 20 13:15:12 2019
-PraatShell.interactiveSessions: 18
-PraatShell.memory: 15095911971
+PraatShell.interactiveSessions: 19
+PraatShell.memory: 15112579752
 Printer.allowDirectPostScript: 1
 Printer.fontChoiceStrategy: automatic
 Printer.paperSize: A4
 Printer.spots: finest
+RealTierArea.dataFreeMaximum: 100
+RealTierArea.dataFreeMinimum: -100
 Site.printCommand: lp -c %s
 SoundRecorder.bufferSizeInMegabytes: 60
 SoundRecorder.meter.centreOfGravity.maximum: 8000
@@ -131,11 +192,12 @@ TextGridEditor.shellHeight: 600
 TextGridEditor.shellWidth: 800
 TextGridEditor.shiftDragMultiple: 1
 TextGridEditor.showNumberOf: intervals or points
+TextGridEditor.showSelectionViewer: 1
 TextGridEditor.useTextStyles: 0
 TimeSoundAnalysisEditor.fixedTimeStep: 0.01
+TimeSoundAnalysisEditor.formant.ceiling: 5500
 TimeSoundAnalysisEditor.formant.dotSize: 1
 TimeSoundAnalysisEditor.formant.dynamicRange: 30
-TimeSoundAnalysisEditor.formant.maximumFormant: 5500
 TimeSoundAnalysisEditor.formant.method: Burg
 TimeSoundAnalysisEditor.formant.numberOfFormants: 5
 TimeSoundAnalysisEditor.formant.picture.garnish: 1
@@ -208,50 +270,37 @@ TimeSoundEditor.sound.scaling.height: 2
 TimeSoundEditor.sound.scaling.maximum: 1
 TimeSoundEditor.sound.scaling.minimum: -1
 TimeSoundEditor.sound.scalingStrategy: by window
-VowelEditor.b3: 250
-VowelEditor.b4: 350
-VowelEditor.extendDuration: 0.05
-VowelEditor.f1max: 1200
-VowelEditor.f1min: 200
-VowelEditor.f2max: 3500
-VowelEditor.f2min: 500
-VowelEditor.f3: 2500
-VowelEditor.f4: 3500
-VowelEditor.mark01: \ae	663.6666666666666	1727.1060606060605	14
-VowelEditor.mark02: \as	718.4242424242424	1090.8939393939395	14
-VowelEditor.mark03: \ct	568.3181818181819	836.2575757575758	14
-VowelEditor.mark04: \ef	526.1969696969697	1854.409090909091	14
-VowelEditor.mark05: \er\hr	488.5151515151515	1359.8333333333333	14
-VowelEditor.mark06: \hs	436.77272727272725	1023.2727272727273	14
-VowelEditor.mark07: \ic	392.3484848484849	1993.439393939394	14
-VowelEditor.mark08: \vt	630.6060606060606	1191.8636363636363	14
-VowelEditor.mark09: i	266.7121212121212	2293.787878787879	14
-VowelEditor.mark10: u	307.3636363636364	875.969696969697	14
-VowelEditor.mark11: x
-VowelEditor.mark12: x
-VowelEditor.mark13: x
-VowelEditor.mark14: x
-VowelEditor.mark15: x
-VowelEditor.mark16: x
-VowelEditor.mark17: x
-VowelEditor.mark18: x
-VowelEditor.mark19: x
-VowelEditor.mark20: x
-VowelEditor.mark21: x
-VowelEditor.mark22: x
-VowelEditor.mark23: x
-VowelEditor.mark24: x
-VowelEditor.mark25: x
-VowelEditor.mark26: x
-VowelEditor.mark27: x
-VowelEditor.mark28: x
-VowelEditor.mark29: x
-VowelEditor.mark30: x
-VowelEditor.markTraceEvery: 0.05
-VowelEditor.marksDataset: 2
-VowelEditor.marksFontsize: 14
-VowelEditor.numberOfMarks: 10
-VowelEditor.shellHeight: 636
-VowelEditor.shellWidth: 939
+Ui.realMatrixFormat: (one row per line)
+Ui.stringArrayFormat: (whitespace-separated)
+VowelEditor.f0.maximum: 2000
+VowelEditor.f0.minimum: 20
+VowelEditor.f0.slope: 0
+VowelEditor.f0.start: 140
+VowelEditor.grid.df1: 200
+VowelEditor.grid.df2: 500
+VowelEditor.marks.colour: grey
+VowelEditor.marks.dataSet: American English
+VowelEditor.marks.fileName: 
+VowelEditor.marks.fontSize: 14
+VowelEditor.marks.speakerType: woman
+VowelEditor.shell.height: 700
+VowelEditor.shell.width: 900
 VowelEditor.soundFollowsMouse: 1
-VowelEditor.speakerType: 1
+VowelEditor.synthesis.extraFBPairs: 2500 250 3500 350 4500 450
+VowelEditor.synthesis.numberOfFormants: 4
+VowelEditor.synthesis.q1: 10
+VowelEditor.synthesis.q2: 10
+VowelEditor.synthesis.samplingFrequency: 44100
+VowelEditor.trajectory.colour: Black
+VowelEditor.trajectory.duration: 0.1
+VowelEditor.trajectory.extendDuration: 0.1
+VowelEditor.trajectory.lineWidth: 2.5
+VowelEditor.trajectory.markEvery: 0.05
+VowelEditor.trajectory.markLength: 0.02
+VowelEditor.trajectory.minimumDuration: 0.05
+VowelEditor.trajectory.newDuration: 0.2
+VowelEditor.window.f1max: 1200
+VowelEditor.window.f1min: 200
+VowelEditor.window.f2max: 3500
+VowelEditor.window.f2min: 500
+VowelEditor.window.frequencyScale: logarithmic

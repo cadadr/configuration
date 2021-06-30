@@ -16,7 +16,7 @@ print scalar <STDIN>;
 while (my ($statusline) = (<STDIN> =~ /^,?(.*)/)) {
     my @blocks = @{decode_json($statusline)};
 
-	my $hostname = `hostname -f`; chomp $hostname;
+    my $hostname = `hostname -f`; chomp $hostname;
     @blocks = ({
         full_text => "$ENV{'USER'}@" . $hostname,
         name => 'u@h'
