@@ -7302,16 +7302,16 @@ When called interactively."
 (defvar gk-can-use-midi-kbd nil
   "If non-nil, a midi keyboard is available and can be used.")
 
-(when-let* ((device (car (directory-files "/dev/snd" t "midi"))))
-  (require 'midi-kbd)
+;; (when-let* ((device (car (directory-files "/dev/snd" t "midi"))))
+;;   (require 'midi-kbd)
 
-  (midikbd-open device)
+;;   (midikbd-open device)
 
-  (message
-   "A MIDI keyboard is available at %s, so MIDI keybindings can be used!"
-   device)
+;;   (message
+;;    "A MIDI keyboard is available at %s, so MIDI keybindings can be used!"
+;;    device)
 
-  (setf gk-can-use-midi-kbd t))
+;;   (setf gk-can-use-midi-kbd t))
 
 
 
