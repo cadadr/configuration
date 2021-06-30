@@ -49,7 +49,7 @@
         "default": false,
         "description": "Show song information on the panel",
         "dependency": "playerControl",
-        "value": true
+        "value": false
     },
     "truncatetext": {
         "type": "spinbutton",
@@ -87,7 +87,7 @@
         "default": false,
         "description": "Show album art as icon",
         "dependency": "playerControl",
-        "value": true
+        "value": false
     },
     "keepAlbumAspectRatio": {
         "type": "switch",

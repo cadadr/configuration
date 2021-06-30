@@ -8,7 +8,7 @@
             "A visual representation of the workspaces": "visual",
             "Simple buttons": "buttons"
         },
-        "value": "visual"
+        "value": "buttons"
     },
     "reverse-scrolling": {
         "type": "switch",

@@ -186,7 +186,7 @@
         "type": "checkbox",
         "default": false,
         "description": "Show windows from all workspaces",
-        "value": false
+        "value": true
     },
     "enable-app-button-dragging": {
         "type": "checkbox",
@@ -255,7 +255,7 @@
             "Large": 9,
             "Largest": 12
         },
-        "value": 6
+        "value": 12
     },
     "thumbnail-scroll-behavior": {
         "type": "checkbox",

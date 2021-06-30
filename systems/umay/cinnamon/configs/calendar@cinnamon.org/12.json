@@ -15,7 +15,7 @@
         "default": false,
         "description": "Use a custom date format",
         "tooltip": "Check this to define a custom format for the date in the calendar applet.",
-        "value": true
+        "value": false
     },
     "custom-format": {
         "type": "entry",
@@ -24,7 +24,7 @@
         "indent": true,
         "dependency": "use-custom-format",
         "tooltip": "Set your custom format here.",
-        "value": "%d %B %Y %A, %H:%M"
+        "value": " %H:%M"
     },
     "format-button": {
         "type": "button",
