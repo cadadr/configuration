@@ -917,15 +917,21 @@ names."
   (when (apply #'load args)
     (pushnew (expand-file-name (car args)) gk-loaded-files)))
 
+
 (defun gk-recompile (&optional force)
   "Recompile my configuration.
 
 If FORCE is non-nil, force compilation, i.e. compile even if
 up-to-date."
   (interactive "p")
-  (mapcar ($ (byte-recompile-file $1 (> force 1) 0))
-          (remove-if-not #'file-exists-p (cons custom-file gk-loaded-files)))
-  (byte-recompile-directory (locate-user-emacs-file "lisp/site") 0 (> force 4)))
+  (if (member 'native-compile features)
+      (let ((files (cons gk-elisp-site-dir
+                         (mapcar ($ (concat $1 ".el"))
+                                 (remove-if-not #'file-exists-p gk-loaded-files)))))
+        (native-compile-async files t))
+    (mapcar ($ (byte-recompile-file $1 (> force 1) 0))
+            (remove-if-not #'file-exists-p gk-loaded-files))
+    (byte-recompile-directory (locate-user-emacs-file "lisp/site") 0 (> force 4))))
 
 
 
