@@ -2,7 +2,7 @@
 
 pkgs_Shells="zsh"
 
-pkgs_EmacsBuildDeps=" alsa-lib gnutls libxml2 jansson gpm m17n-lib \
+pkgs_EmacsBuildDeps="alsa-lib gnutls libxml2 jansson gpm m17n-lib \
         harfbuzz xorgproto imagemagick dbus hicolor-icon-theme \
         libxinerama libxfixes lcms2 librsvg xaw3d libxrandr"
 
@@ -15,13 +15,12 @@ pkgs_Desktop="xorg xorg-apps xorg-xinit xf86-video-ati xf86-video-amdgpu \
 # TODO: jack instead of alsa
 pkgs_Audio="alsa-utils pulseaudio pulseaudio-alsa pasystray pavucontrol"
 
-# TODO: https://wiki.archlinux.org/title/Microsoft_fonts#Current_packages
 pkgs_Fonts="ttf-dejavu gnu-free-fonts noto-fonts ttf-croscore ttf-liberation \
          noto-fonts-cjk noto-fonts-emoji noto-fonts-extra"
 
 pkgs_Services="sane cups bluez networkmanager kdeconnect"
 
-pgks_Apps="qutebrowser pdfjs okular audacity cheese dconf-editor diffpdf \
+pkgs_Apps="qutebrowser pdfjs okular audacity cheese dconf-editor diffpdf \
         gimp gimp-help-en_gb gparted inkscape mpv neomutt simplescreenrecorder \
         gsmartcontrol stellarium telegram-desktop chromium firefox newsboat \
         simple-scan libreoffice-fresh ristretto quodlibet lmms ardour"
@@ -61,4 +60,4 @@ pkgs="$pkgs_Desktop $pkgs_Audio $pkgs_Fonts $pkgs_Services $pkgs_Apps \
         $pkgs_VCS $pkgs_Backups $pkgs_Virt $pkgs_TeX $pkgs_Shells \
         $pkgs_Libs $pkgs_EmacsBuildDeps"
 
-pacman -Su $pkgs
+exec pacman -Syu $pkgs
