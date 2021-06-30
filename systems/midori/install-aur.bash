@@ -5,12 +5,13 @@
 set -euo pipefail
 IFS=$'\n\t'
 
-# TODO: psychopy duplicati
+# TODO: psychopy
 packages="ttf-sil-doulos
 ttf-charis-sil
 praat
 duplicati
-notify-sharp"
+notify-sharp
+hunspell-tr"
 
 for pkg in $packages; do
     (
