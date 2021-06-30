@@ -22,6 +22,8 @@ icons.*.rc
 *.lock
 *~
 *.#*
+*.iso
+*.part
 tmp.patch
 __pycache__
 .venv
