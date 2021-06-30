@@ -26,7 +26,6 @@ pgks_Apps="qutebrowser pdfjs okular audacity cheese dconf-editor diffpdf \
         gsmartcontrol stellarium telegram-desktop chromium firefox newsboat \
         simple-scan libreoffice-fresh ristretto quodlibet lmms ardour"
 
-# TODO: hunspell-tr
 pkgs_Utils="hunspell hunspell-en_us hunspell-en_gb hunspell-it \
         bind-tools dnsutils bridge-utils entr jq mailutils \
         mairix moreutils mpop msmtp openbsd-netcat pandoc \
