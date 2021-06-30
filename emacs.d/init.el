@@ -5239,8 +5239,6 @@ its contents."
 
 ;; (gk-rcs-advice-for-unlock #'org-todo)
 
-
-;; [[file:/igk/config/emacs.d/gk.org::*Version%20control][Version control:1]]
 (define-advice org-paste-subtree (:before (&rest args) check-rcs-lock)
   "Check to see if this file is controlled by RCS and is
 
