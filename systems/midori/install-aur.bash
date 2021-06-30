@@ -8,7 +8,9 @@ IFS=$'\n\t'
 # TODO: psychopy duplicati
 packages="ttf-sil-doulos
 ttf-charis-sil
-praat"
+praat
+duplicati
+notify-sharp"
 
 for pkg in $packages; do
     (

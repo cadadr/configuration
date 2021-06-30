@@ -21,7 +21,6 @@ pkgs_Fonts="ttf-dejavu gnu-free-fonts noto-fonts ttf-croscore ttf-liberation \
 
 pkgs_Services="sane cups bluez networkmanager kdeconnect"
 
-# TODO: clipit
 pgks_Apps="qutebrowser pdfjs okular audacity cheese dconf-editor diffpdf \
         gimp gimp-help-en_gb gparted inkscape mpv neomutt simplescreenrecorder \
         gsmartcontrol stellarium telegram-desktop chromium firefox newsboat \
@@ -41,7 +40,6 @@ pkgs_TeX="texlab biber texlive-most texlive-lang texlive-latexextra \
 
 pkgs_Virt="qemu qemu-headless"
 
-#TODO: duplicati
 pkgs_Backups="borg"
 
 pkgs_Programming="python ruby perl guile sbcl gcc julia r rust \
@@ -56,7 +54,7 @@ pkgs_Drivers="v4l2loopback-dkms"
 
 pkgs_Libs="perl-json"
 
-# TODO: praat psychopy
+# TODO: psychopy
 pkgs_Linguistics=""
 
 pkgs="$pkgs_Desktop $pkgs_Audio $pkgs_Fonts $pkgs_Services $pkgs_Apps \
