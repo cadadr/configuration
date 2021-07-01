@@ -77,6 +77,7 @@ gtk-application-prefer-dark-theme = true
 EOF
           export QT_STYLE_OVERRIDE="adwaita-dark"
           ;;
+    light) rm -f $GK_GTK3_SETTINGS_FILE ;;
 esac
 
 echo 'gtk-decoration-layout = menu:close' >> $GK_GTK3_SETTINGS_FILE
