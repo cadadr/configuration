@@ -6590,12 +6590,6 @@ new frame is created."
     (mapc #'disable-theme custom-enabled-themes)
     (load-theme gk-gui-theme t))
 
-  (when (string= (getenv "DESKTOP_SESSION") "i3wm")
-    ;; Tad bit more opaque with light themes, looks nicer.
-    (if (and (eq (gk-preferred-colour-scheme) :dark))
-        (add-to-list 'default-frame-alist '(alpha . (95)))
-      (add-to-list 'default-frame-alist '(alpha . (97)))))
-
   ;; Customise wombat
   (when (eq gk-gui-theme 'wombat)
     ;; With wombat the active window is hard to tell.
