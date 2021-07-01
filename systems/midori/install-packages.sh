@@ -13,12 +13,13 @@ pkgs_Desktop="xorg xorg-apps xorg-xinit xf86-video-ati xf86-video-amdgpu \
         i3status python-i3ipc redshift xfce4-clipman-plugin"
 
 # TODO: jack instead of alsa
-pkgs_Audio="alsa-utils pulseaudio pulseaudio-alsa pasystray pavucontrol"
+pkgs_Audio="alsa-utils pulseaudio pulseaudio-alsa pasystray pavucontrol \
+        pulseaudio-bluetooth"
 
 pkgs_Fonts="ttf-dejavu gnu-free-fonts noto-fonts ttf-croscore ttf-liberation \
          noto-fonts-cjk noto-fonts-emoji noto-fonts-extra"
 
-pkgs_Services="sane cups bluez networkmanager kdeconnect"
+pkgs_Services="sane cups bluez networkmanager kdeconnect nss-mdns"
 
 pkgs_Apps="qutebrowser pdfjs okular audacity cheese dconf-editor diffpdf \
         gimp gimp-help-en_gb gparted inkscape mpv neomutt simplescreenrecorder \
@@ -31,7 +32,7 @@ pkgs_Utils="hunspell hunspell-en_us hunspell-en_gb hunspell-it \
         pandoc-crossref pass pwgen pdfgrep pdftk procmail \
         qrencode smartmontools sqlite strace traceroute \
         units unrar vorbis-tools w3m whois wkhtmltopdf \
-        youtube-dl ghostscript mutt net-tools inetutils"
+        youtube-dl ghostscript mutt net-tools inetutils ntfs-3g"
 
 pkgs_TeX="texlab biber texlive-most texlive-lang texlive-latexextra \
         texlive-langextra texlive-bibtexextra"
