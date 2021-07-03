@@ -425,8 +425,8 @@ gx(){
            printf "\trs\treconfigure system*\n" ;
            printf "\tru\tupdate user's profile from manifest\n" ;
            printf "\tup\trun 'guix pull' then upgrade system\n" ;
-		   printf "\tsu\treconfigure system then update user profile\n" ;
-		            "\t\tfrom manifest (alias: both)\n" ;
+           printf "\tsu\treconfigure system then update user profile\n" ;
+           printf "\t\tfrom manifest (alias: both)\n" ;
            echo
            printf "\tp\talias for 'guix package'\n" ;
            printf "\ts\talias for 'guix package -s' (search)\n" ;
