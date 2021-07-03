@@ -138,6 +138,7 @@ nmap <Leader>p "*p
 nmap <Leader>P "*P
 nmap <Leader>y "*y
 nmap <Leader>Y "*Y
+nmap <Leader>! 02wy$:!<C-r>"
 nmap <Leader>w :Wz<CR>
 
 " }}}
