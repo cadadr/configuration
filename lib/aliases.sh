@@ -397,10 +397,10 @@ gx(){
         ru) echo Upgrading profile from manifest: $MYSYSTEM/user.scm ;
             guix package --manifest=$MYSYSTEM/user.scm ;;
 
-		su|both)
-			echo Reconfigure system \($MYSYSTEM/system.scm\) and upgrade ;
-			echo user profile \($MYSYSTEM/user\). ;
-			echo The first step of this action requires superuser privileges. ;
+        su|both)
+            echo Reconfigure system \($MYSYSTEM/system.scm\) and upgrade ;
+            echo user profile \($MYSYSTEM/user\). ;
+            echo The first step of this action requires superuser privileges. ;
             sudo guix system reconfigure $MYSYSTEM/system.scm && \
                  guix package --manifest=$MYSYSTEM/user.scm ;;
 
