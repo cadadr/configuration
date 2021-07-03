@@ -47,6 +47,9 @@ c.url.searchengines['#wc'] = \
 c.url.searchengines['#aur'] = \
     'https://aur.archlinux.org/packages/?O=0&K={}'
 
+c.url.searchengines['#archwiki'] = \
+    'https://wiki.archlinux.org/index.php?search={}&title=Special%3ASearch&go=Go'
+
 c.url.searchengines['#lg'] = \
     'https://libgen.is/search.php?lg_topic=libgen&open=0&view=simple&res=25&phrase=1&column=def&req={}'
 
