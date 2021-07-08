@@ -22,7 +22,7 @@ pkgs_Fonts="ttf-dejavu gnu-free-fonts noto-fonts ttf-croscore ttf-liberation \
 pkgs_Services="sane cups bluez networkmanager kdeconnect nss-mdns"
 
 pkgs_Apps="qutebrowser pdfjs okular audacity cheese dconf-editor diffpdf \
-        gimp gimp-help-en_gb gparted inkscape mpv neomutt simplescreenrecorder \
+        gimp gimp-help-en_gb gparted inkscape mpv simplescreenrecorder \
         gsmartcontrol stellarium telegram-desktop chromium firefox newsboat \
         simple-scan libreoffice-fresh ristretto quodlibet lmms ardour"
 
