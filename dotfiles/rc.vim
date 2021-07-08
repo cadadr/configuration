@@ -168,8 +168,10 @@ nmap , <leader>
 nmap <Leader>n :set nu<CR>
 nmap <Leader>r :source ~/.vimrc<CR>
 nmap <Leader>l :set list!<CR>
-nmap <Leader>f {V}:'<,'>!fmt<CR>
-nmap <Leader>F :0,$!fmt<CR>
+nmap <Leader>f {!}fmt<CR>
+nmap <Leader>F 1G!Gfmt<CR>
+nmap <Leader>s {!}sort<CR>
+nmap <Leader>S 1G!Gsort<CR>
 " Copy to clipboard as markdown code snippet
 nmap <Leader>M :s/^/    /<CR>gv"+yu
 nmap <Leader>z :w<CR>
