@@ -136,6 +136,10 @@ enable zeroconf networking
     # sed -i~bak '/^hosts:/s/\(resolve\)/mdns_minimal [NOTFOUND=return] \1/' /etc/nsswitch.conf
     # systemctl restart avahi-daemon
 
+enable system services
+
+    # systemctl enable NetworkManager
+
 now reboot, and log in as the new user and proceed to [user
 setup](../../Readme.markdowwn)
 
