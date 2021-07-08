@@ -333,7 +333,6 @@ alias pwd2emacspath=pwd_to_emacspath
 alias lofi="mpv --volume 30 --no-video 'https://www.youtube.com/watch?v=5qap5aO4i9A'"
 alias pgrep="pgrep -fa"
 alias news="newsboat"
-alias mutt="neomutt"
 
 # raspberry pi
 alias pi="ssh pi@ayata.local"
