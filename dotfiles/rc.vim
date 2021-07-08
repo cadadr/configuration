@@ -3,6 +3,11 @@
 " some sources I (ab)used way too much to note everywhere:
 " - https://git.sr.ht/~admicos/dot/tree/master/nvim/init.vim
 
+    " KEEP THIS CONFIG BELOW 100SLoC and AVOID
+    "             PLUGINS CHALLENGE!!!!
+    " Count SLoC:
+    " grep '^[^\s*"]' % | wc -l
+
 " UI/UX {{{
 colorscheme gruvbox
 set background=dark
@@ -182,15 +187,6 @@ nmap <Leader>Y "*Y
 nmap <Leader>! 02wy$:!<C-r>"
 nmap <Leader>w :Wz<CR>
 
-" }}}
-
-" plugins {{{
-call plug#begin('~/.local/share/vim-plugins')
-Plug 'tpope/vim-speeddating'
-Plug 'SirVer/ultisnips'
-Plug 'jceb/vim-orgmode'
-Plug 'chrisbra/unicode.vim'
-call plug#end()
 " }}}
 
 " postamle {{{
