@@ -42,7 +42,7 @@ pkgs_Virt="qemu qemu-headless"
 pkgs_Backups="borg"
 
 pkgs_Programming="python ruby perl guile sbcl gcc julia r rust \
-        python-pip ruby-bundler ctags gdb"
+        python-pip ruby-bundler ctags gdb cpanminus perl-local-lib"
 
 pkgs_BuildUtils="make automake autoconf autoconf-archive cmake \
         pkgconf"
