@@ -19,7 +19,17 @@ set history=10000	" hard disks are bigger these days...
 set mouse=a		" enable mouse support
 set ignorecase		" case fold search
 set nu			" show current line number
-			" numbers
+
+" Fix background colour problems
+" ==============================
+" Adapted from https://unix.stackexchange.com/a/615451
+"
+" vim hardcodes background color erase even if the terminfo file does
+" not contain bce (not to mention that libvte based terminals
+" incorrectly contain bce in their terminfo files). This causes
+" incorrect background rendering when using a color theme with a
+" background color.
+let &t_ut=''
 
 " Annotate whitespace
 " ===================
