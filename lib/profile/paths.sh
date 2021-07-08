@@ -26,6 +26,13 @@ fi
 
 # Collect paths from programming-language specific package managers.
 
+# Perl
+#
+# This will install ~/perl5/bin to the front of $PATH, and set some
+# other perl-related environment variables.
+eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib)"
+
+# Ruby
 export GEM_HOME="$HOME/.gem"
 
 if which ruby 2>&1 > /dev/null; then
