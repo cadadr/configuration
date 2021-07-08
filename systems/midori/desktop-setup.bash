@@ -54,7 +54,7 @@ setbg.bash               &
 dunst                    &
 redshift-gtk -l $LOCATION_LAT:$LOCATION_LONG &
 kdeconnect-indicator     &
-clipit                   &
+xfce4-clipman            &
 # if flameshot starts too quickly, the icon doesn't go to the
 # system tray.
 (sleep 5; flameshot)     &
