@@ -37,8 +37,15 @@ lists-emacs-humanities
 * From:.*bugzilla_noreply@kde.org
 lists-kde-bugzilla
 
+# Messages about my repos go to inbox, ...
 :0:
-* From:.*<notifications@github.com>$
+* ^From:.*<notifications@github.com>$
+* ^To: cadadr/
+inbox
+
+# ... other github stuff goes to lists-github.
+:0:
+* ^From:.*<notifications@github.com>$
 lists-github
 
 
