@@ -17,14 +17,15 @@ pkgs_Audio="alsa-utils pulseaudio pulseaudio-alsa pasystray pavucontrol \
         pulseaudio-bluetooth"
 
 pkgs_Fonts="ttf-dejavu gnu-free-fonts noto-fonts ttf-croscore ttf-liberation \
-         noto-fonts-cjk noto-fonts-emoji noto-fonts-extra"
+        noto-fonts-cjk noto-fonts-emoji noto-fonts-extra"
 
 pkgs_Services="sane cups bluez networkmanager kdeconnect nss-mdns"
 
 pkgs_Apps="qutebrowser pdfjs okular audacity cheese dconf-editor diffpdf \
         gimp gimp-help-en_gb gparted inkscape mpv simplescreenrecorder \
         gsmartcontrol stellarium telegram-desktop chromium firefox newsboat \
-        simple-scan libreoffice-fresh ristretto quodlibet lmms ardour"
+        simple-scan libreoffice-fresh ristretto quodlibet lmms ardour \
+        transmission-gtk"
 
 pkgs_Utils="hunspell hunspell-en_us hunspell-en_gb hunspell-it \
         bind-tools dnsutils bridge-utils entr jq mailutils \
