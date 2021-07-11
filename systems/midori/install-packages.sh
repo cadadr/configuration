@@ -9,7 +9,7 @@ pkgs_EmacsBuildDeps="alsa-lib gnutls libxml2 jansson gpm m17n-lib \
 pkgs_Desktop="xorg xorg-apps xorg-xinit xf86-video-ati xf86-video-amdgpu \
         mesa qtile i3-gaps kitty lm_sensors python-psutil python-setproctitle \
         xterm rofi rofimoji blueman network-manager-applet dex dunst \
-        pcmanfm-gtk3 xclip xdotool xpra feh flameshot seahorse picom \
+        pcmanfm xclip xdotool xpra feh flameshot seahorse picom \
         i3status python-i3ipc redshift xfce4-clipman-plugin i3lock"
 
 # TODO: jack instead of alsa
