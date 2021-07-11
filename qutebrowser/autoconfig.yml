@@ -52,6 +52,7 @@ settings:
         ',je': set -t content.javascript.enabled true
         ',l': 'jseval document.querySelectorAll(''a'').forEach(function (a) { a.style=''color:blue
           !important; text-decoration: underline !important''; })'
+        ',m': spawn mpv {url}
         ',n': navigate next
         ',p': navigate prev
         ',r': config-source
