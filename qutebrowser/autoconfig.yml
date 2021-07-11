@@ -124,10 +124,11 @@ settings:
     global: -1
   editor.command:
     global:
-    - emacsclient
-    - -c
-    - +{line}:{column}
+    - gvim
+    - -f
     - '{file}'
+    - -c
+    - normal {line}G{column0}l
   fonts.hints:
     global: bold 14pt default_family
   fonts.keyhint:
