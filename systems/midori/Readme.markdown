@@ -1,7 +1,6 @@
 # 緑—Arch based workstation
 
-For installation instructions, see the
-[Installation](Installation.markdown) file.
+For installation instructions, see the [setup guide](Setup.markdown).
 
 ---
 
