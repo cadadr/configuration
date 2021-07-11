@@ -316,6 +316,7 @@ alias videsktop="$EDITOR $MYSYSTEM/desktop-setup.bash"
 alias vi3wm="$EDITOR $HOME/.config/i3/config"
 alias vipkgs="$EDITOR $MYSYSTEM/install-packages.sh"
 alias vipkg="vipkgs"
+alias mysys="cd $MYSYSTEM"
 alias envgrep="env | grep -i"
 alias openpdfs="pgrep -af '\.pdf' | cut --complement -d ' ' -f1,2"
 alias slrn="NNTPSERVER='news.gmane.io' HOME='$HOME/posta/news' slrn -i \
