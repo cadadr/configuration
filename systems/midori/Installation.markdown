@@ -139,6 +139,7 @@ enable zeroconf networking
 enable system services
 
     # systemctl enable NetworkManager
+    # systemctl enable sshd
 
 now reboot, and log in as the new user and proceed to [user
 setup](../../Readme.markdowwn)
