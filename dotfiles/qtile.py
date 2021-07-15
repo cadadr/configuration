@@ -139,17 +139,17 @@ mouse = [
 ### Workspaces:
 
 groups = [
-        Group("1:home"),
-        Group("2:read"),
-        Group("3:rsc"),
-        Group("4:anon"),
-        Group("5:anon"),
-    ]
+    Group("1:home"),
+    Group("2:read"),
+    Group("3:rsc"),
+    Group("4:anon"),
+    Group("5:anon"),
+]
 
 for i, g in zip(range(1, 5), groups):
     key = f"F{i}"
     k(key, do=lazy.group[g.name].toscreen(),
-            desc="Switch to group {}".format(g.name))
+      desc="Switch to group {}".format(g.name))
 
     k("shift", key, do=lazy.window.togroup(g.name),
         desc="move focused window to group {}".format(g.name))
@@ -182,7 +182,7 @@ def thesis_progress():
         done = "".join(['█' for _ in range(0, percent)])
         left = "".join(['·' for _ in range(0, thesis_graph_size - percent)])
         graph = f'|{done}{left}|'
-        return widget.TextBox(text=f"thesis readings: {graph}",
+        return widget.TextBox(text=f"thesis readings: {graph} {progress}",
                 foreground="#ffff00")
     except Exception as e:
         print(e)
