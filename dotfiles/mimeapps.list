@@ -1,9 +1,14 @@
-# mimeapps.list
-
 [Default Applications]
-x-scheme-handler/http=qutebrowser.desktop
-x-scheme-handler/https=qutebrowser.desktop
+x-scheme-handler/http=chromium.desktop
+x-scheme-handler/https=chromium.desktop
 x-scheme-handler/mailto=emacsclient-url.desktop
 x-scheme-handler/gopher=lagrange.desktop
 x-scheme-handler/gemini=lagrange.desktop
 x-scheme-handler/org-protocol=emacsclient-org-protocol.desktop
+x-scheme-handler/tg=userapp-Telegram Desktop-F8XL50.desktop
+text/html=chromium.desktop
+x-scheme-handler/about=chromium.desktop
+x-scheme-handler/unknown=chromium.desktop
+
+[Added Associations]
+x-scheme-handler/tg=userapp-Telegram Desktop-F8XL50.desktop;
