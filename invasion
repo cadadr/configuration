@@ -23,6 +23,7 @@
 .config/ristretto/ristretto.xml	dotfiles/ristretto.xml
 .config/i3/config		dotfiles/i3wm.conf
 .config/i3status/config		dotfiles/i3status.conf
+.config/picom.conf		dotfiles/picom.conf
 .emacs.d			emacs.d
 .flutter			dotfiles/flutter.json
 .gitconfig			dotfiles/gitconfig.ini
@@ -36,8 +37,6 @@
 .mpoprc				dotfiles/mpoprc
 .msmtprc			dotfiles/msmtprc
 .muttrc				dotfiles/muttrc
-.praat-dir			dotfiles/praat
-.procmailrc			dotfiles/procmailrc
 .profile			dotfiles/profile.sh
 .zprofile			dotfiles/profile.sh
 .bash_profile			dotfiles/profile.sh
