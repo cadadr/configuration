@@ -24,6 +24,7 @@
 .config/i3/config		dotfiles/i3wm.conf
 .config/i3status/config		dotfiles/i3status.conf
 .config/picom.conf		dotfiles/picom.conf
+.config/qtile/config.py		dotfiles/qtile.py
 .emacs.d			emacs.d
 .flutter			dotfiles/flutter.json
 .gitconfig			dotfiles/gitconfig.ini
