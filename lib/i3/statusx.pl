@@ -16,11 +16,35 @@ print scalar <STDIN>;
 while (my ($statusline) = (<STDIN> =~ /^,?(.*)/)) {
     my @blocks = @{decode_json($statusline)};
 
+    # Hostname
     my $hostname = `hostname -f`; chomp $hostname;
-    @blocks = ({
-        full_text => "$ENV{'USER'}@" . $hostname,
-        name => 'u@h'
-    }, @blocks);
+
+    # Thesis reading progress
+    open(my $reading_list, "$ENV{HOME}/Notes/MastersThesis/Notes.org");
+    my $progress = '??';
+    while(<$reading_list>) {
+	if(m/^\* reading list/) {
+	    $progress = $_;
+	    last;
+	}
+    }
+    unless($progress eq '??') {
+	my @bits = split / /, $progress;
+	$progress = $bits[3];
+	chomp $progress;
+    }
+    close($reading_list);
+
+    @blocks = (
+	{
+	    full_text => "$ENV{'USER'}@" . $hostname,
+	    name => 'u@h'
+	},
+	{
+	    full_text => "thesis readings: $progress",
+	    name => 'thesis_readings_progress'
+	},
+    @blocks);
 
     print encode_json(\@blocks) . ",\n";
 }
