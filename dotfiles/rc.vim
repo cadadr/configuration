@@ -22,7 +22,7 @@ set undodir=~/.vim/undo	" ... right here
 set hidden		" don't unload buffers
 set history=10000	" hard disks are bigger these days...
 set mouse=a		" enable mouse support
-set ignorecase		" case fold search
+set smartcase		" case fold search in suit and tie
 set nu			" show current line number
 
 " Fix background colour problems
