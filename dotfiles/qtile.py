@@ -165,7 +165,7 @@ screens = []
 
 
 def spacer_widget():
-    return widget.TextBox(text=" | ")
+    return widget.TextBox(text=" | ", foreground="#00ff7f")
 
 
 def thesis_progress():
@@ -177,7 +177,7 @@ def thesis_progress():
                     progress_line = line
         progress = progress_line.split(" ")[3]
         return widget.TextBox(text=f"thesis readings: {progress}",
-                foreground="0087af")
+                foreground="#ffff00")
     except:
         return widget.TextBox(text='thesis reading: ??')
 
