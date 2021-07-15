@@ -7434,7 +7434,7 @@ Redirect to the raw file url."
   "Visit an URL with Elpher."
   (elpher-go url))
 
-(defalias 'gk-browse-url 'browse-url-qutebrowser)
+(defalias 'gk-browse-url 'browse-url-chromium)
 
 
 
