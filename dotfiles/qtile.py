@@ -2,6 +2,7 @@
 
 # Note: original licence block moved to the end of file.
 
+import math
 import os
 import socket
 
@@ -18,6 +19,7 @@ from libqtile.utils import guess_terminal
 
 mod = "mod4"
 terminal = "kitty"
+thesis_graph_size = 25
 hostname = socket.gethostname()
 
 dgroups_key_binder = None
@@ -176,9 +178,14 @@ def thesis_progress():
                 if line.startswith('* reading list'):
                     progress_line = line
         progress = progress_line.split(" ")[3]
-        return widget.TextBox(text=f"thesis readings: {progress}",
+        percent = math.trunc(int(progress[1:-2]) / (100 / thesis_graph_size))
+        done = "".join(['█' for _ in range(0, percent)])
+        left = "".join(['·' for _ in range(0, thesis_graph_size - percent)])
+        graph = f'|{done}{left}|'
+        return widget.TextBox(text=f"thesis readings: {graph}",
                 foreground="#ffff00")
-    except:
+    except Exception as e:
+        print(e)
         return widget.TextBox(text='thesis reading: ??')
 
 
