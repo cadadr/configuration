@@ -140,6 +140,7 @@ enable system services
 
     # systemctl enable NetworkManager
     # systemctl enable sshd
+    # systemctl enable avahi-daemon
 
 now reboot, and log in as the new user and proceed to [user
 setup](../../Readme.markdowwn)
