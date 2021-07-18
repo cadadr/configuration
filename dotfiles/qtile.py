@@ -15,12 +15,32 @@ from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
 
 
+### Gruvbox colours:
+black='#282828'
+black0='#7c6f64'
+red='#cc241d'
+red0='#fb4934'
+green='#98971a'
+green0='#b8bb26'
+yellow='#d79921'
+yellow0='#fabd2f'
+blue='#458588'
+blue0='#83a598'
+purple='#b16286'
+purple0='#d3869b'
+aqua='#689d6a'
+aqua0='#8ec07c'
+white='#a89984'
+white0='#fbf1c7'
+
+
 ### Options:
 
 mod = "mod4"
 terminal = "kitty"
-thesis_graph_size = 25
+thesis_graph_size = 20
 hostname = socket.gethostname()
+username = os.environ.get("USER", "??")
 
 dgroups_key_binder = None
 dgroups_app_rules = []  # type: List
@@ -158,18 +178,14 @@ for i, g in zip(range(1, 5), groups):
 
 widget_defaults = dict(
     font='DejaVu Sans Mono',
-    fontsize=12,
+    fontsize=14,
     padding=3,
 )
 extension_defaults = widget_defaults.copy()
 screens = []
 
 
-def spacer_widget():
-    return widget.TextBox(text=" | ", foreground="#00ff7f")
-
-
-def thesis_progress():
+def thesis_progress(**kwargs):
     try:
         fp = os.path.expanduser("~/Notes/MastersThesis/Notes.org")
         with open(fp, "r") as fh:
@@ -181,47 +197,127 @@ def thesis_progress():
         done = "".join(['█' for _ in range(0, percent)])
         left = "".join(['·' for _ in range(0, thesis_graph_size - percent)])
         graph = f'|{done}{left}|'
-        return widget.TextBox(text=f"thesis readings: {graph} {progress}",
-                foreground="#ffff00")
+        return widget.TextBox(text=f"thesis readings: {graph} {progress}", **kwargs)
     except Exception as e:
         print(e)
-        return widget.TextBox(text='thesis reading: ??')
+        return widget.TextBox(text='thesis reading: ??',
+                background=red0, foreground=white0)
 
 
 top_bar_widgets = [
-    widget.CurrentLayout(),
-    widget.GroupBox(),
+    widget.CurrentLayoutIcon(
+        background=black,
+        foreground=white,
+        padding=10
+    ),
+    widget.GroupBox(
+        background=blue,
+        foreground=black,
+        padding=10,
+        active=black,
+        inactive=black,
+        highlight_method="line",
+        highlight_color=[blue0, blue0]
+    ),
     widget.Prompt(),
     widget.Chord(
         chords_colors={
-            'launch': ("#ff0000", "#ffffff"),
+            'launch': (red, white),
         },
         name_transform=lambda name: name.upper(),
+        background=black
     ),
-    widget.WindowName(),
-    widget.TextBox(text=hostname),
-    spacer_widget(),
-    thesis_progress(),
-    spacer_widget(),
-    widget.Clock(format='%Y-%m-%d %a %I:%M %p'),
-    spacer_widget(),
-    widget.Systray(),
+    widget.Spacer(background=black),
+    widget.TextBox(text=" ", background=black),
+    widget.Clock(
+        format='%Y-%m-%d %a <b>%I:%M</b> %p',
+        background=white0,
+        foreground=black,
+        padding=10
+    ),
+    widget.TextBox(text=" ", background=black),
+    thesis_progress(
+        background=yellow0,
+        foreground=black,
+        padding=10
+    ),
+    widget.TextBox(text=" ", background=black),
+    widget.Systray(
+        background=black,
+        padding=10
+    ),
+    widget.TextBox(text=" ", background=black),
 ]
 
-top_bar = bar.Bar(top_bar_widgets, 24) 
+top_bar = bar.Bar(top_bar_widgets, 24)
 
-scr1 = Screen(top=top_bar)
+bottom_bar_widgets= [
+    widget.TextBox(text=" ", background=black),
+    widget.TextBox(
+        text=f"{username}@{hostname}",
+        foreground=black,
+        background=green0,
+        padding=10
+    ),
+    widget.TextBox(text=" ", background=black),
+    widget.WindowName(
+        background=aqua,
+        foreground=black,
+        padding=10
+    ),
+    widget.TextBox(text=" ", background=black),
+    widget.Net(
+        format="↓{down}{up} ↑",
+        background=green,
+        foreground=white0,
+        padding=10
+    ),
+    widget.TextBox(text=" ", background=black),
+    widget.Memory(
+        background=blue0,
+        foreground=black,
+        padding=10
+    ),
+    widget.TextBox(text=" ", background=black),
+    widget.CPU(
+        background=purple0,
+        foreground=black,
+        padding=10
+    ),
+    widget.TextBox(text=" ", background=black),
+    widget.ThermalSensor(
+        background=red,
+        foreground=white0,
+        padding=10
+    ),
+    widget.TextBox(text=" ", background=black),
+]
+
+bottom_bar = bar.Bar(bottom_bar_widgets, 24)
+
+scr1 = Screen(top=top_bar, bottom=bottom_bar)
 
 screens.append(scr1)
 
+common_layout_config = {
+    "border_width": 3,
+    "border_focus": yellow0,
+    "border_normal": black0,
+    "margin": 15
+}
 
 ### Layouts:
 layouts = [
     layout.Columns(
-        border_width = 3,
-        margin = 10
+        **common_layout_config
     ),
     layout.Max(),
+    layout.MonadTall(
+        **common_layout_config
+    ),
+    layout.MonadWide(
+        **common_layout_config
+    ),
 ]
 
 floating_layout = layout.Floating(float_rules=[
