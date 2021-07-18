@@ -64,7 +64,7 @@ pcmanfm --daemon-mode    &
 pasystray                &
 mono /opt/duplicati-latest/Duplicati.GUI.TrayIcon.exe --webservice-port=8200 &
 blueman-applet           &
-picom -co .9 -r 15 -t -20 -l -20  &
+picom -c                 &
 
 # bash $MYLIB/launch-session-servers.bash
 
