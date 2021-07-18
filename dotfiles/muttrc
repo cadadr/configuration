@@ -19,7 +19,7 @@ set record	= +outbox
 # In Emacs I save drafts one per file, so use a separate mbox for Mutt's
 # drafts.
 set postponed	= +drafts/postponed
-mailboxes	= +archive +current +inbox +lists-gemini +lists-github
+mailboxes	= +archive +current +inbox +lists-gemini +lists-github +outbox
 set move	= yes
 
 ### Sending mail:
