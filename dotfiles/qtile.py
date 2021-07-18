@@ -131,6 +131,9 @@ k("F12", run="rofi -show drun")
 
 k(mod, "g", do=lazy.restart())
 k(mod, "control", "shift", "q", do=lazy.shutdown())
+# Kill picom, it sometimes causes a freeze.
+k(mod, "control", "shift", "p",
+    run="bash -c 'killall -9 picom ; picom -c'")
 
 k(mod, "Return", run=terminal)
 k(mod, "control", "Return", run="emacsclient -c")
