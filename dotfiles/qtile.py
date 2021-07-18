@@ -170,7 +170,7 @@ groups = [
     Group("5:anon"),
 ]
 
-for i, g in zip(range(1, 5), groups):
+for i, g in zip(range(1, 6), groups):
     key = f"F{i}"
     k(key, do=lazy.group[g.name].toscreen())
 
