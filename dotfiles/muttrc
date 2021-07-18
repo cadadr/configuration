@@ -33,11 +33,12 @@ set sidebar_visible
 set sidebar_width   = 15
 
 ### Macros:
-macro index ,c '<change-folder>=current<Return>'
-macro index ,a '<change-folder>=archive<Return>'
-macro index ,i '<change-folder>=inbox<Return>'
-macro index ,g '<change-folder>=lists-gemini<Return>'
-macro index ,h '<change-folder>=lists-github<Return>'
+macro index ,fc '<change-folder>=current<Return>'
+macro index ,fa '<change-folder>=archive<Return>'
+macro index ,fi '<change-folder>=inbox<Return>'
+macro index ,fg '<change-folder>=lists-gemini<Return>'
+macro index ,fh '<change-folder>=lists-github<Return>'
+macro index ,fo '<change-folder>=outbox<Return>'
 # old habits die hard...
 macro index,pager n '<next-undeleted>'
 macro attach      n '<next-entry>
