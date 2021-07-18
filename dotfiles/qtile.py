@@ -56,6 +56,9 @@ def k(*bindings, **props):
 
     The `do' keyword argument binds the key to whatever callable passed
     in, the `run' keyword instead wraps it in a call to `lazy.spawn()'.
+
+    Optionally, `desc' keyword argument can be used to add a description
+    to the keybinding.
     """
     if 'do' in props:
         action = props['do']
@@ -66,61 +69,59 @@ def k(*bindings, **props):
 
     keys.extend(
             [
-                Key(bindings[:-1], bindings[-1], action, desc=props['desc'])
+                Key(bindings[:-1], bindings[-1], action,
+                    desc=props.get('desc'))
             ]
     )
 
 
 # Switch between windows
-k(mod, "h", do=lazy.layout.left(), desc="Move focus to left")
-k(mod, "l", do=lazy.layout.right(), desc="Move focus to right")
-k(mod, "j", do=lazy.layout.down(), desc="Move focus down")
-k(mod, "k", do=lazy.layout.up(), desc="Move focus up")
-k(mod, "space", do=lazy.layout.next(), desc="Move window focus to other window")
+k(mod, "h", do=lazy.layout.left())
+k(mod, "l", do=lazy.layout.right())
+k(mod, "j", do=lazy.layout.down())
+k(mod, "k", do=lazy.layout.up())
+k(mod, "space", do=lazy.layout.next())
 
 # Move windows between left/right columns or move up/down in current stack.
 # Moving out of range in Columns layout will create new column.
-k(mod, "shift", "h", do=lazy.layout.shuffle_left(), desc="Move window to the left")
-k(mod, "shift", "l", do=lazy.layout.shuffle_right(), desc="Move window to the right")
-k(mod, "shift", "j", do=lazy.layout.shuffle_down(), desc="Move window down")
-k(mod, "shift", "k", do=lazy.layout.shuffle_up(), desc="Move window up")
+k(mod, "shift", "h", do=lazy.layout.shuffle_left())
+k(mod, "shift", "l", do=lazy.layout.shuffle_right())
+k(mod, "shift", "j", do=lazy.layout.shuffle_down())
+k(mod, "shift", "k", do=lazy.layout.shuffle_up())
 
 # Grow windows. If current window is on the edge of screen and direction
 # will be to screen edge - window would shrink.
-k(mod, "control", "h", do=lazy.layout.grow_left(), desc="Grow window to the left")
-k(mod, "control", "l", do=lazy.layout.grow_right(), desc="Grow window to the right")
-k(mod, "control", "j", do=lazy.layout.grow_down(), desc="Grow window down")
-k(mod, "control", "k", do=lazy.layout.grow_up(), desc="Grow window up")
-k(mod, "n", do=lazy.layout.normalize(), desc="Reset all window sizes")
+k(mod, "control", "h", do=lazy.layout.grow_left())
+k(mod, "control", "l", do=lazy.layout.grow_right())
+k(mod, "control", "j", do=lazy.layout.grow_down())
+k(mod, "control", "k", do=lazy.layout.grow_up())
+k(mod, "n", do=lazy.layout.normalize())
 
 # Toggle between split and unsplit sides of stack.
 # Split = all windows displayed
 # Unsplit = 1 window displayed, like Max layout, but still with
 # multiple stack panes
-k(mod, "shift", "Return", do=lazy.layout.toggle_split(),
-    desc="Toggle between split and unsplit sides of stack")
+k(mod, "shift", "Return", do=lazy.layout.toggle_split())
 
 # Toggle between different layouts as defined below
-k(mod, "Tab", do=lazy.next_layout(), desc="Toggle between layouts")
-k(mod, "End", do=lazy.window.kill(), desc="Kill focused window")
+k(mod, "Tab", do=lazy.next_layout())
+k(mod, "End", do=lazy.window.kill())
 
-k("F12", run="rofi -show drun", desc="Spawn a command using a prompt widget")
+k("F12", run="rofi -show drun")
 
-k(mod, "g", do=lazy.restart(), desc="Restart Qtile")
-k(mod, "control", "shift", "q", do=lazy.shutdown(), desc="Shutdown Qtile")
+k(mod, "g", do=lazy.restart())
+k(mod, "control", "shift", "q", do=lazy.shutdown())
 
-k(mod, "Return", run=terminal, desc="Launch terminal")
-k(mod, "control", "Return", run="emacsclient -c", desc="Launch emacsclient")
+k(mod, "Return", run=terminal)
+k(mod, "control", "Return", run="emacsclient -c")
 
-k(mod, "control", "f", run="pcmanfm", desc="Launch file manager")
-k(mod, "control", "w", run="ffprofile.sh",
-    desc="Launch firefox profile selector")
-k(mod, "control", "p", run="passmenu.sh", desc="Launch password picker")
-k(mod, "control", "b", run="backup-popup.bash",
-        desc="Launch borg backup popup")
-k(mod, "Next", run="pkill -USR1 -f setbg.bash", desc="Next wallpaper")
-k(mod, "Prior", run="pkill -USR2 -f setbg.bash", desc="Previous wallpaper")
-k(mod, "q", run="qrclip.sh", desc="Clipboard to QR code")
+k(mod, "control", "f", run="pcmanfm")
+k(mod, "control", "w", run="ffprofile.sh")
+k(mod, "control", "p", run="passmenu.sh")
+k(mod, "control", "b", run="backup-popup.bash")
+k(mod, "Next", run="pkill -USR1 -f setbg.bash")
+k(mod, "Prior", run="pkill -USR2 -f setbg.bash")
+k(mod, "q", run="qrclip.sh")
 
 
 ### Mouse bindings:
@@ -148,11 +149,9 @@ groups = [
 
 for i, g in zip(range(1, 5), groups):
     key = f"F{i}"
-    k(key, do=lazy.group[g.name].toscreen(),
-      desc="Switch to group {}".format(g.name))
+    k(key, do=lazy.group[g.name].toscreen())
 
-    k("shift", key, do=lazy.window.togroup(g.name),
-        desc="move focused window to group {}".format(g.name))
+    k("shift", key, do=lazy.window.togroup(g.name))
 
 
 ### Bars:
