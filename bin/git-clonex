@@ -1,6 +1,52 @@
 #!/usr/bin/env perl
 # git-clonex --- clone an external git repo the way I like
 
+use v5.24;
+
+use strict;
+use warnings;
+
+use File::Temp qw(tempdir);
+use Getopt::Long;
+use IPC::Run3 qw(run3);
+
+my $tmp  = 0;
+my $yank = 0;
+
+GetOptions ("temporary|tmp" => \$tmp,
+	    "yank|y"        => \$yank,)
+    or die "Command line error: $!";
+
+my $repo_url = shift @ARGV or die "usage: git clonex [-ty] GITHUB-URL";
+
+unless ($repo_url =~ /
+           https? :\/\/ (www\.)?
+           (?<forge>[^\.]+)
+           \. [^\/]+ \/
+           (?<user>[\w\d\-_]+) \/
+           (?<repo>[\w\d\-_]+) \/?
+       /x )
+   {
+    die "Bad URL: $repo_url";
+} else {
+    my $local_path;
+    if ($tmp) {
+	my $dirname = "$+{forge}-$+{user}-$+{repo}";
+	$local_path = tempdir ("$dirname-XXXXXXXX", TMPDIR => 1);
+    } else {
+	$local_path = "$ENV{'HOME'}/co/External/$+{forge}-$+{user}-$+{repo}";
+    }
+    system ("git-clone", $repo_url, $local_path) == 0
+	or die "git error: $!";
+    say "\n    Type this to go to the checkout:";
+    say "      \$ cd $local_path";
+    if ($yank) {
+	my @cmd = ("xclip", "-i");
+	run3 (\@cmd, \$local_path) or die "xclip: $!";
+	say "\nYanked checkout path as selection!";
+    }
+}
+
 =pod
 
 =encoding utf8
@@ -9,7 +55,47 @@
 
 =head2 Synopsis
 
-git clonex REPO-URL
+=over
+
+git clonex [-ty] REPO-URL
+
+=back
+
+=head2 Flags
+
+=over
+
+    -t|--temporary
+
+=over
+
+    Make a checkout in under the system's temporary directory.
+
+=back
+
+    -y|--yank
+
+=over
+
+    Copy the checkout path into the clipboard and selection if possible.
+
+=back
+
+=back
+
+=head2 Arguments
+
+=over
+
+    REPO-URL
+
+=over
+
+    The forge URL for the repository.
+
+=back
+
+=back
 
 =head2 Description
 
@@ -28,26 +114,3 @@ domain.tld/user/repo
 used by most common git forges, like Github, Gitlab, etc.
 
 =cut
-
-use v5.24;
-
-use strict;
-use warnings;
-
-my $repo_url = shift @ARGV or die "usage: git clone-github GITHUB-URL";
-
-my $repo_url_parts;
-
-unless ($repo_url =~ /
-           https? :\/\/ (www\.)?
-           (?<forge>[^\.]+)
-           \. [^\/]+ \/
-           (?<user>[\w\d\-_]+) \/
-           (?<repo>[\w\d\-_]+) \/?
-       /x ) {
-    die "Bad URL: $repo_url";
-} else {
-    my $local_path = "$ENV{'HOME'}/co/External/$+{forge}-$+{user}-$+{repo}";
-    exec ("git-clone", $repo_url, $local_path);
-}
-
