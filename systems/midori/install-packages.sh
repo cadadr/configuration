@@ -35,7 +35,8 @@ pkgs_Utils="hunspell hunspell-en_us hunspell-en_gb hunspell-it \
 	pandoc-crossref pass pwgen pdfgrep pdftk procmail \
 	qrencode smartmontools sqlite strace traceroute \
 	units unrar vorbis-tools w3m whois wkhtmltopdf \
-	youtube-dl ghostscript mutt net-tools inetutils ntfs-3g"
+	youtube-dl ghostscript mutt net-tools inetutils ntfs-3g \
+	wget"
 
 pkgs_TeX="texlab biber texlive-most texlive-lang texlive-latexextra \
 	texlive-langextra texlive-bibtexextra"
