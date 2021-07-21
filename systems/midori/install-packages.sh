@@ -27,7 +27,7 @@ pkgs_Apps="qutebrowser pdfjs okular audacity cheese dconf-editor diffpdf \
 	gimp gimp-help-en_gb gparted inkscape mpv simplescreenrecorder \
 	gsmartcontrol stellarium telegram-desktop chromium firefox newsboat \
 	simple-scan libreoffice-fresh ristretto quodlibet lmms ardour \
-	transmission-gtk"
+	transmission-gtk cheese"
 
 pkgs_Utils="hunspell hunspell-en_us hunspell-en_gb hunspell-it \
 	bind-tools dnsutils bridge-utils entr jq mailutils \
