@@ -10,14 +10,21 @@ use File::Temp qw(tempdir);
 use Getopt::Long;
 use IPC::Run3 qw(run3);
 
+my $dir  =  "$ENV{HOME}/co/External/";
+my $dry  = 0;
 my $tmp  = 0;
 my $yank = 0;
 
+if (exists($ENV{CLONEX_DIR})) {
+    $dir = $ENV{CLONEX_DIR}
+}
+
 GetOptions ("temporary|tmp" => \$tmp,
+	    "dry|d"         => \$dry,
 	    "yank|y"        => \$yank,)
     or die "Command line error: $!";
 
-my $repo_url = shift @ARGV or die "usage: git clonex [-ty] GITHUB-URL";
+my $repo_url = shift @ARGV or die "usage: git clonex [-dty] GITHUB-URL";
 
 unless ($repo_url =~ /
            https? :\/\/ (www\.)?
@@ -34,10 +41,14 @@ unless ($repo_url =~ /
 	my $dirname = "$+{forge}-$+{user}-$+{repo}";
 	$local_path = tempdir ("$dirname-XXXXXXXX", TMPDIR => 1);
     } else {
-	$local_path = "$ENV{'HOME'}/co/External/$+{forge}-$+{user}-$+{repo}";
+	$local_path = "$dir/$+{forge}-$+{user}-$+{repo}";
     }
-    system ("git-clone", $repo_url, $local_path) == 0
-	or die "git error: $!";
+    if ($dry) {
+	say "Dry run, doing nothing.";
+    } else {
+	system ("git-clone", $repo_url, $local_path) == 0
+	    or die "git error: $!";
+    }
     say "\n    Type this to go to the checkout:";
     say "      \$ cd $local_path";
     if ($yank) {
@@ -57,7 +68,7 @@ unless ($repo_url =~ /
 
 =over
 
-git clonex [-ty] REPO-URL
+git clonex [-dty] REPO-URL
 
 =back
 
@@ -78,6 +89,14 @@ git clonex [-ty] REPO-URL
 =over
 
     Copy the checkout path into the clipboard and selection if possible.
+
+=back
+
+    -d|--dry
+
+=over
+
+    Do not actually clone the repository, do a dry run.
 
 =back
 
