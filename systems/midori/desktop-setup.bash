@@ -89,4 +89,4 @@ echo 'gtk-decoration-layout = menu:close' >> $GK_GTK3_SETTINGS_FILE
 
 # dotfiles/xsession will run $MYSYSTEM/desktop-setup.bash with
 # dbus-launch, so we can just run the window manager here.
-exec qtile
+exec qtile start
