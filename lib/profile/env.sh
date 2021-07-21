@@ -69,6 +69,9 @@ export MYLISP=$MY/lisp
 # Guile
 export GUILE_LOAD_PATH=$MYLIB/scheme:$GUILE_LOAD_PATH
 
+# Lua
+export LUA_PATH="$MYLIB/lua/?.lua"
+
 # Guix
 #
 # This has to happen here instead of $MYLIB/guix.sh because in there
@@ -88,3 +91,5 @@ export VERSION_CONTROL=numbered
 # Borg Backups
 export BORG_REPO=pi@ayata.local:/mnt/Backups
 
+# Man path
+export MANPATH="$MY/doc/man:"
