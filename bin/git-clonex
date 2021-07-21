@@ -10,13 +10,13 @@ use File::Temp qw(tempdir);
 use Getopt::Long;
 use IPC::Run3 qw(run3);
 
-my $dir  =  "$ENV{HOME}/co/External/";
+my $dir  = "$ENV{HOME}/co/External";
 my $dry  = 0;
 my $tmp  = 0;
 my $yank = 0;
 
-if (exists($ENV{CLONEX_DIR})) {
-    $dir = $ENV{CLONEX_DIR}
+if (exists($ENV{GIT_CLONEX_DIR})) {
+    $dir = $ENV{GIT_CLONEX_DIR}
 }
 
 GetOptions ("temporary|tmp" => \$tmp,
@@ -111,6 +111,21 @@ git clonex [-dty] REPO-URL
 =over
 
     The forge URL for the repository.
+
+=back
+
+=back
+
+=head2 Environment
+
+=over
+
+    GIT_CLONEX_DIR
+
+=over
+
+    Directory to clone under by default.  The default value is
+    "$HOME/co/External/".
 
 =back
 
