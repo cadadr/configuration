@@ -15,9 +15,11 @@ use POSIX qw(strftime);
 
 my $zotxt_port = "23119";
 my $zotxt_host = "127.0.0.1";
+my $doc_type   = "markdown";
 
 GetOptions ("port|p" => \$zotxt_port,
-	    "host|h" => \$zotxt_host)
+	    "host|h" => \$zotxt_host,
+	    "type|t" => \$doc_type)
     or die "command line error: $!";
 
 my $zotxt = "http://$zotxt_host:$zotxt_port/zotxt";
@@ -27,7 +29,15 @@ my @cits;
 my $docjson;
 
 # Collect JSON representation of document from Pandoc.
-my @cmd = ('pandoc', '-t', 'json', $document);
+my @cmd;
+if ($document eq '-') {	    # if '-', read from stdin (we omit the
+			    # input argument to pandoc, which will
+			    # lead to run3 passing our stdin to it.
+    @cmd = ('pandoc', '-f', $doc_type, '-t', 'json');
+} else {
+    @cmd = ('pandoc', '-f', $doc_type, '-t', 'json', $document);
+}
+
 run3 \@cmd, undef, \$docjson;
 
 # Collect citations into @cits.
@@ -118,6 +128,20 @@ pandoc-zotxt-bib.pl [-p PORT] [-h HOST] DOCUMENT
 
 =back
 
+=over
+
+    -t|--type TYPE
+
+=over
+
+    Document's file type.  Defaults to Pandoc's default, which
+    should be markdown.
+
+=back
+
+=back
+
+
 =head2 Arguments
 
 =over
@@ -126,7 +150,8 @@ pandoc-zotxt-bib.pl [-p PORT] [-h HOST] DOCUMENT
 
 =over
 
-    The Pandoc document to collect citations from.
+    The Pandoc document to collect citations from.  If DOCUMENT is '-',
+    the script will operate on the standard input.
 
 =back
 
@@ -146,6 +171,14 @@ as such:
 =over
 
 $ perl pandoc-zotxt-bib.pl TheDocument.markdown > Bibliography.bib
+
+=back
+
+or
+
+=over
+
+$ perl pandoc-zotxt-bib.pl - < TheDocument.markdown > Bibliography.bib
 
 =back
 
