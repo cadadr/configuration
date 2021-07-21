@@ -1,19 +1,9 @@
 # prompt.bash --- bash prompt
 
-bold='\[\033[1m\]'
-reset='\[\033[0m\]'
-
-# if xterm, colour
-case $TERM in
-    xterm-*)
-	color="$(seq 2 8 | shuf -n 1)"
-	bold='\[\033[01;3'"${color}"'m\]' ;;
-    * ) ;;
-esac
-
 bp_lastcmdexit () {
     xit=$?
-    [ $xit -ne 0 ] && printf "\033[7m\033[1m> $xit!\033[0m "
+    echo
+    [ $xit -ne 0 ] && printf "$(tput setab 9)$(tput setaf 16) $xit!$(tput sgr0) "
 }
 
 bp_queue () {
@@ -56,6 +46,19 @@ bp_procmd () {
     # is run just after the last evaluated command whose exit code
     # is in $?.
     bp_lastcmdexit
+
+    bold="$(tput bold)"
+    reset="$(tput sgr0)"
+
+    # if xterm, colour
+    case $TERM in
+	xterm-*)
+	    color="$(seq 1 16 | grep -ve '[789]' -e '1' -e '16' | shuf -n 1)"
+	    bold="$(tput setaf $color)"
+	    ;;
+	* ) ;;
+    esac
+
     line1='[In: \w; \d \A;$(bp_branch) ^$SHLVL]'
     line2='[\#] \u@\H (\j)\$'
     # A python virtual environment is active, provide relevant
