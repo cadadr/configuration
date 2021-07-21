@@ -3,6 +3,14 @@
 bold='\[\033[1m\]'
 reset='\[\033[0m\]'
 
+# if xterm, colour
+case $TERM in
+    xterm-*)
+	color="$(seq 2 8 | shuf -n 1)"
+	bold='\[\033[01;3'"${color}"'m\]' ;;
+    * ) ;;
+esac
+
 bp_lastcmdexit () {
     xit=$?
     [ $xit -ne 0 ] && printf "\033[7m\033[1m> $xit!\033[0m "
