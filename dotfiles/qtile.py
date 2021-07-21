@@ -324,9 +324,11 @@ layouts = [
 ]
 
 floating_layout = layout.Floating(float_rules=[
-    Match(title='pinentry'),  # GPG key password entry
+    # Run the utility of `xprop` to see the wm class and name of an X client.
+    *layout.Floating.default_float_rules,
+    Match(wm_class='ssh-askpass'),
+    Match(title='pinentry'),
 ])
-
 
 ### Original licence block:
 
