@@ -11,7 +11,8 @@ pkgs_Desktop="xorg xorg-apps xorg-xinit xf86-video-ati xf86-video-amdgpu \
 	xterm rofi rofimoji blueman network-manager-applet dex dunst \
 	pcmanfm xclip xdotool xpra feh flameshot seahorse picom \
 	i3status python-i3ipc redshift xfce4-clipman-plugin i3lock \
-	libmtp gvfs mtpfs android-file-transfer"
+	libmtp gvfs mtpfs android-file-transfer xdg-user-dirs \
+	xf86-video-fbdev"
 
 # TODO: jack instead of alsa
 pkgs_Audio="alsa-utils pulseaudio pulseaudio-alsa pasystray pavucontrol \
