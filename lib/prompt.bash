@@ -3,7 +3,8 @@
 bp_lastcmdexit () {
     xit=$?
     echo
-    [ $xit -ne 0 ] && printf "$(tput setab 9)$(tput setaf 16) $xit!$(tput sgr0) "
+    [ $xit -ne 0 ] && printf \
+	"$(tput setab 9)$(tput setaf 16) $xit!$(tput sgr0) "
 }
 
 bp_queue () {
@@ -66,12 +67,12 @@ bp_procmd () {
     if [ -n "$VIRTUAL_ENV" ]; then
         venvname="$(realpath --relative-to=$PWD $VIRTUAL_ENV)"
         venvpyver="v$($venvname/bin/python --version | cut -d ' ' -f 2)"
-        PS1="$bold$line1$reset (venv:$venvname@$venvpyver)\n$bold$line2$reset "
+        PS1="\[$bold\]$line1\[$reset\] (venv:$venvname@$venvpyver)\n\[$bold\]$line2\[$reset\] "
     # A Guix environment is active, provide relevant info.
     elif [ -n "$GUIX_ENVIRONMENT" ]; then
-        PS1="$bold$line1$reset (guix:$GUIX_ENVIRONMENT)\n$bold$line2$reset "
+        PS1="\[$bold\]$line1\[$reset\] (guix:$GUIX_ENVIRONMENT)\n\[$bold\]$line2\[$reset\] "
     else
-        PS1="$bold$line1\n$line2$reset "
+        PS1="\[$bold\]$line1\n$line2\[$reset\] "
     fi
     bp_queue
 }
