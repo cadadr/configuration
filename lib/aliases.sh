@@ -242,6 +242,36 @@ texwut(){
     texdoc $@ 2>/dev/null 1>/dev/null &
 }
 
+gmi(){
+    gemini_dir=$HOME/co/cadadr.space/
+    if [ $# -lt 1 ]; then
+	echo 'gmi: usage: gmi CMD'
+	return 2
+    fi
+    case $1 in
+	# New gemlog entry
+	newlog|nl|l)
+	    if [ $# -lt 3 ]; then
+		echo "gem: usage: gem newlog GEMLOG SHORT_TITLE"
+		return 2
+	    fi
+	    if [ ! -e "$gemini_dir/templates/$2.gmi" ]; then
+		echo "template '$2' not found"
+		return 3
+	    fi
+	    new="$gemini_dir/gemini/$2-$(date +%F)-$3.gmi"
+	    sed "s/@@DATE@@/$(LANG=en date +'%B %d, %Y')/"  \
+		< $gemini_dir/templates/$2.gmi	    \
+		> $new
+	    vi $new ;;
+	cd)
+	    cd $gemini_dir ;;
+	*)
+	    echo "gem: unknown command: $1"
+	    return 2 ;;
+    esac
+}
+
 ###
 alias listall="alias | cut -d= -f1 && declare -F | cut -d ' '  -f 3 | sed 's,^,function ,'"
 alias edit="$EDITOR"
