@@ -22,7 +22,20 @@ export LOCATION_LONG="$(echo 2 k $_long 100 / p | dc)"
 
 unset _lat _long latlong
 
-export $(gnome-keyring-daemon --start)
+if which systemctl 1>/dev/null 2>/dev/null; then
+    eval "export $(systemctl --user show-environment \
+	| grep ^DBUS_SESSION_BUS_ADDRESS=)"
+fi
+
+### Authentication agents:
+
+export GPG_TTY=$(tty)
+
+pgrep -a gpg-agent || gpg-agent --daemon --enable-ssh-support
+
+if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
+    export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
+fi
 
 ### X settings:
 # Disable DPMS turning off the screen
