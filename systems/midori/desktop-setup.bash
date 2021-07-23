@@ -31,11 +31,9 @@ fi
 
 export GPG_TTY=$(tty)
 
-pgrep -a gpg-agent || gpg-agent --daemon --enable-ssh-support
+pgrep -a gpg-agent || gpg-agent --daemon
 
-if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
-    export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
-fi
+eval $(ssh-agent)
 
 ### X settings:
 # Disable DPMS turning off the screen
