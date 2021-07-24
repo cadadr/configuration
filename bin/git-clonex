@@ -14,6 +14,7 @@ my $dir  = "$ENV{HOME}/co/External";
 my $dry  = 0;
 my $tmp  = 0;
 my $yank = 0;
+my $extra = '';
 
 if (exists($ENV{GIT_CLONEX_DIR})) {
     $dir = $ENV{GIT_CLONEX_DIR}
@@ -21,10 +22,15 @@ if (exists($ENV{GIT_CLONEX_DIR})) {
 
 GetOptions ("temporary|tmp" => \$tmp,
 	    "dry|d"         => \$dry,
-	    "yank|y"        => \$yank,)
+	    "yank|y"        => \$yank,
+	    "extra=s"	    => \$extra,)
     or die "Command line error: $!";
 
 my $repo_url = shift @ARGV or die "usage: git clonex [-dty] GITHUB-URL";
+
+# TODO: parse using Shell::Parser?
+my @extra_args = split / /, $extra;
+
 
 unless ($repo_url =~ /
            https? :\/\/ (www\.)?
@@ -43,11 +49,12 @@ unless ($repo_url =~ /
     } else {
 	$local_path = "$dir/$+{forge}-$+{user}-$+{repo}";
     }
+    my @git_cmd = ('git', 'clone', @extra_args, $repo_url, $local_path);
     if ($dry) {
 	say "Dry run, doing nothing.";
+	say "Would have ran: @git_cmd";
     } else {
-	system ("git-clone", $repo_url, $local_path) == 0
-	    or die "git error: $!";
+	run3 (\@git_cmd) or die "git error: $!";
     }
     say "\n    Type this to go to the checkout:";
     say "      \$ cd $local_path";
@@ -68,7 +75,7 @@ unless ($repo_url =~ /
 
 =over
 
-git clonex [-dty] REPO-URL
+git clonex [-dty] [--extra EXTRA_ARGS] REPO-URL
 
 =back
 
@@ -101,6 +108,23 @@ git clonex [-dty] REPO-URL
 =back
 
 =back
+
+=head2 Options
+
+    --extra EXTRA_ARGS
+
+=over
+
+    Pass EXTRA_ARGS to "git clone" directly.
+
+    Currently, this uses a dumb string split on the ASCII/UTF-8
+    space character.
+
+=back
+
+=back
+
+
 
 =head2 Arguments
 
