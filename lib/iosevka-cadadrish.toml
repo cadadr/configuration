@@ -1,0 +1,96 @@
+# iosevka-cadadrish.toml --- my Iosevka font variants
+
+# Iosevka variants that
+# - avoid confusion for symbols like 1, l, I, q, g, O, 0
+# - avoid cringe ligatures
+
+# Build & install:
+#
+#  $ # clone with depth 1 because the repository is HUGE
+#  $ git clonex --extra '--depth 1' -t -y https://github.com/be5invis/Iosevka
+#  $ # cd to directory
+#  $ npm install
+#  $ npm run build -- contents::iosevka-cadadrish-slap
+#  $ npm run build -- contents::iosevka-cadadrish-sans
+#  $ cp dist/**/*/*.ttf $HOME/.fonts
+
+[buildPlans.iosevka-cadadrish-sans]
+family = "Iosevka Cadadrish Sans"
+spacing = "term"
+serifs = "sans"
+no-cv-ss = false
+no-ligation = true
+
+[buildPlans.iosevka-cadadrish-sans.custom.variants.design]
+capital-b = "more-asymmetric-serifless"
+capital-j = "descending-serifed-both-sides"
+capital-z = "straight-serifless-with-horizontal-crossbar"
+a = "single-storey-serifless"
+g = "single-storey-serifless"
+i = "serifed-flat-tailed"
+k = "cursive-serifless"
+l = "tailed"
+m = "short-leg-top-left-serifed"
+q = "diagonal-tailed"
+x = "straight-serifless"
+y = "cursive-flat-hook"
+z = "straight-serifless-with-horizontal-crossbar"
+long-s = "flat-hook-tailed"
+eszet = "traditional-flat-hook-tailed"
+lower-delta = "flat-top"
+lower-lambda = "straight-turn"
+zero = "dotted"
+one = "base-long-top-serif"
+two = "curly-neck"
+three = "flattop"
+four = "semi-open"
+five = "vertical-upper-left-bar"
+seven = "straight-crossbar"
+asterisk = "hex-low"
+paren = "large-contour"
+ampersand = "et-toothed"
+percent = "rings-continuous-slash-also-connected"
+bar = "natural-slope"
+lig-ltgteq = "slanted"
+
+
+# iosevka_slab.toml --- my Iosevka font variant, slab serif
+
+[buildPlans.iosevka-cadadrish-slap]
+family = "Iosevka Cadadrish Slap"
+spacing = "term"
+serifs = "slab"
+no-cv-ss = false
+no-ligation = true
+
+[buildPlans.iosevka-cadadrish-slap.variants.design]
+capital-b = "more-asymmetric-bilateral-serifed"
+capital-j = "descending-serifed-both-sides"
+capital-z = "curly-serifed-with-crossbar"
+a = "single-storey-tailed"
+g = "double-storey-open"
+i = "serifed-flat-tailed"
+k = "cursive-serifed"
+l = "tailed-serifed"
+m = "short-leg-tailed-top-left-serifed"
+q = "diagonal-tailed"
+x = "curly-serifed"
+y = "cursive-motion-serifed"
+z = "curly-serifed-with-horizontal-crossbar"
+long-s = "flat-hook-tailed"
+eszet = "traditional-flat-hook-tailed"
+lower-delta = "flat-top"
+lower-lambda = "straight-turn"
+zero = "dotted"
+one = "base-long-top-serif"
+two = "curly-neck"
+three = "flattop"
+four = "semi-open"
+five = "vertical-upper-left-bar"
+seven = "straight-crossbar"
+asterisk = "hex-low"
+paren = "large-contour"
+ampersand = "et-toothed"
+percent = "rings-continuous-slash-also-connected"
+bar = "natural-slope"
+lig-ltgteq = "slanted"
