@@ -91,6 +91,9 @@ sx () {
     cp $log_stdout $log_stdout.old
     cp $log_stderr $log_stderr.old
     startx -- :$dpy > $log_stdout 2> $log_stderr
+    tail $log_stdout
+    tail $log_stderr
+    tail /home/g/.local/share/xorg/Xorg.$dpy.log
 }
 
 # From: https://news.ycombinator.com/item?id=18898898
