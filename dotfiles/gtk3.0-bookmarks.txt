@@ -2,6 +2,7 @@ file:///home/g/Applications Applications
 file:///home/g/Notes/Assignments Assignments
 file:///home/g/Notes/Library/Attachments Biblio. Attachments
 file:///home/g/co Checkouts
+file:///home/g/cf Configuration
 file:///home/g/Documents Documents
 file:///home/g/Downloads Downloads
 file:///home/g/Documents/hacettepe Hacettepe
