@@ -14,9 +14,10 @@
 #  $ npm run build -- contents::iosevka-cadadrish-sans
 #  $ cp dist/**/*/*.ttf $HOME/.fonts
 
+
 [buildPlans.iosevka-cadadrish-sans]
 family = "Iosevka Cadadrish Sans"
-spacing = "quasi-proportional"
+spacing = "term"
 serifs = "sans"
 no-cv-ss = false
 no-ligation = true
@@ -56,7 +57,7 @@ lig-ltgteq = "slanted"
 
 [buildPlans.iosevka-cadadrish-slap]
 family = "Iosevka Cadadrish Slap"
-spacing = "quasi-proportional"
+spacing = "term"
 serifs = "slab"
 no-cv-ss = false
 no-ligation = true
