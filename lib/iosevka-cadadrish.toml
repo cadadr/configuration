@@ -16,12 +16,12 @@
 
 [buildPlans.iosevka-cadadrish-sans]
 family = "Iosevka Cadadrish Sans"
-spacing = "term"
+spacing = "quasi-proportional"
 serifs = "sans"
 no-cv-ss = false
 no-ligation = true
 
-[buildPlans.iosevka-cadadrish-sans.custom.variants.design]
+[buildPlans.iosevka-cadadrish-sans.variants.design]
 capital-b = "more-asymmetric-serifless"
 capital-j = "descending-serifed-both-sides"
 capital-z = "straight-serifless-with-horizontal-crossbar"
@@ -54,11 +54,9 @@ bar = "natural-slope"
 lig-ltgteq = "slanted"
 
 
-# iosevka_slab.toml --- my Iosevka font variant, slab serif
-
 [buildPlans.iosevka-cadadrish-slap]
 family = "Iosevka Cadadrish Slap"
-spacing = "term"
+spacing = "quasi-proportional"
 serifs = "slab"
 no-cv-ss = false
 no-ligation = true
@@ -94,3 +92,4 @@ ampersand = "et-toothed"
 percent = "rings-continuous-slash-also-connected"
 bar = "natural-slope"
 lig-ltgteq = "slanted"
+
