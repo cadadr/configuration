@@ -92,6 +92,9 @@ c.url.searchengines['#maps'] = \
 c.url.searchengines['#wikt'] = \
     'https://en.wiktionary.org/wiki/Special:Search?search={}'
 
+c.url.searchengines['#wiki'] = \
+    'https://en.wikipedia.org/wiki/Special:Search?search={}'
+
 c.url.searchengines['#de'] = \
     'https://de.thefreedictionary.com/_/search.aspx?tab=262144&SearchBy=0&TFDBy=0&Word={}'
 
