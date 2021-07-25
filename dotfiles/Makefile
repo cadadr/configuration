@@ -4,7 +4,7 @@ M4=m4 ../config.m4
 
 FILES=mpoprc msmtprc
 
-all: $(FILES)
+all: $(FILES) vimspell
 
 clean:
 	rm -f $(FILES)
@@ -15,4 +15,10 @@ mpoprc: mpoprc.in
 msmtprc: msmtprc.in
 	$(M4) $< > $@ && chmod 600 $@
 
-.PHONY: all clean
+vimspell:
+	mkdir -p vim/spell
+	wget --quiet -O vim/spell/tr.utf-8.spl ftp://ftp.vim.org/pub/vim/runtime/spell/tr.utf-8.spl
+	wget --quiet -O vim/spell/en.utf-8.spl ftp://ftp.vim.org/pub/vim/runtime/spell/en.utf-8.spl
+	wget --quiet -O vim/spell/it.utf-8.spl ftp://ftp.vim.org/pub/vim/runtime/spell/it.utf-8.spl
+
+.PHONY: all clean vimspell
