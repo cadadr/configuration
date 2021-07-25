@@ -52,6 +52,11 @@ set list listchars=trail:-,tab:>-,nbsp:_
 " toolbar, menubar, and scrollbars are turned off.
 set guioptions=aie
 
+" Short message
+" =============
+" S:	do *not* show search count like [1/4]
+set shortmess-=S
+
 " }}}
 
 
