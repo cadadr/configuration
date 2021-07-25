@@ -90,6 +90,7 @@ emacs.d/eln-cache/
 
 # vim
 dotfiles/vim/undo/
+dotfiles/vim/spell/
 dotfiles/vim/.netrwhist
 
 # lagrange
