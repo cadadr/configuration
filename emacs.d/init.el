@@ -6708,19 +6708,6 @@ new frame is created."
                       :height gk-font-variable-pitch-height
                       :family (gk-font :sans))
 
-  ;; make CJK text more readable
-  (let ((fs (font-spec
-             :name
-             (format "%s %d" (gk-font :cjk)
-                     (* (/ gk-font-default-height 10) 1.5))))
-        (ranges '(kana han cjk-misc symbol bopomofo)))
-    (dolist (r ranges)
-      ;; set the default
-      (set-fontset-font t r fs)
-      ;; apply to current frames
-      (dolist (f (frame-list))
-        (set-fontset-font nil r fs f))))
-
   (loop for attr in '(mode-line mode-line-inactive) do
         (set-face-attribute attr nil
                             :family (gk-font :sans)
