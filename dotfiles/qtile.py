@@ -180,7 +180,7 @@ for i, g in zip(range(1, 6), groups):
 ### Bars:
 
 widget_defaults = dict(
-    font='DejaVu Sans Mono',
+    font='Iosevka Cadadrish Sans',
     fontsize=14,
     padding=3,
 )

@@ -129,10 +129,14 @@ settings:
     - '{file}'
     - -c
     - normal {line}G{column0}l
+  fonts.default_family:
+    global: Iosevka Cadadrish Sans
   fonts.hints:
     global: bold 14pt default_family
   fonts.keyhint:
     global: 14pt default_family
+  fonts.web.family.fixed:
+    global: Iosevka Cadadrish Sans
   fonts.web.size.minimum:
     global: 10
   hints.auto_follow:

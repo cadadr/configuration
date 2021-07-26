@@ -1778,7 +1778,7 @@ column will be split into two instead."
 (defconst gk-default-fonts-plist
   (list :serif "DejaVu Serif Condensed"
         :sans "DejaVu Sans Condensed"
-        :mono "DejaVu Sans Mono"
+        :mono "Iosevka Cadadrish Sans"
         :cjk "Noto Serif CJK JP"
         :forecast-moon-phase (or (and (gk-gui-p)
                                       (font-info "Quivira")
