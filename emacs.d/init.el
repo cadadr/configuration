@@ -4924,8 +4924,8 @@ Use \[pop-to-mark-command] to go back to where you were."
               (type (org-element-property :type maybe-link-ctx))
               (path (org-element-property :path maybe-link-ctx)))
     (when (and (string= "file" type)
-               (string-match (rx (and ".pdf" eos)) path)))
-    (find-file path)))
+               (string-match (rx (and ".pdf" eos)) path))
+      (find-file path))))
 
 (add-hook 'org-open-at-point-functions #'gk-org-open-pdfs-in-this-window-not-motherfucking-other-window-you-fucking-asshole-that-is-org-mode)
 
