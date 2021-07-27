@@ -276,6 +276,11 @@ gmi(){
 }
 
 ###
+# ssh errors with `unknown terminal' without this, see
+# https://sw.kovidgoyal.net/kitty/faq/#i-get-errors-about-the-terminal-being-unknown-or-opening-the-terminal-failing-when-sshing-into-a-different-computer
+if [ "xterm-kitty" = "$TERM" ]; then
+    alias ssh="kitty +kitten ssh"
+fi
 alias listall="alias | cut -d= -f1 && declare -F | cut -d ' '  -f 3 | sed 's,^,function ,'"
 alias edit="$EDITOR"
 alias re="refresh && repath"
