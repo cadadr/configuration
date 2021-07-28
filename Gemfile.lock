@@ -1,6 +1,17 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    addressable (2.8.0)
+      public_suffix (>= 2.0.2, < 5.0)
+    mini_portile2 (2.5.3)
+    nokogiri (1.11.7)
+      mini_portile2 (~> 2.5.0)
+      racc (~> 1.4)
+    nokogiri (1.11.7-x86_64-linux)
+      racc (~> 1.4)
+    open_uri_redirections (0.2.1)
+    public_suffix (4.0.6)
+    racc (1.5.2)
     rdoc (6.1.1)
 
 PLATFORMS
@@ -8,6 +19,9 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  addressable (~> 2.8)
+  nokogiri
+  open_uri_redirections
   rdoc
 
 BUNDLED WITH
