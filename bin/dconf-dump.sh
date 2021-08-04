@@ -78,8 +78,11 @@ if [ "$DESKTOP_SESSION" = "cinnamon" ]; then
     dconf reset -f /org/mate/
 fi
 
-/usr/bin/dconf dump / \
-    | grep -Ev "^($(echo $filter | tr ' ' '|'))=" \
-    | grep -v 'nm-applet' \
-    | inirefmt.py \
-           > $HOME/cf/systems/$(hostname)/dconf.dump
+while true; do
+    sleep 360
+    /usr/bin/dconf dump / \
+	| grep -Ev "^($(echo $filter | tr ' ' '|'))=" \
+	| grep -v 'nm-applet' \
+	| inirefmt.py \
+	       > $HOME/cf/systems/$(hostname)/dconf.dump
+done

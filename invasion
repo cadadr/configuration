@@ -23,6 +23,9 @@
 .config/i3status/config		dotfiles/i3status.conf
 .config/picom.conf		dotfiles/picom.conf
 .config/qtile/config.py		dotfiles/qtile.py
+.config/autostart/clipit.desktop	dotfiles/autostart/clipit.desktop
+.config/autostart/dconf-dump.sh.desktop	dotfiles/autostart/dconf-dump.sh.desktop
+.config/autostart/kdeconnectd.desktop	dotfiles/autostart/kdeconnectd.desktop
 .emacs.d			emacs.d
 .flutter			dotfiles/flutter.json
 .gitconfig			dotfiles/gitconfig.ini

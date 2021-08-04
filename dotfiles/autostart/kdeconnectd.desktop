@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Exec=/usr/share/applications/org.kde.kdeconnect.nonplasma.desktop
+Hidden=false
+X-MATE-Autostart-enabled=true
+Name[en_GB]=KDEConnect Indicator
+Name=KDEConnect Indicator
+Comment[en_GB]=Start KDEConnect daemon and indicator.
+Comment=Start KDEConnect daemon and indicator.
