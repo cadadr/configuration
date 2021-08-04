@@ -1,0 +1,171 @@
+[desktop/ibus/general]
+preload-engines = ['xkb:gb:extd:eng']
+version = '1.5.19'
+
+[org/gtk/settings/file-chooser]
+date-format = 'regular'
+show-hidden = false
+show-size-column = true
+sort-directories-first = true
+
+[org/mate/caja/window-state]
+start-with-sidebar = true
+start-with-status-bar = true
+start-with-toolbar = true
+
+[org/mate/desktop/accessibility/keyboard]
+bouncekeys-beep-reject = true
+bouncekeys-delay = 300
+bouncekeys-enable = false
+enable = false
+feature-state-change-beep = false
+mousekeys-accel-time = 1200
+mousekeys-enable = false
+mousekeys-init-delay = 160
+mousekeys-max-speed = 750
+slowkeys-beep-accept = true
+slowkeys-beep-press = true
+slowkeys-beep-reject = false
+slowkeys-delay = 300
+slowkeys-enable = false
+stickykeys-enable = false
+stickykeys-latch-to-lock = true
+stickykeys-modifier-beep = true
+stickykeys-two-key-off = true
+timeout = 120
+timeout-enable = false
+togglekeys-enable = false
+
+[org/mate/desktop/applications/terminal]
+exec = 'kitty'
+
+[org/mate/desktop/background]
+color-shading-type = 'vertical-gradient'
+picture-filename = '/home/g/Pictures/wlp/slideshow/eH4tGdi.jpeg'
+picture-options = 'zoom'
+primary-color = 'rgb(88,145,188)'
+secondary-color = 'rgb(60,143,37)'
+
+[org/mate/desktop/font-rendering]
+antialiasing = 'rgba'
+hinting = 'slight'
+
+[org/mate/desktop/interface]
+gtk-theme = 'TraditionalOk'
+icon-theme = 'mate'
+monospace-font-name = 'Iosevka Cadadrish Sans 13'
+
+[org/mate/desktop/keybindings/custom0]
+action = 'ffprofile.sh'
+binding = '<Mod4>w'
+name = 'Firefox Profile Picker'
+
+[org/mate/desktop/keybindings/custom1]
+action = 'passmenu.sh'
+binding = '<Mod4>p'
+name = 'Password Picker'
+
+[org/mate/desktop/keybindings/custom2]
+action = 'rofi -show drun'
+binding = 'F12'
+name = 'Rofi Launcher'
+
+[org/mate/desktop/peripherals/keyboard]
+
+[org/mate/desktop/peripherals/mouse]
+cursor-theme = 'mate'
+
+[org/mate/desktop/session]
+
+[org/mate/marco/general]
+theme = 'TraditionalOk'
+
+[org/mate/panel/general]
+object-id-list = ['menu-bar', 'notification-area', 'clock', 'show-desktop', 'window-list', 'workspace-switcher']
+toplevel-id-list = ['top', 'bottom']
+
+[org/mate/panel/objects/clock]
+applet-iid = 'ClockAppletFactory::ClockApplet'
+locked = true
+object-type = 'applet'
+panel-right-stick = true
+toplevel-id = 'top'
+
+[org/mate/panel/objects/clock/prefs]
+custom-format = ''
+format = '24-hour'
+
+[org/mate/panel/objects/menu-bar]
+locked = true
+object-type = 'menu-bar'
+toplevel-id = 'top'
+
+[org/mate/panel/objects/notification-area]
+applet-iid = 'NotificationAreaAppletFactory::NotificationArea'
+locked = true
+object-type = 'applet'
+panel-right-stick = true
+toplevel-id = 'top'
+
+[org/mate/panel/objects/show-desktop]
+applet-iid = 'WnckletFactory::ShowDesktopApplet'
+locked = true
+object-type = 'applet'
+toplevel-id = 'bottom'
+
+[org/mate/panel/objects/window-list]
+applet-iid = 'WnckletFactory::WindowListApplet'
+locked = true
+object-type = 'applet'
+toplevel-id = 'bottom'
+
+[org/mate/panel/objects/workspace-switcher]
+applet-iid = 'WnckletFactory::WorkspaceSwitcherApplet'
+locked = true
+object-type = 'applet'
+panel-right-stick = true
+toplevel-id = 'bottom'
+
+[org/mate/panel/toplevels/bottom]
+expand = true
+orientation = 'bottom'
+screen = 0
+y = 1055
+y-bottom = 0
+
+[org/mate/panel/toplevels/top]
+expand = true
+orientation = 'top'
+screen = 0
+
+[org/mate/pluma]
+active-plugins = ['spell', 'docinfo', 'filebrowser', 'modelines', 'time']
+history-replace-with = ['itugen']
+side-pane-visible = false
+statusbar-visible = true
+
+[org/mate/pluma/plugins/filebrowser/on-load]
+root = 'file:///'
+tree-view = true
+
+[org/mate/screenshot]
+border-effect = 'none'
+delay = 0
+include-border = true
+include-pointer = true
+last-save-directory = 'file:///home/g/cf/candy'
+
+[org/mate/system-log]
+height = 400
+logfile = '/var/log/fontconfig.log'
+logfiles = ['/var/log/fontconfig.log', '/var/log/bootstrap.log', '/var/log/alternatives.log', '/var/log/dpkg.log', '/var/log/Xorg.0.log']
+width = 600
+
+[org/mate/terminal/profiles/default]
+allow-bold = false
+background-color = '#FFFFFFFFDDDD'
+bold-color = '#000000000000'
+foreground-color = '#000000000000'
+palette = '#2E2E34343636:#CCCC00000000:#4E4E9A9A0606:#C4C4A0A00000:#34346565A4A4:#757550507B7B:#060698209A9A:#D3D3D7D7CFCF:#555557575353:#EFEF29292929:#8A8AE2E23434:#FCFCE9E94F4F:#72729F9FCFCF:#ADAD7F7FA8A8:#3434E2E2E2E2:#EEEEEEEEECEC'
+visible-name = 'Default'
+

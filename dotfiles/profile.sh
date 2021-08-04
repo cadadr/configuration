@@ -19,7 +19,7 @@ export MEINE="$MY/dotfiles"
 export MYLIB="$MY/lib"
 export MYFS="/igk"
 export SYSTEM="$(uname)"
-export MYSYSTEM="$MY/systems/$HOSTNAME"
+export MYSYSTEM="$MY/systems/$(hostname)"
 
 ###
 
@@ -50,10 +50,15 @@ _source $MYLIB/profile/env.sh
 
 ###
 
-### Import shell settings:
-# set ENV to a file invoked each time sh is started for interactive use.
-ENV=$HOME/.$(basename $SHELL)rc; export ENV
-export FROMLOGINPROFILE=yes
-_source $ENV
-unset FROMLOGINPROFILE
+if [ ! "$GK_NOENV" = "x" ];
+then
+    : ;
+else
+    ### Import shell settings:
+    # set ENV to a file invoked each time sh is started for interactive use.
+    ENV=$HOME/.$(basename $SHELL)rc; export ENV
+    export FROMLOGINPROFILE=yes
+    _source $ENV
+    unset FROMLOGINPROFILE
+fi
 

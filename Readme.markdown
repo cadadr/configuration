@@ -34,17 +34,8 @@ The configuration on this repo works with multiple OS / hardware
 setups, which have their own set up instructions.  Follow the links
 below for more details.
 
-- [Linux desktop workstation](systems/midori) (`midori`) based on Arch
-  Linux and i3wm.
-
-- [Linux desktop workstation](systems/umay/) (`umay`) with
-  latest stable Linux Mint Debian Edition with Cinnamon desktop.
-
-- [Experimental Linux desktop workstation](systems/guixtest/)
-  (`guixtest`) with GuixSD and i3wm.
-
-- [Linux desktop workstation](systems/kayra/) (`kayra`) with
-  Debian and i3wm.
+- [Linux desktop workstation](systems/itugen/) (`itugen`) with
+  latest stable Debian with MATE desktop.
 
 - [Linux laptop](systems/ulgen/) (`ulgen`) using the
   latest stable Linux Mint Cinnamon.
@@ -54,14 +45,8 @@ below for more details.
 
 <table>
   <tr>
-    <td>
-      <img src="candy/scr-midori.png" alt="screenshot for midori"/>
-    </td>
-    <td>
-      <img src="candy/scr-umay.png" alt="screenshot for umay"/>
-    </td>
-    <td>
-      <img src="candy/scr-kayra.png" alt="screenshot for kayra"/>
+   <td>
+      <img src="candy/scr-itugen.png" alt="screenshot for itugen"/>
     </td>
     <td>
       <img src="candy/scr-ulgen.png" alt="screenshot for ulgen"/>
@@ -86,35 +71,6 @@ like this:
     $ find $HOME/ -name '*,invaded~' -exec rm -r \{\} \+
 
 Now, you can log in to the graphical session.
-
-GNU Emacs needs to be installed using the `build-emacs-master.sh` script,
-as the Emacs setup included in this repository depends on new
-features introuduced on the `master` branch of it.
-
-    $ build-emacs-master.sh
-
-If needed, a recent version of Qutebrowser can be installed via
-
-    $ cd ~/co/External/github-qutebrowser-qutebrowser     # where a checkout usually
-                                                          # is on my system
-    $ python3 ./scripts/mkvenv.py --venv-dir ~/local/_qutebrowser
-    $ cd -
-
-from inside a recent checkout.  The underscore is there in the path
-name in order to tell `lib/profile/paths.sh` to skip adding this three
-to the path, as otherwise it will shadow system’s Python 3
-installation.
-
-Qutebrowser is going to fail to keep login sessions because different
-versions of WebEngine databases are incompatible
-(viz. <https://github.com/qutebrowser/qutebrowser/issues/5847#issuecomment-718985559>),
-so we need to delete the old database if it exists:
-
-    $ rm -r $HOME/.local/share/qutebrowser/webengine
-
-(`bin/launch-qutebrowser.bash` should deal with this automatically, in case
-you followed the above steps to build and install Qutebrowser, instead of
-installing it through a package manager.)
 
 For the user session to function as intended, you will need to log out and
 log back in so that `$PATH` and similar are appropriately updated with the
