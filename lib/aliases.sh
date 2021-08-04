@@ -275,6 +275,15 @@ gmi(){
     esac
 }
 
+# simple front-end to run a live iso image with qemu.
+# usage: qliverun [cdrom-file] [hda-file]
+qliverun() {
+    qemu-system-x86_64 -boot order=d -m 4096 \
+	-enable-kvm -smp 4 -cpu host \
+	${1:+-cdrom "$1"} ${2:+-hda "$2"}
+}
+
+
 ###
 # ssh errors with `unknown terminal' without this, see
 # https://sw.kovidgoyal.net/kitty/faq/#i-get-errors-about-the-terminal-being-unknown-or-opening-the-terminal-failing-when-sshing-into-a-different-computer
