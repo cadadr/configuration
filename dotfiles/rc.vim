@@ -130,9 +130,6 @@ set spelllang=en,tr,it
 
 " Spell checker options
 " =====================
-"
-" camel:    when a word is CamelCased, assume Cased is a separate word
-set spelloptions=camel
 
 autocmd FileType text,markdown setlocal spell
 autocmd FileType gitcommit setlocal spell
