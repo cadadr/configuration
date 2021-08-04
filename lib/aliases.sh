@@ -14,7 +14,11 @@ unpath () {
 }
 
 refresh () {
-    . $ENV
+    if [ ! "x$ENV" = "x" ]; then
+	. $ENV
+    else
+	echo 'refresh: error: $ENV not set, cannot load shell rc' >&2
+    fi
 }
 
 whichroot () {
