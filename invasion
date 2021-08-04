@@ -1,4 +1,3 @@
-.audacity-data			dotfiles/audacity
 .Rprofile			dotfiles/profile.R
 .Xdefaults			dotfiles/Xdefaults
 .bashrc				dotfiles/shrc.sh
@@ -14,7 +13,6 @@
 .config/gtk-3.0/bookmarks	dotfiles/gtk3.0-bookmarks.txt
 .config/okularpartrc		dotfiles/okular.ini
 .config/clipit/clipitrc		dotfiles/clipitrc.ini
-.config/qutebrowser		qutebrowser
 .config/dunst/dunstrc		dotfiles/dunstrc.ini
 .config/flameshot/flameshot.ini	dotfiles/flameshot.ini
 .config/kitty/kitty.conf	dotfiles/kitty.conf
