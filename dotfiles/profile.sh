@@ -50,13 +50,14 @@ _source $MYLIB/profile/env.sh
 
 ###
 
+# set ENV to a file invoked each time sh is started for interactive use.
+ENV=$HOME/.$(basename $SHELL)rc; export ENV
+
 if [ ! "$GK_NOENV" = "x" ];
 then
     : ;
 else
     ### Import shell settings:
-    # set ENV to a file invoked each time sh is started for interactive use.
-    ENV=$HOME/.$(basename $SHELL)rc; export ENV
     export FROMLOGINPROFILE=yes
     _source $ENV
     unset FROMLOGINPROFILE
