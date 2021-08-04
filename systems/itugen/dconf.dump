@@ -70,18 +70,33 @@ action = 'rofi -show drun'
 binding = 'F12'
 name = 'Rofi Launcher'
 
+[org/mate/desktop/keybindings/custom3]
+action = 'qrclip.sh'
+binding = '<Mod4>q'
+name = 'Clipboard to QR Code'
+
 [org/mate/desktop/peripherals/keyboard]
+
+[org/mate/desktop/peripherals/keyboard/preview]
+height = 810
+width = 1440
+x = 240
+y = 135
 
 [org/mate/desktop/peripherals/mouse]
 cursor-theme = 'mate'
 
 [org/mate/desktop/session]
 
+[org/mate/desktop/sound]
+event-sounds = true
+theme-name = 'freedesktop'
+
 [org/mate/marco/general]
 theme = 'TraditionalOk'
 
 [org/mate/panel/general]
-object-id-list = ['menu-bar', 'notification-area', 'clock', 'show-desktop', 'window-list', 'workspace-switcher']
+object-id-list = ['menu-bar', 'notification-area', 'clock', 'show-desktop', 'window-list', 'workspace-switcher', 'object-2', 'object-1']
 toplevel-id-list = ['top', 'bottom']
 
 [org/mate/panel/objects/clock]
@@ -105,6 +120,18 @@ applet-iid = 'NotificationAreaAppletFactory::NotificationArea'
 locked = true
 object-type = 'applet'
 panel-right-stick = true
+toplevel-id = 'top'
+
+[org/mate/panel/objects/object-1]
+launcher-location = 'emacs.desktop'
+object-type = 'launcher'
+panel-right-stick = false
+toplevel-id = 'top'
+
+[org/mate/panel/objects/object-2]
+launcher-location = 'chromium.desktop'
+object-type = 'launcher'
+panel-right-stick = false
 toplevel-id = 'top'
 
 [org/mate/panel/objects/show-desktop]
