@@ -1,5 +1,7 @@
 #!/bin/sh
-# dump-dconf.sh --- dump dconf database near the db itself
+# dconf-dump.sh --- dump dconf database for system
+
+. $MYLIB/fns.sh
 
 filter="session-start
 geometry
@@ -78,11 +80,15 @@ if [ "$DESKTOP_SESSION" = "cinnamon" ]; then
     dconf reset -f /org/mate/
 fi
 
+say "started dconf dumper..."
+
 while true; do
-    sleep 360
+    sleep 360s
+    say "dumping dconf database for $MYSYSTEM..."
     /usr/bin/dconf dump / \
 	| grep -Ev "^($(echo $filter | tr ' ' '|'))=" \
 	| grep -v 'nm-applet' \
 	| inirefmt.py \
-	       > $HOME/cf/systems/$(hostname)/dconf.dump
+	       > $MYSYSTEM/dconf.dump
+    say 'done'
 done
