@@ -7,6 +7,14 @@
 set -euo pipefail
 IFS=$'\n\t'
 
+pidfile="$HOME/.setbg.bash.pid"
+
+if [ -e "$pidfile" ]; then
+    kill "$(cat $pidfile)"
+fi
+
+echo $$ > $pidfile
+
 # Use SIGUSR1 to force next wallpaper, e.g.
 #   pkill -USR1 -f setbg.bash
 sleep_pid=

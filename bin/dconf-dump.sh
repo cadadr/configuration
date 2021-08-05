@@ -3,6 +3,14 @@
 
 . $MYLIB/fns.sh
 
+pidfile="$HOME/.dconf-dump.sh.pid"
+
+if [ -e "$pidfile" ]; then
+    kill "$(cat $pidfile)"
+fi
+
+echo $$ > $pidfile
+
 filter="session-start
 geometry
 window-position
