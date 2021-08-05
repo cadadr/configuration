@@ -99,6 +99,7 @@ dotfiles/lagrange/idents.lgr
 dotfiles/lagrange/state.lgr
 dotfiles/lagrange/trusted.txt
 dotfiles/lagrange/visited.2.txt
+dotfiles/lagrange/.pid
 
 # midori
 systems/midori/pkgbuilds/*/src
