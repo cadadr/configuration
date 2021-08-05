@@ -75,14 +75,6 @@ most of the time verbatim. Any file that does not include a statement
 for its licence terms is probably written by me, and I hereby put all of
 them in public domain.
 
-The sound at `candy/radio.wav` is (C) 2012 Kijadzel, licensed under
-the [CC-BY 3.0 License]. Obtained from
-<https://freesound.org/s/170608/>.
-
-The sound at `candy/bleep.wav` is (C) 2015 pan14, licensed under the
-[CC0 License]. Obtained from
-<https://freesound.org/people/pan14/sounds/263133/>.
-
 The image at `candy/lagrange.png`, the Lagrange logo, is (C) Jaakko
 Keränen.
 
