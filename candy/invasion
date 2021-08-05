@@ -4,7 +4,6 @@
 .local/share/applications/emacsclient-url.desktop	emacsclient-url.desktop
 .local/share/applications/lagrange.desktop		lagrange.desktop
 .local/share/applications/zotero.desktop		zotero.desktop
-.local/share/applications/mimeapps.list			dotfiles/mimeapps.list
 .local/share/applications/emacsclient-org-protocol.desktop	emacsclient-org-protocol.desktop
 .local/share/icons/hicolor/128x128/apps/emacs.png		emacs.png
 .local/share/icons/hicolor/256x256/apps/lagrange.png		lagrange.png
