@@ -6235,6 +6235,7 @@ fragments"
 
 ;; Misc
 (define-key org-mode-map (kbd "C-c C-M-l") #'gk-org-insert-all-stored-links)
+(define-key org-mode-map (kbd "C-c p") #'org-mark-ring-goto)
 
 
 
