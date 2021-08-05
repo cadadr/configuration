@@ -40,8 +40,8 @@ togglekeys-enable = false
 exec = 'kitty'
 
 [org/mate/desktop/background]
-color-shading-type = 'vertical-gradient'
-picture-filename = '/home/g/Pictures/wlp/slideshow/eH4tGdi.jpeg'
+color-shading-type = 'solid'
+picture-filename = '/home/g/.xbg.png'
 picture-options = 'zoom'
 primary-color = 'rgb(88,145,188)'
 secondary-color = 'rgb(60,143,37)'
@@ -74,6 +74,16 @@ name = 'Rofi Launcher'
 action = 'qrclip.sh'
 binding = '<Mod4>q'
 name = 'Clipboard to QR Code'
+
+[org/mate/desktop/keybindings/custom4]
+action = 'pkill -f -USR2 setbg.bash'
+binding = '<Mod4>Page_Down'
+name = 'Advance desktop background slideshow'
+
+[org/mate/desktop/keybindings/custom5]
+action = 'pkill -f -USR1 setbg.bash'
+binding = '<Mod4>Page_Up'
+name = 'Return to previous desktop background in the slideshow'
 
 [org/mate/desktop/peripherals/keyboard]
 
