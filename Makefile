@@ -44,9 +44,10 @@ emacs:
 clean-bin:
 	$(MAKE) -C bin -$(MAKEFLAGS) clean
 
-invade: dotfiles
-	./bin/invade -v $(HOME) &&\
-		update-desktop-database ~/.local/share/applications/
+invade:
+	./bin/invade -v $(HOME)
+	update-desktop-database ~/.local/share/applications/
+	cd candy && ../bin/invade -v $(HOME)
 	cd systems/$(shell hostname)/ && ../../bin/invade -v $(HOME)
 
 dotfiles:

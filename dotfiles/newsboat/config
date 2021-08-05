@@ -1,7 +1,0 @@
-# newsboat config
-
-keep-articles-days 180
-reload-threads 6
-feed-sort-order unreadarticlecount-asc
-article-sort-order date-asc
-browser "xdg-open %u"
