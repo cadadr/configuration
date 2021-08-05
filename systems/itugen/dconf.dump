@@ -92,11 +92,20 @@ cursor-theme = 'mate'
 event-sounds = true
 theme-name = 'freedesktop'
 
+[org/mate/engrampa/listing]
+list-mode = 'as-folder'
+name-column-width = 250
+show-path = false
+sort-method = 'name'
+sort-type = 'ascending'
+
+[org/mate/engrampa/ui]
+
 [org/mate/marco/general]
 theme = 'TraditionalOk'
 
 [org/mate/panel/general]
-object-id-list = ['menu-bar', 'notification-area', 'clock', 'show-desktop', 'window-list', 'workspace-switcher', 'object-2', 'object-1']
+object-id-list = ['menu-bar', 'notification-area', 'clock', 'show-desktop', 'window-list', 'workspace-switcher', 'object-2', 'object-1', 'object-0']
 toplevel-id-list = ['top', 'bottom']
 
 [org/mate/panel/objects/clock]
@@ -120,6 +129,12 @@ applet-iid = 'NotificationAreaAppletFactory::NotificationArea'
 locked = true
 object-type = 'applet'
 panel-right-stick = true
+toplevel-id = 'top'
+
+[org/mate/panel/objects/object-0]
+launcher-location = 'lagrange-1.desktop'
+object-type = 'launcher'
+panel-right-stick = false
 toplevel-id = 'top'
 
 [org/mate/panel/objects/object-1]
@@ -187,6 +202,12 @@ height = 400
 logfile = '/var/log/fontconfig.log'
 logfiles = ['/var/log/fontconfig.log', '/var/log/bootstrap.log', '/var/log/alternatives.log', '/var/log/dpkg.log', '/var/log/Xorg.0.log']
 width = 600
+
+[org/mate/system-monitor]
+
+[org/mate/system-monitor/disktreenew]
+
+[org/mate/system-monitor/proctree]
 
 [org/mate/terminal/profiles/default]
 allow-bold = false
