@@ -3,6 +3,9 @@
 M4=m4 ../config.m4
 
 FILES=mpoprc msmtprc
+WGET=wget --quiet
+VIMSPELLRMT=ftp://ftp.vim.org/pub/vim/runtime/spell
+VIMSPELLDIR=vim/spell
 
 all: $(FILES) vimspell
 
@@ -17,8 +20,11 @@ msmtprc: msmtprc.in
 
 vimspell:
 	mkdir -p vim/spell
-	wget --quiet -O vim/spell/tr.utf-8.spl ftp://ftp.vim.org/pub/vim/runtime/spell/tr.utf-8.spl
-	wget --quiet -O vim/spell/en.utf-8.spl ftp://ftp.vim.org/pub/vim/runtime/spell/en.utf-8.spl
-	wget --quiet -O vim/spell/it.utf-8.spl ftp://ftp.vim.org/pub/vim/runtime/spell/it.utf-8.spl
+	[ -e $(VIMSPELLDIR)/tr.utf-8.spl ] || $(WGET) -O \
+	    $(VIMSPELLDIR)/tr.utf-8.spl $(VIMSPELLRMT)/tr.utf-8.spl
+	[ -e $(VIMSPELLDIR)/en.utf-8.spl ] || $(WGET) -O \
+	    $(VIMSPELLDIR)/en.utf-8.spl $(VIMSPELLRMT)/en.utf-8.spl
+	[ -e $(VIMSPELLDIR)/it.utf-8.spl ] || $(WGET) -O \
+	    $(VIMSPELLDIR)/it.utf-8.spl $(VIMSPELLRMT)/it.utf-8.spl
 
 .PHONY: all clean vimspell
