@@ -15,7 +15,6 @@
 .emacs.d			emacs.d
 .gitconfig			dotfiles/gitconfig.ini
 .gdbinit			dotfiles/gdbinit
-.guile				dotfiles/guile.scm
 .hgrc				dotfiles/hgrc.ini
 .irbrc				dotfiles/irbrc.rb
 .inputrc			dotfiles/inputrc
