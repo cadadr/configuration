@@ -3,26 +3,17 @@ Introduction
 
 > Sic transit gloria mundi.
 
-Welcome to Göktuğ's Configuration, a work of artisanal love and care
-aimed at making the personal computer use a joyful activity, instead of
-endless agony and trade-offs in the era of inconfigurable apps designed
-with biblical unquestionable dogmas imposed on the users by the people
-that go by the D-word as their job title. My computer is my atelier, not
-an exhibition, so I demand that I'm able to touch, move and modify
-anything in any way.
-
 This repo contains the following:
 
-- My dotfiles (`dotfiles/`)
-- My Emacs configuration
-- My Linux configuration
-- And some other stuff
+- My dotfiles (`dotfiles/`, `emacs.d`, etc)
+- My Linux setups
+- Supporting scripts and files
+- Some other goodies
 
-I've re-created this repository from scratch, removing some secrets
-for publishing. If you want to use any part of my configurations,
-you're free to do so, but **do not** try to use it as a whole, it's
-complex and personal, and some additional secret stuff is not
-included, so it won't work reliably. Just cherry-pick what you want.
+If you want to use any part of my configurations, you're free to do so,
+but **do not** try to use it as a whole, it's complex and personal,
+and some additional secret stuff is not included, so it won't work
+reliably. Just cherry-pick what you want.
 
 Installation
 ============
@@ -91,9 +82,6 @@ the [CC-BY 3.0 License]. Obtained from
 The sound at `candy/bleep.wav` is (C) 2015 pan14, licensed under the
 [CC0 License]. Obtained from
 <https://freesound.org/people/pan14/sounds/263133/>.
-
-The design at `candy/qute.svg`, the Qutebrowser logo, is (C) Florian
-Bruhin.
 
 The image at `candy/lagrange.png`, the Lagrange logo, is (C) Jaakko
 Keränen.
