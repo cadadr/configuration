@@ -104,8 +104,14 @@ sort-type = 'ascending'
 [org/mate/marco/general]
 theme = 'TraditionalOk'
 
+[org/mate/marco/workspace-names]
+name-1 = 'home'
+name-2 = 'study'
+name-3 = 'anon1'
+name-4 = 'anon2'
+
 [org/mate/panel/general]
-object-id-list = ['menu-bar', 'notification-area', 'clock', 'show-desktop', 'window-list', 'workspace-switcher', 'object-2', 'object-1', 'object-0']
+object-id-list = ['menu-bar', 'notification-area', 'clock', 'show-desktop', 'window-list', 'workspace-switcher', 'object-2', 'object-1', 'object-0', 'object-3']
 toplevel-id-list = ['top', 'bottom']
 
 [org/mate/panel/objects/clock]
@@ -149,6 +155,12 @@ object-type = 'launcher'
 panel-right-stick = false
 toplevel-id = 'top'
 
+[org/mate/panel/objects/object-3]
+launcher-location = '/home/g/.local/share/applications/zotero.desktop'
+object-type = 'launcher'
+panel-right-stick = false
+toplevel-id = 'top'
+
 [org/mate/panel/objects/show-desktop]
 applet-iid = 'WnckletFactory::ShowDesktopApplet'
 locked = true
@@ -167,6 +179,9 @@ locked = true
 object-type = 'applet'
 panel-right-stick = true
 toplevel-id = 'bottom'
+
+[org/mate/panel/objects/workspace-switcher/prefs]
+display-workspace-names = true
 
 [org/mate/panel/toplevels/bottom]
 expand = true
