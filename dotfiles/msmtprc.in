@@ -19,14 +19,6 @@ from __MAIL_ADDR__
 user __MAIL_ADDR__
 passwordeval "pass show __MAIL_ADDR__"
 
-# IU ogrenci mail
-account iumail
-host __IU_SMTP_HOST__
-port 465
-from __IU_MAIL_ADDR__
-user __IU_MAIL_ADDR__
-passwordeval "pass show __IU_MAIL_ADDR__"
-
 # HU ogrenci mail
 account humail
 host __HU_MAIL_HOST__
