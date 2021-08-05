@@ -4070,7 +4070,7 @@ browser."
                     (expand-file-name
                      "gkrmailout" gk-mail-temporary-file-directory))
                    ".html")))
-      (browse-url-qutebrowser
+      (browse-url
        (concat "file://" (gk-rmail-mime-save-to-tmp button filename))))))
 
 (defun gk-rmail-mime-save-to-tmp (button output-file-name)
@@ -7421,7 +7421,7 @@ Redirect to the raw file url."
   "Visit an URL with Elpher."
   (elpher-go url))
 
-(defalias 'gk-browse-url 'browse-url-qutebrowser)
+(defalias 'gk-browse-url 'browse-url-chromium)
 
 
 
