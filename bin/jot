@@ -34,15 +34,15 @@ def sanitise_path path
   path.split(/[^[[:word:]]]+/).join("_")
 end
 
-def do_new title, tags
-  path = JOT_DIR / (sanitise_path("#{title}") + ".markdown")
-
-  if File.exists? path
-    edit path
-  else
-    create title, tags, path
-    puts "created #{path}"
+def jot_files
+  files = []
+  JOT_DIR.find do |p|
+    f = p.to_s
+    if f.match? /\.markdown$/
+      files.append f
+    end
   end
+  files
 end
 
 def create title, tags, path
@@ -79,6 +79,17 @@ EOF
   edit path
 end
 
+def do_new title, tags
+  path = JOT_DIR / (sanitise_path("#{title}") + ".markdown")
+
+  if File.exists? path
+    edit path
+  else
+    create title, tags, path
+    puts "created #{path}"
+  end
+end
+
 def do_help error=nil
   if error
     puts "#{PROGNAME}: error: #{error}\n\n"
@@ -90,7 +101,8 @@ modes:
   --new, -n     create new note, or edit note with matching
                 title, requires --tags and --title
   --help, -h    show this message
-  --grep, -G    run grep on notes
+  --grep, -G    run grep on notes, syntax is:
+                -G TERM [-- EXTRA_ARGS_TO_GREP]
   --find, -F    find notes by tags, location or timestamp /
                 time range
   --resolve, -R LINK
@@ -123,10 +135,6 @@ def do_resolve link, edit
   end
 end
 
-def jot_files
-  JOT_DIR.children.map {|f| f.to_s}
-end
-
 def do_grep term, edit, extra_args
   command = ["grep"]
   if edit
@@ -150,7 +158,9 @@ def do_grep term, edit, extra_args
 end
 
 def do_ls
-  exec "ls", "-fH", JOT_DIR.to_s
+  jot_files.each do |f|
+    puts f
+  end
 end
 
 def main
