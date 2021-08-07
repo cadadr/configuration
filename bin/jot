@@ -1,0 +1,233 @@
+#!/usr/bin/env ruby
+# jot --- manage notes
+
+require 'date'
+require 'geoclue'
+require 'getoptlong'
+require 'open3'
+require 'pathname'
+
+PROGNAME = File.basename $0
+
+JOT_DIR = if ENV.has_key? 'JOT_DIR'
+  Pathname.new ENV['JOT_DIR']
+else
+  Pathname.new "#{ENV['HOME']}/Desktop/Notes"
+end
+
+def die error
+  puts "#{PROGNAME}: error: #{error}"
+  exit 1
+end
+
+def edit path_or_paths
+  if path_or_paths.is_a?(Pathname)
+    exec ENV['EDITOR'], path_or_paths.to_s
+  elsif path_or_paths.is_a?(Array)
+    exec(ENV['EDITOR'], *(path_or_paths))
+  else
+    die "#edit: expected Array or Pathname, got #{path_or_paths.class}"
+  end
+end
+
+def sanitise_path path
+  path.split(/[^[[:word:]]]+/).join("_")
+end
+
+def do_new title, tags
+  path = JOT_DIR / (sanitise_path("#{title}") + ".markdown")
+
+  if File.exists? path
+    edit path
+  else
+    create title, tags, path
+    puts "created #{path}"
+  end
+end
+
+def create title, tags, path
+  if path.exist?
+    die "file exists: #{path}"
+  elsif path.writable?
+    die "no write permission: #{path}"
+  end
+
+  begin
+    coordinates = GeoClue::coordinates
+    location_header = "location: #{coordinates['latitude']} #{coordinates['longitude']} ±#{coordinates['accuracy']}"
+  rescue RuntimeError
+    location_header = "location: UNKNOWN"
+  end
+  now = DateTime.now.strftime("%Y-%M-%d %H:%M UTC%:z")
+
+  created_header = "created: #{now}"
+  tags_header = "tags: #{tags.join(", ")}"
+
+  body = <<-EOF
+---
+#{tags_header}
+#{created_header}
+#{location_header}
+---
+
+# #{title}
+
+EOF
+
+  path.write body
+
+  edit path
+end
+
+def do_help error=nil
+  if error
+    puts "#{PROGNAME}: error: #{error}\n\n"
+  end
+  puts <<-EOF
+usage: #{PROGNAME} [MODE] [OPTIONS]
+
+modes:
+  --new, -n     create new note, or edit note with matching
+                title, requires --tags and --title
+  --help, -h    show this message
+  --grep, -G    run grep on notes
+  --find, -F    find notes by tags, location or timestamp /
+                time range
+  --resolve, -R LINK
+                resolve a given link
+
+options:
+  --title, -T   note title
+  --tags, -t    note tags
+  --edit, -e    when combined with --grep and --find, and
+                --resolve open matched notes in $EDITOR
+
+environment:
+  JOT_DIR       directory notes are stored, current value:
+                #{JOT_DIR}
+EOF
+  if error
+    exit(2)
+  else
+    exit(0)
+  end
+end
+
+def do_resolve link, edit
+  link = JOT_DIR / (link + '.markdown')
+  if edit
+    edit link
+  else
+    puts link
+  end
+end
+
+def jot_files
+  JOT_DIR.children.map {|f| f.to_s}
+end
+
+def do_grep term, edit, extra_args
+  command = ["grep"]
+  if edit
+    command.append "-lZ"
+  else
+    command.concat ["-EHTn", "--color"]
+  end
+  command.append term
+  command.concat extra_args
+  command.concat jot_files
+  if edit
+    stdout, status = Open3.capture2 *command
+    unless status.success?
+      die "grep error: #{status}"
+    end
+    matches = stdout.split /\0/
+    edit matches
+  else
+    exec *command
+  end
+end
+
+def main
+  # some checks
+  unless JOT_DIR.exist?
+    die "jot directory doesn't exist: #{JOT_DIR}"
+  end
+  unless ENV.has_key? "EDITOR"
+    die "$EDITOR environment variable not set"
+  end
+
+  # now lets get going
+  opts = GetoptLong.new(
+    [ '--new',       '-n', GetoptLong::NO_ARGUMENT ],
+    [ '--tags',      '-t', GetoptLong::REQUIRED_ARGUMENT ],
+    [ '--title',     '-T', GetoptLong::REQUIRED_ARGUMENT ],
+    [ '--grep',      '-G', GetoptLong::REQUIRED_ARGUMENT ],
+    [ '--find',      '-F', GetoptLong::NO_ARGUMENT ],
+    [ '--edit',      '-e', GetoptLong::NO_ARGUMENT ],
+    [ '--resolve',   '-R', GetoptLong::REQUIRED_ARGUMENT ],
+    [ '--help',      '-h', GetoptLong::NO_ARGUMENT ],
+  )
+
+  mode = nil
+  title = nil
+  link = nil
+  edit = false
+  term = nil
+  tags = []
+
+  begin
+    opts.each do |opt, arg|
+      case opt
+      when '--new'
+        mode = :new
+      when '--help'
+        mode = :help
+      when '--tags'
+        tags = arg.split /,/
+      when '--title'
+        title = arg
+      when '--edit'
+        edit = true
+      when '--resolve'
+        mode = :resolve
+        link = arg
+      when '--find'
+        mode = :find
+      when '--grep'
+        mode = :grep
+        term = arg
+      end
+    end
+  rescue GetoptLong::MissingArgument => e
+    do_help e.message
+  end
+
+  # A mode is required, all other args are interpreted depending on the
+  # mode.
+  case mode
+  when nil
+    do_help "no mode selected"
+  when :help
+    do_help
+  when :new
+    unless title
+      do_help "--title is required with --new"
+    end
+    unless tags
+      do_help "--tags is required with --new"
+    end
+    do_new title, tags
+  when :find
+    # TODO: --find --tags a,b --when 2018
+    # TODO: --find --tags a,b --when 2021-08-01..2021-08-10
+    # TODO: --find --tags a,b --when 2018-08-04+-1mo
+    do_help "--find not implemented yet"
+  when :grep
+    do_grep term, edit, ARGV
+  when :resolve
+    do_resolve link, edit
+  end
+end
+
+main
