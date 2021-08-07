@@ -165,6 +165,9 @@ set scrolloff=2 sidescrolloff=2
 
 " keybindings {{{
 
+" Give right pinky a break.
+nmap <TAB> :
+
 " make Y behave like C, D, etc., i.e. operate from point to eol
 nmap Y y$
 
