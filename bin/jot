@@ -95,6 +95,7 @@ modes:
                 time range
   --resolve, -R LINK
                 resolve a given link
+  --ls, -l      list notes
 
 options:
   --title, -T   note title
@@ -148,6 +149,10 @@ def do_grep term, edit, extra_args
   end
 end
 
+def do_ls
+  exec "ls", "-fH", JOT_DIR.to_s
+end
+
 def main
   # some checks
   unless JOT_DIR.exist?
@@ -166,6 +171,7 @@ def main
     [ '--find',      '-F', GetoptLong::NO_ARGUMENT ],
     [ '--edit',      '-e', GetoptLong::NO_ARGUMENT ],
     [ '--resolve',   '-R', GetoptLong::REQUIRED_ARGUMENT ],
+    [ '--ls',        '-l', GetoptLong::NO_ARGUMENT ],
     [ '--help',      '-h', GetoptLong::NO_ARGUMENT ],
   )
 
@@ -197,6 +203,8 @@ def main
       when '--grep'
         mode = :grep
         term = arg
+      when '--ls'
+        mode = :ls
       end
     end
   rescue GetoptLong::MissingArgument => e
@@ -227,6 +235,8 @@ def main
     do_grep term, edit, ARGV
   when :resolve
     do_resolve link, edit
+  when :ls
+    do_ls
   end
 end
 
