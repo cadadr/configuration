@@ -1,6 +1,6 @@
 [com/gkayaalp/pomodorino]
 desktop-notifications-enabled = true
-ease-in-mode-enabled = true
+ease-in-mode-enabled = false
 long-break-duration = 15
 pomodoro-duration = 25
 short-break-duration = 5
@@ -17,6 +17,7 @@ show-size-column = true
 sort-directories-first = true
 
 [org/mate/caja/window-state]
+side-pane-view = 'places'
 start-with-sidebar = true
 start-with-status-bar = true
 start-with-toolbar = true
