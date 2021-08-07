@@ -194,6 +194,16 @@ nmap <Leader>w :w<CR><C-z>
 
 " }}}
 
+" Managing my notes {{{
+
+function JotResolve(name)
+    let r = system('jot -R ' . a:name)
+    execute('e ' . r)
+endfunction
+nmap <leader>L yi{:call JotResolve('<C-R>"')<CR>
+
+" }}}
+
 " postamle {{{
 " This should be done after setting up runtimepath.  So guess it's best
 " to put it last.
