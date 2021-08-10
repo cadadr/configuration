@@ -46,7 +46,7 @@ fi
             --disable-build-details       \
             --with-json                   \
             --without-compress-install    \
-            --without-native-compilation
+            --with-native-compilation
 
 echo Configure script completed, review output and hit RETURN to build; read nought
 
