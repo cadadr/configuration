@@ -7330,7 +7330,7 @@ When called interactively."
   "http://localhost:3991/ytl.html?v=%s"
   "The url for lite youtube player, %s for where to insert video id.")
 
-(defalias 'gk-urls-external-browser 'browse-url-xdg-open)
+(defalias 'gk-urls-external-browser 'browse-url-chromium)
 (setf browse-url-firefox-program
       (or (gk-executable-ensure "firefox" t)
           (expand-file-name "~/Applications/firefox/firefox")))
