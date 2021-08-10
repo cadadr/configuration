@@ -10,6 +10,28 @@ engines-order = ['xkb:gb:extd:eng', 'mozc-jp', 'xkb:tr::tur']
 preload-engines = ['xkb:gb:extd:eng', 'mozc-jp', 'xkb:tr::tur']
 version = '1.5.19'
 
+[org/gnome/liferea]
+browser = 'x-www-browser %s'
+browser-id = 'default'
+default-update-interval = 0
+disable-javascript = true
+folder-display-hide-read = true
+folder-display-mode = 1
+last-hpane-pos = 156
+last-vpane-pos = 170
+last-window-height = 745
+last-window-width = 1067
+last-window-x = 271
+last-window-y = 253
+last-wpane-pos = 184
+last-zoomlevel = 100
+maxitemcount = 100
+social-bm-site = 'blogmarks'
+startup-feed-action = 0
+
+[org/gnome/liferea/plugins]
+active-plugins = ['media-player', 'plugin-installer', 'gnome-keyring']
+
 [org/gtk/settings/file-chooser]
 date-format = 'regular'
 show-hidden = false
@@ -147,7 +169,7 @@ popup-location = 'top_right'
 theme = 'nodoka'
 
 [org/mate/panel/general]
-object-id-list = ['menu-bar', 'notification-area', 'clock', 'show-desktop', 'window-list', 'workspace-switcher', 'object-2', 'object-1', 'object-0', 'object-3', 'object-4', 'object-5']
+object-id-list = ['menu-bar', 'notification-area', 'clock', 'show-desktop', 'window-list', 'workspace-switcher', 'object-2', 'object-1', 'object-0', 'object-3', 'object-4', 'object-6', 'object-7']
 toplevel-id-list = ['top', 'bottom']
 
 [org/mate/panel/objects/clock]
@@ -198,13 +220,19 @@ panel-right-stick = false
 toplevel-id = 'top'
 
 [org/mate/panel/objects/object-4]
-launcher-location = '/usr/share/applications/pomodorino.desktop'
+launcher-location = 'io.github.quodlibet.QuodLibet-1.desktop'
 object-type = 'launcher'
 panel-right-stick = false
 toplevel-id = 'top'
 
-[org/mate/panel/objects/object-5]
-launcher-location = 'io.github.quodlibet.QuodLibet-1.desktop'
+[org/mate/panel/objects/object-6]
+launcher-location = 'pomodorino-1.desktop'
+object-type = 'launcher'
+panel-right-stick = false
+toplevel-id = 'top'
+
+[org/mate/panel/objects/object-7]
+launcher-location = 'net.sourceforge.liferea.desktop'
 object-type = 'launcher'
 panel-right-stick = false
 toplevel-id = 'top'
@@ -271,6 +299,7 @@ width = 600
 [org/mate/system-monitor/disktreenew]
 
 [org/mate/system-monitor/proctree]
+columns-order = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22]
 
 [org/mate/terminal/profiles/default]
 allow-bold = false
