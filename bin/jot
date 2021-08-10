@@ -20,6 +20,12 @@ def die error
   exit 1
 end
 
+def ensure_editor
+  unless ENV.has_key? "EDITOR"
+    die "$EDITOR environment variable not set"
+  end
+end
+
 def edit path_or_paths
   if path_or_paths.is_a?(Pathname)
     exec ENV['EDITOR'], path_or_paths.to_s
@@ -168,9 +174,6 @@ def main
   unless JOT_DIR.exist?
     die "jot directory doesn't exist: #{JOT_DIR}"
   end
-  unless ENV.has_key? "EDITOR"
-    die "$EDITOR environment variable not set"
-  end
 
   # now lets get going
   opts = GetoptLong.new(
@@ -219,6 +222,10 @@ def main
     end
   rescue GetoptLong::MissingArgument => e
     do_help e.message
+  end
+
+  if edit or (mode == :new)
+    ensure_editor
   end
 
   # A mode is required, all other args are interpreted depending on the
