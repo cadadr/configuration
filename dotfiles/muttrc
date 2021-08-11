@@ -5,12 +5,15 @@
 set realname = "İ. Göktuğ Kayaalp"
 set from = "self@gkayaalp.com"
 
+alias from_self		İ. Göktuğ Kayaalp	<self@gkayaalp.com>
+alias from_hacett	İ. Göktuğ Kayaalp	<goktug.kayaalp@hacettepe.edu.tr>
+
 ### Folders:
 
 # This attempts to replicate the mail flow I have in Rmail: all mail is
 # under ~/posta, it comes into `inbox', gets read in `current', then either
-# gets appended to `archive' or `spam' (generally); outgoing mail is recorder
-# in `outbox'.
+# gets appended to `archive' or `spam' (generally); outgoing mail is
+# recorded in `outbox'.
 
 set folder	= ~/posta
 set mbox	= +current
@@ -19,7 +22,7 @@ set record	= +outbox
 # In Emacs I save drafts one per file, so use a separate mbox for Mutt's
 # drafts.
 set postponed	= +drafts/postponed
-mailboxes	= +archive +current +inbox +lists-gemini +lists-github +outbox
+mailboxes	= +archive +current +inbox +outbox
 set move	= yes
 
 ### Sending mail:
@@ -28,21 +31,14 @@ set edit_headers    = yes
 set envelope_from   = yes
 set sendmail	    = /usr/bin/msmtp
 
-### Neomutt:
-set sidebar_visible
-set sidebar_width   = 15
-
 ### Macros:
-macro index ,fc '<change-folder>=current<Return>'
-macro index ,fa '<change-folder>=archive<Return>'
-macro index ,fi '<change-folder>=inbox<Return>'
-macro index ,fg '<change-folder>=lists-gemini<Return>'
-macro index ,fh '<change-folder>=lists-github<Return>'
-macro index ,fo '<change-folder>=outbox<Return>'
-# old habits die hard...
-macro index,pager n '<next-undeleted>'
-macro attach      n '<next-entry>
-macro index,pager p '<previous-undeleted>'
-macro attach      p '<previous-entry>
+macro index ,c '<change-folder>=current<Return>' 'visit =current'
+macro index ,i '<change-folder>=inbox<Return>'   'visit =inbox'
+macro index ,a '<change-folder>=archive<Return>' 'visit =archive'
+macro index ,o '<change-folder>=outbox<Return>'  'visit =outbox'
 
-macro index,pager ,N '<save-message>=archive'
+macro generic ,s '<shell-escape>mairix ' 'mairix search'
+
+macro index,pager ,n '<save-message>=archive'
+
+macro compose ,f "<edit-from>^Ufrom\_<tab>" 'pick from'
