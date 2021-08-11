@@ -10,6 +10,13 @@ engines-order = ['xkb:gb:extd:eng', 'mozc-jp', 'xkb:tr::tur']
 preload-engines = ['xkb:gb:extd:eng', 'mozc-jp', 'xkb:tr::tur']
 version = '1.5.19'
 
+[org/blueman/general]
+
+[org/blueman/plugins/recentconns]
+
+[org/blueman/transfer]
+shared-path = '/home/g/Downloads'
+
 [org/gnome/liferea]
 browser = 'x-www-browser %s'
 browser-id = 'default'
