@@ -24,7 +24,7 @@ default-update-interval = 0
 disable-javascript = true
 folder-display-hide-read = true
 folder-display-mode = 1
-last-hpane-pos = 156
+last-hpane-pos = 291
 last-vpane-pos = 170
 last-window-height = 745
 last-window-width = 1067
@@ -44,6 +44,10 @@ date-format = 'regular'
 show-hidden = false
 show-size-column = true
 sort-directories-first = true
+
+[org/mate/caja/list-view]
+default-column-order = ['name', 'size', 'type', 'date_modified', 'date_accessed', 'group', 'where', 'mime_type', 'octal_permissions', 'owner', 'permissions', 'selinux_context', 'size_on_disk']
+default-visible-columns = ['name', 'size', 'type', 'date_modified']
 
 [org/mate/caja/window-state]
 side-pane-view = 'places'
@@ -163,6 +167,8 @@ background-color = 'rgb(0,0,0)'
 use-background-color = true
 
 [org/mate/marco/general]
+center-new-windows = true
+focus-mode = 'sloppy'
 theme = 'TraditionalOk'
 
 [org/mate/marco/workspace-names]
