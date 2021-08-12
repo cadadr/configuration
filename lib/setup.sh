@@ -1,7 +1,7 @@
 # setup.sh --- post-install setup
 
+crontab cron/$(hostname).crontab
 
-git submodule update --init
 update-desktop-database ~/.local/share/applications/
 
 pip3 install -r requirements.txt

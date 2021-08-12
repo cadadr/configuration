@@ -204,7 +204,11 @@ nmap <leader>L yi{:call JotResolve('<C-R>"')<CR>
 
 " }}}
 
-" postamle {{{
+" postamble {{{
+
+" File associations
+au BufReadPost *.crontab set ft=crontab
+
 " This should be done after setting up runtimepath.  So guess it's best
 " to put it last.
 filetype plugin indent on

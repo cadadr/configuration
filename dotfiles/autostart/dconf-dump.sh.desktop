@@ -1,9 +1,0 @@
-[Desktop Entry]
-Type=Application
-Exec=dconf-dump.sh
-Hidden=false
-X-MATE-Autostart-enabled=true
-Name[en_GB]=DConf Database Dumper
-Name=DConf Database Dumper
-Comment[en_GB]=Dumps the dconf database in a version control friendly manner.
-Comment=Dumps the dconf database in a version control friendly manner.

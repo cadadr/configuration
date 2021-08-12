@@ -10,5 +10,6 @@ else
     export GK_CRON_NO_DBUS=yes
 fi
 
-# Load profile environment
-. $HOME/cf/lib/profile/env.sh
+# Load profile, but not shell rc
+export GK_NOENV=yes
+. $HOME/.profile
