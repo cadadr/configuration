@@ -262,6 +262,10 @@ locked = true
 object-type = 'applet'
 toplevel-id = 'bottom'
 
+[org/mate/panel/objects/window-list/prefs]
+display-all-workspaces = true
+group-windows = 'always'
+
 [org/mate/panel/objects/workspace-switcher]
 applet-iid = 'WnckletFactory::WorkspaceSwitcherApplet'
 locked = true
