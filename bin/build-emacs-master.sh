@@ -42,11 +42,13 @@ fi
             --with-gameuser=no            \
             --with-cairo                  \
             --with-harfbuzz               \
+	    --with-xft			  \
             --with-mailutils              \
+	    --with-imagemagick            \
             --disable-build-details       \
             --with-json                   \
-            --without-compress-install    \
-            --with-native-compilation
+            --with-native-compilation     \
+	    --without-threads
 
 echo Configure script completed, review output and hit RETURN to build; read nought
 
