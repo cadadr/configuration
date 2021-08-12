@@ -78,7 +78,8 @@ tabs
 position
 my-computer-expanded
 recent-connections
-window-properties"
+window-properties
+history-mate-run"
 
 export filter
 
