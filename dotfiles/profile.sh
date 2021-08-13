@@ -53,6 +53,18 @@ _source $MYLIB/profile/env.sh
 
 ###
 
+### Local files:
+
+GK_PROFILE_EXTRA_DIR="$HOME/.config/profile.d"
+
+if [ -d "$GK_PROFILE_EXTRA_DIR" ]; then
+    for file in $(/bin/ls "$GK_PROFILE_EXTRA_DIR"); do
+	_source "$GK_PROFILE_EXTRA_DIR/$file"
+    done
+fi
+
+###
+
 # set ENV to a file invoked each time sh is started for interactive use.
 ENV=$HOME/.$(basename $SHELL)rc; export ENV
 
