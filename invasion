@@ -5,7 +5,6 @@
 .cvsrc				dotfiles/cvsrc
 .config/git			dotfiles/git
 .config/latexmk			dotfiles/latexmk
-.config/lagrange		dotfiles/lagrange
 .config/mimeapps.list		dotfiles/mimeapps.list
 .config/pycodestyle		dotfiles/pycodestyle
 .config/gtk-3.0/bookmarks	dotfiles/gtk3.0-bookmarks.txt

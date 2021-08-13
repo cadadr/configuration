@@ -1,8 +1,0 @@
-[Desktop Entry]
-Name=Lagrange
-Exec=Lagrange-1.4.1-x86_64.AppImage %u
-Icon=lagrange
-Type=Application
-StartupNotify=false
-Categories=System;
-MimeType=x-scheme-handler/gopher;x-scheme-handler/gemini;
