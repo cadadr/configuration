@@ -13,8 +13,7 @@ rclone copy $HOME/Zotero    encryptifier:/Zotero
 rclone copy $HOME/.zotero   encryptifier:/ZoteroConfig
 rclone copy $HOME/fil       encryptifier:/Misc
 rclone copy $HOME/.mozilla  encryptifier:/Mozilla
-rclone copy $HOME/.confi/chromium  encryptifier:/Chromium
-rclone copy "$HOME/Music/My Music/" encryptifier:/MyMusic
+rclone copy $HOME/.config/chromium  encryptifier:/Chromium
 
 say 'done completed finished bye'
 
