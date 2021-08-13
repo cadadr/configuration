@@ -76,6 +76,7 @@ qemu-system-x86
 qemu-utils
 quilt
 r-base
+rclone
 rcs
 r-doc-info
 ri
