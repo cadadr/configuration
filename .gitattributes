@@ -1,0 +1,6 @@
+# .gitattributes
+
+dotfiles/vim/colors/*.vim	vendored linguist-vendored
+lib/lua/lunajson/*.lua		vendored linguist-vendored
+lib/lua/lunajson.lua		vendored linguist-vendored
+lib/pandoc-zotxt.lua		vendored linguist-vendored
