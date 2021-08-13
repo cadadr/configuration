@@ -157,7 +157,7 @@ nmap <Leader>! 02wy$:!<C-r>"
 nmap <Leader>w :w<CR><C-z>
 
 " bin/jot
-au FileType memo nnoremap <buffer> <Space> :call JotFollow()<CR>
+au FileType memo nnoremap <buffer> <Leader>j :call JotFollow()<CR>
 
 " Utilities {{{
 
