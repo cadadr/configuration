@@ -79,7 +79,8 @@ position
 my-computer-expanded
 recent-connections
 window-properties
-history-mate-run"
+history-mate-run
+last-([hvw]pane|window|zoomlevel)(-(x|y|pos|width|height))?"
 
 export filter
 
