@@ -156,6 +156,9 @@ nmap <Leader>S 1G!Gsort<CR>
 nmap <Leader>! 02wy$:!<C-r>"
 nmap <Leader>w :w<CR><C-z>
 
+" bin/jot
+au FileType memo nnoremap <buffer> <Space> :call JotFollow()<CR>
+
 " Utilities {{{
 
 " Create parent directories if needed
@@ -207,6 +210,7 @@ augroup END
 
 " File associations
 au BufReadPost *.crontab set ft=crontab
+au BufReadPost *.memo set ft=memo
 
 " This should be done after setting up runtimepath.  So guess it's best
 " to put it last.

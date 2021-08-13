@@ -44,7 +44,7 @@ def jot_files
   files = []
   JOT_DIR.find do |p|
     f = p.to_s
-    if f.match? /\.markdown$/
+    if f.match? /\.memo$/
       files.append f
     end
   end
@@ -86,7 +86,7 @@ EOF
 end
 
 def do_new title, tags
-  path = JOT_DIR / (sanitise_path("#{title}") + ".markdown")
+  path = JOT_DIR / (sanitise_path("#{title}") + ".memo")
 
   if File.exists? path
     edit path
@@ -133,7 +133,7 @@ EOF
 end
 
 def do_resolve link, edit
-  link = JOT_DIR / (link + '.markdown')
+  link = JOT_DIR / (sanitise_path(link) + '.memo')
   if edit
     edit link
   else
