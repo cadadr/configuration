@@ -1,4 +1,0 @@
-# .gitattributes
-
-emacs.d/lisp/site/**/*	vendored linguist-vendored
-emacs.d/extras/*.xsl	vendored linguist-vendored

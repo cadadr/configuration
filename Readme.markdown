@@ -5,7 +5,7 @@ Introduction
 
 This repo contains the following:
 
-- My dotfiles (`dotfiles/`, `emacs.d`, etc)
+- My dotfiles
 - My Linux setups
 - Supporting scripts and files
 - Some other goodies
@@ -14,6 +14,9 @@ If you want to use any part of my configurations, feel free to do so,
 but you probably don't want to use it as a whole, it's complex and
 personal, and some additional secret stuff is not included, so it won't
 work reliably. Just cherry-pick what you want.
+
+**Note**: if you were looking for my GNU Emacs configuration, head to
+[my emacs.d repo](https://github.com/cadadr/emacs.d).
 
 Installation
 ============

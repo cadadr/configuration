@@ -12,7 +12,6 @@
 .config/clipit/clipitrc		dotfiles/clipitrc.ini
 .config/kitty/kitty.conf	dotfiles/kitty.conf
 .config/autostart/		dotfiles/autostart
-.emacs.d			emacs.d
 .gitconfig			dotfiles/gitconfig.ini
 .gdbinit			dotfiles/gdbinit
 .hgrc				dotfiles/hgrc.ini

@@ -1,3 +1,0 @@
-;;; mailto.el --- allow programs to 
-(require 'server)
-(server-eval-at "server" `(browse-url-mail ,(pop command-line-args-left)))

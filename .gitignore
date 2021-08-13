@@ -28,10 +28,6 @@ tmp.patch
 __pycache__
 .venv
 
-arch/etc/netctl/home
-arch/aur/*/src
-arch/aur/*/pkg
-
 bin/bright
 bin/sct
 bin/of
@@ -39,54 +35,14 @@ bin/xmonad
 bin/dwm
 config.m4
 
-dotfiles/praat/pid
 systems/*/cinnamon/spices.cache
-dotfiles/cabal/packages/
-dotfiles/cabal/lib/
-dotfiles/cabal/share/
-dotfiles/cabal/store/
 
 # Generated files.
 dotfiles/mpoprc
 dotfiles/msmtprc
 
-# Emacs stuff.
-.emacs.desktop
-ido.last
-emacs.d/org-caldav-*
-emacs.d/etc/backups/
-emacs.d/etc/+scratch+
-emacs.d/etc/+scratch+.new
-emacs.d/etc/auto-save-list/
-emacs.d/etc/tramp
-emacs.d/etc/url/
-emacs.d/url/cache
-emacs.d/etc/image-dired/
-emacs.d/etc/desktop
-emacs.d/etc/history
-emacs.d/etc/org-id-locations.el
-emacs.d/etc/network-security.data
-emacs.d/etc/emms
-emacs.d/eshell/history
-emacs.d/eshell/lastdir
-emacs.d/anaconda-mode/
-emacs.d/request/
-emacs.d/smex-items
-emacs.d/projects
-emacs.d/extras/*.el
-emacs.d/.trash_emacs/
-emacs.d/kkcrc
-
 # Qutebrowser
 qutebrowser/qsettings/QtProject.conf
-
-# Audacity
-dotfiles/audacity/AutoSave
-dotfiles/audacity/Plug-Ins
-
-# mergen
-systems/mergen/xfce4/xfce4-screenshooter
-emacs.d/eln-cache/
 
 # vim
 dotfiles/vim/undo/
@@ -101,8 +57,3 @@ dotfiles/lagrange/trusted.txt
 dotfiles/lagrange/visited.2.txt
 dotfiles/lagrange/.pid
 
-# midori
-systems/midori/pkgbuilds/*/src
-systems/midori/pkgbuilds/*/pkg
-systems/midori/pkgbuilds/*/*.tar.*
-systems/midori/pkgbuilds/*/*.zip
