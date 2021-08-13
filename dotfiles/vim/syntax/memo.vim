@@ -11,8 +11,8 @@ endif
 runtime! syntax/markdown.vim
 unlet! b:current_syntax
 
-syn region jotLink start=+\[\[+ end=+\]\]+ keepend
-hi jotLink ctermfg=0087AF
+syn region memoLink start=+\[\[+ end=+\]\]+ keepend
+hi memoLink ctermfg=4
 
 let b:current_syntax = "memo"
 if main_syntax ==# 'memo'
