@@ -96,41 +96,12 @@ set foldmethod=marker	" manually inserted markers
 set foldlevelstart=99	" show content at startup
 
 
-" Transparent editing of gpg encrypted files
-" ==========================================
-" By Wouter Hanegraaff <wouter@blub.net>
-" Thank you, @dredmorbius!
-augroup encrypted
-    au!
-
-    " First make sure nothing is written to ~/.viminfo while editing
-    " an encrypted file.
-    autocmd BufReadPre,FileReadPre      *.asc set viminfo=
-    " We don't want a swap file, as it writes unencrypted data to disk
-    autocmd BufReadPre,FileReadPre      *.asc set noswapfile
-    " Switch to binary mode to read the encrypted file
-    autocmd BufReadPre,FileReadPre      *.asc set bin
-    autocmd BufReadPre,FileReadPre      *.asc let ch_save = &ch|set ch=2
-    autocmd BufReadPost,FileReadPost    *.asc '[,']!gpg --decrypt 2> /dev/null
-    " Switch to normal mode for editing
-    autocmd BufReadPost,FileReadPost    *.asc set nobin
-    autocmd BufReadPost,FileReadPost    *.asc let &ch = ch_save|unlet ch_save
-    autocmd BufReadPost,FileReadPost    *.asc execute ":doautocmd BufReadPost " . expand("%:r")
-
-    " Convert all text to encrypted text before writing
-    autocmd BufWritePre,FileWritePre    *.asc '[,']!gpg --default-recipient-self -ae 2>/dev/null
-    " Undo the encryption so we are back in the normal text, directly
-    " after the file has been written.
-    autocmd BufWritePost,FileWritePost  *.asc u
-augroup END
-
 " Spell checking
 " ==============
 set spelllang=en,tr,it
 
 " Spell checker options
 " =====================
-
 autocmd FileType text,markdown setlocal spell
 autocmd FileType gitcommit setlocal spell
 
@@ -140,13 +111,6 @@ autocmd FileType gitcommit setlocal spell
 " completion {{{
 set path+=**		" recursive search
 set wildmenu		" enhanced command-line completion
-
-" }}}
-
-
-" tags {{{
-" generate tags:
-command! MkTags !/usr/bin/ctags -R .
 
 " }}}
 
@@ -192,17 +156,52 @@ nmap <Leader>S 1G!Gsort<CR>
 nmap <Leader>! 02wy$:!<C-r>"
 nmap <Leader>w :w<CR><C-z>
 
-" }}}
+" Utilities {{{
 
-" Managing my notes {{{
-
-function JotResolve(name)
-    let r = system('jot -R ' . a:name)
-    execute('e ' . r)
+" Create parent directories if needed
+" ===================================
+" From: https://github.com/duggiefresh/vim-easydir
+function! GkMkdirP()
+    let l:dir = expand('<afile>:p:h')
+    if l:dir !~# '^\w\+:' && !isdirectory(l:dir)
+	call mkdir(l:dir, 'p')
+	echomsg 'Created directory: ' . l:dir
+    endif
 endfunction
-nmap <leader>L yi{:call JotResolve('<C-R>"')<CR>
+
+au BufWritePre,FileWritePre * call GkMkdirP()
+
+
+" Transparent editing of gpg encrypted files
+" ==========================================
+" By Wouter Hanegraaff <wouter@blub.net>
+" Thank you, @dredmorbius!
+augroup encrypted
+    au!
+
+    " First make sure nothing is written to ~/.viminfo while editing
+    " an encrypted file.
+    autocmd BufReadPre,FileReadPre      *.asc set viminfo=
+    " We don't want a swap file, as it writes unencrypted data to disk
+    autocmd BufReadPre,FileReadPre      *.asc set noswapfile
+    " Switch to binary mode to read the encrypted file
+    autocmd BufReadPre,FileReadPre      *.asc set bin
+    autocmd BufReadPre,FileReadPre      *.asc let ch_save = &ch|set ch=2
+    autocmd BufReadPost,FileReadPost    *.asc '[,']!gpg --decrypt 2> /dev/null
+    " Switch to normal mode for editing
+    autocmd BufReadPost,FileReadPost    *.asc set nobin
+    autocmd BufReadPost,FileReadPost    *.asc let &ch = ch_save|unlet ch_save
+    autocmd BufReadPost,FileReadPost    *.asc execute ":doautocmd BufReadPost " . expand("%:r")
+
+    " Convert all text to encrypted text before writing
+    autocmd BufWritePre,FileWritePre    *.asc '[,']!gpg --default-recipient-self -ae 2>/dev/null
+    " Undo the encryption so we are back in the normal text, directly
+    " after the file has been written.
+    autocmd BufWritePost,FileWritePost  *.asc u
+augroup END
 
 " }}}
+
 
 " postamble {{{
 
