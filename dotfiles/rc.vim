@@ -157,7 +157,11 @@ nmap <Leader>! 02wy$:!<C-r>"
 nmap <Leader>w :w<CR><C-z>
 
 " bin/jot
-au FileType memo nnoremap <buffer> <Leader>j :call JotFollow()<CR>
+au FileType memo nmap <buffer> <Leader>j :call JotFollow()<CR>
+" insert clipboard as wrapped markdown quote
+au FileType markdown,memo nmap <buffer> <Leader>q 0i> <ESC>"+p<ESC>gqgk{
+" insert clipboard as literal link
+au FileType markdown,memo nmap <buffer> <Leader>L a<<ESC>"+pa><ESC>B
 
 " Utilities {{{
 
