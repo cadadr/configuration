@@ -80,7 +80,8 @@ my-computer-expanded
 recent-connections
 window-properties
 history-mate-run
-last-([hvw]pane|window|zoomlevel)(-(x|y|pos|width|height))?"
+last-([hvw]pane|window|zoomlevel)(-(x|y|pos|width|height))?
+engines-order"
 
 export filter
 

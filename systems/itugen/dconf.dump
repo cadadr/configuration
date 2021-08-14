@@ -6,7 +6,6 @@ pomodoro-duration = 25
 short-break-duration = 5
 
 [desktop/ibus/general]
-engines-order = ['xkb:gb:extd:eng', 'xkb:tr::tur', 'mozc-jp']
 preload-engines = ['xkb:gb:extd:eng', 'mozc-jp', 'xkb:tr::tur']
 version = '1.5.19'
 

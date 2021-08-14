@@ -9,7 +9,3 @@ if [ -n "$pid" ]; then
 else
     export GK_CRON_NO_DBUS=yes
 fi
-
-# Load profile, but not shell rc
-export GK_NOENV=yes
-. $HOME/.profile
