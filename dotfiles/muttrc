@@ -8,6 +8,10 @@ set from = "self@gkayaalp.com"
 alias from_self		İ. Göktuğ Kayaalp	<self@gkayaalp.com>
 alias from_hacett	İ. Göktuğ Kayaalp	<goktug.kayaalp@hacettepe.edu.tr>
 
+### Looks:
+
+source $MYLIB/gruvbox.muttrc
+
 ### Folders:
 
 # This attempts to replicate the mail flow I have in Rmail: all mail is
