@@ -81,11 +81,9 @@ def create title, tags, path
 EOF
 
   path.write body
-
-  edit path
 end
 
-def do_new title, tags
+def do_new title, tags, edit
   path = JOT_DIR / (sanitise_path("#{title}") + ".memo")
 
   if File.exists? path
@@ -93,6 +91,9 @@ def do_new title, tags
   else
     create title, tags, path
     puts "created #{path}"
+    if edit
+      edit path
+    end
   end
 end
 
@@ -242,7 +243,7 @@ def main
     unless tags
       do_help "--tags is required with --new"
     end
-    do_new title, tags
+    do_new title, tags, edit
   when :find
     # TODO: --find --tags a,b --when 2018
     # TODO: --find --tags a,b --when 2021-08-01..2021-08-10
