@@ -9,10 +9,10 @@
 # |	|	|	|	|
 # min	hr	day	month	week	command to be executed
 
-*/5	*	*	*	*	cronic $HOME/bin/dconf-dump.sh
-30	*/2	*	*	*	cronic $HOME/bin/rclone-backup.sh
-*/25	*	*	*	*	cronic $HOME/bin/take-a-break.sh
-*/55	*	*	*	*	cronic $HOME/bin/take-a-break.sh
+*/5	*	*	*	*	$HOME/bin/cronic $HOME/bin/dconf-dump.sh
+30	*/2	*	*	*	$HOME/bin/cronic $HOME/bin/rclone-backup.sh
+25	*	*	*	*	$HOME/bin/cronic $HOME/bin/take-a-break.sh
+55	*	*	*	*	$HOME/bin/cronic $HOME/bin/take-a-break.sh
 
 # ¹ OR jan,feb,mar,apr ...
 # ² (Sunday=0 or 7) OR sun,mon, ...
