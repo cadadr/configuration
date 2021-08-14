@@ -391,6 +391,7 @@ alias lofi="mpv --volume 30 --no-video 'https://www.youtube.com/watch?v=5qap5aO4
 alias pgrep="pgrep -fa"
 alias crup="crontab $MY/cron/$(hostname).crontab"
 alias vicron="vi $MY/cron/$(hostname).crontab && crup && crontab -l"
+alias cronlog="sudo grep CRON /var/log/syslog"
 
 # raspberry pi
 alias pi="ssh pi@ayata.local"
