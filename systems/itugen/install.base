@@ -61,6 +61,7 @@ msmtp
 mutt
 netcat-openbsd
 net-tools
+num-utils
 openssh-server
 pandoc
 pandoc-citeproc
