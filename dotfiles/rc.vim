@@ -150,8 +150,8 @@ nmap \ <leader>
 nmap <Leader>n :set nu<CR>
 nmap <Leader>r :source ~/.vimrc<CR>
 nmap <Leader>l :set list!<CR>
-nmap <Leader>f {!}fmt<CR>
-nmap <Leader>F 1G!Gfmt<CR>
+nmap <Leader>f gqi{
+nmap <Leader>F 1gqGG
 nmap <Leader>s {!}sort<CR>
 nmap <Leader>S 1G!Gsort<CR>
 nmap <Leader>! 02wy$:!<C-r>"
