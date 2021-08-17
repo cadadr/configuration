@@ -162,7 +162,7 @@ nmap <Leader>P "*p
 " bin/jot
 au FileType memo nmap <buffer> <Leader>j :call JotFollow()<CR>
 " insert clipboard as wrapped markdown quote
-au FileType markdown,memo nmap <buffer> <Leader>q 0i> <ESC>"+p<ESC>gqgk{
+au FileType markdown,memo nmap <buffer> <Leader>q 0"+p'[v']$:s/^\(.\)/> \1/<CR>gvgqo<CR><ESC>
 " insert clipboard as literal link
 au FileType markdown,memo nmap <buffer> <Leader>L a<<ESC>"+pa><ESC>B
 
