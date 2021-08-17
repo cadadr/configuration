@@ -156,6 +156,8 @@ nmap <Leader>s {!}sort<CR>
 nmap <Leader>S 1G!Gsort<CR>
 nmap <Leader>! 02wy$:!<C-r>"
 nmap <Leader>w :w<CR><C-z>
+nmap <Leader>p "+p
+nmap <Leader>P "*p
 
 " bin/jot
 au FileType memo nmap <buffer> <Leader>j :call JotFollow()<CR>
