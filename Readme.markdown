@@ -28,8 +28,8 @@ The configuration on this repo works with multiple OS / hardware
 setups, which have their own set up instructions.  Follow the links
 below for more details.
 
-- [Linux desktop workstation](systems/itugen/) (`itugen`) with
-  latest stable Debian with MATE desktop.
+- [Linux desktop workstation](systems/susulu/) (`susulu`) with
+  KDE Neon.
 
 - [Linux laptop](systems/ulgen/) (`ulgen`) using the
   latest stable Linux Mint Cinnamon.
@@ -40,7 +40,7 @@ below for more details.
 <table>
   <tr>
    <td>
-      <img src="candy/scr-itugen.png" alt="screenshot for itugen"/>
+      <img src="candy/scr-susulu.png" alt="screenshot for susulu"/>
     </td>
     <td>
       <img src="candy/scr-ulgen.png" alt="screenshot for ulgen"/>
@@ -55,14 +55,18 @@ The following commands help complete the installation, regardless of the
 system flavour.  Execute these **before logging in to the graphical
 session**, in a virtual console shell:
 
-    $ git clean -dfx       # in case the repo is dirty,
-                           # commit beforehand if necessary.
+    $ # install git configuration temporarily
+    $ cp dotfiles/gitconfig.ini ~/.gitconfig
+    $ # commit or stash any changes if necessary
+    $ # remove -n (for dry run) and run
+    $ git clean -dfxn
     $ make setup build
 
 Afterwards, the junk that `bin/invade` creates can be cleaned up
 like this:
 
-    $ find $HOME/ -name '*,invaded~' -exec rm -r \{\} \+
+    $ # remove 'echo' after checking output
+    $ find $HOME/ -name '*,invaded~' -exec echo rm -r \{\} \+
 
 Now, you can log in to the graphical session.
 
@@ -77,9 +81,3 @@ Lots of files created by other people are included in this repository,
 most of the time verbatim. Any file that does not include a statement
 for its licence terms is probably written by me, and I hereby put all of
 them in public domain.
-
-The image at `candy/lagrange.png`, the Lagrange logo, is (C) Jaakko
-Keränen.
-
-[CC-BY 3.0 License]: http://creativecommons.org/licenses/by/3.0/
-[CC0 License]: http://creativecommons.org/publicdomain/zero/1.0/

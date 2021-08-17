@@ -412,7 +412,7 @@ __gk_linux_aliases(){
     # Load distro-specific aliases.
     if [ -f /etc/os-release ]; then
         case $(grep '^ID=' /etc/os-release | cut -d= -f2) in
-            debian|raspbian|ubuntu|linuxmint)
+            debian|raspbian|ubuntu|linuxmint|neon)
                 __gk_debian_aliases ;;
         esac
     fi

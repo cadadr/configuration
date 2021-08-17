@@ -1,0 +1,12 @@
+[Desktop Entry]
+Categories=Qt;KDE;Network
+Comment[en_GB]=Make all your devices one
+Comment=Make all your devices one
+Exec=kdeconnect-app
+GenericName[en_GB]=Device Synchronisation
+GenericName=Device Synchronization
+Icon=kdeconnect
+Name[en_GB]=KDE Connect
+Name=KDE Connect
+Terminal=false
+Type=Application

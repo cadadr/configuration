@@ -1,0 +1,18 @@
+# itugen.crontab
+
+# Example of job definition:
+# .---------------- minute (0 - 59)
+# |	.------------- hour (0 - 23)
+# |	|	.---------- day of month (1 - 31)
+# |	|	|	.------- month (1 - 12) ⁽¹⁾
+# |	|	|	|	.---- day of week (0 - 6) ⁽²⁾
+# |	|	|	|	|
+# min	hr	day	month	week	command to be executed
+
+*/5	*	*	*	*	$HOME/bin/cronic $HOME/bin/dconf-dump.sh
+30	*/2	*	*	*	$HOME/bin/cronic $HOME/bin/rclone-backup.sh
+25	*	*	*	*	$HOME/bin/cronic $HOME/bin/take-a-break.sh
+55	*	*	*	*	$HOME/bin/cronic $HOME/bin/take-a-break.sh
+
+# ¹ OR jan,feb,mar,apr ...
+# ² (Sunday=0 or 7) OR sun,mon, ...
