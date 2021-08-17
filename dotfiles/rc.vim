@@ -146,6 +146,7 @@ noremap <C-n> :bnext<cr>
 noremap <C-p> :bprevious<cr>
 
 nmap , <leader>
+nmap \ <leader>
 nmap <Leader>n :set nu<CR>
 nmap <Leader>r :source ~/.vimrc<CR>
 nmap <Leader>l :set list!<CR>
