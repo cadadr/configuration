@@ -392,6 +392,9 @@ alias pgrep="pgrep -fa"
 alias crup="crontab $MY/cron/$(hostname).crontab"
 alias vicron="vi $MY/cron/$(hostname).crontab && crup && crontab -l"
 alias cronlog="sudo grep CRON /var/log/syslog"
+# these count / show characters from the pipe that are outside the ASCII 7bit chars.
+alias notascii="tr -d '[:alnum:][:punct:][:space:]' | wc -m"
+alias shownotascii="tr -d '[:alnum:][:punct:][:space:]' | sed -E 's/(.)/\1\n/g' | sort | uniq -c | column"
 
 # raspberry pi
 alias pi="ssh pi@ayata.local"
