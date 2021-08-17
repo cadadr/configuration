@@ -10,7 +10,6 @@
 .config/gtk-3.0/bookmarks	dotfiles/gtk3.0-bookmarks.txt
 .config/clipit/clipitrc		dotfiles/clipitrc.ini
 .config/kitty/kitty.conf	dotfiles/kitty.conf
-.config/autostart/		dotfiles/autostart
 .gitconfig			dotfiles/gitconfig.ini
 .gdbinit			dotfiles/gdbinit
 .hgrc				dotfiles/hgrc.ini

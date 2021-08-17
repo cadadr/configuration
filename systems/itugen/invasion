@@ -1,4 +1,5 @@
-.dmrc		dmrc.ini
-.config/mate	mate
-.xsessionrc	../../dotfiles/xsessionrc
-.xprofile	../../dotfiles/xsessionrc
+.dmrc			dmrc.ini
+.config/mate		mate
+.xsessionrc		../../dotfiles/xsessionrc
+.xprofile		../../dotfiles/xsessionrc
+.config/autostart	autostart
