@@ -20,13 +20,13 @@
     <artist>Adam Erdman</artist>
   </wallpaper>
   <wallpaper deleted="false">
-    <name>Waves</name>
-    <filename>/usr/share/backgrounds/mate/abstract/Waves.png</filename>
+    <name>Float into MATE</name>
+    <filename>/usr/share/backgrounds/mate/desktop/Float-into-MATE.png</filename>
     <options>zoom</options>
-    <shade_type>horizontal-gradient</shade_type>
-    <pcolor>rgb(39,88,126)</pcolor>
-    <scolor>rgb(98,127,90)</scolor>
-    <artist>Patryk Zawadzki</artist>
+    <shade_type>vertical-gradient</shade_type>
+    <pcolor>rgb(88,145,188)</pcolor>
+    <scolor>rgb(60,143,37)</scolor>
+    <artist>Rowen Stipe</artist>
   </wallpaper>
   <wallpaper deleted="false">
     <name>Arc</name>
@@ -56,13 +56,13 @@
     <artist>Goce Mitevski</artist>
   </wallpaper>
   <wallpaper deleted="false">
-    <name>Float into MATE</name>
-    <filename>/usr/share/backgrounds/mate/desktop/Float-into-MATE.png</filename>
+    <name>Waves</name>
+    <filename>/usr/share/backgrounds/mate/abstract/Waves.png</filename>
     <options>zoom</options>
-    <shade_type>vertical-gradient</shade_type>
-    <pcolor>rgb(88,145,188)</pcolor>
-    <scolor>rgb(60,143,37)</scolor>
-    <artist>Rowen Stipe</artist>
+    <shade_type>horizontal-gradient</shade_type>
+    <pcolor>rgb(39,88,126)</pcolor>
+    <scolor>rgb(98,127,90)</scolor>
+    <artist>Patryk Zawadzki</artist>
   </wallpaper>
   <wallpaper deleted="false">
     <name>Ubuntu MATE Warm</name>
@@ -107,7 +107,7 @@
     <shade_type>solid</shade_type>
     <pcolor>rgb(88,145,188)</pcolor>
     <scolor>rgb(60,143,37)</scolor>
-    <artist/>
+    <artist>(none)</artist>
   </wallpaper>
   <wallpaper deleted="false">
     <name>Dune</name>
@@ -209,13 +209,13 @@
     <artist>Charles Barbin</artist>
   </wallpaper>
   <wallpaper deleted="false">
-    <name>Rain Drops</name>
-    <filename>/usr/share/backgrounds/mate/nature/RainDrops.jpg</filename>
+    <name>Ubuntu MATE Radioactive</name>
+    <filename>/usr/share/backgrounds/mate/desktop/Ubuntu-Mate-Radioactive-no-logo.png</filename>
     <options>zoom</options>
     <shade_type>vertical-gradient</shade_type>
     <pcolor>rgb(88,145,188)</pcolor>
     <scolor>rgb(60,143,37)</scolor>
-    <artist>blackcombwhistler07</artist>
+    <artist>Goce Mitevski</artist>
   </wallpaper>
   <wallpaper deleted="false">
     <name>Silk</name>
@@ -272,12 +272,12 @@
     <artist>Charles Barbin</artist>
   </wallpaper>
   <wallpaper deleted="false">
-    <name>Ubuntu MATE Radioactive</name>
-    <filename>/usr/share/backgrounds/mate/desktop/Ubuntu-Mate-Radioactive-no-logo.png</filename>
+    <name>Rain Drops</name>
+    <filename>/usr/share/backgrounds/mate/nature/RainDrops.jpg</filename>
     <options>zoom</options>
     <shade_type>vertical-gradient</shade_type>
     <pcolor>rgb(88,145,188)</pcolor>
     <scolor>rgb(60,143,37)</scolor>
-    <artist>Goce Mitevski</artist>
+    <artist>blackcombwhistler07</artist>
   </wallpaper>
 </wallpapers>
