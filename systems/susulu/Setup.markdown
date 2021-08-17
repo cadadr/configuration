@@ -69,4 +69,4 @@ log in on a virtual console, using `Ctrl+Alt+F1--6`**.
 
 ---
 
-![screen cap](/candy/scr-itugen.png)
+![screen cap](/candy/scr-susulu.png)
