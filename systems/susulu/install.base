@@ -49,6 +49,7 @@ inotify-tools
 ipython3
 jq
 julia
+kdewallet-cli
 lm-sensors
 lynx
 mailutils
