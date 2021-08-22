@@ -23,6 +23,14 @@ disable-microphone = false
 [org/gnome/desktop/wm/preferences]
 button-layout = 'icon:minimize,maximize,close'
 
+[org/gtk/settings/file-chooser]
+date-format = 'regular'
+show-hidden = false
+show-size-column = true
+show-type-column = true
+sort-directories-first = false
+type-format = 'category'
+
 [org/mate/desktop/background]
 picture-filename = '/home/g/.xbg.png'
 
