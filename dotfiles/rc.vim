@@ -174,17 +174,10 @@ au FileType markdown,memo nmap <buffer> <Leader>L a<<ESC>"+pa><ESC>B
 " Utilities {{{
 
 " Create parent directories if needed
-" ===================================
-" From: https://github.com/duggiefresh/vim-easydir
-function! GkMkdirP()
-    let l:dir = expand('<afile>:p:h')
-    if l:dir !~# '^\w\+:' && !isdirectory(l:dir)
-	call mkdir(l:dir, 'p')
-	echomsg 'Created directory: ' . l:dir
-    endif
-endfunction
+au BufWritePre,FileWritePre * call gk#mkdir_p()
 
-au BufWritePre,FileWritePre * call GkMkdirP()
+" Ask to check out and lock RCS controlled files
+au BufReadPost * call gk#rcs_co_l()
 
 " }}}
 
