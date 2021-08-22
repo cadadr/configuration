@@ -9,6 +9,7 @@
     " grep '^[^\s*"]' % | wc -l
 
 " UI/UX {{{
+
 colorscheme gruvbox
 set background=dark
 set termguicolors
@@ -59,7 +60,6 @@ set shortmess-=S
 
 " }}}
 
-
 " basic text editing settings {{{
 
 " Tab setup
@@ -95,7 +95,6 @@ set autoindent
 set foldmethod=marker	" manually inserted markers
 set foldlevelstart=99	" show content at startup
 
-
 " Spell checking
 " ==============
 set spelllang=en,tr,it
@@ -107,15 +106,15 @@ autocmd FileType gitcommit setlocal spell
 
 " }}}
 
+" Completion {{{
 
-" completion {{{
 set path+=**		" recursive search
 set wildmenu		" enhanced command-line completion
 
 " }}}
 
+" Visuals {{{
 
-" visuals {{{
 set lbr			" word wrap
 let &sbr = '\ '		" illustrate logical line breaks
 set termguicolors	" use GUI colors in terminal
@@ -125,8 +124,7 @@ set scrolloff=2 sidescrolloff=2
 
 " }}}
 
-
-" keybindings {{{
+" Keybindings {{{
 
 " Give right pinky a break.
 nmap <TAB> :
@@ -135,34 +133,40 @@ nmap <TAB> :
 nmap Y y$
 
 " Window movement binds
+" =====================
 noremap <C-j> <C-W>j
 noremap <C-k> <C-W>k
 noremap <C-h> <C-W>h
 noremap <C-l> <C-W>l
 
-" Buffer movement
+" Buffer selection
+" ================
 noremap <C-n> :bnext<cr>
 noremap <C-p> :bprevious<cr>
 
+" Miscellaneous
+" =============
 nmap , <leader>
 nmap \ <leader>
 nmap <Leader>n :set nu<CR>
 nmap <Leader>r :source ~/.vimrc<CR>
 nmap <Leader>l :set list!<CR>
-nmap <Leader>f gqi{
-nmap <Leader>F 1gqGG
 nmap <Leader>s {!}sort<CR>
 nmap <Leader>S 1G!Gsort<CR>
+" insert line to command line as shell command
+" line should look like:
+"     $ some cmd
+" `$' is not necessary, any non-whitespace char works
 nmap <Leader>! 02wy$:!<C-r>"
+" save and sleep
 nmap <Leader>w :w<CR><C-z>
-nmap <Leader>p "+p
-nmap <Leader>P "*p
 " yank buffer file basename
 nmap <Leader>b :call setreg('+', expand('%:t:r'))<CR>
 " cd to file's directory
 nmap <Leader>d :call chdir(expand('%:h'))<CR>
 
-" bin/jot
+" bin/jot specific bindings
+" =========================
 au FileType memo nmap <buffer> <Leader>j :call JotFollow()<CR>
 " insert clipboard as wrapped markdown quote
 au FileType markdown,memo nmap <buffer> <Leader>q 0"+p'[v']$:s/^\(.\)/> \1/<CR>gvgqo<CR><ESC>
@@ -171,26 +175,27 @@ au FileType memo nmap <buffer> <Leader>m a[[<ESC>"+pa]]<ESC>
 " insert clipboard as literal link
 au FileType markdown,memo nmap <buffer> <Leader>L a<<ESC>"+pa><ESC>B
 
-" Utilities {{{
+" Autocmds {{{
 
-" Create parent directories if needed
-au BufWritePre,FileWritePre * call gk#mkdir_p()
-
-" Ask to check out and lock RCS controlled files
-au BufReadPost * call gk#rcs_co_l()
+augroup cadadr
+    au!
+    " Create parent directories if needed
+    au BufWritePre,FileWritePre * call gk#mkdir_p()
+    " Ask to check out and lock RCS controlled files
+    au BufReadPost * call gk#rcs_co_l()
+    " File associations
+    au BufReadPost *.crontab set ft=crontab
+    au BufReadPost *.memo set ft=memo
+augroup END
 
 " }}}
 
-
-" postamble {{{
-
-" File associations
-au BufReadPost *.crontab set ft=crontab
-au BufReadPost *.memo set ft=memo
+" Postamble {{{
 
 " This should be done after setting up runtimepath.  So guess it's best
 " to put it last.
 filetype plugin indent on
 syntax on
+
 " }}}
 
