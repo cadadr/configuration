@@ -14,6 +14,7 @@
 .gdbinit			dotfiles/gdbinit
 .hgrc				dotfiles/hgrc.ini
 .irbrc				dotfiles/irbrc.rb
+.pryrc				dotfiles/pryrc.rb
 .inputrc			dotfiles/inputrc
 .mailcap			dotfiles/mailcap
 .mairixrc			dotfiles/mairixrc
