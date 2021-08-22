@@ -157,11 +157,17 @@ nmap <Leader>! 02wy$:!<C-r>"
 nmap <Leader>w :w<CR><C-z>
 nmap <Leader>p "+p
 nmap <Leader>P "*p
+" yank buffer file basename
+nmap <Leader>b :call setreg('+', expand('%:t:r'))<CR>
+" cd to file's directory
+nmap <Leader>d :call chdir(expand('%:h'))<CR>
 
 " bin/jot
 au FileType memo nmap <buffer> <Leader>j :call JotFollow()<CR>
 " insert clipboard as wrapped markdown quote
 au FileType markdown,memo nmap <buffer> <Leader>q 0"+p'[v']$:s/^\(.\)/> \1/<CR>gvgqo<CR><ESC>
+" insert clipboard as memo link
+au FileType memo nmap <buffer> <Leader>m a[[<ESC>"+pa]]<ESC>
 " insert clipboard as literal link
 au FileType markdown,memo nmap <buffer> <Leader>L a<<ESC>"+pa><ESC>B
 
