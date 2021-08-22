@@ -120,7 +120,6 @@ set lbr			" word wrap
 let &sbr = '\ '		" illustrate logical line breaks
 set termguicolors	" use GUI colors in terminal
 set hlsearch
-set lazyredraw
 set laststatus=2	" always show status bar
 set scrolloff=2 sidescrolloff=2
 
