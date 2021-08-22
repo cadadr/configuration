@@ -43,6 +43,6 @@ macro index ,o '<change-folder>=outbox<Return>'  'visit =outbox'
 
 macro generic ,s '<shell-escape>mairix ' 'mairix search'
 
-macro index,pager ,n '<save-message>=archive'
+macro index,pager ,n '<save-message>=archive<Return>'
 
 macro compose ,f "<edit-from>^Ufrom\_<tab>" 'pick from'
