@@ -1,6 +1,6 @@
 libcurl4-gnutls-dev
 libfuse-dev
-libgccjit-8-dev
+libgccjit-9-dev
 libgirepository1.0-dev
 libimage-exiftool-perl
 libjansson-dev
