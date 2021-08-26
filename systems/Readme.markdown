@@ -2,7 +2,7 @@
 
 This tree contains system-level configurations specific to my computers.
 
-## `susulu`: workstation
+## `kamaji`: workstation
 
 Linux Mint Cinnamon based desktop workstation.
 
