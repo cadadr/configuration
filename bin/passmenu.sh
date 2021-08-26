@@ -8,9 +8,18 @@ prompt="Select password store enty"
 password="$(pass git ls-files | grep -v ^\\. | sed s/.gpg\$// \
                  | rofi -dmenu -p "$prompt" -i)"
 
-[ -z "$password" ] && exit 1
+[ -z "$password" ] && {
+    notify-send -u critical "empty string received from rofi"
+    exit 1
+}
 
-pass show -c "$password"
-notify-send "“$password” copied" \
+out="$(pass show -c $password 2>&1)"
+
+[ "$?" = "0" ] && notify-send "“$password” copied" \
   "Password copied to clipboard, will be cleared after\
- ${PASSWORD_STORE_CLIP_TIME:-45} seconds"
+ ${PASSWORD_STORE_CLIP_TIME:-45} seconds" \
+ || {
+    notify-send -u critical "error copying password '$password': $out"
+    exit 1
+}
+
