@@ -2,9 +2,9 @@
 
 This tree contains system-level configurations specific to my computers.
 
-## `itugen`: workstation
+## `susulu`: workstation
 
-Debian based workstation with the MATE desktop.
+Linux Mint Cinnamon based desktop workstation.
 
 ## `ulgen`: laptop
 

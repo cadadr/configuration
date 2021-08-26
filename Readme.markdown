@@ -28,8 +28,8 @@ The configuration on this repo works with multiple OS / hardware
 setups, which have their own set up instructions.  Follow the links
 below for more details.
 
-- [Linux desktop workstation](systems/susulu/) (`susulu`) with
-  KDE Neon.
+- [Linux desktop workstation](systems/kamaji/) (`kamaji`) with
+  Linux Mint Cinnamon.
 
 - [Linux laptop](systems/ulgen/) (`ulgen`) using the
   latest stable Linux Mint Cinnamon.
@@ -40,7 +40,7 @@ below for more details.
 <table>
   <tr>
    <td>
-      <img src="candy/scr-susulu.png" alt="screenshot for susulu"/>
+      <img src="candy/scr-kamaji.png" alt="screenshot for kamaji"/>
     </td>
     <td>
       <img src="candy/scr-ulgen.png" alt="screenshot for ulgen"/>

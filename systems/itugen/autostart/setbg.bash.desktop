@@ -1,9 +1,0 @@
-[Desktop Entry]
-Type=Application
-Exec=setbg.bash
-Hidden=false
-X-MATE-Autostart-enabled=true
-Name[en_GB]=Desktop Background Slideshow
-Name=Desktop Background Slideshow
-Comment[en_GB]=Desktop background switcher script.
-Comment=Desktop background switcher script.
