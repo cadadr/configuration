@@ -54,6 +54,10 @@ packages.  There is a script for that:
 This will inspect the dpkg database and find out all the relevant
 `-doc` packages, and install them.
 
+We can now also install flatpaks:
+
+    $ sh ./flatpak.sh
+
 If you’ll use msmtp, the following command makes AppArmor quit its
 stupid bullshit.  I’ve tried aliases to no avail.
 
