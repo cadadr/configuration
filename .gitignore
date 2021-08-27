@@ -37,6 +37,8 @@ config.m4
 
 systems/*/cinnamon/spices.cache
 
+doc/man/index.db
+
 # Generated files.
 dotfiles/mpoprc
 dotfiles/msmtprc
