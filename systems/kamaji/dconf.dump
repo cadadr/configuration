@@ -83,11 +83,11 @@ desktop-effects-unmaximize-time = 100
 desktop-effects-unmaximize-transition = 'easeNone'
 enable-indicators = true
 enable-vfade = false
-enabled-applets = ['panel1:left:0:menu@cinnamon.org:0', 'panel1:left:2:show-desktop@cinnamon.org:1', 'panel1:left:5:grouped-window-list@cinnamon.org:2', 'panel1:right:1:systray@cinnamon.org:3', 'panel1:right:3:xapp-status@cinnamon.org:4', 'panel1:right:4:notifications@cinnamon.org:5', 'panel1:right:5:printers@cinnamon.org:6', 'panel1:right:6:removable-drives@cinnamon.org:7', 'panel1:right:7:network@cinnamon.org:9', 'panel1:right:9:sound@cinnamon.org:10', 'panel1:right:10:power@cinnamon.org:11', 'panel1:right:12:calendar@cinnamon.org:12', 'panel1:right:0:workspace-switcher@cinnamon.org:13', 'panel1:right:8:inhibit@cinnamon.org:15', 'panel1:right:2:keyboard@cinnamon.org:16', 'panel1:left:4:expo@cinnamon.org:17', 'panel1:left:3:scale@cinnamon.org:19']
+enabled-applets = ['panel1:left:0:menu@cinnamon.org:0', 'panel1:left:2:show-desktop@cinnamon.org:1', 'panel1:left:5:grouped-window-list@cinnamon.org:2', 'panel1:right:2:systray@cinnamon.org:3', 'panel1:right:4:xapp-status@cinnamon.org:4', 'panel1:right:5:notifications@cinnamon.org:5', 'panel1:right:6:printers@cinnamon.org:6', 'panel1:right:7:removable-drives@cinnamon.org:7', 'panel1:right:8:network@cinnamon.org:9', 'panel1:right:10:sound@cinnamon.org:10', 'panel1:right:11:power@cinnamon.org:11', 'panel1:right:13:calendar@cinnamon.org:12', 'panel1:right:1:workspace-switcher@cinnamon.org:13', 'panel1:right:9:inhibit@cinnamon.org:15', 'panel1:right:3:keyboard@cinnamon.org:16', 'panel1:left:4:expo@cinnamon.org:17', 'panel1:left:3:scale@cinnamon.org:19', 'panel1:right:0:slideshow@cinnamon.org:20']
 enabled-desklets = @as []
 enabled-extensions = ['gTile@shuairan']
 hotcorner-layout = ['rofi -show window:false:0', 'scale:false:0', 'expo:false:0', 'expo:false:0']
-next-applet-id = 20
+next-applet-id = 21
 panel-edit-mode = false
 panel-launchers = ['DEPRECATED']
 panel-zone-icon-sizes = '[{"panelId":1,"left":0,"center":0,"right":24}]'
@@ -143,6 +143,7 @@ delay = 5
 image-source = 'directory:///home/g/Pictures/wlp/slideshow'
 random-order = true
 slideshow-enabled = true
+slideshow-paused = false
 
 [org/cinnamon/desktop/interface]
 cursor-blink-time = 1200
@@ -483,14 +484,14 @@ default-view-mode = 0
 disable-javascript = true
 folder-display-hide-read = false
 folder-display-mode = 1
-last-window-maximized = true
+last-window-maximized = false
 maxitemcount = 100
 reduced-feedlist = false
 social-bm-site = 'Blinklist'
 startup-feed-action = 1
 
 [org/gnome/liferea/plugins]
-active-plugins = ['bold-unread', 'media-player']
+active-plugins = ['media-player', 'bold-unread', 'plugin-installer']
 
 [org/gnome/power-manager]
 info-history-type = 'charge'
@@ -530,6 +531,7 @@ type-format = 'category'
 [org/nemo/desktop]
 desktop-layout = 'true::false'
 font = 'Ubuntu 10'
+show-orphaned-desktop-icons = true
 trash-icon-visible = true
 
 [org/nemo/preferences]

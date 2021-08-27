@@ -164,16 +164,18 @@
             "nemo.desktop"
         ],
         "value": [
-            "emacs.desktop",
-            "firefox.desktop",
-            "org.qutebrowser.qutebrowser.desktop",
-            "nemo.desktop",
+            "chromium.desktop",
+            "zotero.desktop",
             "org.gnome.Terminal.desktop",
+            "emacs.desktop",
+            "net.sourceforge.liferea.desktop",
+            "nemo.desktop",
+            "fi.skyjake.Lagrange.desktop:flatpak",
             "gnome-system-monitor.desktop",
-            "whatsappdesktop.desktop",
-            "spotify.desktop",
             "mintupdate.desktop",
-            "blueberry.desktop"
+            "blueberry.desktop",
+            "org.telegram.desktop.desktop:flatpak",
+            "io.bit3.WhatsAppQT.desktop:flatpak"
         ]
     },
     "group-apps": {
