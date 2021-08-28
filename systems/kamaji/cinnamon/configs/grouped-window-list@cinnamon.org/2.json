@@ -211,7 +211,7 @@
         "type": "keybinding",
         "default": "",
         "description": "Global hotkey for cycling through thumbnail menus",
-        "value": "<Super>space"
+        "value": "::"
     },
     "show-apps-order-hotkey": {
         "type": "keybinding",
