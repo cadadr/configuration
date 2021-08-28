@@ -440,6 +440,8 @@ show-path = false
 sort-method = 'name'
 sort-type = 'ascending'
 
+[org/gnome/file-roller/ui]
+
 [org/gnome/gnome-screenshot]
 border-effect = 'none'
 delay = 5
@@ -568,7 +570,7 @@ disk-usage = false
 network-traffic = false
 
 [org/x/editor/plugins]
-active-plugins = ['filebrowser', 'time', 'spell', 'docinfo', 'modelines', 'sort', 'textsize', 'open-uri-context-menu', 'joinlines']
+active-plugins = ['time', 'textsize', 'modelines', 'spell', 'joinlines', 'sort', 'filebrowser', 'open-uri-context-menu', 'docinfo']
 
 [org/x/editor/plugins/filebrowser/on-load]
 root = 'file:///'
@@ -593,4 +595,6 @@ sidebar = false
 [org/x/viewer/view]
 background-color = 'rgb(0,0,0)'
 use-background-color = true
+
+[org/x/viewer/window]
 
