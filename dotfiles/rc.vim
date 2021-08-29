@@ -10,11 +10,9 @@
 
 " UI/UX {{{
 
-colorscheme gruvbox
-set background=dark
-set termguicolors
-
 set nocompatible
+set termguicolors
+colorscheme lithochromatic
 
 set backspace=eol,start,indent	" backspace over newline too
 " incremental case fold search, in suit and tie yet ignored
