@@ -164,11 +164,11 @@
             "nemo.desktop"
         ],
         "value": [
-            "chromium.desktop",
             "qutebrowser.desktop",
             "zotero.desktop",
             "org.gnome.Terminal.desktop",
             "emacs.desktop",
+            "chromium.desktop",
             "net.sourceforge.liferea.desktop",
             "io.github.quodlibet.QuodLibet.desktop",
             "nemo.desktop",
