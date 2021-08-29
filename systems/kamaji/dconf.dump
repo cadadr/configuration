@@ -282,7 +282,7 @@ focus-new-windows = 'smart'
 min-window-opacity = 30
 mouse-button-modifier = '<Super>'
 theme = 'Mint-Y-Dark'
-workspace-names = ['home', 'nook']
+workspace-names = ['home', 'nook', 'strange room']
 
 [org/cinnamon/muffin]
 attach-modal-dialogs = true
