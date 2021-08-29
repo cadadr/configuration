@@ -1,0 +1,18 @@
+#!/usr/bin/env perl
+# bibtex --- fetch BibTeX from DOI/ISBN/...
+
+use v5.30;
+
+use strict;
+use warnings;
+
+
+=pod
+- https://www.molspaces.com/cb2bib/doc/overview/
+
+- https://gist.github.com/DavidGriffith/5097431
+  - «Reads ISBN numbers from a file, checks them for validity, fetches
+    the corresponding data from isbndb.com, then outputs a BibTeX file
+    with all fields set accordingly. An API key from isbndb.com is
+    required; see NOTES below.»
+=cut

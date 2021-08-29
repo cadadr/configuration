@@ -1,0 +1,13 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=2.2.0
+Name=Qutebrowser (gk)
+Exec=launch-qutebrowser.bash %u
+Terminal=false
+X-MultipleArgs=false
+Type=Application
+Icon=qutebrowser
+Categories=Network;WebBrowser;
+MimeType=text/html;text/xml;application/xhtml+xml;application/xml;application/rss+xml;application/rdf+xml;x-scheme-handler/http;x-scheme-handler/https;x-scheme-handler/ftp
+StartupNotify=true
+

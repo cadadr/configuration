@@ -165,6 +165,7 @@
         ],
         "value": [
             "chromium.desktop",
+            "qutebrowser.desktop",
             "zotero.desktop",
             "org.gnome.Terminal.desktop",
             "emacs.desktop",
