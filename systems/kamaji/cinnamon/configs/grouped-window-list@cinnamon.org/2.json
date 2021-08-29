@@ -169,6 +169,7 @@
             "org.gnome.Terminal.desktop",
             "emacs.desktop",
             "net.sourceforge.liferea.desktop",
+            "io.github.quodlibet.QuodLibet.desktop",
             "nemo.desktop",
             "fi.skyjake.Lagrange.desktop:flatpak",
             "gnome-system-monitor.desktop",
