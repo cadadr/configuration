@@ -30,7 +30,40 @@ def do_edit path_or_paths
   if path_or_paths.is_a?(Pathname)
     exec ENV['EDITOR'], path_or_paths.to_s
   elsif path_or_paths.is_a?(Array)
-    exec(ENV['EDITOR'], *(path_or_paths))
+    # If this is an interactive terminal and there are multiple
+    # files to edit, offer to select.
+    if STDIN.isatty and path_or_paths.length > 1
+      puts "Matches:"
+      path_or_paths.each_with_index do |p, i|
+        printf "%4d. %s\n", i + 1, Pathname.new(p).basename
+      end
+      loop do
+        printf "\nSelection: "
+        begin
+          sel = STDIN.readline.chomp
+        rescue Interrupt
+          puts "\n\nBye!"
+          exit
+        end
+        # Each of the `when' statements here should call `exec' if they
+        # found a useful match, or `exit' if nececssary. Otherwise, we'll
+        # print a help message and loop.
+        case sel
+        when /q/
+          exit
+        when /\*|all/
+          exec(ENV['EDITOR'], *(path_or_paths))
+        when /([0-9],?\s*)+/
+          sels = sel.split(/,\s*/).map(&:to_i).map { |x| x - 1 }
+          paths = path_or_paths.values_at *sels
+          exec(ENV['EDITOR'], *(paths)) if paths.all?
+        end
+        puts "\nPlease enter one of *, all, or one or more of 1..#{path_or_paths.length} as a comma-separated"
+        puts "list; hit Ctrl+C or enter q to exit."
+      end
+    else
+      exec(ENV['EDITOR'], *(path_or_paths))
+    end
   else
     die "#edit: expected Array or Pathname, got #{path_or_paths.class}"
   end
