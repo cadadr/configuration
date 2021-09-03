@@ -1,11 +1,6 @@
 # mailcap
 
-text/html;\
-    chromium '%s' & sleep 10;\
-    description=HTML Text;\
-    test=test -n "$DISPLAY";\
-    nametemplate=%s.html;
-text/*; gvim %s
-image/*; ristretto %s
-video/*; mpv %s
-application/pdf; chromium %s
+text/*;        mailcap2xdg.rb '%s' '%t' & sleep 1; copiousoutput
+image/*;       mailcap2xdg.rb '%s' '%t' & sleep 1; copiousoutput
+video/*;       mailcap2xdg.rb '%s' '%t' & sleep 1; copiousoutput
+application/*; mailcap2xdg.rb '%s' '%t' & sleep 1; copiousoutput

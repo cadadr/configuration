@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 # gem 'bundler'
 gem 'rdoc'
+gem 'mime-types'
 
 # for academia-dl
 gem 'nokogiri'

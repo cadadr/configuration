@@ -8,6 +8,9 @@ GEM
     geoclue (0.1.2)
       ruby-dbus (~> 0.15.0)
     method_source (1.0.0)
+    mime-types (3.3.1)
+      mime-types-data (~> 3.2015)
+    mime-types-data (3.2021.0901)
     mini_portile2 (2.5.3)
     nokogiri (1.11.7)
       mini_portile2 (~> 2.5.0)
@@ -37,6 +40,7 @@ PLATFORMS
 DEPENDENCIES
   addressable (~> 2.8)
   geoclue
+  mime-types
   nokogiri
   open_uri_redirections
   pry (~> 0.13.1)
