@@ -219,7 +219,7 @@
         "type": "keybinding",
         "default": "<Super>grave",
         "description": "Global hotkey to show the order of apps",
-        "value": "<Super>grave"
+        "value": "<Super>Escape::"
     },
     "show-apps-order-timeout": {
         "type": "spinbutton",
