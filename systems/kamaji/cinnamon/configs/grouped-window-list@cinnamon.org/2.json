@@ -154,7 +154,7 @@
             "Launch new app instance": 2,
             "Close last focused window in group": 3
         },
-        "value": 3
+        "value": 2
     },
     "pinned-apps": {
         "type": "generic",
@@ -166,7 +166,7 @@
         "value": [
             "qutebrowser.desktop",
             "zotero.desktop",
-            "org.gnome.Terminal.desktop",
+            "kitty.desktop",
             "emacs.desktop",
             "chromium.desktop",
             "net.sourceforge.liferea.desktop",
@@ -177,7 +177,8 @@
             "mintupdate.desktop",
             "blueberry.desktop",
             "org.telegram.desktop.desktop:flatpak",
-            "io.bit3.WhatsAppQT.desktop:flatpak"
+            "io.bit3.WhatsAppQT.desktop:flatpak",
+            "sticky.desktop"
         ]
     },
     "group-apps": {
@@ -190,7 +191,7 @@
         "type": "checkbox",
         "default": false,
         "description": "Show windows from all workspaces",
-        "value": false
+        "value": true
     },
     "enable-app-button-dragging": {
         "type": "checkbox",
@@ -259,7 +260,7 @@
             "Large": 9,
             "Largest": 12
         },
-        "value": 6
+        "value": 12
     },
     "thumbnail-scroll-behavior": {
         "type": "checkbox",
