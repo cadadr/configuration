@@ -41,6 +41,7 @@ settings:
         ',Fe': spawn firefox -P empty {url}
         ',Fh': spawn firefox -P hacett-proxy {url}
         ',Fs': spawn firefox -P shopping {url}
+        ',J': set-cmd-text :set -u "{url:domain}" content.javascript.enabled true
         ',R': :spawn --userscript ~/.config/qutebrowser/userscripts/readability
         ',W': jseval document.body.style='max-width:15cm !important;margin:auto;'
         ',[': :set -t tabs.select_on_remove next
@@ -48,6 +49,7 @@ settings:
         ',d': bookmark-add
         ',e': edit-url
         ',i': save-to-instapaper
+        ',j': set-cmd-text :set -t -u "{url:domain}" content.javascript.enabled true
         ',jd': set -t content.javascript.enabled false
         ',je': set -t content.javascript.enabled true
         ',l': 'jseval document.querySelectorAll(''a'').forEach(function (a) { a.style=''color:blue
