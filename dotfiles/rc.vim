@@ -125,6 +125,9 @@ set scrolloff=2 sidescrolloff=2
 
 " Keybindings {{{
 
+" Easy redo but don't fiddle with `r' in macros
+nnoremap r :redo<CR>
+
 " Give right pinky a break.
 nmap <TAB> :
 
