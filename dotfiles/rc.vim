@@ -171,7 +171,8 @@ nmap <Leader>d :call chdir(expand('%:h'))<CR>
 " =========================
 au FileType memo nmap <buffer> <Leader>j :call JotFollow()<CR>
 " insert clipboard as wrapped markdown quote
-au FileType markdown,memo nmap <buffer> <Leader>q 0"+p'[v']$:s/^\(.\)/> \1/<CR>gvgqo<CR><ESC>
+au FileType markdown,memo nmap <buffer> <Leader>q 
+    \ 0"+p'[v']$:s/^\(.\)/> \1/<CR>gvgqo<CR><ESC>:nohl<CR>
 " insert clipboard as memo link
 au FileType memo nmap <buffer> <Leader>m a[[<ESC>"+pa]]<ESC>
 " insert clipboard as literal link
