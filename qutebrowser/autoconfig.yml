@@ -235,3 +235,5 @@ settings:
     global: true
   url.start_pages:
     global: about:blank
+  window.title_format:
+    global: <{id}> {perc}{current_title}{title_sep}qutebrowser
