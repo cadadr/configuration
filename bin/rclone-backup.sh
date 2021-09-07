@@ -8,12 +8,13 @@ export GK_NOENV=yes
 
 say starting rclone backup...
 
-rclone copy $HOME/Documents encryptifier:/Documents 2>&1
-rclone copy $HOME/Zotero    encryptifier:/Zotero 2>&1
-rclone copy $HOME/.zotero   encryptifier:/ZoteroConfig 2>&1
-rclone copy $HOME/fil       encryptifier:/Misc 2>&1
-rclone copy $HOME/.mozilla  encryptifier:/Mozilla 2>&1
-rclone copy $HOME/.config/chromium  encryptifier:/Chromium 2>&1
+rclone copy $HOME/Documents                 encryptifier:/Documents 2>&1
+rclone copy $HOME/Zotero                    encryptifier:/Zotero 2>&1
+rclone copy $HOME/.zotero                   encryptifier:/ZoteroConfig 2>&1
+rclone copy $HOME/fil                       encryptifier:/Misc 2>&1
+rclone copy $HOME/.mozilla                  encryptifier:/Mozilla 2>&1
+rclone copy $HOME/.config/chromium          encryptifier:/Chromium 2>&1
+rclone copy $HOME/.local/share/qutebrowser  encryptifier:/Qutebrowser 2>&1
 
 say 'done completed finished bye'
 
