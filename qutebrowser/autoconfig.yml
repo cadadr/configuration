@@ -113,16 +113,23 @@ settings:
     global: false
     https://*.wikipedia.org: true
     https://cadadr.space: true
+    https://dragonscave.space: true
+    https://duckduckgo.com: true
+    https://en.wikipedia.org: true
     https://github.com: true
     https://gitlab.com: true
     https://gkayaalp.com: true
+    https://it.wikipedia.org: true
     https://linguistlist.org: true
     https://old.reddit.com: true
+    https://osf.io: true
     https://rage.love: true
+    https://sci-hub.se: true
     https://weirder.earth: true
     https://www.deepl.com: true
     https://www.gkayaalp.com: true
     https://www.reddit.com: true
+    https://www.worldcat.org: true
     https://www.youtube.com: true
     https://youtu.be: true
     https://youtube.com: true
