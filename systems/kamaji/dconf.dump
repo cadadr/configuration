@@ -14,6 +14,13 @@ show-warning = false
 window-is-maximized = false
 
 [com/github/maoschanz/drawing]
+last-version = '0.8.0'
+use-antialiasing = true
+
+[com/github/maoschanz/drawing/tools-options]
+last-delete-replace = 'alpha'
+last-shape-filling = 'empty'
+last-text-background = 'outline'
 use-antialiasing = true
 
 [com/gkayaalp/pomodorino]
@@ -44,11 +51,12 @@ show-welcome-page = false
 settings-migrated = true
 
 [io/github/celluloid-player/celluloid/window-state]
-height = 480
+height = 754
+loop-playlist = false
 playlist-width = 250
 show-controls = true
 show-playlist = false
-width = 640
+width = 406
 
 [org/blueberry]
 obex-enabled = true
@@ -341,6 +349,7 @@ hinting = 'full'
 login-enabled = false
 logout-enabled = false
 notification-enabled = true
+notification-file = '/usr/share/mint-artwork/sounds/notification.oga'
 plug-enabled = false
 switch-enabled = false
 tile-enabled = false
@@ -580,8 +589,10 @@ root = 'file:///'
 tree-view = true
 
 [org/x/editor/preferences/editor]
+auto-save = false
+create-backup-copy = true
 prefer-dark-theme = true
-scheme = 'oblivion'
+scheme = 'tango'
 use-default-font = true
 
 [org/x/editor/preferences/ui]
@@ -592,8 +603,18 @@ bottom-panel-size = 140
 side-panel-active-page = 827629879
 side-panel-size = 200
 
+[org/x/reader]
+
+[org/x/reader/default]
+
+[org/x/sticky]
+active-group = 'Group 1'
+first-run = false
+
 [org/x/viewer/ui]
 sidebar = false
+statusbar = true
+toolbar = true
 
 [org/x/viewer/view]
 background-color = 'rgb(0,0,0)'
