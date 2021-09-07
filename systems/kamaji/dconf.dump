@@ -403,7 +403,7 @@ secondary-click-time = 1.2
 show-weekdate = false
 
 [org/gnome/desktop/interface]
-monospace-font-name = 'Monospace 10'
+monospace-font-name = 'Iosevka Cadadrish Sans 10'
 toolkit-accessibility = false
 
 [org/gnome/desktop/privacy]
@@ -518,19 +518,21 @@ jpeg-quality = 100
 schema-version = uint32 3
 
 [org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9]
-background-color = 'rgb(238,238,236)'
+background-color = 'rgb(0,0,0)'
 background-transparency-percent = 12
 bold-color-same-as-fg = true
 cursor-background-color = 'rgb(255,255,255)'
 cursor-colors-set = false
 cursor-foreground-color = 'rgb(145,107,86)'
 exit-action = 'close'
-foreground-color = 'rgb(46,52,54)'
-palette = ['rgb(0,0,0)', 'rgb(170,0,0)', 'rgb(0,170,0)', 'rgb(170,85,0)', 'rgb(0,0,170)', 'rgb(170,0,170)', 'rgb(0,170,170)', 'rgb(170,170,170)', 'rgb(85,85,85)', 'rgb(255,85,85)', 'rgb(85,255,85)', 'rgb(255,255,85)', 'rgb(85,85,255)', 'rgb(255,85,255)', 'rgb(85,255,255)', 'rgb(255,255,255)']
+font = 'Iosevka Cadadrish Sans Light 10'
+foreground-color = 'rgb(170,170,170)'
+palette = ['rgb(46,52,54)', 'rgb(204,0,0)', 'rgb(78,154,6)', 'rgb(196,160,0)', 'rgb(52,101,164)', 'rgb(117,80,123)', 'rgb(6,152,154)', 'rgb(211,215,207)', 'rgb(85,87,83)', 'rgb(239,41,41)', 'rgb(138,226,52)', 'rgb(252,233,79)', 'rgb(114,159,207)', 'rgb(173,127,168)', 'rgb(52,226,226)', 'rgb(238,238,236)']
 scrollbar-policy = 'never'
+use-system-font = false
 use-theme-colors = false
 use-theme-transparency = false
-use-transparent-background = true
+use-transparent-background = false
 visible-name = 'cadadr'
 
 [org/gtk/settings/color-chooser]
