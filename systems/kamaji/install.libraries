@@ -5,6 +5,7 @@ libgirepository1.0-dev
 libimage-exiftool-perl
 libjansson-dev
 libjson-perl
+libjs-pdf
 liblocal-lib-perl
 libpoppler-glib-dev
 libpoppler-private-dev
