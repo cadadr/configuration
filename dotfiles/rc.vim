@@ -12,7 +12,8 @@
 
 set nocompatible
 set termguicolors
-colorscheme lithochromatic
+set background=dark
+colorscheme gruvbox
 
 set backspace=eol,start,indent	" backspace over newline too
 " incremental case fold search, in suit and tie yet ignored
