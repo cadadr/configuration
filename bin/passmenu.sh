@@ -13,13 +13,13 @@ password="$(pass git ls-files | grep -v ^\\. | sed s/.gpg\$// \
     exit 1
 }
 
-out="$(pass show -c $password 2>&1)"
+pass show -c $password
 
 [ "$?" = "0" ] && notify-send "“$password” copied" \
   "Password copied to clipboard, will be cleared after\
  ${PASSWORD_STORE_CLIP_TIME:-45} seconds" \
  || {
-    notify-send -u critical "error copying password '$password': $out"
+    notify-send -u critical "error copying password '$password'"
     exit 1
 }
 
