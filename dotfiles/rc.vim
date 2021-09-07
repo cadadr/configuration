@@ -152,7 +152,7 @@ nmap , <leader>
 nmap \ <leader>
 nmap <Leader>n :set nu<CR>
 nmap <Leader>r :source ~/.vimrc<CR>
-nmap <Leader>l :set list!<CR>
+nmap <Leader>L :set list!<CR>
 nmap <Leader>s {!}sort<CR>
 nmap <Leader>S 1G!Gsort<CR>
 " insert line to command line as shell command
@@ -175,7 +175,7 @@ au FileType markdown,memo nmap <buffer> <Leader>q 0"+p'[v']$:s/^\(.\)/> \1/<CR>g
 " insert clipboard as memo link
 au FileType memo nmap <buffer> <Leader>m a[[<ESC>"+pa]]<ESC>
 " insert clipboard as literal link
-au FileType markdown,memo nmap <buffer> <Leader>L a<<ESC>"+pa><ESC>B
+au FileType markdown,memo nmap <buffer> <Leader>l a<<ESC>"+pa><ESC>B
 
 " Autocmds {{{
 
