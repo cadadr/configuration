@@ -70,14 +70,19 @@ like this:
 
 Now, you can log in to the graphical session.
 
-If Emacs is needed, [clone my emacs.d
-repo](https://github.com/cadadr/emacs) and use
+We can build and install Emacs now. Run
 
-    $ make emacs
+    $ make -C emacs.d emacs
 
-from inside that.  That’ll build GNU Emacs from the clone at
+or
+
+    $ make -C emacs.d emacs-up
+
+in order to build Emacs from a clone assumed to be found at
 `~/co/External/Emacs`, install it, and build and install the Emacs
-config.
+config. The `emacs-up` rule will build from the git repo after running
+`git pull`, whereas `emacs` will just do the build, without updating
+the repo.
 
 If needed, a recent version of Qutebrowser can be installed via
 
