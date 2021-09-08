@@ -1,0 +1,226 @@
+This is onlisp.info, produced by makeinfo version 6.3 from onlisp.texi.
+
+INFO-DIR-SECTION Common LISP
+START-INFO-DIR-ENTRY
+* On Lisp: (onlisp).                *On Lisp* by Paul Graham.
+END-INFO-DIR-ENTRY
+
+
+Indirect:
+onlisp.info-1: 205
+onlisp.info-2: 303369
+onlisp.info-3: 601531
+
+Tag Table:
+(Indirect)
+Node: Top205
+Node: UTF1529
+Node: Dedication page iii4336
+Node: Dedication page iv4575
+Node: Preface to this edition4810
+Node: 1 Extensible Language20296
+Node: 1-1 Design by Evolution22116
+Node: 1-2 Programming Bottom-Up26358
+Ref: 1-2 Programming Bottom-Up-Footnote-131982
+Node: 1-3 Extensible Software32137
+Node: 1-4 Extending Lisp35868
+Ref: 1-4 Extending Lisp-Footnote-139779
+Node: 1-5.Why Lisp (or When)39958
+Node: 2 Functions42506
+Node: 2-1 Functions as Data44238
+Node: 2-2 Defining Functions45640
+Node: 2-3 Functional Arguments50802
+Node: 2-4 Functions as Properties55245
+Node: 2-5 Scope57685
+Node: 2-6 Closures60376
+Ref: 2-6 Closures-Footnote-166117
+Node: 2-7 Local Functions66247
+Node: 2-8 Tail-Recursion69464
+Ref: 2-8 Tail-Recursion-Footnote-172786
+Node: 2-9 Compilation72881
+Ref: 2-9 Compilation-Footnote-177853
+Ref: 2-9 Compilation-Footnote-277938
+Node: 2-10 Functions from Lists78177
+Node: 3 Functional Programming79146
+Node: 3-1 Functional Design80069
+Ref: 3-1 Functional Design-Footnote-189189
+Node: 3-2 Imperative Outside-In89241
+Node: 3-3 Functional Interfaces93752
+Ref: 3-3 Functional Interfaces-Footnote-199598
+Node: 3-4 Interactive Programming99668
+Node: 4 Utility Functions103913
+Node: 4-1 Birth of a Utility104970
+Node: 4-2 Invest in Abstraction111222
+Node: 4-3 Operations on Lists115501
+Node: 4-4 Search124327
+Node: 4-5 Mapping132042
+Node: 4-6 I/O137430
+Node: 4-7 Symbols and Strings138993
+Ref: 4-7 Symbols and Strings-Footnote-1142245
+Node: 4-8 Density142326
+Node: 5 Returning Functions145280
+Node: 5-1 Common Lisp Evolves146454
+Ref: 5-1 Common Lisp Evolves-Footnote-1150019
+Ref: 5-1 Common Lisp Evolves-Footnote-2150098
+Node: 5-2 Orthogonality150356
+Node: 5-3 Memoizing153873
+Node: 5-4 Composing Functions155894
+Node: 5-5 Recursion on Cdrs158958
+Ref: 5-5 Recursion on Cdrs-Footnote-1163357
+Ref: 5-5 Recursion on Cdrs-Footnote-2163532
+Node: 5-6 Recursion on Subtrees163646
+Node: 5-7 When to Build Functions171901
+Node: 6 Functions as Representation173374
+Node: 6-1 Networks174559
+Node: 6-2 Compiling Networks179688
+Ref: 6-2 Compiling Networks-Footnote-1183468
+Node: 6-3 Looking Forward183563
+Node: 7 Macros184372
+Node: 7-1 How Macros Work185349
+Node: 7-2 Backquote189790
+Ref: 7-2 Backquote-Footnote-1197936
+Ref: 7-2 Backquote-Footnote-2198036
+Node: 7-3 Defining Simple Macros198148
+Node: 7-4 Testing Macroexpansion203920
+Node: 7-5 Destructuring in Parameter Lists207439
+Ref: 7-5 Destructuring in Parameter Lists-Footnote-1211213
+Ref: 7-5 Destructuring in Parameter Lists-Footnote-2211524
+Node: 7-6 A Model of Macros211637
+Ref: 7-6 A Model of Macros-Footnote-1213650
+Node: 7-7 Macros as Programs213740
+Node: 7-8 Macro Style219289
+Node: 7-9 Dependence on Macros226137
+Ref: 7-9 Dependence on Macros-Footnote-1228495
+Node: 7-10 Macros from Functions228599
+Node: 7-11 Symbol Macros233257
+Node: 8 When to Use Macros234338
+Node: 8-1 When Nothing Else Will Do235644
+Node: 8-2 Macro or Function?241954
+Node: 8-3 Applications for Macros248800
+Ref: 8-3 Applications for Macros-Footnote-1261317
+Ref: 8-3 Applications for Macros-Footnote-2261476
+Ref: 8-3 Applications for Macros-Footnote-3261563
+Node: 9 Variable Capture261689
+Node: 9-1 Macro Argument Capture262644
+Node: 9-2 Free Symbol Capture264964
+Node: 9-3 When Capture Occurs267277
+Node: 9-4 Avoiding Capture with Better Names274592
+Node: 9-5 Avoiding Capture by Prior Evaluation275887
+Ref: 9-5 Avoiding Capture by Prior Evaluation-Footnote-1280557
+Node: 9-6 Avoiding Capture with Gensyms280744
+Node: 9-7 Avoiding Capture with Packages284867
+Node: 9-8 Capture in Other Name-Spaces286064
+Node: 9-9 Why Bother?289232
+Node: 10 Other Macro Pitfalls290846
+Node: 10-1 Number of Evaluations291536
+Node: 10-2 Order of Evaluation294457
+Node: 10-3 Non-functional Expanders296557
+Ref: 10-3 Non-functional Expanders-Footnote-1303113
+Node: 10-4 Recursion303369
+Node: 11 Classic Macros310004
+Node: 11-1 Creating Context311300
+Node: 11-2 The with- Macro317939
+Node: 11-3 Conditional Evaluation324027
+Node: 11-4 Iteration330910
+Node: 11-5 Iteration with Multiple Values337665
+Node: 11-6 Need for Macros344498
+Ref: 11-6 Need for Macros-Footnote-1349033
+Node: 12 Generalized Variables349307
+Node: 12-1 The Concept350327
+Ref: 12-1 The Concept-Footnote-1354227
+Node: 12-2 The Multiple Evaluation Problem354306
+Ref: 12-2 The Multiple Evaluation Problem-Footnote-1357542
+Node: 12-3 New Utilities357623
+Node: 12-4 More Complex Utilities360852
+Ref: 12-4 More Complex Utilities-Footnote-1373638
+Ref: 12-4 More Complex Utilities-Footnote-2373830
+Node: 12-5 Defining Inversions373961
+Node: 13 Computation at Compile-Time377997
+Node: 13-1 New Utilities378821
+Node: 13-2 Example Bezier Curves386417
+Node: 13-3 Applications389749
+Node: 14 Anaphoric Macros392990
+Node: 14-1 Anaphoric Variants394137
+Ref: 14-1 Anaphoric Variants-Footnote-1404190
+Node: 14-2 Failure404478
+Node: 14-3 Referential Transparency411049
+Node: 15 Macros Returning Functions414434
+Node: 15-1 Building Functions415049
+Node: 15-2 Recursion on Cdrs419281
+Node: 15-3 Recursion on Subtrees426363
+Node: 15-4 Lazy Evaluation431326
+Node: 16 Macro-Defining Macros433166
+Node: 16-1 Abbreviations433905
+Ref: 16-1 Abbreviations-Footnote-1438713
+Node: 16-2 Properties438782
+Node: Anaphoric Macros442116
+Node: 17 Read-Macros452239
+Node: 17-1 Macro Characters452819
+Node: 17-2 Dispatching Macro Characters456756
+Node: 17-3 Delimiters459333
+Node: 17-4 When What Happens462782
+Node: 18 Destructuring463664
+Node: 18-1 Destructuring on Lists464306
+Node: 18-2 Other Structures466274
+Node: 18-3 Reference475092
+Node: 18-4 Matching479080
+Node: 19 A Query Compiler493757
+Node: 19-1 The Database496463
+Node: 19-2 Pattern-Matching Queries499727
+Node: 19-3 A Query Interpreter502701
+Node: 19-4 Restrictions on Binding507484
+Node: 19-5 A Query Compiler510293
+Node: 20 Continuations517642
+Node: 20-1 Scheme Continuations518852
+Node: 20-2 Continuation-Passing Macros531425
+Ref: 20-2 Continuation-Passing Macros-Footnote-1542860
+Node: 20-3 Code-Walkers and CPS Conversion543043
+Node: 21 Multiple Processes546937
+Node: 21-1 The Process Abstraction547727
+Node: 21-2 Implementation552831
+Node: 21-3 The Less-than-Rapid Prototype564875
+Node: 22 Nondeterminism568819
+Node: 22-1 The Concept570235
+Node: 22-2 Search577763
+Ref: 22-2 Search-Footnote-1582105
+Node: 22-3 Scheme Implementation582283
+Node: 22-4 Common Lisp Implementation585797
+Ref: 22-4 Common Lisp Implementation-Footnote-1594255
+Node: 22-5 Cuts594394
+Node: 22-6 True Nondeterminism601531
+Node: 23 Parsing with ATNs606257
+Node: 23-1 Background606968
+Node: 23-2 The Formalism608801
+Node: 23-3 Nondeterminism612343
+Node: 23-4 An ATN Compiler614664
+Node: 23-5 A Sample ATN627196
+Node: 24 Prolog636290
+Node: 24-1 Concepts637873
+Ref: 24-1 Concepts-Footnote-1641226
+Node: 24-2 An Interpreter641342
+Node: 24-3 Rules650842
+Node: 24-4 The Need for Nondeterminism657000
+Node: 24-5 New Implementation660491
+Node: 24-6 Adding Prolog Features667051
+Node: 24-7 Examples679297
+Node: 24-8 The Senses of Compile682196
+Node: 25 Object-Oriented Lisp684529
+Node: 25-1 Plus ça Change685341
+Node: 25-2 Objects in Plain Lisp688734
+Ref: 25-2 Objects in Plain Lisp-Footnote-1712881
+Ref: 25-2 Objects in Plain Lisp-Footnote-2712971
+Node: 25-3 Classes and Instances713090
+Node: 25-4 Methods719135
+Ref: 25-4 Methods-Footnote-1730099
+Ref: 25-4 Methods-Footnote-2730218
+Node: 25-5 Auxiliary Methods and Combination730367
+Node: 25-7 When to Object739899
+Node: Appendix Packages742819
+Ref: Appendix Packages-Footnote-1752681
+Ref: Appendix Packages-Footnote-2752754
+Node: Notes752935
+Node: Book's Index778761
+Node: Concept Index799221
+Node: Function Index818513
+
+End Tag Table

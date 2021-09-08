@@ -1,8 +1,11 @@
+# .gitignore
+
 %gconf.xml
 icons.*.rc
 *.core
 *.deb
 *.elc
+*.eln
 *.fasl
 *.hi
 *.log
@@ -51,3 +54,30 @@ dotfiles/vim/undo/
 dotfiles/vim/spell/
 dotfiles/vim/.netrwhist
 
+# Emacs
+emacs.d/.trash_emacs/
+emacs.d/eln-cache
+emacs.d/etc/backups/
+emacs.d/etc/+scratch+
+emacs.d/etc/+scratch+.new
+emacs.d/etc/auto-save-list/
+emacs.d/etc/tramp
+emacs.d/etc/url/
+emacs.d/url/cache
+emacs.d/etc/image-dired/
+emacs.d/etc/desktop
+emacs.d/etc/history
+emacs.d/etc/org-id-locations.el
+emacs.d/etc/network-security.data
+emacs.d/etc/emms
+emacs.d/eshell/history
+emacs.d/eshell/lastdir
+emacs.d/anaconda-mode/
+emacs.d/request/
+emacs.d/smex-items
+emacs.d/projects
+emacs.d/extras/*.el
+emacs.d/.emacs.desktop
+emacs.d/ido.last
+emacs.d/org-caldav-*
+emacs.d/kkcrc

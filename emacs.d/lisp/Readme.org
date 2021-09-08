@@ -1,0 +1,8 @@
+#+title: Göktuğ's Vendored Elisp Files
+
+These files are vendored Elisp files used by my [[https://github.com/cadadr/configuration][configuration]], which
+imparts this repository as a submodule.
+
+All of the file's are open source here, although some might be edited
+by me.  All are subject to their own terms, my changes are so to terms
+of the file they are in.

@@ -1,0 +1,20 @@
+diff --git a/lisp/vc/vc-dir.el b/lisp/vc/vc-dir.el
+index 41c44e2c24..839f401153 100644
+--- a/lisp/vc/vc-dir.el
++++ b/lisp/vc/vc-dir.el
+@@ -1275,13 +1275,8 @@ vc-dir
+       (vc-dir-mode))))
+ 
+ (defun vc-default-dir-extra-headers (_backend _dir)
+-  ;; Be loud by default to remind people to add code to display
+-  ;; backend specific headers.
+-  ;; XXX: change this to return nil before the release.
+-  (concat
+-   (propertize "Extra      : " 'face 'font-lock-type-face)
+-   (propertize "Please add backend specific headers here.  It's easy!"
+-	       'face 'font-lock-warning-face)))
++  (ignore _backend _dir)
++  nil)
+ 
+ (defvar vc-dir-filename-mouse-map
+    (let ((map (make-sparse-keymap)))

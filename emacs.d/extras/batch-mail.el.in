@@ -1,0 +1,4 @@
+(setq gk-skip-init t)
+(load "~/co/emacs.d/load-emacs.el")
+(require 'gk-mail)
+(gnus-agent-batch)

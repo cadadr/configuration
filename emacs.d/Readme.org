@@ -1,0 +1,67 @@
+#+title: Göktuğ's Emacs Setup
+
+* Introduction
+This is my GNU Emacs setup.
+
+The basic structure is as follows:
+
+#+BEGIN_EXAMPLE
+~/.emacs.d
+├ init.el
+│   The init file.
+├ lisp/
+│   Various programs that are not loaded unless needed. Not in
+│   loadpath.
+├ lisp/site/
+│   Third party Elisp.
+├ extras/
+│   Various non-elisp programmes that are used by my emacs
+│   setup.
+├ themes/
+│   Custom themes
+└ etc
+  ├ custom.el
+  │   M-x Customize settings.
+  └ load-test.el
+      Used by gk-test-init, test whether emacs loads successfully.
+#+END_EXAMPLE
+
+* Installation / updating
+There are multiple ways to activate this configuration:
+
+- run the invasion (see =perldoc invade=) from the repo root
+- copy/link this tree to =~/.emacs.d=
+- load init.el via the =load= function
+- link init.el to =~/.emacs.d= (not tested)
+
+Choose *EITHER*.
+
+[[https://github.com/cadadr/elisp][Göktuğ's Elisp]] repository is assumed to be accessible at =~/co/elisp=.
+This should be easy to modify, in the prelude of [[./init.el][init.el]].
+
+The following commands should suffice to initiate, provided the
+configuration itself is [[../Readme.org::Installation][installed]]:
+
+#+BEGIN_EXAMPLE
+# This applies if Göktuğ's Elisp repo is not downloaded
+$ git clone https://github.com/cadadr/elisp ~/co/elisp
+$ cd ~/.emacs.d
+$ make all
+#+END_EXAMPLE
+
+* Building Emacs
+Use the commands below to build Emacs on a Debian stable system
+(e.g. the =alpha-debian= config in this repo:
+
+#+BEGIN_EXAMPLE
+# apt-get build-dep emacs25 emacs-pdf-tools
+$ build-emacs-master.sh
+#+END_EXAMPLE
+
+* Licence
+Unless stated otherwise within the file or the directory, all the code
+in this repository is released in the public domain.  Make use of it
+as you like.
+
+The `themes'  directory may contain  third party code.  Code  there is
+subject to the terms stated therewithin, if stated.
