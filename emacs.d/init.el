@@ -3610,7 +3610,8 @@ symbol)."
 
 (defun gk-ruby-mode-hook ()
   (imenu-add-to-menubar "Definitions")
-  (gk-turn-on-outline-minor-mode "###*" ":$" "C-'"))
+  (gk-turn-on-outline-minor-mode "###*" ":$" "C-'")
+  (eglot))
 
 (defun gk-inf-ruby-mode-hook ()
   (setf truncate-lines nil word-wrap t))
