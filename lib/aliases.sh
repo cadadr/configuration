@@ -305,12 +305,7 @@ alias j=jobs
 # The rest of ‘ls’ aliases will pick up these settings, so make sure
 # the flags here are relevant for all interactive uses of ls(1).
 if ls --version 2>/dev/null | grep -qs GNU; then
-    base="$(_which ls) --group-directories-first -Fh"
-    if [ -z "$INSIDE_EMACS" ]; then
-        alias ls="$base --hyperlink"
-    else
-        alias ls="$base"
-    fi
+    alias ls="$(_which ls) --group-directories-first -Fh"
 else
     alias ls="$(_which ls) -F"
 fi
