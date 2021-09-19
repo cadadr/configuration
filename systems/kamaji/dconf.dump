@@ -140,7 +140,7 @@ secondary-click-time = 1.2
 exec = 'gnome-calculator'
 
 [org/cinnamon/desktop/applications/terminal]
-exec = 'gnome-terminal'
+exec = 'kitty'
 
 [org/cinnamon/desktop/background]
 picture-options = 'zoom'
