@@ -81,7 +81,8 @@ recent-connections
 window-properties
 history-mate-run
 last-([hvw]pane|window|zoomlevel)(-(x|y|pos|width|height))?
-engines-order"
+engines-order
+install-last-run"
 
 export filter
 
