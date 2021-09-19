@@ -489,6 +489,7 @@ options = ['grp\tgrp:shift_caps_toggle', 'nbsp\tnbsp:level3s', 'ctrl\tctrl:nocap
 [org/gnome/liferea]
 browser = 'x-www-browser %s'
 browser-id = 'default'
+confirm-mark-all-read = false
 default-update-interval = 0
 default-view-mode = 0
 disable-javascript = true
