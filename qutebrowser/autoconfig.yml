@@ -99,7 +99,7 @@ settings:
   content.default_encoding:
     global: utf-8
   content.fullscreen.window:
-    global: true
+    global: false
   content.headers.accept_language:
     global: en-GB,en
   content.headers.referer:
