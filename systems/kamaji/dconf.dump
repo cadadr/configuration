@@ -42,7 +42,6 @@ ignored-reports = ['timeshift-no-setup']
 autorefresh-hours = 2
 default-repo-is-ok = true
 hide-systray = true
-install-last-run = 1630006511
 refresh-minutes = 10
 refresh-schedule-enabled = false
 show-welcome-page = false
