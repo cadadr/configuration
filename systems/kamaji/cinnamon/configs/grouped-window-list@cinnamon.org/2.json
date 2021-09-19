@@ -178,7 +178,8 @@
             "blueberry.desktop",
             "org.telegram.desktop.desktop:flatpak",
             "io.bit3.WhatsAppQT.desktop:flatpak",
-            "sticky.desktop"
+            "sticky.desktop",
+            "com.spotify.Client.desktop:flatpak"
         ]
     },
     "group-apps": {
