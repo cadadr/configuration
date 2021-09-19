@@ -85,6 +85,7 @@ If needed, a recent version of Qutebrowser can be installed via
                                                           # is on my system
     $ python3 ./scripts/mkvenv.py --venv-dir ~/local/_qutebrowser
     $ cd -
+    $ ~/local/_qutebrowser/bin/pip install readability-lxml
 
 from inside a recent checkout.  The underscore is there in the path
 name in order to tell `lib/profile/paths.sh` to skip adding this three
