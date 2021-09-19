@@ -97,7 +97,7 @@ def create title, tags, path
   rescue RuntimeError
     location_header = "location: UNKNOWN"
   end
-  now = DateTime.now.strftime("%Y-%M-%d %H:%M UTC%:z")
+  now = DateTime.now.strftime("%Y-%m-%d %H:%M UTC%:z")
 
   created_header = "created: #{now}"
   tags_header = "tags: #{tags.join(", ")}"
