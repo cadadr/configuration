@@ -48,7 +48,7 @@
         "default": false,
         "description": "Show song information on the panel",
         "dependency": "playerControl",
-        "value": false
+        "value": true
     },
     "truncatetext": {
         "type": "spinbutton",
