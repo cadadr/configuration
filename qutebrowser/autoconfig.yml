@@ -111,6 +111,7 @@ settings:
   content.javascript.enabled:
     file://*: true
     global: false
+    http://*.hacettepe.edu.tr: true
     https://*.wikipedia.org: true
     https://cadadr.space: true
     https://dragonscave.space: true
@@ -126,6 +127,7 @@ settings:
     https://rage.love: true
     https://sci-hub.se: true
     https://translate.google.com: true
+    https://web.archive.org: true
     https://weirder.earth: true
     https://www.deepl.com: true
     https://www.dreamwidth.org: true
