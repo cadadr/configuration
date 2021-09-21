@@ -95,14 +95,15 @@ enabled-desklets = @as []
 enabled-extensions = ['gTile@shuairan']
 hotcorner-layout = ['rofi -show window:false:0', 'scale:false:0', 'expo:false:0', 'expo:false:0']
 next-applet-id = 21
+no-adjacent-panel-barriers = false
 panel-edit-mode = false
 panel-launchers = ['DEPRECATED']
-panel-zone-icon-sizes = '[{"panelId":1,"left":0,"center":0,"right":24}]'
+panel-zone-icon-sizes = '[{"panelId": 1, "left": 0, "center": 0, "right": 24}]'
 panel-zone-symbolic-icon-sizes = '[{"panelId": 1, "left": 28, "center": 28, "right": 16}]'
 panel-zone-text-sizes = '[{"panelId":1,"left":0,"center":0,"right":0}]'
 panels-autohide = ['1:false', '2:false']
-panels-enabled = ['1:0:bottom']
-panels-height = ['1:32', '2:24']
+panels-enabled = ['1:0:top']
+panels-height = ['1:24', '2:24']
 panels-hide-delay = ['1:0', '2:0']
 panels-show-delay = ['1:0', '2:0']
 prevent-focus-stealing = true
@@ -155,11 +156,11 @@ slideshow-paused = false
 [org/cinnamon/desktop/interface]
 cursor-blink-time = 1200
 cursor-size = 24
-cursor-theme = 'DMZ-White'
-font-name = 'Ubuntu 10'
+cursor-theme = 'DMZ-Black'
+font-name = 'DejaVu Sans Semi-Condensed 10'
 gtk-overlay-scrollbars = true
-gtk-theme = 'Mint-Y-Dark-Purple'
-icon-theme = 'Mint-Y-Dark-Purple'
+gtk-theme = 'Mint-X-Purple'
+icon-theme = 'Mint-X-Purple'
 keyboard-layout-prefer-variant-names = false
 keyboard-layout-show-flags = false
 keyboard-layout-use-upper = true
@@ -258,7 +259,7 @@ autorun-x-content-open-folder = @as []
 autorun-x-content-start-app = @as []
 
 [org/cinnamon/desktop/notifications]
-bottom-notifications = true
+bottom-notifications = false
 display-notifications = true
 
 [org/cinnamon/desktop/screensaver]
@@ -288,7 +289,8 @@ focus-mode = 'sloppy'
 focus-new-windows = 'smart'
 min-window-opacity = 30
 mouse-button-modifier = '<Super>'
-theme = 'Mint-Y-Dark'
+theme = 'Mint-X'
+titlebar-font = 'DejaVu Sans Bold Semi-Condensed 10'
 workspace-names = ['home', 'nook', 'strange room']
 
 [org/cinnamon/muffin]
@@ -355,7 +357,7 @@ tile-enabled = false
 unplug-enabled = false
 
 [org/cinnamon/theme]
-name = 'Mint-Y-Dark-Purple'
+name = 'cinnamon'
 theme-cache-updated = 1615227053
 
 [org/gnome/baobab/ui]
@@ -547,7 +549,7 @@ type-format = 'category'
 
 [org/nemo/desktop]
 desktop-layout = 'true::false'
-font = 'Ubuntu 10'
+font = 'DejaVu Sans Semi-Condensed 10'
 show-orphaned-desktop-icons = true
 trash-icon-visible = true
 
