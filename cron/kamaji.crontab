@@ -14,6 +14,7 @@ USER=g
 
 */5	*	*	*	*	$HOME/bin/cronic $HOME/bin/dconf-dump.sh
 30	*/2	*	*	*	$HOME/bin/cronic $HOME/bin/rclone-backup.sh
+45	*/6	*	*	*	$HOME/bin/cronic $HOME/bin/rclone-backup.sh
 
 # ¹ OR jan,feb,mar,apr ...
 # ² (Sunday=0 or 7) OR sun,mon, ...

@@ -192,12 +192,6 @@ hist() {
     }'
 }
 
-do_backup() {
-    borg create --stats --progress --compression lz4 ::{user}-{now} $MYFS/
-}
-# Some versions of (Ba)sh doesn’t like a hyphen in function names.
-alias do-backup=do_backup
-
 pdf_monofy() {
     [ "$1" = "-h" ] || [ -z "$1" ] \
         && echo "usage: pdf_monofy INPUT [DENSITY] [SUFFIX]" \
