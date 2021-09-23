@@ -156,11 +156,11 @@ slideshow-paused = false
 [org/cinnamon/desktop/interface]
 cursor-blink-time = 1200
 cursor-size = 24
-cursor-theme = 'DMZ-Black'
+cursor-theme = 'DMZ-White'
 font-name = 'DejaVu Sans Semi-Condensed 10'
 gtk-overlay-scrollbars = true
-gtk-theme = 'Mint-X-Purple'
-icon-theme = 'Mint-X-Purple'
+gtk-theme = 'Mint-Y-Dark-Purple'
+icon-theme = 'Mint-Y-Dark-Purple'
 keyboard-layout-prefer-variant-names = false
 keyboard-layout-show-flags = false
 keyboard-layout-use-upper = true
@@ -289,7 +289,7 @@ focus-mode = 'sloppy'
 focus-new-windows = 'smart'
 min-window-opacity = 30
 mouse-button-modifier = '<Super>'
-theme = 'Mint-X'
+theme = 'Mint-Y-Dark'
 titlebar-font = 'DejaVu Sans Bold Semi-Condensed 10'
 workspace-names = ['home', 'nook', 'strange room']
 
@@ -357,7 +357,7 @@ tile-enabled = false
 unplug-enabled = false
 
 [org/cinnamon/theme]
-name = 'cinnamon'
+name = 'Mint-Y-Dark-Purple'
 theme-cache-updated = 1615227053
 
 [org/gnome/baobab/ui]
