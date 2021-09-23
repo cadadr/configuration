@@ -500,8 +500,9 @@ folder-display-mode = 1
 last-window-maximized = false
 maxitemcount = 100
 reduced-feedlist = false
-social-bm-site = 'Blinklist'
+social-bm-site = 'blogmarks'
 startup-feed-action = 1
+toolbar-style = 'both'
 
 [org/gnome/liferea/plugins]
 active-plugins = ['media-player', 'bold-unread', 'plugin-installer']
