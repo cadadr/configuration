@@ -6553,9 +6553,9 @@ will become the only window."
 ;;;;; GUI:
 
 (defvar gk-preferred-themes '( :light anti-zenburn
-                               :dark gruvbox-dark-hard
+                               :dark inkpot
                                ;; just being explicit...
-                               :no-preference gruvbox-dark-hard)
+                               :no-preference anti-zenburn)
   "Light and dark theme preferences.")
 
 
