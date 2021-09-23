@@ -1780,6 +1780,7 @@ column will be split into two instead."
         :sans "DejaVu Sans Condensed"
         :mono "Iosevka Cadadrish Sans"
         :cjk "Noto Serif CJK JP"
+        :emoji "Noto Color Emoji"
         :forecast-moon-phase (or (and (gk-gui-p)
                                       (font-info "Quivira")
                                       "Quivira")
@@ -5505,13 +5506,13 @@ numerals which regularly appear in texts."
 (add-hook 'org-mode-hook
           (lambda ()
             (set-face-attribute 'org-ellipsis nil
-                                :underline nil :height .5 :bold nil
+                                :underline nil :height 1.0 :bold nil
                                 :inherit 'font-lock-builtin-face)))
 
 (setf
  org-num-face 'org-verbatim
  ;; Some others possible chars: ⊞ ◢ 𝅍
- org-ellipsis "◢")
+ org-ellipsis " ⮷")
 
 
 
@@ -5534,7 +5535,7 @@ numerals which regularly appear in texts."
 
 (diminish 'org-variable-pitch-minor-mode "~")
 
-(add-hook 'after-init-hook #'org-variable-pitch-setup)
+;; (add-hook 'after-init-hook #'org-variable-pitch-setup)
 
 
 
@@ -5580,6 +5581,18 @@ theme.  If necessary, new images will be created."
 ;;;;; Custom links:
 
 
+
+;;;;;; Project links:
+
+(org-link-set-parameters
+   "gk-project"
+   :follow 'gk-org-project-link-follow)
+
+(defun gk-org-project-link-follow (path arg)
+  (gk-open-project path arg))
+
+
+
 ;;;;;; Gemini and Gopher links:
 
 (dolist (proto (list "gopher" "gemini"))
@@ -6705,7 +6718,9 @@ new frame is created."
   (set-face-attribute 'default nil
                       :height gk-font-default-height
                       :family (gk-font :mono)
-                      :weight 'light)
+                      :weight 'normal)
+
+  (set-fontset-font t 'symbol (gk-font :emoji))
 
   (set-face-attribute 'variable-pitch nil
                       :height gk-font-variable-pitch-height
@@ -7424,7 +7439,7 @@ Redirect to the raw file url."
   "Visit an URL with Elpher."
   (elpher-go url))
 
-(defalias 'gk-browse-url 'browse-url-generic)
+(defalias 'gk-browse-url 'browse-url-qutebrowser)
 
 
 
@@ -8245,6 +8260,7 @@ Does various tasks after saving a file, see it's definition."
 (unless noninteractive
   ;; Start the server.
   (server-start)
+  (setf initial-buffer-choice (gk-org-dir-file "Sidekick.org"))
   (add-hook 'server-switch-hook 'raise-frame))
 
 
