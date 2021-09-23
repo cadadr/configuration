@@ -6597,12 +6597,19 @@ prefers dark themes."
     :no-preference)))
 
 
-(defun gk-setup-frame-looks (&optional frame)
+(defun gk-setup-frame-looks (&optional frame arg)
   "Customisations that modify frame behaviour.
 
 Groups such customisations which might need to be re-ran when a
-new frame is created."
-  (interactive)
+new frame is created.
+
+When called interactively with prefix argument, prompt for theme
+selection.  Otherwise, use the theme ‘gk-preferred-colour-scheme’
+picks."
+  (interactive
+   (list
+    (selected-frame)
+    (not (not current-prefix-arg))))
 
   (ignore frame)
 
@@ -6610,8 +6617,14 @@ new frame is created."
         paper-base-font-size 70
         paper-use-varying-heights-for-org-title-headlines nil)
 
-  (setf gk-gui-theme (plist-get gk-preferred-themes
-                                (gk-preferred-colour-scheme)))
+  (setf gk-gui-theme
+        (if arg
+            (intern
+             (completing-read
+              "Load custom theme: "
+              (mapcar #'symbol-name (custom-available-themes))))
+          (plist-get gk-preferred-themes
+                     (gk-preferred-colour-scheme))))
 
   (when (and gk-gui-theme
              (not (equal custom-enabled-themes
