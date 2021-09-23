@@ -69,6 +69,9 @@ Pi](../ayata).  The following configuration modification allows
 
     $ echo ayata.local | sudo tee -a /etc/sane.d/net.conf
 
+Finally, install the `gTile` Cinnamon spice using the `Extensions`
+app.
+
 Now it's time to go back to repo root and follow the instructions in
 the [Readme there](../../Readme.markdown). **Before this, reboot, and
 log in on a virtual console, using `Ctrl+Alt+F1--6`**.
