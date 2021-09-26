@@ -1518,6 +1518,9 @@ that instead."
         (other-window 1)
         (funcall vcs dir))
     (other-window 1)
+    (if initial-buffer-choice
+        (ignore-errors (find-file initial-buffer-choice))
+      (switch-to-buffer "*scratch*"))
     (gk-flash-current-line)))
 
 
