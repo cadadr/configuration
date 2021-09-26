@@ -6850,7 +6850,7 @@ picks."
    ("\\*.*Completions\\*" . (display-buffer-in-side-window . ((side . bottom))))
    ("\\*Help\\*" . (display-buffer-reuse-window))
    ("Checkdoc" . (display-buffer-pop-up-window))
-   ("Calendar" . (display-buffer-in-side-window . ((side . bottom))))
+   ("Calendar[^\\.]" . (display-buffer-in-side-window . ((side . bottom))))
    ("help\\[R\\]" . (display-buffer-pop-up-window))
    ("\\*pager\\*.*" . (display-buffer-pop-up-window
                        . ((inhibit-same-window . t))))
