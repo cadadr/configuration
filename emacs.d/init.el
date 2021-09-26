@@ -6961,13 +6961,6 @@ picks."
 
 (add-to-list 'gk-global-modes 'winner-mode)
 
-
-
-(windmove-default-keybindings)
-(when (fboundp 'windmove-delete-default-keybindings)
- (windmove-delete-default-keybindings))
-
-
 (define-minor-mode gk-switch-window-minor-mode
   "Simple minor mode for ‘switch-window’ keybindings.
 
@@ -8113,6 +8106,11 @@ Does various tasks after saving a file, see it's definition."
 (gk-global-binding (kbd "<down>") #'windmove-down)
 (gk-global-binding (kbd "<right>") #'windmove-right)
 (gk-global-binding (kbd "<left>") #'windmove-left)
+
+(gk-unbind-key (kbd "S-<up>"))
+(gk-unbind-key (kbd "S-<down>"))
+(gk-unbind-key (kbd "S-<right>"))
+(gk-unbind-key (kbd "S-<left>"))
 
 
 
