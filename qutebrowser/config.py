@@ -39,8 +39,10 @@ config.source(config.configdir / "keywords.py")
 
 ### Some settings:
 
+duck_duck_params = \
+    "?kae=c&ks=m&ko=s&kc=-1&k1=-1&kk=-1&kaj=m&kak=-1&kax=-1&kaq=-1&kap=-1&kao=-1&kau=-1"
 c.url.searchengines['DEFAULT'] = \
-    'https://duckduckgo.com/?q={}'
+    f'https://duckduckgo.com/{duck_duck_params}&q=' + "{}"  # oo-f-strings...
 
 
 ### Visuals:
