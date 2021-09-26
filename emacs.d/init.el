@@ -6573,6 +6573,14 @@ will become the only window."
   "The default theme's name to load at startup.")
 
 
+(defvar gk-gui-theme-customisation-functions nil
+  "Functions to customise themes.
+
+Each function is run with a single argument, the currently
+selected colour theme, and is supposed to check if it wants to
+customise that theme or not.")
+
+
 (defun gk-preferred-colour-scheme ()
   "Find out the system’s preferred colour scheme.
 
@@ -6642,98 +6650,9 @@ picks."
     (mapc #'disable-theme custom-enabled-themes)
     (load-theme gk-gui-theme t))
 
-  ;; Customise wombat
-  (when (eq gk-gui-theme 'wombat)
-    ;; With wombat the active window is hard to tell.
-    (set-face-attribute 'mode-line nil
-                        :background "black"
-                        :foreground "white")
-    ;; Default added face renders foreground unreadable.
-    (set-face-attribute 'diff-refine-added nil
-                        :background "dark olive green")
-    (set-face-attribute 'region nil :foreground nil)
-
-    ;; Nicer, unambigous headline colours for Org mode headlines that
-    ;; form a scale from green to red.  Also, make headlines a little
-    ;; bit larger if ‘org-variable-pitch-minor-mode’ is enabled.
-    (let ((colours ["yellow green"
-                    "khaki"
-                    "dark sea green"
-                    "light sea green"
-                    "steel blue"
-                    "slate blue"
-                    "orchid"
-                    "hotpink"]))
-      (dotimes (i 7)
-        (let ((face (intern (format "org-level-%d" (1+ i)))))
-          (set-face-attribute face nil :foreground (aref colours i) :height 1.0)
-          (when (with-temp-buffer
-                  (gk-org-visuals-hook)
-                  org-variable-pitch-minor-mode)
-            (set-face-attribute face nil :height 1.2))))))
-
-  ;; Customise misterioso.
-  (when (eq gk-gui-theme 'misterioso)
-    (set-face-attribute 'header-line nil :background "black"
-                        :foreground "white")
-    (set-face-attribute 'show-paren-match nil
-                        :foreground "green yellow"
-                        :background nil)
-    (set-face-attribute 'diff-refine-added nil
-                        :background "sea green"))
-
-  ;; Common customisations for misterioso and wombat.
-  (when (memq gk-gui-theme '(wombat misterioso))
-    ;; Make the cursor more visible, the default grey colour is
-    ;; indistinguishable, especially with the bar cursor.
-    (set-face-attribute 'cursor nil :background "hotpink")
-    ;; Don't change the foreground or decorate the text when
-    ;; ‘hl-line-mode’ is on.
-    (set-face-attribute 'highlight nil
-                        :foreground nil
-                        :underline nil))
-
-  (when (eq gk-gui-theme 'paper)
-    ;; Better background colour for region.
-    (set-face-attribute 'region nil :background "medium spring green"))
-
-  (when (eq gk-gui-theme 'dracula)
-    ;; Less prominent inactive modeline.
-    (set-face-attribute
-     'mode-line nil :box t :foreground nil :background nil :inherit 'mode-line)
-    (set-face-attribute 'region nil :background "black"))
-
-  (when (eq gk-gui-theme 'modus-operandi)
-    (let ((bg (face-attribute 'org-block-begin-line :background))
-          (fg (face-attribute 'org-block-begin-line :foreground)))
-      (dolist (f '(org-block-begin-line org-block-end-line))
-        (set-face-attribute f nil :background bg :extend t :foreground fg))
-      (set-face-attribute 'org-block-begin-line nil :overline t)
-      (set-face-attribute 'org-block-end-line nil :overline nil)
-      (set-face-attribute 'org-block-end-line nil :underline t)
-      (set-face-attribute 'org-block nil :background bg :extend t)))
-
-  (when (eq gk-gui-theme 'modus-vivendi)
-    (set-face-attribute 'flymake-warning nil :background nil :underline "yellow")
-    (set-face-attribute 'flymake-error nil :background nil :underline "red"))
-
-  ;; Settings for when using default theme specifically.
-  (unless gk-gui-theme
-    (set-face-attribute 'region nil :background "yellow green")
-
-    ;; Distinctively fontify org mode blocks.
-    (let ((color "steel blue"))
-      (set-face-attribute 'org-meta-line nil
-                          :background color :extend t
-                          :foreground "white")
-      (set-face-attribute 'org-block nil
-                          :background (color-lighten-name color 40)
-                          :inherit 'normal :extend t)))
-
-  (when (eq gk-gui-theme 'yoshi)
-    (set-face-attribute 'org-level-1 nil :underline nil)
-    (set-face-attribute 'org-level-2 nil :weight 'regular)
-    (set-face-attribute 'org-level-3 nil :italic nil))
+  ;; Customise selected theme.
+  (run-hook-with-args 'gk-gui-theme-customisation-functions
+                      gk-gui-theme)
 
   ;; Region should not have a foreground colour.
   (set-face-attribute 'region nil :foreground nil)
@@ -6815,6 +6734,130 @@ picks."
 
   (dolist (hook '(special-mode-hook dired-mode-hook rmail-mode-hook rmail-summary-mode-hook))
     (add-hook hook ($ (setq-local cursor-type 'box)))))
+
+
+
+;;;;;; Theme customisations:
+
+(add-hook 'gk-gui-theme-customisation-functions
+          (lambda (theme)
+            "Customisations for wombat."
+            (when (eq theme 'wombat)
+              ;; With wombat the active window is hard to tell.
+              (set-face-attribute 'mode-line nil
+                                  :background "black"
+                                  :foreground "white")
+              ;; Default added face renders foreground unreadable.
+              (set-face-attribute 'diff-refine-added nil
+                                  :background "dark olive green")
+              (set-face-attribute 'region nil :foreground nil)
+
+              ;; Nicer, unambigous headline colours for Org mode headlines that
+              ;; form a scale from green to red.  Also, make headlines a little
+              ;; bit larger if ‘org-variable-pitch-minor-mode’ is enabled.
+              (let ((colours ["yellow green"
+                              "khaki"
+                              "dark sea green"
+                              "light sea green"
+                              "steel blue"
+                              "slate blue"
+                              "orchid"
+                              "hotpink"]))
+                (dotimes (i 7)
+                  (let ((face (intern (format "org-level-%d" (1+ i)))))
+                    (set-face-attribute face nil :foreground (aref colours i) :height 1.0)
+                    (when (with-temp-buffer
+                            (gk-org-visuals-hook)
+                            org-variable-pitch-minor-mode)
+                      (set-face-attribute face nil :height 1.2))))))))
+
+(add-hook 'gk-gui-theme-customisation-functions
+          (lambda (theme)
+            "Customisations for misterioso."
+            (when (eq theme 'misterioso)
+              (set-face-attribute 'header-line nil :background "black"
+                                  :foreground "white")
+              (set-face-attribute 'show-paren-match nil
+                                  :foreground "green yellow"
+                                  :background nil)
+              (set-face-attribute 'diff-refine-added nil
+                                  :background "sea green"))))
+
+(add-hook 'gk-gui-theme-customisation-functions
+          (lambda (theme)
+            "Common customisations for misterioso and wombat."
+            (when (memq theme '(wombat misterioso))
+              ;; Make the cursor more visible, the default grey colour is
+              ;; indistinguishable, especially with the bar cursor.
+              (set-face-attribute 'cursor nil :background "hotpink")
+              ;; Don't change the foreground or decorate the text when
+              ;; ‘hl-line-mode’ is on.
+              (set-face-attribute 'highlight nil
+                                  :foreground nil
+                                  :underline nil))))
+
+(add-hook 'gk-gui-theme-customisation-functions
+          (lambda (theme)
+            "Customisations for paper theme."
+            (when (eq theme 'paper)
+              ;; Better background colour for region.
+              (set-face-attribute 'region nil :background "medium spring green"))))
+
+(add-hook 'gk-gui-theme-customisation-functions
+          (lambda (theme)
+            "Customisations for dracula theme."
+            (when (eq theme 'dracula)
+              ;; Less prominent inactive modeline.
+              (set-face-attribute
+               'mode-line nil :box t :foreground nil :background nil :inherit 'mode-line)
+              (set-face-attribute 'region nil :background "black"))))
+
+(add-hook 'gk-gui-theme-customisation-functions
+          (lambda (theme)
+            "Customisations for modus themes"
+            (when (eq theme 'modus-operandi)
+              (let ((bg (face-attribute 'org-block-begin-line :background))
+                    (fg (face-attribute 'org-block-begin-line :foreground)))
+                (dolist (f '(org-block-begin-line org-block-end-line))
+                  (set-face-attribute f nil :background bg :extend t :foreground fg))
+                (set-face-attribute 'org-block-begin-line nil :overline t)
+                (set-face-attribute 'org-block-end-line nil :overline nil)
+                (set-face-attribute 'org-block-end-line nil :underline t)
+                (set-face-attribute 'org-block nil :background bg :extend t)))
+
+            (when (eq theme 'modus-vivendi)
+              (set-face-attribute 'flymake-warning nil :background nil :underline "yellow")
+              (set-face-attribute 'flymake-error nil :background nil :underline "red"))))
+
+(add-hook 'gk-gui-theme-customisation-functions
+          (lambda (theme)
+            "Customisations for the yoshi theme."
+            (when (eq theme 'yoshi)
+              (set-face-attribute 'org-level-1 nil :underline nil)
+              (set-face-attribute 'org-level-2 nil :weight 'regular)
+              (set-face-attribute 'org-level-3 nil :italic nil))))
+
+(add-hook 'gk-gui-theme-customisation-functions
+          (lambda (theme)
+            "Customisations for the inkpot theme."
+            (when (eq theme 'inkpot)
+              (set-face-attribute 'mode-line-inactive nil :inverse-video t))))
+
+(add-hook 'gk-gui-theme-customisation-functions
+          (lambda (theme)
+            "Settings for when using default theme specifically."
+            (unless theme
+              (set-face-attribute 'region nil :background "yellow green")
+
+              ;; Distinctively fontify org mode blocks.
+              (let ((color "steel blue"))
+                (set-face-attribute 'org-meta-line nil
+                                    :background color :extend t
+                                    :foreground "white")
+                (set-face-attribute 'org-block nil
+                                    :background (color-lighten-name color 40)
+                                    :inherit 'normal :extend t)))))
+
 
 
 
