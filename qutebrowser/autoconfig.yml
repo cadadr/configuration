@@ -41,6 +41,7 @@ settings:
         ',Fe': spawn firefox -P empty {url}
         ',Fh': spawn firefox -P hacett-proxy {url}
         ',Fs': spawn firefox -P shopping {url}
+        ',I': hint images run open -t {hint-url}
         ',J': set-cmd-text :set -u "{url:domain}" content.javascript.enabled true
         ',R': :spawn --userscript ~/.config/qutebrowser/userscripts/readability
         ',W': jseval document.body.style='max-width:15cm !important;margin:auto;'
