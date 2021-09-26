@@ -86,11 +86,13 @@ sub maybe_rename_and_copy {
         my ($alias, $path, $mimetype) = split /(?<=[^\\]):/, $f;
         # relativise path
         my $realpath;
-        if ($path =~ m{^/}) {
+        if (defined($path) && $path =~ m{^/}) {
             $realpath = $path
-        } else {
+        } elsif (defined($path)) {
             $realpath = Path::Tiny::path(
                 dirname($finnam))->child($path)->stringify;
+        } else {
+            die "unexpected file name: $f (did you export with *Better* Bib(La)TeX?)";
         }
 
         # File not found, so print entry with comment stating that.
@@ -215,6 +217,16 @@ First, in Zotero, make sure all items in the collections to be
 processed have parent items.  This is important, because if they
 don’t, they won’t appear in the Bib(La)TeX file Zotero exports, and
 thus will be ignored by this script.
+
+=over
+
+Caution!
+
+This scripts excepts a vanilla BibTeX or BibLaTeX export from Zotero
+itself, do *not* use the Better BibTeX’s export options if you have
+that extension installed.
+
+=back
 
 After that’s done, export the collection to some known location, for
 example ~/Bibliography.  Then, go to that directory, and run
