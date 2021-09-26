@@ -283,7 +283,7 @@
       auto-save-list-file-prefix (locate-user-emacs-file
                                   "etc/auto-save-list/saves-")
       bookmark-default-file (dropbox "bookmarks.el")
-      bbdb-file (expand-file-name "~/Documents/bbdb")
+      bbdb-file (expand-file-name "~/Notes/bbdb-contacts.el")
       savehist-file (locate-user-emacs-file "etc/history")
       eww-bookmarks-directory (dropbox ".")
       save-place-file (locate-user-emacs-file "etc/places")
