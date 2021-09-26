@@ -2050,7 +2050,10 @@ Useful when using dired-subtree."
  ;; otherwise.
  dired-hide-details-hide-symlink-targets nil)
 
-(setf ls-lisp-dirs-first t)
+(setf
+ ls-lisp-dirs-first t
+ ;; HACK(2021-09-25): if this is t, the sort is case sensitive...
+ ls-lisp-use-string-collate nil)
 
 (setf
  ;; Ask for confirmation
