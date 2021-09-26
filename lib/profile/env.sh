@@ -69,13 +69,6 @@ export GUILE_LOAD_PATH=$MYLIB/scheme:$GUILE_LOAD_PATH
 # Lua
 export LUA_PATH="$MYLIB/lua/?.lua"
 
-# Guix
-#
-# This has to happen here instead of $MYLIB/guix.sh because in there
-# we don’t have the proper $GUILE_LOAD_PATH yet, for which we need
-# $MYLIB.
-export GUIX_PACKAGE_PATH=$MYLISP/scm
-
 # SystemDee
 # Behave, you fuck.
 export SYSTEMD_PAGER=
