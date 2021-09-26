@@ -112,6 +112,7 @@ settings:
     file://*: true
     global: false
     http://*.hacettepe.edu.tr: true
+    https://*.gandi.net: true
     https://*.wikipedia.org: true
     https://cadadr.space: true
     https://dragonscave.space: true
