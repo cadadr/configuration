@@ -5560,6 +5560,10 @@ numerals which regularly appear in texts."
 
 ;;;;;; LaTeX previews:
 
+(setf
+ ;; Single global location for latex-previews, don’t pollute dirs.
+ org-preview-latex-image-directory (expand-file-name "~/.org-latex-previews"))
+
 (define-advice org-format-latex
     (:around (fn &rest args) take-theme-into-account)
   "Adapt LaTeX previews to current theme.
