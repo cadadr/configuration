@@ -50,12 +50,12 @@ show-welcome-page = false
 settings-migrated = true
 
 [io/github/celluloid-player/celluloid/window-state]
-height = 1080
+height = 844
 loop-playlist = false
 playlist-width = 250
 show-controls = true
 show-playlist = false
-width = 1920
+width = 1440
 
 [org/blueberry]
 obex-enabled = true
