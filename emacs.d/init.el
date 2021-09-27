@@ -6660,7 +6660,7 @@ picks."
   (set-face-attribute 'default nil
                       :height gk-font-default-height
                       :family (gk-font :mono)
-                      :weight 'normal)
+                      :weight 'light)
 
   (set-fontset-font t 'symbol (gk-font :emoji))
 
