@@ -3,7 +3,7 @@
 GK_SOURCED=""
 
 _source (){
-    export GK_SOURCED="$0:$GK_SOURCED"
+    export GK_SOURCED="$1:$GK_SOURCED"
     case $0 in
 	*zsh)	source $@ ;;
 	*)	. $@ ;;
