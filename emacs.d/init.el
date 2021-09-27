@@ -1792,7 +1792,7 @@ column will be split into two instead."
 
 ;; Set up so that there's 80-85 chars width for half-sized horizontal
 ;; windows.
-(defconst gk-font-default-height 100)
+(defconst gk-font-default-height 110)
 (defconst gk-font-variable-pitch-height 110)
 
 (defun gk-font (type)
