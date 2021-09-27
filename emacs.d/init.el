@@ -5509,6 +5509,10 @@ numerals which regularly appear in texts."
  "file"
  :face '(:inherit font-lock-string-face :underline t))
 
+(org-link-set-parameters
+ "elisp"
+ :face '(:inherit font-lock-keyword-face :underline t))
+
 (add-hook 'org-mode-hook
           (lambda ()
             (set-face-attribute 'org-ellipsis nil
