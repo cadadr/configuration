@@ -6845,7 +6845,12 @@ picks."
           (lambda (theme)
             "Customisations for the inkpot theme."
             (when (eq theme 'inkpot)
-              (set-face-attribute 'mode-line-inactive nil :inverse-video t))))
+              (set-face-attribute 'mode-line-inactive nil :inverse-video t)
+              ;; The normal colours are eye murderingly bright-on-bright.
+              (set-face-attribute
+               'widget-field nil
+               :foreground "white"
+               :background (face-attribute 'mode-line :background)))))
 
 (add-hook 'gk-gui-theme-customisation-functions
           (lambda (theme)
