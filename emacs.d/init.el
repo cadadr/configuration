@@ -5950,7 +5950,7 @@ which correspond to homonymous fields listed in
                        (org-fill-paragraph)
                        (buffer-substring-no-properties (point-min)
                                                        (point-max)))))))
-   :target `(file ,(gk-org-dir-file "ReadingList.org"))
+   :target `(file ,(gk-org-dir-file "AcademicReadingList.org"))
    :prepend t
    :empty-lines-after 1
    :unnarrowed t)
