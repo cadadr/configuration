@@ -7404,21 +7404,9 @@ When called interactively."
 ;; files instead of the browser, and prompts whether or not to open
 ;; URLs in EWW or not.
 
-;; Zero this out first.
-(setf browse-url-browser-function #'gk-browse-url)
-
 
 
 ;;;;;; Common:
-
-(defconst gk-ytl-format
-  "http://localhost:3991/ytl.html?v=%s"
-  "The url for lite youtube player, %s for where to insert video id.")
-
-(defalias 'gk-urls-external-browser 'browse-url-qutebrowser)
-(setf browse-url-firefox-program
-      (or (gk-executable-ensure "firefox" t)
-          (expand-file-name "~/Applications/firefox/firefox")))
 
 ;; TODO Check if still relevant when switch to Emacs 25.
 ;; Replacement for odd standard implementation.
@@ -7427,6 +7415,35 @@ When called interactively."
   "Return non-nil if the \"xdg-open\" program can be used.
 xdg-open is a desktop utility that calls your preferred web browser."
   (and window-system (executable-find "xdg-open")))
+
+(define-error 'gk-no-external-browser
+  "‘gk-urls-external-browser’ could not find a suitable external browser")
+
+(defun gk-urls-external-browser (&rest args)
+  "Find a suitable browser and pass ARGS to it."
+  (apply
+   (cond ((browse-url-can-use-xdg-open)
+          #'browse-url-xdg-open)
+         ((executable-find "chromium")
+          #'browse-url-chromium)
+         ((executable-find "firefox")
+          #'browse-url-firefox)
+         (t
+          (signal 'gk-no-external-browser)))
+   args))
+
+(defun gk-browse-url (&rest args)
+  (condition-case err
+      (apply #'gk-urls-external-browser args)
+    ('no-external-browser
+     (message "%s, using EWW" err)
+     (apply #'eww-browse-url args))))
+
+(setf browse-url-browser-function #'gk-browse-url
+      browse-url-generic-program  #'gk-browse-url
+      browse-url-firefox-program
+      (or (gk-executable-ensure "firefox" t)
+          (expand-file-name "~/Applications/firefox/firefox")))
 
 
 (defvar browse-url-qutebrowser-program
@@ -7493,12 +7510,6 @@ Redirect to the raw file url."
        (message "Started mpv process for: %s" url))
     (gk-urls-external-browser url)))
 
-(defun gk-urls-browse-cornucopia (url &rest args)
-  "Browse a cornucopia URL."
-  (apply #'gk-browse-url
-         (replace-regexp-in-string "\\.local" ".net" url)
-         args))
-
 (defun gk-urls-add-to-emms (url &rest args)
   "Add an URL to EMMS."
   (emms-add-url url))
@@ -7506,9 +7517,6 @@ Redirect to the raw file url."
 (defun gk-urls-with-elpher (url &rest args)
   "Visit an URL with Elpher."
   (elpher-go url))
-
-(defalias 'gk-browse-url 'browse-url-qutebrowser)
-
 
 
 
@@ -7612,18 +7620,15 @@ provided."
 
 
 
-;;;;;; Set the browse-url functions:
+;;;;;; Set browse-url handlers:
 
-(setf browse-url-generic-program
-      (executable-find "xdg-open")
-      browse-url-handlers
+(setf browse-url-handlers
       `(("\\(youtube\\.com\\|youtu\\.be\\)/" . gk-urls-browse-mpv)
         ("invidio\\.us/" . gk-urls-browse-mpv)
         ("^https?://\\(github\\|gitlab\\).com/.*?/.*?/\\(commit\\|compare\\)/[a-z0-9]+$" .
          gk-urls-browse-github/gitlab-commit)
         ("^https?://github\\.com/.*?/.*?/blob/" . gk-urls-browse-github-file)
         ("^https?://raw\\.github\\.com/" . gk-urls-browse-github-raw)
-        ("^http://www.cornucopia\\.local/" . gk-urls-browse-cornucopia)
         ("file:///home/.+/co/lisp/doc/HyperSpec/" . gk-browse-url)
         ("^\\(gemini\\|gopher\\)://" . gk-urls-with-elpher)
         ,@gk-urls-file-adapters))
