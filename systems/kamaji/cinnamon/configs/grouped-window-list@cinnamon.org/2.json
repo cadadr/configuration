@@ -164,8 +164,6 @@
             "nemo.desktop"
         ],
         "value": [
-            "qutebrowser.desktop",
-            "zotero.desktop",
             "kitty.desktop",
             "emacs.desktop",
             "chromium.desktop",
