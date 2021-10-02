@@ -45,6 +45,9 @@ hide-systray = true
 refresh-minutes = 10
 refresh-schedule-enabled = false
 show-welcome-page = false
+tracker-grace-period = 30
+tracker-max-age = 15
+tracker-max-days = 7
 
 [io/github/celluloid-player/celluloid]
 settings-migrated = true
