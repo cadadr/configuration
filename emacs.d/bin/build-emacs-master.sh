@@ -64,9 +64,17 @@ echo Build finished, hit RETURN to continue to testing w/ -Q.; read nought
 # ‘emacs-load-test.sh’ should be in the PATH.  You can change the
 # script file name, or just run ‘./src/emacs’ and ‘C-x C-c’ out of it
 # if the config loads fine.
-echo Hit RETURN to test w/ configuration.; read nought
-EMACS=./src/emacs emacs-load-test.bash
-
+#
+# We retry until the test succeeds, or a SIGINT or similar.
+while true; do
+    echo Hit RETURN to test w/ configuration.; read nought
+    EMACS=./src/emacs emacs-load-test.bash && break
+    echo
+    echo
+    echo "TEST FAILED, you may want to review the stack trace"
+    echo "and retry the test or the build."
+    echo
+done
 
 echo Hit RETURN to install...; read nought
 rm -rf ~/local/emacs && make install
