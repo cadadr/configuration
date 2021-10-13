@@ -5555,10 +5555,11 @@ numerals which regularly appear in texts."
 
 (defun gk-org-visuals-hook ()
   "Set up how an Org buffer look."
-  ;; (valign-mode +1)
-  (set-face-attribute 'org-footnote nil :underline nil)
-  ;; (setq-local truncate-lines t)
-  )
+  ;; This for some reason loves to have its own custom font setup for
+  ;; some reason.  You cheeky little bastard, you do as I say alright.
+  (set-face-attribute 'org-table nil :font
+                      (face-attribute 'default :font nil t))
+  (set-face-attribute 'org-footnote nil :underline nil))
 
 (add-hook 'org-mode-hook 'gk-org-visuals-hook)
 
