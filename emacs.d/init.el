@@ -880,6 +880,25 @@ Linguistics (2nd ed.). Oxford University Press."
       (apply 'set-frame-position (flatten-list (list frame center))))))
 
 
+(defun gk-face-and-font-family-at-point (point)
+  "Face identifier and font family at point.
+
+Interactively, POINT is the current location of the point in the
+current buffer; the information will be revealed in the echo
+area.
+
+When called from Lisp, a plist with the same information is
+returned, where the face name is a symbol and the font family is
+a string, the family name."
+  (interactive (list (point)))
+  (let* ((face (save-excursion (goto-char (point)) (face-at-point)))
+         (ffam (font-get (font-at point) :family)))
+    (when (called-interactively-p)
+      (message "At %s:%d: face is ‘%s’; font is ‘%s’."
+               (buffer-name) point face ffam))
+    (list :family ffam :face face)))
+
+
 
 
 ;;;; Generic advices:
