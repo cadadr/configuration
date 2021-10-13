@@ -1423,7 +1423,9 @@ creating a new one."
     (not (not current-prefix-arg))))
   (let* ((vcs
           (cond
-           ((file-exists-p (expand-file-name ".git" path))
+           ((and
+             (fboundp 'magit-status)
+             (file-exists-p (expand-file-name ".git" path)))
             #'magit-status)
            ((or (mapcar #'vc-backend (gk-directory-files path)))
             #'vc-dir)))
