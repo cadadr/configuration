@@ -547,6 +547,7 @@ locations = ['file:///home/g/Music']
 [org/gnome/simple-scan]
 document-type = 'photo'
 jpeg-quality = 100
+photo-dpi = 150
 
 [org/gnome/terminal/legacy]
 schema-version = uint32 3
