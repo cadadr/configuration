@@ -3060,12 +3060,25 @@ unlocked, offer to lock it before pasting."
             (goto-char (point-min))
             (if addp
                 (insert "Add " filename)
-              ;; The below is inserted in two steps so that undo
-              ;; boundaries can be added and removing the
-              ;; ‘current-defun’ string in case it is useless is as easy
-              ;; as a single undo.
-              (insert filename ": ")
+              ;; Here we’re manipulating the undo history as such:
+              ;; 1) Insert an ‘insignificant change’ form.
+              (insert "; " filename)
+              ;; 2) Add an undo boundary here.  If there is a
+              ;;   ‘current-defun’, two undos will get us back to the
+              ;;   insignificant form, it not, one will suffice.
               (undo-boundary)
+              ;; 3) Now delete that whole line, and...
+              (delete-region (line-beginning-position) (line-end-position))
+              ;;    amalgamate the undo boundaries so that we don’t
+              ;;    need an extra undo to return to the insignificant
+              ;;    change form.
+              (undo-auto-amalgamate)
+              ;; 4) Now insert the file name with a colon following it.
+              (insert filename ": ")
+              ;; 5) Add an undo boundary before trying to insert
+              ;; ‘current-defun’.
+              (undo-boundary)
+              ;; 6) Try to insert ‘current-defun’.
               (when (and current-defun)
                 (save-excursion
                   (backward-char 2)
