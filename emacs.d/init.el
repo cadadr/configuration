@@ -7817,6 +7817,39 @@ It is rather slow to do so."
 (defalias 'gk-elfeed-next 'next-logical-line)
 (defalias 'gk-elfeed-prev 'previous-logical-line)
 
+(defun gk-elfeed-feeds-with-category (category &rest feeds)
+  (declare (indent defun))
+  (mapcar (lambda (feed)
+            (append (if (listp feed) feed (list feed))
+                    (if (listp category) category (list category))))
+          feeds))
+
+(defun gk-elfeed-import-from-feeder-OPML (file)
+  (cons
+   'setf
+   (cons
+    'elfeed-feeds
+    (list
+     (cons
+      'cl-concatenate
+      (cons
+       ''list
+       (cl-remove-if
+        #'not
+        (mapcar
+         (lambda (cat)
+           (let (tag feeds)
+             (when (listp cat)
+               (when (eq 'outline (car cat))
+                 (setq tag (intern (downcase (assoca 'title (cadr cat))))
+                       feeds (cl-remove-if-not #'listp (cdddr cat)))
+                 `(gk-elfeed-feeds-with-category
+                    ',tag
+                    ,@(mapcar (lambda (f) (assoca 'xmlUrl (cadr f))) feeds))))))
+         (assoca
+          '(opml body)
+          (xml-parse-file file))))))))))
+
 (defun gk-elfeed-search-mode-hook ()
   )
 
