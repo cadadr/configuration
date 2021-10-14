@@ -7897,7 +7897,7 @@ It is rather slow to do so."
       ;; limit title length.  Otherwise print the truncated title and
       ;; include the filtered tags.  Commit logs and VCS releases get
       ;; special treatment.
-      (cond ((cl-member "logiciels" tags :test #'string=)
+      (cond ((cl-member "software" tags :test #'string=)
              (setq-local word-wrap t)
              (setq-local truncate-lines nil)
              (let* ((url (elfeed-feed-url feed))
