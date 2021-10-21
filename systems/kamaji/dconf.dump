@@ -6,8 +6,6 @@ lock-on-lid = false
 lock-on-suspend = true
 
 [apps/seahorse/windows/key-manager]
-height = 476
-width = 600
 
 [ca/desrt/dconf-editor]
 show-warning = false
@@ -53,12 +51,10 @@ tracker-max-days = 7
 settings-migrated = true
 
 [io/github/celluloid-player/celluloid/window-state]
-height = 1080
 loop-playlist = false
 playlist-width = 250
 show-controls = true
 show-playlist = false
-width = 1920
 
 [org/blueberry]
 obex-enabled = true
@@ -418,8 +414,6 @@ disable-microphone = false
 group-books-by-language = false
 
 [org/gnome/devhelp/state/main/window]
-height = 500
-width = 1000
 
 [org/gnome/epiphany/state]
 is-maximized = false

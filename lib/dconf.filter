@@ -82,7 +82,9 @@ window-properties
 history-mate-run
 last-([hvw]pane|window|zoomlevel)(-(x|y|pos|width|height))?
 engines-order
-install-last-run"
+install-last-run
+height
+width"
 
 export filter
 
