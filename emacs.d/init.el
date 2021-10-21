@@ -775,7 +775,7 @@ argument as t, so refer to that command for further details."
           ($ (cons (buffer-name (window-buffer $1)) $1))
           (window-list))))
     (select-window
-     (assoca
+     (gk-assoca
       (completing-read "Window with buffer: " winbufs)
       winbufs))))
 
@@ -1261,7 +1261,7 @@ TEST-FN defaults to ‘equal’."
   `(setq ,sym (dissoc ,key ,sym ,test-fn)))
 
 
-(defun assoca (keyseq list)
+(defun gk-assoca (keyseq list)
   "Arbitrary depth multi-level alist query.
 
 KEYSEQ is the list of keys to look up in the LIST.  The first key
@@ -1277,6 +1277,8 @@ singleton list."
         (ret list))
     (dolist (k ks ret)
       (setq ret (cdr (assoc k ret))))))
+
+(define-obsolete-function-alias 'assoca 'gk-assoca "2021-10-14")
 
 
 
@@ -1386,7 +1388,7 @@ If nil, use ‘shell’ instead.")
      "Run project compile command: "
      gk-project-compile-default-command
      gk-project-compile--hist)))
-  (if-let* ((projbuf (get-buffer (assoca 'gk-project (frame-parameters)))))
+  (if-let* ((projbuf (get-buffer (gk-assoca 'gk-project (frame-parameters)))))
       (with-current-buffer projbuf
         (compile command))
     (user-error "Not a project frame")))
@@ -1510,7 +1512,7 @@ shell, toggle the side window.
 If there is a project shell associated to the frame, just show
 that instead."
   (interactive "P")
-  (if (and (assoca 'window-side (window-parameters))
+  (if (and (gk-assoca 'window-side (window-parameters))
            (equal major-mode
                   (if gk-projects-use-eshell
                       'eshell-mode
@@ -1530,10 +1532,10 @@ that instead."
   (when (window-with-parameter 'window-side)
     (window-toggle-side-windows))
   (delete-other-windows)
-  (if (assoca 'gk-project-shell (frame-parameters))
+  (if (gk-assoca 'gk-project-shell (frame-parameters))
       (let* ((fparam (frame-parameters))
-             (vcs (assoca 'gk-project-vcs fparam))
-             (dir (assoca 'gk-project-dir fparam)))
+             (vcs (gk-assoca 'gk-project-vcs fparam))
+             (dir (gk-assoca 'gk-project-dir fparam)))
         (dired dir)
         (split-window-sensibly)
         (other-window 1)
@@ -2730,9 +2732,9 @@ file extension.")
             calendar-longitude (string-to-number long))
     ;; ...otherwise, try to use geolocation.
     (let* ((whereami (geoclue-location))
-           (lat (assoca 'latitude whereami))
-           (long (assoca 'longitude whereami))
-           (desc (assoca 'description whereami)))
+           (lat (gk-assoca 'latitude whereami))
+           (long (gk-assoca 'longitude whereami))
+           (desc (gk-assoca 'description whereami)))
       (setf calendar-location-name
             (if (string-empty-p desc)
                 (or (getenv "TZ") "wHEreVer yOu arEeeEEeEe")
@@ -5960,7 +5962,7 @@ which correspond to homonymous fields listed in
                                             ebib-entry-mode))
                    (user-error "This template (e) should be called from within Ebib"))
                  (with-current-buffer
-                     (or (assoca 'index ebib--buffer-alist)
+                     (or (gk-assoca 'index ebib--buffer-alist)
                          ;; XXX(2021-03-26): this can be replaced with
                          ;; an interactive search maybe?
                          (user-error "Ebib not running, can’t use ebib capture template"))
@@ -6914,7 +6916,7 @@ picks."
  truncate-partial-width-windows nil
  ;; Use default fringe indicators for ‘visual-line-mode’ too.
  visual-line-fringe-indicators
- (assoca '(continuation) fringe-indicator-alist))
+ (gk-assoca '(continuation) fringe-indicator-alist))
 
 
 
@@ -7841,12 +7843,12 @@ It is rather slow to do so."
            (let (tag feeds)
              (when (listp cat)
                (when (eq 'outline (car cat))
-                 (setq tag (intern (downcase (assoca 'title (cadr cat))))
+                 (setq tag (intern (downcase (gk-assoca 'title (cadr cat))))
                        feeds (cl-remove-if-not #'listp (cdddr cat)))
                  `(gk-elfeed-feeds-with-category
                     ',tag
-                    ,@(mapcar (lambda (f) (assoca 'xmlUrl (cadr f))) feeds))))))
-         (assoca
+                    ,@(mapcar (lambda (f) (gk-assoca 'xmlUrl (cadr f))) feeds))))))
+         (gk-assoca
           '(opml body)
           (xml-parse-file file))))))))))
 
