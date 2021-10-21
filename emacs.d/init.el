@@ -5924,13 +5924,14 @@ which correspond to homonymous fields listed in
 
   (gk-org-define-capture-template
    :keys "b"
-   :description "New blurb"
-   :type 'item
-   :target `(file ,(gk-org-dir-file "Blurbs.org"))
-   :template "- %?"
-   :prepend nil
+   :description "New internet bookmark"
+   :type 'entry
+   :target `(file ,(gk-org-dir-file "InternetBookmarks.org"))
+   :template "* %:description\n%:link\n\n%?%i"
+   :prepend t
    :empty-lines-before 1
-   :unnarrowed t)
+   :empty-lines-after 1
+   :unnarrowed nil)
 
   (gk-org-define-capture-template
    :keys "t"
