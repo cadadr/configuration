@@ -360,6 +360,8 @@ unplug-enabled = false
 name = 'Mint-Y-Dark-Purple'
 theme-cache-updated = 1615227053
 
+[org/gnome/Disks]
+
 [org/gnome/baobab/ui]
 active-chart = 'treemap'
 
@@ -515,6 +517,7 @@ info-stats-type = 'discharge-accuracy'
 
 [org/gnome/rhythmbox/library/source]
 show-browser = true
+sorting = ('Title', true)
 
 [org/gnome/rhythmbox/plugins]
 active-plugins = ['tray_icon', 'dbus-media-server', 'android', 'generic-player', 'audiocd', 'ipod', 'mmkeys', 'rb', 'artsearch', 'power-manager', 'iradio', 'mtpdevice', 'daap', 'notification', 'audioscrobbler', 'mpris']
@@ -617,7 +620,7 @@ active-plugins = ['time', 'textsize', 'modelines', 'spell', 'joinlines', 'sort',
 
 [org/x/editor/plugins/filebrowser/on-load]
 root = 'file:///'
-tree-view = true
+tree-view = false
 
 [org/x/editor/preferences/editor]
 auto-save = false
