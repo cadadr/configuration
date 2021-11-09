@@ -910,6 +910,19 @@ Pass ARGS to FUN."
   (save-window-excursion
     (apply fun args)))
 
+(defun gk-protect-frame-focus (f &rest args)
+  "Generic :around advice to reclaim frame focus.
+
+Some interactions with the OS, e.g. sending a link to the browser
+may result in Emacs losing focus. This is very rude of the
+OS. This function is a generic :around-advice that runs the given
+function and then reclaims focus after some time so the user can
+continue interacting with Emacs."
+  (let ((frame (selected-frame)))
+    (apply f args)
+    (sit-for .3)
+    (x-focus-frame frame)))
+
 
 
 ;;;; Recompilation:
@@ -4095,9 +4108,7 @@ is non nil if there’s new mail."
  rmail-mime-prefer-html nil)
 
 (defun gk-rmail-view-html-part-in-browser ()
-  "View the HTML part of the message in this buffer in the
-
-browser."
+  "View the HTML part of the message in this buffer in the browser."
   (interactive)
   (save-excursion
     (goto-char (point-min))
@@ -4117,6 +4128,9 @@ browser."
                    ".html")))
       (browse-url
        (concat "file://" (gk-rmail-mime-save-to-tmp button filename))))))
+
+(add-function :around (symbol-function 'gk-rmail-view-html-part-in-browser)
+              #'gk-protect-frame-focus)
 
 (defun gk-rmail-mime-save-to-tmp (button output-file-name)
   "Save the attachment in BUTTON in OUTPUT-FILE-NAME.
@@ -7863,6 +7877,11 @@ It is rather slow to do so."
 
 
 
+;;;;;; Advices:
+
+(add-function :around (symbol-function 'elfeed-search-browse-url) #'gk-protect-frame-focus)
+
+
 
 ;;;;;; Print entry function:
 
