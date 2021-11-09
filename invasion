@@ -13,6 +13,7 @@
 .config/mpv			dotfiles/mpv
 .config/fcitx			dotfiles/fcitx
 .config/qutebrowser		qutebrowser
+.config/rstudio/rstudio-prefs.json	dotfiles/rstudio-prefs.json
 .gitconfig			dotfiles/gitconfig.ini
 .gdbinit			dotfiles/gdbinit
 .hgrc				dotfiles/hgrc.ini
