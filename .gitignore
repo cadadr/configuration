@@ -81,3 +81,9 @@ emacs.d/.emacs.desktop
 emacs.d/ido.last
 emacs.d/org-caldav-*
 emacs.d/kkcrc
+
+# fcitx
+dotfiles/fcitx/clipboard/
+dotfiles/fcitx/dbus/
+dotfiles/fcitx/log/
+dotfiles/fcitx/cached_layout

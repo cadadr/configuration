@@ -11,6 +11,7 @@
 .config/clipit/clipitrc		dotfiles/clipitrc.ini
 .config/kitty/kitty.conf	dotfiles/kitty.conf
 .config/mpv			dotfiles/mpv
+.config/fcitx			dotfiles/fcitx
 .config/qutebrowser		qutebrowser
 .gitconfig			dotfiles/gitconfig.ini
 .gdbinit			dotfiles/gdbinit
