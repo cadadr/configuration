@@ -291,7 +291,7 @@ min-window-opacity = 30
 mouse-button-modifier = '<Super>'
 theme = 'Mint-Y-Dark'
 titlebar-font = 'DejaVu Sans Bold Semi-Condensed 10'
-workspace-names = ['home', 'nook', 'strange room']
+workspace-names = ['home', 'nook', 'background']
 
 [org/cinnamon/muffin]
 attach-modal-dialogs = true
