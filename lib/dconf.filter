@@ -84,7 +84,8 @@ last-([hvw]pane|window|zoomlevel)(-(x|y|pos|width|height))?
 engines-order
 install-last-run
 height
-width"
+width
+image-dir-uri"
 
 export filter
 
