@@ -306,13 +306,21 @@ fi
 alias la='ls -Al'
 alias lr='ls -lR'
 alias mo=pg
-YOUDL=$HOME/co/External/youtube-dl
-alias ydl="PYTHONPATH=$YOUDL python3 $YOUDL/bin/youtube-dl"
+if which yt-dlp >/dev/null 2>/dev/null; then
+    alias ydl=yt-dlp
+    alias mpv="$(which mpv)"
+    alias ydlmusic="ydl --extract-audio --audio-format vorbis --audio-quality 3 --no-progress --batch-file -"
+else
+    YOUDL=$HOME/co/External/youtube-dl
+    alias ydl="PYTHONPATH=$YOUDL python3 $YOUDL/bin/youtube-dl"
+    alias mpv="PYTHONPATH=$YOUDL mpv"
+    alias ydlup="(cd $YOUDL && git pull)"
+    alias ydlmusic="ydlup && ydl --extract-audio --audio-format vorbis --audio-quality 3 --no-progress --batch-file -"
+fi
 # Medium quality
 alias ydl720="ydl -f 'bestvideo[height<=720]+bestaudio/best[height<=720]'"
-alias mpv="PYTHONPATH=$YOUDL mpv"
-alias ydlup="(cd $YOUDL && git pull)"
-alias ydlmusic="ydlup && ydl --extract-audio --audio-format vorbis --audio-quality 3 --no-progress --batch-file -"
+alias ydl480="ydl -f 'bestvideo[height<=480]+bestaudio/best[height<=480]'"
+alias ydl360="ydl -f 'bestvideo[height<=360]+bestaudio/best[height<=360]'"
 alias pg="$PAGER"
 alias o=xdg-open
 # Recursively download a website at a given url.
