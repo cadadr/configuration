@@ -10,6 +10,7 @@
 .config/gtk-3.0/bookmarks	dotfiles/gtk3.0-bookmarks.txt
 .config/clipit/clipitrc		dotfiles/clipitrc.ini
 .config/kitty/kitty.conf	dotfiles/kitty.conf
+.config/mpv			dotfiles/mpv
 .config/qutebrowser		qutebrowser
 .gitconfig			dotfiles/gitconfig.ini
 .gdbinit			dotfiles/gdbinit
