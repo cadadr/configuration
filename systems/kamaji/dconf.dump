@@ -620,7 +620,7 @@ active-plugins = ['time', 'textsize', 'modelines', 'spell', 'joinlines', 'sort',
 
 [org/x/editor/plugins/filebrowser/on-load]
 root = 'file:///'
-tree-view = false
+tree-view = true
 
 [org/x/editor/preferences/editor]
 auto-save = false
