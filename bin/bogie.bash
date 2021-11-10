@@ -53,7 +53,7 @@ IFS=$'\n\t'
 
 ### Defaults:
 
-# The ‘Ferrovie Internationali Cadadr’ playlist on YouTube
+# The ‘Ferrovie Internazionali Cadadr’ playlist on YouTube
 default_playlist="https://www.youtube.com/playlist?list=PLN4x4CnYyRYq-3VC6Kyl0_H5GkeeieGUC"
 
 # "lofi hip hop radio - beats to relax/study to" by the Lofi Girl
