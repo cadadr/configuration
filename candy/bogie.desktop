@@ -1,0 +1,10 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Name=Bogie
+Icon=bogie
+Exec=bogie.bash
+Terminal=true
+X-MultipleArgs=false
+Type=Application
+StartupNotify=true
+
