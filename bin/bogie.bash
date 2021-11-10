@@ -71,6 +71,7 @@ radio="${BOGIE_RADIO-$default_radio}"
 
 # Start videos at half Wide 360p resolution, at the top-right corner
 # of the workspace.
+echo video source: $playlist
 mpv --geometry=320x180-0+0 --no-border --no-osc --title=bogie-trainvids --ontop \
     --ytdl-format='bestvideo[height<=360]+bestaudio/best[height<=360]' \
     --shuffle "$playlist" >/dev/null 2>/dev/null &
@@ -78,6 +79,7 @@ mpv --geometry=320x180-0+0 --no-border --no-osc --title=bogie-trainvids --ontop 
 if [ ! "$radio" = "off" ]; then
     # ‘--shuffle’ is useless with the default but useful if it’s a
     # playlist or a directory.
+    echo radio: $radio
     mpv --ytdl-format='worstvideo+bestaudio/best' \
         --shuffle --no-video "$radio" >/dev/null 2>/dev/null &
 fi
