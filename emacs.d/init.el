@@ -5983,18 +5983,7 @@ which correspond to homonymous fields listed in
                          (user-error "Ebib not running, can’t use ebib capture template"))
                    (let* ((key (progn (ebib-copy-key-as-kill)
                                       (pop kill-ring)))
-                          (maybe-pdf
-                           (if-let*
-                               ((attch (gk-existing-file-name-or-nil
-                                        (expand-file-name (concat key ".pdf")
-                                                          gk-bib-attachments-dir))))
-                               (format " [[file:%s][(pdf)]]" attch)
-                             ""))
-                          (newitem (concat "- [ ] " key maybe-pdf "\n"
-                                           "  - " (replace-regexp-in-string
-                                                   "\n" " "
-                                                   (progn (ebib-copy-reference-as-kill)
-                                                          (pop kill-ring))))))
+                          (newitem (concat "- [ ] [[ebib:" key "]]")))
                      (with-temp-buffer
                        (org-mode)
                        (setq-local fill-column 70)
@@ -6005,6 +5994,7 @@ which correspond to homonymous fields listed in
    :target `(file ,(gk-org-dir-file "Papers.org"))
    :prepend nil
    :empty-lines-after 1
+   :empty-lines-before 1
    :unnarrowed t)
 
   (gk-org-define-capture-template
