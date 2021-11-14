@@ -92,6 +92,7 @@ enable-vfade = false
 enabled-applets = ['panel1:left:0:menu@cinnamon.org:0', 'panel1:left:2:show-desktop@cinnamon.org:1', 'panel1:left:5:grouped-window-list@cinnamon.org:2', 'panel1:right:2:systray@cinnamon.org:3', 'panel1:right:4:xapp-status@cinnamon.org:4', 'panel1:right:5:notifications@cinnamon.org:5', 'panel1:right:6:printers@cinnamon.org:6', 'panel1:right:7:removable-drives@cinnamon.org:7', 'panel1:right:8:network@cinnamon.org:9', 'panel1:right:10:sound@cinnamon.org:10', 'panel1:right:11:power@cinnamon.org:11', 'panel1:right:13:calendar@cinnamon.org:12', 'panel1:right:1:workspace-switcher@cinnamon.org:13', 'panel1:right:9:inhibit@cinnamon.org:15', 'panel1:right:3:keyboard@cinnamon.org:16', 'panel1:left:4:expo@cinnamon.org:17', 'panel1:left:3:scale@cinnamon.org:19', 'panel1:right:0:slideshow@cinnamon.org:20']
 enabled-desklets = @as []
 enabled-extensions = ['gTile@shuairan']
+favorite-apps = ['firefox.desktop', 'mintinstall.desktop', 'cinnamon-settings.desktop', 'org.gnome.Terminal.desktop', 'nemo.desktop']
 hotcorner-layout = ['rofi -show window:false:0', 'scale:false:0', 'expo:false:0', 'expo:false:0']
 next-applet-id = 21
 no-adjacent-panel-barriers = false
