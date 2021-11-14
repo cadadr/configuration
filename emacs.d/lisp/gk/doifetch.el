@@ -89,9 +89,21 @@ will be fetched synchronously."
            :sync sync
            :headers '(("Accept" . "application/x-bibtex; charset=utf-8"))
            :parser 'buffer-string
-           :success (cl-function
-                     (lambda (&key data &allow-other-keys)
-                       (funcall doifetch-success-callback doi data)))))
+           :success
+           (cl-function
+            (lambda (&key data &allow-other-keys)
+              (funcall
+               doifetch-success-callback doi
+               ;; Modify the data to generate a nice BibTeX key.
+               (with-temp-buffer
+                 (insert data)
+                 (let ((key (bibtex-generate-autokey)))
+                   (goto-char (point-min))
+                   (save-match-data
+                     (goto-char (re-search-forward "{"))
+                     (kill-line)
+                     (insert key ",")))
+                 (buffer-string)))))))
 
 
 (defun doifetch-widget-display (doi data)
