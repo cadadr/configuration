@@ -52,9 +52,10 @@ If not prefixed with \"https://doi.org/\", it will be added.
 
 If SYNC is non nil, or called with a prefix argument, the DOI
 will be fetched synchronously."
-  (interactive (list (let ((str (read-string "DOI to fetch: "
-                                             (doifetch--doi-at-point)
-                                             'doifetch--history)))
+  (interactive (list (let ((str (s-trim
+                                 (read-string "DOI to fetch: "
+                                              (doifetch--doi-at-point)
+                                              'doifetch--history))))
                        (if (s-starts-with? "http" str)
                            str
                          (concat "https://"
