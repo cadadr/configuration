@@ -393,6 +393,8 @@ alias cronlog="sudo grep CRON /var/log/syslog"
 alias notascii="tr -d '[:alnum:][:punct:][:space:]' | wc -m"
 alias shownotascii="tr -d '[:alnum:][:punct:][:space:]' | sed -E 's/(.)/\1\n/g' | sort | uniq -c | column"
 alias ohfuckemacs="pkill -USR2 emacs"
+alias localbogie="BOGIE_PLAYLIST=~/trains/ BOGIE_RADIO=~/Music/study-instrumental/ bogie.bash"
+alias partlocalbogie="BOGIE_PLAYLIST=~/trains/ bogie.bash"
 
 # raspberry pi
 alias pi="ssh pi@ayata.local"
