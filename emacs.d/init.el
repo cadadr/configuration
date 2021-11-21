@@ -7868,6 +7868,7 @@ It is rather slow to do so."
 ;;;;;; Advices:
 
 (add-function :around (symbol-function 'elfeed-search-browse-url) #'gk-protect-frame-focus)
+(add-function :around (symbol-function 'elfeed-show-visit) #'gk-protect-frame-focus)
 
 
 
