@@ -6608,10 +6608,8 @@ will become the only window."
 
 ;;;;; GUI:
 
-(defvar gk-preferred-themes '( :light anti-zenburn
-                               :dark inkpot
-                               ;; just being explicit...
-                               :no-preference anti-zenburn)
+(defvar gk-preferred-themes '( :light chyla
+                               :dark inkpot)
   "Light and dark theme preferences.")
 
 
@@ -6630,8 +6628,8 @@ customise that theme or not.")
 (defun gk-preferred-colour-scheme ()
   "Find out the system’s preferred colour scheme.
 
-Returns :light if the preferred colour scheme is light,
-:no-preference if no preference is set, or :dark if the user
+Returns :light if the preferred colour scheme is light, :light if
+no preference is set or can be determined, or :dark if the user
 prefers dark themes."
   (cond
    ((and (string= (getenv "DESKTOP_SESSION") "cinnamon")
@@ -6658,7 +6656,7 @@ prefers dark themes."
    ((string= (getenv "DESKTOP_SESSION") "i3wm")
     (intern (concat ":" (getenv "GK_COLOUR_SCHEME_PREFERENCE"))))
    (t
-    :no-preference)))
+    :light)))
 
 
 (defun gk-setup-frame-looks (&optional frame arg)
