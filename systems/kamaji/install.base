@@ -89,6 +89,7 @@ subversion
 swi-prolog
 telnet
 texlive-full
+tidy
 tmux
 traceroute
 units
@@ -100,5 +101,6 @@ vorbis-tools
 wget
 whois
 wkhtmltopdf
+yarnpkg
 youtube-dl
 zsh
