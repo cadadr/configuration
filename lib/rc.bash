@@ -31,6 +31,7 @@ export PROMPT_COMMAND=bp_procmd
 if [ "$TERM" = "dumb" ]; then
     if [ -z "${INSIDE_EMACS+x}" ]; then
 	export PROMPT_COMMAND=''
+        export PS1='$ '
     fi
 fi
 
