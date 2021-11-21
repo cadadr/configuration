@@ -159,9 +159,9 @@ cursor-blink-time = 1200
 cursor-size = 24
 cursor-theme = 'DMZ-White'
 font-name = 'DejaVu Sans Semi-Condensed 10'
-gtk-overlay-scrollbars = true
-gtk-theme = 'Mint-Y-Dark-Purple'
-icon-theme = 'Mint-Y-Dark-Purple'
+gtk-overlay-scrollbars = false
+gtk-theme = 'Mint-Y-Teal'
+icon-theme = 'Mint-Y-Teal'
 keyboard-layout-prefer-variant-names = false
 keyboard-layout-show-flags = false
 keyboard-layout-use-upper = true
@@ -280,7 +280,7 @@ idle-delay = uint32 900
 
 [org/cinnamon/desktop/sound]
 event-sounds = false
-maximum-volume = 150
+maximum-volume = 100
 
 [org/cinnamon/desktop/wm/preferences]
 action-scroll-titlebar = 'opacity'
@@ -290,7 +290,7 @@ focus-mode = 'sloppy'
 focus-new-windows = 'smart'
 min-window-opacity = 30
 mouse-button-modifier = '<Super>'
-theme = 'Mint-Y-Dark'
+theme = 'Mint-Y'
 titlebar-font = 'DejaVu Sans Bold Semi-Condensed 10'
 workspace-names = ['home', 'nook', 'background']
 
@@ -579,7 +579,7 @@ sort-directories-first = true
 type-format = 'category'
 
 [org/nemo/desktop]
-desktop-layout = 'true::false'
+desktop-layout = 'false::false'
 font = 'DejaVu Sans Semi-Condensed 10'
 show-orphaned-desktop-icons = true
 trash-icon-visible = true
