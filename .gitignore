@@ -81,6 +81,7 @@ emacs.d/.emacs.desktop
 emacs.d/ido.last
 emacs.d/org-caldav-*
 emacs.d/kkcrc
+emacs.d/transient/
 
 # fcitx
 dotfiles/fcitx/clipboard/
