@@ -6608,8 +6608,8 @@ will become the only window."
 
 ;;;;; GUI:
 
-(defvar gk-preferred-themes '( :light chyla
-                               :dark inkpot)
+(defvar gk-preferred-themes (list :light 'ankara
+                                  :dark  'inkpot)
   "Light and dark theme preferences.")
 
 
