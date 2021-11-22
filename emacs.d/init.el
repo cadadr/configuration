@@ -6727,9 +6727,6 @@ picks."
   (set-face-attribute 'forecast-moon-phase nil
                       :font (gk-font :forecast-moon-phase))
 
-  ;; Make docstrings stand out.
-  (set-face-attribute 'font-lock-doc-face nil :bold t)
-
   ;; Make parentheses more obvious.
   (set-face-attribute 'parenthesis nil :foreground nil :inherit 'font-lock-keyword-face)
   (set-face-attribute 'show-paren-match nil :background nil  :inverse-video t)
