@@ -381,7 +381,7 @@ target-units = 'radian'
 word-size = 64
 
 [org/gnome/calendar]
-active-view = 'week'
+active-view = 'year'
 
 [org/gnome/cheese]
 burst-delay = 1000
