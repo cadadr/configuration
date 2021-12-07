@@ -437,9 +437,9 @@ recreate-folders = true
 skip-newer = false
 
 [org/gnome/file-roller/dialogs/new]
-default-extension = '.zip'
+default-extension = '.7z'
 encrypt-header = false
-volume-size = 0
+volume-size = 99614720
 
 [org/gnome/file-roller/file-selector]
 show-hidden = false
