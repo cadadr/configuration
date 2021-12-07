@@ -9,6 +9,14 @@
 
 ;;; Code:
 
+(require 'deft)
+(require 'doc-view)
+(require 'man)
+(require 'pdf-tools)
+(require 'pdf-view)
+
+(require 'gk-fd)
+
 ;;;; Docview:
 
 (defun gk-doc-view-open-externally ()
@@ -30,7 +38,8 @@
 (setf
  pdf-info-epdfinfo-program
  (gk-executable-ensure
-  (expand-file-name "pdf-tools/server/epdfinfo" gk-elisp-site-dir))
+  (expand-file-name "pdf-tools/server/epdfinfo"
+                    (symbol-value 'gk-elisp-site-dir)))
  pdf-tools-enabled-modes
  '(pdf-isearch-minor-mode
    pdf-links-minor-mode
@@ -80,12 +89,10 @@
 
 ;;;; Man pages:
 
-(when (executable-find "man")
-  (require 'man)
-  (setf
-   ;; Make man page current buffer in current window of current frame.
-   ;; Or: show the fucking man page where I want it.
-   Man-notify-method 'pushy))
+(setf
+ ;; Make man page current buffer in current window of current frame.
+ ;; Or: show the fucking man page where I want it.
+ Man-notify-method 'pushy)
 
 
 

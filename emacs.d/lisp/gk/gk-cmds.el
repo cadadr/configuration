@@ -8,6 +8,13 @@
 
 ;;; Code:
 
+(require 'cl-lib)
+(require 'custom)
+(require 'em-prompt)
+(require 'savehist)
+
+(require 'gk-minor-mode)
+
 (defun gk-apropos-at-point-or-region ()
   (interactive)
   (let ((default (if (region-active-p)

@@ -9,6 +9,9 @@
 
 ;;; Code:
 
+(require 'quail)
+(require 'gk-unilat)
+
 ;;;; Quail customisations:
 
 (add-to-list

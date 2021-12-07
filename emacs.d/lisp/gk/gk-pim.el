@@ -10,6 +10,25 @@
 
 ;;; Code:
 
+(require 'auth-source)
+(require 'bbdb)
+(require 'elfeed-curl)
+(require 'elfeed-search)
+(require 'elfeed-show)
+(require 'forecast)
+(require 'mail-source)
+(require 'mairix)
+(require 'message)
+(require 'netrc)
+(require 'parse-time)
+(require 'rmail)
+(require 'rmailsum)
+(require 'sendmail)
+(require 'simple)
+(require 'solar)
+(require 'time)
+(require 'url-queue)
+
 ;;;; Calendar:
 
 (calendar-set-date-style 'iso)          ;The only unambiguous one.

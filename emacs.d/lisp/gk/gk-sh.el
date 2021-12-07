@@ -9,6 +9,12 @@
 
 ;;; Code:
 
+
+(require 'ansi-color)
+(require 'comint)
+(require 'em-hist)
+(require 'em-ls)
+
 ;;;; Some comint QoL:
 
 ;; Make comint great again!

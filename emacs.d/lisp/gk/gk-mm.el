@@ -8,6 +8,8 @@
 
 ;;; Code:
 
+(require 'image-mode)
+
 ;;;; Images:
 
 ;; Viewing and editing images.

@@ -9,6 +9,12 @@
 
 ;;; Code:
 
+(require 'browse-url)
+(require 'elpher)
+(require 'eww)
+(require 'shr)
+
+
 ;;;; URLs:
 
 ;; This is my URL browsing system, which is a big customisation of the
@@ -122,10 +128,6 @@ Redirect to the raw file url."
             (generate-new-buffer "*MPV*"))))
        (message "Started mpv process for: %s" url))
     (gk-urls-external-browser url)))
-
-(defun gk-urls-add-to-emms (url &rest args)
-  "Add an URL to EMMS."
-  (emms-add-url url))
 
 (defun gk-urls-with-elpher (url &rest args)
   "Visit an URL with Elpher."

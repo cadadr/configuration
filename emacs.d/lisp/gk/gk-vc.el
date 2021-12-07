@@ -9,6 +9,20 @@
 
 ;;; Code:
 
+(require 'diff-mode)
+(require 'ediff-diff)
+(require 'ediff-wind)
+(require 'log-edit)
+(require 'magit-autorevert)
+(require 'magit-commit)
+(require 'magit-diff)
+(require 'magit-todos)
+(require 'vc)
+(require 'vc-cvs)
+(require 'vc-hg)
+(require 'vc-hooks)
+
+
 (setf
  log-edit-diff-function 'vc-diff
  ;; STFU and follow them links.

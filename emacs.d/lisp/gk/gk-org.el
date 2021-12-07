@@ -10,6 +10,31 @@
 
 ;;; Code:
 
+(require 'autoinsert)
+(require 'custom)
+(require 'elpher)
+(require 'goto-addr)
+(require 'ob-python)
+(require 'org)
+(require 'org-agenda)
+(require 'org-attach)
+(require 'org-capture)
+(require 'org-compat)
+(require 'org-habit)
+(require 'org-id)
+(require 'org-num)
+(require 'org-refile)
+(require 'org-variable-pitch)
+(require 'org-zotxt)
+(require 'ox)
+(require 'ox-icalendar)
+(require 'ox-latex)
+(require 'savehist)
+
+(require 'gk-fd)
+(require 'gk-minor-mode)
+
+
 
 
 ;;;; Emphasis:
@@ -559,68 +584,6 @@ and report how many headlines were affected."
             (cl-incf count))
           (forward-line 1))))
     (kill-buffer buf)))
-
-(defun gk-org-export-this-tree (&optional async)
-  "Export to PDF the toplevel tree the point is in.
-
-If called with a prefix argument, or ASYNC is non-nil, run the
-export process asynchronously and open/revert the file or file’s
-buffer with ‘find-file-other-window’ when export process is
-completed.
-
-If for some reason the timer fails to cancel and the resulting
-PDF is opened in many windows continuously, hit
-\\[gk-cancel-last-timer] to cancel the most recent timer."
-  (interactive (list (not (not current-prefix-arg))))
-  (save-excursion
-    (while (org-up-heading-safe))          ;go to toplevel
-    (org-latex-export-to-pdf async t)
-    (when async
-      (setf gk-org-async-export-this-tree
-            (run-with-timer
-             0.5 0.5
-             (lambda ()
-               (let ((file? (caar org-export-stack-contents))
-                     buf)
-                 (when (and (stringp file?)
-                            (file-exists-p file?))
-                   (cancel-timer gk-org-async-export-this-tree)
-                   (let ((revert-without-query (list ".")))
-                     (find-file-other-window file?)
-                     (other-window 1))
-                   (setf gk-org-async-export-this-tree nil)))))))))
-
-
-(defun gk-open-reading-note ()
-  "Find a reading note and open it in a popup frame.
-
-Narrow to the relevant heading.  Reading notes are toplevel headings in ‘gk-reading-notes-file’."
-  (interactive)
-  (with-current-buffer (find-file-noselect gk-reading-notes-file)
-    (save-excursion
-      (save-restriction
-        (widen)
-        (goto-char (point-min))
-        (let* ((entries (org-map-entries
-                         ($ (let ((el (org-element-at-point)))
-                              (when (and (eq 'headline (car el))
-                                         (= 1 (plist-get (cadr el) :level)))
-                                (cadr el))))))
-               (hash (make-hash-table :test 'equal)))
-          (dolist (e entries)
-            (puthash (plist-get e :title) e hash))
-          (let* ((pick (gethash
-                        (completing-read
-                         "Select reading note to view: " hash) hash))
-                 (newnam (format "%s::%s" (buffer-name) (plist-get pick :title)))
-                 (newbuf
-                  (if-let* ((buf (get-buffer newnam)))
-                      buf
-                    (clone-indirect-buffer newnam nil t))))
-            (with-current-buffer newbuf
-              (goto-char (plist-get pick :begin))
-              (org-narrow-to-subtree))
-            (display-buffer-pop-up-frame newbuf nil)))))))
 
 
 (defun gk-org-export-region-as-markdown (beg end)

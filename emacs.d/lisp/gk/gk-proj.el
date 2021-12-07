@@ -23,6 +23,11 @@
 
 ;;; Code:
 
+(require 'eshell)
+
+(require 'gk-minor-mode)
+
+
 (defvar gk-projects-directory (expand-file-name "~/co")
   "Directory where software projects are located.")
 

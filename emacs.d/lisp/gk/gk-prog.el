@@ -9,6 +9,28 @@
 
 ;;; Code:
 
+(require 'autoinsert)
+(require 'cc-vars)
+(require 'debug)
+(require 'eglot)
+(require 'eldoc)
+(require 'eval-sexp-fu)
+(require 'flymake)
+(require 'flymake-python-pyflakes)
+(require 'inf-lisp)
+(require 'js)
+(require 'paredit)
+(require 'python)
+(require 'pythonic)
+(require 'ruby-mode)
+(require 'savehist)
+(require 'scheme)
+(require 'yasnippet)
+
+(require 'gk-global-mode-util)
+(require 'gk-minor-mode)
+
+
 (diminish 'highlight-parentheses-mode)
 (diminish 'eldoc-mode)
 (diminish 'paredit-mode "☮")

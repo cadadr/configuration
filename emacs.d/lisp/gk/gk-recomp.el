@@ -36,7 +36,7 @@ If FORCE is non-nil, force compilation, i.e. compile even if
 up-to-date."
   (interactive "p")
   (if (member 'native-compile features)
-      (let ((files (cons gk-elisp-site-dir
+      (let ((files (cons (symbol-value 'gk-elisp-site-dir)
                          (mapcar ($ (concat $1 ".el"))
                                  (remove-if-not #'file-exists-p gk-loaded-files)))))
         (native-compile-async files t))
@@ -57,7 +57,8 @@ up-to-date."
   (interactive)
   (compile (mapconcat
             #'identity
-            (list gk-emacs-executable "-Q" "--batch" "-l" gk-load-test-file)
+            (list (symbol-value 'gk-emacs-executable)
+                  "-Q" "--batch" "-l" gk-load-test-file)
             " ")))
 
 

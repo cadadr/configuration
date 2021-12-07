@@ -9,7 +9,36 @@
 
 ;;; Code:
 
-
+(require 'apropos)
+(require 'bookmark)
+(require 'face-remap)
+(require 'files)
+(require 'goto-addr)
+(require 'help)
+(require 'highlight-indent-guides)
+(require 'ido)
+(require 'ido-vertical-mode)
+(require 'isearch)
+(require 'minibuffer)
+(require 'mwheel)
+(require 'persistent-scratch)
+(require 'register)
+(require 'savehist)
+(require 'saveplace)
+(require 'select)
+(require 'simple)
+(require 'so-long)
+(require 'switch-window)
+(require 'tramp)
+(require 'undo-tree)
+(require 'uniquify)
+(require 'whitespace)
+(require 'window)
+(require 'winner)
+
+(require 'gk-global-mode-util)
+(require 'gk-minor-mode)
+
 
 ;;;; Lines:
 

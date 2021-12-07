@@ -8,6 +8,10 @@
 
 ;;; Code:
 
+(require 'custom)
+(require 'highlight-parentheses)
+(require 'org-variable-pitch)
+
 (unless (gk-gui-p)
   (user-error "‘gk-gui’ should only be loaded in a graphical session."))
 
@@ -73,10 +77,6 @@ picks."
     (not (not current-prefix-arg))))
 
   (ignore frame)
-
-  (setf paper-tint-factor 70
-        paper-base-font-size 70
-        paper-use-varying-heights-for-org-title-headlines nil)
 
   (setf gk-gui-theme
         (if arg

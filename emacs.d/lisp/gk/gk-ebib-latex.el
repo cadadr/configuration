@@ -8,9 +8,15 @@
 
 ;;; Code:
 
+(require 'bibtex)
+(require 'ebib)
+(require 'ebib-keywords)
+(require 'ebib-notes)
+(require 'ebib-utils)
+
 ;; TODO(2021-02-28): move these to appropriate sections.
 ;; Accomodate AuCTeX.
-(setenv "TEXINPUTS" (concat "::" (expand-file-name "auctex/texmf" gk-elisp-site-dir)))
+(setenv "TEXINPUTS" (concat "::" (expand-file-name "auctex/texmf" (symbol-value 'gk-elisp-site-dir))))
 (require 'auctex)
 (require 'preview-latex)
 
@@ -91,7 +97,7 @@ included in the generated template."
                    (replace-regexp-in-string
                     "^/" ""
                     (car (url-path-and-query (url-generic-parse-url doi))))))
-          ((and url (nor (string-empty-p url)))
+          ((and url (not (string-empty-p url)))
            (format "[[%s]]" url))
           (t
            "{no file, DOI, or URL}" key))))

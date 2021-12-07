@@ -9,6 +9,18 @@
 
 ;;; Code:
 
+
+(require 'electric)
+(require 'gemini-mode)
+(require 'ispell)
+(require 'markdown-mode)
+(require 'multiple-cursors-core)
+(require 'outline)
+(require 'zencoding-mode)
+
+(require 'gk-minor-mode)
+
+
 (setf
  ;; Sentence.  Other sentence.
  sentence-end-double-space t

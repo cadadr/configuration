@@ -10,6 +10,17 @@
 
 ;;; Code:
 
+(require 'bbdb)
+(require 'bookmark)
+(require 'eww)
+(require 'image-dired)
+(require 'multiple-cursors-core)
+(require 'nsm)
+(require 'savehist)
+(require 'saveplace)
+(require 'tramp-cache)
+(require 'url)
+
 (defconst gk-dropbox-dir
   (expand-file-name "~/fil")
   "Directory of Dropbox.")
