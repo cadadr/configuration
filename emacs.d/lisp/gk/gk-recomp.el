@@ -15,6 +15,9 @@
 
 ;;; Code:
 
+(require 'cl-lib)
+
+
 (defvar gk-loaded-files nil)
 
 (defun gk-load (&rest args)
@@ -26,7 +29,7 @@ that variable is then to be used to byte compile all the files
 explicitly loaded in this config without manually listing their
 names."
   (when (apply #'load args)
-    (pushnew (expand-file-name (car args)) gk-loaded-files)))
+    (cl-pushnew (expand-file-name (car args)) gk-loaded-files)))
 
 
 (defun gk-recompile (&optional force)
@@ -40,8 +43,8 @@ up-to-date."
                          (mapcar ($ (concat $1 ".el"))
                                  (remove-if-not #'file-exists-p gk-loaded-files)))))
         (native-compile-async files t))
-    (mapcar ($ (byte-recompile-file $1 (> force 1) 0))
-            (remove-if-not #'file-exists-p gk-loaded-files))
+    (mapc ($ (byte-recompile-file $1 (> force 1) 0))
+          (remove-if-not #'file-exists-p gk-loaded-files))
     (byte-recompile-directory (locate-user-emacs-file "lisp/site") 0 (> force 4))))
 
 (defvar gk-load-test-file

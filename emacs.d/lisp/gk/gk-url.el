@@ -48,7 +48,7 @@ xdg-open is a desktop utility that calls your preferred web browser."
          ((executable-find "chromium")
           #'browse-url-chromium)
          (t
-          (signal 'gk-no-external-browser)))
+          (signal 'gk-no-external-browser args)))
    args))
 
 (defun gk-browse-url (&rest args)

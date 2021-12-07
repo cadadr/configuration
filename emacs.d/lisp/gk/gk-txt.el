@@ -18,6 +18,7 @@
 (require 'outline)
 (require 'zencoding-mode)
 
+(require 'gk-mac)
 (require 'gk-minor-mode)
 
 

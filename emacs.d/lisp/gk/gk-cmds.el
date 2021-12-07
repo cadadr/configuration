@@ -11,6 +11,7 @@
 (require 'cl-lib)
 (require 'custom)
 (require 'em-prompt)
+(require 'rmail)
 (require 'savehist)
 
 (require 'gk-minor-mode)
@@ -178,7 +179,7 @@ together with current time and timezone information."
   (interactive "p")
   (insert
    (format-time-string
-    (case full
+    (cl-case full
       (1 "%F")                          ;ISO date format
       (4 "%F %T")                       ;ISO date format with time w/ seconds
       (16 "%FT%T%z")                    ;full ISO 8601
@@ -482,7 +483,7 @@ a string, the family name."
   (interactive (list (point)))
   (let* ((face (save-excursion (goto-char (point)) (face-at-point)))
          (ffam (font-get (font-at point) :family)))
-    (when (called-interactively-p)
+    (when (called-interactively-p 'any)
       (message "At %s:%d: face is ‘%s’; font is ‘%s’."
                (buffer-name) point face ffam))
     (list :family ffam :face face)))

@@ -10,6 +10,8 @@
 
 (require 'image-mode)
 
+(require 'gk-mac)
+
 ;;;; Images:
 
 ;; Viewing and editing images.

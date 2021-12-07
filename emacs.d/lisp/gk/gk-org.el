@@ -33,6 +33,7 @@
 
 (require 'gk-fd)
 (require 'gk-minor-mode)
+(require 'gk-misc)
 
 
 
@@ -392,7 +393,7 @@ ARG is the current prefix argument, passed to
   (insert "»\n\n")
   (gk-org-refill-reading-note)
   (when merge
-    (gk-org-reading-note-merge-last-n-notes))
+    (gk-org-reading-note-merge-last-n-notes 2))
   (when ellipsise
     (gk-org-reading-notes-ellipsise-last-note)))
 
@@ -1075,7 +1076,7 @@ unlocked, offer to lock it before pasting."
                    (zerop (- (line-end-position) (line-beginning-position))))))
     (cond ((and (zerop nblank) blankp)
            (save-excursion (goto-char (line-beginning-position))
-                           (delete-backward-char 1)))
+                           (delete-char -1)))
           ((and (/= 0 nblank) (not blankp))
            (save-excursion (goto-char (line-beginning-position))
                            (open-line 1))))))
@@ -1773,7 +1774,7 @@ Don’t hide the frame and don’t ask me shit."
           (org-zotxt-insert-reference-link-to-item item)
           (insert ", "))
         items)
-  (delete-backward-char 2))
+  (delete-char -2))
 
 
 

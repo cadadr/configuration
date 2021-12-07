@@ -24,12 +24,18 @@
 
 ;;; Code:
 
+(require 'bibtex)
+(require 'dollar)
+(require 'ebib)
 (require 'request)
 (require 's)
-(require 'bibtex)
-(require 'ebib)
-(require 'widget)
 (require 'thingatpt)
+(require 'widget)
+
+(defgroup doifetch nil
+  "Customisation group for doifetch.el"
+  :group 'emacs
+  :prefix "doifetch-")
 
 (defcustom doifetch-success-callback
   #'doifetch-widget-display
@@ -38,6 +44,7 @@
 This function will be called with two arguments:
 DOI, a string, the full DOI url.
 DATA, the BibTeX data retrieved."
+  :group 'doifetch
   :type 'function)
 
 
@@ -155,7 +162,7 @@ yanked, and/or imported to Ebib."
                             (cdr (assoc
                                   "=key="
                                   (bibtex-parse-entry) #'string=)))
-                      (ebib-import))
+                      (ebib-import-entries))
                     (ebib--update-index-buffer)
                     (ebib--goto-entry-in-index key)
                     (ebib--update-entry-buffer))))

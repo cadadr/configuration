@@ -25,6 +25,7 @@
 
 (require 'eshell)
 
+(require 'gk-mac)
 (require 'gk-minor-mode)
 
 

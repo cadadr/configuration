@@ -29,6 +29,8 @@
 (require 'time)
 (require 'url-queue)
 
+(require 'gk-mac)
+
 ;;;; Calendar:
 
 (calendar-set-date-style 'iso)          ;The only unambiguous one.
@@ -606,7 +608,8 @@ It is rather slow to do so."
 
 (defface gk-elfeed-feed-host
   '()
-  "Face for displaying URLs’ host parts in Elfeed.")
+  "Face for displaying URLs’ host parts in Elfeed."
+  :group 'gk)
 
 (set-face-attribute 'gk-elfeed-feed-host nil :height .7 :italic nil)
 

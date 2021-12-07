@@ -22,6 +22,7 @@
 (require 'vc-hg)
 (require 'vc-hooks)
 
+(require 'gk-mac)
 
 (setf
  log-edit-diff-function 'vc-diff

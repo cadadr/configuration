@@ -37,6 +37,7 @@
 (require 'winner)
 
 (require 'gk-global-mode-util)
+(require 'gk-mac)
 (require 'gk-minor-mode)
 
 
@@ -590,7 +591,7 @@ So that the reader knows where to continue reading."
   "Make sure ‘write-file’ confirms overrides and asks to create directories.
 
 When called interactively."
-  (list (car args) (called-interactively-p)))
+  (list (car args) (called-interactively-p 'interactive)))
 
 
 
