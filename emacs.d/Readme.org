@@ -9,6 +9,8 @@ The basic structure is as follows:
 ~/.emacs.d
 ├ init.el
 │   The init file.
+├ gk/
+│   Various customisation modules and personal libraries.
 ├ lisp/
 │   Various programs that are not loaded unless needed. Not in
 │   loadpath.

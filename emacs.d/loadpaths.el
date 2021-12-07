@@ -28,7 +28,7 @@ Exclude dot-files, don't sort, and return full paths by default."
   "Directory where 3rd party Elisp is contained.")
 
 (defvar gk-elisp-gk-dir
-  (locate-user-emacs-file "lisp/gk")
+  (locate-user-emacs-file "gk")
   "Directory where my config libraries are contained.")
 
 (defvar gk-pub-elisp-dir (expand-file-name "~/co/elisp")
