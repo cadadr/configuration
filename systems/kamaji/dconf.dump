@@ -160,8 +160,8 @@ cursor-size = 24
 cursor-theme = 'DMZ-White'
 font-name = 'DejaVu Sans Semi-Condensed 10'
 gtk-overlay-scrollbars = false
-gtk-theme = 'Mint-Y-Teal'
-icon-theme = 'Mint-Y-Teal'
+gtk-theme = 'Mint-Y-Dark-Aqua'
+icon-theme = 'Mint-Y-Dark-Aqua'
 keyboard-layout-prefer-variant-names = false
 keyboard-layout-show-flags = false
 keyboard-layout-use-upper = true
@@ -290,7 +290,7 @@ focus-mode = 'sloppy'
 focus-new-windows = 'smart'
 min-window-opacity = 30
 mouse-button-modifier = '<Super>'
-theme = 'Mint-Y'
+theme = 'Mint-Y-Dark'
 titlebar-font = 'DejaVu Sans Bold Semi-Condensed 10'
 workspace-names = ['home', 'nook', 'background']
 
@@ -358,7 +358,7 @@ tile-enabled = false
 unplug-enabled = false
 
 [org/cinnamon/theme]
-name = 'Mint-Y-Dark-Purple'
+name = 'Mint-Y-Dark-Aqua'
 theme-cache-updated = 1615227053
 
 [org/gnome/Disks]
