@@ -319,7 +319,8 @@
         global-paren-face-mode
         auto-insert-mode
         url-handler-mode
-        which-key-mode))
+        which-key-mode
+        context-menu-mode))
 
 ;; Mainly to enable GK keybindings there.
 (add-hook 'fundamental-mode-hook 'gk-minor-mode)
