@@ -488,6 +488,13 @@ a string, the family name."
                (buffer-name) point face ffam))
     (list :family ffam :face face)))
 
+(defun gk-reload-enabled-themes ()
+  "Reload all the loaded themes, preserving order."
+  (interactive)
+  (let ((themes custom-enabled-themes))
+    (mapc #'disable-theme themes)
+    (mapc ($ (when $1 (load-theme $1 t))) themes)))
+
 
 
 (provide 'gk-cmds)
