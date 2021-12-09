@@ -32,13 +32,16 @@
   (add-hook
    'after-init-hook
    (lambda ()
-     (setq gk-emacs-initialisation-completed-time (current-time)
-           initial-scratch-message (format-time-string
-                                    (concat ";;\n;; Welcome to Emacs, with cadadr’s mutila^Wcustomisations!\n"
-                                            ";; Initialisation completed, took %-S.%3N seconds.\n;;\n\n\n")
-                                    (time-subtract
-                                     gk-emacs-initialisation-completed-time
-                                     gk-emacs-initialisation-started-time)))
+     (setq
+      gk-emacs-initialisation-completed-time
+      (current-time)
+      initial-scratch-message
+      (format-time-string
+       (concat ";;\n;; Welcome to Emacs, with cadadr’s mutila^Wcustomisations!\n"
+               ";; Initialisation completed, took %-S.%3N seconds.\n;;\n\n\n")
+       (time-subtract
+        gk-emacs-initialisation-completed-time
+        gk-emacs-initialisation-started-time)))
      (run-with-timer
       1.5 nil
       (lambda () (message
