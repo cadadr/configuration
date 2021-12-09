@@ -49,7 +49,7 @@
                   (substring initial-scratch-message
                              0 (- (length initial-scratch-message) 3))))))))
 
-(when (version< emacs-version "28.0")
+(when (version< emacs-version "29.0")
   (error "This configuration requires a recent build of Emacs ‘master’ branch"))
 
 ;; Use elisp directory listing program.  This needs to be set before
