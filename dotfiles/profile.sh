@@ -53,6 +53,13 @@ _source $MYLIB/profile/env.sh
 
 ###
 
+### XDG:
+
+_source $MYLIB/profile/xdg.sh
+
+###
+
+
 ### Local files:
 
 GK_PROFILE_EXTRA_DIR="$HOME/.config/profile.d"

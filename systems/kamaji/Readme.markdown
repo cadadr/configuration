@@ -4,4 +4,4 @@ For installation instructions, see the [setup guide](Setup.markdown).
 
 ---
 
-![](/candy/scr-kamaji.png)
+![](/img/scr-kamaji.png)

@@ -198,6 +198,7 @@ is non nil if there’s new mail."
              (gk-send-desktop-notification "New mail" msg "mail-message-new")))
          (message "%sFetch mail process %s" msg (string-trim event))
          (when (functionp callback)
+           (message "Running ‘gk-fetch-mail’ callback...")
            (funcall callback (string-empty-p msg))))))))
 
 

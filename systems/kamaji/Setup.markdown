@@ -78,4 +78,4 @@ log in on a virtual console, using `Ctrl+Alt+F1--6`**.
 
 ---
 
-![screen cap](/candy/scr-kamaji.png)
+![screen cap](/img/scr-kamaji.png)

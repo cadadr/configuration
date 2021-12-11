@@ -38,10 +38,10 @@ below for more details.
 <table>
   <tr>
    <td>
-      <img src="candy/scr-kamaji.png" alt="screenshot for kamaji"/>
+      <img src="img/scr-kamaji.png" alt="screenshot for kamaji"/>
     </td>
     <td>
-      <img src="candy/scr-ulgen.png" alt="screenshot for ulgen"/>
+      <img src="img/scr-ulgen.png" alt="screenshot for ulgen"/>
     </td>
   </tr>
 </table>

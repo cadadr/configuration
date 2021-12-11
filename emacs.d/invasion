@@ -1,7 +1,2 @@
 .emacs.d							.
 .config/profile.d/emacs.sh					environment.sh
-.local/share/applications/emacs.desktop				candy/emacs.desktop
-.local/share/applications/emacsclient.desktop			candy/emacsclient.desktop
-.local/share/applications/emacsclient-url.desktop		candy/emacsclient-url.desktop
-.local/share/applications/emacsclient-org-protocol.desktop	candy/emacsclient-org-protocol.desktop
-.local/share/icons/hicolor/128x128/apps/emacs.png		candy/emacs.png

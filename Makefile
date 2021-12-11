@@ -42,8 +42,6 @@ clean-bin:
 invade:
 	./bin/invade -v $(HOME)
 	$(MAKE) -C emacs.d -$(MAKEFLAGS) invade
-	update-desktop-database ~/.local/share/applications/
-	cd candy && ../bin/invade -v $(HOME)
 	cd systems/$(shell hostname)/ && ../../bin/invade -v $(HOME)
 
 dotfiles:

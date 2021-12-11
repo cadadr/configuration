@@ -88,3 +88,8 @@ dotfiles/fcitx/clipboard/
 dotfiles/fcitx/dbus/
 dotfiles/fcitx/log/
 dotfiles/fcitx/cached_layout
+
+# XDG
+
+share/mimeinfo.cache
+systems/*/share/mimeinfo.cache

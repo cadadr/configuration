@@ -443,17 +443,16 @@ argument as t, so refer to that command for further details."
   "Open ‘rmail’ and ‘elfeed’, update both."
   (interactive)
   (delete-other-windows)
-  (rmail)
-  (split-window-sensibly)
-  (other-window 1)
-  (elfeed)
-  (elfeed-search-fetch nil)
-  (gk-fetch-mail (lambda (new-mail-p)
-                   (when new-mail-p
-                     (message "Getting new mail from inboxes...")
-                     (with-current-buffer
-                         (file-name-nondirectory rmail-file-name)
-                       (rmail-get-new-mail))))))
+  (let ((rmail-buffer (progn (rmail) (current-buffer))))
+    (split-window-sensibly)
+    (other-window 1)
+    (elfeed)
+    (elfeed-search-fetch nil)
+    (gk-fetch-mail (lambda (new-mail-p)
+                     (when new-mail-p
+                       (message "Getting new mail from inboxes...")
+                       (with-current-buffer rmail-buffer
+                         (rmail-get-new-mail)))))))
 
 
 ;; Adapted from: https://christiantietze.de/posts/2021/06/emacs-center-window-on-current-monitor/
