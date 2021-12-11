@@ -47,7 +47,7 @@ dotfiles/mpoprc
 dotfiles/msmtprc
 
 # Qutebrowser
-qutebrowser/qsettings/QtProject.conf
+xdg/qutebrowser/qsettings/QtProject.conf
 
 # vim
 dotfiles/vim/undo/
@@ -84,10 +84,10 @@ emacs.d/kkcrc
 emacs.d/transient/
 
 # fcitx
-dotfiles/fcitx/clipboard/
-dotfiles/fcitx/dbus/
-dotfiles/fcitx/log/
-dotfiles/fcitx/cached_layout
+xdg/fcitx/clipboard/
+xdg/fcitx/dbus/
+xdg/fcitx/log/
+xdg/fcitx/cached_layout
 
 # XDG
 

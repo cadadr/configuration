@@ -10,3 +10,7 @@ do
     mkdir -p "$dir"
     update-desktop-database "$dir"
 done
+
+# Extend ~/.config.
+
+export XDG_CONFIG_DIRS="$MY/xdg:XDG_CONFIG_DIRS"
