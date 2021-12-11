@@ -633,6 +633,8 @@ use-default-font = true
 [org/x/editor/preferences/ui]
 statusbar-visible = true
 
+[org/x/editor/state/history-entry]
+
 [org/x/editor/state/window]
 bottom-panel-size = 140
 side-panel-active-page = 827629879
