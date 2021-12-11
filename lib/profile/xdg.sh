@@ -13,4 +13,5 @@ done
 
 # Extend ~/.config.
 
-export XDG_CONFIG_DIRS="$MY/xdg:XDG_CONFIG_DIRS"
+export XDG_CONFIG_DIRS="$MY/xdg:/etc/xdg" # $XDG_CONFIG_DIRS"
+
