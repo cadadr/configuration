@@ -267,6 +267,7 @@
 (require 'gk-proj)
 (require 'gk-wm)
 (require 'gk-txt)
+(require 'gk-doc)
 (require 'gk-sh)
 (require 'gk-dired)
 (require 'gk-im)
