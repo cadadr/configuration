@@ -24,9 +24,9 @@ use-antialiasing = true
 [com/gkayaalp/pomodorino]
 desktop-notifications-enabled = true
 ease-in-mode-enabled = true
-long-break-duration = 15
-pomodoro-duration = 25
-short-break-duration = 5
+long-break-duration = 60
+pomodoro-duration = 50
+short-break-duration = 10
 
 [com/linuxmint/install]
 flatpak-remotes = ['flathub::https://dl.flathub.org/repo/::False']
