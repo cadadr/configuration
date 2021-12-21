@@ -1598,7 +1598,11 @@ which correspond to homonymous fields listed in
                                          args (nth i args)))))))))
 
 
-(progn
+(defun gk-org-capture-set-templates (&rest _)
+  "Set up templates for org-capture.
+
+Meant as a ‘:before’ advice to ‘org-capture’."
+  (message "heylo")
   ;; Zero it out, the populate.
   (setf org-capture-templates nil)
 
@@ -1606,7 +1610,8 @@ which correspond to homonymous fields listed in
    :keys "b"
    :description "New internet bookmark"
    :type 'entry
-   :target `(file ,(gk-org-dir-file "InternetBookmarks.org"))
+   :target `(file ,(gk-org-dir-file
+                    (format-time-string "InternetBookmarks-%Y.org")))
    :template "* %:description\n%:link\n\n%?%i"
    :prepend t
    :empty-lines-before 1
@@ -1667,7 +1672,8 @@ which correspond to homonymous fields listed in
    :keys "E"
    :description "Reading note (ebib)"
    :type 'entry
-   :target `(file ,(gk-org-dir-file "Reading-2021.org"))
+   :target `(file ,(gk-org-dir-file
+                    (format-time-string "Reading-%Y.org")))
    :empty-lines-after 1
    :empty-lines-before 1
    :prepend t
@@ -1737,6 +1743,9 @@ which correspond to homonymous fields listed in
    :prepend nil
    :empty-lines-before 1
    :template "- %i"))
+
+
+(add-function :before (symbol-function 'org-capture) #'gk-org-capture-set-templates)
 
 
 
