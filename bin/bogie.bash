@@ -80,7 +80,7 @@ if [ ! "$radio" = "off" ]; then
     # ‘--shuffle’ is useless with the default but useful if it’s a
     # playlist or a directory.
     echo radio: $radio
-    mpv --ytdl-format='worstvideo+bestaudio/best' \
+    mpv --ytdl-format='worstvideo+bestaudio/best' --volume=70 \
         --shuffle --no-video "$radio" >/dev/null 2>/dev/null &
 fi
 
