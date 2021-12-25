@@ -18,7 +18,7 @@ help:
 .PHONY: setup setup-light fetch-config.m4 etc
 
 setup: fetch-config.m4 dotfiles invade
-	$(MAKE) -c emacs.d -$(MAKEFLAGS) all
+	$(MAKE) -C emacs.d -$(MAKEFLAGS) all
 	sh lib/setup.sh
 
 setup-light: fetch-config.m4 dotfiles invade
