@@ -139,7 +139,7 @@ echo $USER
    3) Change hostname
       #+begin_src sh :dir /ssh:pi@raspberrypi.local:
       # Will be active after reboot
-      echo ayata | sudo tee /etc/hostname
+      echo xanthippe | sudo tee /etc/hostname
       #+end_src
 
 4) Install basic packages
@@ -163,26 +163,26 @@ echo $USER
    #+RESULTS:
 
 5) Reboot. *Beware that the hostname changes after this*, the new one
-   is ~ayata.local~.
+   is ~xanthippe.local~.
 
 6) Copy over configuration files. This overrites matching files under
    RPi’s ~/etc~ directory.
    #+begin_src sh
    tmp="/tmp/$(mktemp -u pi-etc-XXXXXXXX)"
-   scp -rv etc pi@ayata.local:$tmp
-   ssh pi@ayata.local cd $tmp \; sudo cp -vr \* /etc
+   scp -rv etc pi@xanthippe.local:$tmp
+   ssh pi@xanthippe.local cd $tmp \; sudo cp -vr \* /etc
    #+end_src
 
 7) Restart system services
    1) All but network:
-      #+begin_src sh :dir /ssh:pi@ayata.local:~ :results output
+      #+begin_src sh :dir /ssh:pi@xanthippe.local:~ :results output
       for unit in cups saned.socket nginx; do
         sudo systemctl restart $unit
       done
       #+end_src
 
    2) Network:
-      #+begin_src sh :dir /ssh:pi@ayata.local:~ :results output
+      #+begin_src sh :dir /ssh:pi@xanthippe.local:~ :results output
       sudo nohup sh -c 'sleep 1; systemctl restart networking' &
       #+end_src
       - Check:
@@ -197,7 +197,7 @@ echo $USER
 *** Set timezone
 We copy it over from this machine
 
-#+begin_src sh :dir /ssh:pi@ayata.local:~ :results output :var _TZ=timezone
+#+begin_src sh :dir /ssh:pi@xsanthippe.local:~ :results output :var _TZ=timezone
 sudo timedatectl --no-pager set-timezone $_TZ
 date
 #+end_src
@@ -233,13 +233,13 @@ date
 **** Scanner
 - In order to configure scanner connection, first verify that the
   RPi does see and has configured the scanner:
-  #+begin_src sh :dir /ssh:pi@ayata.local:~
+  #+begin_src sh :dir /ssh:pi@xsanthippe.local:~
   scanimage -L
   #+end_src
 
   - Append RPi’s FQDN to ~/etc/sane.d/net.conf~.
     #+begin_src sh :dir /sudo::
-    echo ayata.local >> /etc/sane.d/net.conf
+    echo xsanthippe.local >> /etc/sane.d/net.conf
     #+end_src
 
     #+RESULTS:
@@ -253,8 +253,8 @@ date
     usermod -a -G scanner $_USER
     #+end_src
 
-  - Add ~saned@ayata.local~ to the ~lp~ group
-    #+begin_src sh :dir /ssh:pi@ayata.local
+  - Add ~saned@xsanthippe.local~ to the ~lp~ group
+    #+begin_src sh :dir /ssh:pi@xsanthippe.local
     sudo usermod -a -G lp saned
     #+end_src
     [[https://askubuntu.com/a/1144795][source]], IDK why exactly this works
@@ -269,7 +269,7 @@ In order to be able to do backups with this configuration, set the
 ~BORG_REPO~ environment variable to something like
 
 #+begin_src sh
-export BORG_REPO=pi@ayata.local:/mnt/Backups
+export BORG_REPO=pi@xsanthippe.local:/mnt/Backups
 #+end_src
 
 on the backup source.  Then, backups can be made with a command like

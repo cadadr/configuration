@@ -32,7 +32,7 @@ below for more details.
 - [Linux laptop](systems/ulgen/) (`ulgen`) using the
   latest stable Linux Mint Cinnamon.
 
-- [Raspberry Pi](systems/ayata/) (`ayata`) backup and print/scan
+- [Raspberry Pi](systems/xsanthippe/) (`xsanthippe`) backup and print/scan
   server.
 
 <table>
