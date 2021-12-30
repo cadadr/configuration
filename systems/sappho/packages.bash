@@ -10,7 +10,7 @@ xbps-install -y elogind tlp linux-firmware-intel mesa-dri vulkan-loader \
              mesa-vulkan-intel intel-video-accel pipewire xorg kitty
 
 # Network
-xbps-install -y avahi nss-mdns
+xbps-install -y avahi curl nss-mdns
 
 # Development
 xbps-install -y git sbcl
