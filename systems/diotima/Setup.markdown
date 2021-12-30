@@ -1,4 +1,4 @@
-# Setup recipe for `kamaji`
+# Setup recipe for `diotima`
 
 Install using the Linux Mint Cinnamon ISO, but should work for the LMDE version
 as well, without requiring much change.
@@ -78,4 +78,4 @@ log in on a virtual console, using `Ctrl+Alt+F1--6`**.
 
 ---
 
-![screen cap](/img/scr-kamaji.png)
+![screen cap](/img/scr-diotima.png)

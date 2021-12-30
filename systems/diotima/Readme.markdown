@@ -1,7 +1,7 @@
-# 釜爺---Linux Mint Cinnamon based workstation
+# `diotima`: Linux Mint Cinnamon based workstation
 
 For installation instructions, see the [setup guide](Setup.markdown).
 
 ---
 
-![](/img/scr-kamaji.png)
+![](/img/scr-diotima.png)

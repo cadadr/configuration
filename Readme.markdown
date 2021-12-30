@@ -26,22 +26,16 @@ The configuration on this repo works with multiple OS / hardware
 setups, which have their own set up instructions.  Follow the links
 below for more details.
 
-- [Linux desktop workstation](systems/kamaji/) (`kamaji`) with
+- [Linux desktop workstation](systems/diotima/) (`diotima`) with
   Linux Mint Cinnamon.
-
-- [Linux laptop](systems/ulgen/) (`ulgen`) using the
-  latest stable Linux Mint Cinnamon.
 
 - [Raspberry Pi](systems/xsanthippe/) (`xsanthippe`) backup and print/scan
   server.
 
 <table>
   <tr>
-   <td>
-      <img src="img/scr-kamaji.png" alt="screenshot for kamaji"/>
-    </td>
     <td>
-      <img src="img/scr-ulgen.png" alt="screenshot for ulgen"/>
+      <img src="img/scr-diotima.png" alt="screenshot for diotima"/>
     </td>
   </tr>
 </table>

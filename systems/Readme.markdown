@@ -2,11 +2,11 @@
 
 This tree contains system-level configurations specific to my computers.
 
-## `kamaji`: workstation
+## [`diotima`](https://en.wikipedia.org/wiki/Diotima_of_Mantinea): workstation
 
 Linux Mint Cinnamon based desktop workstation.
 
-## `xsanthippe`: Raspberry Pi
+## [`xsanthippe`](https://en.wikipedia.org/wiki/Xanthippe): Raspberry Pi
 
 A config for an RPi that acts as a networked printer / scanner /
 backup server.

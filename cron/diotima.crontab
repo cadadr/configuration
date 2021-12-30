@@ -1,4 +1,4 @@
-# itugen.crontab
+# diotima.crontab
 
 SESSION_MANAGER=cinnamon-session
 USER=g
