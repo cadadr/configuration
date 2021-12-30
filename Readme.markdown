@@ -26,6 +26,9 @@ The configuration on this repo works with multiple OS / hardware
 setups, which have their own set up instructions.  Follow the links
 below for more details.
 
+- [Linux mobile workstation](systems/sappho) (`sappho`) with Void
+  Linux and `StumpWM`.
+
 - [Linux desktop workstation](systems/diotima/) (`diotima`) with
   Linux Mint Cinnamon.
 
