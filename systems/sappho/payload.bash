@@ -47,7 +47,7 @@ xbps-install -y hunspell hunspell-{de_DE,en_GB,en_US,es_ES,fr_FR,it_IT} \
 xbps-install -y elogind tlp linux-firmware-intel mesa-dri vulkan-loader \
              mesa-vulkan-intel intel-video-accel pipewire xorg   \
              i3-gaps i3status rofi scrcpy volctl libnotify xclip \
-             xdotool xpra fontconfig flatpak dunst
+             xdotool xpra fontconfig flatpak dunst bluez compton
 
 # TODO: Desktop [Wayland]
 # hikari, ...
@@ -56,7 +56,8 @@ xbps-install -y elogind tlp linux-firmware-intel mesa-dri vulkan-loader \
 xbps-install -y vokoscreen kitty audacity cheese clipit dconf-editor \
              dex gimp gsmartcontrol inkscape kdeconnect libreoffice \
              mpv quodlibet simple-scan transmission-gtk okular kdenlive \
-             gnome-font-viewer firefox flameshot
+             gnome-font-viewer firefox flameshot network-manager-applet \
+             pcmanfm pavucontrol blueman
 
 # Audio
 xbps-install -y vorbisgain vorbis-tools
@@ -124,6 +125,7 @@ flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flat
 ln -s /{etc/sv,var/service}/avahi-daemon && sv up avahi-daemon
 ln -s /{etc/sv,var/service}/tlp && sv up tlp
 ln -s /{etc/sv,var/service}/ssh && sv up ssh
+ln -s /{etc/sv,var/service}/bluetoothd && sv up bluetoothd
 
 ### Enable kernel modules:
 

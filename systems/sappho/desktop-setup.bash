@@ -42,12 +42,14 @@ dunst                    &
 kdeconnect-indicator     &
 clipit                   &
 pipewire                 &
+pipewire-pulse           &
 # if flameshot starts too quickly, the icon doesn't go to the
 # system tray.
 (sleep 5; flameshot)     &
 nm-applet                &
 pcmanfm --daemon-mode    &
-# pasystray                &
+volctl                   &
+blueman-applet           &
 compton -co .9 -r 15 -t -20 -l -20  &
 
 ### Set up toolkit looks:
