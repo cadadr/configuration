@@ -275,7 +275,7 @@ bar {
         position top
         status_command i3status
         colors {
-               background $colourbg1
+               background #000033
                statusline $colourfg1
                separator  $colourhl1
 
