@@ -1,0 +1,21 @@
+# Packages from `diotima' not found in Void repositories.
+
+bridge-utils
+bundler
+dc
+dnsutils
+feedgnuplot
+git-email
+hunspell-tr
+mailutils
+pandoc-citeproc
+perlbrew
+diffpdf
+krop
+pdfarranger
+pdfsam
+virtualbox-qt
+libimage-exiftool-perl
+libuniversal-isa-perl
+r-cran-*
+psychopy

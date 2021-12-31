@@ -22,20 +22,18 @@ Try to use `fmt` with echo in these scripts
 Login as `root` and run `visudo`, permit users in the `wheel` group to
 run `sudo`.
 
-Allow non-root users to use ping because why not?
+Install system packages and enable services.
 
-    sysctl -w net.ipv4.ping_group_range="0 1000"
+    # fetch setup script if necessary
+    sudo xbps-install wget
+    wget https://raw.githubusercontent.com/cadadr/configuration/default/systems/sappho/payload.bash https://raw.githubusercontent.com/cadadr/configuration/default/systems/sappho/checksum.txt
+    sha256sum -c checksum.txt
+    # run the script
+    sudo ./payload.bash
 
-Then, switch to the regular user and, likely using `nmcli`, to connect
-to a network.
+Install flatpaks if desired.
 
-Claim ownership of home directory.
+    sh ../common/flatpak.sh
 
-    cd
-    sudo chown $USER:$USER .
+Reboot.
 
-Install system packages and enable services
-
-    sudo ./packages.bash
-
-Log out and log back in so that `elogind` is activated.

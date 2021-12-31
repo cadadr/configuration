@@ -2,7 +2,7 @@
 
 crontab cron/$(hostname).crontab
 
-update-desktop-database ~/.local/share/applications/
+update-desktop-database ./share/applications/
 
 # scripts won't be in $PATH before reloading profile, so stop bugging me
 # 'bout it ffs.

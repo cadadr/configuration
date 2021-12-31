@@ -27,7 +27,6 @@ packages:
 
 invade:
 	$(HOME)/bin/invade -v $(HOME)
-	update-desktop-database ~/.local/share/applications/
 
 emacs: all
 	PATH="$(PWD)/bin:$(PATH)" NOFETCH=yes sh bin/build-emacs-master.sh

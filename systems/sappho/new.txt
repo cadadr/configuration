@@ -1,0 +1,4 @@
+network-manager-applet
+pcmanfm
+bluez
+compton
