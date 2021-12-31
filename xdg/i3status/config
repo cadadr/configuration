@@ -6,6 +6,7 @@ general {
 }
 
 order += "load"
+order += "battery all"
 order += "tztime local"
 
 battery all {
