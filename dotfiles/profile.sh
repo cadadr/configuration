@@ -75,7 +75,7 @@ fi
 # set ENV to a file invoked each time sh is started for interactive use.
 ENV=$HOME/.$(basename $SHELL)rc; export ENV
 
-if [ ! "$GK_NOENV" = "x" ];
+if [ x"$GK_NOENV" = "xyes" ];
 then
     : ;
 else

@@ -1,7 +1,7 @@
 #!/bin/sh
 # xsessionrc --- x session environment -*- shell-script -*-
 
-. $HOME/.profile || GK_NOENV=yes source $HOME/.profile
+GK_NOENV=yes source $HOME/.profile
 
 # Inform systemd
 if [ -e /etc/systemd ]; then
