@@ -81,10 +81,7 @@ do_wlp(){
             -gravity center  -crop $s+0+0 +repage \
             "$bg" "$xbg"
 
-        # feh --no-fehbg --bg-center "$xbg"
-	dconf write \
-	    /org/mate/desktop/background/picture-filename \
-	    "'$xbg'"
+        feh --no-fehbg --bg-center "$xbg"
         sleep $slideshow_seconds & sleep_pid=$!
         wait $sleep_pid
 
