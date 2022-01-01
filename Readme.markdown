@@ -38,6 +38,9 @@ below for more details.
 <table>
   <tr>
     <td>
+      <img src="img/scr-sappho.png" alt="screenshot for sappho"/>
+    </td>
+    <td>
       <img src="img/scr-diotima.png" alt="screenshot for diotima"/>
     </td>
   </tr>
