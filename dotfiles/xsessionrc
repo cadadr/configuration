@@ -4,7 +4,7 @@
 . $HOME/.profile || GK_NOENV=yes source $HOME/.profile
 
 # Inform systemd
-if [ -z "$GUIX_PROFILE" ]; then
+if [ -e /etc/systemd ]; then
     systemctl --user import-environment DISPLAY
     systemctl --user import-environment DESKTOP_SESSION
 

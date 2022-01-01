@@ -66,7 +66,7 @@ PATH="$(echo $PATH | sed -E s,/+,/,g)"
 PATH="$(echo $PATH | sed -E s,:+\$,,g)"
 export PATH
 
-if [ -z "$GUIX_PROFILE" ]; then
+if [ -e /etc/systemd ]; then
     # Update systemd paths.
     systemctl --user import-environment PATH
     systemctl --user import-environment GEM_HOME
