@@ -151,7 +151,7 @@
 
 ;;;;; Authentication:
 
-(setf netrc-file (dropbox "authinfo.gpg")
+(setf netrc-file (expand-file-name "~/Documents/authinfo.gpg")
       auth-sources (list netrc-file))
 
 
@@ -530,12 +530,6 @@ Wonder why this is not the default."
     (elfeed-search-untag-all-unread)
     (elfeed-search-update--force)))
 
-(defun gk-elfeed-backup ()
-  (interactive)
-  (let ((name (gk-backup-file-name (dropbox "Backups/OPML/") "opml")))
-    (elfeed-export-opml name)
-    (message "Wrote %s." name)))
-
 (defun gk-elfeed-filter (filter)
   "Set search filter, do not update live.
 
@@ -690,7 +684,6 @@ It is rather slow to do so."
 (define-key elfeed-show-mode-map (kbd "v") #'gk-elfeed-browse-article)
 (define-key elfeed-show-mode-map (kbd "!") #'gk-eww-download)
 (define-key elfeed-search-mode-map (kbd "c") #'gk-elfeed-catch-up)
-(define-key elfeed-search-mode-map (kbd "e") #'gk-elfeed-backup)
 (define-key elfeed-search-mode-map (kbd "s") #'gk-elfeed-filter)
 (define-key elfeed-search-mode-map (kbd "S") (gk-interactively (elfeed-db-save)))
 (define-key elfeed-search-mode-map (kbd "J") #'elfeed-unjam)

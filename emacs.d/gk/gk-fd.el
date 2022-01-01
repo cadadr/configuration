@@ -21,21 +21,6 @@
 (require 'tramp-cache)
 (require 'url)
 
-(defconst gk-dropbox-dir
-  (expand-file-name "~/fil")
-  "Directory of Dropbox.")
-
-(defun gk-dropbox (path)
-  "Return ‘gk-dropbox-dir’ + / + PATH."
-  (expand-file-name path gk-dropbox-dir))
-
-(define-obsolete-function-alias 'dropbox 'gk-dropbox "2021-12-07"
-  "Return ~/Dropbox + PATH.")
-
-(defconst gk-syndir
-  (expand-file-name "~/syn")
-  "Directory for syncing.")
-
 (defconst gk-notes-directory
   (expand-file-name "~/Notes")
   "Directory for digital notebooks.")
@@ -47,13 +32,13 @@
       auto-save-list-file-prefix
       (locate-user-emacs-file "etc/auto-save-list/saves-")
       bookmark-default-file
-      (dropbox "bookmarks.el")
+      (expand-file-name "~/Documents/bookmarks.el")
       bbdb-file
-      (expand-file-name "~/Notes/bbdb-contacts.el")
+      (expand-file-name "~/Documents/bbdb-contacts.el")
       savehist-file
       (locate-user-emacs-file "etc/history")
       eww-bookmarks-directory
-      (dropbox ".")
+      (expand-file-name "~/Documents")
       save-place-file
       (locate-user-emacs-file "etc/places")
       tramp-persistency-file-name
@@ -65,7 +50,7 @@
       mc/list-file
       (locate-user-emacs-file "etc/mc-lists.el")
       common-lisp-hyperspec-root
-      (concat "file://" (expand-file-name "~/co/Lisp/doc/HyperSpec/")))
+      (concat "file://" (expand-file-name "~/Sources/Lisp/doc/HyperSpec/")))
 
 (provide 'gk-fd)
 ;;; gk-fd.el ends here

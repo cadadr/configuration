@@ -6,10 +6,10 @@ if [ "$GK_PATHS_LOADED" != "yes" ]; then
 fi
 
 export EMAIL=$USER@localhost
-export MAILDIR=$HOME/posta
+export MAILDIR=$HOME/Posta
 export MAILQUEUE=$MAILDIR/queue
 export PS1='\$ '
-export PASSWORD_STORE_DIR=$HOME/fil/pass
+export PASSWORD_STORE_DIR=$HOME/Documents/Passwords
 export TROFFONTS=$HOME/.fonts
 
 case $SYSTEM in

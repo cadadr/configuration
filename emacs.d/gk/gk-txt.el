@@ -287,7 +287,7 @@ will receive the region if active, or the entire buffer."
 
 (setf ispell-program-name "hunspell"
       ispell-dictionary "en_GB,tr_TR,it_IT"
-      ispell-personal-dictionary (dropbox "hunspell-personal-dictionary"))
+      ispell-personal-dictionary (expand-file-name "~/Documents/hunspell-personal-dictionary"))
 
 (defun gk-spellcheck-hook ()
   "Hook to start spell-check in buffers."
