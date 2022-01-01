@@ -36,6 +36,10 @@ export AWT_TOOLKIT=XToolkit
 ulimit -c unlimited
 
 
+### Hardware settings
+# Disable the annoying ThinkPad touchpad
+xinput set-prop 'SynPS/2 Synaptics TouchPad' 'Device Enabled' 0
+
 ### Start background processes:
 # setbg.bash               &
 dunst                    &
