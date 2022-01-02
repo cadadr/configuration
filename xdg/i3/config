@@ -111,7 +111,7 @@ bindsym Shift+F5 move container to workspace 5
 ### Modes:
 # power management
 # from: https://wiki.archlinux.org/index.php/I3
-set $Locker lockscr.sh
+set $Locker xset s activate
 bindsym $mod+l exec --no-startup-id $Locker, mode "default"
 set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (Shift+r) reboot, (Shift+s) shutdown
 mode "$mode_system" {
