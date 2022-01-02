@@ -1,6 +1,6 @@
 ;;; gk-pim.el --- mail, contacts, etc                -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2021  Göktuğ Kayaalp
+;; Copyright (C) 2021, 2022  Göktuğ Kayaalp
 
 ;; Author: Göktuğ Kayaalp <self@gkayaalp.com>
 
@@ -132,7 +132,10 @@
 
 ;;;;; Paths:
 
-(defvar gk-mail-home (expand-file-name "~/posta")
+(defvar gk-mail-home
+  (if-let* ((maildir (getenv "MAILDIR")))
+      maildir
+    (expand-file-name "~/Posta"))
   "Where all mailboxes etc. are.")
 
 (defvar gk-mail-temporary-file-directory
@@ -832,8 +835,7 @@ the body of the entry, and the cdr is the score, an integer.")
 ;;;;; Feeds:
 
 ;; Load feeds from external source.
-(with-eval-after-load 'gk-org
-  (gk-load (gk-org-dir-file "elfeed-feeds") t))
+(gk-load (expand-file-name "~/Documents/private-config/elfeed-feeds") t)
 
 
 

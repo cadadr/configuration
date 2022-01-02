@@ -2,7 +2,7 @@
 
 ### Environment:
 SHELL=/bin/sh
-MAILDIR=$HOME/posta
+MAILDIR=$HOME/Posta
 SENDMAIL=/usr/bin/msmtp
 LOGFILE=$HOME/log/procmail.log
 VERBOSE=yes
