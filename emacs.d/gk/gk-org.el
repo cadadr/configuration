@@ -697,7 +697,7 @@ Use \[pop-to-mark-command] to go back to where you were."
 (setq org-export-coding-system 'utf-8
       org-directory gk-notes-directory
       org-default-notes-file (gk-org-dir-file "Start.org")
-      org-icalendar-combined-agenda-file (expand-file-name "ajanda.ics" gk-syndir)
+      org-icalendar-combined-agenda-file (expand-file-name "~/Documents/ajanda.ics")
       org-id-locations-file (locate-user-emacs-file "etc/org-id-locations.el")
       org-archive-location (gk-org-dir-file "Attic/ArchivedEntries.org::datetree/"))
 
