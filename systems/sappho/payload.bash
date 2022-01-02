@@ -103,9 +103,8 @@ xbps-install -y base-devel cmake autoconf autoconf-archive automake \
 
 # Libraries
 xbps-install -y python3-devel ruby-devel perl-Switch perl-local-lib \
-             perl-JSON jansson-devel poppler-devel perl-Reply pdf.js \
-             openssl-devel fuse-devel libcurl-devel libgcc-devel \
-             libgirepository-devel
+             perl-JSON perl-Reply pdf.js openssl-devel fuse-devel \
+             libcurl-devel libgcc-devel libgirepository-devel
 
 # VCS
 xbps-install -y git cvs cvsps2 git-cvs mercurial hg-git quilt rcs \
