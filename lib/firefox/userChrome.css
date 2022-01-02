@@ -1,0 +1,19 @@
+/* userChrome.css --- backup copy outside Firefox’ profile tree
+
+   To use this:
+
+   1. Find your profile directory.
+
+   2. Put this in <profile dir>/chrome/userChrome.css.
+
+   3. Set ‘toolkit.legacyUserProfileCustomizations.stylesheets’ to
+      true.
+
+   4. (Re)start Firefox. */
+
+@namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
+
+/* Show toolbars when fullscreen. */
+#navigator-toolbox[inFullscreen] toolbar:not([collapsed="true"]) {
+    visibility:visible!important;
+}
