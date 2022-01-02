@@ -12,8 +12,6 @@
 (require 'deft)
 (require 'doc-view)
 (require 'man)
-(require 'pdf-tools)
-(require 'pdf-view)
 
 (require 'gk-fd)
 
@@ -25,65 +23,6 @@
   (browse-url-xdg-open (concat "file://" (buffer-file-name))))
 
 (define-key doc-view-mode-map [?&] #'gk-doc-view-open-externally)
-
-
-
-;;;; PDF-tools:
-
-;; TODO(2018-05-25): implement a smarter resizing addon where the
-;; resize factor can vary
-
-;; PDF tools is a sophisticated alternative to DocView for PDF files.
-
-(setf
- pdf-info-epdfinfo-program
- (gk-executable-ensure
-  (expand-file-name "pdf-tools/server/epdfinfo"
-                    (symbol-value 'gk-elisp-site-dir)))
- pdf-tools-enabled-modes
- '(pdf-isearch-minor-mode
-   pdf-links-minor-mode
-   pdf-misc-minor-mode
-   pdf-outline-minor-mode
-   pdf-misc-size-indication-minor-mode
-   pdf-misc-menu-bar-minor-mode
-   pdf-sync-minor-mode
-   pdf-misc-context-menu-minor-mode
-   pdf-cache-prefetch-minor-mode
-   pdf-annot-minor-mode)
- ;; Manually change the page.
- pdf-view-continuous nil
- ;; Resize more granularly.
- pdf-view-resize-factor 1.1)
-
-(pdf-tools-install-noverify)
-
-(define-key pdf-view-mode-map (kbd "M-w") #'pdf-view-kill-ring-save)
-(define-key pdf-view-mode-map "q" #'bury-buffer)
-
-(define-key pdf-view-mode-map (kbd "M-1")
-  (gk-interactively
-   (pdf-annot-add-highlight-markup-annotation
-    (pdf-view-active-region t)
-    "yellow")))
-
-(define-key pdf-view-mode-map (kbd "M-2")
-  (gk-interactively
-   (pdf-annot-add-highlight-markup-annotation
-    (pdf-view-active-region t)
-    "medium spring green")))
-
-(define-key pdf-view-mode-map (kbd "M-3")
-  (gk-interactively
-   (pdf-annot-add-highlight-markup-annotation
-    (pdf-view-active-region t)
-    "coral")))
-
-(define-key pdf-view-mode-map (kbd "M-4")
-  (gk-interactively
-   (pdf-annot-add-highlight-markup-annotation
-    (pdf-view-active-region t)
-    "dark turquoise")))
 
 
 
