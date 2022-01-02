@@ -12,7 +12,7 @@
 set -e
 
 # Path to emacs git repo clone
-cd ~/co/External/emacs
+cd ~/Sources/External/emacs
 
 if [ ! "${NOFETCH}" = "yes" ]; then
     git branch | grep '^\* master' >/dev/null || exit 'Not on branch master!'
@@ -50,8 +50,8 @@ fi
 	    --with-imagemagick            \
             --disable-build-details       \
             --with-json                   \
-            --with-native-compilation     \
 	    --without-threads
+#            --with-native-compilation     \
 
 echo Configure script completed, review output and hit RETURN to build; read nought
 

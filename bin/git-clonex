@@ -10,7 +10,7 @@ use File::Temp qw(tempdir);
 use Getopt::Long;
 use IPC::Run3 qw(run3);
 
-my $dir  = "$ENV{HOME}/co/External";
+my $dir  = "$ENV{HOME}/Sources/External";
 my $dry  = 0;
 my $tmp  = 0;
 my $yank = 0;
