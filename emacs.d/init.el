@@ -332,7 +332,7 @@
 
 ;;; Secrets:
 
-(gk-load (dropbox "secrets") t)
+(gk-load (expand-file-name "~/Documents/private-config/secrets") t)
 
 
 
