@@ -1,6 +1,6 @@
 ;;; gk-txt.el --- texte-editing utilities and customisations  -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2021  Göktuğ Kayaalp
+;; Copyright (C) 2021, 2022  Göktuğ Kayaalp
 
 ;;; Commentary:
 
@@ -286,8 +286,16 @@ will receive the region if active, or the entire buffer."
 ;; https://200ok.ch/posts/2020-08-22_setting_up_spell_checking_with_multiple_dictionaries.html
 
 (setf ispell-program-name "hunspell"
-      ispell-dictionary "en_GB,tr_TR,it_IT"
-      ispell-personal-dictionary (expand-file-name "~/Documents/hunspell-personal-dictionary"))
+      ;; Ispell is bitchy about absent dictionaries... So only include
+      ;; dictionaries that exist in this string.
+      ispell-dictionary
+      (let ((dicts (mapcar #'car ispell-hunspell-dictionary-alist)))
+        (s-join ","
+                (cl-remove-if-not
+                 ($ (member $1 dicts))
+                 (list "en_GB" "it_IT" "tr_TR"))))
+      ispell-personal-dictionary
+      (expand-file-name "~/Documents/hunspell-personal-dictionary"))
 
 (defun gk-spellcheck-hook ()
   "Hook to start spell-check in buffers."
