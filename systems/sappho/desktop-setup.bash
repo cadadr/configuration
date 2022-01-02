@@ -22,7 +22,9 @@ export LOCATION_LONG="$(echo 2 k $_long 100 / p | dc)"
 
 unset _lat _long latlong
 
-export $(gnome-keyring-daemon --start)
+eval $(ssh-agent -s)
+GPG_TTY=$(tty)
+export GPG_TTY
 
 ### X settings:
 
