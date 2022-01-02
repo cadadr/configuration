@@ -31,6 +31,9 @@ export GPG_TTY
 # Disable bell
 xset -b
 
+# Screensaver after 5min inactivity
+xset s 300 5
+
 # Use XToolkit in java applications
 export AWT_TOOLKIT=XToolkit
 
