@@ -3,3 +3,4 @@ ImageMagick
 feh
 xtools # xbps package manager helper tools
 pinentry-gtk
+geoclue2
