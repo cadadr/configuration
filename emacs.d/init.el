@@ -461,6 +461,8 @@ Does various tasks after saving a file, see it's definition."
 (gk-prefix-binding "x" #'gk-maximize)
 (gk-prefix-binding (kbd "C-f") #'gk-flip)
 
+(gk-prefix-binding "y" #'gk-yank-primary)
+
 
 
 ;;; Additional modules:
