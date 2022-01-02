@@ -61,7 +61,7 @@ volctl                   &
 blueman-applet           &
 compton -co .9 -r 15 -t -20 -l -20  &
 # Activate script on suspend.
-xss-lock $HOME/bin/lockscr.sh &
+xss-lock -l -- $HOME/bin/lockscr.sh &
 
 ### Set up toolkit looks:
 GK_GTK3_SETTINGS_FILE=$MY/xdg/gtk-3.0/settings.ini
