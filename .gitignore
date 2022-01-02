@@ -30,6 +30,7 @@ icons.*.rc
 tmp.patch
 __pycache__
 .venv
+*.value
 
 bin/bright
 bin/sct
@@ -90,6 +91,5 @@ xdg/fcitx/log/
 xdg/fcitx/cached_layout
 
 # XDG
-
 share/mimeinfo.cache
 systems/*/share/mimeinfo.cache
