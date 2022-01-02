@@ -46,11 +46,13 @@ fi
             --with-cairo                  \
             --with-harfbuzz               \
 	    --with-xft			  \
-            --with-mailutils              \
 	    --with-imagemagick            \
             --disable-build-details       \
             --with-json                   \
+            --without-mailutils           \
+            --without-pop                 \
 	    --without-threads
+#            --with-mailutils              \
 #            --with-native-compilation     \
 
 echo Configure script completed, review output and hit RETURN to build; read nought
