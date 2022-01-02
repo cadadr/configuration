@@ -1,6 +1,6 @@
 ;;; gk-cmds.el --- miscellaneous interactive commands  -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2021  Göktuğ Kayaalp
+;; Copyright (C) 2021, 2022  Göktuğ Kayaalp
 
 ;;; Commentary:
 
@@ -493,6 +493,17 @@ a string, the family name."
   (let ((themes custom-enabled-themes))
     (mapc #'disable-theme themes)
     (mapc ($ (when $1 (load-theme $1 t))) themes)))
+
+(defun gk-yank-primary ()
+  "Yank from the primary X clipboard."
+  (interactive)
+  ;; XXX(2022-01-02): Following taken from ‘mouse-yank-primary’.
+  (when select-active-regions
+    (let (select-active-regions)
+      (deactivate-mark)))
+  (let ((primary (gui-get-primary-selection)))
+    (push-mark)
+    (insert-for-yank primary)))
 
 
 
