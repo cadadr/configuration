@@ -77,14 +77,14 @@ or
     $ make -C emacs.d emacs-up
 
 in order to build Emacs from a clone assumed to be found at
-`~/co/External/Emacs`, install it, and build and install the Emacs
-config. The `emacs-up` rule will build from the git repo after running
-`git pull`, whereas `emacs` will just do the build, without updating
-the repo.
+`~/Sources/External/Emacs`, install it, and build and install the
+Emacs config. The `emacs-up` rule will build from the git repo after
+running `git pull`, whereas `emacs` will just do the build, without
+updating the repo.
 
 If needed, a recent version of Qutebrowser can be installed via
 
-    $ cd ~/co/External/github-qutebrowser-qutebrowser     # where a checkout usually
+    $ cd ~/Sources/External/github-qutebrowser-qutebrowser     # where a checkout usually
                                                           # is on my system
     $ python3 ./scripts/mkvenv.py --venv-dir ~/local/_qutebrowser
     $ cd -
