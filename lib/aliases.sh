@@ -91,13 +91,14 @@ sx () {
     dpy="${1:-0}"
     log_stdout="$HOME/log/xsession:$dpy-stdout.log"
     log_stderr="$HOME/log/xsession:$dpy-error.log"
+    log_xorg="$HOME/.local/share/xorg/Xorg.$dpy.log"
     # Preserve old logs
     cp $log_stdout $log_stdout.old
     cp $log_stderr $log_stderr.old
     startx -- :$dpy > $log_stdout 2> $log_stderr
     tail $log_stdout
     tail $log_stderr
-    tail /home/g/.local/share/xorg/Xorg.$dpy.log
+    [ -f $log_xorg ] && tail $log_xorg
 }
 
 # From: https://news.ycombinator.com/item?id=18898898
