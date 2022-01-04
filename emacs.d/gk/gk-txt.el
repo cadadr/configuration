@@ -286,14 +286,7 @@ will receive the region if active, or the entire buffer."
 ;; https://200ok.ch/posts/2020-08-22_setting_up_spell_checking_with_multiple_dictionaries.html
 
 (setf ispell-program-name "hunspell"
-      ;; Ispell is bitchy about absent dictionaries... So only include
-      ;; dictionaries that exist in this string.
-      ispell-dictionary
-      (let ((dicts (mapcar #'car ispell-hunspell-dictionary-alist)))
-        (s-join ","
-                (cl-remove-if-not
-                 ($ (member $1 dicts))
-                 (list "en_GB" "it_IT" "tr_TR"))))
+      ispell-dictionary "en_GB,it_IT,tr_TR"
       ispell-personal-dictionary
       (expand-file-name "~/Documents/hunspell-personal-dictionary"))
 
