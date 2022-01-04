@@ -6,3 +6,4 @@ pinentry-gtk
 geoclue2
 xss-lock # for X scrlock
 i3lock
+ristretto
