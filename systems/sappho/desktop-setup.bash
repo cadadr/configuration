@@ -79,7 +79,7 @@ echo 'gtk-decoration-layout = menu:close' >> $GK_GTK3_SETTINGS_FILE
 
 
 ### Launch window manager:
-(sleep 10; notify-send welcome "welcome to $(hostname -f)!" ) &
+(sleep 10; notify-send welcome "welcome to $(hostname)!" ) &
 
 # dotfiles/xsession will run $MYSYSTEM/desktop-setup.bash with
 # dbus-launch, so we can just run i3 here.
