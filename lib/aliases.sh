@@ -49,6 +49,10 @@ b () {
 	bg %$@
 }
 
+d () {
+	disown %$@
+}
+
 wv () {
 	xdg-open file://$PWD/$1
 }
