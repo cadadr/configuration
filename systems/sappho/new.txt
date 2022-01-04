@@ -9,3 +9,5 @@ i3lock
 ristretto
 udisks2
 udiskie
+atop
+mate-system-monitor
