@@ -1,15 +1,9 @@
-[Added Associations]
-inode/directory=org.kde.dolphin.desktop;
-x-scheme-handler/http=firefox.desktop;
-x-scheme-handler/https=firefox.desktop;
-x-scheme-handler/mailto=emacsclient-url.desktop;
-x-scheme-handler/tg=userapp-Telegram Desktop-F8XL50.desktop;
-
 [Default Applications]
-inode/directory=org.kde.dolphin.desktop;
+application/pdf=okularApplication_pdf.desktop
+inode/directory=pcmanfm.desktop
 text/html=firefox.desktop
-x-scheme-handler/gemini=lagrange.desktop
-x-scheme-handler/gopher=lagrange.desktop
+x-scheme-handler/gemini=fi.skyjake.Lagrange.desktop
+x-scheme-handler/gopher=fi.skyjake.Lagrange.desktop
 x-scheme-handler/http=firefox.desktop;
 x-scheme-handler/https=firefox.desktop;
 x-scheme-handler/mailto=emacsclient-url.desktop;
