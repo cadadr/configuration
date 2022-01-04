@@ -64,7 +64,7 @@ compton -co .9 -r 15 -t -20 -l -20  &
 xss-lock -l -- $HOME/bin/lockscr.sh &
 
 ### Set up toolkit looks:
-GK_GTK3_SETTINGS_FILE=$MY/xdg/gtk-3.0/settings.ini
+GK_GTK3_SETTINGS_FILE=$MY/dotfiles/gtk-3.0/settings.ini
 
 case $GK_COLOUR_SCHEME_PREFERENCE in
     dark) cat <<EOF > $GK_GTK3_SETTINGS_FILE
