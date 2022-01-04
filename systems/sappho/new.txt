@@ -7,3 +7,5 @@ geoclue2
 xss-lock # for X scrlock
 i3lock
 ristretto
+udisks2
+udiskie

@@ -62,6 +62,8 @@ blueman-applet           &
 compton -co .9 -r 15 -t -20 -l -20  &
 # Activate script on suspend.
 xss-lock -l -- $HOME/bin/lockscr.sh &
+# Disk automounter.
+udiskie -t &
 
 ### Set up toolkit looks:
 GK_GTK3_SETTINGS_FILE=$MY/dotfiles/gtk-3.0/settings.ini
