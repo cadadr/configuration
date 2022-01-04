@@ -90,6 +90,9 @@ dotfiles/fcitx/dbus/
 dotfiles/fcitx/log/
 dotfiles/fcitx/cached_layout
 
+# GTK
+dotfiles/gtk-3.0/bookmarks
+
 # XDG
 share/mimeinfo.cache
 systems/*/share/mimeinfo.cache

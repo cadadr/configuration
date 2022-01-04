@@ -2,7 +2,7 @@
 
 M4=m4 ../config.m4
 
-FILES=mpoprc msmtprc
+FILES=mpoprc msmtprc gtk-3.0/bookmarks
 WGET=wget --quiet
 VIMSPELLRMT=ftp://ftp.vim.org/pub/vim/runtime/spell
 VIMSPELLDIR=vim/spell
@@ -17,6 +17,9 @@ mpoprc: mpoprc.in
 
 msmtprc: msmtprc.in
 	$(M4) $< > $@ && chmod 600 $@
+
+gtk-3.0/bookmarks: gtk-3.0/bookmarks.in
+	$(M4) -D__USER__=$(USER) $< | sed 1d > $@
 
 vimspell:
 	mkdir -p vim/spell
