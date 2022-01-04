@@ -1,6 +1,6 @@
 ;;; gk-proj.el --- minimal project library           -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2021  Göktuğ Kayaalp
+;; Copyright (C) 2021, 2022  Göktuğ Kayaalp
 
 ;;; Commentary:
 
@@ -201,11 +201,17 @@ that instead."
         (split-window-sensibly)
         (other-window 1)
         (funcall vcs dir))
-    (other-window 1)
     (if initial-buffer-choice
         (ignore-errors (find-file initial-buffer-choice))
       (switch-to-buffer "*scratch*"))
-    (gk-flash-current-line)))
+    (gk-flash-current-line)
+    ;; If we can split the window, show ~/Desktop.
+    (when (split-window-sensibly)
+      (other-window 1)
+      ;; If we can’t show ~/Desktop for some reason, delete the window
+      ;; we created, as it’s now become useless.
+      (unless (ignore-errors (dired "~/Desktop/"))
+        (delete-window)))))
 
 
 
