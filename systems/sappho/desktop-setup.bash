@@ -59,7 +59,8 @@ nm-applet                &
 pcmanfm --daemon-mode    &
 volctl                   &
 blueman-applet           &
-compton -co .9 -r 15 -t -20 -l -20  &
+# viz. https://github.com/chjj/compton/issues/201
+picom -co .9 -r 15 -t -20 -l -20 --shadow-exclude "class_g = 'Firefox' && argb" &
 # Activate script on suspend.
 xss-lock -l -- $HOME/bin/lockscr.sh &
 # Disk automounter.
