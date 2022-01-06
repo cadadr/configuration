@@ -1,6 +1,6 @@
 ;;; gk-org.el --- org-mode configuration             -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2021  Göktuğ Kayaalp
+;; Copyright (C) 2021, 2022  Göktuğ Kayaalp
 
 ;; Author: Göktuğ Kayaalp <self@gkayaalp.com>
 
@@ -643,18 +643,6 @@ Use \[pop-to-mark-command] to go back to where you were."
     (push-mark p)))
 
 
-(defun gk-org-open-pdfs-in-this-window-not-motherfucking-other-window-you-fucking-asshole-that-is-org-mode
-    ()
-  (when-let* ((maybe-link-ctx (org-element-lineage (org-element-context) '(link) t))
-              (type (org-element-property :type maybe-link-ctx))
-              (path (org-element-property :path maybe-link-ctx)))
-    (when (and (string= "file" type)
-               (string-match (rx (and ".pdf" eos)) path))
-      (find-file path))))
-
-(add-hook 'org-open-at-point-functions #'gk-org-open-pdfs-in-this-window-not-motherfucking-other-window-you-fucking-asshole-that-is-org-mode)
-
-
 
 
 ;;;; Variables:
@@ -706,7 +694,7 @@ Use \[pop-to-mark-command] to go back to where you were."
 ;;;; Apps:
 
 ;; Use system app to handle PDFs.
-(setcdr (assoc "\\.pdf\\'" org-file-apps) 'emacs)
+(setcdr (assoc "\\.pdf\\'" org-file-apps) "xdg-open %s")
 
 (setcdr (assoc 'file org-link-frame-setup)
         (lambda (&rest args)
