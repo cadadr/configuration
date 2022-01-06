@@ -3,6 +3,10 @@
 general {
         colors = true
         interval = 5
+	# gruvbox
+        color_good = "#98971a"
+        color_bad = "#cc241d"
+        color_degraded = "#fabd2f"
 }
 
 order += "load"

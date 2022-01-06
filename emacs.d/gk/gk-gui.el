@@ -1,6 +1,6 @@
 ;;; gk-gui.el --- GUI customisations                 -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2021  Göktuğ Kayaalp
+;; Copyright (C) 2021, 2022  Göktuğ Kayaalp
 
 ;;; Commentary:
 
@@ -45,8 +45,8 @@ nil if absent."
 
 ;;;; GUI:
 
-(defvar gk-preferred-themes (list :light 'ankara
-                                  :dark  'inkpot)
+(defvar gk-preferred-themes (list :light nil
+                                  :dark  'gruvbox-dark-medium)
   "Light and dark theme preferences.")
 
 

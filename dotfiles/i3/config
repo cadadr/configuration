@@ -32,7 +32,7 @@ set $terminal kitty
 
 ### Launchers:
 bindsym F12 exec --no-startup-id i3-dmenu-desktop
-bindsym Shift+F12 exec --no-startup-id dmenu_run
+bindsym Shift+F12 exec --no-startup-id rofi -show run
 bindsym $mod+Shift+Return exec emacsclient -c
 bindsym $mod+Return exec $terminal
 bindsym $mod+Control+Return exec --no-startup-id firefox-window.sh
@@ -228,62 +228,28 @@ mode "$mod_resize" {
 }
 bindsym $mod+r mode "$mod_resize"
 
-### Colour defs:
-# bg
-set $colourbg1 #27408b
-set $colourfg1 #cae1ff
-set $colourhl1 #1e90ff
+client.focused          #665c54 #665c54 #eddbb2 #665c54   #665c54
+client.focused_inactive #282828 #5f676a #ffffff #484e50   #5f676a
+client.unfocused        #3c3836 #3c3836 #a89984 #292d2e   #222222
+client.urgent           #cc241d #cc241d #ebdbb2 #cc241d   #cc241d
+client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
 
-# focused
-set $colourbg2 #afeeee
-set $colourfg2 #000080
-set $colourhl2 #8a2be2
+client.background       #ffffff
 
-# inactive
-set $colourbg3 #191970
-set $colourfg3 #6495ed
-set $colourhl3 #708090
-
-# active (not focused but visible)
-set $colourbg4 #dda0dd
-set $colourfg4 #191970
-set $colourhl4 #c71585
-
-# urgent
-set $colourbg5 #ff6347
-set $colourfg5 #191970
-set $colourhl5 #ff1493
-
-# binding mode
-set $colourbg6 #9932cc
-set $colourfg6 #fffafa
-set $colourhl6 #fffafa
-
-
-### i3 colours:
-
-# class                 border     backgr.    text       indicator    child_border
-client.focused          $colourbg2 $colourbg2 $colourfg2 $colourbg2   $colourbg2
-client.focused_inactive $colourbg4 $colourbg4 $colourfg4 $colourbg4   $colourbg4
-client.unfocused        $colourbg3 $colourbg3 $colourfg3 $colourbg3   $colourbg3
-client.urgent           $colourbg5 $colourbg5 $colourfg5 $colourbg5   $colourbg5
-client.background       $colourbg1
-
-### The bar:
 bar {
         font $fnt
         position top
         status_command i3status
         colors {
-               background #000033
-               statusline $colourfg1
-               separator  $colourhl1
+                # Whole color settings
+                background #3c3836
+                statusline #ebdbb2
+                separator  #666666
 
-               focused_workspace  $colourhl2 $colourbg2 $colourfg2
-               inactive_workspace $colourhl3 $colourbg3 $colourfg3
-               active_workspace   $colourhl4 $colourbg4 $colourfg4
-               urgent_workspace   $colourhl5 $colourbg5 $colourfg5
-               binding_mode       $colourhl6 $colourbg6 $colourfg6
+                focused_workspace  #458588 #458588 #ebdbb2
+                active_workspace   #83a598 #83a598 #ebdbb2
+                inactive_workspace #504945 #504945 #ebdbb2
+                urgent_workspace   #cc241d #cc241d #504945
         }
 }
 

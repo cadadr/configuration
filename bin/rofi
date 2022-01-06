@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# rofi --- wrapper for rofi(1)
+
+# Because assholes develop rofi, it can’t have a config file like all
+# other similar apps, and this is what we have to resort to. 🖕
+
+exec /usr/bin/rofi \
+     -theme /usr/share/rofi/themes/gruvbox-dark-hard.rasi \
+     $@
+
