@@ -11,3 +11,4 @@ udisks2
 udiskie
 atop
 mate-system-monitor
+hidapi ldacBT broadcom-bt-firmware

@@ -45,7 +45,7 @@ xbps-install -y hunspell hunspell-{de_DE,en_GB,en_US,es_ES,fr_FR,it_IT} \
 # Desktop [common/X11]
 # (libnotify contains notify-send)
 xbps-install -y elogind tlp linux-firmware-intel mesa-dri vulkan-loader \
-             mesa-vulkan-intel intel-video-accel pipewire xorg   \
+             mesa-vulkan-intel intel-video-accel pulseaudio xorg   \
              i3-gaps i3status rofi scrcpy volctl libnotify xclip \
              xdotool xpra fontconfig flatpak dunst bluez compton
 
