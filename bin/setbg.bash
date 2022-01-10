@@ -10,7 +10,7 @@ IFS=$'\n\t'
 pidfile="$HOME/.setbg.bash.pid"
 
 if [ -e "$pidfile" ]; then
-    kill "$(cat $pidfile)"
+    ps -p "$(cat $pidfile)" > /dev/null && kill "$(cat $pidfile)"
 fi
 
 echo $$ > $pidfile
@@ -96,6 +96,7 @@ do_wlp_prev(){
 
 clean_up_exit(){
     [[ $sleep_pid ]] && kill "$sleep_pid"
+    rm "$pidfile"
     exit
 }
 
