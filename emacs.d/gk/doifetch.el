@@ -1,6 +1,6 @@
 ;;; doifetch.el --- fetch DOIs as bibtex             -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2021  Göktuğ Kayaalp
+;; Copyright (C) 2021, 2022  Göktuğ Kayaalp
 
 ;; Author: Göktuğ Kayaalp <self@gkayaalp.com>
 ;; Package-Requires: ((emacs "26") (request "0.3.2") (s "1.9.0") (ebib "2.31"))
@@ -175,8 +175,7 @@ yanked, and/or imported to Ebib."
        (let ((map widget-keymap))
          (prog1 map
            (define-key map [?q] #'bury-buffer))))
-      ;; Put the cursor on the [Yank] button
-      (goto-char (line-beginning-position))
+      (goto-char (point-min))
       (widget-setup)
       (pop-to-buffer (current-buffer)))))
 
