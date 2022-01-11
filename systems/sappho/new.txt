@@ -12,3 +12,4 @@ udiskie
 atop
 mate-system-monitor
 hidapi ldacBT broadcom-bt-firmware
+arandr

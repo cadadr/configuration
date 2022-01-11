@@ -107,6 +107,11 @@ bindsym Shift+F3 move container to workspace $ws_rsc
 bindsym Shift+F4 move container to workspace 4
 bindsym Shift+F5 move container to workspace 5
 
+### Multiple monitors:
+
+# Move workspaces between monitors.
+bindsym $mod+Right move workspace to output right
+bindsym $mod+Left move workspace to output left
 
 ### Modes:
 # power management
