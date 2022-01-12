@@ -285,8 +285,20 @@ will receive the region if active, or the entire buffer."
 ;; Partially adapted from:
 ;; https://200ok.ch/posts/2020-08-22_setting_up_spell_checking_with_multiple_dictionaries.html
 
+(defvar gk-expected-dictionaries (list "en_GB" "it_IT" "tr_TR")
+  "Dictionaries to be attempted to load.")
+
 (setf ispell-program-name "hunspell"
-      ispell-dictionary "en_GB,it_IT,tr_TR"
+      ;; Only include dictionary names if it’s found on the system
+      ispell-dictionary
+      (string-join
+       (cl-remove-if-not
+        ($ [dict]
+           (let ((dic-name (concat dict ".dic")))
+             ;; XXX(2022-01-11): turn this into an or-statement if need be.
+             (file-exists-p (expand-file-name dic-name "/usr/share/hunspell"))))
+        gk-expected-dictionaries)
+       ",")
       ispell-personal-dictionary
       (expand-file-name "~/Documents/hunspell-personal-dictionary"))
 
