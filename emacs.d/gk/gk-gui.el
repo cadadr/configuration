@@ -287,6 +287,16 @@ picks."
                :foreground "white"
                :background (face-attribute 'mode-line :background)))))
 
+(add-hook 'gk-gui-theme-customisation-functions
+          (lambda (theme)
+            (when (memq theme '(gruvbox-dark-medium))
+              ;; Make comments readable.
+              (set-face-attribute
+               'font-lock-comment-face nil
+               :foreground (face-attribute 'font-lock-string-face :foreground)
+               :background (face-attribute 'default :background)
+               :italic t))))
+
 
 
 (provide 'gk-gui)
