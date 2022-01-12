@@ -1,4 +1,4 @@
-# rpackages.R --- install R packages
+# packages.R --- install R packages
 
 # Run with `Rscript --no-init-file'
 
