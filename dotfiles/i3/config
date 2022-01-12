@@ -48,7 +48,6 @@ bindsym $mod+Shift+semicolon exec i3-input -P 'i3 command: '
 bindsym $mod+w exec --no-startup-id i3switch.rb
 bindsym $mod+BackSpace exec --no-startup-id python3 $MYLIB/i3/focus-last.py --switch
 bindsym $mod+Control+t exec --no-startup-id sh $MYLIB/toggle-tapping.sh
-bindsym $mod+Control+b exec backup-popup.bash
 bindsym $mod+Next exec --no-startup-id pkill -USR1 -f setbg.bash
 bindsym $mod+Prior exec --no-startup-id pkill -USR2 -f setbg.bash
 bindsym $mod+q exec --no-startup-id qrclip.sh
@@ -151,25 +150,27 @@ mode "$mode_display" {
 # Declare here the shortcut to bring the display selection menu
 bindsym F10 mode "$mode_display"
 
-set $mode_brightness Set brightness (n∈1..9=>0.n;n=0=>1.0)
+set $mode_brightness Set brightness 1..9 = 10..90%, 0 = 100%, i/d = inc/dec by 5%
 mode "$mode_brightness" {
-    bindsym 1 exec bright 0.1
-    bindsym 2 exec bright 0.2
-    bindsym 3 exec bright 0.3
-    bindsym 4 exec bright 0.4
-    bindsym 5 exec bright 0.5
-    bindsym 6 exec bright 0.6
-    bindsym 7 exec bright 0.7
-    bindsym 8 exec bright 0.8
-    bindsym 9 exec bright 0.9
-    bindsym 0 exec bright 1
+    bindsym 1 exec xbacklight -set 10
+    bindsym 2 exec xbacklight -set 20
+    bindsym 3 exec xbacklight -set 30
+    bindsym 4 exec xbacklight -set 40
+    bindsym 5 exec xbacklight -set 50
+    bindsym 6 exec xbacklight -set 60
+    bindsym 7 exec xbacklight -set 70
+    bindsym 8 exec xbacklight -set 80
+    bindsym 9 exec xbacklight -set 90
+    bindsym 0 exec xbacklight -set 100
+    bindsym i exec xbacklight -inc 5
+    bindsym d exec xbacklight -dec 5
 
     # exit mode
     bindsym Return mode "default"
     bindsym Escape mode "default"
     bindsym Control+g mode "default"
 }
-# bindsym $mod+Control+b mode "$mode_brightness"
+bindsym $mod+Control+b mode "$mode_brightness"
 
 set $mode_pass Passthrough, Return / Escape / Ctrl+G to exit
 mode "$mode_pass" {
