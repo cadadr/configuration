@@ -13,3 +13,4 @@ atop
 mate-system-monitor
 hidapi ldacBT broadcom-bt-firmware
 arandr
+tumbler # thumbnailer dbus service
