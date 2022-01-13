@@ -1,0 +1,21 @@
+#+title: Firefox ‘advanced’ settings
+
+The below list is a list of user preferences for Firefox.  This is a
+list instead of a config file because there’s no reliable way to set
+these as defaults and have them persist without worry, because fuck
+Mozilla and their bullshit Chromium clone.
+
+- =ui.context_menus.after_mouseup=
+  - =true=
+  - fixes auto-activation of the topmost option in the right-click
+    menus.
+  - https://github.com/qtile/qtile/issues/2460
+  - https://bugzilla.mozilla.org/show_bug.cgi?id=1355848
+
+- =toolkit.legacyUserProfileCustomizations.stylesheets=
+  - =true=
+  - allows using =userChrome.css=
+
+- =network.http.http3.enabled=
+  - =false=
+  - https://bugzilla.mozilla.org/show_bug.cgi?id=1749908
