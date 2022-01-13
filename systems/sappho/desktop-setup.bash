@@ -26,6 +26,9 @@ eval $(ssh-agent -s)
 GPG_TTY=$(tty)
 export GPG_TTY
 
+# Ensure PulseAudio DBus service is running.
+start-pulseaudio-x11
+
 ### X settings:
 
 # Disable bell
