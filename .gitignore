@@ -95,4 +95,5 @@ dotfiles/gtk-3.0/bookmarks
 
 # XDG
 share/mimeinfo.cache
+share/applications/mimeinfo.cache
 systems/*/share/mimeinfo.cache
