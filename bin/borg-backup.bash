@@ -6,8 +6,8 @@ export GK_NOENV=yes
 . $MYLIB/cron.sh
 . $MYLIB/fns.sh
 
-# If ‘GK_BORG_NONINTERACTIVE’ is set, don’t display progress info.
-maybe_progress="${GK_BORG_NONINTERACTIVE---stats --progress}"
+# If ‘GK_BORG_INTERACTIVE’ is set, display progress info.
+maybe_progress="${GK_BORG_INTERACTIVE:+--stats --progress}"
 
 # repository
 user="${GK_BORG_USER-pi}"
