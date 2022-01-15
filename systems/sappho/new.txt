@@ -17,3 +17,4 @@ tumbler # thumbnailer dbus service
 avahi-utils
 dcron
 sound-theme-freedesktop
+adwaita-plus
