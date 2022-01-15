@@ -142,7 +142,8 @@ EOF
 echo tr_TR.UTF-8 UTF-8 >> /etc/default/libc-locales
 xbps-reconfigure -f glibc-locales
 
-### Configure avahi:
+### Configure avahi/mdns:
 
-# Disable IPv6, causes trouble with connectivity.
-sed -E -i .bkp 's/^#?use-ipv6=yes/use-ipv6=no/' /etc/avahi/avahi-daemon.conf
+# Disable IPv6, use v4 only, causes trouble with connectivity.
+sed -E -i.bkp 's/^#?use-ipv6=yes/use-ipv6=no/' /etc/avahi/avahi-daemon.conf
+sed -i.bkp    's/mdns/mdns4_minimal [NOTFOUND=return]/' /etc/nsswitch.conf
