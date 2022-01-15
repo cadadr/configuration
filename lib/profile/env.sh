@@ -78,8 +78,5 @@ export SYSTEMD_COLORS=0
 # Make numbered backups
 export VERSION_CONTROL=numbered
 
-# Borg Backups
-export BORG_REPO=pi@ayata.local:/mnt/Backups
-
 # Man path
 export MANPATH="$MY/doc/man:"

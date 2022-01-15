@@ -6,13 +6,26 @@ export GK_NOENV=yes
 . $MYLIB/cron.sh
 . $MYLIB/fns.sh
 
+# If ‘GK_BORG_NONINTERACTIVE’ is set, don’t display progress info.
+maybe_progress="${GK_BORG_NONINTERACTIVE---stats --progress}"
+
+# repository
+user="${GK_BORG_USER-pi}"
+host="${GK_BORG_HOST-xanthippe.local}"
+dir="${GK_BORG_DIR-/home/$user/cadadr-encrypted-storage/repo-$(hostname)}"
+repo=$user@$host:$dir
+
+say repository: $repo
+
 say starting local backup with borg...
 
-say 'environment looks like:'
+if [ ! -f "$MYSYSTEM/full-backup.dirs" ]; then
+    die backups not supported, "$MYSYSTEM/full-backup.dirs" not found
+fi
 
-env | grep -i borg
-
-borg create --compression lz4 ::{user}-{now} $MYFS/
+borg create $maybe_progress --compression=lz4 \
+     $repo::{user}-{now}_initial-archive      \
+     $(bash $MYSYSTEM/full-backup.dirs)
 
 notify-send -u low 'Borg backup completed' 'Local backup successfully completed'
 

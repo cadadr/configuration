@@ -14,3 +14,5 @@ mate-system-monitor
 hidapi ldacBT broadcom-bt-firmware
 arandr
 tumbler # thumbnailer dbus service
+avahi-utils
+dcron

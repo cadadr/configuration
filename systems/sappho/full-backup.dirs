@@ -1,0 +1,23 @@
+#!/bin/bash
+# full-backup.dirs --- directories for full backup on sappho
+
+echo \
+    $HOME/.backups  \
+    $HOME/.config   \
+    $HOME/.elfeed   \
+    $HOME/.fonts    \
+    $HOME/.gnupg    \
+    $HOME/.mozilla  \
+    $HOME/.ssh      \
+    $HOME/Desktop   \
+    $HOME/Documents \
+    $HOME/Downloads \
+    $HOME/Music     \
+    $HOME/Notes     \
+    $HOME/Pictures  \
+    $HOME/Posta     \
+    $HOME/Research  \
+    $HOME/Sources   \
+    $HOME/Videos    \
+    $HOME/cf        \
+    $HOME/log

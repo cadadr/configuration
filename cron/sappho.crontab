@@ -1,0 +1,17 @@
+# sappho.crontab
+
+# Example of job definition:
+# .---------------- minute (0 - 59)
+# |	.------------- hour (0 - 23)
+# |	|	.---------- day of month (1 - 31)
+# |	|	|	.------- month (1 - 12) ⁽¹⁾
+# |	|	|	|	.---- day of week (0 - 6) ⁽²⁾
+# |	|	|	|	|
+# min	hr	day	month	week	command to be executed
+
+*/5	*	*	*	*	$HOME/bin/dconf-dump.sh >/dev/null
+# 30	*/2	*	*	*	$HOME/bin/rclone-backup.sh >> $HOME/log/rclone.log 2>&1
+45	*/6	*	*	*	$HOME/bin/borg-backup.bash >> $HOME/log/borg.log 2>&1
+
+# ¹ OR jan,feb,mar,apr ...
+# ² (Sunday=0 or 7) OR sun,mon, ...
