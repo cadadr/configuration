@@ -2,6 +2,7 @@
 .Xdefaults		dotfiles/Xdefaults
 .bashrc			dotfiles/shrc.sh
 .config/clipit		dotfiles/clipit
+.config/dunst/dunstrc	dotfiles/dunstrc.ini
 .config/fcitx		dotfiles/fcitx
 .config/git		dotfiles/git
 .config/gtk-3.0		dotfiles/gtk-3.0
