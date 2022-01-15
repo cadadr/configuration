@@ -14,16 +14,13 @@ help:
 	@echo '	emacs:		build emacs (do NOT upgrade)'
 	@echo '	emacs-up:	build emacs (upgrade)'
 
-all: extras packages invade
+all: extras invade
 
 ext:
 	$(MAKE) -C ext -$(MAKEFLAGS)
 
 extras:
 	$(MAKE) -C extras -$(MAKEFLAGS)
-
-packages:
-	$(MAKE) -C lisp/ -$(MAKEFLAGS)
 
 invade:
 	$(HOME)/bin/invade -v $(HOME)
