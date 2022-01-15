@@ -1,0 +1,38 @@
+[org/blueman/general]
+services-last-item = 0
+
+[org/blueman/network]
+nap-enable = false
+
+[org/blueman/plugins/powermanager]
+auto-power-on = @mb false
+
+[org/blueman/plugins/recentconns]
+
+[org/gnome/cheese]
+burst-delay = 1000
+camera = 'Video Capture 5'
+photo-x-resolution = 800
+photo-y-resolution = 448
+video-x-resolution = 800
+video-y-resolution = 448
+
+[org/gtk/settings/file-chooser]
+date-format = 'regular'
+show-hidden = false
+show-size-column = true
+show-type-column = true
+sort-directories-first = false
+type-format = 'category'
+
+[org/mate/desktop/background]
+picture-filename = '/home/cadadr/.xbg.png'
+
+[org/mate/system-monitor]
+
+[org/mate/system-monitor/disktreenew]
+
+[org/mate/system-monitor/proctree]
+col-22-visible = true
+col-23-visible = true
+
