@@ -1,20 +1,7 @@
-
-ImageMagick
-feh
-xtools # xbps package manager helper tools
-pinentry-gtk
-geoclue2
-xss-lock # for X scrlock
-i3lock
-ristretto
-udisks2
-udiskie
-atop
-mate-system-monitor
-hidapi ldacBT broadcom-bt-firmware
-arandr
-tumbler # thumbnailer dbus service
-avahi-utils
-dcron
-sound-theme-freedesktop
-adwaita-plus
+# new.txt --- buffer for new packages.
+#
+# This is for use like:
+#
+#     $ sudo xbps-install $sth && echo $sth >> $MYSYSTEM/new.txt
+#
+# Later, move stuff to payload.bash.

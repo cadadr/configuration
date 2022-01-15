@@ -24,13 +24,13 @@ xbps-install -Sy
 # Basics and utilities
 xbps-install -y bc bind-utils djvulibre entr inotify-tools jq \
              lm_sensors moreutils num-utils pv smartmontools tmux \
-             units vim-huge qrencode
+             units vim-huge qrencode xtools udisks2 atop dcron
 
 # Shells
 xbps-install -y zsh
 
 # Drivers
-xbps-install -y v4l2loopback
+xbps-install -y v4l2loopback hidapi ldacBT broadcom-bt-firmware
 
 # Backups
 xbps-install -y borg rclone
@@ -47,7 +47,9 @@ xbps-install -y hunspell hunspell-{de_DE,en_GB,en_US,es_ES,fr_FR,it_IT} \
 xbps-install -y elogind tlp linux-firmware-intel mesa-dri vulkan-loader \
              mesa-vulkan-intel intel-video-accel pulseaudio xorg   \
              i3-gaps i3status rofi scrcpy volctl libnotify xclip \
-             xdotool xpra fontconfig flatpak dunst bluez compton
+             xdotool xpra fontconfig flatpak dunst bluez compton \
+             feh pinentry-gtk geoclue2 xss-lock i3lock udiskie arandr \
+             tumbler sound-theme-freedesktop adwaita-plus
 
 # TODO: Desktop [Wayland]
 # hikari, ...
@@ -57,7 +59,7 @@ xbps-install -y vokoscreen kitty audacity cheese clipit dconf-editor \
              dex gimp gsmartcontrol inkscape kdeconnect libreoffice \
              mpv quodlibet simple-scan transmission-gtk okular kdenlive \
              gnome-font-viewer firefox flameshot network-manager-applet \
-             pcmanfm pavucontrol blueman
+             pcmanfm pavucontrol blueman ristretto mate-system-monitor
 
 # Audio
 xbps-install -y vorbisgain vorbis-tools
@@ -77,7 +79,7 @@ xbps-install -y \
 eval "xbps-install -y $(xbps-query -Rs font-sil- | cut -d ' ' -f 2 | tr '\n' ' ')"
 
 # Network
-xbps-install -y avahi curl nss-mdns openbsd-netcat net-tools
+xbps-install -y avahi curl nss-mdns openbsd-netcat net-tools avahi-utils
 
 # Internet & mail
 # (inetutils contains telnet, whois, and traceroute)
@@ -104,7 +106,8 @@ xbps-install -y base-devel cmake autoconf autoconf-archive automake \
 # Libraries
 xbps-install -y python3-devel ruby-devel perl-Switch perl-local-lib \
              perl-JSON perl-Reply pdf.js openssl-devel fuse-devel \
-             libcurl-devel libgcc-devel libgirepository-devel
+             libcurl-devel libgcc-devel libgirepository-devel \
+             ImageMagick
 
 # VCS
 xbps-install -y git cvs cvsps2 git-cvs mercurial hg-git quilt rcs \
@@ -125,6 +128,7 @@ ln -s /{etc/sv,var/service}/avahi-daemon && sv up avahi-daemon
 ln -s /{etc/sv,var/service}/tlp && sv up tlp
 ln -s /{etc/sv,var/service}/ssh && sv up ssh
 ln -s /{etc/sv,var/service}/bluetoothd && sv up bluetoothd
+ln -s /{etc/sv,var/service}/dcron && sv up dcron
 
 ### Enable kernel modules:
 
@@ -138,3 +142,7 @@ EOF
 echo tr_TR.UTF-8 UTF-8 >> /etc/default/libc-locales
 xbps-reconfigure -f glibc-locales
 
+### Configure avahi:
+
+# Disable IPv6, causes trouble with connectivity.
+sed -E -i .bkp 's/^#?use-ipv6=yes/use-ipv6=no/' /etc/avahi/avahi-daemon.conf
