@@ -402,8 +402,8 @@ alias localbogie="BOGIE_PLAYLIST=~/trains/ BOGIE_RADIO=~/Music/study-instrumenta
 alias partlocalbogie="BOGIE_PLAYLIST=~/trains/ bogie.bash"
 
 # raspberry pi
-alias pi="ssh pi@ayata.local"
-alias pi_temp="ssh pi@ayata.local vcgencmd measure_temp"
+alias pi="ssh pi@xanthippe.local"
+alias pi_temp="ssh pi@xanthippe.local vcgencmd measure_temp"
 
 ### OS specific aliases:
 
