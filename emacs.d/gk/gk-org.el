@@ -766,7 +766,6 @@ of change will be 23:59 on that day"
  org-habit-graph-column 49
  org-agenda-files (gk-org-dir-files "Ajanda.org")
  org-agenda-hide-tags-regexp "."
- org-agenda-sticky t
  org-agenda-custom-commands
  `((,gk-org-agenda-key "Planner"
     (;; Today
