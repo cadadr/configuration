@@ -46,6 +46,7 @@ doc/man/index.db
 # Generated files.
 dotfiles/mpoprc
 dotfiles/msmtprc
+dotfiles/mairixrc
 
 # Qutebrowser
 dotfiles/qutebrowser/qsettings/QtProject.conf

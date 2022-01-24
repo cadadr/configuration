@@ -2,7 +2,7 @@
 
 M4=m4 ../config.m4
 
-FILES=mpoprc msmtprc gtk-3.0/bookmarks
+FILES=mpoprc msmtprc gtk-3.0/bookmarks mairixrc
 WGET=wget --quiet
 VIMSPELLRMT=ftp://ftp.vim.org/pub/vim/runtime/spell
 VIMSPELLDIR=vim/spell
@@ -20,6 +20,9 @@ msmtprc: msmtprc.in
 
 gtk-3.0/bookmarks: gtk-3.0/bookmarks.in
 	$(M4) -D__USER__=$(USER) $< | sed 1d > $@
+
+mairixrc: mairixrc.in
+	$(M4) -D__BASE__=$(HOME)/Posta $< | sed 1d > $@
 
 vimspell:
 	mkdir -p vim/spell
