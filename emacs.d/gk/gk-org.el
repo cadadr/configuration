@@ -840,13 +840,8 @@ of change will be 23:59 on that day"
                     (1+ space)))))
       (let ((inhibit-read-only t)
             (beg (line-beginning-position))
-            (end (point))
-            ;; Retain this, as it serves ‘org-agenda-goto’ and
-            ;; ‘org-agenda-switch-to’.
-            (org-marker (org-get-at-bol 'org-marker)))
-        (set-text-properties beg end nil)
-        (put-text-property   beg end 'face 'org-ellipsis)
-        (put-text-property   beg end 'org-marker org-marker)))
+            (end (point)))
+        (put-text-property   beg end 'face 'org-ellipsis)))
     (goto-char (point-min))
     ;; Remove some useless stuff
     (while
