@@ -126,7 +126,7 @@ flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flat
 
 ln -s /{etc/sv,var/service}/avahi-daemon && sv up avahi-daemon
 ln -s /{etc/sv,var/service}/tlp && sv up tlp
-ln -s /{etc/sv,var/service}/ssh && sv up ssh
+ln -s /{etc/sv,var/service}/sshd && sv up sshd
 ln -s /{etc/sv,var/service}/bluetoothd && sv up bluetoothd
 ln -s /{etc/sv,var/service}/dcron && sv up dcron
 
