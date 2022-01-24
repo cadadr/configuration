@@ -19,6 +19,7 @@
 (require 'org-agenda)
 (require 'org-attach)
 (require 'org-capture)
+(require 'org-checklist)
 (require 'org-compat)
 (require 'org-habit)
 (require 'org-id)
@@ -628,21 +629,6 @@ of change will be 23:59 on that day"
         (org-agenda-todo arg)
       (org-todo arg))))
 
-(define-advice org-agenda-redo-all
-    (:around (fn &rest args) always-go-to-top-but-push-mark-before-movement)
-  "Go to the top of the buffer after, but push mark before redoing.
-
-Use \[pop-to-mark-command] to go back to where you were."
-  (let ((p (point)))
-    ;; This does go to the beginning of the buffer, but I don’t really
-    ;; understand why exactly it does that, so...
-    (save-mark-and-excursion
-      (funcall fn args))
-    ;; ... I’ll be redundant.
-    (goto-char (point-min))
-    (push-mark p)))
-
-
 
 
 ;;;; Variables:
@@ -731,7 +717,18 @@ Use \[pop-to-mark-command] to go back to where you were."
     (recenter-top-bottom 0)
     ret))
 
+(defvar gk-org-agenda-key "p"
+  "Key for my main agenda view.")
+
+(defun gk-org-agenda ()
+  "Show my main agenda."
+  (interactive)
+  (org-agenda nil gk-org-agenda-key))
+
 (setf
+ ;; End the day at 5am next day, because I tend to stay up past
+ ;; midnight.
+ org-extend-today-until 5
  ;; Don't show done items.
  org-agenda-skip-deadline-if-done t
  org-agenda-skip-scheduled-if-done t
@@ -767,92 +764,104 @@ Use \[pop-to-mark-command] to go back to where you were."
  ;; More room for habit titles.
  org-habit-preceding-days 21
  org-habit-graph-column 49
- org-agenda-files
- (gk-org-dir-files
-  "Todo.org" "Linguistics.org" "Statistics.org")
+ org-agenda-files (gk-org-dir-files "Ajanda.org")
  org-agenda-hide-tags-regexp "."
  org-agenda-sticky t
  org-agenda-custom-commands
- `(("s" "Current month’s events in Sidekick.org"
-    ((agenda "" ((org-agenda-overriding-header "Events of this month\n\n")
-                 (org-agenda-files (list ,(gk-org-dir-file "Sidekick.org")))
-                 (org-agenda-sorting-strategy '(time-up
-                                                priority-down
-                                                category-up
-                                                deadline-up
-                                                scheduled-up
-                                                tag-up
-                                                habit-down))
-                 (org-agenda-span 'month)
-                 (org-default-priority org-lowest-priority)))))))
-
-
-(defun gk-org-display-single-pane-agenda-view (&optional arg)
-  "Display a single pane planner agenda view.
-
-If called with a prefix argument, or ARG is non-nil, delete other
-windows and show the agenda window as the sole window.
-
-This is coupled with custom agendas in
-‘org-agenda-custom-commands’."
-  (interactive "P")
-  (when arg
-   (delete-other-windows))
-  ;; Show planner
-  (let ((org-agenda-buffer-name "*Org Agenda: Planner*"))
-    (org-agenda nil "p")))
-
-
-(defun gk-org-display-two-pane-agenda-view ()
-  "Display a two pane agenda view.
-
-On the left is the actual agenda view, on the right a list of
-TODOs.  This is coupled with custom agendas in
-‘org-agenda-custom-commands’."
-  (interactive)
-  (gk-org-display-single-pane-agenda-view t)
-  (split-window-horizontally)
-  (other-window 1)
-  ;; Show TODOs.
-  (let ((org-agenda-buffer-name "*Org Agenda: Stray TODOs"))
-    (org-agenda nil "u"))
-  ;; Put cursor in planner
-  (other-window 1))
-
-(defun gk-org-display-planner-frame (&optional arg)
-  "Open new frame with single pane agenda view.
-
-When called with a prefix argument, or when ARG is non-nil,
-display a two pane view in a maximised frame."
-  (interactive "P")
-  (gk-with-new-frame nil
-    (if (not arg)
-        (gk-org-display-single-pane-agenda-view)
-      (toggle-frame-maximized)
-      (gk-org-display-two-pane-agenda-view))))
+ `((,gk-org-agenda-key "Planner"
+    (;; Today
+     (agenda
+      ""
+      ((org-agenda-overriding-header "")
+       (org-agenda-skip-function '(org-agenda-skip-entry-if 'deadline))
+       (org-deadline-warning-days 0)
+       (org-agenda-sorting-strategy
+        '(time-up
+          priority-down
+          category-up
+          deadline-up
+          scheduled-up
+          tag-up
+          habit-down))
+       (org-default-priority org-lowest-priority)
+       (org-agenda-span 1)))
+     ;; Deadlines
+     (agenda
+      nil
+      ((org-agenda-overriding-header "")
+       (org-agenda-entry-types '(:deadline))
+       (org-agenda-format-date "")
+       (org-deadline-warning-days 21)
+       (org-agenda-sorting-strategy
+        '( priority-down deadline-up todo-state-down))
+       (org-default-priority org-lowest-priority)
+       (org-agenda-span 1)))
+     ;; Current week, simplified
+     (agenda
+      ""
+      (;; If I put a ‘\n’ here, Org Agenda will be a dick and add two
+       ;; empty lines... so we put a blank space to trick it into
+       ;; thinking that there’s something here.
+       (org-agenda-overriding-header " ")
+       (org-agenda-entry-types '(:scheduled))
+       (org-deadline-warning-days 0)
+       (org-agenda-sorting-strategy '(time-up
+                                      priority-down
+                                      category-up
+                                      deadline-up
+                                      scheduled-up
+                                      tag-up
+                                      habit-down))
+       (org-default-priority org-lowest-priority)
+       (org-agenda-span 7)))))))
 
 
 (defun gk-org-agenda-mode-hook ()
-  (hl-line-mode +1)
-  (setq-local word-wrap t)
-  (setq-local truncate-lines nil)
-  (gk-turn-on-outline-minor-mode "^\\*" ":$" "C-'"))
+  (save-excursion
+    (hl-line-mode +1)
+    (setq-local word-wrap t)
+    (setq-local truncate-lines nil)
+    (gk-turn-on-outline-minor-mode "^\\*" ":$" "C-'")))
 
 (add-hook 'org-agenda-mode-hook #'gk-org-agenda-mode-hook)
 
 (defun gk-org-agenda-finalize-hook ()
-  ;; Remove deadlines section if it’s empty.
+  "Finishing touches to the Agenda buffer."
+  (setq-local default-directory org-directory)
   (save-excursion
     (goto-char (point-min))
-    (save-match-data
-      (re-search-forward (rx (and bol "* Approaching deadlines:" eol))))
-    (when-let* ((next-heading-beg-pos (save-excursion
-                                        (outline-next-visible-heading 1)
-                                        (point)))
-                (_ (string-empty-p (string-trim
-                                    (buffer-substring (point)
-                                                      next-heading-beg-pos)))))
-      (delete-region (line-beginning-position) next-heading-beg-pos))))
+    ;; De-emphasise useless info.
+    (while
+        (ignore-errors
+          (re-search-forward
+           ;; $Category: ( $Scheduled | $Time | $Deadline | $Progress ):
+           (rx (and bol "  " (1+ alnum) ":" (1+ space)
+                    (or (and (1+ digit) ":" (1+ digit) (1+ "."))
+                        (and (1+ (or alnum space ".")) ":")
+                        (and "(" (1+ digit) "/" (1+ digit) "):"))
+                    (1+ space)))))
+      (let ((inhibit-read-only t)
+            (beg (line-beginning-position))
+            (end (point))
+            ;; Retain this, as it serves ‘org-agenda-goto’ and
+            ;; ‘org-agenda-switch-to’.
+            (org-marker (org-get-at-bol 'org-marker)))
+        (set-text-properties beg end nil)
+        (put-text-property   beg end 'face 'org-ellipsis)
+        (put-text-property   beg end 'org-marker org-marker)))
+    (goto-char (point-min))
+    ;; Remove some useless stuff
+    (while
+        (ignore-errors
+          (re-search-forward
+           (rx (and bol "  " (1+ alnum) ":" (1+ space)
+                    (and (1+ digit) ":" (1+ digit) (1+ "."))
+                    (1+ space)
+                    "Scheduled:"))))
+      (when-let* ((inhibit-read-only t)
+                  (end (point))
+                  (beg (re-search-backward "\\.")))
+        (delete-region beg end)))))
 
 (add-hook 'org-agenda-finalize-hook #'gk-org-agenda-finalize-hook)
 
@@ -933,6 +942,8 @@ its contents."
 ;;;; Refile:
 
 (setf
+ org-refile-targets
+ `((,(gk-org-dir-file "Ajanda.org") :maxlevel . 3))
  org-refile-use-outline-path t
  org-refile-allow-creating-parent-nodes t
  org-log-refile 'time
@@ -1225,8 +1236,7 @@ numerals which regularly appear in texts."
 
 (setf
  org-num-face 'org-verbatim
- ;; Some others possible chars: ⊞ ◢ 𝅍
- org-ellipsis " ⮷")
+ org-ellipsis " ◢")
 
 
 
@@ -1270,8 +1280,10 @@ numerals which regularly appear in texts."
 ;;;;; LaTeX previews:
 
 (setf
- ;; Single global location for latex-previews, don’t pollute dirs.
- org-preview-latex-image-directory (expand-file-name "~/.org-latex-previews"))
+ ;; Single global location for latex-previews, don’t pollute
+ ;; dirs. BEWARE the trailing ‘/’ is important!!!
+ org-preview-latex-image-directory
+ (expand-file-name "~/.org-latex-previews/"))
 
 (define-advice org-format-latex
     (:around (fn &rest args) take-theme-into-account)
@@ -1980,9 +1992,9 @@ fragments"
     map)
   "Keymap for ‘org-mode’-specific bindings.")
 
-(gk-prefix-binding "o" gk-org-mode-bindings)
-(gk-prefix-binding "c" 'org-capture)
-(gk-prefix-binding "a" 'org-agenda)
+(gk-prefix-binding "o" #'gk-org-mode-bindings)
+(gk-prefix-binding "c" #'org-capture)
+(gk-prefix-binding "a" #'gk-org-agenda)
 
 
 
