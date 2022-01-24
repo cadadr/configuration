@@ -819,8 +819,7 @@ of change will be 23:59 on that day"
   (save-excursion
     (hl-line-mode +1)
     (setq-local word-wrap t)
-    (setq-local truncate-lines nil)
-    (gk-turn-on-outline-minor-mode "^\\*" ":$" "C-'")))
+    (setq-local truncate-lines nil)))
 
 (add-hook 'org-agenda-mode-hook #'gk-org-agenda-mode-hook)
 
