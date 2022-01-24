@@ -5,3 +5,6 @@
 #     $ sudo xbps-install $sth && echo $sth >> $MYSYSTEM/new.txt
 #
 # Later, move stuff to payload.bash.
+flatpak-builder
+calibre
+gparted
