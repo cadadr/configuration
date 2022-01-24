@@ -1,6 +1,6 @@
 ;;; gk-ui.el --- user interface customisations (non-gui specific)  -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2021  Göktuğ Kayaalp
+;; Copyright (C) 2021, 2022  Göktuğ Kayaalp
 
 ;;; Commentary:
 
@@ -282,8 +282,8 @@
 (setf enable-recursive-minibuffers nil)
 
 (defun gk-minibuf-hook ()
-  "Do not fiddle with minibuffer keys."
-  (gk-minor-mode -1))
+  "Minibuffer setup."
+  (gk-minor-mode +1))
 
 (add-hook 'minibuffer-setup-hook 'gk-minibuf-hook)
 
