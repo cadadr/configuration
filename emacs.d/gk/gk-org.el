@@ -943,8 +943,8 @@ its contents."
 
 (setf
  org-refile-targets
- `((,(gk-org-dir-file "Ajanda.org") :maxlevel . 3))
- org-refile-use-outline-path t
+ `((,(gk-org-dir-file "Ajanda.org") :maxlevel . 3)
+   (,(gk-org-dir-file "Misc.org") :maxlevel . 1))
  org-refile-allow-creating-parent-nodes t
  org-log-refile 'time
  ;; New notes to the beginning of the file.
