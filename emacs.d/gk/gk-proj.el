@@ -203,11 +203,11 @@ that instead."
         (funcall vcs dir))
     ;; If agenda is used, show that in ‘main’, otherwise show initial
     ;; buffer or scratch.
-    (if (fboundp #'gk-org-agenda)
-        (gk-org-agenda)
-      (if initial-buffer-choice
-          (ignore-errors (find-file initial-buffer-choice))
-        (switch-to-buffer "*scratch*")))
+    (cond ((fboundp #'gk-org-agenda)
+           (gk-org-agenda))
+          ((initial-buffer-choice)
+           (ignore-errors (find-file initial-buffer-choice)))
+          (t (switch-to-buffer "*scratch*")))
     (gk-flash-current-line)
     ;; If we can split the window, show ~/Desktop.
     (when (split-window-sensibly)
