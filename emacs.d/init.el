@@ -312,7 +312,11 @@
         context-menu-mode))
 
 ;; Mainly to enable GK keybindings there.
-(add-hook 'fundamental-mode-hook 'gk-minor-mode)
+(defun gk-fundamental-mode-hook ()
+  "Set up fundamental mode."
+  (gk-minor-mode +1))
+
+(add-hook 'fundamental-mode-hook #'gk-fundamental-mode-hook)
 
 (mapc ($ (pushnew $1 gk-disabled-modes))
       '(electric-indent-mode
