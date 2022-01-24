@@ -485,7 +485,6 @@ Does various tasks after saving a file, see it's definition."
 (unless noninteractive
   ;; Start the server.
   (server-start)
-  (setf initial-buffer-choice (gk-org-dir-file "Sidekick.org"))
   (add-hook 'server-switch-hook 'raise-frame))
 
 
