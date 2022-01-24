@@ -180,7 +180,8 @@
   "Run mail retrieval scripts.
 
 If CALLBACK is non-nil, it’s called with a single argument, which
-is non nil if there’s new mail."
+is non nil if there’s new mail.  The callback is only run if the
+command completes successfully."
   (interactive)
   (unless (file-exists-p gk-mail-home)
     (user-error "‘%s’ not found, refusing to fetch mail" gk-mail-home))
@@ -189,20 +190,22 @@ is non nil if there’s new mail."
    :command (list "mpop" "-Q" "-a")
    :sentinel
    (lambda (process event)
-     (let ((msg ""))
+     (let ((msg "")
+           new-mail-p)
        (unless (process-live-p process)
          (when (zerop (process-exit-status process))
            (dolist (f gk-mail-inboxes)
              (when-let* ((f (file-attribute-size (file-attributes f))))
                (when (> f 0)
-                 (setf msg "You have unread mail! ")
+                 (setf msg "You have unread mail! "
+                       new-mail-p t)
                  (mairix-update-database))))
-           (when (and (gk-gui-p) (not (string-empty-p msg)))
-             (gk-send-desktop-notification "New mail" msg "mail-message-new")))
-         (message "%sFetch mail process %s" msg (string-trim event))
-         (when (functionp callback)
-           (message "Running ‘gk-fetch-mail’ callback...")
-           (funcall callback (string-empty-p msg))))))))
+           (when (and (gk-gui-p) new-mail-p)
+             (gk-send-desktop-notification "New mail" msg "mail-message-new"))
+           (when (functionp callback)
+             (message "Running ‘gk-fetch-mail’ callback...")
+             (funcall callback new-mail-p)))
+         (message "%sFetch mail process %s" msg (string-trim event)))))))
 
 
 
@@ -430,17 +433,6 @@ This is the reverse counterpart of
     (if (<= p (first positions))
         (goto-char (car (last positions)))
       (goto-char (car (last (cl-remove-if ($ (>= $1 p)) positions)))))))
-
-(defun posta ()
-  "Set up and display an Rmail frame."
-  (interactive)
-  (gk-fetch-mail
-   (lambda (_)
-     (gk-with-new-frame nil
-       (rmail)
-       (rmail-summary)
-       (window-resize (selected-window) -10)
-       (other-window 1)))))
 
 (defun gk-rmail-mode-hook ()
    (goto-address-mode +1)
