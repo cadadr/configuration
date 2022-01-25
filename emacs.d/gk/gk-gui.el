@@ -61,6 +61,13 @@ Each function is run with a single argument, the currently
 selected colour theme, and is supposed to check if it wants to
 customise that theme or not.")
 
+(defmacro gk-inhibit-frame-setup (&rest body)
+  "Execute body, ensure ‘gk-inhibit-frame-setup’ is not run."
+  `(cl-flet ((gk-setup-frame-looks
+               (&rest _)
+               (message "Suppressed ‘gk-setup-frame-looks’.")
+               nil))
+     ,@body))
 
 (defun gk-setup-frame-looks (&optional frame arg)
   "Customisations that modify frame behaviour.
