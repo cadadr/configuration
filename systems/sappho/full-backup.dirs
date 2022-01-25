@@ -9,6 +9,7 @@ echo \
     $HOME/.gnupg    \
     $HOME/.mozilla  \
     $HOME/.ssh      \
+    $HOME/.var      \
     $HOME/Desktop   \
     $HOME/Documents \
     $HOME/Downloads \
