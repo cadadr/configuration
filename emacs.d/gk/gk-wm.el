@@ -1,6 +1,6 @@
 ;;; gk-wm.el --- utilities for window managers and desktop environments  -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2021  Göktuğ Kayaalp
+;; Copyright (C) 2021, 2022  Göktuğ Kayaalp
 
 ;;; Commentary:
 
@@ -8,6 +8,15 @@
 ;; and/or manipulate the WM/DE it finds itself in.
 
 ;;; Code:
+
+(defvar gk-preferred-colour-scheme-override nil
+  "Override the value ‘gk-preferred-colour-scheme’ returns.
+
+‘gk-preferred-colour-scheme’ tries to predict the current colour
+scheme from a variety of sources.  If this variable is non-nil,
+it will return this variable’s value instead.
+
+Useful values are ‘:light’, ‘:dark’, and ‘:no-preference’.")
 
 (defun gk-i3wm-get-current-workspace-id ()
   "Return focused workspace number and name as a cons cell."
@@ -30,6 +39,8 @@ Returns :light if the preferred colour scheme is light, :light if
 no preference is set or can be determined, or :dark if the user
 prefers dark themes."
   (cond
+   ((not (null gk-preferred-colour-scheme-override))
+    gk-preferred-colour-scheme-override)
    ((and (string= (getenv "DESKTOP_SESSION") "cinnamon")
          (save-match-data
            (string-match
