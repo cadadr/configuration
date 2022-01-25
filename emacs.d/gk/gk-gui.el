@@ -45,7 +45,7 @@ nil if absent."
 
 ;;;; GUI:
 
-(defvar gk-preferred-themes (list :light nil
+(defvar gk-preferred-themes (list :light 'anti-zenburn
                                   :dark  'gruvbox-dark-medium)
   "Light and dark theme preferences.")
 
@@ -103,7 +103,7 @@ picks."
   (set-face-attribute 'default nil
                       :height gk-font-default-height
                       :family (gk-font :mono)
-                      :weight 'light)
+                      :weight 'regular)
 
   (set-fontset-font t 'symbol (gk-font :emoji))
 
@@ -153,6 +153,9 @@ picks."
 
   ;; Have a bit more line-spacing.
   (setq-default line-spacing 0.2))
+
+;; Override colour scheme.
+(setf gk-preferred-colour-scheme-override :light)
 
 (add-to-list 'gk-disabled-modes 'tool-bar-mode)
 (add-to-list 'gk-disabled-modes 'menu-bar-mode)
@@ -296,6 +299,18 @@ picks."
                :foreground (face-attribute 'font-lock-string-face :foreground)
                :background (face-attribute 'default :background)
                :italic t))))
+
+(add-hook 'gk-gui-theme-customisation-functions
+          (lambda (theme)
+            (when (eq theme 'anti-zenburn)
+              ;; Make comments readable.
+              (set-face-attribute
+               'font-lock-comment-face nil
+               :foreground (face-attribute 'font-lock-string-face :foreground)
+               :background (face-attribute 'default :background)
+               :italic t)
+              ;; Remove underline from org-ellipsis because why?
+              (set-face-attribute 'org-ellipsis nil :underline nil))))
 
 
 
