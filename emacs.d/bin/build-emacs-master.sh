@@ -51,7 +51,6 @@ fi
             --with-json                   \
             --without-mailutils           \
             --without-pop                 \
-	    --without-threads
 #            --with-mailutils              \
 #            --with-native-compilation     \
 
