@@ -85,7 +85,8 @@ engines-order
 install-last-run
 height
 width
-image-dir-uri"
+image-dir-uri
+camera"
 
 export filter
 

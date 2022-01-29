@@ -11,7 +11,6 @@ auto-power-on = @mb false
 
 [org/gnome/cheese]
 burst-delay = 1000
-camera = 'Video Capture 5'
 photo-x-resolution = 800
 photo-y-resolution = 448
 video-x-resolution = 800
