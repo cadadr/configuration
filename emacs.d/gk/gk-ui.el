@@ -134,6 +134,8 @@
    re)
  ;; Display completion details.
  completions-detailed t
+ ;; Automatically select the completions buffer when it pops up.
+ completion-auto-select t
  ;; Do not  ring the bell  when killing  in r/o buffers,  put the
  ;; kill in the kill ring but do not modify the buffer.
  kill-read-only-ok t
