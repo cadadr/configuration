@@ -462,7 +462,10 @@ So that the reader knows where to continue reading."
 
  ;; Do not use ‘auth-sources’ or ‘netrc-file’, which causes an
  ;; annoying prompt.
- tramp-completion-use-auth-sources nil)
+ tramp-completion-use-auth-sources nil
+
+ ;; Use scp(1) to directly copy instead of temporary directories.
+ tramp-use-scp-direct-remote-copying t)
 
 
 
