@@ -1986,7 +1986,7 @@ fragments"
     map)
   "Keymap for ‘org-mode’-specific bindings.")
 
-(gk-prefix-binding "o" #'gk-org-mode-bindings)
+(gk-prefix-binding "o" gk-org-mode-bindings)
 (gk-prefix-binding "c" #'org-capture)
 (gk-prefix-binding "a" #'gk-org-agenda)
 
