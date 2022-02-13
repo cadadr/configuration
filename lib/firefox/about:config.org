@@ -19,3 +19,7 @@ Mozilla and their bullshit Chromium clone.
 - =network.http.http3.enabled=
   - =false=
   - https://bugzilla.mozilla.org/show_bug.cgi?id=1749908
+
+- =browser.tabs.insertAfterCurrent=
+  - =true=
+  - open new tab next to current tab
