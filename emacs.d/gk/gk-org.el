@@ -764,9 +764,10 @@ of change will be 23:59 on that day"
  ;; More room for habit titles.
  org-habit-preceding-days 21
  org-habit-graph-column 49
+ ;; Files to be used in agenda.
  org-agenda-files
- (cons (expand-file-name "~/Research/MA_Research/OkumaListesi.org")
-       (gk-org-dir-files "Ajanda.org"))
+ (list (gk-org-dir-file "Ajanda.org")  ; keep in the ‘car’
+       (expand-file-name "~/Research/MA_Research/OkumaListesi.org"))
  org-agenda-hide-tags-regexp "."
  org-agenda-custom-commands
  `((,gk-org-agenda-key "Planner"
