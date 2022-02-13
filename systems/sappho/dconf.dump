@@ -16,6 +16,11 @@ photo-y-resolution = 448
 video-x-resolution = 800
 video-y-resolution = 448
 
+[org/gnome/simple-scan]
+document-type = 'photo'
+jpeg-quality = 44
+text-dpi = 75
+
 [org/gtk/settings/file-chooser]
 date-format = 'regular'
 show-hidden = false
