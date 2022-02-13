@@ -72,7 +72,7 @@ radio="${BOGIE_RADIO-$default_radio}"
 # of $video_args, but if unset, alternative is the args for the video
 # setup.  See bash(1) for this abuse of parameter expansions.
 audio_only="${BOGIE_NOVIDEO:+--no-video}"
-video_args="${audio_only:=--geometry=320x180-0+0 --no-border --no-osc --title=bogie-trainvids --ontop}"
+video_args="${audio_only:=--geometry=320x180-0+0 --no-border --title=bogie-trainvids --ontop}"
 
 ### Start streams:
 
