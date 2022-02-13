@@ -8,3 +8,4 @@
 flatpak-builder
 calibre
 gparted
+acpi_call-dkms tpacpi-bat
