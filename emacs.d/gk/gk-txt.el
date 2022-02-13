@@ -59,10 +59,6 @@ Set locally the variable `outline-minor-mode-prefix' to PREFIX."
       (call-interactively fn)
     ('error (org-previous-visible-heading (car args)))))
 
-(setf
- ;; Start outline-enabled buffers in overview mode.
- outline-default-state 'outline-show-only-headings)
-
 
 
 ;;;; Utilites:
