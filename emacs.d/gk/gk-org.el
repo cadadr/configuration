@@ -1619,7 +1619,7 @@ Meant as a ‘:before’ advice to ‘org-capture’."
    :keys "t"
    :description "Random task (not scheduled)"
    :type 'entry
-   :target `(file+olp ,(car org-agenda-files) "Tasks")
+   :target `(file+olp ,(car org-agenda-files) "To Do")
    :template "* TODO %?"
    :prepend t
    :empty-lines-after 1
@@ -1629,7 +1629,7 @@ Meant as a ‘:before’ advice to ‘org-capture’."
    :keys "r"
    :description "Reading task"
    :type 'entry
-   :target `(file+olp ,(car org-agenda-files) "Tasks")
+   :target `(file+olp ,(car org-agenda-files) "To Do")
    :template "* READ %?\n"
    :prepend t
    :empty-lines-after 1
@@ -1677,44 +1677,7 @@ Meant as a ‘:before’ advice to ‘org-capture’."
    :template '(function ebib-notes-create-org-template))
 
   (gk-org-define-capture-template
-   :keys "R"
-   :description "Reading task (make active)"
    :type 'entry
-   :target `(file+olp ,(car org-agenda-files) "Tasks")
-   :template "* READING %?\n"
-   :prepend t
-   :empty-lines-after 1
-   :unnarrowed t)
-
-  (gk-append-to-list
-   'org-capture-templates
-   (list (list "c" "Coursework")))
-
-  (gk-org-define-capture-template
-   :keys "cr"
-   :description "Coursework: reading"
-   :type 'entry
-   :target `(file+olp ,(car org-agenda-files)
-                      "Current semester"
-                      "Readings")
-   :template "* TODO %?\nDEADLINE:%^{Deadline}t"
-   :prepend t
-   :empty-lines-after 1
-   :unnarrowed t)
-
-  (gk-append-to-list
-   'org-capture-templates
-   (list (list "T" "Thesis")))
-
-  (gk-org-define-capture-template
-   :keys "Tt"
-   :description "Thesis: task"
-   :type 'entry
-   :target `(file+olp ,(car org-agenda-files) "MA thesis")
-   :template "* TODO %?"
-   :prepend t
-   :empty-lines-after 1
-   :unnarrowed t)
 
   (gk-org-define-capture-template
    :keys "S"
@@ -1724,22 +1687,26 @@ Meant as a ‘:before’ advice to ‘org-capture’."
    :prepend t
    :empty-lines-after 1
    :empty-lines-before 1
-   :template "* build on %u\n- *version*: %^{Version|head}\n- *toolkit*: %^{Toolkit|lucid}\n-----\n\n")
+   :template (concat "* build on %u\n"
+                     "- *version*: %^{Version|head}\n"
+                     "- *toolkit*: %^{Toolkit|lucid}\n"
+                     "-----\n\n"))
 
   (gk-org-define-capture-template
    :keys "s"
-   :description "Add clipboard to the sunday Emacs build note"
+   :description "Emacs build note item"
    :type 'item
-   :target `(file+function ,(gk-org-dir-file "Emacs.org")
-                           (lambda ()
-                             (save-restriction
-                               (widen)
-                               (goto-char (point-min))
-                               (re-search-forward
-                                (format-time-string "^\\*\\* build on \\[%F %a\\]")))))
+   :target `(file+function
+             ,(gk-org-dir-file "Emacs.org")
+             (lambda ()
+               (save-restriction
+                 (widen)
+                 (goto-char (point-min))
+                 (re-search-forward
+                  (format-time-string "^\\*\\* build on \\[%F %a\\]")))))
    :prepend nil
    :empty-lines-before 1
-   :template "- %i"))
+   :template "- %?"))
 
 
 (add-function :before (symbol-function 'org-capture) #'gk-org-capture-set-templates)
