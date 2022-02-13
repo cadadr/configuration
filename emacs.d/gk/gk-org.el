@@ -1677,7 +1677,16 @@ Meant as a ‘:before’ advice to ‘org-capture’."
    :template '(function ebib-notes-create-org-template))
 
   (gk-org-define-capture-template
+   :keys "a"
+   :description "Academic Journal"
    :type 'entry
+   :target `(file+datetree
+             ,(gk-org-dir-file (format-time-string
+                                "Journal/Academic-%Y.org")))
+   :empty-lines-before 1
+   :empty-lines-after  1
+   :time-prompt t
+   :template "* %?\n")
 
   (gk-org-define-capture-template
    :keys "S"
