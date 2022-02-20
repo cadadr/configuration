@@ -60,7 +60,7 @@ bp_procmd () {
 	* ) ;;
     esac
 
-    line1='[In: \w; \d \A; ^$SHLVL]'
+    line1='[In: \w; \d \A;$(bp_branch) ^$SHLVL]'
     line2='[\#] \u@\H (\j)\$'
     # A python virtual environment is active, provide relevant
     # info.
