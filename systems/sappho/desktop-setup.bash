@@ -60,7 +60,11 @@ pcmanfm --daemon-mode    &
 volctl                   &
 blueman-applet           &
 # viz. https://github.com/chjj/compton/issues/201
-picom -co .9 -r 15 -t -20 -l -20 --shadow-exclude "class_g = 'Firefox' && argb" &
+picom -co .9 -r 15 -t -20 -l -20 --shadow-exclude   \
+    "class_g = 'Firefox' && argb"                   \
+    --shadow-exclude "class_g = 'i3-frame' && argb" \
+    --opacity-rule "0:_NET_WM_STATE@:32a *= '_NET_WM_STATE_HIDDEN'" \
+    &
 # Activate script on suspend.
 xss-lock -l -- $HOME/bin/lockscr.sh &
 # Disk automounter.
