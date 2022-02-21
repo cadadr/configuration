@@ -9,3 +9,6 @@ flatpak-builder
 calibre
 gparted
 acpi_call-dkms tpacpi-bat
+zim libzim libzim-devel zim-tools
+openjdk
+fossil
