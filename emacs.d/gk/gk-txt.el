@@ -314,7 +314,7 @@ will receive the region if active, or the entire buffer."
     (f-touch ispell-personal-dictionary))
   (flyspell-mode +1))
 
-(add-hook 'text-mode-hook 'gk-spellcheck-hook)
+;; (add-hook 'text-mode-hook 'gk-spellcheck-hook)
 
 
 
