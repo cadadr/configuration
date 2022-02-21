@@ -31,7 +31,20 @@ bp_hg_dirty () {
     test -n "$(hg st 2>/dev/null)"
 }
 
+# Determine if we're within a supported VCS repo or not.  Faster than
+# just trying to run all `bp_*_branch' commads.
+bp_is_repo () (
+    while [ ! "$PWD" = '/' ]; do
+	if [ -d .git ] || [ -d .hg ]; then
+	    exit 0
+	fi
+	cd ..
+    done
+    exit 1
+)
+
 bp_branch () {
+    bp_is_repo || return
     w="$(bp_git_branch || bp_hg_branch)"
     d=""
     if bp_git_dirty || bp_hg_dirty; then
