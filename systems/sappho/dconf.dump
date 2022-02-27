@@ -19,6 +19,7 @@ video-y-resolution = 448
 [org/gnome/simple-scan]
 document-type = 'photo'
 jpeg-quality = 44
+photo-dpi = 150
 text-dpi = 75
 
 [org/gtk/settings/file-chooser]
