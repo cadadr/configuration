@@ -46,13 +46,15 @@ PKGMANS_PATH="$RUBY_PATH:$HOME/.local/bin"
 # Haskell
 PKGMANS_PATH="$PKGMANS_PATH:$HOME/.cabal/bin:$HOME/.ghcup/bin"
 
-# Add paths from ~/opt.
+# Add paths from ~/Apps.
 
 # These are portable applications that can be run on multiple systems
 # w/o recompilation, and is sort of parallel to how /opt is generally
 # used.
 
-GK_OPT_DIR="$HOME/Applications"
+# This is also where AppImages should be installed.
+
+GK_OPT_DIR="$HOME/Apps"
 GK_OPT_PATH="$GK_OPT_DIR"
 
 # Finalise binary path.
