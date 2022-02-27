@@ -10,9 +10,12 @@ echo \
     $HOME/.mozilla  \
     $HOME/.ssh      \
     $HOME/.var      \
+    $HOME/.zotero   \
+    $HOME/Apps      \
     $HOME/Desktop   \
     $HOME/Documents \
     $HOME/Downloads \
+    $HOME/Library   \
     $HOME/Music     \
     $HOME/Notes     \
     $HOME/Pictures  \
@@ -20,5 +23,6 @@ echo \
     $HOME/Research  \
     $HOME/Sources   \
     $HOME/Videos    \
+    $HOME/Zotero    \
     $HOME/cf        \
     $HOME/log
