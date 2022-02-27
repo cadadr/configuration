@@ -12,3 +12,5 @@ acpi_call-dkms tpacpi-bat
 zim libzim libzim-devel zim-tools
 openjdk
 fossil
+xdg-desktop-portal
+xdg-desktop-portal-gtk
