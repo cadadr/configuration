@@ -1,10 +1,9 @@
 #!/usr/bin/env xdg-open
 [Desktop Entry]
-Name=Zotero
+Name=Zotero (AppImage)
 GenericName=Zotero
 Comment=Zotero
-Exec=/home/g/Applications/zotero/zotero
-Icon=/home/g/Applications/zotero/chrome/icons/default/default256.png
+Exec=Zotero-5.0.96.3_linux-x86_64.AppImage
 Type=Application
 Terminal=false
 Categories=Education;
