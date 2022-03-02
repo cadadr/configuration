@@ -24,7 +24,7 @@ xbps-install -Sy
 # Basics and utilities
 xbps-install -y bc bind-utils djvulibre entr inotify-tools jq \
              lm_sensors moreutils num-utils pv smartmontools tmux \
-             units vim-huge qrencode xtools udisks2 atop dcron
+             units vim-common qrencode xtools udisks2 atop dcron
 
 # Shells
 xbps-install -y zsh
@@ -59,7 +59,8 @@ xbps-install -y vokoscreen kitty audacity cheese clipit dconf-editor \
              dex gimp gsmartcontrol inkscape kdeconnect libreoffice \
              mpv quodlibet simple-scan transmission-gtk okular kdenlive \
              gnome-font-viewer firefox flameshot network-manager-applet \
-             pcmanfm pavucontrol blueman ristretto mate-system-monitor
+             pcmanfm pavucontrol blueman ristretto mate-system-monitor \
+             gvim-huge
 
 # Audio
 xbps-install -y vorbisgain vorbis-tools
