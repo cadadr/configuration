@@ -169,6 +169,18 @@ nmap <Leader>p :call setreg("+", getreg("%"))<CR>
 " cd to file's directory
 nmap <Leader>d :call chdir(expand('%:h'))<CR>
 
+" Markdown
+" ========
+
+augroup cadadrMarkdown
+    au!
+    " insert clipboard as wrapped markdown quote
+    au FileType markdown nmap <buffer> <Leader>q
+	\ 0"+p'[v']$:s/^\(.\)/> \1/<CR>gvgqo<CR><ESC>:nohl<CR>
+    " insert clipboard as markdown link
+    au FileType markdown nmap <buffer> <Leader>l a<<ESC>"+pa><ESC>B
+augroup END
+
 " Autocmds {{{
 
 augroup cadadr
