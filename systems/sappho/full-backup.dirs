@@ -21,6 +21,7 @@ echo \
     $HOME/Pictures  \
     $HOME/Posta     \
     $HOME/Research  \
+    $HOME/Scratch   \
     $HOME/Sources   \
     $HOME/Videos    \
     $HOME/Zotero    \
