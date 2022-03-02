@@ -78,7 +78,7 @@ case $GK_COLOUR_SCHEME_PREFERENCE in
 [Settings]
 gtk-application-prefer-dark-theme = true
 EOF
-          export QT_STYLE_OVERRIDE="adwaita-dark"
+          export QT_STYLE_OVERRIDE="Fusion"
           ;;
 esac
 
