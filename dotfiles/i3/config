@@ -263,7 +263,12 @@ for_window [class="Praat" title="^Script"] floating enable
 for_window [class="Praat" title="untitled script"] floating enable
 
 #### Zotero:
-for_window [title="Quick Format Citation"] floating enable
+# new dialog
+# for some reason setting the class/instance breaks things and I can't
+# seem to make this vertically center the window.
+for_window [title="Quick Format Citation"] floating enable move position center
+# classic dialog
+for_window [title="Add/Edit Citation" class="Zotero"] floating enable move position center
 
 #### TeXDoctk:
 for_window [title="File search results for .*"] floating enable
