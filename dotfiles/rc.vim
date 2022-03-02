@@ -162,8 +162,10 @@ nmap <Leader>S 1G!Gsort<CR>
 nmap <Leader>! 02wy$:!<C-r>"
 " save and sleep
 nmap <Leader>w :w<CR><C-z>
-" yank buffer file basename
+" copy file's basename to clipboard
 nmap <Leader>b :call setreg('+', expand('%:t:r'))<CR>
+" copy file's path to clipboard
+nmap <Leader>p :call setreg("+", getreg("%"))<CR>
 " cd to file's directory
 nmap <Leader>d :call chdir(expand('%:h'))<CR>
 
