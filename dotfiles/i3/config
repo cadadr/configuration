@@ -302,3 +302,4 @@ for_window [class="lagrange"] floating enable move position center
 
 #### ImageMagick
 for_window [class="Display-im[0-9]\.q.*"] floating enable move position center
+
