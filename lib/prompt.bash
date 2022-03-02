@@ -51,7 +51,7 @@ bp_branch () {
         d="#"
     fi
     if [ -n "$w" ]; then
-        echo " on branch $w$d;"
+	echo " on branch $(tput smul)$w$d$(tput rmul);"
     fi
 }
 
