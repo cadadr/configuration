@@ -5,7 +5,7 @@
 set -euo pipefail
 IFS=$'\n\t'
 
-sha256sum -c checksum.txt
+sha256sum -c checksums.txt
 
 ### Config:
 username=cadadr

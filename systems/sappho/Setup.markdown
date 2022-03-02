@@ -26,8 +26,8 @@ Install system packages and enable services.
 
     # fetch setup script if necessary
     sudo xbps-install wget
-    wget https://raw.githubusercontent.com/cadadr/configuration/default/systems/sappho/payload.bash https://raw.githubusercontent.com/cadadr/configuration/default/systems/sappho/checksum.txt
-    sha256sum -c checksum.txt
+    wget https://raw.githubusercontent.com/cadadr/configuration/default/systems/sappho/payload.bash https://raw.githubusercontent.com/cadadr/configuration/default/systems/sappho/checksums.txt
+    sha256sum -c checksums.txt
     # run the script
     sudo ./payload.bash
 
