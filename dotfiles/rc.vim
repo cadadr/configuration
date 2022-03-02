@@ -169,9 +169,12 @@ nmap <Leader>p :call setreg("+", getreg("%"))<CR>
 " cd to file's directory
 nmap <Leader>d :call chdir(expand('%:h'))<CR>
 
+" Zotero
+" ======
+inoremap <C-z> <C-r>=gk#zotero_cite()<CR>
+
 " Markdown
 " ========
-
 augroup cadadrMarkdown
     au!
     " insert clipboard as wrapped markdown quote

@@ -43,3 +43,14 @@ function! gk#rcs_co_l()
     redraw!
 endfunction
 
+" Insert citation using Zotero's «Cite as you Write» API
+" ======================================================
+" Adapted from: https://retorque.re/zotero-better-bibtex/citing/cayw/
+function! gk#zotero_cite()
+  " pick a format based on the filetype (customize at will)
+  let format = &filetype =~ '.*tex' ? 'citep' : 'pandoc'
+  let api_call = 'http://127.0.0.1:23119/better-bibtex/cayw?format='.format.'&brackets=1'
+  let ref = system('curl -s '.shellescape(api_call))
+  return ref
+endfunction
+
