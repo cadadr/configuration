@@ -15,11 +15,11 @@ source $MYLIB/gruvbox.muttrc
 ### Folders:
 
 # This attempts to replicate the mail flow I have in Rmail: all mail is
-# under ~/posta, it comes into `inbox', gets read in `current', then either
+# under $MAILDIR, it comes into `inbox', gets read in `current', then either
 # gets appended to `archive' or `spam' (generally); outgoing mail is
 # recorded in `outbox'.
 
-set folder	= ~/posta
+set folder	= $MAILDIR
 set mbox	= +current
 set spoolfile	= +inbox
 set record	= +outbox
