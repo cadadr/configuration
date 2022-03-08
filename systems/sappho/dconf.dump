@@ -16,6 +16,9 @@ photo-y-resolution = 448
 video-x-resolution = 800
 video-y-resolution = 448
 
+[org/gnome/desktop/privacy]
+disable-microphone = false
+
 [org/gnome/simple-scan]
 document-type = 'photo'
 jpeg-quality = 44
