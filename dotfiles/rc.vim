@@ -172,6 +172,8 @@ nmap <Leader>d :call chdir(expand('%:h'))<CR>
 " Zotero
 " ======
 inoremap <C-z> <C-r>=gk#zotero_cite()<CR>
+nmap <Leader>zs :call gk#zotero_select()<cr>
+nmap <Leader>zi :call gk#zotero_info()<cr>
 
 " Markdown
 " ========

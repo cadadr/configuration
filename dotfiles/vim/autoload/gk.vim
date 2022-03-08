@@ -43,14 +43,44 @@ function! gk#rcs_co_l()
     redraw!
 endfunction
 
+" Base URL for Zotero's API
+let g:gk_zotero_base_url = 'http://127.0.0.1:23119'
+
 " Insert citation using Zotero's «Cite as you Write» API
 " ======================================================
 " Adapted from: https://retorque.re/zotero-better-bibtex/citing/cayw/
 function! gk#zotero_cite()
-  " pick a format based on the filetype (customize at will)
-  let format = &filetype =~ '.*tex' ? 'citep' : 'pandoc'
-  let api_call = 'http://127.0.0.1:23119/better-bibtex/cayw?format='.format.'&brackets=1'
-  let ref = system('curl -s '.shellescape(api_call))
-  return ref
+    " pick a format based on the filetype (customize at will)
+    let format = &filetype =~ '.*tex' ? 'citep' : 'pandoc'
+    let api_call = g:gk_zotero_base_url . '/better-bibtex/cayw?format=' . format . '&brackets=1'
+    let ref = system('curl -s '.shellescape(api_call))
+    return ref
+endfunction
+
+" Set selected item in Zotero from citation under point
+function! gk#zotero_select()
+    let dq = getreg('"')
+    " TODO: this is simplistic, even tho it'd work for my keys most of
+    " the time.
+    normal yiw
+    let key = getreg('"')
+    call setreg('"', dq)
+    let base_url = g:gk_zotero_base_url . '/zotxt/select?betterbibtexkey='
+    let api_call = base_url . key
+    let ref = system('curl -s ' . shellescape(api_call))
+    echomsg ref
+    return ref
+endfunction
+
+" Get information about the item under point in Zotero
+" ====================================================
+" Selects the item in Zotero first.
+function! gk#zotero_info()
+    call gk#zotero_select()
+    let api_call = g:gk_zotero_base_url . '/zotxt/items?selected=selected&format=bibliography'
+    let filter = '| jq .[0].text | tr -d "\\n"'
+    let ref = system('curl -s ' . shellescape(api_call) . filter)
+    echomsg ref
+    return ref
 endfunction
 
