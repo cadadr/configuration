@@ -51,6 +51,7 @@ bindsym $mod+Control+t exec --no-startup-id sh $MYLIB/toggle-tapping.sh
 bindsym $mod+Next exec --no-startup-id pkill -USR1 -f setbg.bash
 bindsym $mod+Prior exec --no-startup-id pkill -USR2 -f setbg.bash
 bindsym $mod+q exec --no-startup-id qrclip.sh
+bindsym Print exec --no-startup-id flameshot gui
 
 ### Window management keybindings:
 bindsym $mod+b focus left
