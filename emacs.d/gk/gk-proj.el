@@ -203,9 +203,10 @@ that instead."
         (funcall vcs dir))
     ;; If agenda is used, show that in ‘main’, otherwise show initial
     ;; buffer or scratch.
-    (cond ((fboundp #'gk-org-agenda)
+    (cond ((and (fboundp #'gk-org-agenda)
+                gk-org-agenda-used-p)
            (gk-org-agenda))
-          ((initial-buffer-choice)
+          (initial-buffer-choice
            (ignore-errors (find-file initial-buffer-choice)))
           (t (switch-to-buffer "*scratch*")))
     (gk-flash-current-line)

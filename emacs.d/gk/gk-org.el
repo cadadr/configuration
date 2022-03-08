@@ -720,6 +720,10 @@ of change will be 23:59 on that day"
 (defvar gk-org-agenda-key "p"
   "Key for my main agenda view.")
 
+(defvar gk-org-agenda-used-p nil
+  "Whether or not the Org Mode Agenda is used actively.
+Mainly used in ‘gk-home’.")
+
 (defun gk-org-agenda ()
   "Show my main agenda."
   (interactive)
