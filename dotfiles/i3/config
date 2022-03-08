@@ -172,10 +172,11 @@ mode "$mode_pass" {
 }
 bindsym $mod+Control+space mode "$mode_pass"
 
-set $mode_kbdselect Select keyboard layout: (g) = gb Q, (t) = tr Q
+set $mode_kbdselect Select keyboard layout: (f) = tr F, (g) = gb Q, (t) = tr Q
 mode "$mode_kbdselect" {
-    bindsym g exec setxkbmap -option ctrl:nocaps gb; mode "default"
-    bindsym t exec setxkbmap -option ctrl:nocaps tr; mode "default"
+    bindsym f exec setxkbmap tr f; mode "default"
+    bindsym g exec setxkbmap gb; mode "default"
+    bindsym t exec setxkbmap tr; mode "default"
 
     bindsym Return mode "default"
     bindsym Escape mode "default"
