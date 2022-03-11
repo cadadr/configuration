@@ -266,20 +266,6 @@ will receive the region if active, or the entire buffer."
 
 
 
-;;;; Automated editing:
-
-;; This section contains various hooks that automate some editing
-;; tasks.
-
-;; XXX(2018-05-25): Maybe disable copyright-update on some paths, or
-;; only enable selectively?  It can be annoying sometimes, especially
-;; when working on/debugging generated files or files from external
-;; projects.
-
-(add-hook 'before-save-hook #'copyright-update)
-
-
-
 ;;;; Dictionary and spell checking:
 
 ;; Partially adapted from:

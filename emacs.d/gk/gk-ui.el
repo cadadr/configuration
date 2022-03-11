@@ -600,6 +600,48 @@ When called interactively."
 
 
 
+;;;; Smarter ‘copyright-update’:
+
+;; Automatically update copyright lines but be smart about skipping
+;; where it’s not needed.
+
+(setf
+ ;; Always prompt before updating copyright.
+ copyright-query t)
+
+(add-hook 'before-save-hook #'copyright-update)
+
+(defvar gk-copyright-update-skip-conditions
+  (list "^COMMIT_EDITMSG$"
+        '(eq major-mode 'diff-mode))
+  "Conditions in which to skip ‘copyright-update’.
+
+A condition can be
+
+- a string, in which case the ‘buffer-name’ is matched against
+  it
+
+- a list, in which case it is evaluated as Lisp code within the
+  buffer’s context.")
+
+(defun gk-copyright-update-apply-check (condition)
+  (cond ((stringp condition)
+         (string-match condition (buffer-name)))
+        ((listp condition)
+         (eval condition))))
+
+(define-advice copyright-update
+    (:around (fn &rest args) skip-some-buffers)
+  "Skip buffers which do have copyright lines but don’t need updating.
+Like COMMIT_EDITMSG.
+See ‘gk-copyright-update-skip-list’."
+  (unless (cl-some #'gk-copyright-update-apply-check
+                   gk-copyright-update-skip-conditions)
+    (apply fn args)))
+
+
+
+
 ;;;; Layouts:
 
 (defun gk-layouts-3col ()
