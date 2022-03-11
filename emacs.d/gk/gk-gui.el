@@ -161,9 +161,6 @@ picks."
   ;; Have a bit more line-spacing.
   (setq-default line-spacing 0.2))
 
-;; Override colour scheme.
-(setf gk-preferred-colour-scheme-override :light)
-
 (add-to-list 'gk-disabled-modes 'tool-bar-mode)
 (add-to-list 'gk-disabled-modes 'menu-bar-mode)
 (add-to-list 'gk-disabled-modes 'scroll-bar-mode)
