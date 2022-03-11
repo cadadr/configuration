@@ -18,6 +18,7 @@ echo \
     $HOME/Library   \
     $HOME/Music     \
     $HOME/Notes     \
+    $HOME/Notlar    \
     $HOME/Pictures  \
     $HOME/Posta     \
     $HOME/Research  \
