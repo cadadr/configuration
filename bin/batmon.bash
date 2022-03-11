@@ -8,7 +8,10 @@ export GK_NOENV=yes
 path=/sys/class/power_supply
 battery=BAT0
 
-. $path/$battery/uevent
+# Sourcing here doesn’t work because some values can suddenly contain
+# spaces, because programmers are dickheads who care nothing about
+# backwards compatibility.
+export $(sed 's/ /_/g; s/^/export /' $path/$battery/uevent)
 
 # We use designed power leven instead of actual power level to match
 # i3status.
