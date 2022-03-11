@@ -219,6 +219,45 @@ that instead."
         (delete-window))
       (other-window 1))))
 
+
+(defun gk-update-frame-names (&rest _)
+  "Set frame names (titles).
+If a frame has an associated project, project name is used.
+Otherwise, a default descriptor is used"
+  (dolist (f (frame-list))
+    (let* ((maybe-project-name
+            (frame-parameter f 'gk-project))
+           (selected-buffer
+            (window-buffer (frame-selected-window f))))
+      (set-frame-parameter
+       f 'name
+       (concat (if maybe-project-name
+                   (concat "[" maybe-project-name "] "
+                           (buffer-name selected-buffer))
+                 (concat
+                  (or (when-let* ((n (buffer-file-name selected-buffer)))
+                        (abbreviate-file-name n))
+                      (buffer-name selected-buffer))
+                  " [" user-login-name "@" system-name "]")))))))
+
+(add-hook 'window-buffer-change-functions #'gk-update-frame-names)
+(add-hook 'after-save-hook #'gk-update-frame-names)
+(add-hook 'after-make-frame-functions #'gk-update-frame-names)
+(add-hook 'after-init-hook #'gk-update-frame-names)
+
+(define-advice other-window
+    (:filter-return (ret) do-gk-update-frame-names)
+  "Call ‘gk-update-frame-names’ but return original return value."
+  (gk-update-frame-names)
+  ret)
+
+(define-advice windmove-do-window-select
+    (:filter-return (ret) do-gk-update-frame-names)
+  "Call ‘gk-update-frame-names’ but return original return value."
+  (gk-update-frame-names)
+  ret)
+
+
 
 
 ;;;; Keybindings:

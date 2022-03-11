@@ -204,7 +204,7 @@
 (setq-default save-place t)
 
 (setf frame-title-format
-      '("%@%*[" (:eval (or (frame-parameter nil 'gk-project) "main")) "] %b")
+      '("%@%* %b")
       icon-title-format frame-title-format)
 
 (cl-pushnew 'savehist-mode gk-global-modes)
