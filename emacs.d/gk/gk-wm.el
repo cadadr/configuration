@@ -37,7 +37,10 @@ Useful values are ‘:light’, ‘:dark’, and ‘:no-preference’.")
 
 Returns :light if the preferred colour scheme is light, :light if
 no preference is set or can be determined, or :dark if the user
-prefers dark themes."
+prefers dark themes.
+
+If ‘gk-preferred-colour-scheme-override’ is non-nil, its value is
+returned instead."
   (cond
    ((not (null gk-preferred-colour-scheme-override))
     gk-preferred-colour-scheme-override)
