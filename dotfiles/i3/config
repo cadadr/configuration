@@ -228,7 +228,7 @@ mode "$mod_resize" {
 bindsym $mod+r mode "$mod_resize"
 
 # Colours
-client.focused          #83a598 #83a598 #eddbb2 #83a598   #83a598
+client.focused          #83a598 #83a598 #0c0c0c #83a598   #83a598
 client.focused_inactive #282828 #5f676a #ffffff #484e50   #5f676a
 client.unfocused        #3c3836 #3c3836 #a89984 #292d2e   #222222
 client.urgent           #cc241d #cc241d #ebdbb2 #cc241d   #cc241d
@@ -246,10 +246,10 @@ bar {
                 statusline #ebdbb2
                 separator  #666666
 
-                focused_workspace  #458588 #458588 #ebdbb2
-                active_workspace   #83a598 #83a598 #ebdbb2
-                inactive_workspace #504945 #504945 #ebdbb2
-                urgent_workspace   #ebdbb2 #ebdbb2 #cc241d
+                focused_workspace  #0c0c0c #458588 #ebdbb2
+                active_workspace   #0c0c0c #83a598 #ebdbb2
+                inactive_workspace #0c0c0c #504945 #ebdbb2
+                urgent_workspace   #cc241d #ebdbb2 #0c0c0c
         }
 }
 
