@@ -48,6 +48,8 @@ GEM
     reverse_markdown (2.0.0)
       nokogiri
     rexml (3.2.5)
+    rss (0.2.9)
+      rexml
     rubocop (1.20.0)
       parallel (~> 1.10)
       parser (>= 3.0.0.0)
@@ -95,6 +97,7 @@ DEPENDENCIES
   pry-byebug (~> 3.9.0)
   pry-doc (~> 1.1.0)
   rdoc
+  rss
   solargraph
 
 BUNDLED WITH

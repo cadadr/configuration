@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 # gem 'bundler'
 gem 'rdoc'
 gem 'mime-types'
+gem 'rss'
 gem 'solargraph'
 
 # for academia-dl
