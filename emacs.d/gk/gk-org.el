@@ -1159,8 +1159,6 @@ numerals which regularly appear in texts."
 ;; is the sanest option in the context, at least as far as my
 ;; preferences are concerned.
 (setf
- ;; When ‘org-store-link’, create ID and use iff no CUSTOM_ID.
- org-id-link-to-org-use-id t
  ;; Store ‘org-id’ locations within ‘org-directory’ (so that it’s
  ;; VCS’ed), and use paths relative to ‘org-id-locations-file’ itself
  ;; when saving.
