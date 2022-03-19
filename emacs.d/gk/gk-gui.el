@@ -296,13 +296,21 @@ picks."
 
 (add-hook 'gk-gui-theme-customisation-functions
           (lambda (theme)
-            (when (memq theme '(gruvbox-dark-medium))
+            (when (memq theme '(gruvbox-dark-medium gruvbox-dark-hard))
               ;; Make comments readable.
               (set-face-attribute
                'font-lock-comment-face nil
                :foreground (face-attribute 'font-lock-string-face :foreground)
                :background (face-attribute 'default :background)
-               :italic t))))
+               :italic t)
+              (let ((bgi (face-attribute 'mode-line-inactive :background))
+                    (fgi (face-attribute 'mode-line-inactive :foreground))
+                    (bga (face-attribute 'mode-line :background))
+                    (fga (face-attribute 'mode-line :foreground)))
+                (set-face-attribute 'mode-line-inactive nil :foreground fga)
+                (set-face-attribute 'mode-line-inactive nil :background bga)
+                (set-face-attribute 'mode-line nil :foreground fgi)
+                (set-face-attribute 'mode-line nil :background bgi)))))
 
 (add-hook 'gk-gui-theme-customisation-functions
           (lambda (theme)
