@@ -23,7 +23,7 @@ fi
 
 ### Download and prepare necessary files:
 arch="$(uname -m)"
-version="5.0.96.3"
+version="6.0"
 dlurlbase="https://www.zotero.org/download/client/dl?channel=release&platform=linux-$arch&version="
 dlurl="$dlurlbase$version"
 dlname="Zotero-${version}_linux-$arch.tar.bz2"
@@ -60,8 +60,8 @@ echo Transforming $distdir...
 
     # .desktop file
     sed "s/Exec=.*/Exec=zotero-bin -url %U/g" zotero.desktop \
-        | sed "s#MimeType=text/plain#MimeType=text/plain;#"  \
-        | sed "s/zotero.ico/zotero/g"> zotero-new.desktop ;
+	| sed 's/^SingleMainWindow/X-SingleMainWindow/'      \
+        | sed "s/zotero.ico/zotero/g" > zotero-new.desktop ;
     mv zotero-new.desktop zotero.desktop ;
 
     # Icons
