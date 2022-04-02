@@ -21,8 +21,9 @@ disable-microphone = false
 
 [org/gnome/simple-scan]
 document-type = 'photo'
-jpeg-quality = 44
+jpeg-quality = 75
 photo-dpi = 150
+save-format = 'application/pdf'
 text-dpi = 75
 
 [org/gtk/settings/file-chooser]
