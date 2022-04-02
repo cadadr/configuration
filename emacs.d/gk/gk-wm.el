@@ -18,6 +18,33 @@ it will return this variable’s value instead.
 
 Useful values are ‘:light’, ‘:dark’, and ‘:no-preference’.")
 
+(defun gk-override-preferred-colour-scheme (new-scheme)
+  "Override the preferred colour scheme for this session.
+NEW-SCHEME should be one of ‘:light’ or ‘:dark’.
+
+Sets ‘gk-preferred-colour-scheme-override’ to NEW-SCHEME and runs
+‘gk-update-frame-names’.
+
+Interactively, prompt for the value of NEW-SCHEME."
+  (interactive
+   (list
+    (let* ((opts `((,(format "Dark colour scheme (theme: %s)"
+                             (plist-get gk-preferred-themes :dark))
+                    :dark)
+                   (,(format "Light colour scheme (theme: %s)"
+                             (plist-get gk-preferred-themes :light))
+                    :light)))
+           (current-scheme (substring
+                            (symbol-name (gk-preferred-colour-scheme)) 1))
+           (question (format "New colour scheme (currently: %s): "
+                             current-scheme))
+           (answer (completing-read question opts nil t)))
+      (car (alist-get answer opts nil nil #'string=)))))
+  (unless (member new-scheme (list :dark :light))
+    (user-error "New colour scheme should be one of: :dark, :light."))
+  (setf gk-preferred-colour-scheme-override new-scheme)
+  (gk-setup-frame-looks))
+
 (defun gk-i3wm-get-current-workspace-id ()
   "Return focused workspace number and name as a cons cell."
  (let* ((workspaces
