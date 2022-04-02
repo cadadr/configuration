@@ -1547,7 +1547,24 @@ Generates a "
  '((org-mode . "Org-mode document")
    nil
    "#+title: " - n
-   "#+date: \\today\n#+options: toc:nil\n")
+   "#+startup: overview")
+ auto-insert-alist)
+
+(push
+ '(("Okumalar/.+\\.org" . "Org-mode okuma notu")
+   nil
+   "#+title: "
+   (let ((candidate (ignore-errors
+                      (file-name-sans-extension
+                       (file-name-nondirectory
+                        (buffer-file-name))))))
+     (read-string (format "Okunan metin için key (default: %s): "
+                          candidate)
+                  nil nil candidate))
+   " okuma notları\n"
+   "#+date: "
+   (format-time-string "[%F %a]")
+   "\n\n")
  auto-insert-alist)
 
 
