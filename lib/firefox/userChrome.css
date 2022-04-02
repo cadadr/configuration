@@ -17,3 +17,22 @@
 #navigator-toolbox[inFullscreen] toolbar:not([collapsed="true"]) {
     visibility:visible!important;
 }
+
+/* Restore some dignity to tabs */
+.tab-background {
+    border-radius: 0px 0px !important;
+    margin-bottom: 0px !important;
+}
+
+.tabbrowser-tab:not([selected=true]):not([multiselected=true]) .tab-background {
+    background-color: color-mix(in srgb, currentColor 5%, transparent);
+}
+
+menupopup>menu,
+menupopup>menuitem {
+    padding-block: 2px !important;
+}
+
+:root {
+    --arrowpanel-menuitem-padding: 2px !important;
+}
