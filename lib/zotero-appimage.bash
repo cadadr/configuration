@@ -69,6 +69,13 @@ echo Transforming $distdir...
     convert zotero.ico zotero.png ;
     mv zotero-0.png zotero.png ;
     rm zotero-*.png zotero.ico ;
+
+    # Disable auto-opdate
+    sed -e '/app.update.enabled",/s/true/false/' \
+        -e '/app.update.auto",/s/true/false/'    \
+        < defaults/preferences/prefs.js          \
+        > prefs-new.js                           ;
+    mv prefs-new.js defaults/preferences/prefs.js ;
 )
 
 ### Build the AppImage
