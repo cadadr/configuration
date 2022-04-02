@@ -1,6 +1,6 @@
 ;;; gk-url.el --- urls, web browsing                 -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2021  Göktuğ Kayaalp
+;; Copyright (C) 2021, 2022  Göktuğ Kayaalp
 
 ;;; Commentary:
 
@@ -316,7 +316,7 @@ provided."
 
 (setf
  ;; Move bookmarks file to a private location.
- elpher-bookmarks-file (gk-org-dir-file "elpher-bookmarks.el"))
+ elpher-bookmarks-file (expand-file-name "~/Documents/elpher-bookmarks.el"))
 
 ;; Some more emacsy keybindings.
 (define-key elpher-mode-map "n" #'elpher-next-link)

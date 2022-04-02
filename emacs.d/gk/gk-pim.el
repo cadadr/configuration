@@ -827,7 +827,7 @@ the body of the entry, and the cdr is the score, an integer.")
 ;;;;; Feeds:
 
 ;; Load feeds from external source.
-(gk-load (expand-file-name "~/Documents/private-config/elfeed-feeds") t)
+(gk-load (expand-file-name "~/Documents/elfeed-feeds") t)
 
 
 

@@ -1,6 +1,6 @@
 ;;; gk-fd.el --- customised files and directory settings  -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2021  Göktuğ Kayaalp
+;; Copyright (C) 2021, 2022  Göktuğ Kayaalp
 
 ;;; Commentary:
 
@@ -48,9 +48,7 @@
       nsm-settings-file
       (locate-user-emacs-file "etc/network-security.data")
       mc/list-file
-      (locate-user-emacs-file "etc/mc-lists.el")
-      common-lisp-hyperspec-root
-      (concat "file://" (expand-file-name "~/Sources/Lisp/doc/HyperSpec/")))
+      (locate-user-emacs-file "etc/mc-lists.el"))
 
 (provide 'gk-fd)
 ;;; gk-fd.el ends here
