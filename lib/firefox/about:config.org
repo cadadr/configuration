@@ -23,3 +23,8 @@ Mozilla and their bullshit Chromium clone.
 - =browser.tabs.insertAfterCurrent=
   - =true=
   - open new tab next to current tab
+
+- =network.protocol-handler.external.org-protocol=
+  - =true=
+  - add this option to make =org-protocol= work properly again
+  - https://bugzilla.mozilla.org/show_bug.cgi?id=1685682
