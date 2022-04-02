@@ -60,7 +60,7 @@ echo Transforming $distdir...
 
     # .desktop file
     sed "s/Exec=.*/Exec=zotero-bin -url %U/g" zotero.desktop \
-	| sed 's/^SingleMainWindow/X-SingleMainWindow/'      \
+        | sed 's/^SingleMainWindow/X-SingleMainWindow/'      \
         | sed "s/zotero.ico/zotero/g" > zotero-new.desktop ;
     mv zotero-new.desktop zotero.desktop ;
 
