@@ -23,10 +23,10 @@
 
 
 (setf
- ;; Sentence.  Other sentence.
- sentence-end-double-space t
- ;; Words:  other words.
- colon-double-space t
+ ;; Sentence. Other sentence.
+ sentence-end-double-space nil
+ ;; Words: other words.
+ colon-double-space nil
  ;; Guillemets
  electric-quote-chars '(?‘ ?’ ?« ?»))
 
