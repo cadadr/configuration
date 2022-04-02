@@ -10,7 +10,7 @@ croniter==1.0.15
 
 ### Development tools:
 
-poetry~=0.12
+poetry>=1.1.9
 python-language-server~=0.35
 
 
