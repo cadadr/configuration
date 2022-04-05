@@ -1,5 +1,5 @@
 [Default Applications]
-application/pdf=okularApplication_pdf.desktop
+application/pdf=atril.desktop
 inode/directory=pcmanfm.desktop
 text/html=firefox.desktop
 x-scheme-handler/gemini=fi.skyjake.Lagrange.desktop
