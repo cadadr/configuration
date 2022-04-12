@@ -1563,8 +1563,11 @@ Generates a "
                   nil nil candidate))
    " okuma notları\n"
    "#+date: "
-   (format-time-string "[%F %a]")
-   "\n\n")
+   (format-time-string "[%F %a]\n\n")
+   "[ *Buraya full referans ekle* ]\n\n"
+   "* Overview\n\n"
+   "* Alıntılar\n\n"
+   "* Kaynakçadan\n\n")
  auto-insert-alist)
 
 
