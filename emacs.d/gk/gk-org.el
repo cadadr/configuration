@@ -1737,7 +1737,9 @@ Meant as a ‘:before’ advice to ‘org-capture’."
                   (format-time-string "^\\*\\* build on \\[%F %a\\]")))))
    :prepend nil
    :empty-lines-before 1
-   :template "- %?"))
+   :template
+   ;; The sexp deactivates region just to save a couple keystrokes.
+   "- %i%(with-current-buffer \"*Build Emacs Master*\" (deactivate-mark t))%?"))
 
 
 (add-function :before (symbol-function 'org-capture) #'gk-org-capture-set-templates)
