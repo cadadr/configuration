@@ -34,6 +34,8 @@ show-type-column = true
 sort-directories-first = false
 type-format = 'category'
 
+[org/mate/atril]
+
 [org/mate/desktop/background]
 picture-filename = '/home/cadadr/.xbg.png'
 
