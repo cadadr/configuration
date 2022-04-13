@@ -3,26 +3,47 @@
 general {
         colors = true
         interval = 5
-	# gruvbox
+        # gruvbox
         color_good = "#98971a"
         color_bad = "#cc241d"
         color_degraded = "#fabd2f"
 }
 
+order += "tztime local"
 order += "load"
 order += "battery all"
-order += "tztime local"
+order += "cpu_temperature 0"
+order += "memory"
+order += "read_file hostname"
 
 battery all {
-        format = "%status %percentage"
+        format = "%status %percentage "
+        status_chr = "🔌"
+        status_bat = "🔋"
+        status_unk = "❓"
+        status_full = "👍"
+        low_threshold = 20
 }
 
-# Holocene (ish) calendar
+cpu_temperature 0 {
+        format = "🌡️ %degrees °C "
+        path = "/sys/devices/platform/coretemp.0/hwmon/hwmon4/temp1_input"
+}
+
 tztime local {
-        format = "%d %B 1%Y %A; %I:%M %P"
+        format = "📅 %F %a ⌚ %H:%M "
 }
 
 load {
-        format = "i%1min v%5min xv%15min"
+        format = "📊 %1min %5min %15min "
 }
 
+memory {
+       format = "💾 %used (%percentage_used) "
+       decimals = 0
+}
+
+read_file hostname {
+        path = "/etc/hostname"
+        format = "🖥️ %content "
+}
