@@ -3,6 +3,7 @@
 general {
         colors = true
         interval = 5
+        separator = ""
         # gruvbox
         color_good = "#98971a"
         color_bad = "#cc241d"
@@ -17,7 +18,7 @@ order += "memory"
 order += "read_file hostname"
 
 battery all {
-        format = "%status %percentage "
+        format = " %status %percentage  "
         status_chr = "🔌"
         status_bat = "🔋"
         status_unk = "❓"
@@ -26,24 +27,24 @@ battery all {
 }
 
 cpu_temperature 0 {
-        format = "🌡️ %degrees °C "
+        format = " 🌡️ %degrees °C "
         path = "/sys/devices/platform/coretemp.0/hwmon/hwmon4/temp1_input"
 }
 
 tztime local {
-        format = "📅 %F %a ⌚ %H:%M "
+        format = " 📅 %F %a ⌚ %H:%M "
 }
 
 load {
-        format = "📊 %1min %5min %15min "
+        format = " 📊 %1min %5min %15min "
 }
 
 memory {
-       format = "💾 %used (%percentage_used) "
+       format = " 💾 %used (%percentage_used) "
        decimals = 0
 }
 
 read_file hostname {
         path = "/etc/hostname"
-        format = "🖥️ %content "
+        format = " 🖥️ %content "
 }
