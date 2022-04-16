@@ -2,6 +2,11 @@
 application/pdf=atril.desktop
 inode/directory=pcmanfm.desktop
 text/html=firefox.desktop
+image/jpeg=org.xfce.ristretto.desktop
+image/png=org.xfce.ristretto.desktop
+image/gif=org.xfce.ristretto.desktop
+image/svg+xml=org.xfce.ristretto.desktop
+image/tiff=org.xfce.ristretto.desktop
 x-scheme-handler/gemini=fi.skyjake.Lagrange.desktop
 x-scheme-handler/gopher=fi.skyjake.Lagrange.desktop
 x-scheme-handler/http=firefox.desktop;
