@@ -1,3 +1,10 @@
+[com/gkayaalp/pomodorino]
+desktop-notifications-enabled = true
+ease-in-mode-enabled = true
+long-break-duration = 15
+pomodoro-duration = 25
+short-break-duration = 5
+
 [org/blueman/general]
 services-last-item = 0
 
