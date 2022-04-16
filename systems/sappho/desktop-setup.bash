@@ -56,7 +56,7 @@ pipewire-pulse           &
 # system tray.
 (sleep 5; flameshot)     &
 nm-applet                &
-pcmanfm --daemon-mode    &
+# pcmanfm --daemon-mode    &
 volctl                   &
 blueman-applet           &
 picom --config $MY/dotfiles/picom.conf &
