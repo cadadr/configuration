@@ -288,8 +288,9 @@ will receive the region if active, or the entire buffer."
       ispell-personal-dictionary
       (expand-file-name "~/Documents/hunspell-personal-dictionary"))
 
-(defun gk-spellcheck-hook ()
-  "Hook to start spell-check in buffers."
+(defun gk-enable-flyspell ()
+  "Enable on-the-fly spell-checking for current buffer."
+  (interactive)
   (ispell-set-spellchecker-params)
   ;; This uses ‘cl-pushnew’ so it should be okay to call this multiple
   ;; times.
@@ -299,6 +300,10 @@ will receive the region if active, or the entire buffer."
   (unless (file-exists-p ispell-personal-dictionary)
     (f-touch ispell-personal-dictionary))
   (flyspell-mode +1))
+
+(defun gk-spellcheck-hook ()
+  "Hook to start spell-check in buffers."
+  (gk-enable-flyspell))
 
 ;; (add-hook 'text-mode-hook 'gk-spellcheck-hook)
 
