@@ -47,6 +47,8 @@ s="$(xdpyinfo | grep dimensions: | awk '{print $2}')"
 
 say "start slideshow, dir: $background_dir, interval (secs): $slideshow_seconds"
 
+# TODO(2022-04-15): if $background_dir changes during execution, the
+# loop gets borked and script hogs CPU.
 do_wlp(){
     # Always advance, initially idx=-1.  If we’re called again, it’s
     # because of a SIGUSR1, where we need idx++ anyways.
