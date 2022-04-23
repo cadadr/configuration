@@ -56,7 +56,7 @@ xbps-install -y elogind tlp linux-firmware-intel mesa-dri vulkan-loader \
 
 # Desktop apps
 xbps-install -y vokoscreen kitty audacity cheese clipit dconf-editor \
-             dex gimp gsmartcontrol inkscape kdeconnect libreoffice \
+             dex gsmartcontrol inkscape kdeconnect libreoffice \
              mpv quodlibet simple-scan transmission-gtk atril kdenlive \
              gnome-font-viewer firefox flameshot network-manager-applet \
              pcmanfm pavucontrol blueman ristretto mate-system-monitor \
