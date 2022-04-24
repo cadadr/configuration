@@ -17,3 +17,4 @@ krita
 perl-IPC-Run3
 biber
 ntfs-3g
+zstd
