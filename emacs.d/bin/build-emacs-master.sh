@@ -49,10 +49,9 @@ fi
 	    --with-imagemagick            \
             --disable-build-details       \
             --with-json                   \
-            --without-mailutils           \
             --without-pop                 \
-#            --with-mailutils              \
-#            --with-native-compilation     \
+            --with-native-compilation     \
+            --with-mailutils
 
 echo Configure script completed, review output and hit RETURN to build; read nought
 
