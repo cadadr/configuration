@@ -1,3 +1,4 @@
 # invasion for sappho
 
-.xinitrc	../../dotfiles/xsessionrc
+.xinitrc			../../dotfiles/xsessionrc
+.config/fontconfig/fonts.conf	fonts.conf
