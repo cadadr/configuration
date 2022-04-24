@@ -279,10 +279,12 @@ gmi(){
 }
 
 # simple front-end to run a live iso image with qemu.
-# usage: qliverun [cdrom-file] [hda-file]
-qliverun() {
+# usage: qemulive [cdrom-file] [hda-file]
+qemulive() {
     qemu-system-x86_64 -boot order=d -m 4096 \
-	-enable-kvm -smp 4 -cpu host \
+	-enable-kvm -smp 2 -cpu host \
+	-net user,hostfwd=tcp::10022-:22 \
+	-net nic \
 	${1:+-cdrom "$1"} ${2:+-hda "$2"}
 }
 
