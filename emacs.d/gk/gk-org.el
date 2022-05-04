@@ -772,53 +772,7 @@ Mainly used in ‘gk-home’.")
  ;; Files to be used in agenda.
  org-agenda-files nil
  org-agenda-hide-tags-regexp "."
- org-agenda-custom-commands
- `((,gk-org-agenda-key "Planner"
-                       (;; Today
-                        (agenda
-                         ""
-                         ((org-agenda-overriding-header "")
-                          (org-agenda-skip-function '(org-agenda-skip-entry-if 'deadline))
-                          (org-deadline-warning-days 0)
-                          (org-agenda-sorting-strategy
-                           '(time-up
-                             priority-down
-                             category-up
-                             deadline-up
-                             scheduled-up
-                             tag-up
-                             habit-down))
-                          (org-default-priority org-lowest-priority)
-                          (org-agenda-span 1)))
-                        ;; Deadlines
-                        (agenda
-                         nil
-                         ((org-agenda-overriding-header "")
-                          (org-agenda-entry-types '(:deadline))
-                          (org-agenda-format-date "")
-                          (org-deadline-warning-days 21)
-                          (org-agenda-sorting-strategy
-                           '( priority-down deadline-up todo-state-down))
-                          (org-default-priority org-lowest-priority)
-                          (org-agenda-span 1)))
-                        ;; Current week, simplified
-                        (agenda
-                         ""
-                         (;; If I put a ‘\n’ here, Org Agenda will be a dick and add two
-                          ;; empty lines... so we put a blank space to trick it into
-                          ;; thinking that there’s something here.
-                          (org-agenda-overriding-header " ")
-                          (org-agenda-entry-types '(:scheduled))
-                          (org-deadline-warning-days 0)
-                          (org-agenda-sorting-strategy '(time-up
-                                                         priority-down
-                                                         category-up
-                                                         deadline-up
-                                                         scheduled-up
-                                                         tag-up
-                                                         habit-down))
-                          (org-default-priority org-lowest-priority)
-                          (org-agenda-span 7)))))))
+ org-agenda-custom-commands nil)
 
 
 (defun gk-org-agenda-mode-hook ()
