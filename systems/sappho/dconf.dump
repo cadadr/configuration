@@ -20,6 +20,7 @@ auto-power-on = @mb false
 burst-delay = 1000
 photo-x-resolution = 800
 photo-y-resolution = 448
+selected-effect = 'Cartoon'
 video-x-resolution = 800
 video-y-resolution = 448
 
@@ -30,7 +31,7 @@ disable-microphone = false
 document-type = 'photo'
 jpeg-quality = 75
 photo-dpi = 150
-save-format = 'application/pdf'
+save-format = 'image/png'
 text-dpi = 75
 
 [org/gtk/settings/file-chooser]
