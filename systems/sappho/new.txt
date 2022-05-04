@@ -22,3 +22,4 @@ libgccjit libgccjit-devel
 rust
 cargo
 cowsay
+mousepad
