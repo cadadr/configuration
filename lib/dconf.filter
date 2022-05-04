@@ -86,7 +86,8 @@ install-last-run
 height
 width
 image-dir-uri
-camera"
+camera
+session"
 
 export filter
 
