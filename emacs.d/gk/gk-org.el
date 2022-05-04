@@ -671,9 +671,10 @@ of change will be 23:59 on that day"
 (setq org-export-coding-system 'utf-8
       org-directory gk-notes-directory
       org-default-notes-file (gk-org-dir-file "Start.org")
-      org-icalendar-combined-agenda-file (expand-file-name "~/Documents/ajanda.ics")
+      org-icalendar-combined-agenda-file (expand-file-name
+                                          "~/Documents/ajanda.ics")
       org-id-locations-file (locate-user-emacs-file "etc/org-id-locations.el")
-      org-archive-location (gk-org-dir-file "Attic/ArchivedEntries.org::datetree/"))
+      org-archive-location (gk-org-dir-file "Attic/Arşiv.org::datetree/"))
 
 
 
@@ -769,9 +770,7 @@ Mainly used in ‘gk-home’.")
  org-habit-preceding-days 21
  org-habit-graph-column 49
  ;; Files to be used in agenda.
- org-agenda-files
- (list (gk-org-dir-file "Ajanda.org")  ; keep in the ‘car’
-       (expand-file-name "~/Research/MA_Research/OkumaListesi.org"))
+ org-agenda-files nil
  org-agenda-hide-tags-regexp "."
  org-agenda-custom-commands
  `((,gk-org-agenda-key "Planner"
@@ -943,8 +942,7 @@ its contents."
 
 (setf
  org-refile-targets
- `((,(gk-org-dir-file "Ajanda.org") :maxlevel . 3)
-   (,(gk-org-dir-file "Misc.org") :maxlevel . 1))
+ `((,(gk-org-dir-file "Muhtelif.org") :maxlevel . 1))
  org-refile-use-outline-path 'file
  org-refile-allow-creating-parent-nodes t
  org-log-refile 'time
@@ -1629,8 +1627,7 @@ Meant as a ‘:before’ advice to ‘org-capture’."
    :keys "b"
    :description "New internet bookmark"
    :type 'entry
-   :target `(file ,(gk-org-dir-file
-                    (format-time-string "InternetBookmarks-%Y.org")))
+   :target `(file ,(gk-org-dir-file (format-time-string "Bookmarks/%Y.org")))
    :template "* %:description\n%:link\n\n%?%i"
    :prepend t
    :empty-lines-before 1
@@ -1658,63 +1655,11 @@ Meant as a ‘:before’ advice to ‘org-capture’."
    :unnarrowed t)
 
   (gk-org-define-capture-template
-   :keys "e"
-   :description "Add selected entry in ebib to reading list"
-   :type 'item
-   :template '(function
-               (lambda ()
-                 (unless (memq major-mode '(ebib-index-mode
-                                            ebib-entry-mode))
-                   (user-error "This template (e) should be called from within Ebib"))
-                 (with-current-buffer
-                     (or (gk-assoca 'index ebib--buffer-alist)
-                         ;; XXX(2021-03-26): this can be replaced with
-                         ;; an interactive search maybe?
-                         (user-error "Ebib not running, can’t use ebib capture template"))
-                   (let* ((key (progn (ebib-copy-key-as-kill)
-                                      (pop kill-ring)))
-                          (newitem (concat "- [ ] [[ebib:" key "]]")))
-                     (with-temp-buffer
-                       (org-mode)
-                       (setq-local fill-column 70)
-                       (insert newitem)
-                       (org-fill-paragraph)
-                       (buffer-substring-no-properties (point-min)
-                                                       (point-max)))))))
-   :target `(file ,(gk-org-dir-file "Papers.org"))
-   :prepend nil
-   :empty-lines-after 1
-   :empty-lines-before 1
-   :unnarrowed t)
-
-  (gk-org-define-capture-template
-   :keys "E"
-   :description "Reading note (ebib)"
-   :type 'entry
-   :target `(file ,(gk-org-dir-file
-                    (format-time-string "Reading-%Y.org")))
-   :empty-lines-after 1
-   :empty-lines-before 1
-   :prepend t
-   :template '(function ebib-notes-create-org-template))
-
-  (gk-org-define-capture-template
-   :keys "a"
-   :description "Academic Journal"
-   :type 'entry
-   :target `(file+datetree
-             ,(gk-org-dir-file (format-time-string
-                                "Journal/Academic-%Y.org")))
-   :empty-lines-before 1
-   :empty-lines-after  1
-   :time-prompt t
-   :template "* %?\n")
-
-  (gk-org-define-capture-template
    :keys "S"
    :description "Sunday Emacs build note"
    :type 'entry
-   :target `(file+olp ,(gk-org-dir-file "Emacs.org") "New stuff from recent builds")
+   :target `(file+olp ,(gk-org-dir-file "Emacs.org")
+                      "New stuff from recent builds")
    :prepend t
    :empty-lines-after 1
    :empty-lines-before 1
@@ -1728,7 +1673,7 @@ Meant as a ‘:before’ advice to ‘org-capture’."
    :description "Emacs build note item"
    :type 'item
    :target `(file+function
-             ,(gk-org-dir-file "Emacs.org")
+             ,(expand-file-name "~/Notlar/Emacs.org")
              (lambda ()
                (save-restriction
                  (widen)

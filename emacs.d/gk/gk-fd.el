@@ -22,7 +22,7 @@
 (require 'url)
 
 (defconst gk-notes-directory
-  (expand-file-name "~/Notes")
+  (expand-file-name "~/Notlar")
   "Directory for digital notebooks.")
 
 (setf image-dired-dir

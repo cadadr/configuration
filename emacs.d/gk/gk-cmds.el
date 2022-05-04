@@ -378,7 +378,8 @@ argument as t, so refer to that command for further details."
 
 (defun gk-new-journal-entry ()
   (interactive)
-  (find-file (format-time-string (gk-org-dir-file "Journal/%F")))
+  (find-file (format-time-string
+              (gk-org-dir-file "Günlük/Kişisel/%F")))
   (gk-insert-today 16))
 
 (defun gk-cancel-last-timer ()

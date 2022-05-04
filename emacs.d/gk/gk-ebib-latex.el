@@ -1,6 +1,6 @@
 ;;; gk-ebib-latex.el --- configurations for ebib, latex, auctex, etc  -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2021  Göktuğ Kayaalp
+;; Copyright (C) 2021, 2022  Göktuğ Kayaalp
 
 ;;; Commentary:
 
@@ -20,7 +20,7 @@
 (require 'auctex)
 (require 'preview-latex)
 
-(defvar gk-bib-dir (gk-org-dir-file "Library")
+(defvar gk-bib-dir (expand-file-name "~/Library")
   "Location for global Bib(La)TeX files.")
 
 (defvar gk-bib-attachments-dir
