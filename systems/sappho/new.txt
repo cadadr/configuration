@@ -19,3 +19,6 @@ biber
 ntfs-3g
 zstd
 libgccjit libgccjit-devel
+rust
+cargo
+cowsay
