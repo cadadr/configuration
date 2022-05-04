@@ -1,6 +1,6 @@
 ;;; gk-mm.el --- multimedia configurations           -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2021  Göktuğ Kayaalp
+;; Copyright (C) 2021, 2022  Göktuğ Kayaalp
 
 ;;; Commentary:
 
@@ -28,6 +28,13 @@
   'image-transform-fit-to-window "prior to 2021-12-07")
 
 (define-key image-mode-map "=" #'gk-fit-image-to-window)
+
+;; ‘image-previous-file’ calls this function, so it does not need to
+;; be adviced separately.
+(define-advice image-next-file
+    (:after (&rest _) fit-to-window)
+  "Fit images to window. "
+  (image-transform-fit-to-window))
 
 ;;;;; Keybindings:
 
