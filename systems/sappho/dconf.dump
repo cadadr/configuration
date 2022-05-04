@@ -59,3 +59,18 @@ col-3-visible = true
 col-4-visible = true
 columns-order = [0, 1, 2, 3, 4, 5, 6, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26]
 
+[org/xfce/mousepad/preferences/view]
+font-name = 'Noto Kufi Arabic 48'
+show-line-numbers = true
+show-right-margin = true
+use-default-monospace-font = true
+word-wrap = true
+
+[org/xfce/mousepad/preferences/window]
+statusbar-visible = true
+
+[org/xfce/mousepad/state/application]
+
+[org/xfce/mousepad/state/window]
+fullscreen = false
+
