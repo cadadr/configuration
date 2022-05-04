@@ -51,7 +51,7 @@ fi
             --with-json                   \
             --without-pop                 \
             --with-native-compilation     \
-            --with-mailutils
+#            --with-mailutils
 
 echo Configure script completed, review output and hit RETURN to build; read nought
 
