@@ -45,8 +45,8 @@ nil if absent."
 
 ;;;; GUI:
 
-(defvar gk-preferred-themes (list :light 'modus-operandi
-                                  :dark  'modus-vivendi)
+(defvar gk-preferred-themes (list :light 'anti-zenburn
+                                  :dark  'yoshi)
   "Light and dark theme preferences.")
 
 
