@@ -38,7 +38,7 @@ bindsym $mod+Return exec $terminal
 bindsym $mod+Control+Return exec --no-startup-id firefox-window.sh
 bindsym $mod+h exec --no-startup-id sh $MYLIB/i3/i3cheatsheet.sh
 bindsym $mod+Control+y exec --no-startup-id xtype.sh
-bindsym $mod+Control+f exec --no-startup-id pcmanfm
+bindsym $mod+Control+f exec --no-startup-id Thunar
 bindsym $mod+Control+w exec --no-startup-id ffprofile.sh
 bindsym $mod+Control+p exec --no-startup-id passmenu.sh
 bindsym $mod+Control+e exec $terminal -e 'less /run/user/$UID/i3/errorlog.*'
@@ -292,6 +292,9 @@ for_window [class="XTerm" title="Backup"] floating enable move position center
 
 #### PCManFM:
 for_window [class="Pcmanfm"] floating enable move position center
+
+#### Thunar:
+for_window [class="Thunar"] floating enable move position center
 
 #### Editor command for Qutebrowser:
 for_window [class="qtbedit"] floating enable move position center

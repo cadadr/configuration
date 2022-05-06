@@ -13,8 +13,6 @@
 .config/mpv		dotfiles/mpv
 .config/qutebrowser	dotfiles/qutebrowser
 .config/pycodestyle	dotfiles/pycodestyle
-.config/pcmanfm		dotfiles/pcmanfm
-.config/libfm		dotfiles/libfm
 .cvsrc			dotfiles/cvsrc
 .gitconfig		dotfiles/gitconfig.ini
 .gdbinit		dotfiles/gdbinit
