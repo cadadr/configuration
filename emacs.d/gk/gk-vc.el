@@ -1,6 +1,6 @@
 ;;; gk-vc.el --- version control utilities and customisation  -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2021  Göktuğ Kayaalp
+;; Copyright (C) 2021, 2022  Göktuğ Kayaalp
 
 ;;; Commentary:
 
@@ -303,8 +303,29 @@ unlocked, offer to lock it before pasting."
           (diff-refine-hunk)
           (forward-line 1)))))))
 
+(defun gk-git-commit-deparen ()
+  "Move stuff in parens to after colon.
+
+If the headline looks like
+
+    ‘file (something interesting): ’,
+
+this will transform it such that it looks like
+
+    ‘file: something interesting"
+  (interactive)
+  (save-excursion
+    (goto-char (point-min))
+    (re-search-forward "(")
+    (delete-char -2)
+    (insert ": ")
+    (goto-char (line-end-position))
+    (re-search-backward ")")
+    (delete-region (point) (line-end-position))))
 
 (add-hook 'git-commit-mode-hook #'gk-git-commit-mode-hook)
+
+(define-key git-commit-mode-map (kbd "C-c :") #'gk-git-commit-deparen)
 
 (defun gk-copy-git-forge-url-as-kill (file &optional line-or-region)
   "Generate a Github/Gitlab url for FILE and copy it as kill.
