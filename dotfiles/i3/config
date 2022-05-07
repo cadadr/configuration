@@ -227,6 +227,32 @@ mode "$mod_resize" {
 }
 bindsym $mod+r mode "$mod_resize"
 
+# Scrolling without my fingers dying.
+
+# Sleep needed because:
+# https://github.com/jordansissel/xdotool/issues/210#issuecomment-406158785
+set $xdotool_press_key exec xdotool sleep 0.15 getactivewindow key --clearmodifiers
+
+set $mod_scroll_emacs Emacs-like scroll
+mode "$mod_scroll_emacs" {
+        bindsym n $xdotool_press_key Down
+        bindsym p $xdotool_press_key Up
+        bindsym f $xdotool_press_key Right
+        bindsym b $xdotool_press_key Left
+
+        bindsym Control+v $xdotool_press_key Next
+        bindsym Mod1+v $xdotool_press_key Prior
+
+        bindsym Tab $xdotool_press_key ctrl+Tab
+        bindsym BackSpace $xdotool_press_key ctrl+shift+Tab
+
+        # back to normal: Enter or Escape or Ctrl+g
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym Control+g mode "default"
+}
+bindsym $mod+v mode "$mod_scroll_emacs"
+
 # Colours
 client.focused          #83a598 #83a598 #0c0c0c #83a598   #83a598
 client.focused_inactive #282828 #5f676a #ffffff #484e50   #5f676a
