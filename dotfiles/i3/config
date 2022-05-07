@@ -249,6 +249,9 @@ mode "$mod_scroll_emacs" {
         bindsym Tab $xdotool_press_key ctrl+Tab
         bindsym BackSpace $xdotool_press_key ctrl+shift+Tab
 
+        # Go to mouse mode
+        bindsym m mode "$mod_mouse_emacs"
+
         # back to normal: Enter or Escape or Ctrl+g
         bindsym Return mode "default"
         bindsym Escape mode "default"
@@ -306,6 +309,15 @@ mode "$mod_mouse_emacs" {
         bindsym Shift+space   exec xdotool click --clearmodifiers 2
         bindsym Control+space exec xdotool click --clearmodifiers 3
         bindsym Mod1+space    exec xdotool click --clearmodifiers --repeat 2 1
+
+        # Wheel
+        bindsym j exec xdotool click 5
+        bindsym k exec xdotool click 4
+        bindsym Shift+j exec xdotool click --clearmodifiers --repeat 10 5
+        bindsym Shift+k exec xdotool click --clearmodifiers --repeat 10 4
+
+        # Go to scroll mode
+        bindsym v mode "$mod_scroll_emacs"
 
         # back to normal: Enter or Escape or Ctrl+g
         bindsym Return mode "default"
