@@ -311,10 +311,11 @@ mode "$mod_mouse_emacs" {
         bindsym Mod1+space    exec xdotool click --clearmodifiers --repeat 2 1
 
         # Wheel
-        bindsym j exec xdotool click 5
-        bindsym k exec xdotool click 4
-        bindsym Shift+j exec xdotool click --clearmodifiers --repeat 10 5
-        bindsym Shift+k exec xdotool click --clearmodifiers --repeat 10 4
+        bindsym j exec xdotool click --clearmodifiers 5
+        bindsym k exec xdotool click --clearmodifiers 4
+        # These don’t work very well for some reason...
+        # bindsym Shift+j exec xdotool click --clearmodifiers --repeat 10 5
+        # bindsym Shift+k exec xdotool click --clearmodifiers --repeat 10 4
 
         # Go to scroll mode
         bindsym v mode "$mod_scroll_emacs"
