@@ -211,16 +211,16 @@ mode "$mod_resize" {
         bindsym p focus up
         bindsym f focus right
 
-        bindsym Left        resize shrink width 10 px or 10 ppt
-        bindsym Down        resize grow height 10 px or 10 ppt
-        bindsym Up          resize shrink height 10 px or 10 ppt
-        bindsym Right       resize grow width 10 px or 10 ppt
+        bindsym Left  resize shrink width 10 px or 10 ppt
+        bindsym Down  resize grow height 10 px or 10 ppt
+        bindsym Up    resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
 
         # might be useful when resizing.
         bindsym F11 fullscreen toggle
         bindsym semicolon floating toggle
 
-        # back to normal: Enter or Escape or Mod1+r
+        # back to normal: Enter or Escape or Ctrl+g
         bindsym Return mode "default"
         bindsym Escape mode "default"
         bindsym Control+g mode "default"
