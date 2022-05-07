@@ -243,6 +243,9 @@ mode "$mod_scroll_emacs" {
         bindsym Control+v $xdotool_press_key Next
         bindsym Mod1+v $xdotool_press_key Prior
 
+        bindsym a $xdotool_press_key Home
+        bindsym e $xdotool_press_key End
+
         bindsym Tab $xdotool_press_key ctrl+Tab
         bindsym BackSpace $xdotool_press_key ctrl+shift+Tab
 
