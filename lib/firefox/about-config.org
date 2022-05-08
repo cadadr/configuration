@@ -28,3 +28,8 @@ Mozilla and their bullshit Chromium clone.
   - =true=
   - add this option to make =org-protocol= work properly again
   - https://bugzilla.mozilla.org/show_bug.cgi?id=1685682
+
+- =extensions.pocket.enabled=
+  - =false=
+  - disable pocket because who tf cares about pocket besides wankers
+    over at Mozilla?
