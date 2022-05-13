@@ -1517,6 +1517,7 @@ Generates a "
    "#+date: "
    (format-time-string "[%F %a]\n\n")
    "[ *Buraya full referans ekle* ]\n\n"
+   "[ *Zotero’daki itemden bu dosyaya link ver* ]\n\n"
    "* Overview\n\n"
    "* Alıntılar\n\n"
    "* Kaynakçadan\n\n")
