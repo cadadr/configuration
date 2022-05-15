@@ -1590,24 +1590,15 @@ Meant as a ‘:before’ advice to ‘org-capture’."
    :unnarrowed nil)
 
   (gk-org-define-capture-template
-   :keys "t"
-   :description "Random task (not scheduled)"
+   :keys "B"
+   :description "Scholarly blurb"
    :type 'entry
-   :target `(file+olp ,(car org-agenda-files) "To Do")
-   :template "* TODO %?"
+   :target `(file ,(gk-org-dir-file "Studies/Blurb.org"))
+   :template "* \n%u\n\n%?"
    :prepend t
+   :empty-lines-before 1
    :empty-lines-after 1
-   :unnarrowed t)
-
-  (gk-org-define-capture-template
-   :keys "r"
-   :description "Reading task"
-   :type 'entry
-   :target `(file+olp ,(car org-agenda-files) "To Do")
-   :template "* READ %?\n"
-   :prepend t
-   :empty-lines-after 1
-   :unnarrowed t)
+   :unnarrowed nil)
 
   (gk-org-define-capture-template
    :keys "S"
