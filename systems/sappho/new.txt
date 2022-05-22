@@ -25,3 +25,4 @@ cowsay
 mousepad
 libopusenc
 Thunar # remove pcmanfm
+go
