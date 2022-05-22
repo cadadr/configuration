@@ -1519,6 +1519,7 @@ Generates a "
    "[ *Buraya full referans ekle* ]\n\n"
    "[ *Zotero’daki itemden bu dosyaya link ver* ]\n\n"
    "* Overview\n\n"
+   "* Notlar\n\n"
    "* Alıntılar\n\n"
    "* Kaynakçadan\n\n")
  auto-insert-alist)
