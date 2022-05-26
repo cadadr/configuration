@@ -7,7 +7,7 @@ gem 'rss'
 gem 'solargraph'
 
 # for academia-dl
-gem 'nokogiri'
+gem 'nokogiri', ">= 1.13.6"
 gem 'open_uri_redirections'
 gem "addressable", "~> 2.8"
 

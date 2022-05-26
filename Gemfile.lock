@@ -53,20 +53,20 @@ GEM
     rexml (3.2.5)
     rss (0.2.9)
       rexml
-    rubocop (1.29.1)
+    rubocop (1.30.0)
       parallel (~> 1.10)
       parser (>= 3.1.0.0)
       rainbow (>= 2.2.2, < 4.0)
       regexp_parser (>= 1.8, < 3.0)
       rexml (>= 3.2.5, < 4.0)
-      rubocop-ast (>= 1.17.0, < 2.0)
+      rubocop-ast (>= 1.18.0, < 2.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 1.4.0, < 3.0)
     rubocop-ast (1.18.0)
       parser (>= 3.1.1.0)
     ruby-dbus (0.15.0)
     ruby-progressbar (1.11.0)
-    solargraph (0.44.3)
+    solargraph (0.45.0)
       backport (~> 1.2)
       benchmark
       bundler (>= 1.17.2)
@@ -97,7 +97,7 @@ DEPENDENCIES
   addressable (~> 2.8)
   geoclue
   mime-types
-  nokogiri
+  nokogiri (>= 1.13.6)
   open_uri_redirections
   pry (~> 0.13.1)
   pry-byebug (~> 3.9.0)
