@@ -33,3 +33,8 @@ Mozilla and their bullshit Chromium clone.
   - =false=
   - disable pocket because who tf cares about pocket besides wankers
     over at Mozilla?
+
+- =widget.gtk.overlay-scrollbars.enabled=
+  - =false=
+  - do not auto hide scrollbars, because why the heck
+  - https://todon.eu/@maxi/108356307151802104
