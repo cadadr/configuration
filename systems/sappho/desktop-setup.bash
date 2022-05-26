@@ -45,6 +45,9 @@ ulimit -c unlimited
 # Disable the annoying ThinkPad touchpad
 xinput set-prop 'SynPS/2 Synaptics TouchPad' 'Device Enabled' 0
 
+# Trackpoint accel
+xinput set-prop 'TPPS/2 IBM TrackPoint' 'Accel Speed' 1.0
+
 ### Start background processes:
 setbg.bash               &
 dunst                    &
