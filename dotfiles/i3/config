@@ -103,6 +103,8 @@ bindsym Shift+F5 move container to workspace 5
 # Move workspaces between monitors.
 bindsym $mod+Right move workspace to output right
 bindsym $mod+Left move workspace to output left
+bindsym $mod+Up move workspace to output up
+bindsym $mod+Down move workspace to output down
 
 ### Modes:
 # power management
