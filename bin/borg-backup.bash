@@ -6,6 +6,11 @@ export GK_NOENV=yes
 . $MYLIB/cron.sh
 . $MYLIB/fns.sh
 
+check-router-mac-address.bash "$GK_SAPPHO_HOME_ROUTER_MAC" || {
+    say "unexpected router MAC, will not run on this network!"
+    exit
+}
+
 # If ‘GK_BORG_INTERACTIVE’ is set, display progress info.
 maybe_progress="${GK_BORG_INTERACTIVE:+--stats --progress}"
 
