@@ -9,15 +9,6 @@ tls_trust_file /etc/ssl/certs/ca-certificates.crt
 keep off
 password
 
-# HUmail
-account humail
-host __HU_MAIL_HOST__
-port 995
-user __HU_MAIL_ADDR__
-delivery mda "/usr/bin/procmail -f '%F' -a humail"
-uidls_file ~/Posta/mpop_uidls/3
-passwordeval "pass show __HU_MAIL_ADDR__"
-
 # self@
 account self-inbox
 host __MAIL_HOST__
