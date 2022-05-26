@@ -20,5 +20,5 @@ die () {
 
 # Log function for xinit scripts
 logx () {
-	echo \[$(date)\] $* >> ~/.xinit.errors
+    echo \[$(date)\] $* >> ~/.xinit.errors
 }
