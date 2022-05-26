@@ -52,6 +52,7 @@ bindsym $mod+Next exec --no-startup-id pkill -USR1 -f setbg.bash
 bindsym $mod+Prior exec --no-startup-id pkill -USR2 -f setbg.bash
 bindsym $mod+q exec --no-startup-id qrclip.sh
 bindsym Print exec --no-startup-id flameshot gui
+bindsym $mod+Tab exec --no-startup-id i3-workspace-finder.bash
 
 ### Window management keybindings:
 bindsym $mod+b focus left
@@ -86,17 +87,23 @@ bindsym $mod+Shift+g restart
 bindsym $mod+k kill
 
 ### Workspaces:
-bindsym F1 workspace 1
-bindsym F2 workspace 2
-bindsym F3 workspace 3
-bindsym F4 workspace 4
-bindsym F5 workspace 5
+set $ws1 "1:home"
+set $ws2 "2:www"
+set $ws3 "3:zotero"
+set $ws4 "4:reading"
+set $ws5 "5:background"
 
-bindsym Shift+F1 move container to workspace 1
-bindsym Shift+F2 move container to workspace 2
-bindsym Shift+F3 move container to workspace 3
-bindsym Shift+F4 move container to workspace 4
-bindsym Shift+F5 move container to workspace 5
+bindsym F1 workspace $ws1
+bindsym F2 workspace $ws2
+bindsym F3 workspace $ws3
+bindsym F4 workspace $ws4
+bindsym F5 workspace $ws5
+
+bindsym Shift+F1 move container to workspace $ws1
+bindsym Shift+F2 move container to workspace $ws2
+bindsym Shift+F3 move container to workspace $ws3
+bindsym Shift+F4 move container to workspace $ws4
+bindsym Shift+F5 move container to workspace $ws5
 
 ### Multiple monitors:
 
