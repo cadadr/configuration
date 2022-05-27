@@ -35,7 +35,7 @@ bindsym F12 exec --no-startup-id i3-dmenu-desktop
 bindsym Shift+F12 exec --no-startup-id rofi -show run
 bindsym $mod+Shift+Return exec emacsclient -c
 bindsym $mod+Return exec $terminal
-bindsym $mod+Control+Return exec --no-startup-id firefox-window.sh
+bindsym $mod+Control+Return exec --no-startup-id firefox --new-window
 bindsym $mod+h exec --no-startup-id sh $MYLIB/i3/i3cheatsheet.sh
 bindsym $mod+Control+y exec --no-startup-id xtype.sh
 bindsym $mod+Control+f exec --no-startup-id Thunar
