@@ -462,6 +462,8 @@ Does various tasks after saving a file, see it's definition."
 
 (gk-prefix-binding "y" #'gk-yank-primary)
 
+(gk-prefix-binding (kbd "M-q") #'gk-urls-web-search)
+
 
 
 ;;; Additional modules:
