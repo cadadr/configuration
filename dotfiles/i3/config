@@ -89,9 +89,9 @@ bindsym $mod+k kill
 ### Workspaces:
 set $ws1 "1:home"
 set $ws2 "2:www"
-set $ws3 "3:zotero"
-set $ws4 "4:reading"
-set $ws5 "5:background"
+set $ws3 "3:bib"
+set $ws4 "4:read"
+set $ws5 "5:bg"
 
 bindsym F1 workspace $ws1
 bindsym F2 workspace $ws2
