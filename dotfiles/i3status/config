@@ -47,6 +47,5 @@ memory {
 
 read_file hostname {
         path = "/etc/hostname"
-        # keep enough spaces to pad it to the center.
-        format = "🖥️ %content                   "
+        format = "🖥️ %content  "
 }
