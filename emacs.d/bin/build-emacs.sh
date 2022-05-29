@@ -1,5 +1,5 @@
 #!/bin/sh
-# build-emacs-master.sh --- fetch, review, merge and build Emacs master branch.
+# build-emacs.sh --- fetch, review, merge and build Emacs master branch.
 
 # This script is for pulling and building Emacs master branch
 # interactively.  It depends on the ‘configure-emacs.sh’ and

@@ -335,11 +335,11 @@ BUFFER defaults to current buffer, and SECONDS to 1."
     (forward-char)
     (point)))
 
-(defun gk-build-emacs-master ()
-  "Run Emacs git build wrapper script."
+(defun gk-build-emacs ()
+  "Build Emacs \"master\" branch from local git checkout."
   (interactive)
-  (let ((compilation-buffer-name-function ($ [_] "*Build Emacs Master*")))
-    (compile "build-emacs-master.sh" t)))
+  (let ((compilation-buffer-name-function ($ [_] "*Build Emacs*")))
+    (compile "build-emacs.sh" t)))
 
 (defun gk-visit-user-init-file ()
   "Visit ‘user-init-file’, reuse window if useful.
