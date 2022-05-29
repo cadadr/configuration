@@ -86,6 +86,35 @@ xdg-open is a desktop utility that calls your preferred web browser."
 
 
 
+;;;;; Web search:
+
+(defvar gk-urls-web-search-engine "https://duckduckgo.com/?q=%s"
+  "Search engine for ‘gk-urls-web-search’.
+
+The first %s will be replaced with the search query.")
+
+(defun gk-urls-web-search (query)
+  "Web search with external browser.
+
+Use the search engine defined in ‘gk-urls-web-search-engine’ to
+do a web search.
+
+When called from Lisp, QUERY should be the string to be
+searched for.
+
+Interactively, prompts for a search query; unless when region is
+active, in which case the region is used as the search query."
+  (interactive
+   (list (if (region-active-p)
+             (prog1 (buffer-substring-no-properties
+                     (region-beginning) (region-end))
+               (deactivate-mark))
+           (read-string "Web search query: "))))
+  (gk-urls-external-browser
+   (format gk-urls-web-search-engine query)))
+
+
+
 ;;;;; Browser functions:
 
 ;; Functions specific for browsing some websites, and the browser
