@@ -14,6 +14,8 @@
 30	*/2	*	*	*	$HOME/bin/rclone-backup.sh >> $HOME/log/rclone.log 2>&1
 45	*/6	*	*	*	$HOME/bin/borg-backup.bash >> $HOME/log/borg.log 2>&1
 0	*/2	*	*	*	$HOME/bin/remind-bujo.bash >/dev/null
+# Clear recently used regularly
+15	*/8	*	*	*	mkdir -p $HOME/.local/share && echo -n '' > $HOME/.local/share/recently-used.xbel
 
 # ¹ OR jan,feb,mar,apr ...
 # ² (Sunday=0 or 7) OR sun,mon, ...
