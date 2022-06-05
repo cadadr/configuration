@@ -396,23 +396,11 @@ for_window [class="Pavucontrol"] floating enable
 #### R:
 for_window [class="R_x11"] floating enable
 
-#### U?XTerm:
-for_window [class="XTerm" title="Backup"] floating enable move position center
-
-#### PCManFM:
-for_window [class="Pcmanfm"] floating enable move position center
-
-#### Thunar:
-for_window [class="Thunar"] floating enable move position center
-
 #### Editor command for Qutebrowser:
 for_window [class="qtbedit"] floating enable move position center
 
 #### Telegram client:
 for_window [title="Telegram( \(\d+\))?"] floating enable move position center
-
-#### Lagrange:
-for_window [class="lagrange"] floating enable move position center
 
 #### ImageMagick
 for_window [class="Display-im[0-9]\.q.*"] floating enable move position center
