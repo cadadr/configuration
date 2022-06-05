@@ -1,0 +1,10 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Name=Tropy (AppImage)
+GenericName=Tropy
+Comment=Tropy
+Exec=Tropy-1.11.1-x86_64.AppImage
+Type=Application
+Terminal=false
+Categories=Education;
+Keywords=Education;Reseach;Images;
