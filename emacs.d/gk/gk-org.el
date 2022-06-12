@@ -1543,6 +1543,32 @@ Generates a "
             ".")))
 
 
+(defun gk-org-capture-annotated-photograph ()
+  "Generate capture template for Fotoğraflar.org
+
+Template generation relies on links being stored using ‘org-store’.
+
+After completion removes used links from ‘org-stored-links’."
+  (let ((template-head
+         (concat "* %?\n"
+                 "| author  | %^{Author|own work} |\n"
+                 "| yer     | %^{Yer} |\n"
+                 "| tarih   | %^{Tarih:}U |\n"))
+        (selected-links
+         (cl-remove-if-not
+          ($ (y-or-n-p (format "Include %s" (car $1))))
+          org-stored-links)))
+    ;; Remove links selected for inclusion in the template from
+    ;; ‘org-stored-links’.
+    (setf org-stored-links (seq-difference org-stored-links selected-links))
+    (concat template-head
+            "\n"
+            (mapconcat ($ (concat "- [[" (car $1) "][" (cadr $1) "]]"))
+                       selected-links
+                       "\n")
+            "\n\n")))
+
+
 (defun gk-org-define-capture-template (&rest args)
   "Define a capture template.
 
@@ -1631,7 +1657,16 @@ Meant as a ‘:before’ advice to ‘org-capture’."
    :empty-lines-before 1
    :template
    ;; The sexp deactivates region just to save a couple keystrokes.
-   "- %i%(with-current-buffer \"*Build Emacs Master*\" (deactivate-mark t))%?"))
+   "- %i%(with-current-buffer \"*Build Emacs Master*\" (deactivate-mark t))%?")
+
+  (gk-org-define-capture-template
+   :keys "F"
+   :description "Annotated photograph(s) [store links to the photos first!]"
+   :type 'entry
+   :target `(file ,(gk-org-dir-file "Fotoğraflar.org"))
+   :prepend nil
+   :empty-lines-before 1
+   :template '(function gk-org-capture-annotated-photograph)))
 
 
 (add-function :before (symbol-function 'org-capture) #'gk-org-capture-set-templates)
