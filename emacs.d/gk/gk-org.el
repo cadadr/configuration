@@ -1620,7 +1620,7 @@ Meant as a ‘:before’ advice to ‘org-capture’."
    :description "Emacs build note item"
    :type 'item
    :target `(file+function
-             ,(expand-file-name "~/Notlar/Emacs.org")
+             ,(gk-org-dir-file "Emacs.org")
              (lambda ()
                (save-restriction
                  (widen)
