@@ -1657,7 +1657,7 @@ Meant as a ‘:before’ advice to ‘org-capture’."
    :empty-lines-before 1
    :template
    ;; The sexp deactivates region just to save a couple keystrokes.
-   "- %i%(with-current-buffer \"*Build Emacs Master*\" (deactivate-mark t))%?")
+   "- %i%(with-current-buffer \"*Build Emacs*\" (deactivate-mark t))%?")
 
   (gk-org-define-capture-template
    :keys "F"
