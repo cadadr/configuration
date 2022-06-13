@@ -31,25 +31,27 @@ if [ -e "$MYSYSTEM/desktop-setup.bash" ]; then
         # A session started with startx or my sx alias will have it
         # set like this.
         tty)
-	    # FUCK FUCK FUCK FUCK FUCK FUCK FUCK FUCK FUCK FUCK....
-	    # So at some point in the past, roughly around 2015 [1, 2],
-	    # systemd decided it was systemd's job to launch dbus
-	    # instead of dbus-launch, IN ANY FUCKING CASE. If I launch
-	    # dbus myself with dbus-launch, it leads to random system
-	    # freezes without any useful diagnostic in any logs like,
-	    # "hey user, you seem to use dbus-launch, maybe not?" For
-	    # fucks sake, are these people fucking sadists?
-	    #
-	    # [1] https://chrisdown.name/2016/10/18/x-freezing-systemd-logind-got-pause.html
-	    # [2] https://archlinux.org/news/d-bus-now-launches-user-buses/
-	    systemd_ver="$(systemctl --version | head -1 | cut -d ' ' -f 2)"
-	    if [ $systemd_ver -gt 226 ]; then
-		exec bash $MYSYSTEM/desktop-setup.bash
-	    else
-		exec dbus-launch --exit-with-session \
-		    bash $MYSYSTEM/desktop-setup.bash
-	    fi
-	    ;;
+            if [ -e /etc/systemd ]; then
+                # FUCK FUCK FUCK FUCK FUCK FUCK FUCK FUCK FUCK FUCK....
+                # So at some point in the past, roughly around 2015 [1, 2],
+                # systemd decided it was systemd's job to launch dbus
+                # instead of dbus-launch, IN ANY FUCKING CASE. If I launch
+                # dbus myself with dbus-launch, it leads to random system
+                # freezes without any useful diagnostic in any logs like,
+                # "hey user, you seem to use dbus-launch, maybe not?" For
+                # fucks sake, are these people fucking sadists?
+                #
+                # [1] https://chrisdown.name/2016/10/18/x-freezing-systemd-logind-got-pause.html
+                # [2] https://archlinux.org/news/d-bus-now-launches-user-buses/
+                systemd_ver="$(systemctl --version | head -1 | cut -d ' ' -f 2)"
+                if [ $systemd_ver -gt 226 ]; then
+                    exec bash $MYSYSTEM/desktop-setup.bash
+                fi
+            else
+                exec dbus-launch --exit-with-session \
+                    bash $MYSYSTEM/desktop-setup.bash
+            fi
+            ;;
         # GDM etc. sets it like this, which should do the dbus
         # housekeeping itself.
         x11) bash $MYSYSTEM/desktop-setup.bash ;;
