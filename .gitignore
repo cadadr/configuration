@@ -48,6 +48,7 @@ dotfiles/mpoprc
 dotfiles/msmtprc
 dotfiles/mairixrc
 dotfiles/gtk-3.0/settings.ini
+dotfiles/i3/colours_active_theme
 
 # Qutebrowser
 dotfiles/qutebrowser/qsettings/QtProject.conf
