@@ -47,6 +47,7 @@ doc/man/index.db
 dotfiles/mpoprc
 dotfiles/msmtprc
 dotfiles/mairixrc
+dotfiles/gtk-3.0/settings.ini
 
 # Qutebrowser
 dotfiles/qutebrowser/qsettings/QtProject.conf
