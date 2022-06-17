@@ -24,7 +24,7 @@ auto-power-on = @mb false
 burst-delay = 1000
 photo-x-resolution = 800
 photo-y-resolution = 448
-selected-effect = 'Dice'
+selected-effect = 'No Effect'
 video-x-resolution = 800
 video-y-resolution = 448
 
