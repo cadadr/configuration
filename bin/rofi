@@ -5,6 +5,7 @@
 # other similar apps, and this is what we have to resort to. 🖕
 
 exec /usr/bin/rofi \
-     -theme /usr/share/rofi/themes/gruvbox-dark-hard.rasi \
-     $@
+     -theme "$GK_ROFI_THEME" \
+     -hide-scrollbar         \
+     $@ 
 

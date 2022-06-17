@@ -12,8 +12,12 @@
 
 set nocompatible
 set termguicolors
-set background=dark
-colorscheme gruvbox
+let &background=$GK_COLOUR_SCHEME_PREFERENCE
+if &background == "dark"
+    colorscheme gruvbox
+elseif &background == "light"
+    colorscheme lithochromatic
+endif
 
 set backspace=eol,start,indent	" backspace over newline too
 " incremental case fold search, in suit and tie yet ignored
