@@ -288,6 +288,12 @@ qemulive() {
 	${1:+-cdrom "$1"} ${2:+-hda "$2"}
 }
 
+# Convert WebP images to PNG, because fuck WEBP
+fuck_webp() {
+    find . -iname '*.webp' -exec echo convert \{\} \
+	\$\(basename -s .webp \{\}\).png \; | sh
+    find . -iname '*.webp' -exec rm \{\} \+
+}
 
 ###
 # ssh errors with `unknown terminal' without this, see
