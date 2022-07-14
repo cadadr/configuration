@@ -86,6 +86,7 @@ emacs.d/ido.last
 emacs.d/org-caldav-*
 emacs.d/kkcrc
 emacs.d/transient/
+emacs.d/games/
 
 # fcitx
 dotfiles/fcitx/clipboard/
