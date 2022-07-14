@@ -52,6 +52,7 @@ type-format = 'category'
 picture-filename = '/home/cadadr/.xbg.png'
 
 [org/mate/system-monitor]
+show-tree = true
 
 [org/mate/system-monitor/disktreenew]
 
