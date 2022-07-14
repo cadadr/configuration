@@ -47,7 +47,9 @@ Otherwise comment-out the whole line, or ARG lines."
   (cond
    ((save-excursion
       (beginning-of-line)
-      (looking-at (concat "[[:blank:]]*" comment-start)))
+      (looking-at
+       (concat "[[:blank:]]*"
+               (regexp-quote comment-start))))
     (uncomment-region (point-at-bol) (point-at-eol)))
    ((or (looking-at "[[:blank:]]*$")
         (region-active-p))
