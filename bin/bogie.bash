@@ -62,7 +62,7 @@ default_playlist="https://www.youtube.com/playlist?list=PLN4x4CnYyRYq-3VC6Kyl0_H
 
 # "lofi hip hop radio - beats to relax/study to" by the Lofi Girl
 # channel on YouTube
-default_radio="https://www.youtube.com/watch?v=5qap5aO4i9A"
+default_radio="https://www.youtube.com/watch?v=jfKfPfyJRdk"
 
 ### Actual config:
 
