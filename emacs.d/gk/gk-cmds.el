@@ -508,6 +508,128 @@ a string, the family name."
     (push-mark)
     (insert-for-yank primary)))
 
+
+(defun gk-auto-rename-directory-files
+    (source-directory target-directory &optional trash-sources-p overwrite-p)
+  "Bulk rename SOURCE-DIRECTORY files using hashes and proper extensions.
+
+For each file under SOURCE-DIRECTORY, determine if file(1) knows
+a canonical file name extension. If yes, copy those files to
+TARGET-DIRECTORY with a file name generated using the hash of the
+contents of the file, and the appropriate suffix file(1)
+suggests.
+
+If TRASH-SOURCES-P is non-nil, use ‘move-file-to-trash’ to trash
+the source file after copying it to the new path.
+
+If OVERWRITE-P is non-nil, allow overwriting if target files
+exist.
+
+In Lisp, returns an alist of source paths and target paths of
+those files that were actually copied over."
+  (interactive
+   (list
+    (read-directory-name "Source directory: " nil nil t)
+    (read-directory-name
+     "Target directory (will be created if doesn't exist): ")
+    (yes-or-no-p "Trash source files after copying? ")
+    (yes-or-no-p "Allow overwriting when target file exists? ")))
+  (when (string= source-directory target-directory)
+    (user-error "Source and target directories cannot be the same"))
+  (let* ((begin-time (current-time))
+         (files (directory-files
+                 source-directory t
+                 directory-files-no-dot-files-regexp))
+         (transformation-data (gk-auto-rename-directory-files-1 files))
+         processed-files end-time)
+    (make-directory target-directory t)
+    (pcase-dolist
+        (`(,source-path ,maybe-true-extension ,hash-string) transformation-data)
+      (let* ((true-extension
+              (if (string= "???" maybe-true-extension)
+                  (or (gk-auto-rename-directory-files-2 source-path)
+                      (gk-auto-rename-directory-files-3 source-path))
+                maybe-true-extension))
+             (target-path (expand-file-name
+                           (concat hash-string "." true-extension)
+                           target-directory)))
+        (condition-case sig
+            (progn
+              (unless (null true-extension)
+                (copy-file source-path target-path overwrite-p t t t)
+                (push (cons source-path target-path) processed-files)
+                (message "Transformed %s -> %s" source-path target-path)))
+          ('file-already-exists
+           (message "File %s exists, skipping (source: %s)"
+                    target-path source-path)))))
+    (when trash-sources-p
+      (mapc ($ (move-file-to-trash (car $1))
+               (message "Trashed %s (new path: %s)" (car $1) (cdr $1)))
+            processed-files))
+    (setf end-time (current-time))
+    (message "Copied %d files in %d seconds"
+             (length processed-files)
+             (round (float-time (time-subtract end-time begin-time))))
+    processed-files))
+
+
+(defun gk-auto-rename-directory-files-1 (files)
+  "Subroutine of ‘gk-auto-rename-directory-files’."
+  (mapcar
+   (lambda (file)
+     (list file
+           ;; Determine a fitting extension for the current file using
+           ;; file(1) utility. This will not be fooled by mistaken
+           ;; extensions.
+           (with-temp-buffer
+             (call-process
+              ;; TODO(2022-07-24): use --print0
+              "file" nil t nil "-F" "///" "--extension" file)
+             (car (split-string
+                   (s-trim (cadr (split-string
+                                  (buffer-substring-no-properties
+                                   (point-min) (point-max))
+                                  "/// ")))
+                   "/")))
+           ;; sha1sum of file in order to rename it uniquely.
+           (let ((buf (find-file-noselect file t t)))
+             (prog1
+                 (secure-hash 'sha1 buf)
+               (kill-buffer buf)))))
+   files))
+
+(defun gk-auto-rename-directory-files--mime2ext (mimetype)
+  ;; Shared mimetype to file extension mappings for subroutines of
+  ;; ‘gk-auto-rename-directory-files’.
+  (cond ((string= mimetype "image/jpeg")     "jpeg")
+        ((string= mimetype "image/png")      "png")
+        ((string= mimetype "image/svg+xml")  "svg")
+        ((string= mimetype "video/mp4")      "mp4")
+        ((string= mimetype "video/webm")     "webm")
+        ( t                                  nil)))
+
+(defun gk-auto-rename-directory-files-2 (file)
+  "Subroutine of ‘gk-auto-rename-directory-files’."
+  ;; Try to determine an appropriate file name extension for those
+  ;; files for which file(1) fails to return one.
+  (gk-auto-rename-directory-files--mime2ext (mm-default-file-type file)))
+
+(defun gk-auto-rename-directory-files-3 (file)
+  "Subroutine of ‘gk-auto-rename-directory-files-2’."
+  ;; Like gk-auto-rename-directory-files-2, but uses the output of
+  ;; file(1) instead of ‘mm-default-file-type’. We ignore any errors,
+  ;; as it makes sense to consider an error case a case of "can’t
+  ;; determine info about this file".
+  (ignore-errors
+    (gk-auto-rename-directory-files--mime2ext
+     (with-temp-buffer
+       (call-process
+        "file" nil t nil
+        "--brief" "--mime" "/home/cadadr/varbkp/5vkBz5X.gifv")
+       (car (split-string
+             (buffer-substring-no-properties (point-min) (point-max))
+             ";"))))))
+
 
 
 (provide 'gk-cmds)
