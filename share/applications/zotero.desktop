@@ -3,7 +3,7 @@
 Name=Zotero (AppImage)
 GenericName=Zotero
 Comment=Zotero
-Exec=Zotero-6.0.4_linux-x86_64.AppImage
+Exec=Zotero-6.0.10_linux-x86_64.AppImage
 Type=Application
 Terminal=false
 Categories=Education;
