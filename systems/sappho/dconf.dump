@@ -52,9 +52,12 @@ type-format = 'category'
 picture-filename = '/home/cadadr/.xbg.png'
 
 [org/mate/system-monitor]
-show-tree = true
+show-all-fs = true
+show-tree = false
 
 [org/mate/system-monitor/disktreenew]
+
+[org/mate/system-monitor/memmapstree]
 
 [org/mate/system-monitor/proctree]
 col-22-visible = true
@@ -62,7 +65,7 @@ col-23-visible = true
 col-25-visible = true
 col-3-visible = true
 col-4-visible = true
-columns-order = [0, 1, 2, 3, 4, 5, 6, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26]
+columns-order = [0, 1, 2, 4, 3, 5, 6, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26]
 
 [org/xfce/mousepad/preferences/view]
 font-name = 'Noto Kufi Arabic 48'
