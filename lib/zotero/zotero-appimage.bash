@@ -23,7 +23,7 @@ fi
 
 ### Download and prepare necessary files:
 arch="$(uname -m)"
-version="6.0.4"
+version="6.0.10"
 dlurlbase="https://www.zotero.org/download/client/dl?channel=release&platform=linux-$arch&version="
 dlurl="$dlurlbase$version"
 dlname="Zotero-${version}_linux-$arch.tar.bz2"
