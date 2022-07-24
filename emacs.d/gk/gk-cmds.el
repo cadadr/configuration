@@ -547,8 +547,7 @@ those files that were actually copied over."
         (`(,source-path ,maybe-true-extension ,hash-string) transformation-data)
       (let* ((true-extension
               (if (string= "???" maybe-true-extension)
-                  (or (gk-auto-rename-directory-files-2 source-path)
-                      (gk-auto-rename-directory-files-3 source-path))
+                  (gk-auto-rename-directory-files-3 source-path)
                 maybe-true-extension))
              (target-path (expand-file-name
                            (concat hash-string "." true-extension)
@@ -612,6 +611,9 @@ those files that were actually copied over."
   "Subroutine of ‘gk-auto-rename-directory-files’."
   ;; Try to determine an appropriate file name extension for those
   ;; files for which file(1) fails to return one.
+  ;;
+  ;; *Do not use this*, just looks at the file name extension
+  ;; apparently...
   (gk-auto-rename-directory-files--mime2ext (mm-default-file-type file)))
 
 (defun gk-auto-rename-directory-files-3 (file)
@@ -623,9 +625,7 @@ those files that were actually copied over."
   (ignore-errors
     (gk-auto-rename-directory-files--mime2ext
      (with-temp-buffer
-       (call-process
-        "file" nil t nil
-        "--brief" "--mime" "/home/cadadr/varbkp/5vkBz5X.gifv")
+       (call-process "file" nil t nil "--brief" "--mime" file)
        (car (split-string
              (buffer-substring-no-properties (point-min) (point-max))
              ";"))))))
