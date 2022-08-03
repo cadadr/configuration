@@ -24,7 +24,11 @@ xbps-install -Sy
 # Basics and utilities
 xbps-install -y bc bind-utils djvulibre entr inotify-tools jq \
              lm_sensors moreutils num-utils pv smartmontools tmux \
-             units vim-common qrencode xtools udisks2 atop dcron
+             units vim-common qrencode xtools udisks2 atop dcron \
+             void-repo-nonfree
+
+# Update repositories after installing ‘void-repo-nonfree’
+xbps-install -Sy
 
 # Shells
 xbps-install -y zsh
