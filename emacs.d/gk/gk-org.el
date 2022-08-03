@@ -1639,7 +1639,7 @@ Meant as a ‘:before’ advice to ‘org-capture’."
    :template (concat "* build on %u\n"
                      "- *version*: %^{Version|head}\n"
                      "- *toolkit*: %^{Toolkit|lucid}\n"
-                     "-----\n\n"))
+                     "-----\n\n\n"))
 
   (gk-org-define-capture-template
    :keys "s"
@@ -1652,12 +1652,14 @@ Meant as a ‘:before’ advice to ‘org-capture’."
                  (widen)
                  (goto-char (point-min))
                  (re-search-forward
-                  (format-time-string "^\\*\\* build on \\[%F %a\\]")))))
+                  (format-time-string "^\\*\\* build on \\[%F %a\\]"))
+                 (re-search-forward "-----\n"))))
    :prepend nil
    :empty-lines-before 1
+   :empty-lines-after 1
    :template
    ;; The sexp deactivates region just to save a couple keystrokes.
-   "- %i%(with-current-buffer \"*Build Emacs*\" (deactivate-mark t))%?")
+   "- %i%(with-current-buffer \"*Build Emacs*\" (deactivate-mark t))%?\n\n")
 
   (gk-org-define-capture-template
    :keys "F"
