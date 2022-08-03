@@ -121,6 +121,9 @@ xbps-install -y git cvs cvsps2 git-cvs mercurial hg-git quilt rcs \
 # Emulation
 xbps-install -y qemu
 
+# Nonfree
+xbps-install -y intel-ucode
+
 # Update user groups
 usermod -aG kvm $username
 
