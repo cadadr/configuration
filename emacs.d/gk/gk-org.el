@@ -421,7 +421,10 @@ brackets and an ASCII ellipsis, i.e. three consecutive dots."
              (when (looking-at (rx lower))
                (let ((char (buffer-substring (point) (1+ (point)))))
                  (delete-char 1)
-                 (insert "[... " (upcase char) "]")))
+                 (insert "[... " (upcase char))
+                 (save-excursion
+                   (forward-word)
+                   (insert "]"))))
              ;; We’re at the last char, right before rquote.  Check if
              ;; there is a period, or add one with ellipsis.
              (when (re-search-forward
