@@ -394,9 +394,11 @@ ARG is the current prefix argument, passed to
   (insert "»\n\n")
   (gk-org-refill-reading-note)
   (when merge
-    (gk-org-reading-note-merge-last-n-notes 2))
+    (gk-org-reading-note-merge-last-n-notes 2)
+    (gk-org-refill-reading-note))
   (when ellipsise
-    (gk-org-reading-notes-ellipsise-last-note)))
+    (gk-org-reading-notes-ellipsise-last-note)
+    (gk-org-refill-reading-note)))
 
 (defun gk-org-reading-notes-ellipsise-last-note ()
   "Ellipsise the beginning and the end of the last note.
