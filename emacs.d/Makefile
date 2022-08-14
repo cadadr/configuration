@@ -14,7 +14,12 @@ help:
 	@echo '	emacs:		build emacs (do NOT upgrade)'
 	@echo '	emacs-up:	build emacs (upgrade)'
 
-all: extras invade
+all: extras invade packages
+
+packages: pdf-tools
+
+pdf-tools:
+	$(MAKE) -C lisp/pdf-tools -$(MAKEFLAGS) server/epdfinfo
 
 ext:
 	$(MAKE) -C ext -$(MAKEFLAGS)
@@ -40,3 +45,4 @@ clean-extras:
 clean: clean-extras
 
 .PHONY: all help ext extras docs clean clean-ext clean-docs
+.PHONY: packages pdf-tools

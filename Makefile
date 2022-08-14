@@ -10,6 +10,7 @@ help:
 	echo "Targets:";\
 	echo "	setup		set up $$HOME and $$USER after system initialisation";\
 	echo "	setup-light	like above, but skip building binaries";\
+	echo "  emacs.d         build emacs's configs, extensions, pakcages";\
 	echo "	invade		run invasion";\
 	echo "	dotfiles	build dotfiles";\
 	echo "	clean		delete build artefacts";\
@@ -17,12 +18,14 @@ help:
 ### System initialisation:
 .PHONY: setup setup-light fetch-config.m4 etc
 
-setup: fetch-config.m4 dotfiles invade
-	$(MAKE) -C emacs.d -$(MAKEFLAGS) all
+setup: emacs.d fetch-config.m4 dotfiles invade
 	sh lib/setup.sh
 
 setup-light: fetch-config.m4 dotfiles invade
 	@echo === Done, consider running make setup later
+
+emacs.d:
+	$(MAKE) -C emacs.d -$(MAKEFLAGS) all
 
 fetch-config.m4:
 	if [  -e config.m4 ]; then              \
@@ -58,4 +61,4 @@ deep-clean:
 
 ### Postamble:
 .PHONY: all build bins dotfiles clean
-.PHONY: clean-bin clean-dotfiles deep-clean
+.PHONY: clean-bin clean-dotfiles deep-clean emacs.d
