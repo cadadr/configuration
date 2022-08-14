@@ -1615,7 +1615,7 @@ Meant as a ‘:before’ advice to ‘org-capture’."
    :description "New internet bookmark"
    :type 'entry
    :target `(file ,(gk-org-dir-file (format-time-string "Bookmarks/%Y.org")))
-   :template "* %:description\n%:link\n\n%?%i"
+   :template "* %:description\n%U\n\n%:link\n\n%?%i"
    :prepend t
    :empty-lines-before 1
    :empty-lines-after 1
