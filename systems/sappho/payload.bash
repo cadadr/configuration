@@ -106,13 +106,14 @@ xbps-install -y base-devel cmake autoconf autoconf-archive automake \
              bmake cpanminus ctags gdb gcc-fortran guile ghc hoogle \
              python3-ipython julia R ruby-ri ruby strace swi-prolog \
              yarn python3-pip python3-setuptools python3-tkinter \
-             python3-wheel sbcl vala valadoc
+             python3-wheel sbcl vala valadoc pkgconf
 
 # Libraries
 xbps-install -y python3-devel ruby-devel perl-Switch perl-local-lib \
              perl-JSON perl-Reply pdf.js openssl-devel fuse-devel \
              libcurl-devel libgcc-devel libgirepository-devel \
-             ImageMagick
+             ImageMagick libpng-devel poppler-devel poppler-glib-devel \
+             zlib-devel
 
 # VCS
 xbps-install -y git cvs cvsps2 git-cvs mercurial hg-git quilt rcs \
