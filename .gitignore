@@ -87,6 +87,7 @@ emacs.d/org-caldav-*
 emacs.d/kkcrc
 emacs.d/transient/
 emacs.d/games/
+emacs.d/image-dired/
 
 # fcitx
 dotfiles/fcitx/clipboard/
