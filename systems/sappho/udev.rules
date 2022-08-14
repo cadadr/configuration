@@ -1,0 +1,5 @@
+# sappho.rules --- udev rules for sappho
+
+# Make trackpoint more responsive.
+KERNEL=="serio2" ATTR{description}=="Synaptics pass-through" ATTR{sensitivity}="150"
+KERNEL=="serio2" ATTR{description}=="Synaptics pass-through" ATTR{speed}="255"
