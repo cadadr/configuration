@@ -2,29 +2,30 @@
 # full-backup.dirs --- directories for full backup on sappho
 
 echo \
-    $HOME/.backups  \
-    $HOME/.config   \
-    $HOME/.elfeed   \
-    $HOME/.fonts    \
-    $HOME/.gnupg    \
-    $HOME/.mozilla  \
-    $HOME/.ssh      \
-    $HOME/.var      \
-    $HOME/.zotero   \
-    $HOME/Apps      \
-    $HOME/Desktop   \
-    $HOME/Documents \
-    $HOME/Downloads \
-    $HOME/Library   \
-    $HOME/Music     \
-    $HOME/Notes     \
-    $HOME/Notlar    \
-    $HOME/Pictures  \
-    $HOME/Posta     \
-    $HOME/Research  \
-    $HOME/Scratch   \
-    $HOME/Sources   \
-    $HOME/Videos    \
-    $HOME/Zotero    \
-    $HOME/cf        \
+    $HOME/.backups    \
+    $HOME/.config     \
+    $HOME/.elfeed     \
+    $HOME/.fonts      \
+    $HOME/.gnupg      \
+    $HOME/.mozilla    \
+    $HOME/.ssh        \
+    $HOME/.var        \
+    $HOME/.zotero     \
+    $HOME/Apps        \
+    $HOME/Desktop     \
+    $HOME/Documents   \
+    $HOME/Downloads   \
+    $HOME/Fotoğraflar \
+    $HOME/Library     \
+    $HOME/Music       \
+    $HOME/Notes       \
+    $HOME/Notlar      \
+    $HOME/Pictures    \
+    $HOME/Posta       \
+    $HOME/Research    \
+    $HOME/Scratch     \
+    $HOME/Sources     \
+    $HOME/Videos      \
+    $HOME/Zotero      \
+    $HOME/cf          \
     $HOME/log
