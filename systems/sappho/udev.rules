@@ -3,3 +3,7 @@
 # Make trackpoint more responsive.
 KERNEL=="serio2" ATTR{description}=="Synaptics pass-through" ATTR{sensitivity}="150"
 KERNEL=="serio2" ATTR{description}=="Synaptics pass-through" ATTR{speed}="255"
+
+# ThinkPad dock
+KERNEL=="dock.*", ATTR{type}=="dock_station", ATTR{docked}=="0", RUN+="/home/cadadr/cf/systems/sappho/dock.bash undocked"
+KERNEL=="dock.*", ATTR{type}=="dock_station", ATTR{docked}=="1", RUN+="/home/cadadr/cf/systems/sappho/dock.bash docked"
