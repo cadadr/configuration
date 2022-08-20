@@ -1209,7 +1209,7 @@ numerals which regularly appear in texts."
 
 (defun gk-ovp-hook ()
   "Hook for ‘org-variable-pitch-minor-mode’."
-  )
+  (setq-local cursor-type 'bar))
 
 (add-hook 'org-variable-pitch-minor-mode-hook #'gk-ovp-hook)
 
