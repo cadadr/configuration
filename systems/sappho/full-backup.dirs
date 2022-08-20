@@ -12,6 +12,7 @@ echo \
     $HOME/.var        \
     $HOME/.zotero     \
     $HOME/Apps        \
+    $HOME/Audio       \
     $HOME/Desktop     \
     $HOME/Documents   \
     $HOME/Downloads   \
