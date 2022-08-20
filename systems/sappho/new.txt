@@ -26,3 +26,5 @@ mousepad
 libopusenc
 Thunar # remove pcmanfm
 go
+shellcheck
+ardour
