@@ -27,7 +27,7 @@ setups, which have their own set up instructions.  Follow the links
 below for more details.
 
 - [Linux mobile workstation](systems/sappho) (`sappho`) with Void
-  Linux and i3 WM.
+  Linux and i3 WM targeting ThinkPads, x230 in particular.
 
 - [Linux desktop workstation](systems/diotima/) (`diotima`) with
   Linux Mint Cinnamon.
