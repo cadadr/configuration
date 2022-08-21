@@ -35,5 +35,10 @@ Install flatpaks if desired.
 
     sh ../common/flatpak.sh
 
+Install packages from my Void package repo, which is found at
+<https://github.com/cadadr/void-packages>. Follow its [read me
+document](https://github.com/cadadr/void-packages/blob/master/Readme.markdown)
+to do so.
+
 Reboot.
 
