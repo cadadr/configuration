@@ -277,6 +277,20 @@
  ;; precisely as EXWM.
  switch-window-input-style 'minibuffer)
 
+;; Flash the current line in the switched-to window after switching to
+;; emphasise which window gained focus.
+(define-advice other-window
+    (:filter-return (ret) flash-line-after)
+  "Flash the current line after switching windows."
+  (gk-flash-current-line)
+  ret)
+
+(define-advice windmove-do-window-select
+    (:filter-return (ret) flash-line-after)
+  "Flash the current line after switching windows."
+  (gk-flash-current-line)
+  ret)
+
 
 
 ;;;; Minibuffer:
