@@ -1,6 +1,7 @@
 .Rprofile		dotfiles/profile.R
 .Xdefaults		dotfiles/Xdefaults
 .bashrc			dotfiles/shrc.sh
+.config/Thunar		dotfiles/thunar
 .config/clipit		dotfiles/clipit
 .config/dunst/dunstrc	dotfiles/dunstrc.ini
 .config/fcitx		dotfiles/fcitx
