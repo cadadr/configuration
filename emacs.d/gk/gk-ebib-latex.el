@@ -14,11 +14,16 @@
 (require 'ebib-notes)
 (require 'ebib-utils)
 
-;; TODO(2021-02-28): move these to appropriate sections.
+;;;; AuCTeX:
+
 ;; Accomodate AuCTeX.
 (setenv "TEXINPUTS" (concat "::" (expand-file-name "auctex/texmf" (symbol-value 'gk-elisp-site-dir))))
 (require 'auctex)
 (require 'preview-latex)
+
+
+
+;;;; BibTeX:
 
 (defvar gk-bib-dir (expand-file-name "~/Library")
   "Location for global Bib(La)TeX files.")
@@ -27,6 +32,9 @@
   (expand-file-name "Attachments" gk-bib-dir)
   "Global store for bibliography attachments.")
 
+
+
+;;;; Ebib:
 
 (defun gk-ebib-set-bibtex-dialect (dialect)
   "Set the default dialect for Ebib and bibtex.el.
@@ -181,6 +189,8 @@ included in the generated template."
 ;; reading notes.
 (define-key ebib-index-mode-map [remap org-capture] #'ebib-org-capture)
 (define-key ebib-entry-mode-map [remap org-capture] #'ebib-org-capture)
+
+
 
 (provide 'gk-ebib-latex)
 ;;; gk-ebib-latex.el ends here
