@@ -192,5 +192,64 @@ included in the generated template."
 
 
 
+;;;; Sci-Hub:
+
+(defvar gk-scihub-url "https://sci-hub.se"
+  "Base URL for Sci-Hub.")
+
+(defvar gk--fetch-sci-hub-pdf--history nil)
+
+(defun gk-scihub-pdf (identifier &optional callback)
+  "Try to fetch the PDF from Sci-Hub given an IDENTIFIER.
+
+Viz. ‘gk-scihub-url’.
+
+Called interactively, try to retrieve the PDF for a given
+IDENTIFIER, and on success, visit it in a temporary file.
+
+Called from Lisp, an optional CALLBACK can be passed, which on
+success will be called with a single argument: the path of the
+temporary file for the retrieved PDF."
+  ;; TODO(2022-08-25): in ebib find from item at point
+  (interactive
+   (list
+    (read-string "Sci-Hub identifier: "
+                 nil 'gk--fetch-sci-hub-pdf--history nil t)))
+  (let ((url (concat gk-scihub-url "/" identifier)))
+    (url-retrieve url #'gk--scihub-pdf-1 callback t t)
+    (message "Fetching %s..." url)))
+
+(defun gk--scihub-pdf-1 (status &rest callback)
+  "Subroutine of ‘gk-scihub-pdf’."
+  (pcase-dolist (`(,type . ,data) status)
+    (when (equal type :error)
+      (user-error "Error fetching Sci-Hub page: %S" data)))
+  (let* ((body-start (progn (goto-char (point-min))
+                            (re-search-forward "\n\n" nil t)))
+         (dom (libxml-parse-html-region body-start (point-max)))
+         (pdf-elem (progn (when (string= "Sci-Hub: article not found"
+                                         (dom-text (dom-by-tag dom 'title)))
+                            (user-error "Sci-Hub: article not found"))
+                          (dom-by-id dom "pdf")))
+         (pdf-path-dirty (dom-attr pdf-elem 'src))
+         (pdf-path (car (split-string pdf-path-dirty "#")))
+         (pdf-url (concat gk-scihub-url pdf-path)))
+    (url-retrieve pdf-url #'gk--scihub-pdf-2 callback t t)
+    (message "Fetching %s..." pdf-url)))
+
+(defun gk--scihub-pdf-2 (status &rest callback)
+  "Subroutine of ‘gk--scihub-pdf-1’."
+  (pcase-dolist (`(,type . ,data) status)
+    (when (equal type :error)
+      (user-error "Error fetching Sci-Hub PDF: %S" data)))
+  (let* ((body-start (progn (goto-char (point-min))
+                            (re-search-forward "\n\n" nil t)))
+         (pdf-content (buffer-substring-no-properties body-start (point-max)))
+         (temporary-pdf-file (make-temp-file "gk-scihub-pdf" nil ".pdf" pdf-content)))
+    (apply (or callback #'find-file) (list temporary-pdf-file))))
+
+
+
+
 (provide 'gk-ebib-latex)
 ;;; gk-ebib-latex.el ends here
