@@ -45,7 +45,7 @@ nil if absent."
 
 ;;;; GUI:
 
-(defvar gk-preferred-themes (list :light 'modus-operandi
+(defvar gk-preferred-themes (list :light 'paper
                                   :dark  'modus-vivendi)
   "Light and dark theme preferences.")
 
@@ -74,6 +74,7 @@ customise that theme or not.")
 
 Groups such customisations which might need to be re-ran when a
 new frame is created.
+
 
 When called interactively with prefix argument, prompt for theme
 selection.  Otherwise, use the theme ‘gk-preferred-colour-scheme’
