@@ -31,3 +31,4 @@ ardour
 digikam
 gvfs # for thunar, trash dir support
 engrampa
+sloccount
