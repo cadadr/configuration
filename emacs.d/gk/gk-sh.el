@@ -1,6 +1,6 @@
 ;;; gk-sh.el --- customisations for various shell modes of Emacs  -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2021  Göktuğ Kayaalp
+;; Copyright (C) 2021, 2022  Göktuğ Kayaalp
 
 ;;; Commentary:
 
@@ -83,7 +83,7 @@ that instead."
   "Hook for `shell-mode'."
   ;; BSD /bin/sh echoes.
   (when (and (not (memq system-type '(gnu gnu/linux gnu/kfreebsd)))
-             (string-match "/k?sh$" (getenv "SHELL")))
+             (string-match "/k?sh$" (getenv "GK_SHELL")))
     (setq-local comint-process-echoes t))
   ;; Compilation shell minor mode activates certain parts of command
   ;; output as clickable links to parts of files (e.g. grep -Hn).
