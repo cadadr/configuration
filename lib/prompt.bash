@@ -2,7 +2,6 @@
 
 bp_lastcmdexit () {
     xit=$?
-    echo
     [ $xit -ne 0 ] && printf \
 	"$(tput setab 9)$(tput setaf 16) $xit!$(tput sgr0) "
 }
@@ -10,7 +9,7 @@ bp_lastcmdexit () {
 bp_queue () {
     if [ -d "$MAILQUEUE" ]; then
         count="$(( $(ls $MAILQUEUE | wc -l) / 2 ))"
-        [ "0" != "$count" ] && echo "Queued messages: $count";
+        [ "0" != "$count" ] && echo " <✉:$count> ";
     fi
     true
 }
@@ -51,7 +50,24 @@ bp_branch () {
         d="#"
     fi
     if [ -n "$w" ]; then
-	echo " on branch $(tput smul)$w$d$(tput rmul);"
+	echo "<$(tput smul)$w$d$(tput rmul)>"
+    fi
+}
+
+bp_venv () {
+    # If a python virtual environment is active, provide relevant
+    # info.
+    if [ -n "$VIRTUAL_ENV" ]; then
+	venvname="$(realpath --relative-to=$PWD $VIRTUAL_ENV)"
+	venvpyver="v$($venvname/bin/python --version | cut -d ' ' -f 2)"
+	echo " <venv:$venvname@$venvpyver> "
+    fi
+}
+
+bp_guix () {
+    # If a Guix environment is active, provide relevant info.
+    if [ -n "$GUIX_ENVIRONMENT" ]; then
+        echo " <guix:$GUIX_ENVIRONMENT> "
     fi
 }
 
@@ -66,26 +82,16 @@ bp_procmd () {
 
     # if xterm, colour
     case $TERM in
-	xterm-*)
+	xterm*|alacritty)
 	    color="$(seq 1 16 | grep -ve '[789]' -e '1' -e '16' | shuf -n 1)"
 	    bold="$(tput setaf $color)"
 	    ;;
-	* ) ;;
+
+	* ) # Do nothing.
+	    ;;
     esac
 
-    line1='[In: \w; \d \A;$(bp_branch) ^$SHLVL]'
-    line2='[\#] \u@\H (\j)\$'
-    # A python virtual environment is active, provide relevant
-    # info.
-    if [ -n "$VIRTUAL_ENV" ]; then
-        venvname="$(realpath --relative-to=$PWD $VIRTUAL_ENV)"
-        venvpyver="v$($venvname/bin/python --version | cut -d ' ' -f 2)"
-        PS1="\[$bold\]$line1\[$reset\] (venv:$venvname@$venvpyver)\n\[$bold\]$line2\[$reset\] "
-    # A Guix environment is active, provide relevant info.
-    elif [ -n "$GUIX_ENVIRONMENT" ]; then
-        PS1="\[$bold\]$line1\[$reset\] (guix:$GUIX_ENVIRONMENT)\n\[$bold\]$line2\[$reset\] "
-    else
-        PS1="\[$bold\]$line1\n$line2\[$reset\] "
-    fi
-    bp_queue
+    PS1="\[$bold\]#\#\[$reset\] \D{%F %H:%M} "
+    PS1+="$(bp_venv)$(bp_guix)$(bp_queue)\[$bold\]\u@\H\[$reset\]:\w"
+    PS1+="$(bp_branch)\[$bold\](\jj/^$SHLVL)\$\[$reset\] "
 }
