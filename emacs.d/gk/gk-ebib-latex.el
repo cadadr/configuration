@@ -249,6 +249,38 @@ temporary file for the retrieved PDF."
          (temporary-pdf-file (make-temp-file "gk-scihub-pdf" nil ".pdf" pdf-content)))
     (apply (or callback #'find-file) (list temporary-pdf-file))))
 
+
+
+;;;; Reading notes:
+
+(defvar gk-reading-notes-directory (expand-file-name "Okumalar" gk-notes-directory)
+  "Directory where reading notes are found.")
+
+(defun gk-read-from-library (document)
+  "Set up current Emacs frame to read a document with reading notes.
+
+ The document is likely from ‘gk-library-directory’.
+ Interactively, prompts the user for a file with that directory
+ as the default path.
+
+Reading notes are created under ‘gk-reading-notes-directory’ as
+‘org-mode’ documents."
+  (interactive
+   (list
+    (read-file-name "Library item to read: "  (concat gk-library-directory "/") nil t)))
+  (let* ((document-buffer (find-file-noselect document))
+         (document-basename (file-name-nondirectory
+                             (file-name-sans-extension document)))
+         (document-notes-file (expand-file-name
+                               (concat document-basename ".org")
+                               gk-reading-notes-directory)))
+    ;; TODO(2022-08-30): this should not require multiple invocations of
+    ;; ‘winner-undo’ to revert.
+    (delete-other-windows)
+    (split-window-sensibly)
+    (switch-to-buffer document-buffer)
+    (other-window 1)
+    (find-file document-notes-file)))
 
 
 
