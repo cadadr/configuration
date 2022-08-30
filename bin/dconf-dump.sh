@@ -1,7 +1,6 @@
 #!/bin/sh
 # dconf-dump.sh --- dump dconf database for system
 
-export GK_NOENV=yes
 . $HOME/.profile
 . $MYLIB/cron.sh
 . $MYLIB/fns.sh

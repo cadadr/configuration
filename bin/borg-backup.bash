@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 # borg-backup.bash --- create backups w/ borg
 
-export GK_NOENV=yes
 . $HOME/.profile
 . $MYLIB/cron.sh
 . $MYLIB/fns.sh

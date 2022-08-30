@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 # remind-bujo.bash --- send reminder notification to check bujo
 
-export GK_NOENV=yes
 . $HOME/.profile
 . $MYLIB/cron.sh
 

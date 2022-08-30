@@ -1,7 +1,6 @@
 #!/bin/bash
 # batmon.bash --- battery monitor script, for cron
 
-export GK_NOENV=yes
 . $HOME/.profile
 . $MYLIB/cron.sh
 
