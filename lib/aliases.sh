@@ -245,7 +245,7 @@ pdf_monofy() {
 }
 
 _which(){
-    case $SHELL in
+    case $GK_SHELL in
 	*zsh)	which -p $@ ;;
 	*)	which $@ ;;
     esac
