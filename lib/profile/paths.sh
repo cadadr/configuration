@@ -1,6 +1,6 @@
 # paths.sh --- User $PATH settings.
 
-export CDPATH=.:$HOME:$HOME/co
+export CDPATH=.:$HOME:$HOME/Sources
 
 if [ -z "$DEFAULT_PATH" ]; then
     export DEFAULT_PATH="$PATH"
