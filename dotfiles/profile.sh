@@ -72,16 +72,7 @@ fi
 
 ###
 
-# set ENV to a file invoked each time sh is started for interactive use.
-ENV=$HOME/.$(basename $SHELL)rc; export ENV
+export ENV="$HOME/.shrc"
 
-if [ x"$GK_NOENV" = "xyes" ];
-then
-    : ;
-else
-    ### Import shell settings:
-    export FROMLOGINPROFILE=yes
-    _source $ENV
-    unset FROMLOGINPROFILE
-fi
+_source "$ENV"
 
