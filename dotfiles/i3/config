@@ -173,10 +173,8 @@ mode "$mode_brightness" {
 }
 bindsym $mod+Control+b mode "$mode_brightness"
 
-set $mode_pass Passthrough, Return / Escape / Ctrl+G to exit
+set $mode_pass Passthrough, Ctrl+G to exit
 mode "$mode_pass" {
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
     bindsym Control+g mode "default"
 }
 bindsym $mod+Control+space mode "$mode_pass"
