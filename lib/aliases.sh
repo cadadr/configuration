@@ -15,10 +15,12 @@ unpath () {
 }
 
 refresh () {
-    if [ ! "x$ENV" = "x" ]; then
+    if [ -f "$ENV" ]; then
 	. $ENV
+	echo "refresh: loaded $ENV"
     else
-	echo 'refresh: error: $ENV not set, cannot load shell rc' >&2
+	echo 'refresh: error: $ENV not set, or file not found' >&2
+	return 2
     fi
 }
 
