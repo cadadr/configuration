@@ -52,9 +52,15 @@ export GPG_TTY=$(tty)
 
 ### Shell settings:
 
+# Reset prompts
+export PS1='$ '
+export PS2='> '
+export PS4='+ '
+
 #### Load shell-specific stuff:
-test -n "$MYLIB" && source $MYLIB/rc.$(basename $SHELL)
-alias vishrc="vi $MYLIB/rc.$(basename $SHELL)"
+export GK_SHELL_RC="$MYLIB/rc.$(basename $GK_SHELL)"
+test -e "$GK_SHELL_RC" && source "$GK_SHELL_RC"
+alias vishrc="vi $GK_SHELL_RC"
 
 ###
 
