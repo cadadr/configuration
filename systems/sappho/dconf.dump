@@ -38,6 +38,9 @@ photo-dpi = 150
 save-format = 'image/png'
 text-dpi = 75
 
+[org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9]
+use-system-font = false
+
 [org/gtk/settings/file-chooser]
 date-format = 'regular'
 show-hidden = false
@@ -50,6 +53,18 @@ type-format = 'category'
 
 [org/mate/desktop/background]
 picture-filename = '/home/cadadr/.xbg.png'
+
+[org/mate/engrampa/general]
+unar-open-zip = false
+
+[org/mate/engrampa/listing]
+list-mode = 'as-folder'
+name-column-width = 250
+show-path = false
+sort-method = 'name'
+sort-type = 'ascending'
+
+[org/mate/engrampa/ui]
 
 [org/mate/system-monitor]
 show-all-fs = true
