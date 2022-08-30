@@ -1,17 +1,14 @@
 # UNIX Shell configuration.
 #
-# This is a mostly POSIX compatible shell RC file, with GNU Bash
-# specific stuff executed only if the $SHELL is bash.
+# This is a mostly POSIX compatible shell RC file. Setup for
+# compatible shells should be found under $MYLIB/rc.<shell-name>, e.g.
+# $MYLIB/rc.bash.
 
-export SHRC_VERSION=bobby
+export GK_SHELL=$(which $(echo $0 | sed 's/^-//'))
 
 type source >/dev/null || source () {
         . $@
 }
-
-if [ x$FROMLOGINPROFILE = xyes ]; then
-    echo $ENV is being loaded by $HOME/.profile
-fi
 
 ###
 
