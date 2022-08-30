@@ -43,15 +43,27 @@ c () {
 }
 
 f () {
+    if [ -z "$@" ]; then
+        fg
+    else
 	fg %$@
+    fi
 }
 
 b () {
+    if [ -z "$@" ]; then
+        bg
+    else
 	bg %$@
+    fi
 }
 
 d () {
+    if [ -z "$@" ]; then
+        disown
+    else
 	disown %$@
+    fi
 }
 
 wv () {
