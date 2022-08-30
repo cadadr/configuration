@@ -14,6 +14,11 @@
 (require 'ebib-notes)
 (require 'ebib-utils)
 
+;;;; Common:
+
+(defvar gk-library-directory "~/Library"
+  "Directory where files for my bibliographic database are located")
+
 ;;;; AuCTeX:
 
 ;; Accomodate AuCTeX.
@@ -27,10 +32,6 @@
 
 (defvar gk-bib-dir (expand-file-name "~/Library")
   "Location for global Bib(La)TeX files.")
-
-(defvar gk-bib-attachments-dir
-  (expand-file-name "Attachments" gk-bib-dir)
-  "Global store for bibliography attachments.")
 
 
 
