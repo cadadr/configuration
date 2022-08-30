@@ -6,6 +6,7 @@ path () {
 
 repath () {
     . $MYLIB/profile/paths.sh
+    echo "repath: loaded $MYLIB/profile/paths.sh"
 }
 
 # remove from path
