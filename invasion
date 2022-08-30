@@ -31,8 +31,8 @@
 .profile		dotfiles/profile.sh
 .screenlayout		dotfiles/screenlayout
 .zprofile		dotfiles/profile.sh
-.bash_profile		dotfiles/profile.sh
 .signature		dotfiles/signature
+.shrc			dotfiles/shrc.sh
 .vimrc			dotfiles/rc.vim
 .vim			dotfiles/vim
 .tmux.conf		dotfiles/tmux.conf
