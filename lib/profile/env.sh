@@ -44,10 +44,6 @@ export SPAMD_PORT=2338
 export SPAMD_PID=$HOME/var/spamd.pid
 export SPAMD_LOG=$HOME/log/spamd.log
 
-# Golang
-export GOPATH=$HOME/co/Go
-export GO=$GOPATH/bin
-
 # Python
 export PYTHONSTARTUP=$MEINE/python-init.py
 export DJANGO_COLORS="nocolor"
