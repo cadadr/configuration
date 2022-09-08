@@ -38,3 +38,8 @@ Mozilla and their bullshit Chromium clone.
   - =false=
   - do not auto hide scrollbars, because why the heck
   - https://todon.eu/@maxi/108356307151802104
+
+- =browser.tabs.unloadOnLowMemory=
+  - =false=
+  - do not unload tabs automatically/silently
+  - https://firefox-source-docs.mozilla.org/browser/tabunloader/
