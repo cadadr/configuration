@@ -1,7 +1,7 @@
 [Default Applications]
 application/pdf=atril.desktop
 inode/directory=pcmanfm.desktop
-text/html=firefox.desktop
+text/html=vivaldi-stable.desktop
 image/jpeg=org.xfce.ristretto.desktop
 image/png=org.xfce.ristretto.desktop
 image/gif=org.xfce.ristretto.desktop
@@ -9,8 +9,8 @@ image/svg+xml=org.xfce.ristretto.desktop
 image/tiff=org.xfce.ristretto.desktop
 x-scheme-handler/gemini=fi.skyjake.Lagrange.desktop
 x-scheme-handler/gopher=fi.skyjake.Lagrange.desktop
-x-scheme-handler/http=firefox.desktop;
-x-scheme-handler/https=firefox.desktop;
+x-scheme-handler/http=vivaldi-stable.desktop;
+x-scheme-handler/https=vivaldi-stable.desktop;
 x-scheme-handler/mailto=emacsclient-url.desktop;
 x-scheme-handler/org-protocol=emacsclient-org-protocol.desktop
 x-scheme-handler/tg=userapp-Telegram Desktop-F8XL50.desktop
