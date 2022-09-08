@@ -20,7 +20,6 @@ _source /etc/profile >/dev/null 2>&1 || echo Could not source /etc/profile...
 export MY="$HOME/cf"
 export MEINE="$MY/dotfiles"
 export MYLIB="$MY/lib"
-export MYFS="/igk"
 export SYSTEM="$(uname)"
 export MYSYSTEM="$MY/systems/$(hostname)"
 
