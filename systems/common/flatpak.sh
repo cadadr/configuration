@@ -9,5 +9,5 @@ flatpak --noninteractive install us.zoom.Zoom
 flatpak --noninteractive install com.ozmartians.VidCutter
 flatpak --noninteractive install com.valvesoftware.Steam
 flatpak --noninteractive install com.vscodium.codium
+flatpak --noninteractive install io.github.hmlendea.geforcenow-electron
 
-flatpak override --user --filesystem=$MYFS/dat/lagrange fi.skyjake.Lagrange
