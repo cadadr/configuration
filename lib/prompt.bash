@@ -32,9 +32,15 @@ bp_hg_dirty () {
 
 # Determine if we're within a supported VCS repo or not.  Faster than
 # just trying to run all `bp_*_branch' commads.
+#
+# Output the identifier of the VCS tool if found.
 bp_is_repo () (
     while [ ! "$PWD" = '/' ]; do
-	if [ -d .git ] || [ -d .hg ]; then
+	if [ -d .git ]; then
+	    echo git
+	    exit 0
+	elif [ -d .hg ]; then
+	    echo hg
 	    exit 0
 	fi
 	cd ..
@@ -43,14 +49,16 @@ bp_is_repo () (
 )
 
 bp_branch () {
-    bp_is_repo || return
-    w="$(bp_git_branch || bp_hg_branch)"
-    d=""
-    if bp_git_dirty || bp_hg_dirty; then
-        d="#"
-    fi
-    if [ -n "$w" ]; then
-	echo "<$(tput smul)$w$d$(tput rmul)>"
+    maybe_repo=$(bp_is_repo)
+    if [ -n "$maybe_repo" ]; then
+	branch=$(bp_${maybe_repo}_branch)
+	dirty=''
+	if bp_${maybe_repo}_dirty; then
+	    dirty="#"
+	fi
+	if [ -n "$branch" ]; then
+	    echo "<$(tput smul)$branch$dirty$(tput rmul)>"
+	fi
     fi
 }
 
