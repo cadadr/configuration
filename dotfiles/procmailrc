@@ -19,10 +19,7 @@ DROPPRIVS=yes
 :0 a:
 duplicates
 
-# Bullshit
-:0:
-* ^From: "Selyayincilik.com" <noreply@selyayincilik.com>
-spam
+INCLUDERC=$HOME/Documents/procmailrc
 
 # Catch-all
 :0:
