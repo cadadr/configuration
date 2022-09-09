@@ -79,6 +79,10 @@ bp_guix () {
     fi
 }
 
+bp_termwidth () {
+    tput cols
+}
+
 bp_procmd () {
     # Should always be the first thing in this function so that it
     # is run just after the last evaluated command whose exit code
@@ -101,5 +105,17 @@ bp_procmd () {
 
     PS1="\[$bold\]#\#\[$reset\] \D{%F %H:%M} "
     PS1+="$(bp_venv)$(bp_guix)$(bp_queue)\[$bold\]\u@\H\[$reset\]:\w"
-    PS1+="$(bp_branch)\[$bold\](\jj/^$SHLVL)\$\[$reset\] "
+    PS1+="$(bp_branch)\[$bold\]"
+
+    # If the prompt string that will be output so far is too long, split
+    # the prompt over two lines.
+    ps1_expanded="${PS1@P}"
+    ps1_expanded="$(echo -ne $ps1_expanded | sed $'s/\e\\[[0-9;:]*[a-zA-Z]//g')"
+    if [ ${#ps1_expanded} -gt $(( $(bp_termwidth) / 3 * 2 )) ]; then
+	PS1+='\n'
+    fi
+
+    PS1+="(\jj/^$SHLVL)\$\[$reset\] "
+
+    unset bold reset ps1_expanded
 }
