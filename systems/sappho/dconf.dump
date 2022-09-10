@@ -28,6 +28,8 @@ selected-effect = 'No Effect'
 video-x-resolution = 800
 video-y-resolution = 448
 
+[org/gnome/desktop/interface]
+
 [org/gnome/desktop/privacy]
 disable-microphone = false
 
