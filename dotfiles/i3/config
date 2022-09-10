@@ -53,6 +53,7 @@ bindsym $mod+Prior exec --no-startup-id pkill -USR2 -f setbg.bash
 bindsym $mod+q exec --no-startup-id qrclip.sh
 bindsym Print exec --no-startup-id flameshot gui
 bindsym $mod+Tab exec --no-startup-id i3-workspace-finder.bash
+bindsym $mod+Shift+Tab exec --no-startup-id i3-move-to-workspace.bash
 
 ### Window management keybindings:
 bindsym $mod+b focus left
