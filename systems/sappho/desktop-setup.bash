@@ -66,7 +66,73 @@ udiskie -t &
 
 ### Set up toolkit looks:
 
-. $MYSYSTEM/theme_$GK_COLOUR_SCHEME_PREFERENCE.sh
+# Utilities
+
+gk_dark_theme_p () {
+    [ "$GK_COLOUR_SCHEME_PREFERENCE" = "dark" ]
+    return $?
+}
+
+gk_light_theme_p () {
+    [ "$GK_COLOUR_SCHEME_PREFERENCE" = "light" ]
+    return $?
+}
+
+# Variables
+GK_GTK3_SETTINGS_FILE="$MY/dotfiles/gtk-3.0/settings.ini"
+
+if gk_dark_theme_p; then
+    mouse_theme=posy-black
+elif gk_light_theme_p; then
+    mouse_theme=posy-white
+fi
+
+mouse_size=16
+
+# GTK
+cat <<EOF > "$GK_GTK3_SETTINGS_FILE"
+[Settings]
+gtk-cursor-theme-name = ${mouse_theme}
+gtk-cursor-theme-size = ${mouse_size}
+gtk-decoration-layout = menu:close
+EOF
+
+if gk_dark_theme_p; then
+    echo 'gtk-application-prefer-dark-theme = true' >> "$GK_GTK3_SETTINGS_FILE"
+fi
+
+# final newline
+echo >> "$GK_GTK3_SETTINGS_FILE"
+
+# Gsettings
+gsettings set org.gnome.desktop.interface cursor-theme "$mouse_theme"
+gsettings set org.gnome.desktop.interface cursor-size  "$mouse_size"
+gsettings set org.gnome.desktop.interface color-scheme prefer-dark
+
+# Qt
+export QT_STYLE_OVERRIDE="Fusion"
+
+# Mouse theme
+cat <<EOF > "$HOME/.icons/default/index.theme"
+[icon theme]
+Inherits=${mouse_theme}
+EOF
+
+# i3wm
+if gk_dark_theme_p; then
+    echo "include colours_gruvbox" > "$HOME/.config/i3/colours_active_theme"
+elif gk_light_theme_p; then
+    echo "include colours_my_blue" > "$HOME/.config/i3/colours_active_theme"
+fi
+
+# Individual apps
+if gk_dark_theme_p; then
+    export GK_ROFI_THEME=/usr/share/rofi/themes/gruvbox-dark-hard.rasi
+    export GK_KITTY_THEME=colours_gruvbox_dark.conf
+elif gk_light_theme_p; then
+    export GK_ROFI_THEME=/usr/share/rofi/themes/Indego.rasi
+    export GK_KITTY_THEME=colours_atelier_cave_light.conf
+fi
 
 # Theming related environment variables
 export XCURSOR_THEME="$mouse_theme"
