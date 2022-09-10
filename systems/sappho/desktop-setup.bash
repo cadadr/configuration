@@ -68,6 +68,10 @@ udiskie -t &
 
 . $MYSYSTEM/theme_$GK_COLOUR_SCHEME_PREFERENCE.sh
 
+# Theming related environment variables
+export XCURSOR_THEME="$mouse_theme"
+export XCURSOR_SIZE=$mouse_size
+
 ### Launch window manager:
 (sleep 10; notify-send welcome "welcome to $(hostname)!" ) &
 
