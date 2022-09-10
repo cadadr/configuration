@@ -9,6 +9,7 @@ cat <<EOF > "$GK_GTK3_SETTINGS_FILE"
 [Settings]
 gtk-application-prefer-dark-theme = false
 gtk-cursor-theme-name = ${mouse_theme}
+gtk-cursor-theme-size = 16
 gtk-decoration-layout = menu:close
 
 EOF
