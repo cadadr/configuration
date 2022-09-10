@@ -14,6 +14,10 @@ gtk-decoration-layout = menu:close
 
 EOF
 
+gsettings set org.gnome.desktop.interface cursor-theme posy-dark
+gsettings set org.gnome.desktop.interface cursor-size  16
+gsettings set org.gnome.desktop.interface color-scheme prefer-dark
+
 # Qt
 export QT_STYLE_OVERRIDE="Fusion"
 
