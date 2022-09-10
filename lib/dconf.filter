@@ -87,7 +87,10 @@ height
 width
 image-dir-uri
 camera
-session"
+session
+color-scheme
+cursor-theme
+cursor-size"
 
 export filter
 
