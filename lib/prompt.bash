@@ -114,7 +114,7 @@ bp_procmd () {
     PS1+="$(bp_venv)$(bp_guix)$(bp_queue)\[$bold\]\u@\H\[$reset\]:\w"
     PS1+="$(bp_branch)"
 
-    if bp_prompt_long_p; then
+    if bp_prompt_long_p "$PS1"; then
 	PS1+='\n'
     fi
 
