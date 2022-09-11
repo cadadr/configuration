@@ -110,7 +110,7 @@ bp_procmd () {
 	    ;;
     esac
 
-    PS1="\[$bold\]#\#\[$reset\] \D{%F %H:%M} "
+    PS1="\[$bold\]"'#'"\#\[$reset\] \D{%F %H:%M} "
     PS1+="$(bp_venv)$(bp_guix)$(bp_queue)\[$bold\]\u@\H\[$reset\]:\w"
     PS1+="$(bp_branch)"
 
