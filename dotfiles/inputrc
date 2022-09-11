@@ -7,6 +7,4 @@ set completion-map-case on
 set show-all-if-ambiguous on
 # Indicate filetypes with a trailing cahracter.
 set visible-stats on
-# A la Emacs.
-set blink-matching-paren on
 
