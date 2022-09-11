@@ -112,13 +112,13 @@ bp_procmd () {
 
     PS1="\[$bold\]#\#\[$reset\] \D{%F %H:%M} "
     PS1+="$(bp_venv)$(bp_guix)$(bp_queue)\[$bold\]\u@\H\[$reset\]:\w"
-    PS1+="$(bp_branch)\[$bold\]"
+    PS1+="$(bp_branch)"
 
     if bp_prompt_long_p; then
 	PS1+='\n'
     fi
 
-    PS1+="(\jj/^$SHLVL)\$\[$reset\] "
+    PS1+="\[$bold\](\jj/^$SHLVL)\$\[$reset\] "
 
     unset bold reset ps1_expanded
 }
