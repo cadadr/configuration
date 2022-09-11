@@ -46,6 +46,7 @@ bar {
         font $fnt
         position top
         tray_output primary
+        strip_workspace_numbers yes
         status_command i3status
         colors {
                background #000033
