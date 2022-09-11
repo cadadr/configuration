@@ -25,9 +25,9 @@ on_docked(){
     setxkbmap gb
     setxkbmap -option  ctrl:nocaps
 
-    # Trackball
+    # Trackball [if present]
     # Hold the smaller left button to scroll in all directions.
-    xinput set-prop "Logitech USB Trackball" 'libinput Scroll Method Enabled' {0,0,1}
+    xinput set-prop "Logitech USB Trackball" 'libinput Scroll Method Enabled' {0,0,1} || true
 
     # Monitors
     /bin/sh /home/cadadr/.screenlayout/sappho-docked-both.sh
