@@ -88,11 +88,11 @@ bindsym $mod+Shift+g restart
 bindsym $mod+k kill
 
 ### Workspaces:
-set $ws1 "1:home"
-set $ws2 "2:www"
-set $ws3 "3:bib"
-set $ws4 "4:read"
-set $ws5 "5:bg"
+set $ws1 "𝍠🔴"
+set $ws2 "𝍡🔵"
+set $ws3 "𝍢🟡"
+set $ws4 "𝍣🟢"
+set $ws5 "𝍤⚪"
 
 bindsym F1 workspace $ws1
 bindsym F2 workspace $ws2
