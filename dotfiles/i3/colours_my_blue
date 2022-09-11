@@ -45,6 +45,7 @@ client.background       $colourbg1
 bar {
         font $fnt
         position top
+        tray_output primary
         status_command i3status
         colors {
                background #000033
