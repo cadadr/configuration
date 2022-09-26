@@ -50,8 +50,10 @@ setbg.bash               &
 dunst                    &
 kdeconnect-indicator     &
 clipit                   &
-pipewire                 &
-pipewire-pulse           &
+if $(which pipewire) >/dev/null 2>/dev/null; then
+    pipewire                 &
+    pipewire-pulse           &
+fi
 # if flameshot starts too quickly, the icon doesn't go to the
 # system tray.
 (sleep 5; flameshot)     &
