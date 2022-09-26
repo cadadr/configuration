@@ -305,7 +305,7 @@ will receive the region if active, or the entire buffer."
   "Hook to start spell-check in buffers."
   (gk-enable-flyspell))
 
-;; (add-hook 'text-mode-hook 'gk-spellcheck-hook)
+(add-hook 'text-mode-hook 'gk-spellcheck-hook)
 
 
 
