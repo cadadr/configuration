@@ -372,7 +372,15 @@ ARG is the current prefix argument, passed to
 ‘gk-org-reading-note-merge-last-n-notes’ if MERGE is non-nil."
   (interactive
    (list
-    (let ((def (car gk-org-reading-note--history)))
+    (let ((def (if-let* ((maybe-pdf-buffer-list
+                          (seq-filter
+                           ($ (equal 'pdf-view-mode (buffer-local-value 'major-mode $1)))
+                           (mapcar #'window-buffer (window-list))))
+                         (maybe-pdf-buffer (when (= 1 (length maybe-pdf-buffer-list))
+                                             (car maybe-pdf-buffer-list))))
+                   (with-current-buffer maybe-pdf-buffer
+                     (pdf-view-current-pagelabel))
+                 (car gk-org-reading-note--history))))
       (read-string
        (format
         "Page number (default: %s, ‘0’ for no page number): "
