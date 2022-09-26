@@ -43,3 +43,19 @@ Mozilla and their bullshit Chromium clone.
   - =false=
   - do not unload tabs automatically/silently
   - https://firefox-source-docs.mozilla.org/browser/tabunloader/
+
+- =mousewheel.default.delta_multiplier_y=
+  - =1=
+  - pixelwise scroll; by default firefox scrolls linewise and it's janky
+    and inaccurate, terrible, in usual firefox fashion... this smoothens
+    it a bit. smaller values make scrolling painfully slow unless the
+    next two settings are set
+
+- =mousewheel.acceleration.factor=
+  - =30=
+  - accelerate scrolling quicker
+
+- =mousewheel.acceleration.start=
+  - =1=
+  - enable scroll acceleration; the higher the number the higher the
+    inertia for acceleration to kick in
