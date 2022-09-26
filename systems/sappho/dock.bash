@@ -30,7 +30,7 @@ on_docked(){
     xinput set-prop "Logitech USB Trackball" 'libinput Scroll Method Enabled' {0,0,1} || true
 
     # Monitors
-    /bin/sh /home/cadadr/.screenlayout/sappho-docked-both.sh
+    /bin/sh /home/cadadr/.screenlayout/sappho-docked-only-external.sh
 }
 
 on_undocked(){
