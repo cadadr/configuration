@@ -22,11 +22,11 @@ auto-power-on = @mb false
 
 [org/gnome/cheese]
 burst-delay = 1000
-photo-x-resolution = 800
-photo-y-resolution = 448
+photo-x-resolution = 1280
+photo-y-resolution = 720
 selected-effect = 'No Effect'
-video-x-resolution = 800
-video-y-resolution = 448
+video-x-resolution = 1280
+video-y-resolution = 720
 
 [org/gnome/desktop/interface]
 
@@ -36,7 +36,7 @@ disable-microphone = false
 [org/gnome/simple-scan]
 document-type = 'photo'
 jpeg-quality = 75
-photo-dpi = 150
+photo-dpi = 75
 save-format = 'image/png'
 text-dpi = 75
 
@@ -52,6 +52,8 @@ sort-directories-first = false
 type-format = 'category'
 
 [org/mate/atril]
+
+[org/mate/atril/default]
 
 [org/mate/desktop/background]
 picture-filename = '/home/cadadr/.xbg.png'
