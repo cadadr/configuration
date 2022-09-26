@@ -10,4 +10,5 @@ flatpak --noninteractive install com.ozmartians.VidCutter
 flatpak --noninteractive install com.valvesoftware.Steam
 flatpak --noninteractive install com.vscodium.codium
 flatpak --noninteractive install io.github.hmlendea.geforcenow-electron
+flatpak --noninteractive install org.onlyoffice.desktopeditors
 
