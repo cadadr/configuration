@@ -33,3 +33,4 @@ gvfs # for thunar, trash dir support
 engrampa
 sloccount
 vivaldi # requires nonfree repo enabled or install from a void-packages checkout
+alsa-plugins-pulseaudio
