@@ -28,6 +28,8 @@ on_docked(){
     # Trackball [if present]
     # Hold the smaller left button to scroll in all directions.
     xinput set-prop "Logitech USB Trackball" 'libinput Scroll Method Enabled' {0,0,1} || true
+    # Instead of holding, the button 8 toggles scroll mode.
+    xinput set-prop "Logitech USB Trackball" "libinput Button Scrolling Button Lock Enabled" 1 || true
 
     # Monitors
     /bin/sh /home/cadadr/.screenlayout/sappho-docked-only-external.sh
