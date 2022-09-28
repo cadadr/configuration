@@ -5,9 +5,9 @@ window-is-maximized = false
 [com/gkayaalp/pomodorino]
 desktop-notifications-enabled = true
 ease-in-mode-enabled = true
-long-break-duration = 15
-pomodoro-duration = 25
-short-break-duration = 5
+long-break-duration = 30
+pomodoro-duration = 50
+short-break-duration = 15
 
 [org/blueman/general]
 services-last-item = 0
