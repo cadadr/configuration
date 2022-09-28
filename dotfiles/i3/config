@@ -89,11 +89,11 @@ bindsym $mod+Shift+g restart
 bindsym $mod+k kill
 
 ### Workspaces:
-set $ws1 "1:🔴"
-set $ws2 "2:🔵"
-set $ws3 "3:🟡"
-set $ws4 "4:🟢"
-set $ws5 "5:⚪"
+set $ws1 "1:avlu"
+set $ws2 "2:cumba"
+set $ws3 "3:kütüphane"
+set $ws4 "4:atöyle"
+set $ws5 "5:çardak"
 
 bindsym F1 workspace $ws1
 bindsym F2 workspace $ws2
