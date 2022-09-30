@@ -6,7 +6,7 @@ window-is-maximized = false
 desktop-notifications-enabled = true
 ease-in-mode-enabled = true
 long-break-duration = 30
-pomodoro-duration = 50
+pomodoro-duration = 45
 short-break-duration = 15
 
 [org/blueman/general]
