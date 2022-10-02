@@ -1,6 +1,7 @@
 ;;; org-checklist.el --- org functions for checklist handling
 
 ;; Copyright (C) 2008-2014 James TD Smith
+;; Copyright (C) 2022 Göktuğ Kayaalp
 
 ;; Author: James TD Smith (@ ahktenzero (. mohorovi cc))
 ;; Version: 1.0
@@ -95,8 +96,8 @@ of checkbox items"
 				  ".org"))
 	     (print (case (org-entry-get (point) "PRINT_EXPORT" nil)
 		      (("" "nil" nil) nil)
-		      (t t)
-		      (nil (y-or-n-p "Print list? "))))
+		      (nil (y-or-n-p "Print list? "))
+                      (t t)))
 	     exported-lines
 	     (title "Checklist export"))
 	(save-restriction
