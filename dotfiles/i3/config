@@ -136,23 +136,6 @@ mode "$mode_system" {
 }
 bindsym Pause mode "$mode_system"
 
-# manual management of external displays
-# from: https://wiki.archlinux.org/index.php/I3
-set $mode_display Ext Screen (h) HDMI ON, (H) HDMI OFF, (s) HDMI Sound ON, (S) HDMI Sound OFF
-mode "$mode_display" {
-    bindsym h exec --no-startup-id xrandr --output HDMI1 --auto --right-of LVDS1, mode "default"
-    bindsym y exec --no-startup-id xrandr --output HDMI1 --auto --off, mode "default"
-    bindsym s exec --no-startup-id pactl set-card-profile 0 output:hdmi-stereo
-    bindsym S exec --no-startup-id pactl set-card-profile 0 output:analog-stereo
-
-    # exit mode
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-    bindsym Control+g mode "default"
-}
-# Declare here the shortcut to bring the display selection menu
-bindsym F10 mode "$mode_display"
-
 set $mode_brightness Set brightness 1..9 = 10..90%, 0 = 100%, i/d = inc/dec by 5%
 mode "$mode_brightness" {
     bindsym 1 exec xbacklight -set 10
