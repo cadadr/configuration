@@ -32,7 +32,7 @@ below for more details.
 - [Linux desktop workstation](systems/diotima/) (`diotima`) with
   Linux Mint Cinnamon.
 
-- [Raspberry Pi](systems/xsanthippe/) (`xsanthippe`) backup and print/scan
+- [Raspberry Pi](systems/xanthippe/) (`xanthippe`) backup and print/scan
   server.
 
 <table>
