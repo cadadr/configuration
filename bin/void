@@ -1,0 +1,33 @@
+#!/bin/bash
+# void --- frontend script for void linux tools
+
+. $MYLIB/fns2.sh
+
+script_name="$(basename $0)"
+script_usage="COMMAND [ARGS]"
+
+command="$1"
+
+if [ -z "$command" ]; then
+    exit_with_usage
+fi
+
+shift
+
+case "$command" in
+    update)
+	exec sudo xbps-install -Su
+	;;
+    install)
+	exec sudo xbps-install
+	;;
+    uninstall|remove|delete)
+	exec sudo xbps-remove
+	;;
+    search)
+	exec xbps-query -Rs $@
+	;;
+    *)
+        exit_with_error_message 2 unknown command: $command
+	;;
+esac
