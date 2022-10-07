@@ -22,7 +22,7 @@ case "$command" in
 	exec sudo xbps-install
 	;;
     uninstall|remove|delete)
-	exec sudo xbps-remove
+	exec sudo xbps-remove $@
 	;;
     search)
 	exec xbps-query -Rs $@
