@@ -365,3 +365,6 @@ for_window [title="Telegram( \(\d+\))?"] floating enable move position center
 #### ImageMagick
 for_window [class="Display-im[0-9]\.q.*"] floating enable move position center
 
+#### Volctl
+for_window [class="Volctl"] floating enable move position center
+
