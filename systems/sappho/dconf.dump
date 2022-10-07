@@ -1,3 +1,9 @@
+[apps/volctl]
+allow-extra-volume = true
+auto-close = false
+mouse-wheel-step = 3
+show-percentage = false
+
 [ca/desrt/dconf-editor]
 show-warning = false
 window-is-maximized = false
