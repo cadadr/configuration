@@ -19,7 +19,7 @@ case "$command" in
 	exec sudo xbps-install -Su
 	;;
     install)
-	exec sudo xbps-install
+	exec sudo xbps-install $@
 	;;
     uninstall|remove|delete)
 	exec sudo xbps-remove $@
