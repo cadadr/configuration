@@ -4,9 +4,6 @@
 . $HOME/.profile
 . $MYLIB/cron.sh
 
-# bash strict mode
-set -euo pipefail
-
 icon="/usr/share/icons/Adwaita++/apps/scalable/bookworm.svg"
 if [ -f "$icon" ]; then
     icon="-i $icon"
