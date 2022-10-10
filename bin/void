@@ -27,6 +27,9 @@ case "$command" in
     search)
 	exec xbps-query -Rs $@
 	;;
+    files)
+	exec xbps-query -f $@ | $PAGER
+	;;
     *)
         exit_with_error_message 2 unknown command: $command
 	;;
