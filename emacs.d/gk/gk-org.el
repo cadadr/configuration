@@ -1648,7 +1648,7 @@ Meant as a ‘:before’ advice to ‘org-capture’."
    :description "Emacs build note item"
    :type 'item
    :target `(file+function
-             ,(gk-org-dir-file "Emacs.org")
+             ,(gk-org-dir-file "emacs.org")
              (lambda ()
                (save-restriction
                  (widen)
