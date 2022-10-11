@@ -1619,17 +1619,6 @@ Meant as a ‘:before’ advice to ‘org-capture’."
   (setf org-capture-templates nil)
 
   (gk-org-define-capture-template
-   :keys "b"
-   :description "New internet bookmark"
-   :type 'entry
-   :target `(file ,(gk-org-dir-file (format-time-string "Bookmarks/%Y.org")))
-   :template "* %:description\n%U\n\n%:link\n\n%?%i"
-   :prepend t
-   :empty-lines-before 1
-   :empty-lines-after 1
-   :unnarrowed nil)
-
-  (gk-org-define-capture-template
    :keys "B"
    :description "Scholarly blurb"
    :type 'entry
@@ -1681,7 +1670,30 @@ Meant as a ‘:before’ advice to ‘org-capture’."
    :target `(file ,(gk-org-dir-file "Fotoğraflar.org"))
    :prepend nil
    :empty-lines-before 1
-   :template '(function gk-org-capture-annotated-photograph)))
+   :template '(function gk-org-capture-annotated-photograph))
+
+  ;; ‘org-protocol’ templates
+  (push '("P" "org-protocol templates") org-capture-templates)
+  (gk-org-define-capture-template
+   :keys "Pb"
+   :description "New internet bookmark"
+   :type 'entry
+   :target `(file ,(gk-org-dir-file (format-time-string "bookmarks-%Y.org")))
+   :template "* %:description\n%U\n\n%:link\n\n%?%i"
+   :prepend t
+   :empty-lines-before 1
+   :empty-lines-after 1
+   :unnarrowed nil)
+  (gk-org-define-capture-template
+   :keys "PB"
+   :description "New internet bookmark (no edit)"
+   :type 'entry
+   :target `(file ,(gk-org-dir-file (format-time-string "bookmarks-%Y.org")))
+   :template "* %:description\n%U\n\n%:link\n\n%?%i"
+   :prepend t
+   :empty-lines-before 1
+   :empty-lines-after 1
+   :immediate-finish t))
 
 
 (add-function :before (symbol-function 'org-capture) #'gk-org-capture-set-templates)
