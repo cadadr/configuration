@@ -43,7 +43,7 @@ disable-microphone = false
 document-type = 'photo'
 jpeg-quality = 75
 photo-dpi = 75
-save-format = 'image/png'
+save-format = 'application/pdf'
 text-dpi = 75
 
 [org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9]
