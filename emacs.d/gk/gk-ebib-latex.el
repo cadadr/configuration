@@ -253,7 +253,7 @@ temporary file for the retrieved PDF."
 
 ;;;; Reading notes:
 
-(defvar gk-reading-notes-directory (expand-file-name "Okumalar" gk-notes-directory)
+(defvar gk-reading-notes-directory (expand-file-name "okumalar" gk-notes-directory)
   "Directory where reading notes are found.")
 
 (defun gk-read-from-library (document)
