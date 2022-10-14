@@ -1516,7 +1516,7 @@ Generates a "
  auto-insert-alist)
 
 (push
- '(("Okumalar/.+\\.org" . "Org-mode okuma notu")
+ '(("okumalar/.+\\.org" . "Org-mode okuma notu")
    nil
    "#+title: "
    (let ((candidate (ignore-errors
