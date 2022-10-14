@@ -390,6 +390,10 @@ Does various tasks after saving a file, see it's definition."
 (global-unset-key (kbd "<down>"))
 (global-unset-key (kbd "<right>"))
 (global-unset-key (kbd "<left>"))
+;; Bound to ‘next-buffer’ and ‘previous-buffer’, and fuckin confusing.
+(global-unset-key (kbd "C-x <right>"))
+(global-unset-key (kbd "C-x <left>"))
+
 ;; Function keys.
 (loop for i from 1 to 12 do
          (global-unset-key (kbd (format "<f%d>" i))))
