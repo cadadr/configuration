@@ -1223,7 +1223,7 @@ numerals which regularly appear in texts."
 
 (diminish 'org-variable-pitch-minor-mode "~")
 
-(add-hook 'after-init-hook #'org-variable-pitch-setup)
+;; (add-hook 'after-init-hook #'org-variable-pitch-setup)
 
 
 
