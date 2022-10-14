@@ -374,7 +374,7 @@ An adaptation and simplification of ‘mode-line-modes’.")
     (:eval
      ;; Buffer's file if visiting one, the default directory
      ;; otherwise.  Ellipsise long names.
-     (let* ((f (or (abbreviate-file-name (buffer-file-name)) default-directory))
+     (let* ((f (or (ignore-errors (abbreviate-file-name (buffer-file-name))) default-directory))
             (... (ignore-errors (gk-ellipsize-file-or-directory-name f 25))))
        (propertize
         (or ... f)
