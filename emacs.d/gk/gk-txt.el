@@ -266,6 +266,32 @@ will receive the region if active, or the entire buffer."
 
 
 
+;;;;; Faces:
+
+(defun gk-txt-faces ()
+  "Face customisations for text modes.
+To be called by ‘gk-setup-frame-looks’."
+  ;; Make italics and bolds stand out more.
+  (set-face-attribute
+   'italic nil
+   :foreground (face-attribute 'font-lock-keyword-face :foreground))
+  (set-face-attribute
+   'bold nil
+   :foreground (face-attribute 'font-lock-string-face :foreground))
+
+  ;; Underlines are confusing and clash with org mode _underlines_, so
+  ;; use error faces instead.
+  (set-face-attribute
+   'flyspell-incorrect nil
+   :underline nil
+   :foreground (face-attribute 'error :foreground))
+  (set-face-attribute
+   'flyspell-duplicate nil
+   :underline nil
+   :foreground (face-attribute 'warning :foreground)))
+
+
+
 ;;;; Dictionary and spell checking:
 
 ;; Partially adapted from:
