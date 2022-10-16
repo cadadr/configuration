@@ -51,8 +51,8 @@ dunst                    &
 kdeconnect-indicator     &
 clipit                   &
 if $(which pipewire) >/dev/null 2>/dev/null; then
-    pipewire                 &
-    pipewire-pulse           &
+    pipewire             &
+    pipewire-pulse       &
 fi
 # if flameshot starts too quickly, the icon doesn't go to the
 # system tray.
