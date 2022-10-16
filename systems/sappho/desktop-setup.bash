@@ -142,7 +142,8 @@ export XCURSOR_THEME="$mouse_theme"
 export XCURSOR_SIZE=$mouse_size
 
 ### Launch window manager:
-(sleep 10; notify-send welcome "welcome to $(hostname)!" ) &
+(sleep 10; notify-send -t 2000 welcome "welcome to $(hostname)!" ) &
+
 
 # dotfiles/xsession will run $MYSYSTEM/desktop-setup.bash with
 # dbus-launch, so we can just run i3 here.
