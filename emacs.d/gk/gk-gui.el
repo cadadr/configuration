@@ -153,6 +153,8 @@ picks."
            (color-lighten-name c 30)
            (color-lighten-name c 40))))
 
+  (when-fbound gk-txt-faces)
+
   ;; Reset it everywhere it’s found in order to apply the above
   ;; settings.
   (dolist (b (buffer-list))
