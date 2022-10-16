@@ -18,6 +18,8 @@ XAUTHORITY="${config[1]}"
 export DISPLAY XAUTHORITY
 
 on_docked(){
+    notify-send -t 5000 docked "setting up..."
+
     # Wait for all devices to be detected.
     sleep 5
 
@@ -33,9 +35,13 @@ on_docked(){
 
     # Monitors
     /bin/sh /home/cadadr/.screenlayout/sappho-docked-only-external.sh
+
+    notify-send -t 3000 docked "done!"
 }
 
 on_undocked(){
+    notify-send -t 3000 undocked
+
     # Monitors
     /bin/sh /home/cadadr/.screenlayout/sappho-undocked.sh
 }
