@@ -76,6 +76,16 @@ sort-type = 'ascending'
 
 [org/mate/engrampa/ui]
 
+[org/mate/power-manager]
+action-critical-battery = 'suspend'
+button-lid-ac = 'suspend'
+button-lid-battery = 'suspend'
+button-power = 'interactive'
+button-suspend = 'suspend'
+idle-dim-ac = true
+sleep-computer-battery = 600
+sleep-display-battery = 300
+
 [org/mate/system-monitor]
 show-all-fs = true
 show-tree = false

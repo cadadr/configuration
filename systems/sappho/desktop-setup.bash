@@ -46,6 +46,7 @@ ulimit -c unlimited
 xinput set-prop 'SynPS/2 Synaptics TouchPad' 'Device Enabled' 0
 
 ### Start background processes:
+mate-power-manager       &
 setbg.bash               &
 dunst                    &
 kdeconnect-indicator     &
