@@ -310,6 +310,13 @@ fuck_webp() {
     find . -iname '*.webp' -exec rm \{\} \+
 }
 
+# Clear recently used files information
+clearrecents(){
+    mkdir -p $HOME/.local/share # ensure the directory exists
+    echo -n '' > $HOME/.local/share/recently-used.xbel
+}
+
+
 ###
 # ssh errors with `unknown terminal' without this, see
 # https://sw.kovidgoyal.net/kitty/faq/#i-get-errors-about-the-terminal-being-unknown-or-opening-the-terminal-failing-when-sshing-into-a-different-computer
