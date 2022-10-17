@@ -27,8 +27,7 @@ if [ ! -f "$MYSYSTEM/full-backup.dirs" ]; then
     die backups not supported, "$MYSYSTEM/full-backup.dirs" not found
 fi
 
-borg create $maybe_progress --compression=lz4 \
-     $repo::{user}-{now}_initial-archive      \
+borg create $maybe_progress --compression=lz4 "$repo::{user}-{now}" \
      $(bash $MYSYSTEM/full-backup.dirs)
 
 exit_code=$?
