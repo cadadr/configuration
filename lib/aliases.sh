@@ -316,6 +316,14 @@ clearrecents(){
     echo -n '' > $HOME/.local/share/recently-used.xbel
 }
 
+recentlogs(){
+    (
+	echo "$(tput smul)Log files modified in the last three days$(tput sgr0)"
+	echo
+	find ~/log/ -mindepth 1 -mtime -3 -not -name '*.old' -exec tail \{\} \+ \
+	    | sed -E "s/^==> (.*)$/$(tput setaf 2)$(tput smul)==> \1$(tput sgr0)/" \
+    ) | less --use-color -R
+}
 
 ###
 # ssh errors with `unknown terminal' without this, see
