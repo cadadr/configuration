@@ -17,13 +17,15 @@ if [ $# -ne 1 ] || [ -z "$expected_mac" ]; then
     exit_with_usage
 fi
 
-gateway_ip="$(route -n | grep -e '^0\.0\.0\.0' | tr -s ' ' | cut -d ' ' -f 2)"
+# Same IP might appear multiple times e.g. if you're connected both my
+# WiFi and Ethernet to the same router.
+gateway_ip="$(route -n | grep -e '^0\.0\.0\.0' | tr -s ' ' | cut -d ' ' -f 2 | sort | uniq)"
 
 if [ -z "$gateway_ip" ]; then
     exit_with_error_message 2 could not determine gateway IP address
 fi
 
-gateway_data=($(arp -n $gateway_ip | grep -e $gateway_ip | tr -s ' ' \
+gateway_data=($(arp -n "$gateway_ip" | grep -e "$gateway_ip" | tr -s ' ' \
                     | tr ' ' '\t'))
 
 if [[ "${gateway_data[1]}" == "(incomplete)" ]]; then
