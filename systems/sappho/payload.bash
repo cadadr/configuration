@@ -156,3 +156,8 @@ xbps-reconfigure -f glibc-locales
 # Disable IPv6, use v4 only, causes trouble with connectivity.
 sed -E -i.bkp 's/^#?use-ipv6=yes/use-ipv6=no/' /etc/avahi/avahi-daemon.conf
 sed -i.bkp    's/mdns/mdns4_minimal [NOTFOUND=return]/' /etc/nsswitch.conf
+
+### Install configuration files:
+
+install -b -o root -g root -m 644 rc.conf /etc
+
