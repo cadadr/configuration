@@ -86,7 +86,7 @@ bp_termwidth () {
 bp_prompt_long_p () {
     ps1_expanded="${1@P}"
     ps1_expanded="$(echo -ne $ps1_expanded | sed $'s/\e\\[[0-9;:]*[a-zA-Z]//g')"
-    [ ${#ps1_expanded} -gt $(( $(bp_termwidth) / 3 * 2 )) ]
+    [ ${#ps1_expanded} -gt $(( $(bp_termwidth) / 2 )) ]
     return $?
 }
 
@@ -96,29 +96,29 @@ bp_procmd () {
     # is in $?.
     bp_lastcmdexit
 
-    bold="$(tput bold)"
-    reset="$(tput sgr0)"
+    bold="\[$(tput bold)\]"
+    reset="\[$(tput sgr0)\]"
 
     # if xterm, colour
     case $TERM in
 	xterm*|alacritty)
 	    color="$(seq 1 16 | grep -ve '[789]' -e '1' -e '16' | shuf -n 1)"
-	    bold="$(tput setaf $color)"
+	    bold="\[$(tput setaf $color)\]"
 	    ;;
 
 	* ) # Do nothing.
 	    ;;
     esac
 
-    PS1="\[$bold\]"'#'"\#\[$reset\] \D{%F %H:%M} "
-    PS1+="$(bp_venv)$(bp_guix)$(bp_queue)\[$bold\]\u@\H\[$reset\]:\w"
+    PS1="$bold"'#'"\#$reset \D{%F %H:%M} "
+    PS1+="$(bp_venv)$(bp_guix)$(bp_queue)$bold\u@\H$reset:\w"
     PS1+="$(bp_branch)"
 
     if bp_prompt_long_p "$PS1"; then
 	PS1+='\n'
     fi
 
-    PS1+="\[$bold\](\jj/^$SHLVL)\$\[$reset\] "
+    PS1+="$bold(\jj/^$SHLVL)\$$reset "
 
     unset bold reset ps1_expanded
 }
