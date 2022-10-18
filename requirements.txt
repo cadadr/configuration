@@ -11,7 +11,7 @@ croniter==1.0.15
 ### Development tools:
 
 poetry>=1.1.9
-python-language-server~=0.35
+python-lsp-server>=1.5.0
 
 
 #### Elpy:
