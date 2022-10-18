@@ -14,3 +14,6 @@ install.packages("lintr", libdir)
 install.packages("gridExtra", libdir)
 install.packages("emuR", libdir)
 install.packages("lingtypology", libdir)
+
+## FIXME(2022-10-18): does this work fine with ESS?
+# install.packages("languageserver", libdir)
