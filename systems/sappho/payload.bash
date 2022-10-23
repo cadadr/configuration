@@ -104,7 +104,7 @@ xbps-install -y pandoc pdftk texlive-full tidy5 wkhtmltopdf unoconv \
 # Programming
 xbps-install -y base-devel cmake autoconf autoconf-archive automake \
              bmake cpanminus ctags gdb gcc-fortran guile ghc hoogle \
-             python3-ipython julia R ruby-ri ruby strace swi-prolog \
+             python3-ipython R ruby-ri ruby strace swi-prolog \
              yarn python3-pip python3-setuptools python3-tkinter \
              python3-wheel sbcl vala valadoc pkgconf
 

@@ -84,6 +84,10 @@ button-power = 'interactive'
 button-suspend = 'suspend'
 icon-policy = 'always'
 idle-dim-ac = true
+info-history-type = 'charge'
+info-last-device = '/org/freedesktop/UPower/devices/battery_BAT0'
+info-page-number = 0
+info-stats-type = 'discharge-accuracy'
 sleep-computer-battery = 600
 sleep-display-battery = 300
 
