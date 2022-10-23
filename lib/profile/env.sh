@@ -47,6 +47,7 @@ export SPAMD_LOG=$HOME/log/spamd.log
 # Python
 export PYTHONSTARTUP=$MEINE/python-init.py
 export DJANGO_COLORS="nocolor"
+
 # Pyenv
 export PYENV_ROOT="$MY/share/pyenv"
 if [ -d "$PYENV_ROOT" ]; then
@@ -64,6 +65,9 @@ export GUILE_LOAD_PATH=$MYLIB/scheme:$GUILE_LOAD_PATH
 
 # Lua
 export LUA_PATH="$MYLIB/lua/?.lua"
+
+# Perl
+eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib)"
 
 # SystemDee
 # Behave, you fuck.

@@ -27,9 +27,6 @@ fi
 # Collect paths from programming-language specific package managers.
 
 # Perl
-#
-# This will set some perl-related environment variables.
-eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib)"
 PERL_PATH="$HOME/perl5/bin"
 
 # Ruby
