@@ -1582,6 +1582,45 @@ After completion removes used links from ‘org-stored-links’."
             "\n\n")))
 
 
+(defun gk-org-capture-abstract ()
+  (cl-flet ((repeating-read
+              (concat-char prompt)
+              (mapconcat
+               #'identity
+               (butlast
+                (loop with author = ""
+                      do (setq author (read-string prompt))
+                      collect (string-trim author)
+                      while (not (string-empty-p (string-trim author)))))
+               (concat concat-char " ")))
+            (fill-string
+              (str)
+              (with-temp-buffer
+                (insert str)
+                (org-fill-paragraph)
+                (buffer-string))))
+    (let ((title (read-string "Capturing an abstract, article title: "))
+          (authors (repeating-read "," "Author [empty to finish]: "))
+          (year (read-string "Year published: "))
+          (uri (read-string "Article URL (preferably DOI): "))
+          (abstract (fill-string (read-string "Abstract: ")))
+          (keywords (let ((maybe-keywords
+                           (fill-string (repeating-read ";" "Keyword [empty to finish]: "))))
+                      (if (string-empty-p maybe-keywords)
+                          "none"
+                        maybe-keywords))))
+      (concat
+       "* " title "; " authors " (" year ")\n"
+       uri "\n"
+       "\n"
+       "#+begin_quote\n"
+       abstract
+       "\n"
+       "#+end_quote\n"
+       "\n"
+       "Keywords: " keywords "\n"))))
+
+
 (defun gk-org-define-capture-template (&rest args)
   "Define a capture template.
 
@@ -1617,6 +1656,18 @@ Meant as a ‘:before’ advice to ‘org-capture’."
   (message "heylo")
   ;; Zero it out, the populate.
   (setf org-capture-templates nil)
+
+  (gk-org-define-capture-template
+   :keys "a"
+   :description "Abstract"
+   :type 'entry
+   :target `(file ,(gk-org-dir-file "abstracts.org"))
+   :template '(function gk-org-capture-abstract)
+   :prepend t
+   :empty-lines-before 1
+   :empty-lines-after 1
+   :unnarrowed nil
+   :immediate-finish t)
 
   (gk-org-define-capture-template
    :keys "B"
