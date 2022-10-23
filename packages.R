@@ -16,4 +16,7 @@ install.packages("emuR", libdir)
 install.packages("lingtypology", libdir)
 
 ## FIXME(2022-10-18): does this work fine with ESS?
+# - https://github.com/emacs-ess/ESS/issues/554
+# - https://github.com/emacs-ess/ESS/issues/1214
+# - https://stackoverflow.com/q/72735320
 # install.packages("languageserver", libdir)
