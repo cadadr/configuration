@@ -1,6 +1,6 @@
 ;;; gk-prog.el --- configurations for programming modes  -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2021  Göktuğ Kayaalp
+;; Copyright (C) 2021, 2022  Göktuğ Kayaalp
 
 ;;; Commentary:
 
@@ -405,12 +405,19 @@ symbol)."
 
 ;;;; Perl:
 
+(pushnew '(perl-mode "pls") eglot-server-programs)
+
 (defalias 'perldoc 'cperl-perldoc)
 
 (add-hook 'perl-mode-hook 'gk-algol-like-hook)
 
+(defun gk-perl-mode-hook ()
+  (eglot-ensure))
+
+(add-hook 'perl-mode-hook #'gk-perl-mode-hook)
+
 (pushnew
- '((perl-mode . "Perl source file")
+ `((perl-mode . "Perl source file")
    nil
    (when (y-or-n-p "Is this an executable script?")
      "#!/usr/bin/env perl\n")
@@ -423,8 +430,15 @@ symbol)."
          "..."
        d))
    "\n\n"
-   "use v5.24;\n\nuse strict;\nuse warnings;\nno warnings 'experimental::smartmatch';
-\n\n")
+   ,(concat
+     "use v5.36;\n"
+     "\n"
+     "use strict;\n"
+     "use warnings;\n"
+     "no warnings 'experimental::smartmatch';\n"
+     "\n"
+     "use feature 'signatures';\n"
+     "\n"))
  auto-insert-alist)
 
 
