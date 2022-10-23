@@ -28,9 +28,9 @@ fi
 
 # Perl
 #
-# This will install ~/perl5/bin to the front of $PATH, and set some
-# other perl-related environment variables.
+# This will set some perl-related environment variables.
 eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib)"
+PERL_PATH="$HOME/perl5/bin"
 
 # Ruby
 export GEM_HOME="$HOME/.gem"
@@ -41,7 +41,7 @@ if which ruby 2>&1 > /dev/null; then
 fi
 
 # Pip installs to `.local'.
-PKGMANS_PATH="$RUBY_PATH:$HOME/.local/bin"
+PKGMANS_PATH="$PERL_PATH:$RUBY_PATH:$HOME/.local/bin"
 
 # Haskell
 PKGMANS_PATH="$PKGMANS_PATH:$HOME/.cabal/bin:$HOME/.ghcup/bin"
