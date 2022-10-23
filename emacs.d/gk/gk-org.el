@@ -1684,15 +1684,16 @@ Meant as a ‘:before’ advice to ‘org-capture’."
    :keys "S"
    :description "Sunday Emacs build note"
    :type 'entry
-   :target `(file+olp ,(gk-org-dir-file "Emacs.org")
+   :target `(file+olp ,(gk-org-dir-file "emacs.org")
                       "New stuff from recent builds")
    :prepend t
    :empty-lines-after 1
    :empty-lines-before 1
    :template (concat "* build on %u\n"
-                     "- *version*: %^{Version|head}\n"
-                     "- *toolkit*: %^{Toolkit|lucid}\n"
-                     "-----\n\n\n"))
+                     ":buildinfo:\n"
+                     ":version: %^{Version|head}\n"
+                     ":toolkit: %^{Toolkit|pgtk}\n"
+                     ":end:\n\n"))
 
   (gk-org-define-capture-template
    :keys "s"
@@ -1706,7 +1707,7 @@ Meant as a ‘:before’ advice to ‘org-capture’."
                  (goto-char (point-min))
                  (re-search-forward
                   (format-time-string "^\\*\\* build on \\[%F %a\\]"))
-                 (re-search-forward "-----\n"))))
+                 (re-search-forward ":end:\n"))))
    :prepend nil
    :empty-lines-before 1
    :empty-lines-after 1
