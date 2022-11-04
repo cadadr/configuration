@@ -11,8 +11,6 @@ else
     icon=""
 fi
 
-if [ -n "$DISPLAY" ]; then
-    notify-send -u critical $icon \
-		"Bullet journala baktın mı?" \
-		"Ne yapıyorsun? Şu anda ne yapmayı planlamıştın?"
-fi
+notify-send -u critical $icon \
+	    "Bullet journala baktın mı?" \
+	    "Ne yapıyorsun? Şu anda ne yapmayı planlamıştın?"
