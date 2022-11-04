@@ -64,6 +64,11 @@ type-format = 'category'
 [org/mate/desktop/background]
 picture-filename = '/home/cadadr/.xbg.png'
 
+[org/mate/engrampa/dialogs/extract]
+overwrite = true
+recreate-folders = true
+skip-newer = false
+
 [org/mate/engrampa/general]
 unar-open-zip = false
 
