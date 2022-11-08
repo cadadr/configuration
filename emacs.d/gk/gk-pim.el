@@ -48,24 +48,25 @@
 
 (defvar gk--update-geolocation-timer nil)
 
-(when (featurep 'geoclue)
-  (run-with-idle-timer
-   3600
-   t
-   (lambda ()
-     (when-let* ((whereami (geoclue-location))
-                 (lat (gk-assoca 'latitude whereami))
-                 (long (gk-assoca 'longitude whereami))
-                 (desc (gk-assoca 'description whereami)))
-       (setf calendar-location-name
-             (if (string-empty-p desc)
-                 "(Unknown location)"
-               desc)
-             calendar-latitude lat
-             calendar-longitude long)
-       (message "New geolocation: %s (lat: %f, long %f)"
-                calendar-location-name
-                lat long)))))
+;; (when (featurep 'geoclue)
+;;   (setf gk--update-geolocation-timer
+;;         (run-with-idle-timer
+;;          3600
+;;          t
+;;          (lambda ()
+;;            (when-let* ((whereami (geoclue-location))
+;;                        (lat (gk-assoca 'latitude whereami))
+;;                        (long (gk-assoca 'longitude whereami))
+;;                        (desc (gk-assoca 'description whereami)))
+;;              (setf calendar-location-name
+;;                    (if (string-empty-p desc)
+;;                        "(Unknown location)"
+;;                      desc)
+;;                    calendar-latitude lat
+;;                    calendar-longitude long)
+;;              (message "New geolocation: %s (lat: %f, long %f)"
+;;                       calendar-location-name
+;;                       lat long))))))
 
 
 
