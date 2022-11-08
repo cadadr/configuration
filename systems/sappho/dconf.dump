@@ -10,7 +10,7 @@ window-is-maximized = false
 
 [com/gkayaalp/pomodorino]
 desktop-notifications-enabled = true
-ease-in-mode-enabled = true
+ease-in-mode-enabled = false
 long-break-duration = 30
 pomodoro-duration = 45
 short-break-duration = 15
