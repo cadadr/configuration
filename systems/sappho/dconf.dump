@@ -8,6 +8,15 @@ show-percentage = false
 show-warning = false
 window-is-maximized = false
 
+[com/github/bleakgrey/tootle]
+dark-theme = true
+default-post-visibility = 'unlisted'
+live-updates = false
+window-h = 677
+window-w = 631
+window-x = 695
+window-y = 56
+
 [com/gkayaalp/pomodorino]
 desktop-notifications-enabled = true
 ease-in-mode-enabled = false
