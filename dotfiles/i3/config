@@ -87,7 +87,13 @@ bindsym $mod+c focus child
 
 bindsym $mod+g reload
 bindsym $mod+Shift+g restart
-bindsym $mod+k kill
+
+set $mode_kill_window Kill active window (y)es, (n)o
+mode "$mode_kill_window" {
+     bindsym y kill; mode default
+     bindsym n mode default
+}
+bindsym $mod+k mode "$mode_kill_window"
 
 ### Workspaces:
 set $ws1 "1:avlu"
