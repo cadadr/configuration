@@ -271,57 +271,57 @@ set $mod_mouse_emacs Emacs-like bindings for mousey mousey
 mode "$mod_mouse_emacs" {
         # ‘--polar’ means "angle distance", angle starts 0=top and
         # moves clockwise.
-        bindsym n exec xdotool mousemove_relative --polar 180 25
-        bindsym p exec xdotool mousemove_relative --polar 0   25
-        bindsym f exec xdotool mousemove_relative --polar 90  25
-        bindsym b exec xdotool mousemove_relative --polar 270 25
-        bindsym q exec xdotool mousemove_relative --polar 315 25
-        bindsym e exec xdotool mousemove_relative --polar 45  25
-        bindsym z exec xdotool mousemove_relative --polar 225 25
-        bindsym c exec xdotool mousemove_relative --polar 135 25
+        bindsym --release n exec --no-startup-id xdotool mousemove_relative --polar 180 25
+        bindsym --release p exec --no-startup-id xdotool mousemove_relative --polar 0   25
+        bindsym --release f exec --no-startup-id xdotool mousemove_relative --polar 90  25
+        bindsym --release b exec --no-startup-id xdotool mousemove_relative --polar 270 25
+        bindsym --release q exec --no-startup-id xdotool mousemove_relative --polar 315 25
+        bindsym --release e exec --no-startup-id xdotool mousemove_relative --polar 45  25
+        bindsym --release z exec --no-startup-id xdotool mousemove_relative --polar 225 25
+        bindsym --release c exec --no-startup-id xdotool mousemove_relative --polar 135 25
 
         # Fine-grain movement
-        bindsym Control+n exec xdotool mousemove_relative --polar 180 5
-        bindsym Control+p exec xdotool mousemove_relative --polar 0   5
-        bindsym Control+f exec xdotool mousemove_relative --polar 90  5
-        bindsym Control+b exec xdotool mousemove_relative --polar 270 5
-        bindsym Control+q exec xdotool mousemove_relative --polar 315 5
-        bindsym Control+e exec xdotool mousemove_relative --polar 45  5
-        bindsym Control+z exec xdotool mousemove_relative --polar 225 5
-        bindsym Control+c exec xdotool mousemove_relative --polar 135 5
+        bindsym --release Control+n exec --no-startup-id xdotool mousemove_relative --polar 180 5
+        bindsym --release Control+p exec --no-startup-id xdotool mousemove_relative --polar 0   5
+        bindsym --release Control+f exec --no-startup-id xdotool mousemove_relative --polar 90  5
+        bindsym --release Control+b exec --no-startup-id xdotool mousemove_relative --polar 270 5
+        bindsym --release Control+q exec --no-startup-id xdotool mousemove_relative --polar 315 5
+        bindsym --release Control+e exec --no-startup-id xdotool mousemove_relative --polar 45  5
+        bindsym --release Control+z exec --no-startup-id xdotool mousemove_relative --polar 225 5
+        bindsym --release Control+c exec --no-startup-id xdotool mousemove_relative --polar 135 5
 
         # Coarse-grain movement
-        bindsym Shift+n exec xdotool mousemove_relative --polar 180 50
-        bindsym Shift+p exec xdotool mousemove_relative --polar 0   50
-        bindsym Shift+f exec xdotool mousemove_relative --polar 90  50
-        bindsym Shift+b exec xdotool mousemove_relative --polar 270 50
-        bindsym Shift+q exec xdotool mousemove_relative --polar 315 50
-        bindsym Shift+e exec xdotool mousemove_relative --polar 45  50
-        bindsym Shift+z exec xdotool mousemove_relative --polar 225 50
-        bindsym Shift+c exec xdotool mousemove_relative --polar 135 50
+        bindsym --release Shift+n exec --no-startup-id xdotool mousemove_relative --polar 180 50
+        bindsym --release Shift+p exec --no-startup-id xdotool mousemove_relative --polar 0   50
+        bindsym --release Shift+f exec --no-startup-id xdotool mousemove_relative --polar 90  50
+        bindsym --release Shift+b exec --no-startup-id xdotool mousemove_relative --polar 270 50
+        bindsym --release Shift+q exec --no-startup-id xdotool mousemove_relative --polar 315 50
+        bindsym --release Shift+e exec --no-startup-id xdotool mousemove_relative --polar 45  50
+        bindsym --release Shift+z exec --no-startup-id xdotool mousemove_relative --polar 225 50
+        bindsym --release Shift+c exec --no-startup-id xdotool mousemove_relative --polar 135 50
 
         # Coarser-grain movement
-        bindsym Mod1+n exec xdotool mousemove_relative --polar 180 100
-        bindsym Mod1+p exec xdotool mousemove_relative --polar 0   100
-        bindsym Mod1+f exec xdotool mousemove_relative --polar 90  100
-        bindsym Mod1+b exec xdotool mousemove_relative --polar 270 100
-        bindsym Mod1+q exec xdotool mousemove_relative --polar 315 100
-        bindsym Mod1+e exec xdotool mousemove_relative --polar 45  100
-        bindsym Mod1+z exec xdotool mousemove_relative --polar 225 100
-        bindsym Mod1+c exec xdotool mousemove_relative --polar 135 100
+        bindsym --release Mod1+n exec --no-startup-id xdotool mousemove_relative --polar 180 100
+        bindsym --release Mod1+p exec --no-startup-id xdotool mousemove_relative --polar 0   100
+        bindsym --release Mod1+f exec --no-startup-id xdotool mousemove_relative --polar 90  100
+        bindsym --release Mod1+b exec --no-startup-id xdotool mousemove_relative --polar 270 100
+        bindsym --release Mod1+q exec --no-startup-id xdotool mousemove_relative --polar 315 100
+        bindsym --release Mod1+e exec --no-startup-id xdotool mousemove_relative --polar 45  100
+        bindsym --release Mod1+z exec --no-startup-id xdotool mousemove_relative --polar 225 100
+        bindsym --release Mod1+c exec --no-startup-id xdotool mousemove_relative --polar 135 100
 
         # Clickety clackety
-        bindsym space exec xdotool click 1
-        bindsym Shift+space   exec xdotool click --clearmodifiers 2
-        bindsym Control+space exec xdotool click --clearmodifiers 3
-        bindsym Mod1+space    exec xdotool click --clearmodifiers --repeat 2 1
+        bindsym --release space exec --no-startup-id xdotool click 1
+        bindsym --release Shift+space exec --no-startup-id xdotool click --clearmodifiers 2
+        bindsym --release Control+space exec --no-startup-id xdotool click --clearmodifiers 3
+        bindsym --release Mod1+space exec --no-startup-id xdotool click --clearmodifiers --repeat 2 1
 
         # Wheel
-        bindsym j exec xdotool click --clearmodifiers 5
-        bindsym k exec xdotool click --clearmodifiers 4
+        bindsym --release j exec --no-startup-id xdotool click --clearmodifiers 5
+        bindsym --release k exec --no-startup-id xdotool click --clearmodifiers 4
         # These don’t work very well for some reason...
-        # bindsym Shift+j exec xdotool click --clearmodifiers --repeat 10 5
-        # bindsym Shift+k exec xdotool click --clearmodifiers --repeat 10 4
+        bindsym --release Shift+j exec --no-startup-id xdotool click --clearmodifiers --repeat 10 5
+        bindsym --release Shift+k exec --no-startup-id xdotool click --clearmodifiers --repeat 10 4
 
         # Go to scroll mode
         bindsym v mode "$mod_scroll_emacs"
