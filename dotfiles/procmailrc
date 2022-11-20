@@ -4,7 +4,7 @@
 SHELL=/bin/sh
 MAILDIR=$HOME/Posta
 SENDMAIL=/usr/bin/msmtp
-LOGFILE=$HOME/log/procmail.log
+LOGFILE=/tmp/$LOGNAME-logs/procmail.log
 VERBOSE=yes
 LOGABSTRACT=yes
 DROPPRIVS=yes

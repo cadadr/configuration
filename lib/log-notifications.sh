@@ -3,7 +3,7 @@
 
 mkdir -p $HOME/log
 
-cat <<EOF >> $HOME/log/dunst.log
+cat <<EOF >> $MYLOGS/dunst.log
 -----
 id:             $DUNST_ID
 timestamp:      $DUNST_TIMESTAMP

@@ -22,6 +22,11 @@ export MEINE="$MY/dotfiles"
 export MYLIB="$MY/lib"
 export SYSTEM="$(uname)"
 export MYSYSTEM="$MY/systems/$(hostname)"
+export MYLOGS="${TMPDIR-/tmp}/$USER-logs"
+
+# XXX: not a great idea to modify the filesystem in a profile script...
+mkdir -p $MYLOGS
+chmod 700 $MYLOGS
 
 ###
 

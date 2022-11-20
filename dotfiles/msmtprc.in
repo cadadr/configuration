@@ -6,7 +6,6 @@ auth on
 tls on
 tls_trust_file /etc/ssl/certs/ca-certificates.crt
 tls_starttls off
-logfile ~/log/msmtp.log
 protocol smtp
 # Leave ↓ blank for check netrc
 password

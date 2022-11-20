@@ -28,5 +28,4 @@ echo \
     $HOME/Sources     \
     $HOME/Videos      \
     $HOME/Zotero      \
-    $HOME/cf          \
-    $HOME/log
+    $HOME/cf

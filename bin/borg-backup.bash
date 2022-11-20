@@ -5,6 +5,12 @@
 . $MYLIB/cron.sh
 . $MYLIB/fns.sh
 
+# if stdout is not a tty, output to log
+if [ ! -t 1 ]; then
+    exec >>$MYLOGS/borg.log
+    exec 2>&1
+fi
+
 check-router-mac-address.bash "$GK_SAPPHO_HOME_ROUTER_MAC" || {
     say "unexpected router MAC, will not run on this network!"
     exit

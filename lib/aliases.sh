@@ -108,12 +108,12 @@ countpdfpagesdir () {
 
 sx () {
     dpy="${1:-0}"
-    log_stdout="$HOME/log/xsession:$dpy-stdout.log"
-    log_stderr="$HOME/log/xsession:$dpy-error.log"
+    log_stdout="$MYLOGS/xsession:$dpy-stdout.log"
+    log_stderr="$MYLOGS/xsession:$dpy-error.log"
     log_xorg="$HOME/.local/share/xorg/Xorg.$dpy.log"
     # Preserve old logs
-    cp $log_stdout $log_stdout.old
-    cp $log_stderr $log_stderr.old
+    [ -e $log_stdout ] && cp $log_stdout $log_stdout.old
+    [ -e $log_stderr ] && cp $log_stderr $log_stderr.old
     startx -- :$dpy > $log_stdout 2> $log_stderr
     tail $log_stdout
     tail $log_stderr
@@ -320,7 +320,7 @@ recentlogs(){
     (
 	echo "$(tput smul)Log files modified in the last three days$(tput sgr0)"
 	echo
-	find ~/log/ -mindepth 1 -mtime -3 -not -name '*.old' -exec tail \{\} \+ \
+	find $MYLOGS/ -mindepth 1 -mtime -3 -not -name '*.old' -exec tail \{\} \+ \
 	    | sed -E "s/^==> (.*)$/$(tput setaf 2)$(tput smul)==> \1$(tput sgr0)/" \
     ) | less --use-color -R
 }
@@ -368,7 +368,7 @@ alias pg="$PAGER"
 alias o=xdg-open
 # Recursively download a website at a given url.
 alias wgetall='wget -r -p -E -k -np -w 1'
-alias stracemacs='strace -p $(pgrep emacs) 2>~/log/stracemacs.log 1>~/log/stracemacs.log'
+alias stracemacs='strace -p $(pgrep emacs) 2>/tmp/stracemacs.log 1>/tmp/stracemacs.log'
 alias free='free -h'
 # see https://www.mercurial-scm.org/wiki/MqTutorial#Versioning_our_patch_set
 alias mq='hg -R $(hg root)/.hg/patches'
