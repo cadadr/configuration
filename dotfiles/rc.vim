@@ -81,7 +81,6 @@ set shortmess-=S
 "		elsewhere
 set ts=8 softtabstop=4 shiftwidth=4 expandtab smarttab
 set encoding=utf8
-set textwidth=72	" 72 chars per line
 
 " Text formatting
 " ===============
@@ -93,6 +92,7 @@ set textwidth=72	" 72 chars per line
 " +p:	do not break line after period and single space
 set formatoptions-=ro
 set formatoptions+=nj1
+
 set noexpandtab
 set autoindent
 set foldmethod=marker	" manually inserted markers
