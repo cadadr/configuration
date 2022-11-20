@@ -39,7 +39,7 @@ if [ ! -f configure ]; then
 fi
 
 ./configure --prefix=$HOME/local/emacs    \
-            --with-pgtk                   \
+            --with-x-tookit=athena        \
             --with-modules                \
             --with-file-notification=yes  \
             --with-gameuser=no            \
