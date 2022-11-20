@@ -15,11 +15,14 @@ fi
 shift
 
 case "$command" in
-    update)
+    refresh)
+	exec sudo xbps-install -S
+	;;
+    update|upgrade)
 	exec sudo xbps-install -Su
 	;;
     install)
-	exec sudo xbps-install $@
+	exec sudo xbps-install -S $@
 	;;
     uninstall|remove|delete)
 	exec sudo xbps-remove $@
