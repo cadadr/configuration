@@ -41,8 +41,6 @@ bindsym $mod+Control+y exec --no-startup-id xtype.sh
 bindsym $mod+Control+f exec --no-startup-id Thunar
 bindsym $mod+Control+w exec --no-startup-id ffprofile.sh
 bindsym $mod+Control+p exec --no-startup-id passmenu.sh
-bindsym $mod+Control+e exec $terminal -e 'less /run/user/$UID/i3/errorlog.*'
-bindsym $mod+Control+x exec $terminal -e 'less ~/.xsession-errors'
 bindsym $mod+Control+Shift+q exit
 bindsym $mod+Shift+semicolon exec i3-input -P 'i3 command: '
 bindsym $mod+w exec --no-startup-id i3switch.rb
