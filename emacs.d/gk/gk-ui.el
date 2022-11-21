@@ -594,9 +594,8 @@ So that the reader knows where to continue reading."
 ;;;; Undo:
 
 (setf
- undo-tree-auto-save-history t
- undo-tree-history-directory-alist
- '(("." . "~/.undo-tree-hist/")))
+ ;; Do not persist undo history.
+ undo-tree-auto-save-history nil)
 
 ;; Enable undo-tree.
 (cl-pushnew 'global-undo-tree-mode gk-global-modes)
