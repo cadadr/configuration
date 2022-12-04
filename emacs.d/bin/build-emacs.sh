@@ -39,7 +39,7 @@ if [ ! -f configure ]; then
 fi
 
 ./configure --prefix=$HOME/local/emacs    \
-            --with-x-tookit=athena        \
+            --with-x-tookit=gtk           \
             --with-modules                \
             --with-file-notification=yes  \
             --with-gameuser=no            \
