@@ -29,6 +29,11 @@ export GPG_TTY
 # Ensure PulseAudio DBus service is running.
 start-pulseaudio-x11
 
+### App settings:
+
+# Behave bitch. Fuck you, Mozilla. Choke on a bucket of dicks.
+export MOZ_USE_XINPUT2=1
+
 ### X settings:
 
 # Disable bell
