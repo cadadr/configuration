@@ -24,6 +24,7 @@
         :sans "DejaVu Sans Condensed"
         :mono "Iosevka Cadadrish Sans"
         :cjk "Noto Serif CJK JP"
+        :arabic "Noto Sans Arabic"
         :emoji "Noto Color Emoji"
         :forecast-moon-phase (or (and (font-info "Quivira")
                                       "Quivira")
@@ -114,6 +115,8 @@ picks."
                       :weight 'regular)
 
   (set-fontset-font t 'symbol (gk-font :emoji))
+
+  (set-fontset-font t 'arabic (gk-font :arabic))
 
   (set-face-attribute 'variable-pitch nil
                       :height gk-font-variable-pitch-height
