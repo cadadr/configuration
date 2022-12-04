@@ -33,6 +33,12 @@ case "$command" in
     files)
 	exec xbps-query -f $@ | $PAGER
 	;;
+    list-kernels|kernels)
+        exec vkpurge list
+        ;;
+    rm-kernels|del-kernels|purge-kernels)
+        exec sudo vkpurge rm $@
+        ;;
     *)
         exit_with_error_message 2 unknown command: $command
 	;;
