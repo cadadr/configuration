@@ -446,15 +446,19 @@ argument as t, so refer to that command for further details."
   "Open ‘rmail’ and ‘elfeed’, update both."
   (interactive)
   (delete-other-windows)
-  (let ((rmail-buffer (progn (rmail) (current-buffer))))
-    (split-window-sensibly)
-    (other-window 1)
-    (elfeed)
-    (elfeed-search-fetch nil)
-    (gk-fetch-mail (lambda (new-mail-p)
-                     (when new-mail-p
-                       (message "Getting new mail from inboxes...")
-                       (with-current-buffer rmail-buffer
+  (rmail)
+  (split-window-sensibly)
+  (other-window 1)
+  (elfeed)
+  ;; (elfeed-search-fetch nil)
+  (gk-fetch-mail (lambda (new-mail-p)
+                   (when new-mail-p
+                     (message "Getting new mail from inboxes...")
+                     (save-window-excursion
+                       (with-current-buffer
+                           (progn
+                             (rmail)
+                             (current-buffer))
                          (rmail-get-new-mail)))))))
 
 
