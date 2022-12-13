@@ -6,7 +6,7 @@ IFS=$'\n\t'
 
 ### Environment:
 export DESKTOP_SESSION=i3wm
-export GK_COLOUR_SCHEME_PREFERENCE=dark
+export GK_COLOUR_SCHEME_PREFERENCE=light
 export GK_XBGIMG="$HOME/.xbg.png"
 export GK_XBG_SLIDESHOW_DIR="$HOME/Pictures/wlp/slideshow/"
 export GK_XBG_SLIDESHOW_INTERVAL_MINS=5
