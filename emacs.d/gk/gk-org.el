@@ -555,18 +555,6 @@ N defaults to 1."
   (when (y-or-n-p "All links inserted, clear stored links?")
     (setq org-stored-links nil)))
 
-(define-advice org-tree-to-indirect-buffer
-    (:around (fn arg) arg-for-dedicated-frame)
-  "Use ARG not for selection but for toggling dedicated frames.
-
-If called with prefix arg, open in a dedicated frame.  Otherwise,
-respect ‘org-indirect-buffer-display’."
-  (interactive "P")
-  (let ((org-indirect-buffer-display
-         (if arg 'dedicated-frame
-           org-indirect-buffer-display)))
-    (funcall fn)))
-
 (defun gk-org-ensure-empty-line-before-headlines (beg end)
   "Make sure there is an empty line before each headline in the region.
 
