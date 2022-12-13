@@ -438,6 +438,7 @@ alias shownotascii="tr -d '[:alnum:][:punct:][:space:]' | sed -E 's/(.)/\1\n/g' 
 alias ohfuckemacs="pkill -USR2 emacs"
 alias localbogie="BOGIE_PLAYLIST=~/trains/ BOGIE_RADIO=~/Music/study-instrumental/ bogie.bash"
 alias partlocalbogie="BOGIE_PLAYLIST=~/trains/ bogie.bash"
+alias q=exit
 
 # raspberry pi
 alias pi="ssh pi@xanthippe.local"
