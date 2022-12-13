@@ -20,11 +20,19 @@ bp_lastcmdexit () {
     # incremented.
     if [ "$_bp_histcmd" -ne "$HISTCMD" ]; then
 	local msg="command line failed with exit code"
+	case $GK_COLOUR_SCHEME_PREFERENCE in
+	    dark)
+		local fg=16
+		local bg=9 ;;
+	    light)
+		local fg=0
+		local bg=5 ;;
+	esac
 	# XXX(2022-11-27): this clobbers the prompt if it's on the same line with it,
 	# so i break the line after it and made it a bit longer just to make it
 	# look nicer as such.
 	[ $last_cmd_exit_code -ne 0 ] && \
-	    printf "$(tput setab 9)$(tput setaf 16)$msg: $last_cmd_exit_code$(tput sgr0) \n"
+	    printf "$(tput setab $bg)$(tput setaf $fg)$msg: $last_cmd_exit_code$(tput sgr0) \n"
     fi
     _bp_histcmd="$HISTCMD"
 }
