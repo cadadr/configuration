@@ -1641,7 +1641,6 @@ which correspond to homonymous fields listed in
   "Set up templates for org-capture.
 
 Meant as a ‘:before’ advice to ‘org-capture’."
-  (message "heylo")
   ;; Zero it out, the populate.
   (setf org-capture-templates nil)
 
