@@ -115,9 +115,6 @@ sx () {
     [ -e $log_stdout ] && cp $log_stdout $log_stdout.old
     [ -e $log_stderr ] && cp $log_stderr $log_stderr.old
     startx -- :$dpy > $log_stdout 2> $log_stderr
-    tail $log_stdout
-    tail $log_stderr
-    [ -f $log_xorg ] && tail $log_xorg
 }
 
 # From: https://news.ycombinator.com/item?id=18898898
