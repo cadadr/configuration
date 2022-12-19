@@ -96,3 +96,13 @@ Lots of files created by other people are included in this repository,
 most of the time verbatim. Any file that does not include a statement
 for its licence terms is probably written by me, and I hereby put all of
 them in public domain.
+
+Places this repo is available
+=============================
+
+This repo is available on a few public git forges. For the time being,
+Github remains the most regularly updated remote.
+
+- https://github.com/cadadr/configuration
+- https://codeberg.org/cadadr/personal-computing
+- https://git.sr.ht/~cadadr/personal-computing
