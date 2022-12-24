@@ -37,3 +37,5 @@ alsa-plugins-pulseaudio
 mate-power-manager
 qutebrowser
 kolourpaint
+gmic
+gmic-krita
