@@ -33,6 +33,9 @@ case "$command" in
     files)
 	exec xbps-query -f $@ | $PAGER
 	;;
+    info)
+	exec xbps-query -R $@ | $PAGER
+	;;
     list-kernels|kernels)
         exec vkpurge list
         ;;
