@@ -42,6 +42,9 @@ case "$command" in
     rm-kernels|del-kernels|purge-kernels)
         exec sudo vkpurge rm $@
         ;;
+    clean)
+	exec sudo xbps-remove -Oo
+	;;
     *)
         exit_with_error_message 2 unknown command: $command
 	;;
