@@ -39,3 +39,4 @@ qutebrowser
 kolourpaint
 gmic
 gmic-krita
+virtualbox-ose
