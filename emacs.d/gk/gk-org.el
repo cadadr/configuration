@@ -2001,7 +2001,7 @@ fragments"
   (when (boundp goto-address-mode)
     (goto-address-mode -1))
   (org-zotxt-mode +1)
-  (org-num-mode +1)
+  ;; (org-num-mode +1)
   (imenu-add-to-menubar "Entries")
   (org-eldoc-load)
   (eldoc-mode)
