@@ -20,7 +20,7 @@ jedi>=0.17.1,<0.18
 rope==0.16.0
 autopep8==1.5
 yapf==0.29
-setuptools==44.1.0
+setuptools==65.5.1
 flake8==3.7.9
 
 
