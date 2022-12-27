@@ -436,6 +436,11 @@ alias ohfuckemacs="pkill -USR2 emacs"
 alias localbogie="BOGIE_PLAYLIST=~/trains/ BOGIE_RADIO=~/Music/study-instrumental/ bogie.bash"
 alias partlocalbogie="BOGIE_PLAYLIST=~/trains/ bogie.bash"
 alias q=exit
+# From: https://gist.github.com/mkgin/6763914a9f1a54ad374898e4f9e51a48
+#
+# du -hs for both dotfiles & normal files. normally "du -hs ." just shows stats
+# for `.' & `..'`
+alias du_all='du -sch .[!.]* * | sort -h'
 
 # raspberry pi
 alias pi="ssh pi@xanthippe.local"
