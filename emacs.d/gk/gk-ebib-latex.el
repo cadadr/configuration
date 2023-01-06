@@ -30,7 +30,10 @@
 
 ;;;; BibTeX:
 
-(defvar gk-bib-dir (expand-file-name "~/Library")
+(defvar gk-library-dir (expand-file-name "~/Library/")
+  "Location for library files.")
+
+(defvar gk-bib-dir (expand-file-name "Bib" gk-library-dir)
   "Location for global Bib(La)TeX files.")
 
 
