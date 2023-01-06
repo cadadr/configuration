@@ -116,7 +116,7 @@ included in the generated template."
 
 (setf
  ebib-file-associations nil
- ebib-preload-bib-files (list (expand-file-name "Library.bib" gk-bib-dir))
+ ebib-preload-bib-files (list (expand-file-name "Main.bib" gk-bib-dir))
  ebib-file-search-dirs (list gk-bib-dir)
  ebib-index-columns '(("Entry Key" 20 t) ("Author/Editor" 40 t) ("Year" 6 t) ("Title" 50 t))
  ;; See: ‘bibtex-generate-autokey’.
