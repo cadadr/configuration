@@ -487,10 +487,71 @@ Does various tasks after saving a file, see it's definition."
 
 (gk-load (file-name-sans-extension custom-file))
 
+;; Record last know-good emacs build info. The
+;; ‘gk-latest-good-build-info-file’ should only change when the build
+;; config is changed, and it should only be committed to VCS when that
+;; build config is known to be good.
+;;
+;; When building Emacs on a new system, this information can be
+;; consulted to build from a VCS snapshot that’s known to accommodate
+;; my configuration well.
+
+(defvar gk-latest-good-build-info-file
+  (locate-user-emacs-file "etc/latest-good-build")
+  "File where info about last good build is stored
+See ‘gk-dump-latest-good-build’.")
+
+(defun gk-dump-latest-good-build ()
+  "Dump latest good build info.
+This funtion dump information that identifies the latest Emacs
+build that’s known to work with my setup into the file identified
+by ‘gk-latest-good-build-info-file’.
+
+It’s intended to run as part of the interactive init process."
+  (when (stringp emacs-repository-version)
+    (let* ((file gk-latest-good-build-info-file)
+           (buffer (find-file-noselect file))
+           (data `( :system ,system-configuration
+                    :commit ,emacs-repository-version
+                    :branch ,emacs-repository-branch
+                    :version ,(emacs-version)
+                    :source source-directory))
+           (old-data (ignore-errors
+                       (read
+                        (with-current-buffer buffer
+                          (buffer-string)))))
+           (timestamp (format-time-string "%F%T%z")))
+      (if (equal data old-data)
+          'up-to-date
+        (prog1
+            'updated
+          (with-current-buffer buffer
+            (erase-buffer)
+            (insert ";; AUTO GENERATED FILE, DO NOT MODIFY!\n"
+                    ";;\n"
+                    ";; This file indicates the latest build from GNU Emacs git repo that is\n"
+                    ";; known to work with my Emacs and dotfiles setup.\n"
+                    ";;\n"
+                    ";; Last updated: " timestamp ".\n\n"
+                    (let ((pp-use-max-width t)
+                          (pp-max-width 10))
+                      (pp-to-string data)))
+            (indent-sexp)
+            (add-file-local-variable 'mode 'emacs-lisp)
+            (let ((backup-inhibited t))
+              (save-buffer))
+            (message "Wrote ‘gk-latest-good-build-info-file’ (%s)."
+                     gk-latest-good-build-info-file))
+          (let ((kill-buffer-query-functions nil)
+                (kill-buffer-hook nil))
+            (kill-buffer buffer)))))))
+
 (unless noninteractive
   ;; Start the server.
   (server-start)
-  (add-hook 'server-switch-hook 'raise-frame))
+  (add-hook 'server-switch-hook 'raise-frame)
+  ;; Record build info.
+  (add-hook 'after-init-hook #'gk-dump-latest-good-build))
 
 
 
