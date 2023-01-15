@@ -1,6 +1,6 @@
 ;;; gk-ui.el --- user interface customisations (non-gui specific)  -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2021, 2022  Göktuğ Kayaalp
+;; Copyright (C) 2021, 2022, 2023  Göktuğ Kayaalp
 
 ;;; Commentary:
 
@@ -198,7 +198,12 @@
    ("." . ,(expand-file-name "~/.backups")))
  ;; Don't show annoying register previews that mess up my macro
  ;; recordings.  Hit C-h to bring it up if necessary.
- register-preview-delay nil)
+ register-preview-delay nil
+ ;; In interactive search, have a regular space character match any
+ ;; whitespace or sequence thereof.
+ search-whitespace-regexp (rx (1+ (or whitespace "\n")))
+ isearch-lax-whitespace t
+ isearch-regexp-lax-whitespace t)
 
 
 (setq-default save-place t)
