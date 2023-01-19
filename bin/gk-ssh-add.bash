@@ -37,7 +37,7 @@ fi
 
 # If the key is already cached in the agent, exit
 ssh-add -l | cut -d ' ' -f2 \
-    | grep "$(ssh-keygen -l -f ~/.ssh/aur | cut -d ' ' -f2)" >/dev/null \
+    | grep "$(ssh-keygen -l -f ~/.ssh/$key | cut -d ' ' -f2)" >/dev/null \
     && \
     {
         notify-send "~/.ssh/$key is already cached in ssh-agent"
