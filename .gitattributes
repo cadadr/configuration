@@ -1,10 +1,10 @@
 # .gitattributes
 
 dotfiles/vim/colors/*.vim	vendored linguist-vendored
-emacs.d/lisp/**/*.el		vendored linguist-vendored
-emacs.d/lisp/**/*.c		vendored linguist-vendored
-emacs.d/lisp/**/*.h		vendored linguist-vendored
-emacs.d/lisp/**/*.in		vendored linguist-vendored
+lib/lisp/emacs/**/*.el		vendored linguist-vendored
+lib/lisp/emacs/**/*.c		vendored linguist-vendored
+lib/lisp/emacs/**/*.h		vendored linguist-vendored
+lib/lisp/emacs/**/*.in		vendored linguist-vendored
 emacs.d/extras/*.xsl		vendored linguist-vendored
 lib/lua/lunajson/*.lua		vendored linguist-vendored
 lib/lua/lunajson.lua		vendored linguist-vendored
