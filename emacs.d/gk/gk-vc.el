@@ -488,12 +488,36 @@ upstream.")
 
 (define-advice magit-push-current-to-upstream
     (:before (&rest _) record-upstream)
-  "Record that we’re pushing to upsteam in ‘gk-magit-last-picked-remote’."
+  "Record that we’re pushing to upstream in ‘gk-magit-last-picked-remote’."
   (setf gk-magit-last-picked-remote 'upstream))
+
+(define-advice magit-pull-from-upstream
+    (:before (&rest _) record-upstream)
+  "Record that we’re pulling from upstream in ‘gk-magit-last-picked-remote’."
+  (setf gk-magit-last-picked-remote 'upstream))
+
+(define-advice magit-pull-from-pushremote
+    (:before (&rest _) record-upstream)
+  "Record that we’re pulling from current branch push remote in ‘gk-magit-last-picked-remote’."
+  (setf gk-magit-last-picked-remote 'pushremote))
+
+(define-advice magit-fetch-from-upstream
+    (:before (&rest _) record-upstream)
+  "Record that we’re fetching from upstream in ‘gk-magit-last-picked-remote’."
+  (setf gk-magit-last-picked-remote 'upstream))
+
+(define-advice magit-fetch-from-pushremote
+    (:before (&rest _) record-upstream)
+  "Record that we’re fetching from current branch push remote in ‘gk-magit-last-picked-remote’."
+  (setf gk-magit-last-picked-remote 'pushremote))
+
+
 
 (defun gk-magit--get-last-picked-remote-ref ()
   (cond ((eq gk-magit-last-picked-remote 'upstream)
          (magit-get-upstream-remote))
+        ((eq gk-magit-last-picked-remote 'pushremote)
+         (magit-get-push-remote))
         ((stringp gk-magit-last-picked-remote)
          (car (split-string gk-magit-last-picked-remote "/")))))
 
