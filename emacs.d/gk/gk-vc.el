@@ -457,18 +457,62 @@ line numbers that match the beginning and the end of the region."
                                    (and local " locally"))
                            choices nil nil nil nil default)))
 
-;; Automatically ask for ssh-add when necessary.
-(add-hook
- 'magit-credential-hook
- ($ (save-window-excursion
-      (shell-command "gk-ssh-add.bash" (generate-new-buffer "*ssh-add*")))))
-
 ;; Disable with-editor stuff.
 (gk-deadvice 'server-switch-buffer)
 
 (add-hook 'magit-mode-hook
           ($ (when (eq gk-gui-theme 'yoshi)
                (hl-line-mode +1))))
+
+
+
+;;;;;; Magit credential management using pass(1):
+
+;; Automate magit credential management using ‘gk-ssh-add.bash’, and
+;; indirectly, ‘dmenu’ and ‘pass’.
+;;
+;; We keep track of what remotes are picked interactively, and use
+;; that information to hint ‘gk-ssh-add.bash’ on which key to pick.
+;; Failing that, user will need to pick the key manually.
+
+(defvar gk-magit-last-picked-remote nil
+  "Most recently selected remote using ‘magit-read-remote-branch’.
+Either the remote branch identifier, or ‘upstream’, when pushing
+upstream.")
+
+(define-advice magit-read-remote-branch
+    (:filter-return (ret) record-selection)
+  "Record the selected remote in ‘gk-magit-last-picked-remote’."
+  (setf gk-magit-last-picked-remote ret)
+  ret)
+
+(define-advice magit-push-current-to-upstream
+    (:before (&rest _) record-upstream)
+  "Record that we’re pushing to upsteam in ‘gk-magit-last-picked-remote’."
+  (setf gk-magit-last-picked-remote 'upstream))
+
+(defun gk-magit--get-last-picked-remote-ref ()
+  (cond ((eq gk-magit-last-picked-remote 'upstream)
+         (magit-get-upstream-remote))
+        ((stringp gk-magit-last-picked-remote)
+         (car (split-string gk-magit-last-picked-remote "/")))))
+
+(defun gk-magit--get-last-picked-remote-domain ()
+  (when-let* ((remote (gk-magit--get-last-picked-remote-ref))
+              (remote-url (vc-git-repository-url default-directory remote)))
+    (nth 1 (split-string remote-url "\[@:\]" t))))
+
+(defun gk-magit-credential-hook ()
+  (let* ((maybe-last-remote-domain
+          (gk-magit--get-last-picked-remote-domain))
+         (process-environment
+          (cons (concat "GK_SSH_ADD_DOMAIN=" (or maybe-last-remote-domain ""))
+                process-environment)))
+    (save-window-excursion
+     (shell-command "gk-ssh-add.bash" (generate-new-buffer "*ssh-add*")))))
+
+(add-hook 'magit-credential-hook #'gk-magit-credential-hook)
+
 
 
 
