@@ -30,9 +30,7 @@ if [ -n "$GK_SSH_ADD_DOMAIN" ]; then
     }
 fi
 
-if [[ -v key ]]; then
-    : # We’re set to go, otherwise ask user to pick a key.
-else
+if [[ ! -v key ]]; then
     key="$(basename --multiple --suffix=.pub ~/.ssh/*.pub \
                       | dmenu -p 'Pick ssh key to add to ssh-agent(1)' -i)"
 fi
