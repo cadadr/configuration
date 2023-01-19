@@ -20,8 +20,31 @@ IFS=$'\n\t'
 # This is initally created for use with Magit to facilitate credential
 # use while remoting.
 
-key="$(basename --multiple --suffix=.pub ~/.ssh/*.pub \
-          | dmenu -p 'Pick ssh key to add to ssh-agent(1)' -i)"
+if [ -n "$GK_SSH_ADD_DOMAIN" ]; then
+    # Try to locate identity file.
+    maybe_idfile="$(sed -nE "/^Host $GK_SSH_ADD_DOMAIN/,/^Host/ p" \
+                        < ~/.ssh/config      \
+                        | grep IdentityFile  \
+                        | awk '{print($2)}')" && {
+        key="$(basename --suffix=.pub $maybe_idfile)"
+    }
+fi
+
+if [[ -v key ]]; then
+    : # We’re set to go, otherwise ask user to pick a key.
+else
+    key="$(basename --multiple --suffix=.pub ~/.ssh/*.pub \
+                      | dmenu -p 'Pick ssh key to add to ssh-agent(1)' -i)"
+fi
+
+# If the key is already cached in the agent, exit
+ssh-add -l | cut -d ' ' -f2 \
+    | grep "$(ssh-keygen -l -f ~/.ssh/aur | cut -d ' ' -f2)" >/dev/null \
+    && \
+    {
+        notify-send "~/.ssh/$key is already cached in ssh-agent"
+        exit
+    }
 
 password="$(pass git ls-files | grep ^ssh | sed s/.gpg\$// \
                  | dmenu -p "Pick password for \`$key'" -i)"
@@ -36,5 +59,7 @@ pass show $password
 EOF
 
 SSH_ASKPASS_REQUIRE=force SSH_ASKPASS="$askpass_shim" ssh-add ~/.ssh/$key
+
+notify-send "ssh-agent has now cached ~/.ssh/$key"
 
 exec rm $askpass_shim
