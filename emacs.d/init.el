@@ -375,6 +375,7 @@ Does various tasks after saving a file, see it's definition."
 (gk-global-binding "\C-\M-q" 'gk-indent-defun)
 (gk-global-binding "\C-xd" (gk-interactively (dired default-directory)))
 (gk-global-binding "\C-x\C-f" #'gk-find-file)
+(gk-global-binding (kbd "C-x C-d") #'dired)
 ;; XXX: not working as intended yet.
 ;; (gk-global-binding [remap fill-paragraph] #'gk-fill-or-join-paragraph)
 ;; So that it doesnt override special-mode and the like.
