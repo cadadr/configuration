@@ -24,7 +24,7 @@ Exclude dot-files, don't sort, and return full paths by default."
 (defvar gk-elisp-site-dir
   ;; XXX(2021-04-16): this will fail on systems that didn’t load
   ;; dotfiles/profile.sh
-  (locate-user-emacs-file "lisp")
+  (expand-file-name "lisp/emacs" (getenv "MYLIB"))
   "Directory where 3rd party Elisp is contained.")
 
 (defvar gk-elisp-gk-dir
