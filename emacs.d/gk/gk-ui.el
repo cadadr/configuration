@@ -578,9 +578,9 @@ So that the reader knows where to continue reading."
 
 (define-minor-mode gk-icomplete-mode
   "Minor mode to govern ‘icomplete-mode’.
-
 \\{gk-icomplete-mode-map}"
   :lighter "Gk-Ic"
+  :global t
   ;; :global t ; doesn’t work for some reason...
   (if gk-icomplete-mode
       (progn
@@ -588,6 +588,7 @@ So that the reader knows where to continue reading."
         (icomplete-vertical-mode))
     (icomplete-vertical-mode -1)
     (icomplete-mode -1)))
+
 
 (setf
  icomplete-show-matches-on-no-input t)
