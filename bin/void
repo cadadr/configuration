@@ -45,6 +45,10 @@ case "$command" in
     clean)
 	exec sudo xbps-remove -Oo
 	;;
+    # record packages into my newly installed packages file
+    record)
+	echo $@ >> $MYSYSTEM/new.txt
+	;;
     *)
         exit_with_error_message 2 unknown command: $command
 	;;
