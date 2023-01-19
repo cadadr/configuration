@@ -127,6 +127,7 @@
 (require 'git-commit)
 (require 'git-gutter)
 (require 'git-gutter-fringe)
+(require 'git-link)
 (require 'gk-greek)
 (require 'gk-unilat)
 (require 'goto-addr)
