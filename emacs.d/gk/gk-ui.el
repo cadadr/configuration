@@ -498,7 +498,11 @@ So that the reader knows where to continue reading."
 (setcdr (assoc 'newline-mark whitespace-display-mappings) '(10 [?$ 10]))
 
 (pushnew 'global-whitespace-mode gk-global-modes)
-(diminish 'global-whitespace-mode "¶")
+
+;; XXX(2023-01-18): for some reason this says there’s no such minor
+;; mode, even tho minor mode can be enabled.
+;;
+;; (diminish 'global-whitespace-mode "¶")
 
 (setq-default highlight-indent-guides-method 'column)
 
