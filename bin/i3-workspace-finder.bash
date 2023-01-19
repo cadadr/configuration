@@ -10,6 +10,6 @@ IFS=$'\n\t'
 
 workspace="$(i3-msg -t get_workspaces \
                     | jq -r -M '.[] | .name' | sort -u \
-                    | rofi -dmenu)"
+                    | dmenu -p 'Go to workspace (or create if new)')"
 
 i3-msg workspace $workspace

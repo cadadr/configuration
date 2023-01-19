@@ -287,7 +287,7 @@ show_menu() {
 }
 
 # Rofi command to pipe into, can add any options here
-rofi_command="rofi -dmenu -no-fixed-num-lines -yoffset -100 -i -p"
+rofi_command="dmenu -no-fixed-num-lines -yoffset -100 -i -p"
 
 case "$1" in
     --status)

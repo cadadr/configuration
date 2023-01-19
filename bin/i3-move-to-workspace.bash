@@ -10,6 +10,6 @@ IFS=$'\n\t'
 
 workspace="$(i3-msg -t get_workspaces \
                     | jq -r -M '.[] | .name' | sort -u \
-                    | rofi -dmenu)"
+                    | dmenu -p 'Move active window to workspace (match or new)')"
 
 i3-msg move container to workspace $workspace

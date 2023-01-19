@@ -1,8 +1,1 @@
-#!/usr/bin/env bash
-# dmenu --- rofi shim
-
-# bash strict mode
-set -euo pipefail
-IFS=$'\n\t'
-
-rofi -dmenu $@
+/usr/bin/rofi

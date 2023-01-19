@@ -6,7 +6,7 @@ set +e
 prefix=${PASSWORD_STORE_DIR-~/.password-store}
 prompt="Select password store entry"
 password="$(pass git ls-files | grep -v ^\\. | sed s/.gpg\$// \
-                 | rofi -dmenu -p "$prompt" -i)"
+                 | dmenu -p "$prompt" -i)"
 notify="notify-send -i dialog-password"
 
 [ -z "$password" ] && {
