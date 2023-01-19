@@ -1,6 +1,6 @@
 ;;; gk-vc.el --- version control utilities and customisation  -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2021, 2022  Göktuğ Kayaalp
+;; Copyright (C) 2021, 2022, 2023  Göktuğ Kayaalp
 
 ;;; Commentary:
 
@@ -461,8 +461,7 @@ line numbers that match the beginning and the end of the region."
 (add-hook
  'magit-credential-hook
  ($ (save-window-excursion
-      (setenv "SSH_ASKPASS" (expand-file-name "sshpass.sh" (getenv "MYLIB")))
-      (shell-command "ssh-add" (generate-new-buffer "*ssh-add*")))))
+      (shell-command "gk-ssh-add.bash" (generate-new-buffer "*ssh-add*")))))
 
 ;; Disable with-editor stuff.
 (gk-deadvice 'server-switch-buffer)
