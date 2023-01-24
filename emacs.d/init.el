@@ -47,10 +47,12 @@
         gk-emacs-initialisation-started-time)))
      (run-with-timer
       1.5 nil
-      (lambda () (message
-                  ;; remove the trailing newline
-                  (substring initial-scratch-message
-                             0 (- (length initial-scratch-message) 3))))))))
+      (lambda ()
+        (unless (get-buffer-window "*scratch*")
+          (message
+           ;; remove the trailing newline
+           (substring initial-scratch-message
+                      0 (- (length initial-scratch-message) 3)))))))))
 
 (when (version< emacs-version "30.0")
   (error "This configuration requires a recent build of Emacs ‘master’ branch"))
