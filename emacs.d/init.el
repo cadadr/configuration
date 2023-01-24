@@ -37,8 +37,11 @@
       (current-time)
       initial-scratch-message
       (format-time-string
-       (concat ";;\n;; Welcome to Emacs, with cadadr’s mutila^Wcustomisations!\n"
-               ";; Initialisation completed, took %-S.%3N seconds.\n;;\n\n\n")
+       (concat
+        ";;\n"
+        ";; Welcome to Emacs, with cadadr’s mutila^Wcustomisations!\n"
+        ";; Initialisation completed, took %-S.%3N seconds.\n"
+        ";;\n\n\n")
        (time-subtract
         gk-emacs-initialisation-completed-time
         gk-emacs-initialisation-started-time)))
