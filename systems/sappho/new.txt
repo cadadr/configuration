@@ -40,3 +40,4 @@ kolourpaint
 gmic
 gmic-krita
 virtualbox-ose
+nmap
