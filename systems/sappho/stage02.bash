@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# payload.bash --- set up sappho/void
+# stage02.bash --- prepare the OS for user setup
 
 # bash strict mode
 set -euo pipefail
@@ -78,7 +78,7 @@ xbps-install -y \
              font-awesome5 font-fantasque-sans-ttf font-hanazono \
              font-inconsolata-otf terminus-font font-sun-misc font-vazir \
              fonts-croscore-ttf gsfonts grub-terminus noto-fonts-cjk \
-             noto-fonts-emoji texlive-fontsextra twemoji
+             noto-fonts-emoji twemoji
 
 # (fuck SIL, boring dickheaded assholes, disgrace of linguistics)
 eval "xbps-install -y $(xbps-query -Rs font-sil- | cut -d ' ' -f 2 | tr '\n' ' ')"
@@ -98,8 +98,7 @@ xbps-install -y gnuplot praat
 xbps-install -y sqlite
 
 # Document processing & authoring
-xbps-install -y pandoc pdftk texlive-full tidy5 wkhtmltopdf unoconv \
-             pdfpc
+xbps-install -y pandoc pdftk tidy5 wkhtmltopdf unoconv pdfpc
 
 # Programming
 xbps-install -y base-devel cmake autoconf autoconf-archive automake \
@@ -159,5 +158,5 @@ sed -i.bkp    's/mdns/mdns4_minimal [NOTFOUND=return]/' /etc/nsswitch.conf
 
 ### Install configuration files:
 
-install -b -o root -g root -m 644 rc.conf /etc
+install -b -o root -g root -m 644 udev.rules /etc/udev/rules.d/sappho.rules
 

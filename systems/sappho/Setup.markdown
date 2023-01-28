@@ -1,44 +1,70 @@
 # Setup for `sappho`
 
-## Install system
+System installation consists of three stages: base system setup: user
+packages installation, and user level setup.
 
-Use the scripts found at
+Use the scripts found at `stage*.bash` files, as directed by each
+step.
 
-<https://gitlab.com/emacsomancer/full-zfs-and-full-luks-encryption-on-void-linux>
+## Stage 00: preparation
 
-or
+The most optimal setting to run this script is a Void Linux XFCE live
+system, that is connected to internet. Alternatively, it should be
+possible to use the non-graphical boot images of Void Linux, but they
+may not be as convenient.
 
-<https://gitlab.com/cadadr/void-zfs-luks> (my personal fork)
+Personally, i maintain a
+[Ventoy](https://www.ventoy.net/en/index.html) USB stick with many
+images for this task, including both the base and XFCE images, and
+also the [Hrmpf rescues
+system](https://github.com/leahneukirchen/hrmpf).
 
-to set up a fully-encrypted ZFS based system.
+**This setup is UEFI based**, and targets ThinkPad x230. It should run
+fine on any system Void supports granted both stage scripts are
+tweaked appropriately. The installation documentation could help with
+that.
 
-If using Linux Mint Live ISO as installation environment, change
-`Ubuntu` to `Linuxmint` in `00-pre-initialisation.sh`.
+## Stage 01: base system
 
-Try to use `fmt` with echo in these scripts
+Run `lsblk` and make sure you know which block device will be
+targeted. You’ll be prompted **once** by the script to provide that
+information.
 
-## Post-install
+Run and attend to the `stage01.bash` script. It will set up a
+full-disk encrypted; LUKS, LVM, and EXT4 based; seed setup that can be
+booted into, with a `root` user and a user `cadadr`. Configure variables up top in the script if necessary.
 
-Login as `root` and run `visudo`, permit users in the `wheel` group to
-run `sudo`.
+During this stage, root cadadr and LUKS passwords will be set, LUKS
+password will be required multiple times.
 
-Install system packages and enable services.
+At the end of the script, it will suggest to reboot and provide
+guidance as to how to proceed after a successful reboot.
 
-    # fetch setup script if necessary
-    sudo xbps-install wget
-    wget https://raw.githubusercontent.com/cadadr/configuration/default/systems/sappho/payload.bash https://raw.githubusercontent.com/cadadr/configuration/default/systems/sappho/checksums.txt
-    sha256sum -c checksums.txt
-    # run the script
-    sudo ./payload.bash
+## Stage 02: prepare the system for user setup
+
+If not already done, login as `root` and run `visudo`, permit users in
+the `wheel` group to run `sudo`.
+
+Install system packages and enable services using `stage02.bash`.
 
 Install flatpaks if desired.
 
     sh ../common/flatpak.sh
 
-Install packages from my Void package repo, which is found at
+Install (Xe(La))TeX packages if desired (TeX installation is time
+consuming, so it’s separated and made optional. Only certain features
+of my `emacs.d` depend on it).
+
+    bash ./tex.bash
+
+Install packages from Göktuğ’s Void package repo, which is found at
 <https://github.com/cadadr/void-packages>. Follow its [read me
 document](https://github.com/cadadr/void-packages/blob/master/Readme.markdown)
 to do so.
 
 Reboot.
 
+## Stage 03: user set up
+
+Refer back to [the ‘Post-install’ section of the Readme file at repo
+root](../../Readme.markdown#Post-install).
