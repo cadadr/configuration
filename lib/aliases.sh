@@ -322,6 +322,34 @@ recentlogs(){
     ) | less --use-color -R
 }
 
+pvdtar() {
+    if [ $# -ne 2 ]; then
+	echo usage: pvtar SOURCE DEST
+	return 1
+    fi
+    in=$1
+    out=$2
+    if [ ! -d $in ]; then
+	echo pvtar: SOURCE should be a directory
+	return 1
+    fi
+    if [ -e $out ]; then
+	echo pvtar: something exists at DEST, will not override or modify
+	return 1
+    fi
+
+    # adapted from pv(1) man page
+    (
+	tar cf - $in \
+	    | pv -n -s $(du -sb $in | awk '{print $1}') \
+	    | gzip -9 > $out
+    ) \
+	2>&1 \
+	| dialog --gauge \
+	    "source: $in, destination: $out. progress:"\
+	    0 $(( COLUMNS - 10 ))
+}
+
 ###
 # ssh errors with `unknown terminal' without this, see
 # https://sw.kovidgoyal.net/kitty/faq/#i-get-errors-about-the-terminal-being-unknown-or-opening-the-terminal-failing-when-sshing-into-a-different-computer
