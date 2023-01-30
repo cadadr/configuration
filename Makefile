@@ -18,7 +18,7 @@ help:
 ### System initialisation:
 .PHONY: setup setup-light fetch-config.m4 etc
 
-setup: emacs.d fetch-config.m4 dotfiles invade
+setup: fetch-config.m4 dotfiles invade emacs.d
 	sh lib/setup.sh
 
 setup-light: fetch-config.m4 dotfiles invade
