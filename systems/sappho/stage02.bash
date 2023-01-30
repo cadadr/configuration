@@ -161,5 +161,5 @@ sed -i.bkp    's/mdns/mdns4_minimal [NOTFOUND=return]/' /etc/nsswitch.conf
 
 ### Install configuration files:
 
-install -b -o root -g root -m 644 udev.rules /etc/udev/rules.d/sappho.rules
+install -D -b -o root -g root -m 644 udev.rules /etc/udev/rules.d/sappho.rules
 
