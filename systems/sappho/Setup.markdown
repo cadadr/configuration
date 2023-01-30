@@ -32,7 +32,8 @@ information.
 
 Run and attend to the `stage01.bash` script. It will set up a
 full-disk encrypted; LUKS, LVM, and EXT4 based; seed setup that can be
-booted into, with a `root` user and a user `cadadr`. Configure variables up top in the script if necessary.
+booted into, with a `root` user and a user `cadadr`. Configure variables
+up top in the script if necessary.
 
 During this stage, root cadadr and LUKS passwords will be set, LUKS
 password will be required multiple times.
@@ -45,6 +46,9 @@ guidance as to how to proceed after a successful reboot.
 If not already done, login as `root` and run `visudo`, permit users in
 the `wheel` group to run `sudo`.
 
+*Note* that scripts in this section are intended to be non-interactive,
+and they are likely to take a long time each.
+
 Install system packages and enable services using `stage02.bash`.
 
 Install flatpaks if desired.
@@ -56,6 +60,10 @@ consuming, so it’s separated and made optional. Only certain features
 of my `emacs.d` depend on it).
 
     bash ./tex.bash
+
+Install packages from `new.txt`.
+
+    sed 's/#.*//' new.txt | xargs sudo xbps-install -y
 
 Install packages from Göktuğ’s Void package repo, which is found at
 <https://github.com/cadadr/void-packages>. Follow its [read me
