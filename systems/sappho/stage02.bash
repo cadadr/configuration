@@ -5,7 +5,10 @@
 set -euo pipefail
 IFS=$'\n\t'
 
-sha256sum -c checksums.txt
+if [ "$UID" != 0 ]; then
+    echo root privileges required
+    exit 1
+fi
 
 ### Config:
 username=cadadr
