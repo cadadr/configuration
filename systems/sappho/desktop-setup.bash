@@ -121,6 +121,7 @@ gsettings set org.gnome.desktop.interface color-scheme prefer-dark
 export QT_STYLE_OVERRIDE="Fusion"
 
 # Mouse theme
+mkdir -p $HOME/.icons/default
 cat <<EOF > "$HOME/.icons/default/index.theme"
 [icon theme]
 Inherits=${mouse_theme}
