@@ -2,9 +2,9 @@
 #
 # This is for use like:
 #
-#     $ sudo xbps-install $sth && echo $sth >> $MYSYSTEM/new.txt
+#     $ void install <thing> && void record $_
 #
-# Later, move stuff to payload.bash.
+# Later, move stuff to stage02.bash.
 flatpak-builder
 calibre
 gparted
@@ -32,7 +32,7 @@ digikam
 gvfs # for thunar, trash dir support
 engrampa
 sloccount
-vivaldi # requires nonfree repo enabled or install from a void-packages checkout
+# vivaldi # requires nonfree repo enabled or install from a void-packages checkout
 alsa-plugins-pulseaudio
 mate-power-manager
 qutebrowser
@@ -41,3 +41,6 @@ gmic
 gmic-krita
 virtualbox-ose
 nmap
+# emacs
+libotf libotf-devel
+m17n-db m17n-lib
