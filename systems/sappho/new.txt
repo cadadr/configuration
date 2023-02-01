@@ -45,3 +45,4 @@ nmap
 libotf libotf-devel
 m17n-db m17n-lib
 void-docs
+libgomp-devel openblas-devel # dependencies of rpy2
