@@ -49,6 +49,9 @@ case "$command" in
     record)
 	echo $@ >> $MYSYSTEM/new.txt
 	;;
+    install-record|insrec|irec)
+        $0 install $@ && $0 record $@
+        ;;
     *)
         exit_with_error_message 2 unknown command: $command
 	;;
