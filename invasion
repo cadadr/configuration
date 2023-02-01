@@ -14,6 +14,7 @@
 .config/mpv		dotfiles/mpv
 .config/qutebrowser	dotfiles/qutebrowser
 .config/pycodestyle	dotfiles/pycodestyle
+.config/pip		dotfiles/pip
 .cvsrc			dotfiles/cvsrc
 .gitconfig		dotfiles/gitconfig.ini
 .gdbinit		dotfiles/gdbinit
