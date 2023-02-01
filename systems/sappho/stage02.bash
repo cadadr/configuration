@@ -5,6 +5,13 @@
 set -euo pipefail
 IFS=$'\n\t'
 
+echo "===------------------------------------------------==="
+echo "=   Hiya! This is Göktuğ's Void Linux Setup Script   ="
+echo "=    Stage 02:  prepare the system for user setup    ="
+echo "===------------------------------------------------==="
+echo
+echo === Beginning installation at $(date)...
+
 if [ "$UID" != 0 ]; then
     echo root privileges required
     exit 1
@@ -13,13 +20,21 @@ fi
 ### Config:
 username=cadadr
 
+echo
+echo === Basic system settings...
+echo
+
 # Allow non-root users to use ping because why not?
-sysctl -w net.ipv4.ping_group_range="0 1000"
+sysctl -q -w net.ipv4.ping_group_range="0 1000"
 
 # Claim ownership of home directory.
 ( cd ; chown $username:$username . )
 
 ### Install packages:
+
+echo
+echo === Install user dependencies "(this will take a long time)"...
+echo
 
 # Update repositories
 xbps-install -Sy
@@ -127,6 +142,10 @@ xbps-install -y qemu
 # Nonfree
 xbps-install -y intel-ucode
 
+echo
+echo === Add $username to new groups...
+echo
+
 # Update user groups
 usermod -aG kvm $username
 
@@ -140,6 +159,14 @@ ln -s /{etc/sv,var/service}/tlp && sv up tlp
 ln -s /{etc/sv,var/service}/sshd && sv up sshd
 ln -s /{etc/sv,var/service}/bluetoothd && sv up bluetoothd
 ln -s /{etc/sv,var/service}/dcron && sv up dcron
+echo
+echo === Enable system services...
+echo
+
+
+echo
+echo === Update configuration files...
+echo
 
 ### Enable kernel modules:
 
@@ -163,3 +190,13 @@ sed -i.bkp    's/mdns/mdns4_minimal [NOTFOUND=return]/' /etc/nsswitch.conf
 
 install -D -b -o root -g root -m 644 udev.rules /etc/udev/rules.d/sappho.rules
 
+### Exit:
+
+echo
+echo === System installation 'complete!'
+echo
+echo The system is now ready for user setup. Follow the instructions
+echo for stage 2, and then reboot.
+echo
+echo === Bye o/
+echo
