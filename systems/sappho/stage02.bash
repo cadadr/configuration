@@ -3,7 +3,6 @@
 
 # bash strict mode
 set -euo pipefail
-IFS=$'\n\t'
 
 echo "===------------------------------------------------==="
 echo "=   Hiya! This is Göktuğ's Void Linux Setup Script   ="
@@ -154,15 +153,17 @@ flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flat
 
 ### Enable services:
 
-ln -s /{etc/sv,var/service}/avahi-daemon && sv up avahi-daemon
-ln -s /{etc/sv,var/service}/tlp && sv up tlp
-ln -s /{etc/sv,var/service}/sshd && sv up sshd
-ln -s /{etc/sv,var/service}/bluetoothd && sv up bluetoothd
-ln -s /{etc/sv,var/service}/dcron && sv up dcron
 echo
 echo === Enable system services...
 echo
 
+daemons="avahi-daemon tlp sshd bluetoothd dcron"
+
+for daemon in $daemons; do
+    [ -e /var/service/$daemon ] || ln -Ts /{etc/sv,var/service}/$daemon
+    sv up $daemon
+    sv status $daemon
+done
 
 echo
 echo === Update configuration files...
