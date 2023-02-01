@@ -44,3 +44,4 @@ nmap
 # emacs
 libotf libotf-devel
 m17n-db m17n-lib
+void-docs
