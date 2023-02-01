@@ -10,6 +10,7 @@ set -euo pipefail
 
 echo "===------------------------------------------------==="
 echo "=   Hiya! This is Göktuğ's Void Linux Setup Script   ="
+echo "=           Stage 01: set up base system             ="
 echo "===------------------------------------------------==="
 echo
 echo === Beginning installation at $(date)...
