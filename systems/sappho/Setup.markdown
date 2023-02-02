@@ -30,10 +30,10 @@ Run `lsblk` and make sure you know which block device will be
 targeted. You’ll be prompted **once** by the script to provide that
 information.
 
-Run and attend to the `stage01.bash` script. It will set up a
-full-disk encrypted; LUKS, LVM, and EXT4 based; seed setup that can be
-booted into, with a `root` user and a user `cadadr`. Configure variables
-up top in the script if necessary.
+Run and attend to the [`stage01.bash`](./stage01.bash) script. It will
+set up a full-disk encrypted; LUKS, LVM, and EXT4 based; seed setup that
+can be booted into, with a `root` user and a user `cadadr`. Configure
+variables up top in the script if necessary.
 
 During this stage, root cadadr and LUKS passwords will be set, LUKS
 password will be required multiple times.
@@ -49,19 +49,20 @@ the `wheel` group to run `sudo`.
 *Note* that scripts in this section are intended to be non-interactive,
 and they are likely to take a long time each.
 
-Install system packages and enable services using `stage02.bash`.
+Install system packages and enable services using
+[`stage02.bash`](./stage02.bash).
 
-Install flatpaks if desired.
+Install [flatpaks](../common/flatpak.sh) if desired.
 
     sh ../common/flatpak.sh
 
-Install (Xe(La))TeX packages if desired (TeX installation is time
-consuming, so it’s separated and made optional. Only certain features
-of my `emacs.d` depend on it).
+Install [(Xe(La))TeX packages](./tex.bash) if desired (TeX installation
+is time consuming, so it’s separated and made optional. Only certain
+features of my `emacs.d` depend on it).
 
     bash ./tex.bash
 
-Install packages from `new.txt`.
+Install packages from [`new.txt`](./new.txt).
 
     sed 's/#.*//' new.txt | xargs sudo xbps-install -y
 
