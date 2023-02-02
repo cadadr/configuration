@@ -19,13 +19,7 @@ check-router-mac-address.bash "$GK_SAPPHO_HOME_ROUTER_MAC" || {
 # If ‘GK_BORG_INTERACTIVE’ is set, display progress info.
 maybe_progress="${GK_BORG_INTERACTIVE:+--stats --progress}"
 
-# repository
-user="${GK_BORG_USER-pi}"
-host="${GK_BORG_HOST-xanthippe.local}"
-dir="${GK_BORG_DIR-/home/$user/cadadr-encrypted-storage/repo-$(hostname)}"
-repo=$user@$host:$dir
-
-say repository: $repo
+say repository: $BORG_REPO
 
 say starting local backup with borg...
 
@@ -33,7 +27,7 @@ if [ ! -f "$MYSYSTEM/full-backup.dirs" ]; then
     die backups not supported, "$MYSYSTEM/full-backup.dirs" not found
 fi
 
-borg create $maybe_progress --compression=lz4 "$repo::{user}-{now}" \
+borg create $maybe_progress --compression=lz4 "::{user}-{now}" \
      $(bash $MYSYSTEM/full-backup.dirs)
 
 exit_code=$?
