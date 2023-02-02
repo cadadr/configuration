@@ -74,5 +74,10 @@ Reboot.
 
 ## Stage 03: user set up
 
+My login setup loads profile scripts from `~/.config/profile.d`. Some variables
+relevant to this setup are expected to be set in a private script there.
+A template for such a file can be found in the [`profile.d-template.sh`
+file](./profile.d-template.sh).
+
 Refer back to [the ‘Post-install’ section of the Readme file at repo
 root](../../Readme.markdown#Post-install).
