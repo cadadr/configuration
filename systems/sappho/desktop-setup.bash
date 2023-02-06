@@ -71,6 +71,8 @@ picom --config $MY/dotfiles/picom.conf &
 xss-lock -l -- $HOME/bin/lockscr.sh &
 # Disk automounter.
 udiskie -t &
+# Polkit authentication agent.
+/usr/libexec/xfce-polkit &
 
 ### Set up toolkit looks:
 
