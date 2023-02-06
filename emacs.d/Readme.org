@@ -57,7 +57,7 @@ Use the commands below to build Emacs on a Debian stable system
 
 #+BEGIN_EXAMPLE
 # apt-get build-dep emacs25 emacs-pdf-tools
-$ build-emacs-master.sh
+$ build-emacs.sh
 #+END_EXAMPLE
 
 * Licence
