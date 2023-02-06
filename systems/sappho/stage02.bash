@@ -148,10 +148,6 @@ echo
 # Update user groups
 usermod -aG kvm $username
 
-# Add flatpak remote
-flatpak remote-add --if-not-exists flathub \
-        https://flathub.org/repo/flathub.flatpakrepo
-
 ### Enable services:
 
 echo
