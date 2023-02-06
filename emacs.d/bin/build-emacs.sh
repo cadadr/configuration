@@ -56,7 +56,7 @@ fi
 
 echo Configure script completed, review output and hit RETURN to build; read nought
 
-make -j$(lscpu | awk '/^CPU\(s\):/ {print $2}')
+make -j$(lscpu | awk '/^CPU\(s\):/ {print $2}') NATIVE_FULL_AOT=1
 
 echo Build finished, hit RETURN to continue to testing w/ -Q.; read nought
 ./src/emacs -Q
