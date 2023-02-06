@@ -1,6 +1,6 @@
 ;;; gk-gui.el --- GUI customisations                 -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2021, 2022  Göktuğ Kayaalp
+;; Copyright (C) 2021, 2022, 2023  Göktuğ Kayaalp
 
 ;;; Commentary:
 
@@ -187,6 +187,10 @@ picks."
 
 (dolist (hook '(special-mode-hook dired-mode-hook rmail-mode-hook rmail-summary-mode-hook))
   (add-hook hook ($ (setq-local cursor-type 'box))))
+
+;; Pixel xcroll:
+
+(pushnew 'pixel-scroll-precision-mode gk-global-modes)
 
 
 

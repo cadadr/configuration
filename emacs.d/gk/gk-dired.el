@@ -1,6 +1,6 @@
 ;;; gk-dired.el --- dired customisations             -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2021  Göktuğ Kayaalp
+;; Copyright (C) 2021, 2023  Göktuğ Kayaalp
 
 ;;; Commentary:
 
@@ -21,7 +21,9 @@
 
 (setf
  ;; Show ls switches in modeline
- dired-switches-in-mode-line 'as-is)
+ dired-switches-in-mode-line 'as-is
+ ;; Allow drag-n-dropping files.
+ dired-mouse-drag-files t)
 
 
 

@@ -571,3 +571,4 @@ It’s intended to run as part of the interactive init process."
 (put 'timer-list 'disabled nil)
 (put 'scroll-left 'disabled nil)
 (put 'list-timers 'disabled nil)
+(put 'help-fns-edit-variable 'disabled nil)

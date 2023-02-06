@@ -1,6 +1,6 @@
 ;;; gk-url.el --- urls, web browsing                 -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2021, 2022  Göktuğ Kayaalp
+;; Copyright (C) 2021, 2022, 2023  Göktuğ Kayaalp
 
 ;;; Commentary:
 
@@ -287,7 +287,10 @@ provided."
 
 ;;;; EWW:
 
-(setf eww-search-prefix "https://duckduckgo.com/html/?q=")
+(setf
+ eww-search-prefix "https://duckduckgo.com/html/?q="
+ ;; Rename ‘eww’ buffers to page title when page is rendered.
+ eww-auto-rename-buffer 'title)
 
 (defun gk-eww-download ()
   "Download URL under point."

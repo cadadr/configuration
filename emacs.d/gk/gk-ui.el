@@ -112,6 +112,9 @@
                            rmail-summary-mode))))
     .
     (display-buffer-same-window)))
+ ;; Don’t use windows that have less than this many lines for
+ ;; ‘display-buffer’.
+ display-buffer-avoid-small-windows 10
  ;; With C-v and M-v, scroll to beginning or end of buffer if at top
  ;; or bottom respectively, or if at beginning or end of buffer,
  ;; error.
@@ -203,7 +206,21 @@
  ;; whitespace or sequence thereof.
  search-whitespace-regexp (rx (1+ (or whitespace "\n")))
  isearch-lax-whitespace t
- isearch-regexp-lax-whitespace t)
+ isearch-regexp-lax-whitespace t
+ ;; Hint invisible context in echo area when show-paren is active.
+ show-paren-context-when-offscreen t
+ ;; Show toggle buttons in margins for ‘outline-minor-mode’.
+ outline-minor-mode-use-buttons 'in-margins
+ ;; Start ‘outline-minor-mode’ out folded.
+ outline-default-state 'outline-show-only-headings
+ ;; Allow drag-n-dropping files from the modeline.
+ mouse-drag-mode-line-buffer t
+ ;; Allow drag-n-dropping region with mouse.
+ mouse-drag-and-drop-region t
+ ;; Allow drag-n-dropping region to other programs.
+ mouse-drag-and-drop-region-cross-program t
+ ;; Allow editing values in help buffers.
+ help-enable-variable-value-editing t)
 
 
 (setq-default save-place t)
