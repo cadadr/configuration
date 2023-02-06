@@ -1,6 +1,6 @@
 ;;; gk-org.el --- org-mode configuration             -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2021, 2022  Göktuğ Kayaalp
+;; Copyright (C) 2021, 2022, 2023  Göktuğ Kayaalp
 
 ;; Author: Göktuğ Kayaalp <self@gkayaalp.com>
 
@@ -1679,7 +1679,7 @@ Meant as a ‘:before’ advice to ‘org-capture’."
    :template (concat "* build on %u\n"
                      ":buildinfo:\n"
                      ":version: %^{Version|head}\n"
-                     ":toolkit: %^{Toolkit|pgtk}\n"
+                     ":toolkit: %^{Toolkit|gtk3}\n"
                      ":end:\n\n"))
 
   (gk-org-define-capture-template
