@@ -1,6 +1,6 @@
 ;;; gk-misc.el --- miscellaneous utility functions   -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2021  Göktuğ Kayaalp
+;; Copyright (C) 2021, 2023  Göktuğ Kayaalp
 
 ;;; Commentary:
 
@@ -158,6 +158,19 @@ singleton list."
       (setq ret (cdr (assoc k ret))))))
 
 (define-obsolete-function-alias 'assoca 'gk-assoca "2021-10-14")
+
+
+;; Swap string case:
+
+(defun gk-invert-case (str)
+  "Invert the letter case of each character of STR."
+  (apply #'string
+         (mapcar ($ (if (= $1 (upcase $1))
+                        (downcase $1)
+                      (upcase $1)))
+                 (string-to-list str))))
+
+(defalias 'gk-swap-case #'gk-invert-case)
 
 
 
