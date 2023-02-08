@@ -66,6 +66,15 @@ Install packages from [`new.txt`](./new.txt).
 
     sed 's/#.*//' new.txt | xargs sudo xbps-install -y
 
+If the local network has a scanner, `saned` can be configured to find
+it as follows (replace `<...>` with the proper hostname):
+
+    echo <scanner server>.local | sudo tee -a /etc/sane.d/net.conf
+
+Restart `saned` if you run the above command:
+
+    sudo sv restart saned
+
 Install packages from Göktuğ’s Void package repo, which is found at
 <https://github.com/cadadr/void-packages>. Follow its [read me
 document](https://github.com/cadadr/void-packages/blob/master/Readme.markdown)
