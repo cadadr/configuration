@@ -154,7 +154,7 @@ echo
 echo === Enable system services...
 echo
 
-daemons="avahi-daemon tlp sshd bluetoothd dcron"
+daemons="avahi-daemon tlp sshd bluetoothd dcron saned"
 
 for daemon in $daemons; do
     [ -e /var/service/$daemon ] || ln -Ts /{etc/sv,var/service}/$daemon
