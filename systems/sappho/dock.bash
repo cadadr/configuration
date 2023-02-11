@@ -3,7 +3,7 @@
 
 # Fork for udev.
 if [ "$2" != "forked" ]; then
-    $(dirname $0)/$(basename $0) $1 forked &
+    su -c "$(dirname $0)/$(basename $0) $1 forked" - cadadr &
     disown
     exit
 fi
@@ -34,7 +34,16 @@ on_docked(){
     xinput set-prop "Logitech USB Trackball" "libinput Button Scrolling Button Lock Enabled" 1 || true
 
     # Monitors
-    /bin/sh /home/cadadr/.screenlayout/sappho-docked-only-external.sh
+    /bin/sh $HOME/.screenlayout/sappho-docked-only-external-vertical.sh
+
+    # update background slideshow symlink
+    rm -f $HOME/.gk-xbg-dir
+    ln -s $HOME/Pictures/wlp/slideshow-vertical $HOME/.gk-xbg-dir
+
+    # advance wallpaper for correctly cropped version.
+    if [ -e $HOME/.setbg.bash.pid ]; then
+        kill -USR1 "$(cat $HOME/.setbg.bash.pid)"
+    fi
 
     notify-send -t 3000 docked "done!"
 }
@@ -43,7 +52,15 @@ on_undocked(){
     notify-send -t 3000 undocked
 
     # Monitors
-    /bin/sh /home/cadadr/.screenlayout/sappho-undocked.sh
+    /bin/sh $HOME/.screenlayout/sappho-undocked.sh
+
+    rm -f $HOME/.gk-xbg-dir
+    ln -s $HOME/Pictures/wlp/slideshow-horizontal $HOME/.gk-xbg-dir
+
+    # advance wallpaper for correctly cropped version.
+    if [ -e $HOME/.setbg.bash.pid ]; then
+        kill -USR1 "$(cat $HOME/.setbg.bash.pid)"
+    fi
 }
 
 

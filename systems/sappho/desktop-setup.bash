@@ -8,8 +8,10 @@ IFS=$'\n\t'
 export DESKTOP_SESSION=i3wm
 export GK_COLOUR_SCHEME_PREFERENCE=dark
 export GK_XBGIMG="$HOME/.xbg.png"
-export GK_XBG_SLIDESHOW_DIR="$HOME/Pictures/wlp/slideshow/"
 export GK_XBG_SLIDESHOW_INTERVAL_MINS=5
+
+rm -f $HOME/.gk-xbg-dir
+ln -s $HOME/Pictures/wlp/slideshow-horizontal /home/cadadr/.gk-xbg-dir
 
 # Manually set lat and long from zone.tab, geoclue is unreliable
 # because FUCK GNOME FUCK GNOME FUCK GNOME.
@@ -46,7 +48,7 @@ export AWT_TOOLKIT=XToolkit
 ulimit -c unlimited
 
 
-### Hardware settings
+### Hardware settings:
 # Disable the annoying ThinkPad touchpad
 xinput set-prop 'SynPS/2 Synaptics TouchPad' 'Device Enabled' 0
 

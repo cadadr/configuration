@@ -3,7 +3,7 @@
 ### General settings:
 set $mod Mod4
 set $hyp Mod3
-set $fnt pango:Iosevka Cadadrish Sans 12
+set $fnt pango:Iosevka Cadadrish Sans 10
 font $fnt
 floating_modifier $mod
 workspace_layout default

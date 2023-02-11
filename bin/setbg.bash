@@ -31,7 +31,7 @@ trap 'clean_up_exit' INT TERM
 
 slideshow_seconds="$(( ${GK_XBG_SLIDESHOW_INTERVAL_MINS-15} * 60 ))"
 
-background_dir="${GK_XBG_SLIDESHOW_DIR-/home/cadadr/Pictures/wlp/slideshow/}"
+background_dir="${GK_XBG_SLIDESHOW_DIR-$HOME/.gk-xbg-dir}"
 
 xbg="${GK_XBGIMG-$HOME/.xbg.png}"
 
