@@ -40,11 +40,6 @@ if [ ! -d "$background_dir" ]; then
     exit 1
 fi
 
-# random sort
-backgrounds=( $(ls "$background_dir" | sort -R) )
-
-s="$(xdpyinfo | grep dimensions: | awk '{print $2}')"
-
 say "start slideshow, dir: $background_dir, interval (secs): $slideshow_seconds"
 
 # TODO(2022-04-15): if $background_dir changes during execution, the
@@ -56,6 +51,9 @@ do_wlp(){
 
     # Clean up stray sleep(1).
     [[ $sleep_pid ]] && kill "$sleep_pid" || :
+
+    # random sort
+    backgrounds=( $(ls "$background_dir" | sort -R) )
 
     while true; do
         # wrap around
@@ -77,6 +75,7 @@ do_wlp(){
 
         # resize and fit screen, in order to make it easily usable from
         # lockscr.sh.
+        s="$(xdpyinfo | grep dimensions: | awk '{print $2}')"
         convert \
             -resize x$(echo $s | cut -dx -f2) \
             -resize "$(echo $s | cut -dx -f1)x<" \
