@@ -168,3 +168,43 @@ bp_procmd () {
 
     bp_${BP_PROMPT_STYLE}_prompt
 }
+
+# Style switching helper
+#
+# If an argument is passed, use it to pick a style quickly; otherwise,
+# interactively pick a prompt style.
+bp_pick_style () {
+    local answer
+    if [ $# -ne 0 ]; then
+            case "$1" in
+                a) BP_PROMPT_STYLE=adaptive ; return 0 ;;
+                s) BP_PROMPT_STYLE=simple ; return 0 ;;
+                *) echo unknown prompt_style: $1 ;;
+            esac
+    else
+        echo Pick prompt style.
+        echo
+        # print prompt samples
+        echo Adaptive prompt will look like:
+        echo
+        bp_adaptive_prompt
+        echo -ne "${PS1@P}" | pr -to 4
+        echo
+        echo Simple prompt will look like:
+        echo
+        bp_simple_prompt
+        echo -ne "${PS1@P}" | pr -to 4
+        # reset PS1 back to currently active choice
+        bp_${BP_PROMPT_STYLE}_prompt
+        echo
+        while read -p 'Choice: [a]daptive, [s]imple (^C to quit)? ' answer; do
+            case "$answer" in
+                a) BP_PROMPT_STYLE=adaptive ; return 0 ;;
+                s) BP_PROMPT_STYLE=simple ; return 0 ;;
+                *) echo unknown prompt style: $answer ;;
+            esac
+        done
+    fi
+}
+
+alias bpicks=bp_pick_style
