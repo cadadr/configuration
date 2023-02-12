@@ -21,8 +21,7 @@ dconf load / < $MYSYSTEM/dconf.dump
 
 ### Input:
 #### Keyboard:
-setxkbmap gb
-setxkbmap -option "ctrl:nocaps"
+bash $MYLIB/hw/keyboard.bash
 
 ### System specific desktop setup:
 
@@ -52,16 +51,24 @@ if [ -e "$MYSYSTEM/desktop-setup.bash" ]; then
                     bash $MYSYSTEM/desktop-setup.bash
             fi
             ;;
+
         # GDM etc. sets it like this, which should do the dbus
         # housekeeping itself.
-        x11) bash $MYSYSTEM/desktop-setup.bash ;;
+        x11)
+            bash $MYSYSTEM/desktop-setup.bash
+            ;;
+
         # A wayland session should not run this script but in case
         # that happens by accident it’s nice to have this in the logs
         # somehow.
         wayland)
-            echo "$0: *** WAYLAND SESSION SETUP NOT IMPLEMENTED YET ***" ;;
+            echo "$0: *** WAYLAND SESSION SETUP NOT IMPLEMENTED YET ***"
+            ;;
+
         # This case should be unreachable but in case it is, it’s nice
         # to have a line in the logs.
-        *) echo "$0: Unknown session type: XDG_SESSION_TYPE=$XDG_SESSION_TYPE (this shouldn't happen)" ;;
+        *)
+            echo "$0: Unknown session type: XDG_SESSION_TYPE=$XDG_SESSION_TYPE (this shouldn't happen)"
+            ;;
     esac
 fi

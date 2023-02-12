@@ -8,6 +8,8 @@ if [ "$2" != "forked" ]; then
     exit
 fi
 
+. $HOME/.profile
+
 # bash strict mode
 set -euo pipefail
 
@@ -23,19 +25,12 @@ on_docked(){
     # Wait for all devices to be detected.
     sleep 5
 
-    # Keyboard
-    setxkbmap gb
-    setxkbmap -option  ctrl:nocaps
+    # Make sure keyboard settings apply to any external keyboard too.
+    bash $MYLIB/hw/keyboard.bash
 
-    # Logitech USB Trackball
-    #
-    # Set small button on the right as middle click, and disable history
-    # navigation.
-    xinput set-button-map "Logitech USB Trackball" \
-        1 0 3 4 5 6 7 2 0
-    # Make button 8 (left small) toggle scroll mode.
-    xinput set-prop "Logitech USB Trackball" \
-        "libinput Button Scrolling Button Lock Enabled" 1 || true
+    # If the USB trackball is attached, configure it.
+    xinput list | grep "Logitech USB Trackball" >/dev/null 2>&1 \
+        && bash $MYLIB/hw/logitech_trackman.bash
 
     # Monitors
     /bin/sh $HOME/.screenlayout/sappho-docked-only-external-vertical.sh
