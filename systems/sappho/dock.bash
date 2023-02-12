@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # dock.bash --- thinkpad docking handler for sappho
 
-# Fork for udev.
-if [ "$2" != "forked" ]; then
+# Fork for udev. The UID check guards for when script is run as the user.
+if [ "$UID" = "0" ] && [ "$2" != "forked" ]; then
     su -c "$(dirname $0)/$(basename $0) $1 forked" - cadadr &
     disown
     exit
