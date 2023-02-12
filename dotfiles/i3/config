@@ -46,8 +46,8 @@ bindsym $mod+Shift+semicolon exec i3-input -P 'i3 command: '
 bindsym $mod+w exec --no-startup-id i3switch.rb
 bindsym $mod+BackSpace exec --no-startup-id python3 $MYLIB/i3/focus-last.py --switch
 bindsym $mod+Control+t exec --no-startup-id sh $MYLIB/toggle-tapping.sh
-bindsym $mod+Next exec --no-startup-id pkill -USR1 -f setbg.bash
-bindsym $mod+Prior exec --no-startup-id pkill -USR2 -f setbg.bash
+bindsym $mod+Next exec  --no-startup-id cat ~/.setbg.bash.pid | xargs kill -USR1
+bindsym $mod+Prior exec --no-startup-id cat ~/.setbg.bash.pid | xargs kill -USR2
 bindsym $mod+q exec --no-startup-id qrclip.sh
 bindsym Print exec --no-startup-id flameshot gui
 bindsym $mod+Tab exec --no-startup-id i3-workspace-finder.bash
