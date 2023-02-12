@@ -152,14 +152,14 @@ export XCURSOR_THEME="$mouse_theme"
 export XCURSOR_SIZE=$mouse_size
 
 ### Launch window manager:
-(sleep 10; notify-send -t 2000 welcome "welcome to $(hostname)!" ) &
-
 # Detect if docked. Because udev is a pile of crap, I need to do this
 # manually... d'uh..
 (cat /sys/devices/platform/dock.*/docked | grep 1) >/dev/null \
     && $MYSYSTEM/dock.bash docked
 
+(sleep 10; notify-send -t 2000 welcome "welcome to $(hostname)!" ) &
+
 # dotfiles/xsession will run $MYSYSTEM/desktop-setup.bash with
 # dbus-launch, so we can just run i3 here.
-exec i3 -V
+exec i3
 
