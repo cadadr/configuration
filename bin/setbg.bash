@@ -42,6 +42,22 @@ fi
 
 say "start slideshow, dir: $background_dir, interval (secs): $slideshow_seconds"
 
+declare -a backgrounds
+
+# Refresh backgrounds if the directory contents do not match the data
+# we have loaded.
+#
+# Initially the backgrounds variable is empty, so will always load in that
+# condition.
+maybe_refresh_backgrounds(){
+    readarray -t current_bgs < <(printf '%s\0' "${backgrounds[@]}" | sort -z | xargs -0n1)
+    directory_contents=( $(ls "$background_dir" | sort) )
+
+    if [ ! "${current_bgs[*]}" = "${directory_contents[*]}" ]; then
+        backgrounds=( $(ls "$background_dir" | sort -R) )
+    fi
+}
+
 # TODO(2022-04-15): if $background_dir changes during execution, the
 # loop gets borked and script hogs CPU.
 do_wlp(){
@@ -52,8 +68,7 @@ do_wlp(){
     # Clean up stray sleep(1).
     [[ $sleep_pid ]] && kill "$sleep_pid" || :
 
-    # random sort
-    backgrounds=( $(ls "$background_dir" | sort -R) )
+    maybe_refresh_backgrounds
 
     while true; do
         # wrap around
