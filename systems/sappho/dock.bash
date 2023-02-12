@@ -27,11 +27,15 @@ on_docked(){
     setxkbmap gb
     setxkbmap -option  ctrl:nocaps
 
-    # Trackball [if present]
-    # Hold the smaller left button to scroll in all directions.
-    xinput set-prop "Logitech USB Trackball" 'libinput Scroll Method Enabled' {0,0,1} || true
-    # Instead of holding, the button 8 toggles scroll mode.
-    xinput set-prop "Logitech USB Trackball" "libinput Button Scrolling Button Lock Enabled" 1 || true
+    # Logitech USB Trackball
+    #
+    # Set small button on the right as middle click, and disable history
+    # navigation.
+    xinput set-button-map "Logitech USB Trackball" \
+        1 0 3 4 5 6 7 2 0
+    # Make button 8 (left small) toggle scroll mode.
+    xinput set-prop "Logitech USB Trackball" \
+        "libinput Button Scrolling Button Lock Enabled" 1 || true
 
     # Monitors
     /bin/sh $HOME/.screenlayout/sappho-docked-only-external-vertical.sh
