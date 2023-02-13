@@ -55,6 +55,7 @@ bindsym $mod+Shift+Tab exec --no-startup-id i3-move-to-workspace.bash
 bindsym F7 exec --no-startup-id load-screen-layout.bash
 bindsym F6 exec --no-startup-id bye.py
 bindsym $mod+j exec --no-startup-id rofimoji --skin-tone neutral
+bindsym $mod+o exec --no-startup-id reorient-monitor.bash
 
 ### Window management keybindings:
 bindsym $mod+b focus left
