@@ -1,6 +1,6 @@
 ;;; gk-cmds.el --- miscellaneous interactive commands  -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2021, 2022  Göktuğ Kayaalp
+;; Copyright (C) 2021, 2022, 2023  Göktuğ Kayaalp
 
 ;;; Commentary:
 
@@ -450,7 +450,7 @@ argument as t, so refer to that command for further details."
   (split-window-sensibly)
   (other-window 1)
   (elfeed)
-  ;; (elfeed-search-fetch nil)
+  (elfeed-search-fetch nil)
   (gk-fetch-mail (lambda (new-mail-p)
                    (when new-mail-p
                      (message "Getting new mail from inboxes...")
