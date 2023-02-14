@@ -11,7 +11,7 @@ set -euo pipefail
 IFS=$'\n\t'
 
 # Run last command in a pipeline in current shell (used for setting
-# variable below.
+# variable below).
 shopt -s lastpipe
 
 current_rotation="$(xrandr -q | grep 'connected primary' | awk '{print $5}')"
