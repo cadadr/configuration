@@ -40,8 +40,9 @@
 
 (quail-set-keyboard-layout "brit-q")
 
-;; TAB won’t show completion, C-i will.
+;; Use C-<tab> to view quail completions
 (define-key quail-translation-keymap [tab] nil)
+(define-key quail-translation-keymap [C-tab] #'quail-completion)
 
 (defvar gk-input-methods '("unilat-gk" "ipa-x-sampa" "japanese"))
 
