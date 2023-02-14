@@ -1,6 +1,6 @@
 ;;; gk-im.el --- input methods configs, quail or otherwise  -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2021  Göktuğ Kayaalp
+;; Copyright (C) 2021, 2023  Göktuğ Kayaalp
 
 ;;; Commentary:
 
