@@ -291,10 +291,26 @@ unlocked, offer to lock it before pasting."
           (insert "; Archive DONE"))))))
 
 
+(defun gk-git-do-auto-fill ()
+  "Variant of ‘do-auto-fill’ for ‘git-commit-mode’ buffers.
+Meant to be assigned locally to ‘auto-fill-function’."
+  ;; Do not fill the first line, I don’t care about weird ass unix
+  ;; nerd git commit message conventions.
+  (if (zerop (current-line))
+      nil
+    (do-auto-fill)))
+
+(define-advice git-commit-turn-on-auto-fill
+    (:after (&rest _) set-gk-git-do-auto-fill)
+  "Set my ‘auto-fill-function’ for ‘git-commit-mode’."
+  (setq-local auto-fill-function #'gk-git-do-auto-fill))
+
 (defun gk-git-commit-mode-hook ()
   "Set up git commit buffer."
   (when (string= (buffer-name) "COMMIT_EDITMSG")
     (gk-git-commit-message-template))
+  ;; Interferes with our auto-fill setup.
+  (yas-minor-mode -1)
   ;; Just won’t work otherwise...
   (run-with-timer
    .1 nil
