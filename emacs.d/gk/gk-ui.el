@@ -746,6 +746,43 @@ column will be split into two instead."
     (select-window (get-buffer-window cbuf))))
 
 
+;;;; Tablist:
+
+;; Smarter window placement for tablist. This is mainly for pdf-tools,
+;; because ‘pdf-annot-list-annotations’ uses tablist and in particular
+;; ‘tablist-context-window’ to display an interactive list of
+;; annotations.
+
+(defun gk-tablist-display-buffer-split-sensibly-and-attach (buf alist)
+  "Modified version of ‘tablist-display-buffer-split-below-and-attach’.
+This version splits horizontally if the window is wider than
+tall."
+  (let ((window (selected-window))
+        (height (cdr (assq 'window-height alist)))
+        newwin)
+    (when height
+      (when (floatp height)
+        (setq height (round (* height (frame-height)))))
+      (setq height (- (max height window-min-height))))
+    (setq newwin
+          (window--display-buffer
+           buf
+           (if (> (window-pixel-height window)
+                  (window-pixel-width window))
+               (split-window-below height)
+             (split-window-right))
+           'window alist))
+    (tablist-window-attach newwin window)
+    newwin))
+
+(setf
+ tablist-context-window-display-action
+ `((display-buffer-reuse-window
+    gk-tablist-display-buffer-split-sensibly-and-attach)
+   (window-height . 0.25)
+   (inhibit-same-window . t)))
+
+
 
 ;;;; Keybindings:
 
