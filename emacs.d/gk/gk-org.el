@@ -630,6 +630,54 @@ of change will be 23:59 on that day"
         (org-agenda-todo arg)
       (org-todo arg))))
 
+(defun gk-pdf-annots-to-org--1 (buffer file-name)
+  "Subroutine of ‘gk-pdf-annots-to-org’."
+  (with-current-buffer buffer
+    (loop for annot in (pdf-info-getannots)
+          when (not (string-empty-p (assoca 'contents annot)))
+          collect (list :text (pdf-info-gettext (assoca 'page annot)
+                                                (assoca 'edges annot)
+                                                'word)
+                        :comment (assoca 'contents annot)
+                        :page (assoca 'page annot)
+                        :id (symbol-name (assoca 'id annot))
+                        :file file-name))))
+
+(defun gk-pdf-annots-to-org (buffer)
+  "Convert PDF annotations with comments into an org mode list.
+
+Generate an org mode list from the PDF annotations which have
+comments, to help in transcription of notes.
+
+Interactively, assume the current buffer is a PDF buffer, and
+generate and display an org mode buffer with the annotations.
+
+When called from lisp, BUFFER must be the PDF buffer, and the
+function returns the org mode list as an unpropertised string."
+  (interactive (list (current-buffer)))
+  (let* ((file-name (buffer-file-name buffer))
+         (annots-buffer (get-buffer-create (concat "*annotations in " file-name "*")))
+         (annots (gk-pdf-annots-to-org--1 buffer file-name)))
+    (with-current-buffer annots-buffer
+      (read-only-mode -1)
+      (erase-buffer)
+      (dolist (annot annots)
+        (insert "- " (plist-get annot :comment))
+        (org-fill-element)
+        (insert "\n  -")
+        (insert " [[pdf-annot:" (plist-get annot :file) "::" (plist-get annot :id) "][locate]]\n\n"))
+      (org-mode)
+      (not-modified)
+      (read-only-mode +1)
+      (goto-char (point-min)))
+    (if (called-interactively-p 'interactive)
+        (display-buffer-pop-up-window annots-buffer nil)
+      (prog1
+          (with-current-buffer
+              annots-buffer
+            (buffer-substring-no-properties (point-min) (point-max)))
+        (kill-buffer annots-buffer)))))
+
 
 
 ;;;; Variables:
