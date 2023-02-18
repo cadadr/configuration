@@ -71,7 +71,13 @@
  pdf-view-resize-factor 1.1
  ;; Show ‘contents’ instead of label in annotation list.
  pdf-annot-list-format
- '((page . 5) (type . 10) (contents . 30) (date . 24)))
+ '((page . 5) (type . 10) (contents . 30) (date . 24))
+ ;; Make pdf-annot-list appear in a nicer fashion.
+ pdf-annot-list-display-buffer-action
+ '((display-buffer-reuse-window display-buffer-at-bottom)
+   (inhibit-same-window . t)
+   (side . bottom)
+   (window-height . 10)))
 
 (define-key pdf-view-mode-map (kbd "M-w") #'pdf-view-kill-ring-save)
 (define-key pdf-view-mode-map "q" #'bury-buffer)
