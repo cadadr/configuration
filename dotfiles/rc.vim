@@ -145,6 +145,11 @@ noremap <C-k> <C-W>k
 noremap <C-h> <C-W>h
 noremap <C-l> <C-W>l
 
+" Split windows easily
+" ====================
+noremap _ :split<cr>
+noremap \| :vsplit<cr>
+
 " Buffer selection
 " ================
 noremap <C-n> :bnext<cr>
