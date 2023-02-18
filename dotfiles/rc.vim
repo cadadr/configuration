@@ -177,6 +177,7 @@ nmap <Leader>b :call setreg('+', expand('%:t:r'))<CR>
 nmap <Leader>p :call setreg("+", getreg("%"))<CR>
 " cd to file's directory
 nmap <Leader>d :call chdir(expand('%:h'))<CR>
+nmap <Leader>q :q<cr>
 
 " Zotero
 " ======
