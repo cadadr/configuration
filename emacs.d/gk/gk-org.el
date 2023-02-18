@@ -1387,6 +1387,19 @@ BEGIN and END are bounds of the region."
     t))
 
 
+;;;;; PDF-Tools:
+
+(org-link-set-parameters
+ "pdf-annot"
+ :follow (lambda (path _)
+           (let* ((bits (string-split path "::"))
+                  (realpath (car bits))
+                  (annot-id (cadr bits)))
+             (with-current-buffer
+                 (find-file-other-window realpath)
+               (pdf-annot-show-annotation (pdf-info-getannot annot-id) t)))))
+
+
 
 ;;;;; Man page:
 
