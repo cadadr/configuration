@@ -1568,18 +1568,22 @@ Generates a "
  '(("okumalar/.+\\.org" . "Org-mode okuma notu")
    nil
    "#+title: "
-   (let ((candidate (ignore-errors
-                      (file-name-sans-extension
-                       (file-name-nondirectory
-                        (buffer-file-name))))))
-     (read-string (format "Okunan metin için key (default: %s): "
-                          candidate)
-                  nil nil candidate))
+   (or (ignore-errors
+         (file-name-sans-extension
+          (file-name-nondirectory
+           (buffer-file-name))))
+       "[unknown]")
    " okuma notları\n"
    "#+date: "
    (format-time-string "[%F %a]\n\n")
-   "[ *Buraya full referans ekle* ]\n\n"
-   "[ *Zotero’daki itemden bu dosyaya link ver* ]\n\n"
+   (or (ignore-errors
+         (concat
+          "ebib:"
+          (file-name-sans-extension
+           (file-name-nondirectory
+            (buffer-file-name)))))
+       "[unknown]")
+   "\n\n"
    "* Overview\n\n"
    "* Notlar\n\n"
    "* Alıntılar\n\n"
