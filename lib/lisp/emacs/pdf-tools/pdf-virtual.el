@@ -31,12 +31,6 @@
 ;; asynchronous case.
 
 ;;; Code:
-(eval-when-compile
-  (unless (or (> emacs-major-version 24)
-              (and (= emacs-major-version 24)
-                   (>= emacs-minor-version 4)))
-    (error "pdf-virtual.el only works with Emacs >= 24.4")))
-
 (require 'let-alist)
 (require 'pdf-info)
 (require 'pdf-util)
@@ -735,8 +729,8 @@ PAGE should be a page-number."
        (defun ,fn ,(cons base-fn-arg arglist)
          ,(format "%sPDF virtual adapter to `%s'.
 
-This function delegates to `%s', unless the FILE-OR-BUFFER
-argument denotes a VPDF document."
+This function delegates to `%s',
+unless the FILE-OR-BUFFER argument denotes a VPDF document."
                   (if doc (concat doc "\n\n") "")
                   base-fn
                   base-fn)
