@@ -60,13 +60,18 @@
    pdf-sync-minor-mode
    pdf-misc-context-menu-minor-mode
    pdf-cache-prefetch-minor-mode
-   pdf-annot-minor-mode)
+   pdf-annot-minor-mode))
+
+(pdf-tools-install-noverify)
+
+(setf
  ;; Manually change the page.
  pdf-view-continuous nil
  ;; Resize more granularly.
- pdf-view-resize-factor 1.1)
-
-(pdf-tools-install-noverify)
+ pdf-view-resize-factor 1.1
+ ;; Show ‘contents’ instead of label in annotation list.
+ pdf-annot-list-format
+ '((page . 5) (type . 10) (contents . 30) (date . 24)))
 
 (define-key pdf-view-mode-map (kbd "M-w") #'pdf-view-kill-ring-save)
 (define-key pdf-view-mode-map "q" #'bury-buffer)
@@ -94,6 +99,11 @@
    (pdf-annot-add-highlight-markup-annotation
     (pdf-view-active-region t)
     "dark turquoise")))
+
+(defun gk-pdf-annot-list-mode-hook ()
+  (pdf-annot-list-follow-minor-mode +1))
+
+(add-hook 'pdf-annot-list-mode-hook #'gk-pdf-annot-list-mode-hook)
 
 
 
