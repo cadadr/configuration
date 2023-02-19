@@ -1877,6 +1877,7 @@ fragments"
 (define-key org-mode-map (kbd "C-c M-e") #'gk-org-reading-notes-ellipsise-last-note)
 (define-key org-mode-map (kbd "C-c M-b") #'gk-org-insert-reading-bibliograpy-note)
 (define-key org-mode-map (kbd "C-c M-m") #'gk-org-reading-note-merge-last-n-notes)
+(define-key org-mode-map (kbd "C-c C-M-c") #'gk-org-reading-note-copy-visible-annotation-contents)
 
 ;; Attachments
 (define-key org-mode-map (kbd "C-c C-M-s") #'gk-org-attach-screenshot)
