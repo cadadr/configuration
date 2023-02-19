@@ -485,7 +485,7 @@ user error and the command aborts."
            (insert " ")
            (gk-org-refill-reading-note)))
        ('search-failed
-        (user-error "Could not find last research note"))))))
+        (user-error "Could not find last reading note"))))))
 
 (cl-defun gk-org-forward-content (&optional (n 1))
   "Go forward in content view.
