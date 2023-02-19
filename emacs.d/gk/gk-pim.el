@@ -626,10 +626,9 @@ It is rather slow to do so."
                                (window-width))
                         :left)))
     (insert (propertize date 'face 'elfeed-search-date-face) " ")
-    (let ((f (split-string
-              (buffer-local-value
-               'elfeed-search-filter (get-buffer "*elfeed-search*"))
-              " " t)))
+    (let* ((s (buffer-local-value
+               'elfeed-search-filter (get-buffer "*elfeed-search*")))
+           (f (mapcar #'string-trim (s-split-up-to " " s 1 t))))
       ;; If we’re not looking at a stored search, hide tags and don’t
       ;; limit title length.  Otherwise print the truncated title and
       ;; include the filtered tags.  Commit logs and VCS releases get
@@ -653,7 +652,7 @@ It is rather slow to do so."
                 " ")
                (insert (propertize title 'face title-faces 'kbd-help title))))
             ((and (string= (car f) "+unread")
-                  (member (cadr f) gk-elfeed-search-ring-tags))
+                  (member (cadr f) (mapcar #'string-trim gk-elfeed-search-ring-tags)))
              (setq-local word-wrap t)
              (setq-local truncate-lines nil)
              (insert (propertize title 'face title-faces 'kbd-help (concat title ": " feed-title)) " ")
