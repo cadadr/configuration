@@ -1844,8 +1844,6 @@ fragments"
 (define-key org-mode-map [remap backward-paragraph] nil)
 (define-key org-mode-map [remap forward-paragraph] nil)
 (define-key org-mode-map (kbd "C-c q") #'gk-org-refill-reading-note)
-(define-key org-mode-map (kbd "C-c C-# n") #'gk-org-insert-reading-note)
-(define-key org-mode-map (kbd "C-c C-# b") #'gk-org-insert-reading-bibliograpy-note)
 
 ;; Reading notes
 (define-key org-mode-map (kbd "C-c M-r") #'gk-org-insert-reading-note)
