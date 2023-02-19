@@ -1445,7 +1445,20 @@ BEGIN and END are bounds of the region."
                   (annot-id (cadr bits)))
              (with-current-buffer
                  (find-file-other-window realpath)
-               (pdf-annot-show-annotation (pdf-info-getannot annot-id) t)))))
+               (pdf-annot-show-annotation (pdf-info-getannot annot-id) t))))
+ :store (lambda ()
+          (when (and (eq major-mode 'pdf-annot-list-mode)
+                     (buffer-live-p pdf-annot-list-document-buffer))
+            (when-let* ((id (tabulated-list-get-id)))
+              (org-link-store-props
+               :type "pdf-annot"
+               :link (concat
+                      "pdf-annot:"
+                      (buffer-file-name
+                       pdf-annot-list-document-buffer)
+                      "::"
+                      (symbol-name id)))
+              t))))
 
 
 
