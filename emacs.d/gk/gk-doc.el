@@ -68,6 +68,21 @@
 
 
 
+;;;;; Configuration:
+
+;; Add a way to get the currently shown annotation, to be able to
+;; store link.
+
+(defvar-local gk-pdf-annot-currently-shown-annotation
+    nil
+  "The annotation that is highlighted in the current buffer.")
+
+(define-advice pdf-annot-show-annotation
+    (:after (a &optional _ window) make-note-of-active-annot)
+  "Make a buffer-local note of the shown annotation."
+  (with-current-buffer (window-buffer window)
+    (setq-local gk-pdf-annot-currently-shown-annotation a)))
+
 (setf
  ;; Manually change the page.
  pdf-view-continuous nil
