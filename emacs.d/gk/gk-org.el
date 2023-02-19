@@ -487,6 +487,20 @@ user error and the command aborts."
        ('search-failed
         (user-error "Could not find last reading note"))))))
 
+(defun gk-org-reading-note-copy-visible-annotation-contents ()
+  "Try to get the contents of the current annotation in ‘pdf-annot-list-mode’."
+  (interactive)
+  (ignore-errors
+    (save-excursion
+      (insert
+       (with-current-buffer "*Contents*"
+         (buffer-substring-no-properties
+          (save-excursion (goto-char (point-min))
+                          (forward-line 1)
+                          (line-beginning-position))
+          (point-max))))
+      (org-fill-paragraph))))
+
 (cl-defun gk-org-forward-content (&optional (n 1))
   "Go forward in content view.
 
