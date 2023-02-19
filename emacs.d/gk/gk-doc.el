@@ -49,6 +49,8 @@
 
 ;; PDF tools is a sophisticated alternative to DocView for PDF files.
 
+;;;;; Setup:
+
 (setf
  pdf-tools-enabled-modes
  '(pdf-isearch-minor-mode
@@ -63,6 +65,8 @@
    pdf-annot-minor-mode))
 
 (pdf-tools-install-noverify)
+
+
 
 (setf
  ;; Manually change the page.
