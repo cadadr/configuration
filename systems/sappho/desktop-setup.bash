@@ -119,7 +119,7 @@ echo >> "$GK_GTK3_SETTINGS_FILE"
 # Gsettings
 gsettings set org.gnome.desktop.interface cursor-theme "$mouse_theme"
 gsettings set org.gnome.desktop.interface cursor-size  "$mouse_size"
-gsettings set org.gnome.desktop.interface color-scheme prefer-dark
+gsettings set org.gnome.desktop.interface color-scheme "prefer-$GK_COLOUR_SCHEME_PREFERENCE"
 
 # Qt
 export QT_STYLE_OVERRIDE="Fusion"
