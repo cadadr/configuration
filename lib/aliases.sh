@@ -467,6 +467,7 @@ alias q=exit
 # du -hs for both dotfiles & normal files. normally "du -hs ." just shows stats
 # for `.' & `..'`
 alias du_all='du -sch .[!.]* * | sort -h'
+alias mimels='file -bi * | sort | uniq -c'
 
 # raspberry pi
 alias pi="ssh pi@xanthippe.local"
