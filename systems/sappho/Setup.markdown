@@ -80,6 +80,9 @@ Install packages from Göktuğ’s Void package repo, which is found at
 document](https://github.com/cadadr/void-packages/blob/master/Readme.markdown)
 to do so.
 
+If you’re me and restoring your system from a backup, make sure
+`~/Downloads` and `~/Efemera` directories exist.
+
 Reboot.
 
 ## Stage 03: user set up
