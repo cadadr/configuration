@@ -49,3 +49,4 @@ libgomp-devel openblas-devel # dependencies of rpy2
 xfce-polkit # polkit agent, prompts for auth
 alsa-utils
 chromium
+sqlitebrowser
