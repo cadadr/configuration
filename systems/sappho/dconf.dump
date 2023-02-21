@@ -49,10 +49,12 @@ video-y-resolution = 720
 disable-microphone = false
 
 [org/gnome/simple-scan]
+brightness = -38
+contrast = 42
 document-type = 'photo'
 jpeg-quality = 100
 photo-dpi = 150
-save-format = 'application/pdf'
+save-format = 'image/png'
 text-dpi = 75
 
 [org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9]
@@ -69,6 +71,15 @@ type-format = 'category'
 [org/mate/atril]
 
 [org/mate/atril/default]
+continuous = true
+dual-page = false
+dual-page-odd-left = false
+fullscreen = false
+inverted-colors = false
+show-sidebar = false
+show-toolbar = true
+sidebar-page = 'thumbnails'
+sizing-mode = 'fit-width'
 
 [org/mate/desktop/background]
 picture-filename = '/home/cadadr/.xbg.png'
