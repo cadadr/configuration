@@ -1,6 +1,6 @@
 ;;; gk-txt.el --- texte-editing utilities and customisations  -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2021, 2022  Göktuğ Kayaalp
+;; Copyright (C) 2021, 2022, 2023  Göktuğ Kayaalp
 
 ;;; Commentary:
 
@@ -326,12 +326,6 @@ To be called by ‘gk-setup-frame-looks’."
   (unless (file-exists-p ispell-personal-dictionary)
     (f-touch ispell-personal-dictionary))
   (flyspell-mode +1))
-
-(defun gk-spellcheck-hook ()
-  "Hook to start spell-check in buffers."
-  (gk-enable-flyspell))
-
-(add-hook 'text-mode-hook 'gk-spellcheck-hook)
 
 
 
