@@ -3,12 +3,12 @@
 ;; This file indicates the latest build from GNU Emacs git repo that is
 ;; known to work with my Emacs and dotfiles setup.
 ;;
-;; Last updated: 2023-02-0604:37:57+0300.
+;; Last updated: 2023-02-2704:23:02+0300.
 
 (:system
  "x86_64-pc-linux-gnu"
  :commit
- "013655811aa1c89754372610c8c6ccccec166035"
+ "6c4abbab7999f55792a323e4bb1eb55ef5a7b990"
  :branch
  "master"
  :version
