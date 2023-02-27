@@ -50,3 +50,4 @@ xfce-polkit # polkit agent, prompts for auth
 alsa-utils
 chromium
 sqlitebrowser
+zip
