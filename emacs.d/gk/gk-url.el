@@ -164,106 +164,6 @@ Redirect to the raw file url."
 
 
 
-;;;;; Download and open files with Emacs:
-
-;; This mechanism here allows for downloading and opening files with
-;; emacs where that makes sense.  See the section ‘File adapters’ for
-;; the adapters.
-
-;; To add a new adapter, simply: =(gk-urls-make-file-adapter "ext")=
-;; where =ext= is the filename extension.
-
-(defvar gk-urls-file-adapters nil)
-
-(defun gk-urls-browse-file (url &optional ext cb)
-  "Browse a file with the given extension.
-
-URL is the URL to browse.
-EXT is the extension, omit the leading dot.
-CB is the optional callback, run after downloading the file,
-given the path as the only argument.
-Writes the data to a temporary file."
-  (url-retrieve
-   url (lambda (status &optional cbargs)
-         (ignore cbargs)
-         (unless (plist-get status :error)
-           (let ((fil  (make-temp-file
-                        (concat "gkbrowse-" ext)
-                        nil
-                        (when ext
-                          (concat "." ext)))))
-             (write-region
-              ;; Two consequtive newlines delimit the headers section.
-              (save-excursion
-                (goto-char (point-min))
-                (re-search-forward "\n\n") (point))
-              (point-max) fil)
-             (kill-buffer)
-             (when cb (funcall cb fil))
-             (find-file fil))))))
-
-;; TODO(2018-05-25): Make this support regexps as EXT.
-(defmacro gk-urls-make-file-adapter (ext &optional arg &rest body)
-  "Create adapters for `gk-urls-browse-file'.
-
-ARG and BODY are used to make a callback to that function, if both
-provided."
-  (declare (indent defun))
-  (when (string= ext "file")
-    ;; It would override `gk-urls-browse-file'.
-    (error
-     "`file' can't be an extension for `gk-urls-make-file-adapter'"))
-  (let ((funsym (intern (concat "gk-urls-browse-file--" ext)))
-        ;; Make case insensitive match for extension.
-        (reg (concat
-              "\\."
-              (let* (ret
-                     (bits (reverse
-                            (dolist (ch (string-to-list ext) ret)
-                              (push
-                               (let* ((ch1 (char-to-string ch))
-                                      (ch2 (upcase ch1)))
-                                 (concat "[" ch2 ch1 "]"))
-                               ret)))))
-                (mapconcat 'identity bits ""))
-              "/?$")))
-    `(progn
-       (pushnew
-        '(,reg . ,funsym)
-        gk-urls-file-adapters
-        :test 'equal)
-       (defun ,funsym (url &rest args)
-         (ignore args)
-         ,(concat (upcase ext) " adapter for `gk-urls-browse-file'.")
-         (gk-urls-browse-file
-          url ,ext ,(when (and arg body)
-                      `(lambda (,arg) ,@body)))))))
-
-
-
-;;;;; File adapters:
-
-(gk-urls-make-file-adapter "pdf")
-(gk-urls-make-file-adapter "jpeg")
-(gk-urls-make-file-adapter "jpg")
-(gk-urls-make-file-adapter "png")
-(gk-urls-make-file-adapter "gif")
-(gk-urls-make-file-adapter "patch")
-(gk-urls-make-file-adapter "diff")
-(gk-urls-make-file-adapter "txt")
-(gk-urls-make-file-adapter "md")
-(gk-urls-make-file-adapter "tex")
-;;(gk-urls-make-file-adapter "c\\(c\\|pp\\|++\\|xx\\)?")
-;;(gk-urls-make-file-adapter "h\\(h\\|pp\\|++\\|xx\\)?")
-(gk-urls-make-file-adapter "el")
-(gk-urls-make-file-adapter "scm")
-(gk-urls-make-file-adapter "lisp")
-(gk-urls-make-file-adapter "py")
-(gk-urls-make-file-adapter "rb")
-;;(gk-urls-make-file-adapter "p[lm]?6?")
-
-
-
 ;;;;; Set browse-url handlers:
 
 (setf browse-url-handlers
@@ -274,8 +174,7 @@ provided."
         ("^https?://github\\.com/.*?/.*?/blob/" . gk-urls-browse-github-file)
         ("^https?://raw\\.github\\.com/" . gk-urls-browse-github-raw)
         ("file:///home/.+/co/lisp/doc/HyperSpec/" . gk-browse-url)
-        ("^\\(gemini\\|gopher\\)://" . gk-urls-with-elpher)
-        ,@gk-urls-file-adapters))
+        ("^\\(gemini\\|gopher\\)://" . gk-urls-with-elpher)))
 
 
 
