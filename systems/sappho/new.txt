@@ -51,3 +51,4 @@ alsa-utils
 chromium
 sqlitebrowser
 zip
+xmirror
