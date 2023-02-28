@@ -1,6 +1,6 @@
 ;;; gk-mac.el --- generic utility macros             -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2021  Göktuğ Kayaalp
+;; Copyright (C) 2021, 2023  Göktuğ Kayaalp
 
 ;;; Commentary:
 
@@ -62,6 +62,14 @@ at the centre of the newly created frame.  This only happens when
 (defmacro setc (variable value)
   "Exactly like setq, but handles custom."
   `(funcall (or (get ',variable 'custom-set) 'set-default) ',variable ,value))
+
+
+;; From: https://lists.gnu.org/archive/html/help-gnu-emacs/2023-02/msg00302.html
+(defmacro gk-undefalias (symbol)
+  "Undo a ‘defalias’, restore the previous value of SYMBOL."
+  `(progn
+     (fset ,symbol (cadr (get ,symbol 'function-history)))
+     (put ,symbol 'function-history (cddr (get ,symbol 'function-history)))))
 
 
 
