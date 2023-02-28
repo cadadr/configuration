@@ -716,7 +716,9 @@ function returns the org mode list as an unpropertised string."
  ;; In collapsed view, hide empty lines between subtrees.
  org-cycle-separator-lines 0
  ;; RET on links follows link.
- org-return-follows-link t)
+ org-return-follows-link t
+ ;; Element cache is broken and fucks link lookups up.
+ org-element-use-cache nil)
 
 (setf
  ;; Week starts on Monday
