@@ -796,7 +796,7 @@ Mainly used in ‘gk-home’.")
 (setf
  ;; End the day at 5am next day, because I tend to stay up past
  ;; midnight.
- org-extend-today-until 5
+ ;; org-extend-today-until 5
  ;; Don't show done items.
  org-agenda-skip-deadline-if-done t
  org-agenda-skip-scheduled-if-done t
