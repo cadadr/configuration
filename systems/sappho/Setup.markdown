@@ -49,6 +49,9 @@ the `wheel` group to run `sudo`.
 *Note* that scripts in this section are intended to be non-interactive,
 and they are likely to take a long time each.
 
+First of all, use `xmirror(1)` (which should be installed by stage 1
+script) to pick a fast mirror.
+
 Install system packages and enable services using
 [`stage02.bash`](./stage02.bash).
 
