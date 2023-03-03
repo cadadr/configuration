@@ -39,7 +39,7 @@ auto-power-on = @mb false
 burst-delay = 1000
 photo-x-resolution = 1280
 photo-y-resolution = 720
-selected-effect = 'No Effect'
+selected-effect = 'Cartoon'
 video-x-resolution = 1280
 video-y-resolution = 720
 
@@ -114,6 +114,7 @@ info-last-device = '/org/freedesktop/UPower/devices/battery_BAT0'
 info-page-number = 0
 info-stats-type = 'discharge-accuracy'
 sleep-computer-battery = 600
+sleep-display-ac = 1800
 sleep-display-battery = 300
 
 [org/mate/system-monitor]
