@@ -319,7 +319,7 @@ recentlogs(){
 	echo
 	find $MYLOGS/ -mindepth 1 -mtime -3 -not -name '*.old' -exec tail \{\} \+ \
 	    | sed -E "s/^==> (.*)$/$(tput setaf 2)$(tput smul)==> \1$(tput sgr0)/" \
-    ) | pg
+    ) | $PAGER
 }
 
 pvdtar() {
