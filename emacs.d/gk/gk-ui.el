@@ -784,6 +784,14 @@ tall."
 
 
 
+;;;; Ace jump:
+
+(setf
+ ;; Only jump aroun in the current window.
+ ace-jump-mode-scope 'window)
+
+
+
 ;;;; Keybindings:
 
 (defvar gk-window-management-bindings
