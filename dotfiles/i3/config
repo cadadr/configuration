@@ -12,11 +12,8 @@ focus_on_window_activation urgent
 title_align center
 hide_edge_borders none
 
-# show title bars
-# for_window [class=".*"] border normal
-
-# hide title bars
-for_window [class=".*"] border pixel 3
+# always show title bars
+for_window [class=".*"] border normal
 
 # i3-gaps
 gaps inner      15
