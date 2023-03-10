@@ -912,7 +912,12 @@ Prevent comments inline in paragraphs from splitting them."
 ;;;;; LaTeX->PDF:
 
 (setf org-latex-compiler "lualatex"
-      org-latex-pdf-process (list "latexmk -f -silent -bibtex-cond -lualatex %f")
+      org-latex-pdf-process
+      (list
+       (concat
+        "latexmk -lualatex='lualatex -file-line-error -synctex=1'"
+        "-quiet -silent -pdf -bibtex -lualatex"
+        " -output-directory=%o %f"))
       ;; Do remove many sorts of files the process generates...
       org-latex-remove-logfiles t
       ;; ...but keep some important log files.
