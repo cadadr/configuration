@@ -60,6 +60,8 @@ text-dpi = 75
 [org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9]
 use-system-font = false
 
+[org/gtk/settings/color-chooser]
+
 [org/gtk/settings/file-chooser]
 date-format = 'regular'
 show-hidden = false
@@ -102,13 +104,14 @@ sort-type = 'ascending'
 [org/mate/engrampa/ui]
 
 [org/mate/power-manager]
-action-critical-battery = 'suspend'
+action-critical-battery = 'hibernate'
+brightness-ac = 10.300000000000001
 button-lid-ac = 'suspend'
-button-lid-battery = 'suspend'
+button-lid-battery = 'nothing'
 button-power = 'interactive'
 button-suspend = 'suspend'
 icon-policy = 'always'
-idle-dim-ac = true
+idle-dim-ac = false
 info-history-type = 'charge'
 info-last-device = '/org/freedesktop/UPower/devices/battery_BAT0'
 info-page-number = 0
