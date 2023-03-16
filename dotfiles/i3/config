@@ -91,6 +91,9 @@ mode "$mode_kill_window" {
 }
 bindsym $mod+k mode "$mode_kill_window"
 
+# middle click on title bar to kill window
+bindsym --release button2 kill
+
 ### Workspaces:
 set $ws1 "1"
 set $ws2 "2"
