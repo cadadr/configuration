@@ -16,7 +16,7 @@ host __MAIL_HOST__
 port 465
 from __MAIL_ADDR__
 user __MAIL_ADDR__
-passwordeval "pass show __MAIL_ADDR__"
+passwordeval "pass show email/__MAIL_ADDR__"
 
 # Set a default account
 account default : self

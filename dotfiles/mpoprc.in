@@ -16,4 +16,4 @@ port 995
 user __MAIL_ADDR__
 delivery mda "/usr/bin/procmail -f '%F' -a self"
 uidls_file ~/Posta/mpop_uidls/2
-passwordeval "pass show __MAIL_ADDR__"
+passwordeval "pass show email/__MAIL_ADDR__"
