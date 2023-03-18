@@ -1,0 +1,76 @@
+#+title: Issue tracker for personal computing configuration
+#+startup: overview
+#+seq_todo: BUG(b) FEAT(f) RSC(r) UPDATE(u) | DONE(d!) WONTFIX(w@/!)
+
+* Definitions of TODO keywords
+
+- BUG :: A bug to fix.
+
+- FEAT :: A feature to be added, or an enhancement/improvement.
+
+- RSC :: An idea to research.
+
+- UPDATE :: Update a dependency of the system
+
+- DONE :: Something was fixed/implemented/otherwise completed.
+
+- WONTFIX :: Issue closed without completion (given up on, no longer
+  relevant, &c).
+
+* BUG =gk-org-insert-reading-note= should filter out common ligatures
+[2022-10-14 Cum]
+
+Those like =fi, ff, ffi, fl, ti= etc that evil people put in their
+PDFs.
+
+* FEAT Write an ISBN to BibTeX tool like doifetch.el
+[2022-08-25 Prş]
+
+Can take [[https://github.com/jkitchin/org-ref/blob/master/org-ref-isbn.el][this component of org-ref]] as a basis.
+
+* FEAT Fetch Sci-Hub PDF easily with a keybinding in Ebib
+[2022-08-25 Prş]
+
+Use =gk-scihub-pdf= to create a keybinding in ebib to fetch Sci-Hub
+pdfs for current item if there's no associated file.
+
+* RSC Integrate and use shellcheck
+[2022-08-19 Cum]
+
+[[https://github.com/koalaman/shellcheck][Shellcheck]] is a linter for bourne shell. I should integrate it to
+Emacs and use it retroactively for the shell scripts I have.
+
+* FEAT Rewrite dconf-dump.bash in Python
+[2022-06-28 Sal]
+
+The filtering with bash&grep sucks because the format is =.ini=.
+
+If ported to Python (which has built-in =.ini= support in its standard
+library), I can filter it as a data structure which means I can use
+more granular filters.
+
+* BUG Shell alias "refresh" breaks =$PATH=
+[2022-04-24 Paz]
+
+It apparently does not source scripts in =$HOME/.config/profile.d=.
+
+* RSC Stop using Raspbian on xanthippe
+[2021-02-05 Cum]
+
+RPi foundation has sneaked in Microsoft repos into sources.list
+without consent, and without marking it non-free.
+
+- https://www.cyberciti.biz/linux-news/heads-up-microsoft-repo-secretly-installed-on-all-raspberry-pis-linux-os/
+- https://www.reddit.com/r/linux/comments/lbu0t1/microsoft_repo_installed_on_all_raspberry_pis/
+
+Alternative OSes:
+
+- https://wiki.debian.org/RaspberryPi
+- https://www.openbsd.org/arm64.html
+- https://ubuntu.com/download/raspberry-pi
+  - should be compatible with existing setup script
+- https://wiki.freebsd.org/action/show/arm/Raspberry%20Pi?action=show&redirect=FreeBSD%2Farm%2FRaspberry+Pi
+- https://wiki.alpinelinux.org/wiki/Raspberry_Pi
+- https://docs.voidlinux.org/installation/guides/arm-devices/platforms.html
+
+
