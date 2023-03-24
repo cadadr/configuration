@@ -392,3 +392,6 @@ for_window [class="Volctl"] floating enable
 #### Bluetooth:
 for_window [class="Blueman-manager"] floating enable
 
+#### Zoom:
+# Float the notifs.
+for_window [title="^zoom$" class="[zoom]*"] floating enable border none
