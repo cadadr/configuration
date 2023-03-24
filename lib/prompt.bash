@@ -50,7 +50,7 @@ bp_git_branch () {
 }
 
 bp_git_dirty () {
-    test -n "$(git status -s 2>/dev/null)"
+    test -n "$(git status -s 2>/dev/null | head -1)"
 }
 
 bp_hg_branch () {
