@@ -1937,7 +1937,7 @@ fragments"
 
 ;;;; Private settings:
 
-(gk-load (gk-org-dir-file "settings") t)
+(gk-load (gk-org-dir-file "elisp/settings") t)
 
 
 
