@@ -46,10 +46,10 @@ bindsym $mod+q exec --no-startup-id qrclip.sh
 bindsym Print exec --no-startup-id flameshot gui
 bindsym $mod+Tab exec --no-startup-id i3-workspace-finder.bash
 bindsym $mod+Shift+Tab exec --no-startup-id i3-move-to-workspace.bash
-bindsym F7 exec --no-startup-id load-screen-layout.bash
 bindsym F6 exec --no-startup-id bye.py
 bindsym $mod+j exec --no-startup-id rofimoji --skin-tone neutral
-bindsym $mod+o exec --no-startup-id reorient-monitor.bash
+bindsym F7 exec --no-startup-id reorient-monitor.bash
+bindsym $mod+Shift+l exec --no-startup-id load-screen-layout.bash
 
 ### Window management keybindings:
 bindsym $mod+b focus left
