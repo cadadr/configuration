@@ -335,6 +335,12 @@ bindsym $mod+m mode "$mod_mouse_emacs"
 include colours_active_theme
 
 ### Window Rules:
+
+#### General:
+
+# Center all floating windows
+for_window [floating] move position center
+
 #### Praat:
 for_window [title="Praat Objects"] split h
 for_window [title="Praat Picture"] move to container [title="Praat Objects"]
@@ -346,12 +352,15 @@ for_window [class="Praat" title="^Script"] floating enable
 for_window [class="Praat" title="untitled script"] floating enable
 
 #### Zotero:
+
 # new dialog
+
 # for some reason setting the class/instance breaks things and I can't
 # seem to make this vertically center the window.
-for_window [title="Quick Format Citation"] floating enable move position center
+for_window [title="Quick Format Citation"] floating enable
+
 # classic dialog
-for_window [title="Add/Edit Citation" class="Zotero"] floating enable move position center
+for_window [title="Add/Edit Citation" class="Zotero"] floating enable
 
 #### TeXDoctk:
 for_window [title="File search results for .*"] floating enable
@@ -369,16 +378,17 @@ for_window [class="Pavucontrol"] floating enable
 for_window [class="R_x11"] floating enable
 
 #### Editor command for Qutebrowser:
-for_window [class="qtbedit"] floating enable move position center
+for_window [class="qtbedit"] floating enable
 
 #### Telegram client:
-for_window [title="Telegram( \(\d+\))?"] floating enable move position center
+for_window [title="Telegram( \(\d+\))?"] floating enable
 
 #### ImageMagick
-for_window [class="Display" title="ImageMagick: -"] floating enable move position center
+for_window [class="Display" title="ImageMagick: -"] floating enable
 
 #### Volctl
-for_window [class="Volctl"] floating enable move position center
+for_window [class="Volctl"] floating enable
 
 #### Bluetooth:
-for_window [class="Blueman-manager"] floating enable move position center
+for_window [class="Blueman-manager"] floating enable
+
