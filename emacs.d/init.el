@@ -560,6 +560,18 @@ It’s intended to run as part of the interactive init process."
   ;; Record build info.
   (add-hook 'after-init-hook #'gk-dump-latest-good-build))
 
+;; If found, load system specific configuration.
+(when-let* ((system-config-dir (getenv "MYSYSTEM"))
+            (system-config-file
+             (and
+              (not (string-empty-p (string-trim system-config-dir)))
+              (expand-file-name
+               (concat (system-name) "-config.el")
+               system-config-dir))))
+  (when (file-exists-p system-config-file)
+    (message "Loading system-specific config for %s..." (system-name))
+    (gk-load (file-name-sans-extension system-config-file))))
+
 
 
 ;;; Auto-generated stuff:
