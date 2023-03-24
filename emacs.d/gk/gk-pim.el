@@ -295,6 +295,15 @@ command completes successfully."
 
 
 
+;;;;; Encryption and signing:
+
+(setf
+ ;; Determine which key to sign with using the ‘From:’ address.
+ mml-secure-openpgp-sign-with-sender t
+ mml-secure-smime-sign-with-sender t)
+
+
+
 ;;;;; Rmail:
 
 (setf
