@@ -80,3 +80,13 @@ export VERSION_CONTROL=numbered
 
 # Man path
 export MANPATH="$MY/doc/man:"
+
+# XDG
+
+# Push flatpak to the end.
+flatpaks="$(echo $XDG_DATA_DIRS | awk -v RS=: '/flatpak/{print $0}')"
+others="$(echo $XDG_DATA_DIRS | awk -v RS=: '/flatpak/{next}; 1')"
+
+export XDG_DATA_DIRS="$(echo $others $flatpaks | tr ' ' :)"
+
+unset flatpaks others
