@@ -35,6 +35,11 @@ if [ "$TERM" = "dumb" ]; then
     fi
 fi
 
+if [ -n "$INSIDE_EMACS" ]; then
+    # Use the adaptive prompt inside Emacs.
+    bpicks a
+fi
+
 export HISTTIMEFORMAT='%s'
 
 ### Kitty:
