@@ -105,7 +105,7 @@ sort-type = 'ascending'
 
 [org/mate/power-manager]
 action-critical-battery = 'hibernate'
-brightness-ac = 19.800000000000001
+brightness-ac = 36.200000000000003
 button-lid-ac = 'suspend'
 button-lid-battery = 'nothing'
 button-power = 'interactive'
