@@ -53,3 +53,5 @@ sqlitebrowser
 zip
 xmirror
 zig
+tumbler-plugins-extra
+gnome-epub-thumbnailer
