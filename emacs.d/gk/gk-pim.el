@@ -664,7 +664,16 @@ It is rather slow to do so."
                   (member (cadr f) (mapcar #'string-trim gk-elfeed-search-ring-tags)))
              (setq-local word-wrap t)
              (setq-local truncate-lines nil)
-             (insert (propertize title 'face title-faces 'kbd-help (concat title ": " feed-title)) " ")
+             (insert
+              (propertize
+               title
+               'face (if (or (cl-member "releases" tags :test #'string=)
+                             (cl-member "commits" tags :test #'string=))
+                         title-faces
+                       (cons 'variable-pitch title-faces))
+               'kbd-help
+               (concat title ": " feed-title))
+              " ")
              (insert (propertize (concat
                                   "("
                                   (url-host
