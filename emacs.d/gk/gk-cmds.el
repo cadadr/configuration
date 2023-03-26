@@ -187,27 +187,6 @@ together with current time and timezone information."
       (16 "%FT%T%z")                    ;full ISO 8601
       ))))
 
-(defun gk-toggle-wrap (&optional arg)
-  "Toggle word wrap and line truncation.
-
-Without a prefix ARG, toggle the latter off and the former on.
-With a positive prefix, turn both on.  With a negative prefix,
-turn both off.  With a zero prefix, toggle both."
-  (interactive "p")
-  (cond ((or (null arg) (= arg 1))
-         (toggle-truncate-lines -1)
-         (toggle-word-wrap +1))
-        ((= arg 0)
-         (toggle-truncate-lines (if truncate-lines -1 +1))
-         (toggle-word-wrap (if word-wrap -1 +1)))
-        ((> arg 1)
-         (toggle-truncate-lines +1)
-         (toggle-word-wrap +1))
-        ((< arg 0)
-         (toggle-truncate-lines -1)
-         (toggle-word-wrap -1)))
-  (message "truncate-lines: %S; word-wap: %S" truncate-lines word-wrap))
-
 (defun gk-view-emacs-proc-file ()
   "Open the Emacs process status file under /proc."
   (interactive)
