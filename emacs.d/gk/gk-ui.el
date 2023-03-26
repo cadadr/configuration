@@ -795,6 +795,14 @@ tall."
 
 
 
+;;;; Help mode:
+
+;; Show function call examples in *Help* buffers when available.
+(add-hook 'help-fns-describe-function-functions
+          #'shortdoc-help-fns-examples-function)
+
+
+
 ;;;; Keybindings:
 
 (defvar gk-window-management-bindings
