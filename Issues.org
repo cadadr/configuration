@@ -60,6 +60,8 @@ It apparently does not source scripts in =$HOME/.config/profile.d=.
 RPi foundation has sneaked in Microsoft repos into sources.list
 without consent, and without marking it non-free.
 
+This OS also appears to be unmaintained ([2023-03-26 Paz]).
+
 - https://www.cyberciti.biz/linux-news/heads-up-microsoft-repo-secretly-installed-on-all-raspberry-pis-linux-os/
 - https://www.reddit.com/r/linux/comments/lbu0t1/microsoft_repo_installed_on_all_raspberry_pis/
 
