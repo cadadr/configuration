@@ -124,7 +124,7 @@ gsettings set org.gnome.desktop.interface cursor-size  "$mouse_size"
 gsettings set org.gnome.desktop.interface color-scheme "prefer-$GK_COLOUR_SCHEME_PREFERENCE"
 
 # Qt
-export QT_STYLE_OVERRIDE="Fusion"
+export QT_STYLE_OVERIDE="adwaita"
 
 # Mouse theme
 mkdir -p $HOME/.icons/default
