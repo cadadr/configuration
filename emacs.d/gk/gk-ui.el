@@ -501,7 +501,10 @@ So that the reader knows where to continue reading."
  tramp-completion-use-auth-sources nil
 
  ;; Use scp(1) to directly copy instead of temporary directories.
- tramp-use-scp-direct-remote-copying t)
+ tramp-use-scp-direct-remote-copying t
+
+ ;; Do not auto-save remote files.
+ remote-file-name-inhibit-auto-save t)
 
 
 
