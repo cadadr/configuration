@@ -9,7 +9,7 @@ IFS=$'\n\t'
 # Set small button on the right as middle click, and disable history
 # navigation.
 xinput set-button-map "Logitech USB Trackball" \
-       1 0 3 4 5 6 7 2 0
+       1 0 3 4 5 6 7 0 2
 
 # Enable scrolling. By default, the left small button needs to be
 # pressed and held to use the track ball to scroll. But that’s an
