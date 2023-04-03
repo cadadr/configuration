@@ -146,7 +146,7 @@ if gk_dark_theme_p; then
     export GK_KITTY_THEME=colours_gruvbox_dark.conf
 elif gk_light_theme_p; then
     export GK_ROFI_THEME=/usr/share/rofi/themes/Indego.rasi
-    export GK_KITTY_THEME=colours_atelier_cave_light.conf
+    export GK_KITTY_THEME=colours_gruvbox_light.conf
 fi
 
 # Theming related environment variables
