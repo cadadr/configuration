@@ -67,7 +67,7 @@ date-format = 'regular'
 show-hidden = false
 show-size-column = true
 show-type-column = true
-sort-directories-first = false
+sort-directories-first = true
 type-format = 'category'
 
 [org/mate/atril]
