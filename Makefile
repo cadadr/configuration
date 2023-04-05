@@ -47,10 +47,10 @@ emacs.d:
 	$(MAKE) -C emacs.d -$(MAKEFLAGS) all
 
 dotfiles:
-	$(MAKE) -C dotfiles -$(MAKEFLAGS)
+	$(MAKE) -C dotfiles -$(MAKEFLAGS) all
 
 src:
-	$(MAKE) -C src -$(MAKEFLAGS)
+	$(MAKE) -C src -$(MAKEFLAGS) all
 
 
 ### Clean:
