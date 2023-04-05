@@ -32,14 +32,14 @@ on_docked(){
     xinput list | grep "Logitech USB Trackball" >/dev/null 2>&1 \
         && bash $MYLIB/hw/logitech_trackman.bash
 
-    # Monitors
+    # Monitor setup
     /bin/sh $HOME/.screenlayout/sappho-docked-only-external-vertical.sh
 
-    # update background slideshow symlink
+    # Update background slideshow symlink.
     rm -f $HOME/.gk-xbg-dir
     ln -s $HOME/Pictures/wlp/slideshow-vertical $HOME/.gk-xbg-dir
 
-    # advance wallpaper for correctly cropped version.
+    # Advance wallpaper for correctly cropped version.
     if [ -e $HOME/.setbg.bash.pid ]; then
         kill -USR1 "$(cat $HOME/.setbg.bash.pid)"
     fi
@@ -48,15 +48,15 @@ on_docked(){
 }
 
 on_undocked(){
-    notify-send -t 3000 undocked
+    notify-send -t 3000 undocked "setting up..."
 
-    # Monitors
+    # Monitor setup.
     /bin/sh $HOME/.screenlayout/sappho-undocked.sh
 
     rm -f $HOME/.gk-xbg-dir
     ln -s $HOME/Pictures/wlp/slideshow-horizontal $HOME/.gk-xbg-dir
 
-    # advance wallpaper for correctly cropped version.
+    # Advance wallpaper for correctly cropped version.
     if [ -e $HOME/.setbg.bash.pid ]; then
         kill -USR1 "$(cat $HOME/.setbg.bash.pid)"
     fi
