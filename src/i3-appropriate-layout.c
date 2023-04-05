@@ -16,12 +16,12 @@ enum orientation
   };
 
 void
-i3command(const gchar *command, i3ipcCon *container)
+i3command(const gchar *command, i3ipcCon *ws)
 {
   GError *err = NULL;
 
-  g_printf("exec: %s\n", command);
-  i3ipc_con_command(container, command, &err);
+  g_printf("exec for workspace %s: %s\n", i3ipc_con_get_name(ws), command);
+  i3ipc_con_command_children(ws, command, &err);
 
   if(err)
     {
@@ -41,12 +41,10 @@ maybe_set_layout(gpointer data, gpointer user_data)
 
   if (strcmp(layout, "splitv") && (*orientation) == Horizontal)
     {
-      printf("ws %s layout switch v>h\n", i3ipc_con_get_name(ws));
       i3command("layout splith", ws);
     }
   else if (strcmp(layout, "splith") && (*orientation) == Vertical)
     {
-      printf("ws %s layout switch v>h\n", i3ipc_con_get_name(ws));
       i3command("layout splitv", ws);
     }
 }
