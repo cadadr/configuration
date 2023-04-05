@@ -55,3 +55,4 @@ xmirror
 zig
 tumbler-plugins-extra
 gnome-epub-thumbnailer
+i3ipc-glib-0.6.0_4 i3ipc-glib-devel-0.6.0_4 python3-i3ipc-2.2.1_6
