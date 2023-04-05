@@ -1,8 +1,8 @@
-# gdbinit -*- mode: conf-space -*-
+# gdbinit --- gdb configuration -*- mode: gdb-script -*-
 
-# Tell GDB where to look for separate debugging files.
-set debug-file-directory ~/.guix-profile/lib/debug
+set disassembly-flavor intel
 
-# Authorize extensions found in the store, such as the
-# pretty-printers of libstdc++.
-set auto-load safe-path /gnu/store/*/lib
+# TODO(2023-04-06): do this right
+# if guix
+# source $MYLIB/guix/guix-gdbinit
+# end
