@@ -37,6 +37,7 @@ bin/sct
 bin/of
 bin/xmonad
 bin/dwm
+bin/i3-appropriate-layout
 config.m4
 
 systems/*/cinnamon/spices.cache
