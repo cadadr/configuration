@@ -18,10 +18,10 @@ help:
 ### System initialisation:
 .PHONY: setup setup-light fetch-config.m4 etc
 
-setup: fetch-config.m4 dotfiles invade emacs.d
+setup: fetch-config.m4 dotfiles invade emacs.d src
 	sh lib/setup.sh
 
-setup-light: fetch-config.m4 dotfiles invade
+setup-light: fetch-config.m4 dotfiles invade src
 	@echo === Done, consider running make setup later
 
 emacs.d:
@@ -50,10 +50,17 @@ invade:
 dotfiles:
 	$(MAKE) -C dotfiles -$(MAKEFLAGS)
 
+src:
+	$(MAKE) -C src -$(MAKEFLAGS)
+
+
 clean-dotfiles:
 	$(MAKE) -C dotfiles -$(MAKEFLAGS) clean
 
 ### Clean:
+clean-src:
+	$(MAKE) -C src -$(MAKEFLAGS) clean
+
 clean: clean-bin clean-dotfiles
 
 deep-clean:
