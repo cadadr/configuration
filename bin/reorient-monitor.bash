@@ -14,7 +14,7 @@ IFS=$'\n\t'
 # variable below).
 shopt -s lastpipe
 
-current_rotation="$(xrandr -q | grep 'connected primary' | awk '{print $5}')"
+current_rotation="$(xrandr -q | grep 'connected primary' | awk '{print $5}' | tr -d '(')"
 
 dmenu -p "Change monitor rotation to" <<END | \
     awk '{print $1}' | rotation="$(cat)"
