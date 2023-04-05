@@ -15,6 +15,7 @@ help:
 	echo "	dotfiles	build dotfiles";\
 	echo "	clean		delete build artefacts";\
 
+
 ### System initialisation:
 .PHONY: setup setup-light fetch-config.m4 etc
 
@@ -24,8 +25,10 @@ setup: fetch-config.m4 dotfiles invade emacs.d src
 setup-light: fetch-config.m4 dotfiles invade src
 	@echo === Done, consider running make setup later
 
-emacs.d:
-	$(MAKE) -C emacs.d -$(MAKEFLAGS) all
+invade:
+	./bin/invade -v $(HOME)
+	$(MAKE) -C emacs.d -$(MAKEFLAGS) invade
+	cd systems/$(shell hostname)/ && ../../bin/invade -v $(HOME)
 
 fetch-config.m4:
 	if [  -e config.m4 ]; then              \
@@ -38,14 +41,10 @@ fetch-config.m4:
 		touch config.m4                ;\
 	fi
 
-### Build rules:
-clean-bin:
-	$(MAKE) -C bin -$(MAKEFLAGS) clean
 
-invade:
-	./bin/invade -v $(HOME)
-	$(MAKE) -C emacs.d -$(MAKEFLAGS) invade
-	cd systems/$(shell hostname)/ && ../../bin/invade -v $(HOME)
+### Build rules:
+emacs.d:
+	$(MAKE) -C emacs.d -$(MAKEFLAGS) all
 
 dotfiles:
 	$(MAKE) -C dotfiles -$(MAKEFLAGS)
@@ -54,10 +53,10 @@ src:
 	$(MAKE) -C src -$(MAKEFLAGS)
 
 
+### Clean:
 clean-dotfiles:
 	$(MAKE) -C dotfiles -$(MAKEFLAGS) clean
 
-### Clean:
 clean-src:
 	$(MAKE) -C src -$(MAKEFLAGS) clean
 
@@ -67,5 +66,5 @@ deep-clean:
 	git clean -dfx
 
 ### Postamble:
-.PHONY: all build bins dotfiles clean
-.PHONY: clean-bin clean-dotfiles deep-clean emacs.d
+.PHONY: all build dotfiles clean src clean-src
+.PHONY: clean-dotfiles deep-clean emacs.d
