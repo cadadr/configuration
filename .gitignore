@@ -1,5 +1,6 @@
 # .gitignore
 
+# Suffixes
 %gconf.xml
 icons.*.rc
 *.core
@@ -32,19 +33,17 @@ __pycache__
 .venv
 *.value
 
-bin/bright
-bin/sct
-bin/of
-bin/xmonad
-bin/dwm
+# Compiled binaries
 bin/i3-appropriate-layout
+
+# Private config
 config.m4
 
+# Generated state
 systems/*/cinnamon/spices.cache
-
 doc/man/index.db
 
-# Generated files.
+# Generated files
 dotfiles/mpoprc
 dotfiles/msmtprc
 dotfiles/mairixrc
