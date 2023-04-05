@@ -20,8 +20,7 @@ i3command(const gchar *command, i3ipcCon *ws)
 {
   GError *err = NULL;
 
-  g_printf("exec for workspace %s: %s\n", i3ipc_con_get_name(ws), command);
-  i3ipc_con_command_children(ws, command, &err);
+  i3ipc_con_command(ws, command, &err);
 
   if(err)
     {
