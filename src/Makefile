@@ -11,8 +11,9 @@ C_FLAGS_EXTRA =
 ### C flags:
 C_FLAGS = -Wformat=2 -Wfloat-equal -Wundef -Wshadow -Wpointer-arith -Wcast-align
 C_FLAGS += -Wdouble-promotion -Wstrict-prototypes -Wwrite-strings
+C_FLAGS += -Winit-self -Wuninitialized
 C_PEDANTIC = -Wcast-qual  -Wstrict-overflow=5
-C_DEBUG_FLAGS += -g3 -Og -Wextra -Wall -pedantic-errors  -Waggregate-return
+C_DEBUG_FLAGS += -ggdb -Og -Wextra -Wall -pedantic-errors  -Waggregate-return
 C_DEBUG_FLAGS += -Wswitch-default -Wswitch-enum -Wconversion -Wunreachable-code
 C_DEBUG_FLAGS += -fverbose-asm -finstrument-functions --coverage
 
@@ -26,7 +27,7 @@ endif
 ifeq ($(DEBUG),yes)
 C_FLAGS += $(C_DEBUG_FLAGS)
 else
-C_FLAGS += -O3 -Wstrict-overflow=4
+C_FLAGS += -O3 -march=native -Wstrict-overflow=4
 endif
 
 ifeq ($(PEDANTIC),yes)
@@ -65,7 +66,7 @@ all: $(PROGRAMS)
 
 ### Cleaning:
 clean:
-	rm -f $(PROGRAMS)
+	rm -f *.gcno *.o *.so $(PROGRAMS) $(patsubst %,%.gcno,$(PROGRAMS))
 
 ### Phonies:
 .PHONY: help all clean
