@@ -20,7 +20,7 @@ XAUTHORITY="${config[1]}"
 export DISPLAY XAUTHORITY
 
 on_docked(){
-    notify-send -t 5000 docked "setting up..."
+    notify-send -u low -t 5000 docked "setting up..."
 
     # Wait for all devices to be detected.
     sleep 5
@@ -44,11 +44,14 @@ on_docked(){
         kill -USR1 "$(cat $HOME/.setbg.bash.pid)"
     fi
 
-    notify-send -t 3000 docked "done!"
+    # Match workspace layouts to screen orientation.
+    i3-appropriate-layout
+
+    notify-send -u low -t 3000 docked "done!"
 }
 
 on_undocked(){
-    notify-send -t 3000 undocked "setting up..."
+    notify-send -u low -t 3000 undocked "setting up..."
 
     # Monitor setup.
     /bin/sh $HOME/.screenlayout/sappho-undocked.sh
@@ -60,6 +63,11 @@ on_undocked(){
     if [ -e $HOME/.setbg.bash.pid ]; then
         kill -USR1 "$(cat $HOME/.setbg.bash.pid)"
     fi
+
+    # Match workspace layouts to screen orientation.
+    i3-appropriate-layout
+
+    notify-send -u low -t 3000 undocked "done!"
 }
 
 
