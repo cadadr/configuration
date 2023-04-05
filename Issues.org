@@ -17,6 +17,15 @@
 - WONTFIX :: Issue closed without completion (given up on, no longer
   relevant, &c).
 
+* BUG =i3-appropriate-layout= has no effect
+
+I can confirm using =strace -s 256 i3-appropriate-layout= that the
+commands to change the layout return success but it doesn’t actually
+affect the workspaces, it appears.
+
+I tried adding a sleep to make sure the IPC command completes, that
+hasn’t been helpful either.
+
 * BUG =gk-org-insert-reading-note= should filter out common ligatures
 [2022-10-14 Cum]
 
