@@ -32,6 +32,7 @@ tmp.patch
 __pycache__
 .venv
 *.value
+*.gcno
 
 # Compiled binaries
 bin/i3-appropriate-layout
