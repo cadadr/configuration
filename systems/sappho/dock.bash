@@ -45,7 +45,7 @@ on_docked(){
     fi
 
     # Match workspace layouts to screen orientation.
-    i3-appropriate-layout
+    # i3-appropriate-layout
 
     notify-send -u low -t 3000 docked "done!"
 }
@@ -65,7 +65,7 @@ on_undocked(){
     fi
 
     # Match workspace layouts to screen orientation.
-    i3-appropriate-layout
+    # i3-appropriate-layout
 
     notify-send -u low -t 3000 undocked "done!"
 }
