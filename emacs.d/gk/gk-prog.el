@@ -1,6 +1,6 @@
 ;;; gk-prog.el --- configurations for programming modes  -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2021, 2022  Göktuğ Kayaalp
+;; Copyright (C) 2021, 2022, 2023  Göktuğ Kayaalp
 
 ;;; Commentary:
 
@@ -295,6 +295,16 @@ symbol)."
                    (other . "gnu")))
 
 (add-hook 'c-mode-hook 'gk-algol-like-hook)
+
+
+
+;;;; GDB/GUD:
+
+(setf
+ ;; Use the multi-window layout with source code, locals, output &c.
+ gdb-many-windows t
+ ;; Start up with the source file containing main()’s definition shown.
+ gdb-show-main t)
 
 
 
