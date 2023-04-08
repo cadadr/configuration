@@ -17,6 +17,11 @@
 - WONTFIX :: Issue closed without completion (given up on, no longer
   relevant, &c).
 
+* FEAT rofi based main menu for my rofi scripts
+
+A main menu to select which script to run, and maybe can return to
+main menu too.
+
 * BUG =i3-appropriate-layout= has no effect
 
 I can confirm using =strace -s 256 i3-appropriate-layout= that the
