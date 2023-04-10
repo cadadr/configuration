@@ -64,7 +64,8 @@
    pdf-cache-prefetch-minor-mode
    pdf-annot-minor-mode))
 
-(pdf-tools-install-noverify)
+(when (file-exists-p pdf-info-epdfinfo-program)
+  (pdf-tools-install-noverify))
 
 
 
