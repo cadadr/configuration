@@ -28,7 +28,8 @@ For the format, see `format-time-string'."
   (if-let* ((ex (executable-find command)))
       ex
     (when (not silent)
-      (warn "Program is absent: %s" command))))
+      (warn "Program is absent: %s" command))
+    nil))
 
 (defun gk-get-file-contents (file)
   "Get the contents of FILE as a string."
