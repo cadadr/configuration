@@ -37,7 +37,7 @@ case "$command" in
 	exec xbps-query -R $@ | $PAGER
 	;;
     list-kernels|kernels)
-        exec vkpurge list
+        exec sudo vkpurge list
         ;;
     rm-kernels|del-kernels|purge-kernels)
         exec sudo vkpurge rm $@
