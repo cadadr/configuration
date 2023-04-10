@@ -2,6 +2,8 @@
 
 export UMASK=
 
+SYSTEM_CONFIG_DIR = systems/$(shell hostname)
+
 all: help
 
 ### Help:
@@ -28,7 +30,9 @@ setup-light: fetch-config.m4 dotfiles invade src
 invade:
 	./bin/invade -v $(HOME)
 	$(MAKE) -C emacs.d -$(MAKEFLAGS) invade
-	cd systems/$(shell hostname)/ && ../../bin/invade -v $(HOME)
+ifneq ($(wildcard $(SYSTEM_CONFIG_DIR)),) # if $SYSTEM_CONFIG_DIR exists, run its invasion
+	cd $(SYSTEM_CONFIG_DIR) && ../../bin/invade -v $(HOME)
+endif
 
 fetch-config.m4:
 	if [  -e config.m4 ]; then              \

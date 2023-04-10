@@ -13,21 +13,6 @@
 (require 'doc-view)
 (require 'man)
 (require 'pdf-tools)
-;; Set this before loading sub-libraries of ‘pdf-tools’, as they need
-;; it set.
-(setf
- pdf-info-epdfinfo-program
- (gk-executable-ensure
-  (expand-file-name "pdf-tools/server/epdfinfo"
-                    (symbol-value 'gk-elisp-site-dir))))
-;; Now load the rest of ’em.
-(require 'pdf-view)
-(require 'pdf-annot)
-(require 'pdf-cache)
-(require 'pdf-isearch)
-(require 'pdf-misc)
-(require 'pdf-outline)
-(require 'pdf-sync)
 
 (require 'gk-fd)
 
@@ -50,6 +35,21 @@
 ;; PDF tools is a sophisticated alternative to DocView for PDF files.
 
 ;;;;; Setup:
+
+;; This needs to be set first, before loading the libraries and
+;; running ‘pdf-tools-install’ or ‘pdf-tools-install-noverify’.
+(setf
+ pdf-info-epdfinfo-program
+ (expand-file-name "pdf-tools/server/epdfinfo"
+                   (symbol-value 'gk-elisp-site-dir)))
+
+(require 'pdf-view)
+(require 'pdf-annot)
+(require 'pdf-cache)
+(require 'pdf-isearch)
+(require 'pdf-misc)
+(require 'pdf-outline)
+(require 'pdf-sync)
 
 (setf
  pdf-tools-enabled-modes

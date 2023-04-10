@@ -34,12 +34,18 @@ Exclude dot-files, don't sort, and return full paths by default."
 (defvar gk-pub-elisp-dir (expand-file-name "~/Sources/elisp")
   "Directory where my public Elisp programs are.")
 
+(unless (file-exists-p gk-pub-elisp-dir)
+  (user-error "Göktuğ’s Elisp Packages directory does not exist; edit ‘gk-pub-elisp-dir’ or clone https://codeberg.org/cadadr/elisp"))
+
 ;; System paths.
-(add-to-list 'load-path "/usr/share/emacs/site-lisp/")
-(let ((default-directory "/usr/share/emacs/site-lisp/"))
-  (normal-top-level-add-subdirs-to-load-path))
-(add-to-list 'load-path (expand-file-name ".guix-profile/share/emacs/site-lisp"
-                                          (getenv "HOME")))
+(when (file-exists-p "/usr/share/emacs/site-lisp/")
+  (add-to-list 'load-path "/usr/share/emacs/site-lisp/")
+  (let ((default-directory "/usr/share/emacs/site-lisp/"))
+    (normal-top-level-add-subdirs-to-load-path)))
+
+(when-let* ((guix-site-lisp-path
+             (expand-file-name ".guix-profile/share/emacs/site-lisp" (getenv "HOME"))))
+  (add-to-list 'load-path guix-site-lisp-path))
 
 ;; Add custom paths.
 (add-to-list 'load-path gk-pub-elisp-dir)
