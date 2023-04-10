@@ -17,6 +17,12 @@
 - WONTFIX :: Issue closed without completion (given up on, no longer
   relevant, &c).
 
+* FEAT Systems should have their makefiles that handle invade or similar?
+
+Toplevel makefile should not directly call invade for them. they can
+have a makefile with rules like =setup=, =invade=, and similar, that
+hook into the toplevel make
+
 * FEAT rofi based main menu for my rofi scripts
 
 A main menu to select which script to run, and maybe can return to
