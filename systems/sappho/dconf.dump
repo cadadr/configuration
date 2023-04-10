@@ -39,7 +39,7 @@ auto-power-on = @mb false
 burst-delay = 1000
 photo-x-resolution = 1280
 photo-y-resolution = 720
-selected-effect = 'Cartoon'
+selected-effect = 'No Effect'
 video-x-resolution = 1280
 video-y-resolution = 720
 
