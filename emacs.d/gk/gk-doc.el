@@ -33,10 +33,11 @@
 ;; running ‘pdf-tools-install’ or ‘pdf-tools-install-noverify’.
 (setf
  pdf-info-epdfinfo-program
- (expand-file-name "pdf-tools/server/epdfinfo"
-                   (symbol-value 'gk-elisp-site-dir)))
+ (gk-executable-ensure
+  (expand-file-name "pdf-tools/server/epdfinfoo" gk-elisp-site-dir)))
 
-(when (file-exists-p pdf-info-epdfinfo-program)
+(when (and pdf-info-epdfinfo-program
+           (file-exists-p pdf-info-epdfinfo-program))
   (require 'gk-pdftools))
 
 
