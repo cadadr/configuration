@@ -43,11 +43,32 @@ client.background       $colourbg1
 
 ### The bar:
 bar {
+        id wstray
         font $fnt
         position top
         tray_output primary
         strip_workspace_numbers yes
+
+        colors {
+               background #000033
+               statusline $colourfg1
+               separator  $colourhl1
+
+               focused_workspace  $colourhl2 $colourbg2 $colourfg2
+               inactive_workspace $colourhl3 $colourbg3 $colourfg3
+               active_workspace   $colourhl4 $colourbg4 $colourfg4
+               urgent_workspace   $colourhl5 $colourbg5 $colourfg5
+               binding_mode       $colourhl6 $colourbg6 $colourfg6
+        }
+}
+
+bar {
+        id info
+        font $fnt
+        position bottom
         status_command i3status
+        workspace_buttons no
+        tray_output none
         colors {
                background #000033
                statusline $colourfg1
