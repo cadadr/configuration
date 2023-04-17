@@ -114,6 +114,12 @@ bindsym Shift+F3 move container to workspace $ws3
 bindsym Shift+F4 move container to workspace $ws4
 bindsym Shift+F5 move container to workspace $ws5
 
+### Marks:
+
+bindsym F8 exec i3-input -F 'mark %s' -l 1 -P 'Mark: '
+bindsym F9 exec i3-input -F '[con_mark="%s"] focus' -l 1 -P 'Goto: '
+bindsym F10 unmark
+
 ### Multiple monitors:
 
 # Move workspaces between monitors.
