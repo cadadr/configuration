@@ -16,7 +16,7 @@ hide_edge_borders none
 # always show title bars
 for_window [class=".*"] border normal
 
-# i3-gaps
+# gaps; requires i3-gaps or i3wm >= v4.22
 gaps inner      15
 gaps outer      5
 gaps horizontal 15
