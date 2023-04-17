@@ -20,6 +20,7 @@ i3command(const gchar *command, i3ipcCon *ws)
 {
   GError *err = NULL;
 
+  g_printf("running command: %s for workspace %s...\n", command, i3ipc_con_get_name(ws));
   i3ipc_con_command(ws, command, &err);
 
   if(err)
@@ -38,13 +39,16 @@ maybe_set_layout(gpointer data, gpointer user_data)
 
   g_object_get(ws, "layout", &layout, NULL);
 
-  if (strcmp(layout, "splitv") && (*orientation) == Horizontal)
+  g_printf("layout for ws %s is %s.\n", i3ipc_con_get_name(ws), layout);
+  g_printf("screen layout is %s\n", (*orientation) == Horizontal ? "horizontal" : "vertical");
+
+  if ((strcmp(layout, "splitv") == 0) && (*orientation) == Horizontal)
     {
       i3command("layout splith", ws);
     }
-  else if (strcmp(layout, "splith") && (*orientation) == Vertical)
+  else if ((strcmp(layout, "splith") == 0) && (*orientation) == Vertical)
     {
-      i3command("layout splitv", ws);
+      i3command("layout toggle splitv", ws);
     }
 }
 
