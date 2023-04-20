@@ -47,7 +47,7 @@ nil if absent."
 ;;;; GUI:
 
 (defvar gk-preferred-themes (list :light 'modus-operandi-tinted
-                                  :dark  'modus-vivendi-tinted)
+                                  :dark  'gruvbox-dark-medium)
   "Light and dark theme preferences.")
 
 
