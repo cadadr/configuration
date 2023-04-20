@@ -10,7 +10,7 @@ general {
         color_degraded = "#fabd2f"
 }
 
-order += "tztime local"
+# order += "tztime local"
 order += "load"
 order += "battery all"
 order += "cpu_temperature 0"

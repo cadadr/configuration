@@ -49,6 +49,8 @@ bar {
         tray_output primary
         strip_workspace_numbers yes
 
+        status_command $MYLIB/i3time.sh
+
         colors {
                background #000033
                statusline $colourfg1
