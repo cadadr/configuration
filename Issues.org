@@ -18,17 +18,20 @@
   relevant, &c).
 
 * FEAT Systems should have their makefiles that handle invade or similar?
+[2023-04-10 Pzt]
 
 Toplevel makefile should not directly call invade for them. they can
 have a makefile with rules like =setup=, =invade=, and similar, that
 hook into the toplevel make
 
 * FEAT rofi based main menu for my rofi scripts
+[2023-04-08 Cts]
 
 A main menu to select which script to run, and maybe can return to
 main menu too.
 
 * BUG =i3-appropriate-layout= has no effect
+[2023-04-05 Çrş]
 
 I can confirm using =strace -s 256 i3-appropriate-layout= that the
 commands to change the layout return success but it doesn’t actually
