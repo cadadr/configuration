@@ -30,6 +30,9 @@ services-last-item = 0
 [org/blueman/network]
 nap-enable = false
 
+[org/blueman/plugins/autoconnect]
+services = @a(ss) []
+
 [org/blueman/plugins/powermanager]
 auto-power-on = @mb false
 
