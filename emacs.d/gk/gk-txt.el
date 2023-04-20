@@ -255,10 +255,7 @@ will receive the region if active, or the entire buffer."
   (setq-local truncate-lines nil)
   (visual-line-mode 1)
   (set-input-method default-input-method)
-  (setq indent-tabs-mode nil)
-  ;; Started causing slowdowns with large org mode files recently.
-  ;; (highlight-indent-guides-mode)
-  (git-gutter-mode +1))
+  (setq indent-tabs-mode nil))
 
 (add-hook 'text-mode-hook 'gk-text-editing-modes-hook)
 
