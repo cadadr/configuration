@@ -134,10 +134,6 @@ picks."
                       :family (gk-font :mono)
                       :height gk-font-default-height)
 
-  ;; Special font for moon phase visualisation in forecast.el.
-  (set-face-attribute 'forecast-moon-phase nil
-                      :font (gk-font :forecast-moon-phase))
-
   ;; Make parentheses more obvious.
   (set-face-attribute 'parenthesis nil :foreground nil :inherit 'font-lock-keyword-face)
   (set-face-attribute 'show-paren-match nil :background nil  :inverse-video t)
