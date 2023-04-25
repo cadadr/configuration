@@ -180,7 +180,8 @@ picks."
   (setq-default line-spacing 0.2))
 
 (add-to-list 'gk-disabled-modes 'tool-bar-mode)
-(add-to-list 'gk-disabled-modes 'menu-bar-mode)
+(unless (eq system-type 'darwin)
+  (add-to-list 'gk-disabled-modes 'menu-bar-mode))
 (add-to-list 'gk-disabled-modes 'scroll-bar-mode)
 
 ;; Fixes blank area above window after startup with Athena.
