@@ -19,34 +19,49 @@
 
 ;; Default fonts to use in this config.
 
-(defconst gk-default-fonts-plist
-  (list :serif "DejaVu Serif Condensed"
-        :sans "DejaVu Sans Condensed"
-        :mono "Iosevka Cadadrish Sans"
-        :cjk "Noto Serif CJK JP"
-        :arabic "Noto Sans Arabic"
-        :emoji "Noto Color Emoji"
-        :forecast-moon-phase (or (and (font-info "Quivira")
-                                      "Quivira")
-                                 "DejaVu Sans"))
+(defvar gk-default-fonts-plist
+  (case system-type
+    (darwin
+     (list :serif "Times New Roman"
+           :sans "Arial"
+           :mono "Iosevka Cadadrish Sans"
+           :cjk "Hiragino Sans"
+           :arabic "Geeza Pro"
+           :emoji "Apple Color Emoji"))
+    (otherwise
+     (list :serif "DejaVu Serif Condensed"
+           :sans "DejaVu Sans Condensed"
+           :mono "Iosevka Cadadrish Sans"
+           :cjk "Noto Serif CJK JP"
+           :arabic "Noto Sans Arabic"
+           :emoji "Noto Color Emoji")))
   "A plist, default fonts.")
+
 
 ;; Set up so that there's 80-85 chars width for half-sized horizontal
 ;; windows.
-(defvar gk-font-default-height 100)
-(defvar gk-font-variable-pitch-height 100)
+(case system-type
+  (darwin
+   (defvar gk-font-default-height 110)
+   (defvar gk-font-variable-pitch-height 110))
+  (otherwise
+   (defvar gk-font-default-height 110)
+   (defvar gk-font-variable-pitch-height 110)))
+
 
 (defun gk-font (type)
   "Get default font for TYPE, a keyword.
 
 nil if absent."
-  (plist-get gk-default-fonts-plist type))
+  (let ((font (plist-get gk-default-fonts-plist type)))
+    (unless font
+      (warn "Font not present in `gk-default-fonts-plist': %s" type))))
 
 
 
 ;;;; GUI:
 
-(defvar gk-preferred-themes (list :light 'modus-operandi-tinted
+(defvar gk-preferred-themes (list :light 'paper
                                   :dark  'gruvbox-dark-medium)
   "Light and dark theme preferences.")
 
