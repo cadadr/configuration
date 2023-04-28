@@ -60,3 +60,5 @@ clang
 llvm
 rr
 valgrind
+lsof
+rsync
