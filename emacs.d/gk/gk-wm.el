@@ -1,6 +1,6 @@
 ;;; gk-wm.el --- utilities for window managers and desktop environments  -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2021, 2022  Göktuğ Kayaalp
+;; Copyright (C) 2021, 2022, 2023  Göktuğ Kayaalp
 
 ;;; Commentary:
 
@@ -71,6 +71,24 @@ returned instead."
   (cond
    ((not (null gk-preferred-colour-scheme-override))
     gk-preferred-colour-scheme-override)
+   ((and (eq system-type 'darwin)
+         ;; Adapted from https://github.com/LionyxML/auto-dark-emacs.
+         (string-equal
+          "true"
+          (string-trim
+           (shell-command-to-string
+            (concat "osascript -e 'tell application \"System Events\" "
+                    "to tell appearance preferences to return dark mode'")))))
+    :dark)
+   ((and (getenv "DBUS_SESSION_BUS_ADDRESS")
+         (eq 1 (caar (dbus-ignore-errors
+              (dbus-call-method
+               :session
+               "org.freedesktop.portal.Desktop"
+               "/org/freedesktop/portal/desktop"
+               "org.freedesktop.portal.Settings" "Read"
+               "org.freedesktop.appearance" "color-scheme")))))
+    :dark)
    ((and (string= (getenv "DESKTOP_SESSION") "cinnamon")
          (save-match-data
            (string-match
