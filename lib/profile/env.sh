@@ -12,16 +12,6 @@ export PS1='\$ '
 export PASSWORD_STORE_DIR=$HOME/Documents/Passwords
 export TROFFONTS=$HOME/.fonts
 
-case $SYSTEM in
-    FreeBSD)
-	export SSL_CERT_DIR='/etc/ssl';
-	export SSL_CERT_FILE="$SSL_CERT_DIR/cert.pem";
-	export TERMINFO=/usr/local/share/misc/terminfo.db;;
-    Linux)
-	export SSL_CERT_DIR='/etc/ssl/certs';
-	export SSL_CERT_FILE="$SSL_CERT_DIR/ca-certificates.crt";;
-esac
-
 # This made me spend months trying to download the CVS repo of
 # OpenBSD...
 export CVS_RSH=ssh
@@ -61,7 +51,7 @@ fi
 export R_LIBS_USER="$HOME/.local/share/R/site-library"
 
 # Guile
-export GUILE_LOAD_PATH=$MYLIB/scheme:$GUILE_LOAD_PATH
+export GUILE_LOAD_PATH="$MYLIB/scheme${GUILE_LOAD_PATH:+:$GUILE_LOAD_PATH}"
 
 # Lua
 export LUA_PATH="$MYLIB/lua/?.lua"
@@ -79,14 +69,4 @@ export SYSTEMD_COLORS=0
 export VERSION_CONTROL=numbered
 
 # Man path
-export MANPATH="$MY/doc/man:"
-
-# XDG
-
-# Push flatpak to the end.
-flatpaks="$(echo $XDG_DATA_DIRS | awk -v RS=: '/flatpak/{print $0}')"
-others="$(echo $XDG_DATA_DIRS | awk -v RS=: '/flatpak/{next}; 1')"
-
-export XDG_DATA_DIRS="$(echo $others $flatpaks | tr ' ' :)"
-
-unset flatpaks others
+export MANPATH="$MY/doc/man"

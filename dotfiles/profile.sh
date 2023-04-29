@@ -3,7 +3,7 @@
 GK_SOURCED=""
 
 _source (){
-    export GK_SOURCED="$1:$GK_SOURCED"
+    export GK_SOURCED="$1${GK_SOURCED:+:$GK_SOURCED}"
     case $0 in
 	*zsh)	source $@ ;;
 	*)	. $@ ;;
@@ -59,7 +59,9 @@ _source $MYLIB/profile/env.sh
 
 ### XDG:
 
-_source $MYLIB/profile/xdg.sh
+if [ "$(uname)" = "Linux" ]; then
+    _source $MYLIB/profile/xdg.sh
+fi
 
 ###
 

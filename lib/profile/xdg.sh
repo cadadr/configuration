@@ -1,7 +1,7 @@
 # xdg.sh --- FreeDesktop related environment variables
 
 # Equivalent to ~/.local/share/.
-export XDG_DATA_DIRS="$MYSYSTEM/share:$MY/share:$XDG_DATA_DIRS"
+export XDG_DATA_DIRS="$MYSYSTEM/share:$MY/share${XDG_DATA_DIRS:+:$XDG_DATA_DIRS}"
 
 for dir in "$MY/share" "$MYSYSTEM/share";
 do
