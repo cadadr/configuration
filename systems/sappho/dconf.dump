@@ -36,8 +36,6 @@ services = @a(ss) []
 [org/blueman/plugins/powermanager]
 auto-power-on = @mb false
 
-[org/blueman/plugins/recentconns]
-
 [org/gnome/desktop/interface]
 
 [org/gnome/desktop/privacy]
@@ -55,8 +53,6 @@ text-dpi = 75
 [org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9]
 use-system-font = false
 
-[org/gtk/settings/color-chooser]
-
 [org/gtk/settings/file-chooser]
 date-format = 'regular'
 show-hidden = false
@@ -64,8 +60,6 @@ show-size-column = true
 show-type-column = true
 sort-directories-first = true
 type-format = 'category'
-
-[org/mate/atril]
 
 [org/mate/atril/default]
 continuous = true
@@ -96,11 +90,9 @@ show-path = false
 sort-method = 'name'
 sort-type = 'ascending'
 
-[org/mate/engrampa/ui]
-
 [org/mate/power-manager]
 action-critical-battery = 'hibernate'
-brightness-ac = 36.200000000000003
+brightness-ac = 100.0
 button-lid-ac = 'suspend'
 button-lid-battery = 'nothing'
 button-power = 'interactive'
@@ -119,10 +111,6 @@ sleep-display-battery = 300
 show-all-fs = true
 show-tree = false
 
-[org/mate/system-monitor/disktreenew]
-
-[org/mate/system-monitor/memmapstree]
-
 [org/mate/system-monitor/proctree]
 col-22-visible = true
 col-23-visible = true
@@ -140,8 +128,6 @@ word-wrap = true
 
 [org/xfce/mousepad/preferences/window]
 statusbar-visible = true
-
-[org/xfce/mousepad/state/application]
 
 [org/xfce/mousepad/state/window]
 fullscreen = false
