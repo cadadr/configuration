@@ -27,7 +27,19 @@ fi
 # Collect paths from programming-language specific package managers.
 
 # Perl
+
+# Take settings from local::lib but don’t let it set $PATH.
 PERL_PATH="$HOME/perl5/bin"
+eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib 2>/dev/null | grep -v '^PATH')" || :
+
+# R
+export R_LIBS_USER="$HOME/.local/share/R/site-library"
+
+# Guile
+export GUILE_LOAD_PATH="$MYLIB/scheme${GUILE_LOAD_PATH:+:$GUILE_LOAD_PATH}"
+
+# Lua
+export LUA_PATH="$MYLIB/lua/?.lua"
 
 # Ruby
 export GEM_HOME="$HOME/.gem"
@@ -35,6 +47,15 @@ export GEM_HOME="$HOME/.gem"
 if which ruby 2>&1 > /dev/null; then
     export GEM_PATH="$GEM_HOME/bin:$GEM_HOME/ruby/$(ruby -v | cut -d\  -f2 | cut -c1-3).0"
     RUBY_PATH="$GEM_PATH/bin"
+fi
+
+# Pyenv
+export PYENV_ROOT="$MY/share/pyenv"
+if [ -d "$PYENV_ROOT" ]; then
+    export PATH="$PYENV_ROOT/bin:$PATH"
+    if command -v pyenv 1>/dev/null 2>&1; then
+        eval "$(pyenv init -)"
+    fi
 fi
 
 # Pip installs to `.local'.
@@ -71,6 +92,9 @@ if [ -e /etc/systemd ]; then
     systemctl --user import-environment GEM_HOME
     systemctl --user import-environment GEM_PATH
 fi
+
+# Man path
+export MANPATH="$MY/doc/man"
 
 # Finalise
 export GK_PATHS_LOADED=yes
