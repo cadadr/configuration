@@ -31,7 +31,14 @@ Exclude dot-files, don't sort, and return full paths by default."
   (locate-user-emacs-file "gk")
   "Directory where my config libraries are contained.")
 
-(defvar gk-pub-elisp-dir (expand-file-name "~/Sources/elisp")
+(defvar gk-pub-elisp-dir
+  (expand-file-name
+   (car
+    (cl-remove-if-not
+     (lambda (f) (file-exists-p f))
+     (list
+      "~/Sources/elisp"
+      "~/elisp"))))
   "Directory where my public Elisp programs are.")
 
 (unless (file-exists-p gk-pub-elisp-dir)

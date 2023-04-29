@@ -44,29 +44,8 @@
         calendar-latitude (string-to-number lat)
         calendar-longitude (string-to-number long)))
 
-;; Periodically attempt to query geoclue for up-to-date location.
-
-(defvar gk--update-geolocation-timer nil)
-
-;; (when (featurep 'geoclue)
-;;   (setf gk--update-geolocation-timer
-;;         (run-with-idle-timer
-;;          3600
-;;          t
-;;          (lambda ()
-;;            (when-let* ((whereami (geoclue-location))
-;;                        (lat (gk-assoca 'latitude whereami))
-;;                        (long (gk-assoca 'longitude whereami))
-;;                        (desc (gk-assoca 'description whereami)))
-;;              (setf calendar-location-name
-;;                    (if (string-empty-p desc)
-;;                        "(Unknown location)"
-;;                      desc)
-;;                    calendar-latitude lat
-;;                    calendar-longitude long)
-;;              (message "New geolocation: %s (lat: %f, long %f)"
-;;                       calendar-location-name
-;;                       lat long))))))
+;; TODO(2023-04-25): set up a crossplatform way to keep lat long and
+;; timezone up to date.
 
 
 
@@ -108,13 +87,6 @@
   parse-time-weekdays))
 
 
-
-;;;; Weather:
-
-(setq forecast-language 'en
-      forecast-units 'si
-      forecast-time-format "%I:%M:%S%p, %F"
-      forecast-rain-symbol "☔")
 
 ;;;; BBDB:
 
