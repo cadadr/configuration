@@ -54,6 +54,9 @@ ulimit -c unlimited
 # Disable the annoying ThinkPad touchpad
 xinput set-prop 'SynPS/2 Synaptics TouchPad' 'Device Enabled' 0
 
+# Natural scrolling with the nipple
+xinput set-prop 'TPPS/2 IBM TrackPoint' 'Natural Scrolling Enabled' 1
+
 ### Start background processes:
 mate-power-manager       &
 setbg.bash               &
