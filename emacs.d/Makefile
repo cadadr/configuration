@@ -31,10 +31,10 @@ invade:
 	$(HOME)/bin/invade -v $(HOME)
 
 emacs: all
-	PATH="$(PWD)/bin:$(PATH)" NOFETCH=yes sh bin/build-emacs-master.sh
+	PATH="$(PWD)/bin:$(PATH)" NOFETCH=yes sh bin/build-emacs.sh
 
 emacs-up: all
-	PATH="$(PWD)/bin:$(PATH)" sh bin/build-emacs-master.sh
+	PATH="$(PWD)/bin:$(PATH)" sh bin/build-emacs.sh
 
 clean-ext:
 	$(MAKE) -C ext -$(MAKEFLAGS) clean
