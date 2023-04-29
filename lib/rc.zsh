@@ -33,5 +33,5 @@ compinit
 # j: number of jobs
 # L: $SHLVL
 # #: `#' for root, `%' otherwise
-export prompt="%0(?//%K{red}%F{black}<%?>%f%k)%B[%!; %D %*] %b%S %n@%M:%~ %s%B [%j/%L]%#>%b "
+export prompt="%0(?//%K{red}%F{black}<%?>%f%k)%B[%!; %D %*] %b%S %n@%M:%~ %s%B"$'\n'"[%j/%L]%#>%b "
 
