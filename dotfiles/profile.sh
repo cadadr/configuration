@@ -17,7 +17,18 @@ _source /etc/profile >/dev/null 2>&1 || echo Could not source /etc/profile...
 
 ### Variables and system information:
 
-export MY="$HOME/cf"
+if [ -e "$HOME/personal-computing" ]; then
+    MY="$HOME/personal-computing"
+elif [ -e "$HOME/cf" ]; then
+    MY="$HOME/cf"
+elif [ -e "$HOME/Configuration" ]; then
+    MY="$HOME/Configuration"
+else
+    echo "$(hostname) is improperly configured! config dir cannot be found"
+fi
+
+export MY
+
 export MEINE="$MY/dotfiles"
 export MYLIB="$MY/lib"
 export SYSTEM="$(uname)"
