@@ -26,11 +26,6 @@ export QUILT_PUSH_ARGS="--color=never"
 export QUILT_SERIES_ARGS="--color=never -v"
 export QUILT_PAGER="tee"	# Fuck pagination.  I know how to pipe to less.
 
-# Spamd
-export SPAMD_PORT=2338
-export SPAMD_PID=$HOME/var/spamd.pid
-export SPAMD_LOG=$HOME/log/spamd.log
-
 # Python
 export PYTHONSTARTUP=$MEINE/python-init.py
 export DJANGO_COLORS="nocolor"
