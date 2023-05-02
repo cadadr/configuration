@@ -61,7 +61,7 @@ echo '==> Re-enter password to unlock new LUKS volume!'
 echo
 cryptsetup luksOpen /dev/disk/by-partlabel/${hostname}_luks ${hostname}_vg
 vgcreate ${hostname}_vg /dev/mapper/${hostname}_vg
-lvcreate --name ${hostname}_root -L 32G ${hostname}_vg
+lvcreate --name ${hostname}_root -L 48G ${hostname}_vg
 # (swap 24G, for hibernation w/ 16G ram)
 lvcreate --name ${hostname}_swap -L 24G ${hostname}_vg
 lvcreate --name ${hostname}_home -l 100%FREE ${hostname}_vg
