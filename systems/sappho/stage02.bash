@@ -157,9 +157,7 @@ echo
 daemons="avahi-daemon tlp sshd bluetoothd dcron saned"
 
 for daemon in $daemons; do
-    [ -e /var/service/$daemon ] || ln -Ts /{etc/sv,var/service}/$daemon
-    sv up $daemon
-    sv status $daemon
+    [ -e /var/service/$daemon ] || ln -Tvs /{etc/sv,var/service}/$daemon
 done
 
 echo
