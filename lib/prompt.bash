@@ -32,7 +32,7 @@ bp_lastcmdexit () {
 	# so i break the line after it and made it a bit longer just to make it
 	# look nicer as such.
 	[ $last_cmd_exit_code -ne 0 ] && \
-	    printf "$(tput setab $bg)$(tput setaf $fg)$msg: $last_cmd_exit_code$(tput sgr0) \n"
+	    echo -e "$(tput setab $bg)$(tput setaf $fg)$msg: $last_cmd_exit_code$(tput sgr0) "
     fi
     _bp_histcmd="$HISTCMD"
 }
