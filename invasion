@@ -30,6 +30,7 @@
 .muttrc			dotfiles/muttrc
 .procmailrc		dotfiles/procmailrc
 .profile		dotfiles/profile.sh
+.bash_profile		dotfiles/profile.sh
 .screenlayout		dotfiles/screenlayout
 .zprofile		dotfiles/profile.sh
 .signature		dotfiles/signature
