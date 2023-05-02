@@ -95,7 +95,8 @@ echo
 
 xbps-install -Sy -R https://alpha.de.repo.voidlinux.org/current \
              -r /mnt base-system cryptsetup grub-x86_64-efi lvm2 \
-                     NetworkManager git borg wget w3m xmirror
+                     NetworkManager git borg wget w3m xmirror \
+                     tmux
 
 echo
 echo === Configure new system...
