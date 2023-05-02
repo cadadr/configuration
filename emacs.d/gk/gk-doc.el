@@ -34,7 +34,7 @@
 (setf
  pdf-info-epdfinfo-program
  (gk-executable-ensure
-  (expand-file-name "pdf-tools/server/epdfinfoo" gk-elisp-site-dir)))
+  (expand-file-name "pdf-tools/server/epdfinfo" gk-elisp-site-dir)))
 
 (when (and pdf-info-epdfinfo-program
            (file-exists-p pdf-info-epdfinfo-program))
