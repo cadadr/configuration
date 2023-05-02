@@ -1,6 +1,6 @@
 # makefile --- main makefile for .emacs.
 
-export EMACS = /home/g/local/emacs/bin/emacs
+export EMACS = $(HOME)/local/emacs/bin/emacs
 export M4 = m4
 
 help:
