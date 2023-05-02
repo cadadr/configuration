@@ -36,6 +36,15 @@ services = @a(ss) []
 [org/blueman/plugins/powermanager]
 auto-power-on = @mb false
 
+[org/blueman/plugins/recentconns]
+
+[org/gnome/cheese]
+burst-delay = 1000
+photo-x-resolution = 1280
+photo-y-resolution = 720
+video-x-resolution = 1280
+video-y-resolution = 720
+
 [org/gnome/desktop/interface]
 
 [org/gnome/desktop/privacy]
