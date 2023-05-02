@@ -8,7 +8,7 @@ IFS=$'\n\t'
 export DESKTOP_SESSION=i3wm
 # Let’s pretend to be XFCE4.
 export XDG_CURRENT_DESKTOP=XFCE
-export GK_COLOUR_SCHEME_PREFERENCE=dark
+export GK_COLOUR_SCHEME_PREFERENCE=light
 export GK_XBGIMG="$HOME/.xbg.png"
 export GK_XBG_SLIDESHOW_INTERVAL_MINS=5
 
