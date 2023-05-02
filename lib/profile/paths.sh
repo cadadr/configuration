@@ -94,7 +94,7 @@ if [ -e /etc/systemd ]; then
 fi
 
 # Man path
-export MANPATH="$MY/doc/man"
+export MANPATH="$MY/doc/man:"   # keep the trailing (:), cf man(1)
 
 # Finalise
 export GK_PATHS_LOADED=yes
