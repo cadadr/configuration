@@ -39,8 +39,8 @@ fetch-config.m4:
 		:;                              \
 	elif [ -e ../store/config.m4 ]; then    \
 		cp ../store/config.m4 .        ;\
-	elif [ -e $(HOME)/fil/config.m4 ]; then \
-		cp $(HOME)/fil/config.m4 .     ;\
+	elif [ -e $(HOME)/Documents/config.m4 ]; then \
+		cp $(HOME)/Documents/config.m4 .     ;\
 	else                                    \
 		touch config.m4                ;\
 	fi
@@ -72,3 +72,4 @@ deep-clean:
 ### Postamble:
 .PHONY: all build dotfiles clean src clean-src
 .PHONY: clean-dotfiles deep-clean emacs.d
+.PHONY: fetch-config.m4
