@@ -303,7 +303,7 @@ unlocked, offer to lock it before pasting."
 Meant to be assigned locally to ‘auto-fill-function’."
   ;; Do not fill the first line, I don’t care about weird ass unix
   ;; nerd git commit message conventions.
-  (if (zerop (current-line))
+  (if (= 1 (line-number-at-pos))
       nil
     (do-auto-fill)))
 
