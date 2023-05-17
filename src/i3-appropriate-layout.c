@@ -34,21 +34,23 @@ void
 maybe_set_layout(gpointer data, gpointer user_data)
 {
   i3ipcCon *ws = data;
-  enum orientation *orientation = user_data;
-  gchar *layout;
+  enum orientation orientation = *(enum orientation *) user_data;
+  const gchar *layout, *name;
 
   g_object_get(ws, "layout", &layout, NULL);
+  name = i3ipc_con_get_name(ws);
 
-  g_printf("layout for ws %s is %s.\n", i3ipc_con_get_name(ws), layout);
-  g_printf("screen layout is %s\n", (*orientation) == Horizontal ? "horizontal" : "vertical");
+  g_printf("layout for ws %s is %s.\n", name, layout);
+  g_printf("screen layout is %s\n", orientation == Horizontal ? "horizontal" : "vertical");
 
-  if ((strcmp(layout, "splitv") == 0) && (*orientation) == Horizontal)
+  if (strstr(layout, "split") != NULL)
     {
-      i3command("layout splith", ws);
-    }
-  else if ((strcmp(layout, "splith") == 0) && (*orientation) == Vertical)
-    {
-      i3command("layout toggle splitv", ws);
+      if (orientation == Horizontal)
+        i3command("layout splith", ws);
+      else if (orientation == Vertical)
+        i3command("layout splitv", ws);
+      else
+        g_printf("nothing to be done for ws %s\n", name);
     }
 }
 
