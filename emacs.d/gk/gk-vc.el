@@ -80,8 +80,15 @@ For use in `add-log-current-defun-function'."
       (when buf
         (beginning-of-line)
         (with-current-buffer buf
-          (goto-char (+ (car pos) (cdr src)))
-          (add-log-current-defun))))))
+          (save-excursion
+            (goto-char (+ (car pos) (cdr src)))
+            ;; If we’re right before a headline, it’s probably that
+            ;; entry that’s just below the point that’s relevant. So
+            ;; move to that to return /its/ title.
+            (if (and (eq major-mode 'org-mode)
+                     (looking-at (rx (and (1+ "\n") bol "*"))))
+                (org-next-visible-heading 1))
+            (add-log-current-defun)))))))
 (defalias 'diff-current-defun #'gk-diff-current-defun)
 
 (defun gk-diff-mode-hook ()
