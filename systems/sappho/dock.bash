@@ -18,6 +18,8 @@ config=( $config )
 DISPLAY="${config[0]}"
 XAUTHORITY="${config[1]}"
 export DISPLAY XAUTHORITY
+I3SOCK=$(i3 --get-socketpath)
+export I3SOCK
 
 on_docked(){
     notify-send -u low -t 5000 docked "setting up..."
@@ -44,7 +46,9 @@ on_docked(){
         kill -USR1 "$(cat $HOME/.setbg.bash.pid)"
     fi
 
-    # Match workspace layouts to screen orientation.
+    # Adjust i3wm setup
+    i3-msg -t command gaps outer current set 15
+    i3-msg -t command bar mode dock info
     # i3-appropriate-layout
 
     notify-send -u low -t 3000 docked "done!"
@@ -64,7 +68,9 @@ on_undocked(){
         kill -USR1 "$(cat $HOME/.setbg.bash.pid)"
     fi
 
-    # Match workspace layouts to screen orientation.
+    # Adjust i3wm setup
+    i3-msg -t command gaps outer current set 0
+    i3-msg -t command bar mode invisible info
     # i3-appropriate-layout
 
     notify-send -u low -t 3000 undocked "done!"
