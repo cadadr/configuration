@@ -52,10 +52,11 @@
 (defun gk-font (type)
   "Get default font for TYPE, a keyword.
 
-nil if absent."
+Return nil if absent."
   (let ((font (plist-get gk-default-fonts-plist type)))
     (unless font
-      (warn "Font not present in `gk-default-fonts-plist': %s" type))))
+      (warn "Font not present in `gk-default-fonts-plist': %s" type))
+    font))
 
 
 
