@@ -63,7 +63,7 @@ setbg.bash               &
 dunst                    &
 kdeconnect-indicator     &
 clipit                   &
-if $(which pipewire) >/dev/null 2>/dev/null; then
+if which pipewire >/dev/null 2>/dev/null; then
     pipewire             &
     pipewire-pulse       &
 fi
