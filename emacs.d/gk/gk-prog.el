@@ -287,11 +287,17 @@ symbol)."
 
 ;;;; C family:
 
+(c-add-style
+ "modified-bsd"
+ '("bsd"
+   (indent-tabs-mode . nil)
+   (c-basic-offset . 4)))
+
 (setf
  ;; Default C style.
  c-default-style '((java-mode . "java")
                    (awk-mode . "awk")
-                   (other . "gnu")))
+                   (other . "modified-bsd")))
 
 (add-hook 'c-mode-hook 'gk-algol-like-hook)
 
