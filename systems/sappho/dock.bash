@@ -18,7 +18,7 @@ config=( $config )
 DISPLAY="${config[0]}"
 XAUTHORITY="${config[1]}"
 export DISPLAY XAUTHORITY
-I3SOCK=$(i3 --get-socketpath)
+I3SOCK=$(i3 --get-socketpath || :)
 export I3SOCK
 
 on_docked(){
@@ -47,9 +47,11 @@ on_docked(){
     fi
 
     # Adjust i3wm setup
-    i3-msg -t command gaps outer current set 15
-    i3-msg -t command bar mode dock info
-    # i3-appropriate-layout
+    if [ -n "$I3SOCK" ]; then
+        i3-msg -t command gaps outer current set 15
+        i3-msg -t command bar mode dock info
+        # i3-appropriate-layout
+    fi
 
     notify-send -u low -t 3000 docked "done!"
 }
@@ -69,9 +71,11 @@ on_undocked(){
     fi
 
     # Adjust i3wm setup
-    i3-msg -t command gaps outer current set 0
-    i3-msg -t command bar mode invisible info
-    # i3-appropriate-layout
+    if [ -n "$I3SOCK" ]; then
+        i3-msg -t command gaps outer current set 0
+        i3-msg -t command bar mode invisible info
+        # i3-appropriate-layout
+    fi
 
     notify-send -u low -t 3000 undocked "done!"
 }
