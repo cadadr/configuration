@@ -62,3 +62,4 @@ rr
 valgrind
 lsof
 rsync
+libyaml-devel
