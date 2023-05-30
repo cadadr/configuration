@@ -5,6 +5,7 @@ gem 'rdoc'
 gem 'mime-types'
 gem 'rss'
 gem 'solargraph'
+gem 'neocities', '>= 0.0.16'
 
 # for academia-dl
 gem 'nokogiri', ">= 1.13.6"
