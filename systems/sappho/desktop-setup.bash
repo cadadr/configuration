@@ -50,12 +50,11 @@ export AWT_TOOLKIT=XToolkit
 ulimit -c unlimited
 
 
-### Hardware settings:
-# Disable the annoying ThinkPad touchpad
-xinput set-prop 'SynPS/2 Synaptics TouchPad' 'Device Enabled' 0
+### Configure I/O:
 
-# Natural scrolling with the nipple
-xinput set-prop 'TPPS/2 IBM TrackPoint' 'libinput Natural Scrolling Enabled' 1
+bash $MYLIB/hw/keyboard.bash
+
+bash $MYLIB/hw/tpx230.bash
 
 ### Start background processes:
 mate-power-manager       &
