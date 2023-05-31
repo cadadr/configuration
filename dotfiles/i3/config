@@ -16,10 +16,10 @@ hide_edge_borders none
 for_window [class=".*"] border normal
 
 # gaps; requires i3-gaps or i3wm >= v4.22
-gaps inner      15
-gaps outer      5
-gaps horizontal 15
-gaps vertical   10
+gaps inner      10
+gaps outer      0
+gaps horizontal 0
+gaps vertical   0
 
 ### Global parameters
 set $terminal kitty

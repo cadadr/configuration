@@ -21,6 +21,14 @@ export DISPLAY XAUTHORITY
 I3SOCK=$(i3 --get-socketpath || :)
 export I3SOCK
 
+# Args: inner outer horizontal vertical
+set_gaps(){
+    i3-msg -t command gaps inner current set $1
+    i3-msg -t command gaps outer current set $2
+    i3-msg -t command gaps horizontal current set $3
+    i3-msg -t command gaps vertical current set $4
+}
+
 on_docked(){
     notify-send -u low -t 5000 docked "setting up..."
 
@@ -48,8 +56,13 @@ on_docked(){
 
     # Adjust i3wm setup
     if [ -n "$I3SOCK" ]; then
-        i3-msg -t command gaps outer current set 15
+        # Larger gaps
+        set_gaps 15 5 10 10
+
+        # Show bottom info dock
         i3-msg -t command bar mode dock info
+
+        # Swap layout for split virtual desktops
         # i3-appropriate-layout
     fi
 
@@ -72,8 +85,13 @@ on_undocked(){
 
     # Adjust i3wm setup
     if [ -n "$I3SOCK" ]; then
-        i3-msg -t command gaps outer current set 0
+        # Smaller gaps, should reflect the defaults in ~/.config/i3/config
+        set_gaps 10 0 0 0
+
+        # Hide bottom info dock
         i3-msg -t command bar mode invisible info
+
+        # Swap layout for split virtual desktops
         # i3-appropriate-layout
     fi
 

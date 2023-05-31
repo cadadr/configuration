@@ -38,6 +38,8 @@ bar {
         status_command i3status
         workspace_buttons no
         tray_output none
+        # Hide by default, shown when docked.
+        mode invisible
 
         colors {
                 # Whole color settings
