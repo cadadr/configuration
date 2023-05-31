@@ -19,10 +19,6 @@ xrdb -merge $MEINE/Xdefaults
 ### DConf database:
 dconf load / < $MYSYSTEM/dconf.dump
 
-### Input:
-#### Keyboard:
-bash $MYLIB/hw/keyboard.bash
-
 ### System specific desktop setup:
 
 if [ -e "$MYSYSTEM/desktop-setup.bash" ]; then
