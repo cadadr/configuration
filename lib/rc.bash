@@ -9,6 +9,7 @@ TIMEFORMAT=$'\n[time elapsed: real: %lR	user: %lU	sys: %lS]'
 export TIMEFORMAT
 
 source $MYLIB/prompt.bash;
+bpicks a
 
 # Dance for TRAMP!
 #
