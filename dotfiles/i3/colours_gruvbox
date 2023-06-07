@@ -11,6 +11,10 @@ client.background       #ffffff
 
 bar {
         id wstray
+
+        bindsym button4 nop
+        bindsym button5 nop
+
         font $fnt
         position top
         tray_output primary

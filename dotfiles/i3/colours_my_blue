@@ -44,6 +44,10 @@ client.background       $colourbg1
 ### The bar:
 bar {
         id wstray
+
+        bindsym button4 nop
+        bindsym button5 nop
+
         font $fnt
         position top
         tray_output primary
