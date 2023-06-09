@@ -309,6 +309,7 @@ command completes successfully."
                     (expand-file-name
                      "gkrmailout" gk-mail-temporary-file-directory))
                    ".html")))
+      (message "Sending file://%s to browser..." filename)
       (browse-url
        (concat "file://" (gk-rmail-mime-save-to-tmp button filename))))))
 
