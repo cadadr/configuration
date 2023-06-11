@@ -17,6 +17,11 @@
 - WONTFIX :: Issue closed without completion (given up on, no longer
   relevant, &c).
 
+* RSC Opening a Python file in Emacs runs =python-mode= twice for the same buffer
+[2023-06-11 Paz]
+
+Thus also runs the hooks twice, &c...
+
 * FEAT Systems should have their makefiles that handle invade or similar?
 [2023-04-10 Pzt]
 
