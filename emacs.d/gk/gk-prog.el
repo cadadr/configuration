@@ -83,6 +83,16 @@ Set by ‘gk-algol-like-hook’, don’t manually set.")
  ;; Don’t mess up echo area with full documentation.
  eglot-put-doc-in-help-buffer t)
 
+
+(defun gk-eglot-maybe-start ()
+  "Ask to start ‘eglot’ whether it makes sense, and start it if the user wants."
+  (when (and (memq this-command '(find-file
+                                  find-file-other-window
+                                  find-file-read-only
+                                  gk-find-file))
+             (y-or-n-p "Start and/or connect to LSP server"))
+    (eglot-ensure)))
+
 
 
 ;;;; Flymake:
@@ -427,7 +437,7 @@ symbol)."
 (add-hook 'perl-mode-hook 'gk-algol-like-hook)
 
 (defun gk-perl-mode-hook ()
-  (eglot-ensure))
+  (gk-eglot-maybe-start))
 
 (add-hook 'perl-mode-hook #'gk-perl-mode-hook)
 
@@ -485,7 +495,7 @@ symbol)."
                                    (plist-get gk-python-version :minor))))
 
 (defun gk-python-mode-hook ()
-  (eglot-ensure))
+  (gk-eglot-maybe-start))
 
 (add-hook 'python-mode-hook 'gk-algol-like-hook)
 (add-hook 'python-mode-hook 'gk-python-mode-hook)
