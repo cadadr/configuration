@@ -17,6 +17,9 @@
 - WONTFIX :: Issue closed without completion (given up on, no longer
   relevant, &c).
 
+* FEAT =bin/setbg.bash= should not try to change the background while the screen is locked
+[2023-06-12 Pzt]
+
 * RSC Opening a Python file in Emacs runs =python-mode= twice for the same buffer
 [2023-06-11 Paz]
 
