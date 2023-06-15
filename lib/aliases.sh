@@ -314,12 +314,21 @@ clearrecents(){
 }
 
 recentlogs(){
+    pager="$PAGER"
+    # If the pager is less(1), use the «raw control chars» option, in
+    # order for the colour output to work. My Emacs pager shim ignores
+    # the argument. more(1) doesn’t seem to have an argument lie that,
+    # but doesn’t seem to require one either, it just works with the
+    # generated output.
+    if [ "$pager" = "less" ]; then
+        pager="$pager -R"
+    fi
     (
 	echo "$(tput smul)Log files modified in the last three days$(tput sgr0)"
 	echo
 	find $MYLOGS/ -mindepth 1 -mtime -3 -not -name '*.old' -exec tail \{\} \+ \
 	    | sed -E "s/^==> (.*)$/$(tput setaf 2)$(tput smul)==> \1$(tput sgr0)/" \
-    ) | $PAGER
+    ) | $pager
 }
 
 pvdtar() {
