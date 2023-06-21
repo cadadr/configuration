@@ -18,7 +18,6 @@ echo \
     $HOME/Fotoğraflar \
     $HOME/Library     \
     $HOME/Music       \
-    $HOME/Notes       \
     $HOME/Notlar      \
     $HOME/Pictures    \
     $HOME/Posta       \
@@ -26,5 +25,4 @@ echo \
     $HOME/Scratch     \
     $HOME/Sources     \
     $HOME/Videos      \
-    $HOME/Zotero      \
     $HOME/cf
