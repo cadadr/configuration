@@ -20,3 +20,6 @@ xinput set-prop "Logitech USB Trackball" 'libinput Scroll Method Enabled' \
 # ... make button 8 (left small) toggle scroll mode.
 xinput set-prop "Logitech USB Trackball" \
        "libinput Button Scrolling Button Lock Enabled" 1
+
+# Enable «natural scrolling».
+xinput list-props "Logitech USB Trackball" "libinput Natural Scrolling Enabled" 1
