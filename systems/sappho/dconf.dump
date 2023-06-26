@@ -42,6 +42,7 @@ auto-power-on = @mb false
 burst-delay = 1000
 photo-x-resolution = 1280
 photo-y-resolution = 720
+selected-effect = 'No Effect'
 video-x-resolution = 1280
 video-y-resolution = 720
 
@@ -98,6 +99,8 @@ name-column-width = 250
 show-path = false
 sort-method = 'name'
 sort-type = 'ascending'
+
+[org/mate/engrampa/ui]
 
 [org/mate/power-manager]
 action-critical-battery = 'hibernate'
