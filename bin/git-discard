@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+# git-discard --- discard unstaged changes
+
+# bash strict mode
+set -euo pipefail
+IFS=$'\n\t'
+
+echo Do you really want to discard all unstaged changes?
+echo
+echo Summary of changes in "$(pwd)":
+echo
+git status --short
+echo
+printf "Asnwer 'yes' to confirm: "
+read answer
+case "$answer" in
+    yes) echo exec git checkout -- . ;;
+    *)   echo Nothing done. ;;
+esac
