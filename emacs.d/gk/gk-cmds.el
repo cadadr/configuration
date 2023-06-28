@@ -316,10 +316,16 @@ BUFFER defaults to current buffer, and SECONDS to 1."
     (forward-char)
     (point)))
 
-(defun gk-build-emacs ()
-  "Build Emacs \"master\" branch from local git checkout."
-  (interactive)
-  (let ((compilation-buffer-name-function ($ [_] "*Build Emacs*")))
+(defun gk-build-emacs (&optional nofetch)
+  "Build Emacs \"master\" branch from local git checkout.
+
+If called with prefix argument or NOFETCH is non-nil, do not
+fetch from upstream repo, only build the local checkout."
+  (interactive (list (not (null current-prefix-arg))))
+  (let ((compilation-buffer-name-function ($ [_] "*Build Emacs*"))
+        (process-environment (if nofetch
+                                 (cons "NOFETCH=yes" process-environment)
+                               process-environment)))
     (compile "build-emacs.sh" t)))
 
 (defun gk-visit-user-init-file ()
