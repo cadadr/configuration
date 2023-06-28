@@ -10,4 +10,4 @@ IFS=$'\n\t'
 xinput set-prop 'SynPS/2 Synaptics TouchPad' 'Device Enabled' 0
 
 # Natural scrolling with the nipple
-xinput set-prop 'TPPS/2 IBM TrackPoint' 'libinput Natural Scrolling Enabled' 1
+# xinput set-prop 'TPPS/2 IBM TrackPoint' 'libinput Natural Scrolling Enabled' 1
