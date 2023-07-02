@@ -1052,7 +1052,8 @@ Return the new annotation."
   (when (and (eq type 'text)
              (> (length edges) 1))
     (error "Edges argument should be a single edge-list for text annotations"))
-  (let* ((a (apply #'pdf-info-addannot
+  (let* ((selection-style pdf-view-selection-style)
+         (a (apply #'pdf-info-addannot
                    page
                    (if (eq type 'text)
                        (car edges)
@@ -1060,9 +1061,10 @@ Return the new annotation."
                             (apply #'append
                                    (mapcar
                                     (lambda (e)
-                                      (pdf-info-getselection page e))
+                                      (pdf-info-getselection page e selection-style))
                                     edges))))
                    type
+                   selection-style
                    nil
                    (if (not (eq type 'text)) edges)))
          (id (pdf-annot-get-id a)))
@@ -1652,7 +1654,7 @@ pretty-printed output."
         (type
          (let ((color (pdf-annot-get a 'color))
                (type (pdf-annot-print-property a 'type)))
-           (if pdf-annot-list-highlight-type
+           (if (and pdf-annot-list-highlight-type color)
                (propertize
                 type 'face
                 `(:background ,color

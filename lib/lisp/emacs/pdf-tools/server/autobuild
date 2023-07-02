@@ -421,7 +421,7 @@ os_gentoo() {
 os_void() {
     if [ -f "/etc/os-release" ]; then
         . /etc/os-release
-        if [ "$NAME" != "void" ]; then
+        if [ "$ID" != "void" ]; then
           return 1
         fi
     else
@@ -434,9 +434,11 @@ os_void() {
               poppler-glib-devel
               zlib-devel
               make
-              pkgconf"
+              pkgconf
+              cairo-devel"
     PKGCMD=xbps-install
     PKGARGS="-Sy"
+    export PKG_CONFIG_PATH="${PKG_CONFIG_PATH}:/usr/lib/pkgconfig"
     return 0
 }
 

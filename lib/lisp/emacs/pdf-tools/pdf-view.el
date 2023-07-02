@@ -118,6 +118,20 @@ This should be a cons \(FOREGROUND . BACKGROUND\) of colors."
   :type '(cons (color :tag "Foreground")
                (color :tag "Background")))
 
+(defcustom pdf-view-midnight-invert t
+  "In midnight mode invert the image color lightness maintaining hue.
+
+This is particularly useful if you are viewing documents with
+color coded data in plots.  This will maintain the colors such
+that blue and red will remain these colors in the inverted
+rendering. This inversion is non-trivial. This makes use of the
+OKLab color space which is well calibrated to have equal
+perceptual brightness across hue, but not all colors are within
+the RGB gamut after inversion, causing some colors to saturate.
+Nevertheless, this seems to work well in most cases."
+  :group 'pdf-view
+  :type 'boolean)
+
 (defcustom pdf-view-change-page-hook nil
   "Hook run after changing to another page, but before displaying it.
 
@@ -188,6 +202,15 @@ Issue a warning, if one of them is active in a PDF buffer."
   :group 'pdf-view
   :type '(repeat symbol))
 
+(defcustom pdf-view-selection-style 'word
+  "The current default selection style.
+
+Must be one of `glyph', `word', or `line'."
+  :group 'pdf-view
+  :type '(choice (const glyph)
+                 (const word)
+                 (const line)))
+
 
 ;; * ================================================================== *
 ;; * Internal variables and macros
@@ -216,6 +239,9 @@ regarding display of the region in the later function.")
 
 (defvar-local pdf-view--hotspot-functions nil
   "Alist of hotspot functions.")
+
+(defvar-local pdf-view--current-rotation nil
+  "Current rotation of the page.")
 
 (defvar-local pdf-view-register-alist nil
   "Local, dedicated register for PDF positions.")
@@ -281,6 +307,8 @@ regarding display of the region in the later function.")
     (define-key map (kbd "s m")       'pdf-view-set-slice-using-mouse)
     (define-key map (kbd "s b")       'pdf-view-set-slice-from-bounding-box)
     (define-key map (kbd "s r")       'pdf-view-reset-slice)
+    ;; Rotation.
+    (define-key map (kbd "R")              #'pdf-view-rotate)
     ;; Reconvert
     (define-key map (kbd "C-c C-c")   'doc-view-mode)
     (define-key map (kbd "g")         'revert-buffer)
@@ -337,6 +365,8 @@ PNG images in Emacs buffers."
   ;; Disable pixel-scroll-precision-mode locally if enabled
   (if (bound-and-true-p pixel-scroll-precision-mode)
       (set (make-local-variable 'pixel-scroll-precision-mode) nil))
+  (if (boundp 'mwheel-coalesce-scroll-events)
+      (setq-local mwheel-coalesce-scroll-events t))
 
   ;; Clearing overlays
   (add-hook 'change-major-mode-hook
@@ -461,7 +491,10 @@ operating on a local copy of a remote file."
             ;; in the process), it may be immediately reopened due to
             ;; redisplay happening inside the pdf-info-close function
             ;; (while waiting for a response from the process.).
-            (copy-file tempfile (buffer-file-name) t)
+            (copy-file tempfile (or (buffer-file-name)
+                                    (read-file-name
+                                     "File name to save PDF to: "))
+                       t)
             (pdf-info-close pdf-view--server-file-name)
 
             (when pdf-view--buffer-file-name
@@ -574,6 +607,21 @@ For example, (pdf-view-shrink 1.25) decreases size by 20%."
   (setq pdf-view-display-size 1.0)
   (pdf-view-redisplay t))
 
+
+;; * ================================================================== *
+;; * Rotation
+;; * ================================================================== *
+(defun pdf-view-rotate (angle)
+  "Rotate the current page by ANGLE degrees clockwise.
+When called interactively, angle defaults to 90.  Moreover, if
+called interactively with a prefix argument, then rotate
+anti-clockwise."
+  (interactive (list (if current-prefix-arg -90 90)))
+  (setq-local pdf-view--current-rotation
+              (mod (+ (or pdf-view--current-rotation 0)
+                      angle)
+                   360))
+  (pdf-view-redisplay t))
 
 
 ;; * ================================================================== *
@@ -962,6 +1010,7 @@ See also `pdf-view-use-imagemagick'."
                     window page size)))
     (pdf-view-create-image data
       :width (car size)
+      :rotation (or pdf-view--current-rotation 0)
       :map hotspots
       :pointer 'arrow)))
 
@@ -1210,7 +1259,16 @@ The colors are determined by the variable
                   (pdf-info-setoptions
                    :render/foreground (or (car pdf-view-midnight-colors) "black")
                    :render/background (or (cdr pdf-view-midnight-colors) "white")
-                   :render/usecolors t))))
+                   :render/usecolors
+                   (if pdf-view-midnight-invert
+                       ;; If midnight invert is enabled, pass "2" indicating
+                       ;; that :render/foreground and :render/background should
+                       ;; be ignored and to instead invert the PDF (preserving
+                       ;; hue)
+                       2
+                     ;; If invert is not enabled, pass "1" indictating that
+                     ;; :render/foreground and :render/background should be used
+                     1)))))
     (cond
      (pdf-view-midnight-minor-mode
       (add-hook 'after-save-hook enable nil t)
@@ -1219,9 +1277,19 @@ The colors are determined by the variable
      (t
       (remove-hook 'after-save-hook enable t)
       (remove-hook 'after-revert-hook enable t)
-      (pdf-info-setoptions :render/usecolors nil))))
+      (pdf-info-setoptions
+       ;; Value "0" indicates that colors should remain unchanged
+       :render/usecolors 0))))
   (pdf-cache-clear-images)
   (pdf-view-redisplay t))
+
+(defun pdf-view-set-theme-background ()
+  "Set the buffer's color filter to correspond to the current Emacs theme."
+  (pdf-util-assert-pdf-buffer)
+  (pdf-info-setoptions
+   :render/foreground (face-foreground 'default nil)
+   :render/background (face-background 'default nil)
+   :render/usecolors 1))
 
 (defun pdf-view-refresh-themed-buffer (&optional get-theme)
   "Refresh the current buffer to activate applied colors.
@@ -1233,14 +1301,6 @@ current theme's colors."
   (when get-theme
 	(pdf-view-set-theme-background))
   (pdf-view-redisplay t))
-
-(defun pdf-view-set-theme-background ()
-  "Set the buffer's color filter to correspond to the current Emacs theme."
-  (pdf-util-assert-pdf-buffer)
-  (pdf-info-setoptions
-   :render/foreground (face-foreground 'default nil)
-   :render/background (face-background 'default nil)
-   :render/usecolors t))
 
 (define-minor-mode pdf-view-themed-minor-mode
   "Synchronize color filter with the present Emacs theme.
@@ -1257,7 +1317,7 @@ The colors are determined by the `face-foreground' and
    (t
     (remove-hook 'after-save-hook #'pdf-view-set-theme-background t)
     (remove-hook 'after-revert-hook #'pdf-view-set-theme-background t)
-    (pdf-info-setoptions :render/usecolors nil)))
+    (pdf-info-setoptions :render/usecolors 0)))
   (pdf-view-refresh-themed-buffer pdf-view-themed-minor-mode))
 
 (when pdf-view-use-unicode-ligther
@@ -1338,12 +1398,16 @@ Deactivate the region if DEACTIVATE-P is non-nil."
     (pdf-view-redisplay t)))
 
 (defun pdf-view-mouse-set-region (event &optional allow-extend-p
-                                        rectangle-p)
+                                        rectangle-p
+                                        selection-style)
   "Select a region of text using the mouse with mouse event EVENT.
 
 Allow for stacking of regions, if ALLOW-EXTEND-P is non-nil.
 
 Create a rectangular region, if RECTANGLE-P is non-nil.
+
+Overwrite `pdf-view-selection-style' with SELECTION-STYLE,
+which is one of `glyph', `word', or `line'.
 
 Stores the region in `pdf-view-active-region'."
   (interactive "@e")
@@ -1366,6 +1430,7 @@ Stores the region in `pdf-view-active-region'."
                   (setq begin-inside-image-p nil)
                   (posn-x-y pos)))
          (abs-begin (posn-x-y pos))
+         (selection-style (or selection-style pdf-view-selection-style))
          pdf-view-continuous
          region)
     (when (pdf-util-track-mouse-dragging (event 0.05)
@@ -1418,7 +1483,8 @@ Stores the region in `pdf-view-active-region'."
                         (pdf-util-scale-pixel-to-relative iregion))
                   (pdf-view-display-region
                    (cons region pdf-view-active-region)
-                   rectangle-p)
+                   rectangle-p
+                   selection-style)
                   (pdf-util-scroll-to-edges iregion)))))
       (setq pdf-view-active-region
             (append pdf-view-active-region
@@ -1441,7 +1507,7 @@ This is more useful for commands like
   (interactive "@e")
   (pdf-view-mouse-set-region event nil t))
 
-(defun pdf-view-display-region (&optional region rectangle-p)
+(defun pdf-view-display-region (&optional region rectangle-p selection-style)
   ;; TODO: write documentation!
   (unless region
     (pdf-view-assert-active-region)
@@ -1458,7 +1524,7 @@ This is more useful for commands like
               page width nil
               `(,(car colors) ,(cdr colors) 0.35 ,@region))
            (pdf-info-renderpage-text-regions
-            page width nil nil
+            page width nil selection-style nil
             `(,(car colors) ,(cdr colors) ,@region)))
        :width width))))
 
@@ -1483,7 +1549,11 @@ This is more useful for commands like
   "Return the text of the active region as a list of strings."
   (pdf-view-assert-active-region)
   (mapcar
-   (apply-partially 'pdf-info-gettext (pdf-view-current-page))
+   (lambda (edges)
+     (pdf-info-gettext
+      (pdf-view-current-page)
+      edges
+      pdf-view-selection-style))
    pdf-view-active-region))
 
 (defun pdf-view-extract-region-image (regions &optional page size
