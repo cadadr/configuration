@@ -63,3 +63,5 @@ valgrind
 lsof
 rsync
 libyaml-devel
+keepassxc
+tree-sitter tree-sitter-devel
