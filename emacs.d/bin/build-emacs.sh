@@ -45,12 +45,12 @@ fi
             --with-gameuser=no            \
             --with-cairo                  \
             --with-harfbuzz               \
-	    --with-xft			  \
-	    --with-imagemagick            \
-            --disable-build-details       \
+            --with-xft                    \
+            --with-imagemagick            \
             --with-json                   \
             --without-pop                 \
-            --without-native-compilation  \
+            --with-native-compilation     \
+            --with-tree-sitter            \
             --with-mailutils
 
 
