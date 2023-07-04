@@ -49,8 +49,9 @@ fi
             --with-imagemagick            \
             --with-json                   \
             --without-pop                 \
-            --with-native-compilation     \
+            --without-native-compilation  \
             --with-tree-sitter            \
+            --without-compress-install    \
             --with-mailutils
 
 
