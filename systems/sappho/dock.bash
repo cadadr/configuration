@@ -88,8 +88,10 @@ on_undocked(){
         # Smaller gaps, should reflect the defaults in ~/.config/i3/config
         set_gaps 10 0 0 0
 
-        # Hide bottom info dock
-        i3-msg -t command bar mode invisible info
+        # Hide bottom info dock. With the ‘hide’ mode, it reveals
+        # while the $mod key is held down. The ‘invisible’ mode keeps
+        # it invisible at all times.
+        i3-msg -t command bar mode hide info
 
         # Swap layout for split virtual desktops
         # i3-appropriate-layout
