@@ -43,7 +43,7 @@ on_docked(){
         && bash $MYLIB/hw/logitech_trackman.bash
 
     # Monitor setup
-    /bin/sh $HOME/.screenlayout/sappho-docked-only-external-vertical.sh
+    /bin/sh $HOME/.screenlayout/sappho-docked-both.sh
 
     # Update background slideshow symlink.
     rm -f $HOME/.gk-xbg-dir
