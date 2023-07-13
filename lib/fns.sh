@@ -4,7 +4,7 @@
 say () {
     msg="$0 [$(date)]: $@"
     echo $msg
-    if [ "${GK_NOTIFY-no}" = xyes ]; then
+    if [ "x${GK_NOTIFY-no}" = xyes ]; then
         # IDK why I need to do this but if I use "$@" directly in
         # notify-send command line, it doesn’t work and says invalid
         # number of arguments...
