@@ -53,6 +53,7 @@ on_docked(){
     ln -s $HOME/Pictures/wlp/slideshow-vertical $HOME/.gk-xbg-dir
 
     feh --no-fehbg --bg-fill "$wallpaper_vertical" "$wallpaper_horizontal"
+    convert "$wallpaper_vertical" "$HOME/.xbg.png"
 
     # Adjust i3wm setup
     if [ -n "$I3SOCK" ]; then
@@ -79,6 +80,7 @@ on_undocked(){
     ln -s $HOME/Pictures/wlp/slideshow-horizontal $HOME/.gk-xbg-dir
 
     feh --no-fehbg --bg-fill "$wallpaper_horizontal"
+    convert "$wallpaper_horizontal" "$HOME/.xbg.png"
 
     # Adjust i3wm setup
     if [ -n "$I3SOCK" ]; then
