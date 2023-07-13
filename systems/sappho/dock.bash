@@ -24,14 +24,6 @@ export I3SOCK
 wallpaper_vertical=/home/cadadr/Pictures/wlp/slideshow-vertical/flowers-outside-my-dorm-by-u-shitpostsandsalt-0xt6cxzedmm41.jpg
 wallpaper_horizontal=/home/cadadr/Pictures/wlp/slideshow-horizontal/2342951.jpg
 
-# Args: inner outer horizontal vertical
-set_gaps(){
-    i3-msg -t command gaps inner current set $1
-    i3-msg -t command gaps outer current set $2
-    i3-msg -t command gaps horizontal current set $3
-    i3-msg -t command gaps vertical current set $4
-}
-
 on_docked(){
     notify-send -u low -t 5000 docked "setting up..."
 
@@ -57,9 +49,6 @@ on_docked(){
 
     # Adjust i3wm setup
     if [ -n "$I3SOCK" ]; then
-        # Larger gaps
-        set_gaps 15 5 10 10
-
         # Show bottom info dock
         i3-msg -t command bar mode dock info
 
@@ -84,9 +73,6 @@ on_undocked(){
 
     # Adjust i3wm setup
     if [ -n "$I3SOCK" ]; then
-        # Smaller gaps, should reflect the defaults in ~/.config/i3/config
-        set_gaps 10 0 0 0
-
         # Hide bottom info dock. With the ‘hide’ mode, it reveals
         # while the $mod key is held down. The ‘invisible’ mode keeps
         # it invisible at all times.
