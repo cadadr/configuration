@@ -88,16 +88,10 @@ do_wlp(){
 
         say "new background from: $bg [$(( idx + 1 ))/${#backgrounds[@]}]"
 
-        # resize and fit screen, in order to make it easily usable from
-        # lockscr.sh.
-        s="$(xdpyinfo | grep dimensions: | awk '{print $2}')"
-        convert \
-            -resize x$(echo $s | cut -dx -f2) \
-            -resize "$(echo $s | cut -dx -f1)x<" \
-            -gravity center  -crop $s+0+0 +repage \
-            "$bg" "$xbg"
+        convert "$bg" "$xbg"
 
-        feh --no-fehbg --bg-center "$xbg"
+        feh --no-fehbg --bg-fill "$xbg"
+
         sleep $slideshow_seconds & sleep_pid=$!
         wait $sleep_pid
 
