@@ -86,7 +86,7 @@ do_wlp(){
             continue
         fi
 
-        say "new background from: $bg [$(( idx + 1 ))/${#backgrounds[@]}]"
+        GK_NOTIFY=yes say "new background from: $bg [$(( idx + 1 ))/${#backgrounds[@]}]"
 
         convert "$bg" "$xbg"
 
