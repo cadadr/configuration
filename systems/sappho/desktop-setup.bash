@@ -58,7 +58,6 @@ bash $MYLIB/hw/tpx230.bash
 
 ### Start background processes:
 mate-power-manager       &
-setbg.bash               &
 dunst                    &
 kdeconnect-indicator     &
 clipit                   &

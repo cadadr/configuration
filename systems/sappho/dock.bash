@@ -21,6 +21,9 @@ export DISPLAY XAUTHORITY
 I3SOCK=$(i3 --get-socketpath || :)
 export I3SOCK
 
+wallpaper_vertical=/home/cadadr/Pictures/wlp/slideshow-vertical/flowers-outside-my-dorm-by-u-shitpostsandsalt-0xt6cxzedmm41.jpg
+wallpaper_horizontal=/home/cadadr/Pictures/wlp/slideshow-horizontal/2342951.jpg
+
 # Args: inner outer horizontal vertical
 set_gaps(){
     i3-msg -t command gaps inner current set $1
@@ -49,10 +52,7 @@ on_docked(){
     rm -f $HOME/.gk-xbg-dir
     ln -s $HOME/Pictures/wlp/slideshow-vertical $HOME/.gk-xbg-dir
 
-    # Advance wallpaper for correctly cropped version.
-    if [ -e $HOME/.setbg.bash.pid ]; then
-        kill -USR1 "$(cat $HOME/.setbg.bash.pid)"
-    fi
+    feh --no-fehbg --bg-fill "$wallpaper_vertical" "$wallpaper_horizontal"
 
     # Adjust i3wm setup
     if [ -n "$I3SOCK" ]; then
@@ -78,10 +78,7 @@ on_undocked(){
     rm -f $HOME/.gk-xbg-dir
     ln -s $HOME/Pictures/wlp/slideshow-horizontal $HOME/.gk-xbg-dir
 
-    # Advance wallpaper for correctly cropped version.
-    if [ -e $HOME/.setbg.bash.pid ]; then
-        kill -USR1 "$(cat $HOME/.setbg.bash.pid)"
-    fi
+    feh --no-fehbg --bg-fill "$wallpaper_horizontal"
 
     # Adjust i3wm setup
     if [ -n "$I3SOCK" ]; then
