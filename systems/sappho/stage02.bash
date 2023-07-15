@@ -192,7 +192,7 @@ echo
 echo === System installation 'complete!'
 echo
 echo The system is now ready for user setup. Follow the instructions
-echo for stage 2, and then reboot.
+echo for stage 3, and then reboot.
 echo
 echo === Bye o/
 echo
