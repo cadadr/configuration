@@ -63,6 +63,15 @@ text-dpi = 75
 [org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9]
 use-system-font = false
 
+[org/gtk/gtk4/settings/file-chooser]
+date-format = 'regular'
+show-hidden = false
+show-size-column = true
+show-type-column = true
+sort-directories-first = false
+type-format = 'category'
+view-type = 'list'
+
 [org/gtk/settings/file-chooser]
 date-format = 'regular'
 show-hidden = false
