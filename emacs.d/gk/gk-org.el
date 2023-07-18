@@ -1598,32 +1598,6 @@ Generates a "
    "#+startup: overview")
  auto-insert-alist)
 
-(push
- '(("okumalar/.+\\.org" . "Org-mode okuma notu")
-   nil
-   "#+title: "
-   (or (ignore-errors
-         (file-name-sans-extension
-          (file-name-nondirectory
-           (buffer-file-name))))
-       "[unknown]")
-   " okuma notları\n"
-   "#+date: "
-   (format-time-string "[%F %a]\n\n")
-   (or (ignore-errors
-         (concat
-          "ebib:"
-          (file-name-sans-extension
-           (file-name-nondirectory
-            (buffer-file-name)))))
-       "[unknown]")
-   "\n\n"
-   "* Overview\n\n"
-   "* Notlar\n\n"
-   "* Alıntılar\n\n"
-   "* Kaynakçadan\n\n")
- auto-insert-alist)
-
 
 
 ;;;; Capture:
