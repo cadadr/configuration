@@ -43,7 +43,7 @@ bar {
         workspace_buttons no
         tray_output none
         # Hide by default, shown when docked.
-        mode invisible
+        mode hide
 
         colors {
                 # Whole color settings
