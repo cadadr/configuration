@@ -1685,7 +1685,7 @@ Don’t hide the frame and don’t ask me shit."
 (setf
  ;; Sane defaults.
  org-zotxt-default-search-method :title-creator-year
- org-zotxt-link-description-style :betterbibtexkey)
+ org-zotxt-link-description-style :citekey)
 
 
 (define-advice org-zotxt-insert-reference-links-to-items
