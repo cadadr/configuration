@@ -66,3 +66,4 @@ libyaml-devel
 keepassxc
 tree-sitter tree-sitter-devel
 xterm
+cpuinfo
