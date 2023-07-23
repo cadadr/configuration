@@ -69,7 +69,7 @@ fi
 # system tray.
 (sleep 5; flameshot)     &
 nm-applet                &
-volctl                   &
+(sleep 2; volctl)        &
 blueman-applet           &
 picom --config $MY/dotfiles/picom.conf &
 # Activate script on suspend.
