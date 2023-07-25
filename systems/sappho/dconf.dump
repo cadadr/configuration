@@ -42,7 +42,7 @@ auto-power-on = @mb false
 burst-delay = 1000
 photo-x-resolution = 1280
 photo-y-resolution = 720
-selected-effect = 'No Effect'
+selected-effect = 'Flip'
 video-x-resolution = 1280
 video-y-resolution = 720
 
