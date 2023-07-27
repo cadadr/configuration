@@ -83,6 +83,8 @@ xss-lock -l -- $HOME/bin/lockscr.sh &
 udiskie -t &
 # Polkit authentication agent.
 /usr/libexec/xfce-polkit &
+# Background slideshow.
+setbg.bash               &
 
 ### Set up toolkit looks:
 
