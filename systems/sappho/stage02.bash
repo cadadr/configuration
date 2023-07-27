@@ -18,6 +18,7 @@ fi
 
 ### Config:
 username=cadadr
+daemons="avahi-daemon tlp sshd bluetoothd dcron saned ntpd"
 
 echo
 echo === Basic system settings...
@@ -42,7 +43,7 @@ xbps-install -Sy
 xbps-install -y bc bind-utils djvulibre entr inotify-tools jq \
              lm_sensors moreutils num-utils pv smartmontools tmux \
              units vim-common qrencode xtools udisks2 atop dcron \
-             void-repo-nonfree
+             void-repo-nonfree ntp
 
 # Update repositories after installing ‘void-repo-nonfree’
 xbps-install -Sy
@@ -153,8 +154,6 @@ usermod -aG kvm $username
 echo
 echo === Enable system services...
 echo
-
-daemons="avahi-daemon tlp sshd bluetoothd dcron saned"
 
 for daemon in $daemons; do
     [ -e /var/service/$daemon ] || ln -Tvs /{etc/sv,var/service}/$daemon
