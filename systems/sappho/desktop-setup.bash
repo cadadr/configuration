@@ -56,6 +56,11 @@ bash $MYLIB/hw/keyboard.bash
 
 bash $MYLIB/hw/tpx230.bash
 
+# If the USB trackball is attached, configure it.
+xinput list | grep "Logitech USB Trackball" >/dev/null 2>&1 \
+    && bash $MYLIB/hw/logitech_trackman.bash
+
+
 ### Start background processes:
 mate-power-manager       &
 dunst                    &
@@ -155,12 +160,6 @@ export XCURSOR_THEME="$mouse_theme"
 export XCURSOR_SIZE=$mouse_size
 
 ### Launch window manager:
-# Detect if docked. Because udev is a pile of crap, I need to do this
-# manually... d'uh..
-(cat /sys/devices/platform/dock.*/docked | grep 1) >/dev/null \
-    && $MYSYSTEM/dock.bash docked                             \
-    || $MYSYSTEM/dock.bash undocked
-
 (sleep 10; notify-send -t 2000 welcome "welcome to $(hostname)!" ) &
 
 # dotfiles/xsession will run $MYSYSTEM/desktop-setup.bash with
