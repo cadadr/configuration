@@ -52,6 +52,15 @@ case "$command" in
     install-record|insrec|irec)
         $0 install $@ && $0 record $@
         ;;
+    # service management
+    status)
+        sudo sv status $@
+        ;;
+    enable-daemon|enable-service|enable)
+        [ -e /var/service/$1 ]                  \
+            && echo service already enabled: $1 \
+            || sudo ln -Tvs /{etc/sv,var/service}/$1
+        ;;
     *)
         exit_with_error_message 2 unknown command: $command
 	;;
