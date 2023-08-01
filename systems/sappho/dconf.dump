@@ -80,6 +80,8 @@ show-type-column = true
 sort-directories-first = true
 type-format = 'category'
 
+[org/mate/atril]
+
 [org/mate/atril/default]
 continuous = true
 dual-page = false
