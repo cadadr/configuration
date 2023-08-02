@@ -10,10 +10,6 @@ export DESKTOP_SESSION=i3wm
 export XDG_CURRENT_DESKTOP=XFCE
 export GK_COLOUR_SCHEME_PREFERENCE=light
 export GK_XBGIMG="$HOME/.xbg.png"
-export GK_XBG_SLIDESHOW_INTERVAL_MINS=5
-
-rm -f $HOME/.gk-xbg-dir
-ln -s $HOME/Pictures/wlp/slideshow-horizontal /home/cadadr/.gk-xbg-dir
 
 # Manually set lat and long from zone.tab, geoclue is unreliable
 # because FUCK GNOME FUCK GNOME FUCK GNOME.
@@ -83,10 +79,16 @@ xss-lock -l -- $HOME/bin/lockscr.sh &
 udiskie -t &
 # Polkit authentication agent.
 /usr/libexec/xfce-polkit &
-# Background slideshow.
-setbg.bash               &
 
-### Set up toolkit looks:
+### Set up themes and visuals:
+
+# Desktop background
+
+if [ -f "$GK_XBGIMG" ]; then
+    feh --no-fehbg --bg-fill "$GK_XBGIMG"
+else
+    echo No image found at "$GK_XBGIMG". Cannot set desktop background.
+fi
 
 # Utilities
 
