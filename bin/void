@@ -16,26 +16,26 @@ shift
 
 case "$command" in
     refresh) #doc: update repositories, ‘sync remote repository index’
-	exec sudo xbps-install -S
-	;;
+        exec sudo xbps-install -S
+        ;;
     update|upgrade) #doc: update repo info & upgrade installed packages
-	exec sudo xbps-install -Su
-	;;
+        exec sudo xbps-install -Su
+        ;;
     install) #doc: install a package
-	exec sudo xbps-install -S $@
-	;;
+        exec sudo xbps-install -S $@
+        ;;
     uninstall|remove|delete) #doc: uninstall given packages
-	exec sudo xbps-remove $@
-	;;
+        exec sudo xbps-remove $@
+        ;;
     search) #doc: search for package, in remote repositories too
-	exec xbps-query -Rs $@
-	;;
+        exec xbps-query -Rs $@
+        ;;
     files) #doc: list files belonging to the package
-	exec xbps-query -f $@ | $PAGER
-	;;
+        exec xbps-query -f $@ | $PAGER
+        ;;
     info) #doc: show information about a package, querying remote repos
-	exec xbps-query -R $@ | $PAGER
-	;;
+        exec xbps-query -R $@ | $PAGER
+        ;;
     list-kernels|kernels) #doc: list removeable kernels
         exec sudo vkpurge list
         ;;
@@ -43,11 +43,11 @@ case "$command" in
         exec sudo vkpurge rm $@
         ;;
     clean) #doc: clean cache and remove orphaned packages
-	exec sudo xbps-remove -Oo
-	;;
+        exec sudo xbps-remove -Oo
+        ;;
     record) #doc: make note of package in $MYSYSTEM/new.txt
-	echo $@ >> $MYSYSTEM/new.txt
-	;;
+        echo $@ >> $MYSYSTEM/new.txt
+        ;;
     install-record|insrec|irec) #doc: install package, record in $MYSYSTEM/new.txt if succeeds
         $0 install $@ && $0 record $@
         ;;
@@ -77,5 +77,5 @@ case "$command" in
         ;;
     *)
         exit_with_error_message 2 unknown command: $command
-	;;
+        ;;
 esac
