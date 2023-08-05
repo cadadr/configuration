@@ -61,6 +61,9 @@ case "$command" in
             && echo service already enabled: $1 \
             || sudo ln -Tvs /{etc/sv,var/service}/$1
         ;;
+    restart-daemon|restart-service|restart)
+        sudo sv restart $@
+        ;;
     *)
         exit_with_error_message 2 unknown command: $command
 	;;
