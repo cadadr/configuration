@@ -15,54 +15,65 @@ fi
 shift
 
 case "$command" in
-    refresh)
+    refresh) #doc: update repositories, ‘sync remote repository index’
 	exec sudo xbps-install -S
 	;;
-    update|upgrade)
+    update|upgrade) #doc: update repo info & upgrade installed packages
 	exec sudo xbps-install -Su
 	;;
-    install)
+    install) #doc: install a package
 	exec sudo xbps-install -S $@
 	;;
-    uninstall|remove|delete)
+    uninstall|remove|delete) #doc: uninstall given packages
 	exec sudo xbps-remove $@
 	;;
-    search)
+    search) #doc: search for package, in remote repositories too
 	exec xbps-query -Rs $@
 	;;
-    files)
+    files) #doc: list files belonging to the package
 	exec xbps-query -f $@ | $PAGER
 	;;
-    info)
+    info) #doc: show information about a package, querying remote repos
 	exec xbps-query -R $@ | $PAGER
 	;;
-    list-kernels|kernels)
+    list-kernels|kernels) #doc: list removeable kernels
         exec sudo vkpurge list
         ;;
-    rm-kernels|del-kernels|purge-kernels)
+    rm-kernels|del-kernels|purge-kernels) #doc: remove matching kernels; ‘all’ removes all
         exec sudo vkpurge rm $@
         ;;
-    clean)
+    clean) #doc: clean cache and remove orphaned packages
 	exec sudo xbps-remove -Oo
 	;;
-    # record packages into my newly installed packages file
-    record)
+    record) #doc: make note of package in $MYSYSTEM/new.txt
 	echo $@ >> $MYSYSTEM/new.txt
 	;;
-    install-record|insrec|irec)
+    install-record|insrec|irec) #doc: install package, record in $MYSYSTEM/new.txt if succeeds
         $0 install $@ && $0 record $@
         ;;
     # service management
-    status)
+    status) #doc: show status of service
         sudo sv status $@
         ;;
-    enable-daemon|enable-service|enable)
+    enable-daemon|enable-service|enable) #doc: enable service
         [ -e /var/service/$1 ]                  \
             && echo service already enabled: $1 \
             || sudo ln -Tvs /{etc/sv,var/service}/$1
         ;;
-    restart-daemon|restart-service|restart)
+    restart-daemon|restart-service|restart) #doc: restart service
         sudo sv restart $@
+        ;;
+    help) #doc: list available commands and their purposes
+        echo "$script_name: usage: $script_usage"
+        echo
+        echo Commands:
+        # Delete tail&head, discard command body, extract command name
+        # & description.
+        sed -E \
+            -e '0,/^case "\$command/d' -e '/^esac$/,$d' \
+            -e '/    \w.+\) #doc:/!d'                   \
+            -e 's/\s+([^\)]+)\) #doc: (.+)$/\t\1:\n\t\t\2/' < $0
+        echo
         ;;
     *)
         exit_with_error_message 2 unknown command: $command
