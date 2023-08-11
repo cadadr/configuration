@@ -106,15 +106,44 @@ countpdfpagesdir () {
 	| awk 'BEGIN{X=0}; {X+=$2}; END{print X}'
 }
 
+# options:
+#   -c: colourscheme, passed to $MYSYSTEM/desktop-setup.bash
+#          default: light
+#   -d: X display number to use, without the colon
+#          default: 0    (zero)
 sx () {
-    dpy="${1:-0}"
+    dpy=0
+    colourscheme=light
+
+    while getopts "c:d:" opt; do
+        case "${opt}" in
+            c) colourscheme="${OPTARG}" ;;
+            d) dpy="${OPTARG}" ;;
+        esac
+    done
+    shift $((OPTIND-1))
+
     log_stdout="$MYLOGS/xsession:$dpy-stdout.log"
     log_stderr="$MYLOGS/xsession:$dpy-error.log"
     log_xorg="$HOME/.local/share/xorg/Xorg.$dpy.log"
+
     # Preserve old logs
     [ -e $log_stdout ] && cp $log_stdout $log_stdout.old
     [ -e $log_stderr ] && cp $log_stderr $log_stderr.old
-    startx -- :$dpy > $log_stdout 2> $log_stderr
+
+    case "$colourscheme" in
+        dark)
+            export GK_COLOUR_SCHEME_PREFERENCE=dark
+            startx -- :$dpy > $log_stdout 2> $log_stderr
+            ;;
+        light)
+            export GK_COLOUR_SCHEME_PREFERENCE=light
+            startx -- :$dpy > $log_stdout 2> $log_stderr
+            ;;
+        *)
+            echo "invalid colourscheme: $colourscheme"
+            return 2
+    esac
 }
 
 # From: https://news.ycombinator.com/item?id=18898898

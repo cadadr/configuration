@@ -8,7 +8,7 @@ IFS=$'\n\t'
 export DESKTOP_SESSION=i3wm
 # Let’s pretend to be XFCE4.
 export XDG_CURRENT_DESKTOP=XFCE
-export GK_COLOUR_SCHEME_PREFERENCE=light
+export GK_COLOUR_SCHEME_PREFERENCE="${GK_COLOUR_SCHEME_PREFERENCE:-light}"
 export GK_XBGIMG="$HOME/.xbg.png"
 
 # Manually set lat and long from zone.tab, geoclue is unreliable
