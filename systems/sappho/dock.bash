@@ -13,6 +13,7 @@ fi
 # bash strict mode
 set -euo pipefail
 
+# Set up access to Xorg and i3wm.
 config="$(/bin/pgrep -a Xorg | tr -s ' ' | cut -d ' ' -f 3,7)"
 config=( $config )
 DISPLAY="${config[0]}"
