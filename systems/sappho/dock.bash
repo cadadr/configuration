@@ -37,6 +37,9 @@ on_docked(){
     # Monitor setup
     /bin/sh $HOME/.screenlayout/sappho-docked-only-external.sh
 
+    # Refresh the wallpaper
+    feh --no-fehbg --bg-fill $GK_XBGIMG
+
     # Adjust i3wm setup
     if [ -n "$I3SOCK" ]; then
         # Show bottom info dock
@@ -54,6 +57,9 @@ on_undocked(){
 
     # Monitor setup.
     /bin/sh $HOME/.screenlayout/sappho-undocked.sh
+
+    # Refresh the wallpaper
+    feh --no-fehbg --bg-fill $GK_XBGIMG
 
     # Adjust i3wm setup
     if [ -n "$I3SOCK" ]; then
