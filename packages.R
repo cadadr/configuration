@@ -8,6 +8,8 @@ if(!dir.exists(libdir)) {
   dir.create(libdir, recursive = T, showWarnings = T)
 }
 
+options(repos=c(CRAN="https://cloud.r-project.org/"))
+
 install.packages("rio", libdir)
 install.packages("tidyverse", libdir)
 install.packages("lintr", libdir)
