@@ -14,6 +14,10 @@ formals(quit)$save <- formals(q)$save <- "no"
 # <https://stackoverflow.com/a/1349232/6999086>)
 options(showWarnCalls=T, showErrorCalls=T)
 
+# Set default repository. This is the meta-repository that redirects to an
+# appropriate one.
+options(repos=c(CRAN="https://cloud.r-project.org/"))
+
 
 
 ### Load some useful functions by default:
