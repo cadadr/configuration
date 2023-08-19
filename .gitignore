@@ -36,6 +36,7 @@ __pycache__
 
 # Compiled binaries
 bin/i3-appropriate-layout
+bin/bye-hs
 
 # Private config
 config.m4

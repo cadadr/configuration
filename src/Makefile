@@ -1,12 +1,15 @@
 # src/Makefile
 
-PROGRAMS = ../bin/i3-appropriate-layout
+PROGRAMS = ../bin/i3-appropriate-layout ../bin/bye-hs
 
 ### Parameters:
 DEBUG = no
 PEDANTIC = no
 CC = gcc
 C_FLAGS_EXTRA =
+
+GHC = ghc
+GHC_FLAGS = -O2
 
 ### C flags:
 C_FLAGS = -Wformat=2 -Wfloat-equal -Wundef -Wshadow -Wpointer-arith -Wcast-align
@@ -64,9 +67,13 @@ all: $(PROGRAMS)
 ../bin/i3-appropriate-layout: i3-appropriate-layout.c
 	$(CC) $(C_FLAGS) $(shell pkg-config --libs --cflags i3ipc-glib-1.0 xcb xcb-randr) -o $@ $<
 
+#### bye-hs
+../bin/bye-hs: bye.hs
+	$(GHC) $(GHC_FLAGS) -o $@ $<
+
 ### Cleaning:
 clean:
-	rm -f *.gcno *.o *.so $(PROGRAMS) $(patsubst %,%.gcno,$(PROGRAMS))
+	rm -f *.gcno *.o *.so *.hi $(PROGRAMS) $(patsubst %,%.gcno,$(PROGRAMS))
 
 ### Phonies:
 .PHONY: help all clean
