@@ -743,8 +743,8 @@ function returns the org mode list as an unpropertised string."
 
 ;;;; Apps:
 
-;; Use system app to handle PDFs.
-(setcdr (assoc "\\.pdf\\'" org-file-apps) "xdg-open %s")
+;; Use Emacs to handle PDFs (i.e. pdf-tools).
+(setcdr (assoc "\\.pdf\\'" org-file-apps) 'emacs)
 
 (setcdr (assoc 'file org-link-frame-setup)
         (lambda (&rest args)
