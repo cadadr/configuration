@@ -22,6 +22,10 @@ export DISPLAY XAUTHORITY
 I3SOCK=$(i3 --get-socketpath || :)
 export I3SOCK
 
+# HACK(2023-08-19): this is set in $MYSYSTEM/desktop-setup.bash,
+# shouldn’t rely on this...
+GK_XBGIMG="${GK_XBGIMG:-$HOME/.xbg.png}"
+
 on_docked(){
     notify-send -u low -t 5000 docked "setting up..."
 
