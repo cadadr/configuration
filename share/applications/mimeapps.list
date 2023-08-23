@@ -14,3 +14,12 @@ x-scheme-handler/https=firefox.desktop;
 x-scheme-handler/mailto=emacsclient-url.desktop;
 x-scheme-handler/org-protocol=emacsclient-org-protocol.desktop
 video/mp4=mpv.desktop
+
+application/vnd.openxmlformats-officedocument.presentationml.presentation=libreoffice-impress.desktop;
+application/vnd.openxmlformats-officedocument.presentationml.slide=libreoffice-impress.desktop;
+application/vnd.openxmlformats-officedocument.presentationml.slideshow=libreoffice-impress.desktop;
+application/vnd.openxmlformats-officedocument.presentationml.template=libreoffice-impress.desktop;
+application/vnd.openxmlformats-officedocument.spreadsheetml.sheet=libreoffice-calc.desktop;
+application/vnd.openxmlformats-officedocument.spreadsheetml.template=libreoffice-calc.desktop;
+application/vnd.openxmlformats-officedocument.wordprocessingml.document=libreoffice-writer.desktop;
+application/vnd.openxmlformats-officedocument.wordprocessingml.template=libreoffice-writer.desktop;
