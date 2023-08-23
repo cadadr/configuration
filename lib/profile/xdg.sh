@@ -37,5 +37,5 @@ done
 
 if which flatpak 2>/dev/null >/dev/null; then
     flatpak_data_dir="$HOME/.local/share/flatpak/exports/share"
-    export XDG_DATA_DIRS="$flatpak_data_dir${XDG_DATA_DIRS:+:$XDG_DATA_DIRS}"
+    export XDG_DATA_DIRS="${XDG_DATA_DIRS:+$XDG_DATA_DIRS:}$flatpak_data_dir"
 fi
