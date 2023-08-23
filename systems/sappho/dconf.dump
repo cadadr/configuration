@@ -38,6 +38,20 @@ auto-power-on = @mb false
 
 [org/blueman/plugins/recentconns]
 
+[org/gnome/calculator]
+accuracy = 9
+angle-units = 'degrees'
+base = 10
+button-mode = 'basic'
+number-format = 'automatic'
+show-thousands = false
+show-zeroes = false
+source-currency = ''
+source-units = 'degree'
+target-currency = ''
+target-units = 'radian'
+word-size = 64
+
 [org/gnome/cheese]
 burst-delay = 1000
 photo-x-resolution = 1280
