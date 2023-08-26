@@ -65,6 +65,14 @@ video-y-resolution = 720
 [org/gnome/desktop/privacy]
 disable-microphone = false
 
+[org/gnome/nautilus/preferences]
+default-folder-viewer = 'icon-view'
+migrated-gtk-settings = true
+search-filter-time-type = 'last_modified'
+
+[org/gnome/nautilus/window-state]
+initial-size = (517, 700)
+
 [org/gnome/simple-scan]
 brightness = -38
 contrast = 42
@@ -82,7 +90,7 @@ date-format = 'regular'
 show-hidden = false
 show-size-column = true
 show-type-column = true
-sort-directories-first = false
+sort-directories-first = true
 type-format = 'category'
 view-type = 'list'
 
