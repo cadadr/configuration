@@ -77,6 +77,8 @@ When ARG is a positive number, repeat that many times."
      (list "kdialog" "--passivepopup" message "10"
            "--title" (concat "[Emacs] " summary))))))
 
+(make-obsolete 'gk-send-desktop-notification 'notifications-notify "2023-08-26")
+
 (defun gk-existing-file-name-or-nil (filename)
   (when (file-exists-p filename)
     filename))
