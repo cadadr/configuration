@@ -3,12 +3,12 @@
 ;; This file indicates the latest build from GNU Emacs git repo that is
 ;; known to work with my Emacs and dotfiles setup.
 ;;
-;; Last updated: 2023-07-1606:18:58+0300.
+;; Last updated: 2023-08-2700:11:41+0300.
 
 (:system "x86_64-pc-linux-gnu" :commit
-	 "c5fa58cbc4a33a0a65494b9ab2e35d4f30ab849b" :branch "master"
+	 "ecb1e6c71323127b0b6d171861376950d28073c0" :branch "master"
 	 :version
-	 "GNU Emacs 30.0.50 (build 1, x86_64-pc-linux-gnu, GTK+ Version 3.24.38, cairo version 1.16.0)\n of 2023-07-16"
+	 "GNU Emacs 30.0.50 (build 1, x86_64-pc-linux-gnu, GTK+ Version 3.24.38, cairo version 1.16.0)\n of 2023-08-26"
 	 :source source-directory)
 
 ;; Local Variables:
