@@ -284,16 +284,26 @@
 ;;; General advices:
 
 (define-advice what-cursor-position
-    (:around (fn detail)
-             tell-me-the-name-of-the-char-w/o-going-into-details)
-  "Extend the basic output of ‘what-cursor-position’ with character name."
+    (:around (fn detail) extended-short-message)
+  "Extend basic output with some handy detail."
   (if detail
       (funcall fn detail)
     (message
-     "%s"
-     (concat
-      (let ((inhibit-message t)) (funcall fn)) "\nDescription: "
-      (get-char-code-property (following-char) 'name)))))
+     "%s\nDescription: %s, face: %s, font: %s"
+     (let ((inhibit-message t)) (funcall fn))
+     (if-let* ((char-name (get-char-code-property (following-char) 'name)))
+         (concat "“" char-name "”")
+       "(no description)")
+     (if-let* ((face-name (face-at-point)))
+         (propertize (symbol-name face-name) 'face face-name)
+       "(none/default)")
+     (if-let* ((font (font-at (point))))
+         (format "%s (size=%s weight=%S slant=%S)"
+                 (font-get font :family)
+                 (font-get font :size)
+                 (font-get font :weight)
+                 (font-get font :slant))
+       "(unknown)"))))
 
 
 
